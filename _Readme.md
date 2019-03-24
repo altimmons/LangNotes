@@ -364,7 +364,7 @@ Instructions using pandoc
 
 go here- `C:\Users\andyt\.vscode\extensions\satokaz.vscode-markdown-header-coloring-0.1.1`
 https://www.w3schools.com/colors/colors_names.asp
-see readme.md 
+see readme.md
 
 Use Color Highlight [code --install-extension naumovs.color-highlight]
 and Color Picker [code --install-extension anseki.vscode-color]
@@ -387,7 +387,7 @@ and Color Picker [code --install-extension anseki.vscode-color]
   - #7b4397, #dc2430
 - ivory,dark
   - #d7d2cc, #304352
-- blue dark 
+- blue dark
   - #3498db, #2c3e50
 - green dark
   - #00bf8f, #001510
@@ -1607,8 +1607,8 @@ code --install-extension ms-python.python
 code --install-extension donjayamanne.jupyter
 code --install-extension donjayamanne.python-extension-pack
 code --install-extension alefragnani.project-manager
-code --install-extension 
-code --install-extension 
+code --install-extension
+code --install-extension
 Language Support for Java(TM) by Red Hat
 redhat.java
 Preview
@@ -1688,6 +1688,19 @@ Key Binding set to Ctrl + \` Ctrl + \` (Double Press)
       "label": "WSL"
     }
   ]
+```
+
+## Push to Github
+
+```bash
+git config --global credential.helper wincred
+
+cd md
+git init
+git add . #add everything
+git commit -m "Message"
+gitr remote add github https://github.com/altimmons/Notes.git
+
 ```
 
 ## Work Config
@@ -1943,9 +1956,9 @@ exe64=x64\\(.*?)(
 
 - Wildcards
   - `.` - 1   match a single char (any, except new line `\n`)
-  - `*` - 0+  - zero or more occurances. 
-  - `+` - 1+  -one or more occurances.  Requires its occurance.  
-  - `?` - match 0 or more, but as few characters as possible (?). 
+  - `*` - 0+  - zero or more occurances.
+  - `+` - 1+  -one or more occurances.  Requires its occurance.
+  - `?` - match 0 or more, but as few characters as possible (?).
     - `.+`  = one or more of any char **As above- this is a (non-null) Wildcard**
     - `.*` = zero or more of any char.  **This is a wildcard functionally**
     - `*?`,`+?`, `??`, `{#...}?` Lazy modifiers of the above.
@@ -1959,11 +1972,11 @@ exe64=x64\\(.*?)(
   - [...] - give characters to match.
     - [\], [c] - match a single char
     - [a-f], [0-9] - match a range
-    - [pre], [.)-] - match a single character in a set. [abc] = a, b, c not d, matches a in aa. 
+    - [pre], [.)-] - match a single character in a set. [abc] = a, b, c not d, matches a in aa.
   - (...) - specify a string to search for
     - (...) -> `\1` define a pattern then Reference it later (in the same pattern) with \1 (\2, \3) etc.  `({3}[x])z\1 = xxxzxxx`
     - (...) -> `$1` - in replacements, VS 2011+ replaced \1 with $1.
-- Logic 
+- Logic
   - `?!` = NOT , `real(?!ity)` matched real and really but not reality.
   - [^...] - NOT in set - as above for brackets, but invalidates `be[^abc]` does not match bear but would match bee.
   - `|` = OR - Match either the sequence before or after. `([0-9]|[a-f]|[^g-z])` - to find hex `#([0-9]|[a-f]){6}` find hex colors
@@ -1990,7 +2003,7 @@ exe64=x64\\(.*?)(
   - `\###` | `\##` matches an **ASCII Character** in Octal | Hex
   - `\cC` matches CtrlC
   - \S+ -any non-White-Space (One or more)
-  - \S non-whitespace 
+  - \S non-whitespace
   - \D - Matches a nondigit char - equiv to `\P{Nd}`
   - \d{1,5}- Match from one to five decimal digits.
   - `\w` Alphanumeric
@@ -2037,11 +2050,11 @@ exe64=x64\\(.*?)(
   - Cn - Other, Not Assigned (no characters have this property)
   - C - All control characters. This includes the Cc, Cf, Cs, Co, and Cn categories.
 - Anchors
-  - `^`  match must occur at the beginning of the string; 
+  - `^`  match must occur at the beginning of the string;
     - multiline mode, it must occur at the beginning of the line.
-  - `$`  the match must occur at the end of the string or before \n at the end of the string; 
+  - `$`  the match must occur at the end of the string or before \n at the end of the string;
     - in multiline mode, it must occur at the end of the line or before \n at the end of the line.
-  - `\A`  The match must occur at the beginning of the string only (no multiline support). 
+  - `\A`  The match must occur at the beginning of the string only (no multiline support).
   - `\Z`  The match must occur at the end of the string, or before \n at the end of the string.
   - `\z`  The match must occur at the end of the string only.
   - `\G`  The match must start at the position where the previous match ended.
