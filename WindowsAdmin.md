@@ -2,6 +2,8 @@
 
 /TODO Copy in OneNote notes
 
+["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
+
 ## Notes
 
 Note for Windows users on 64-bit systems
@@ -9,17 +11,111 @@ Note for Windows users on 64-bit systems
 - Progra~1 = 'Program Files'
 - Progra~2 = 'Program Files(x86)'
 
+
 ## VS Code
 
 code _ , where _ is
 
-- `.`(period) Open Code in the Current dir
+- `.`(period) Open "Code" **in** *the* Current dir
 
 ## Windows Functions
 
 `msconfig` - get to **safe mode**
 
+### Shell Config
 
+#### Environment Vars
+
+see with `gci env:` in Powershell,
+
+#### Start Menu Location
+
+`C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu`
+`%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu`
+`C:\ProgramData\Microsoft\Windows\Start Menu`
+
+
+#### Secret Location of the right click menu
+`C:\Users\s163837\AppData\Local\Microsoft\Windows\WinX`
+
+
+## Location of Personal Data
+
+### Open/Save Menu
+
+All files opened or saved with the Open/ Save dialog are stored here:
+
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU 
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU 
+ 
+Can be viewed with Nirsoft - OpenSaveFilesView
+
+C:\Documents and Settings\[Your Profile]\Recent
+
+### Folder Settings
+
+
+Windows uses the following Registry keys to save the folders information: 
+HKEY_CURRENT_USER\Software\Microsoft\Windows\ShellNoRoam 
+HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell 
+HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell (Only in Windows Vista) 
+
+### User Assist 
+
+Nirsoft - UserAssistView
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist key in the Registry. The UserAssist key contains information about the exe files and links that you open frequently
+
+
+### Passwords
+
+DataProtectionDecryptor is a powerful tool for Windows that allows you to decrypt passwords and other information encrypted by the DPAPI (Data Protection API) system of Windows operating system. 
+
+Here's some examples for passwords and other data encrypted with DPAPI: 
+
+Passwords of Microsoft Outlook accounts, stored in the Registry under HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\15.0\Outlook\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Outlook\Profiles (Depending on version of Outlook) 
+Credentials files of Windows (e.g: C:\Users\[User Profile]\AppData\Roaming\Microsoft\Credentials , C:\Users\[User Profile]\AppData\Local\Microsoft\Credentials ) 
+Wireless network keys (Stored inside XML files under C:\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces ) 
+Passwords in some versions of Internet Explorer, stored in the following Registry key: HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage2 
+Passwords stored in the passwords file of Chrome Web browser ('Login Data' file in the profile of Chrome). 
+Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome) 
+
+
+
+## Protocol Host
+
+Nirsoft URLProtocolView
+
+Running `ms-taskswitcher:/` brings up task viewThe protocol host seems useful!
+.
+
+#### Getting a programs Path
+
+Not 100% sure this works:
+
+`|Computer|HKEY_CLASSES_ROOT|Applications|rstudio.exe|shell|open|command`
+
+HKCR|Applications|name|shell|open|command
+
+### Windows Search
+
+
+[Windows Search Docs](https://docs.microsoft.com/en-us/windows/desktop/search/-search-3x-wds-overview)
+[Legacy](https://docs.microsoft.com/en-us/windows/desktop/lwef/-search-2x-wds-aqsreference)
+
+[Querying](https://docs.microsoft.com/en-us/windows/desktop/search/-search-querying-interfaces-entry-page)
+[Reference](https://docs.microsoft.com/en-us/windows/desktop/search/-search-reference-entry-page)
+Boolean operators include AND, OR, and NOT.
+
+
+When you write a query with optional criteria, you use the following syntax:
+
+        data store or scope:value
+        file kind:value
+        property:value
+
+Content = Led Zeppelin + file kind = music + length = short (1 – 5 minutes)
 
 ## Keyboard SHortcuts
 
@@ -31,7 +127,7 @@ Left Windows + ...
 [U] = Open Ease of Access Center
 [=] = Open Magnifier
 [M] = Minimize all Windows
-[Tab] = Open Task View 
+[Tab] = Open Task View
 [R] = Run Dialogue
 [K] = Open Quick Connect
 [I] = Open Windows Settins
@@ -56,74 +152,78 @@ Left Windows + ...
 ## Basic Commands
 
 
-| Command       | Description                                                                                                                                                                                                |   |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
-| assoc         | Displays or modifies file name extension associations. Used alone, displays a list of all the current file name associations                                                                               |   |
-| at            | Schedules commands and programs to run on a computer at a specified time and date. Requires the Schedule service. Superseded by schtasks                                                                   |   |
-|               |                                                                                                                                                                                                            |   |
-| attrib        | Configures file attributes read only, hidden, system                                                                                                                                                       |   |
-| bootcfg       | Used to repair or edit the boot.ini file                                                                                                                                                                   |   |
-| cd or chdir   | Displays the name of the current directory or changes the current folder                                                                                                                                   |   |
-| chkdsk        | Checks hard drives for errors. With switches,does repairs.                                                                                                                                                 |   |
-| cls           | Clears the screen                                                                                                                                                                                          |   |
-| copy          | Copies a file from one location to another                                                                                                                                                                 |   |
-| del           | Deletes one or more files                                                                                                                                                                                  |   |
-| dir           | Displays a list of a folder's files and subfolders                                                                                                                                                         |   |
-| diskpart      | Disk management shell. A suite of various commands                                                                                                                                                         |   |
-| driverquery   | Displays a list of all installed device drivers and their properties. Requires administrator privileges. (Not available in Windows XP Home)                                                                |   |
-| echo          | Used to display a message or to turn off/on messages in batch scripts                                                                                                                                      |   |
-|               |                                                                                                                                                                                                            |   |
-| exit          | Exits batch script or current command control                                                                                                                                                              |   |
-| fc            | Compares two files and displays the differences between them                                                                                                                                               |   |
-| find          | Searches for a text string in a file or files. Can also be used with output from another command.                                                                                                          |   |
-| findstr       | Searches for text string patterns in a file using regular expressions                                                                                                                                      |   |
-| for           | Runs a specified command for each item in a set                                                                                                                                                            |   |
-| fsutil        | Displays and configures certain file system properties. A suite of various commands                                                                                                                        |   |
-| ftype         | Displays or modifies file types used in file name extension associations                                                                                                                                   |   |
-| getmac        | Returns the media access control (MAC) address for your network card                                                                                                                                       |   |
-| goto          | Directs the Windows command interpreter to a labeled line in a batch program                                                                                                                               |   |
-| if            | Performs conditional processing in batch programs                                                                                                                                                          |   |
-| ipconfig      | Displays all current TCP/IP network configuration values and refreshes Dynamic Host Configuration Protocol (DHCP) and Domain Name System (DNS) settings                                                    |   |
-| md or mkdir   | Creates a directory (folder) or subdirectory (subfolder)                                                                                                                                                   |   |
-| more          | Displays one screen of output at a time. Used with another command that has extensive output                                                                                                               |   |
-| move          | Moves a file from one folder to another                                                                                                                                                                    |   |
-| net           | A suite of various networking and service commands                                                                                                                                                         |   |
-| netsh         | Network services shell . Complex suite of commands.                                                                                                                                                        |   |
-| netstat       | Displays active TCP connections, ports on which the computer is listening, Ethernet statistics, the IP routing table, statistics for the IP, ICMP, TCP, and UDP protocols                                  |   |
-| path          | Sets the command path in the PATH environment variable, which is the set of directories used to search for executable files                                                                                |   |
-| pathping      | Provides information about network performance and conditions at intermediate hops between a source and destination                                                                                        |   |
-| pause         | Used in batch scripts                                                                                                                                                                                      |   |
-| ping          | Checks connectivity to other networked computers, routers, or Internet sites                                                                                                                               |   |
-| popd, pushd   | Changes the directory being referenced in a command prompt. Pushd changes the directory and stores the previous directory. Popd changes the current directory to the directory stored by the pushd command |   |
-| powercfg      | Manages the power settings such as hibernation. Has numerous switches                                                                                                                                      |   |
-| reg           | Adds, changes, and displays registry entries. A suite of various commands                                                                                                                                  |   |
-| rd or rmdir   | Deletes a directory (folder)                                                                                                                                                                               |   |
-| ren or rename | Changes the name of a file or a set of files                                                                                                                                                               |   |
-| sc            | Used to obtain information about services and to configure them. A suite of various commands                                                                                                               |   |
-| schtasks      | Schedules commands and programs to run periodically or at a specific time                                                                                                                                  |   |
-| set           | Displays, sets, or removes environment variables                                                                                                                                                           |   |
-| sfc           | System file checker scans and verifies the versions of all protected system files                                                                                                                          |   |
-| shutdown      | Shuts down or restarts a computer                                                                                                                                                                          |   |
-| sort          | Alphabetizes strings from a text file or the output of a command.                                                                                                                                          |   |
-| start         | Starts an application or opens a new command window                                                                                                                                                        |   |
-| subst         | Associates a folder with a drive letter                                                                                                                                                                    |   |
-| systeminfo    | Displays detailed configuration information about a computer and its operating system                                                                                                                      |   |
-| taskkill      | Ends one or more tasks or processes                                                                                                                                                                        |   |
-| tasklist      | Displays a list of applications and services with their Process ID (PID) for all tasks running                                                                                                             |   |
-| tree          | Graphically displays the directory structure of a folder or drive                                                                                                                                          |   |
-|               |                                                                                                                                                                                                            |   |
-| type          | Displays the contents of a text file                                                                                                                                                                       |   |
-| vssadmin      | For administering and configuring volume shadow copies                                                                                                                                                     |   |
-| xcopy         | Powerful command with many switches for copying and backing up files and folders                                                                                                                           |   |
+| Command       | Description                                                                |
+| ------------- | -------------------------------------------------------------------------- |
+| assoc         | Displays or modifies file name extension associations.[1]                  |
+| at            | Schedules commands to run on a computer at a specified time [2]            |
+| attrib        | Configures file attributes read only, hidden, system                       |
+| bootcfg       | Used to repair or edit the boot.ini file                                   |
+| cd or chdir   | Displays the name of the current directory or changes the current folder   |
+| chkdsk        | Checks hard drives for errors. With switches,does repairs.                 |
+| cls           | Clears the screen                                                          |
+| copy          | Copies a file from one location to another                                 |
+| del           | Deletes one or more files                                                  |
+| dir           | Displays a list of a folder's files and subfolders                         |
+| diskpart      | Disk management shell. A suite of various commands                         |
+| driverquery   | Displays a list of all installed device drivers and their properties. [3]  |
+| echo          | Used to display a message or to turn off/on messages in batch scripts      |
+| exit          | Exits batch script or current command control                              |
+| fc            | Compares two files and displays the differences between them               |
+| find          | Searches for a text string in a file or files. [4]                         |
+| findstr       | Searches for text string patterns in a file using regular expressions      |
+| for           | Runs a specified command for each item in a set                            |
+| fsutil        | Displays and configures certain file system properties. Suite              |
+| ftype         | Displays or modifies file types used in file name extension associations   |
+| getmac        | Returns the media access control (MAC) address for your network card       |
+| goto          | Directs the command interpreter to a labeled line in a batch program       |
+| if            | Performs conditional processing in batch programs                          |
+| ipconfig      | Displays TCP/IP network config and refreshes DHCP and DNS[5]               |
+| md or mkdir   | Creates a directory (folder) or subdirectory (subfolder)                   |
+| more          | Displays output one screen at a time. Used with another command            |
+| move          | Moves a file from one folder to another                                    |
+| net           | A suite of various networking and service commands                         |
+| netsh         | Network services shell . Complex suite of commands.                        |
+| netstat       | Displays active TCP con. ports on which the computer is listening,+ [6]    |
+| path          | Sets the command path in the PATH environment variable, [7]                |
+| pathping      | Network performance and conditions at intermediate hops btw host and dest. |
+| pause         | Used in batch scripts                                                      |
+| ping          | Checks connectivity to other networked computers                           |
+| popd, pushd   | Changes the directory being referenced in a command prompt. [8]            |
+| powercfg      | Manages the power settings such as hibernation. Has numerous switches      |
+| reg           | Adds, changes, and displays registry entries. A suite of various commands  |
+| rd or rmdir   | Deletes a directory (folder)                                               |
+| ren or rename | Changes the name of a file or a set of files                               |
+| sc            | Used to obtain information about services and to configure them. Suite.    |
+| schtasks      | Schedules commands and programs to run periodically or at a specific time  |
+| set           | Displays, sets, or removes environment variables                           |
+| sfc           | System file checker scans and verifies all protected system files          |
+| shutdown      | Shuts down or restarts a computer                                          |
+| sort          | Alphabetizes strings from a text file or the output of a command.          |
+| start         | Starts an application or opens a new command window                        |
+| subst         | Associates a folder with a drive letter                                    |
+| systeminfo    | Displays configuration information on computer and OS                      |
+| taskkill      | Ends one or more tasks or processes                                        |
+| tasklist      | Lists running tasks, applications and services with their PID              |
+| tree          | Graphically displays the directory structure of a folder or drive          |
+| type          | Displays the contents of a text file                                       |
+| vssadmin      | For administering and configuring volume shadow copies                     |
+| xcopy         | Tool for copying and backing up files and folders                          |
 
-
+1. Used alone, displays a list of all the current file name associations
+2. Requires the Schedule service. Superseded by schtasks
+3. Requires administrator privileges. (Not available in Windows XP Home)
+4. Can also be used with output from another command.
+5. Dynamic Host Configuration Protocol (DHCP) and Domain Name System (DNS) settings
+6. Ethernet statistics, the IP routing table, statistics for the IP, ICMP, TCP, and UDP protocols
+7. Which is the set of directories used to search for executable files
+8. Pushd changes the directory and stores the previous directory. Popd changes the current directory to the directory stored by the pushd command
 =======
 
 - `Command`- Description|
 - `-------------`- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - `assoc`- Displays or modifies file name extension associations. Used alone, displays a list of all the current file name associations
 - `at`- Schedules commands and programs to run on a computer at a specified time and date. Requires the Schedule service. Superseded by schtasks
-- ` `-  
+- ` `-
 - `attrib`- Configures file attributes read only, hidden, system
 - `bootcfg`- Used to repair or edit the boot.ini file
 - `cd or chdir`- Displays the name of the current directory or changes the current folder
@@ -135,7 +235,6 @@ Left Windows + ...
 - `diskpart`- Disk management shell. A suite of various commands
 - `driverquery`- Displays a list of all installed device drivers and their properties. Requires administrator privileges. (Not available in Windows XP Home)
 - `echo`- Used to display a message or to turn off/on messages in batch scripts
-- ` `-  
 - `exit`- Exits batch script or current command control
 - `fc`- Compares two files and displays the differences between them
 - `find`- Searches for a text string in a file or files. Can also be used with output from another command.
@@ -174,7 +273,6 @@ Left Windows + ...
 - `taskkill`- Ends one or more tasks or processes
 - `tasklist`- Displays a list of applications and services with their Process ID (PID) for all tasks running
 - `tree`- Graphically displays the directory structure of a folder or drive
-- ` `-  
 - `type`- Displays the contents of a text file
 - `vssadmin`- For administering and configuring volume shadow copies
 - `xcopy`- Powerful command with many switches for copying and backing up files and folders
@@ -222,26 +320,87 @@ Get a list of all WMI classes with the word “COM” in them (doing a case sens
 
 ## Command Line
 
+### Paths
+
+[Dev Considerations for File Systems](https://docs.microsoft.com/en-us/windows/desktop/fileio/file-systems)
+
+[NFTS Technical Reference](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc758691(v=ws.10))
+
+[Directory Management](https://docs.microsoft.com/en-us/windows/desktop/fileio/directory-management)
+
+[File Management](https://docs.microsoft.com/en-us/windows/desktop/fileio/file-management)
+
+[Transaction Management of NFTS](https://docs.microsoft.com/en-us/windows/desktop/fileio/transactional-ntfs-portal)
+
+
+Dot (. and ..) conventions—for example, `..\` resolves the path relative to the parent directory.
+
+Names with no slashes ()—for example, `tmp` resolves the path relative to the current directory.
+
+Root relative—for example, `\Windows\System32` resolves to the `current drive:\Windows\System32`. directory
+
+Current working directory-relative—for example, if the current working directory is `C:\Windows\System32`, `C:File.txt` resolves to `C:\Windows\System32\File.txt`.
+
+#### Symbolic Links
+
+[Sym Links](https://docs.microsoft.com/en-us/windows/desktop/fileio/symbolic-links)
+
+[Sym Links and Programs](https://docs.microsoft.com/en-us/windows/desktop/fileio/symbolic-link-effects-on-file-systems-functions)
+
+A symbolic link is a file-system object that points to another file system object. The object being pointed to is called the target.
+
+Symbolic links are transparent to users; the links appear as normal files or directories, and can be acted upon by the user or application in exactly the same manner.
+
+Symbolic links are designed to aid in migration and application compatibility with UNIX operating systems. Microsoft has implemented its symbolic links to function just like UNIX links.
+
+!!!example  Example of an Absolute Symbolic Link
+
+    In this example, the original path contains a component, 'x', which is an absolute symbolic link. When 'x' is encountered, the fragment of the original path up to and including 'x' is completely replaced by the path that is pointed to by 'x'. The remainder of the path after 'x' is appended to this new path. This now becomes the modified path.
+
+        X: "C:\alpha\beta\absLink\gamma\file"
+
+        Link: "absLink" maps to "\\machineB\share"
+
+        Modified Path: "\\machineB\share\gamma\file"
+
+!!!example  Example of a Relative Symbolic Links
+
+    In this example, the original path contains a component 'x', which is a relative symbolic link. When 'x' is encountered, 'x' is completely replaced by the new fragment pointed to by 'x'. The remainder of the path after 'x', is appended to the new path. Any dots (..) in this new path replace components that appear before the dots (..). Each set of dots replace the component preceding. If the number of dots (..) exceed the number of components, an error is returned. Otherwise, when all component replacement has finished, the final, modified path remains.
+
+        X: C:\alpha\beta\link\gamma\file
+
+        Link: "link" maps to "..\..\theta"
+
+        Modified Path: "C:\alpha\beta\..\..\theta\gamma\file"
+
+        Final Path: "C:\theta\gamma\file"
+
+!!!Note Keep the following programming considerations in mind when working with symbolic links:
+  - Symbolic links can point to a non-existent target.
+  - When creating a symbolic link, the operating system does not check to see if the target exists.
+  - If an application tries to open a non-existent target, ERROR_FILE_NOT_FOUND is returned.
+  - Symbolic links are reparse points. For more information, see Determining Whether a Directory Is a Mounted Folder.
+  - There is a maximum of 31 reparse points (and therefore symbolic links) allowed in a particular path.
+
+### More Generally, the syntax
+
+The following table describes the notation used to indicate [command-line syntax.](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key)
+| Notation                        | Description                                        |
+| ------------------------------- | -------------------------------------------------- |
+| Text without brackets or braces | Items you must type as shown                       |
+| <Text inside angle brackets>    | Placeholder for which you must supply a value      |
+| [Text inside square brackets]   | Optional items                                     |
+| {Text inside braces}            | Set of required items; choose one                  |
+| Vertical bar (\|)               | Separator for mutually exclusive items; choose one |
+| Ellipsis (…)                    | Items that can be repeated                         |
+
+
+### More
+
 [SS64 Batch Help](https://ss64.com/nt/for.html)
-C:\temp$ fsutil
----- Commands Supported ----
-8dot3name       8dot3name management
-behavior        Control file system behavior
-dirty           Manage volume dirty bit
-file            File specific commands
-fsinfo          File system information
-hardlink        Hardlink management
-objectid        Object ID management
-quota           Quota management
-repair          Self healing management
-reparsepoint    Reparse point management
-resource        Transactional Resource Manager management
-sparse          Sparse file control
-tiering         Storage tiering property management
-transaction     Transaction management
-usn             USN management
-volume          Volume management
-wim             Transparent wim hosting management
+
+[Microsoft (Server) Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
+
 
 remote desktop command line (use /console if all slots full)
 c:\> mstsc /v:SERVERNAME [/console]
@@ -336,12 +495,12 @@ doskey.exe can clear, set the size of, and list the command history of an execut
 doskey /reinstall /exename=[ExeName]
   VOID ExpungeConsoleCommandHistory(LPTSTR ExeName)
 doskey /listsize=[Number] /exename=[ExeName]
-  BOOL SetConsoleNumberOfCommands(DWORD Number, 
+  BOOL SetConsoleNumberOfCommands(DWORD Number,
                                   LPTSTR ExeName)
 doskey /history /exename=[ExeName]
   DWORD GetConsoleCommandHistoryLength(LPTSTR ExeName)
-  DWORD GetConsoleCommandHistory(LPTSTR CommandBuffer, 
-                                 DWORD CommandBufferLength, 
+  DWORD GetConsoleCommandHistory(LPTSTR CommandBuffer,
+                                 DWORD CommandBufferLength,
                                  LPTSTR ExeName)
 I can't be the only person frustrated by how opening a new console doesn't load the command history from previous (not current) instances of console applications. The console needs a SetConsoleCommandHistory function. Please ask the team that owns the console subsystem (conhost.exe, conhostv2.dll, condrv.sys) and doskey.exe to implement something like this -- and to document these functions as public APIs. A doskey "/historyfile" option could support [ExeName] sections, like the current "/macrofile" option.
 cmd.exe supports an AutoRun registry value, which would allow running doskey.exe to load command history, but it doesn't allow automatically saving history. I'd prefer that cmd.exe handled this automatically (but only for its own history) by appending to a per-user history file stored in "%APPDATA%\Microsoft\Command Processor\history.txt", which reflects the location of its registry key, "HKCU\SOFTWARE\Microsoft\Command Processor".
@@ -449,14 +608,14 @@ c
    COPY     Copy one or more files to another location•
    Coreinfo Show the mapping between logical & physical processors
    CSCcmd   Client-side caching (Offline Files)
-   CSVDE    Import or Export Active Directory data 
+   CSVDE    Import or Export Active Directory data
 d
    DATE     Display or set the date•
    DEFRAG   Defragment hard drive
    DEL      Delete one or more files•
    DELPROF  Delete user profiles
    DELTREE  Delete a folder and all subfolders
-   DevCon   Device Manager Command Line Utility 
+   DevCon   Device Manager Command Line Utility
    DIR      Display a list of files and folders•
    DIRQUOTA File Server Resource Manager Disk quotas
    DIRUSE   Display disk usage
@@ -468,7 +627,7 @@ d
    DOSKEY   Edit command line, recall commands, and create macros
    DriverQuery Display installed device drivers
    DSACLs   Active Directory ACLs
-   DSAdd    Add items to active directory (user group computer) 
+   DSAdd    Add items to active directory (user group computer)
    DSGet    View items in active directory (user group computer)
    DSQuery  Search for items in active directory (user group computer)
    DSMod    Modify items in active directory (user group computer)
@@ -544,7 +703,7 @@ n
    NETSTAT  Display networking statistics (TCP/IP)
    NLSINFO  Display locale information (reskit).
    NLTEST   Network Location Test (AD)
-   NOW      Display the current Date and Time 
+   NOW      Display the current Date and Time
    NSLOOKUP Name server lookup
    NTBACKUP Windows Backup folders to tape
    NTDSUtil Active Directory Domain Services management
@@ -615,7 +774,7 @@ s
    SETLOCAL Control the visibility of environment variables•
    SetSPN   Edit Service Principal Names
    SETX     Set environment variables
-   SFC      System File Checker 
+   SFC      System File Checker
    SHARE    List or edit a file share or print share
    ShellRunAs Run a command under a different user account
    SHIFT    Shift the position of batch file parameters•
@@ -640,7 +799,7 @@ t
    TIMEOUT  Delay processing of a batch file/command
    TITLE    Set the window title for a CMD.EXE session•
 ~~TLIST    Task list with full path~~
-   TOUCH    Change file timestamps    
+   TOUCH    Change file timestamps
    TRACERT  Trace route to a remote host
    TREE     Graphical display of folder structure
    TSDISCON Disconnect a Remote Desktop Session
@@ -653,7 +812,7 @@ v
    VERIFY   Verify that files have been saved•
    VMConnect Connect to a Hyper-V Virtual Machine
    VOL      Display a disk label•
-   VSSADMIN Display volume shadow copy backups and shadow copy writers/providers. 
+   VSSADMIN Display volume shadow copy backups and shadow copy writers/providers.
 w
    W32TM    Time Service
    WAITFOR  Wait for or send a signal
@@ -678,6 +837,234 @@ x
 ARP
 AT *deprecated*
 A
+
+### MKLINK
+
+        Creates a symbolic link.
+
+        MKLINK [[/D] | [/H] | [/J]] Link Target
+
+                /D      Creates a directory symbolic link.  Default is a file
+                        symbolic link.
+                /H      Creates a hard link instead of a symbolic link.
+                /J      Creates a Directory Junction.
+                Link    Specifies the new symbolic link name.
+                Target  Specifies the path (relative or absolute) that the new link
+                        refers to.
+
+[Junctions and Hardlinks]
+(https://docs.microsoft.com/en-us/windows/desktop/fileio/hard-links-and-junctions)
+
+[Symbolic Links](https://docs.microsoft.com/en-us/windows/desktop/fileio/creating-symbolic-links)
+
+
+Arg 1 is the shortcut name, what you will click on to go where you want.
+
+3 Options
+
+[[none]] No flags- This creates a symbolic link between **files**  It creates a new pseudofile that occcrs elsewhere
+
+[[D]] -more like a shortcut, but not a file.  Opening Folder A drops you in Folder B. This is the directory version of the 'default' option.
+
+[[H]]   A hard link refers to a **file** not a directory
+
+[[J]] - this is complicated.  The destination apparently cannot exist yet.  So I created `mklink /K folA folB`  A shortcut named `folA`.  Then I must create folder B.  In the expected spot.  Now when I open Folder B I am in Folder B.  And when I open Folder A I am in folder A.  But Anything in one appears in the other.
+
+        The shortcut can't already exist, but the destination can.
+
+### FSUTIL
+
+[A reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil)
+
+**You must be logged on as an administrator** or a member of the Administrators group to use Fsutil. The Fsutil command is quite powerful and should be used only by advanced users who have a thorough knowledge of Windows operating systems.
+
+You **have to enable Windows Subsystem for Linux before you can run Fsutil.** Run the following command as Administrator in PowerShell to enable this optional feature:
+
+`Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`
+
+You'll be prompted to restart your computer once it's installed. After your computer restarts, you'll be able to run Fsutil as an administrator
+
+C:\temp$ fsutil
+
+---- Commands Supported ----
+- 8dot3name       8dot3name management
+- behavior        Control file system behavior
+- dirty           Manage volume dirty bit
+- file            File specific commands
+- fsinfo          File system information
+- hardlink        Hardlink management
+- objectid        Object ID management
+- quota           Quota management
+- repair          Self healing management
+- reparsepoint    Reparse point management
+- resource        Transactional Resource Manager management
+- sparse          Sparse file control
+- tiering         Storage tiering property management
+- transaction     Transaction management
+- usn             USN management
+- volume          Volume management
+- wim             Transparent wim hosting management
+
+#### Subcommand & Description
+
+- `Fsutil 8dot3name` - Queries or changes the settings for short name behavior on the system, for example, generates 8.3 character-length file names. Removes short names for all files within a directory. Scans a directory and identifies registry keys that might be impacted if short names were stripped from the files in the directory.
+
+- `Fsutil behavior` - Queries or sets volume behavior.
+
+- `Fsutil dirty` - Queries whether the volume's dirty bit is set or sets a volume's dirty bit. When a volume's dirty bit is set, autochk automatically checks the volume for errors the next time the computer is restarted.
+
+- `Fsutil file` - Finds a file by user name (if Disk Quotas are enabled), queries allocated ranges for a file, sets a file's short name, sets a file's valid data length, sets zero data for a file, creates a new file of a specified size, finds a file ID if given the name, or finds a file link name for a specified file ID.
+
+- `Fsutil fsinfo` - Lists all drives and queries the drive type, volume information, NTFS-specific volume information, or file system statistics.
+
+- `Fsutil hardlink` - Lists hard links for a file, or creates a hard link (a directory entry for a file). Every file can be considered to have at least one hard link. On NTFS volumes, each file can have multiple hard links, so a single file can appear in many directories (or even in the same directory, with different names). Because all of the links reference the same file, programs can open any of the links and modify the file. A file is deleted from the file system only after all links to it are deleted. After you create a hard link, programs can use it like any other file name.
+
+- `Fsutil objectid` - Manages object identifiers, which are used by the Windows operating system to track objects such as files and directories.
+
+- `Fsutil quota` - Manages disk quotas on NTFS volumes to provide more precise control of network-based storage. Disk quotas are implemented on a per-volume basis and enable both hard- and soft-storage limits to be implemented on a per-user basis.
+
+- `Fsutil repair` - Queries or sets the self-healing state of the volume. Self-healing NTFS attempts to correct corruptions of the NTFS file system online without requiring Chkdsk.exe to be run. Includes initiating on-disk verification and waiting for repair completion.
+
+- `Fsutil reparsepoint` - Queries or deletes reparse points (NTFS file system objects that have a definable attribute containing user-controlled data). Reparse points are used to extend functionality in the input/output (I/O) subsystem. They are used for directory junction points and volume mount points. They are also used by file system filter drivers to mark certain files as special to that driver.
+
+- `Fsutil resource` - Creates a Secondary Transactional Resource Manager, starts or stops a Transactional Resource Manager, displays information about a Transactional Resource Manager or modifies its behavior.
+
+- `Fsutil sparse` - Manages sparse files. A sparse file is a file with one or more regions of unallocated data in it. A program will see these unallocated regions as containing bytes with the value zero, but no disk space is used to represent these zeros. All meaningful or nonzero data is allocated, whereas all non-meaningful data (large strings of data composed of zeros) is not allocated. When a sparse file is read, allocated data is returned as stored and unallocated data is returned as zeros (by default in accordance with the C2 security requirement specification). Sparse file support allows data to be deallocated from anywhere in the file.
+
+- `Fsutil tiering` - Enables management of storage tier functions, such as setting and disabling flags and listing of tiers.
+
+- `Fsutil transaction` - Commits a specified transaction, rolls back a specified transaction, or displays info about the transaction.
+
+
+- `Fsutil usn` - Manages the update sequence number (USN) change journal, which provides a persistent log of all changes made to files on the volume.
+
+- `Fsutil volume` - Manages a volume. Dismounts a volume, queries to see how much free space is available on a disk, or finds a file that is using a specified cluster.
+
+- `Fsutil wim` - Provides functions to discover and manage WIM-backed files.
+
+#### A detailed list of possible actions (2nd Level)
+
+- ---- 8DOT3NAME Commands Supported ----
+  - query   Query the current setting for the shortname behaviour on the system
+  - scan    Scan for impacted registry entries
+  - set     Change the setting that controls the shortname behavior on the system
+  - strip   Remove the shortnames for all files within a directory
+- ---- BEHAVIOR Commands Supported ----
+  - query           Query the file system behavior parameters
+  - set             Change the file system behavior parameters
+    - allowExtChar
+    - bugcheckOnCorrupt
+    - disable8dot3 [<Volume Path>]
+    - disableCompression
+    - disableCompressionLimit
+    - disableDeleteNotify [NTFS|ReFS]
+    - disableEncryption
+    - disableFileMetadataOptimization
+    - disableLastAccess
+    - disableSpotCorruptionHandling
+    - encryptPagingFile
+    - memoryUsage
+    - mftZone
+    - quotaNotify
+    - symlinkEvaluation
+    - disableWriteAutoTiering [<Volume Path>]
+    - disableTxf [<Volume Path>]
+- ---- DIRTY Commands Supported ----
+  - query           Query the dirty bit
+  - set             Set the dirty bit
+- ---- FILE Commands Supported ----
+  - createNew                Creates a new file of a specified size
+  - findBySID                Find a file by security identifier
+  - layout                   Query all the information available about the file
+  - optimizeMetadata         Optimize metadata for a file
+  - queryAllocRanges         Query the allocated ranges for a file
+  - queryCaseSensitiveInfo   Query the case sensitive information for a directory
+  - queryExtents             Query the extents for a file
+  - queryExtentsAndRefCounts Query the extents and their corresponding refcounts for a file
+  - queryFileID              Queries the file ID of the specified file
+  - queryFileNameById        Displays a random link name for the file ID
+  - queryOptimizeMetadata    Query the optimize metadata state for a file
+  - queryValidData           Queries the valid data length for a file
+  - setCaseSensitiveInfo     Set the case sensitive information for a directory
+  - setShortName             Set the short name for a file
+  - setValidData             Set the valid data length for a file
+  - setZeroData              Set the zero data for a file
+  - setEOF                   Sets the end of file for an existing file
+  - setStrictlySequential    Sets ReFS SMR file as strictly sequential
+- ---- FSINFO Commands Supported ----
+  - drives          List all drives
+  - driveType       Query drive type for a drive
+  - ntfsInfo        Query NTFS specific volume information
+  - refsInfo        Query REFS specific volume information
+  - sectorInfo      Query sector information
+  - statistics      Query file system statistics
+  - volumeInfo      Query volume information
+- ---- HARDLINK Commands Supported ----
+  - create          Create a hardlink
+  - list            Enumerate hardlinks on a file
+- ---- OBJECTID Commands Supported ----
+  - create          Create the object identifier
+  - delete          Delete the object identifier
+  - query           Query the object identifier
+  - set             Change the object identifier
+- ---- QUOTA Commands Supported ----
+  - disable         Disable quota tracking and enforcement
+  - enforce         Enable quota enforcement
+  - modify          Set disk quota for a user
+  - query           Query disk quotas
+  - track           Enable quota tracking
+  - violations      Display quota violations
+- ---- REPAIR Commands Supported ----
+  - enumerate      Enumerate the entries of a volume's corruption log
+  - initiate       Initiate the repair of a file
+  - query          Query the self healing state of the volume
+  - set            Set the self healing state of the volume
+  - state          Query the corruption state of the volume(s)
+  - wait           Wait for repair(s) to complete
+- ---- REPARSEPOINT Commands Supported ----
+  - delete          Delete a reparse point
+  - query           Query a reparse point
+- ---- RESOURCE Commands Supported ----
+  - create          Create a Secondary Transactional Resource Manager
+  - info            Display information relating to a Transactional Resource Manager
+  - setAutoReset    Set whether a default Transactional Resource Manager will clean its transactional metadata on next mount
+  - setAvailable    Set a Transactional Resource Manager to prefer availability over consistency
+  - setConsistent   Set a Transactional Resource Manager to prefer consistency over availability
+  - setLog          Change characteristics of a running Transactional Resource Manager
+  - start           Start a Transactional Resource Manager
+  - stop            Stop a Transactional Resource Manager
+- ---- SPARSE Commands Supported ----
+  - queryFlag       Query sparse
+  - queryRange      Query range
+  - setFlag         Set sparse
+  - setRange        Set sparse range
+- ---- TIERING Commands Supported ----
+  - clearFlags      Disable tiering behavior flags of a volume
+  - queryFlags      Display the tiering behavior flags of a volume
+  - regionList      List the regions of a volume and their respective storage tiers
+  - setFlags        Enable tiering behavior flags of a volume
+  - tierList        List the storage tiers associated with a volume
+- ---- TRANSACTION Commands Supported ----
+  - commit          Commit a specified transaction
+  - fileinfo        Display transaction information for a specific file
+  - list            Display currently running transactions
+  - query           Display information on a specified transaction
+  - rollback        Rollback a specified transaction
+- ---- USN Commands Supported ----
+  - createJournal           Create a USN journal
+  - deleteJournal           Delete a USN journal
+  - enableRangeTracking     Enable write range tracking for a volume
+  - enumData                Enumerate USN data
+  - queryJournal            Query the USN data for a volume
+  - readJournal             Reads the USN records in the USN journal
+  - readData                Read the USN data for a file
+- ---- WIM Commands Supported ----
+  - enumFiles           Enumerate WIM backed files
+  - enumWims            Enumerate backing WIM files
+  - removeWim           Remove a WIM from backing files
+  - queryFile           Query the origin of a specific file
+
+
 ### clip
 
 PIPE COMMAND OUTPUT TO THE CLIPBOARD
@@ -748,18 +1135,18 @@ MpCmdRun.exe -?
 [^Scan]: [-ScanType #] [-File [-DisableRemediation] [-BootSectorScan]] [-Timeout ] [-Cancel]
 
 Restore has the folloing options
- [^Restore]:  [-ListAll \| [[-Name ] [-All] \| [-FilePath ]] [-Path ]] 
+ [^Restore]:  [-ListAll \| [[-Name ] [-All] \| [-FilePath ]] [-Path ]]
 
-[^Trace]: [-Grouping #] [-Level #]   
+[^Trace]: [-Grouping #] [-Level #]
 
 [^SignatureUpdate]: [-UNC \| -MMPC]
-To run, use: 
+To run, use:
 
 
-[^Remove]: RemoveDefinitions 
+[^Remove]: RemoveDefinitions
   [-All] Restores the installed Security intelligence to a previous backup copy or to the original default set
- [-DynamicSignatures] Removes only the dynamically downloaded Security intelligence  
- [-Engine]  Restores the previous installed engine       
+ [-DynamicSignatures] Removes only the dynamically downloaded Security intelligence
+ [-Engine]  Restores the previous installed engine
 `"%ProgramFiles%\Windows Defender\MpCmdRun.exe" -scan -scantype 3 -File <Path> -DisableRemediation`
 
 Scantype 3 means a specific directory/file. File gives the file, and disabling remediation prevents any outcomes except to terminal (deleting, logging, attempting clean.)
@@ -843,7 +1230,7 @@ Examples:
     TASKKILL /S system /U username /P password /FI "IMAGENAME eq note*"
 ```
 
-See also:
+See also: Tasklist
 
 ### Tasklist
 
@@ -921,6 +1308,52 @@ Examples:
     TASKLIST /S system /U username /P password /FO TABLE /NH
     TASKLIST /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
 ```
+### CHM Files and HTML HELP
+
+Can be decompiled Using Powershell
+
+[Dead Msft Source]
+
+[Script Used as source](https://social.technet.microsoft.com/wiki/contents/articles/34963.how-to-decompile-a-compiled-html-help-chm-files-and-extract-information-using-powershell.aspx)
+
+```ps1
+$Exe = 'C:\Windows\hh.exe'
+Test-Path $Exe
+$Des = 'D:\ASUSsync\AHK\decom'
+Test-Path $Des
+$File = 'C:\Program Files\AutoHotkey\AutoHotkey.chm'
+Start-Process -FilePath $Exe -ArgumentList "-decompile $Des $File"
+```
+
+more
+
+```ps1
+Function Get-DecompiledHTMLHelp
+{
+    [cmdletbinding()]
+    param(
+            [String] $Destination, [String]$Filename
+    )
+    $EXE = 'C:\Windows\hh.exe'
+    If(-not (Test-Path $destination))
+    {
+        "Destination folder doesn't exist"
+    }
+    elseIf(-not (Test-Path $Filename))
+    {
+        "Target .chm file not found, please make sure you're entering the full path and file name"
+    }
+    else
+    {
+        Start-Process -FilePath $EXE -ArgumentList "-decompile $Destination $Filename"
+
+        $FilesAndFolder = Get-ChildItem $Destination -Recurse| group psiscontainer
+        $FolderCount = ($Filesandfolder| ?{$_.name -eq $true}).count
+        $FileCount = ($Filesandfolder| ?{$_.name -eq $False}).count
+        Write-host "Decompiled into $(if($Foldercount -gt 0){$Foldercount}else{0}) Folders and $(if($FileCount){$FileCount}else{0}) Files to Destination $Destination" -ForegroundColor Yellow
+    }
+
+}
 
 ### RunDll and its command
 
@@ -944,307 +1377,231 @@ Special CLSID folders may be opened via Run. For example:
         Run ::{645ff040-5081-101b-9f08-00aa002f954e}  ; Opens the Recycle Bin.
 
 
+### RunDll Commands
 
-| Function                                                              | Rundll32 command                                                                              |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| About Windows                                                         | Rundll32.exe shell32.dll,ShellAbout                                                           |
-| Add Network Location Wizard                                           | Rundll32 %SystemRoot%\\system32\\shwebsvc.dll,AddNetPlaceRunDll                               |
-| Add Printer Wizard                                                    | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter                                    |
-| Add Standard TCP/IP Printer Port Wizard                               | Rundll32.exe tcpmonui.dll,LocalAddPortUI                                                      |
-| Control Panel                                                         | Rundll32.exe shell32.dll,Control_RunDLL                                                       |
-| Date and Time                                                         | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl                                          |
-| Date and Time - Additional Clocks tab                                 | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                                       |
-| Desktop Icon Settings                                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0                                           |
-| Device Installation Settings                                          | Rundll32.exe %SystemRoot%\\System32\\newdev.dll,DeviceInternetSettingUi                       |
-| Device Manager                                                        | Rundll32.exe devmgr.dll DeviceManager_Execute                                                 |
-| Display Settings                                                      | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl                                              |
-| Ease of Access Center                                                 | Rundll32.exe shell32.dll,Control_RunDLL access.cpl                                            |
-| Environment Variables                                                 | Rundll32.exe sysdm.cpl,EditEnvironmentVariables                                               |
-| File Explorer Options - General tab                                   | Rundll32.exe shell32.dll,Options_RunDLL 0                                                     |
-| File Explorer Options - Search tab                                    | Rundll32.exe shell32.dll,Options_RunDLL 2                                                     |
-| File Explorer Options - View tab                                      | Rundll32.exe shell32.dll,Options_RunDLL 7                                                     |
-| Fonts folder                                                          | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL FontsFolder                                   |
-| Forgotten Password Wizard                                             | Rundll32.exe keymgr.dll,PRShowSaveWizardExW                                                   |
-| Game Controllers                                                      | Rundll32.exe shell32.dll,Control_RunDLL joy.cpl                                               |
-| Hibernate or Sleep                                                    | Rundll32.exe powrprof.dll,SetSuspendState                                                     |
-| Indexing Options                                                      | Rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll                                         |
-| Infared                                                               | Rundll32.exe shell32.dll,Control_RunDLL irprops.cpl                                           |
-| Internet Explorer - delete all browsing history                       | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 255                                           |
-| Internet Explorer - delete all browsing history and add-ons history   | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 4351                                          |
-| Internet Explorer - delete cookies and website data                   | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 2                                             |
-| Internet Explorer - delete download history                           | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16384                                         |
-| Internet Explorer - delete form data                                  | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16                                            |
-| Internet Explorer - delete history                                    | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 1                                             |
-| Internet Explorer - delete passwords                                  | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 32                                            |
-| Internet Explorer - delete temporary Internet files and website files | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 8                                             |
-| Internet Explorer - Organize Favorites                                | Rundll32.exe shdocvw.dll,DoOrganizeFavDlg                                                     |
-| Internet Properties - General tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl                                           |
-| Internet Properties - Security tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1                                        |
-| Internet Properties - Privacy tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2                                        |
-| Internet Properties - Content tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3                                        |
-| Internet Properties - Connections tab                                 | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4                                        |
-| Internet Properties - Programs tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5                                        |
-| Internet Properties - Advanced tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6                                        |
-| Keyboard Properties                                                   | Rundll32.exe shell32.dll,Control_RunDLL main.cpl @1                                           |
-| Lock PC                                                               | Rundll32.exe user32.dll,LockWorkStation                                                       |
-| Map Network Drive wizard                                              | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL Connect                                       |
-| Mouse Button swap left and right button function                      | Rundll32.exe user32.dll,SwapMouseButton                                                       |
-| Mouse Properties - Buttons tab                                        | Rundll32.exe shell32.dll,Control_RunDLL main.cpl                                              |
-| Mouse Properties - Pointers tab                                       | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1                                           |
-| Mouse Properties - Pointer Options tab                                | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,2                                           |
-| Mouse Properties - Wheel tab                                          | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3                                           |
-| Mouse Properties - Hardware tab                                       | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,4                                           |
-| Network Connections                                                   | Rundll32.exe shell32.dll,Control_RunDLL ncpa.cpl                                              |
-| ODBC Data Source Administrator                                        | Rundll32.exe shell32.dll,Control_RunDLL odbccp32.cpl                                          |
-| Offline Files (General tab)                                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,0                                          |
-| Offline Files (Disk Usage tab)                                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,1                                          |
-| Offline Files (Encryption tab)                                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,2                                          |
-| Offline Files (Network tab)                                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,3                                          |
-| Pen and Touch                                                         | Rundll32.exe shell32.dll,Control_RunDLL tabletpc.cpl                                          |
-| Personalization - Background Settings                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2                                           |
-| Power Options                                                         | Rundll32.exe shell32.dll,Control_RunDLL powercfg.cpl                                          |
-| Printer User Interface                                                | Rundll32.exe Printui.dll,PrintUIEntry /?                                                      |
-| Printers folder                                                       | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL PrintersFolder                                |
-| Process idle tasks                                                    | Rundll32.exe advapi32.dll,ProcessIdleTasks                                                    |
-| Programs and Features                                                 | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,0                                         |
-| Region - Formats tab                                                  | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,0                                           |
-| Region - Location tab                                                 | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,1                                           |
-| Region - Administrative tab                                           | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,2                                           |
-| Safely Remove Hardware                                                | Rundll32.exe shell32.dll,Control_RunDLL HotPlug.dll                                           |
-| Screen Saver Settings                                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1                                           |
-| Security and Maintenance                                              | Rundll32.exe shell32.dll,Control_RunDLL wscui.cpl                                             |
-| Set Program Access and Computer Defaults                              | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3                                         |
-| Set Up a Network wizard                                               | Rundll32.exe shell32.dll,Control_RunDLL NetSetup.cpl                                          |
-| Sleep or Hibernate                                                    | Rundll32.exe powrprof.dll,SetSuspendState                                                     |
-| Sound - Playback tab                                                  | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,0                                          |
-| Sound - Recording tab                                                 | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,1                                          |
-| Sound - Sounds tab                                                    | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,2                                          |
-| Sound - Communications tab                                            | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,3                                          |
-| Speech Properties - Text to Speech tab                                | Rundll32.exe shell32.dll,Control_RunDLL %SystemRoot%\\System32\\Speech\\SpeechUX\\sapi.cpl,,1 |
-| Start Settings                                                        | Rundll32.exe shell32.dll,Options_RunDLL 3                                                     |
-| Stored User Names and Passwords                                       | Rundll32.exe keymgr.dll,KRShowKeyMgr                                                          |
-| System Properties - Computer Name tab                                 | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,1                                          |
-| System Properties - Hardware tab                                      | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,2                                          |
-| System Properties - Advanced tab                                      | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,3                                          |
-| System Properties - System Protection tab                             | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,4                                          |
-| System Properties - Remote tab                                        | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,5                                          |
-| Taskbar Settings                                                      | Rundll32.exe shell32.dll,Options_RunDLL 1                                                     |
-| Text Services and Input Languages                                     | Rundll32.exe Shell32.dll,Control_RunDLL input.dll,,{C07337D3-DB2C-4D0B-9A93-B722A6C106E2}     |
-| User Accounts                                                         | Rundll32.exe shell32.dll,Control_RunDLL nusrmgr.cpl                                           |
-| Windows Features                                                      | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2                                         |
-| Windows Firewall                                                      | Rundll32.exe shell32.dll,Control_RunDLL firewall.cpl                                          |
-| Windows To Go Startup Options                                         | Rundll32.exe pwlauncher.dll,ShowPortableWorkspaceLauncherConfigurationUX                      |
+List  of Rundll32 Commands in Windows 10
+
+| Function                                | Rundll32 command                                                      |
+| --------------------------------------- | --------------------------------------------------------------------- |
+| About Windows                           | Rundll32.exe shell32.dll,ShellAbout                                   |
+| Add Network Location Wizard             | Rundll32 %SystemRoot%\system32\shwebsvc.dll,AddNetPlaceRunDll         |
+| Add Printer Wizard                      | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter            |
+| Add Standard TCP/IP Printer Port Wizard | Rundll32.exe tcpmonui.dll,LocalAddPortUI                              |
+| Control Panel                           | Rundll32.exe shell32.dll,Control_RunDLL                               |
+| Date and Time                           | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl                  |
+| Date and Time - Additional Clocks tab   | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1               |
+| Desktop Icon Settings                   | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0                   |
+| Device Installation Settings            | Rundll32.exe %SystemRoot%\System32\newdev.dll DeviceInternetSettingUi |
+| Device Manager                          | Rundll32.exe devmgr.dll DeviceManager_Execute                         |
+| Display Settings                        | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl                      |
+| Ease of Access Center                   | Rundll32.exe shell32.dll,Control_RunDLL access.cpl                    |
+| Environment Variables                   | Rundll32.exe sysdm.cpl,EditEnvironmentVariables                       |
+| _File Explorer Options_                 |                                                                       |
+| - General tab                           | Rundll32.exe shell32.dll,Options_RunDLL 0                             |
+| - Search tab                            | Rundll32.exe shell32.dll,Options_RunDLL 2                             |
+| - View tab                              | Rundll32.exe shell32.dll,Options_RunDLL 7                             |
+| - Fonts folder                          | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL FontsFolder           |
+| Forgotten Password Wizard               | Rundll32.exe keymgr.dll,PRShowSaveWizardExW                           |
+| Game Controllers                        | Rundll32.exe shell32.dll,Control_RunDLL joy.cpl                       |
+| Hibernate or Sleep                      | Rundll32.exe powrprof.dll,SetSuspendState                             |
+| Indexing Options                        | Rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll                 |
+| Infared                                 | Rundll32.exe shell32.dll,Control_RunDLL irprops.cpl                   |
+| _Internet Explorer_                     |                                                                       |
+| - delete browsing history               | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 255                   |
+| - delete browsing (& addon) history     | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 4351                  |
+| - delete cookies & site data            | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 2                     |
+| - delete download history               | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16384                 |
+| - delete form data                      | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16                    |
+| - delete history                        | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 1                     |
+| - delete passwords                      | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 32                    |
+| - delete temp Internet files            | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 8                     |
+| - Organize Favorites                    | Rundll32.exe shdocvw.dll,DoOrganizeFavDlg                             |
+| - General tab                           | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl                   |
+| - Security tab                          | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1                |
+| - Privacy tab                           | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2                |
+| - Content tab                           | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3                |
+| - Connections tab                       | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4                |
+| - Programs tab                          | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5                |
+| - Advanced tab                          | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6                |
+| Keyboard Properties                     | Rundll32.exe shell32.dll,Control_RunDLL main.cpl @1                   |
+| Lock PC                                 | Rundll32.exe user32.dll,LockWorkStation                               |
+| Map Network Drive wizard                | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL Connect               |
+| _Mouse Properties_                      |                                                                       |
+| - Mouse swap left and right button      | Rundll32.exe user32.dll,SwapMouseButton                               |
+| - Buttons tab                           | Rundll32.exe shell32.dll,Control_RunDLL main.cpl                      |
+| - Pointers tab                          | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1                   |
+| - Pointer Options tab                   | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,2                   |
+| - Wheel tab                             | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3                   |
+| - Hardware tab                          | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,4                   |
+| Network Connections                     | Rundll32.exe shell32.dll,Control_RunDLL ncpa.cpl                      |
+| ODBC Data Source Administrator          | Rundll32.exe shell32.dll,Control_RunDLL odbccp32.cpl                  |
+| _Offline Files_                         |                                                                       |
+| - General tab                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,0                  |
+| - Disk Usage tab                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,1                  |
+| - Encryption tab                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,2                  |
+| - Network tab                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,3                  |
+| Pen and Touch                           | Rundll32.exe shell32.dll,Control_RunDLL tabletpc.cpl                  |
+| Personalization - Background            | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2                   |
+| Power Options                           | Rundll32.exe shell32.dll,Control_RunDLL powercfg.cpl                  |
+| Printer User Interface                  | Rundll32.exe Printui.dll,PrintUIEntry /?                              |
+| Printers folder                         | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL PrintersFolder        |
+| Process idle tasks                      | Rundll32.exe advapi32.dll,ProcessIdleTasks                            |
+| Programs and Features                   | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,0                 |
+| _Region_                                |                                                                       |
+| - Formats tab                           | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,0                   |
+| - Location tab                          | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,1                   |
+| - Administrative tab                    | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,2                   |
+| Safely Remove Hardware                  | Rundll32.exe shell32.dll,Control_RunDLL HotPlug.dll                   |
+| Screen Saver Settings                   | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1                   |
+| Security and Maintenance                | Rundll32.exe shell32.dll,Control_RunDLL wscui.cpl                     |
+| Set Program Access and Comp Defaults    | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3                 |
+| Set Up a Network wizard                 | Rundll32.exe shell32.dll,Control_RunDLL NetSetup.cpl                  |
+| Sleep or Hibernate                      | Rundll32.exe powrprof.dll,SetSuspendState                             |
+| _Sound_                                 |                                                                       |
+| - Playback tab                          | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,0                  |
+| - Recording tab                         | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,1                  |
+| - Sounds tab                            | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,2                  |
+| - Communications tab                    | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,3                  |
+| Speech Properties [5]                   | Rundll32.exe shell32.dll,Control_RunDLL                               |
+|                                         | (...)  %SystemRoot%\System32\Speech\SpeechUX\sapi.cpl,,1              |
+| Start Settings                          | Rundll32.exe shell32.dll,Options_RunDLL 3                             |
+| Stored User Names and Passwords         | Rundll32.exe keymgr.dll,KRShowKeyMgr                                  |
+| _System Properties_                     |                                                                       |
+| - Computer Name tab                     | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,1                  |
+| - Hardware tab                          | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,2                  |
+| - Advanced tab                          | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,3                  |
+| - System Protection tab                 | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,4                  |
+| - Remote tab                            | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,5                  |
+| Taskbar Settings                        | Rundll32.exe shell32.dll,Options_RunDLL 1                             |
+| Text Services and Input Languages       | Rundll32.exe Shell32.dll,Control_RunDLL input.dll,,                   |
+|                                         | (...){C07337D3-DB2C-4D0B-9A93-B722A6C106E2}                           |
+| User Accounts                           | Rundll32.exe shell32.dll,Control_RunDLL nusrmgr.cpl                   |
+| Windows Features                        | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2                 |
+| Windows Firewall                        | Rundll32.exe shell32.dll,Control_RunDLL firewall.cpl                  |
+| Windows To Go Startup Options           | Rundll32.exe pwlauncher.dll,                                          |
+|                                         | (...)ShowPortableWorkspaceLauncherConfigurationUX                     |
+
 
 ### Shell:: Commands
 
-| Shell Command                         | Opens                                                                                    |
-| ------------------------------------- | ---------------------------------------------------------------------------------------- |
-| shell:3D Objects                      | %UserProfile%\\3D Objects                                                                |
-| shell:AccountPictures                 | %AppData%\\Microsoft\\Windows\\AccountPictures                                           |
-| shell:AddNewProgramsFolder            | Control Panel\\All Control Panel Items\\Get Programs                                     |
-| shell:Administrative Tools            | %AppData%\\Microsoft\\Windows\\Start Menu\\Programs\\Administrative Tools                |
-| shell:AppData                         | %AppData%                                                                                |
-| shell:Application Shortcuts           | %LocalAppData%\\Microsoft\\Windows\\Application Shortcuts                                |
-| shell:AppsFolder                      | Applications                                                                             |
-| shell:AppUpdatesFolder                | Installed Updates                                                                        |
-| shell:Cache                           | %LocalAppData%\\Microsoft\\Windows\\INetCache                                            |
-| shell:Camera Roll                     | %UserProfile%\\Pictures\\Camera Roll                                                     |
-| shell:CD Burning                      | %LocalAppData%\\Microsoft\\Windows\\Burn\\Burn                                           |
-| shell:ChangeRemoveProgramsFolder      | Control Panel\\All Control Panel Items\\Programs and Features                            |
-| shell:Common Administrative Tools     | %ProgramData%\\Microsoft\\Windows\\Start Menu\\Programs\\Administrative Tools            |
-| shell:Common AppData                  | %ProgramData%                                                                            |
-| shell:Common Desktop                  | %Public%\\Desktop                                                                        |
-| shell:Common Documents                | %Public%\\Documents                                                                      |
-| shell:CommonDownloads                 | %Public%\\Downloads                                                                      |
-| shell:CommonMusic                     | %Public%\\Music                                                                          |
-| shell:CommonPictures                  | %Public%\\Pictures                                                                       |
-| shell:Common Programs                 | %ProgramData%\\Microsoft\\Windows\\Start Menu\\Programs                                  |
-| shell:CommonRingtones                 | %ProgramData%\\Microsoft\\Windows\\Ringtones                                             |
-| shell:Common Start Menu               | %ProgramData%\\Microsoft\\Windows\\Start Menu                                            |
-| shell:Common Startup                  | %ProgramData%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup                         |
-| shell:Common Templates                | %ProgramData%\\Microsoft\\Windows\\Templates                                             |
-| shell:CommonVideo                     | %Public%\\Videos                                                                         |
-| shell:ConflictFolder                  | Control Panel\\All Control Panel Items\\Sync Center\\Conflicts                           |
-| shell:ConnectionsFolder               | Control Panel\\All Control Panel Items\\Network Connections                              |
-| shell:Contacts                        | %UserProfile%\\Contacts                                                                  |
-| shell:ControlPanelFolder              | Control Panel\\All Control Panel Items                                                   |
-| shell:Cookies                         | %LocalAppData%\\Microsoft\\Windows\\INetCookies                                          |
-| shell:Cookies\\Low                    | %LocalAppData%\\Microsoft\\Windows\\INetCookies\\Low                                     |
-| shell:CredentialManager               | %AppData%\\Microsoft\\Credentials                                                        |
-| shell:CryptoKeys                      | %AppData%\\Microsoft\\Crypto                                                             |
-| shell:desktop                         | Desktop                                                                                  |
-| shell:device Metadata Store           | %ProgramData%\\Microsoft\\Windows\\DeviceMetadataStore                                   |
-| shell:documentsLibrary                | Libraries\\Documents                                                                     |
-| shell:downloads                       | %UserProfile%\\Downloads                                                                 |
-| shell:dpapiKeys                       | %AppData%\\Microsoft\\Protect                                                            |
-| shell:Favorites                       | %UserProfile%\\Favorites                                                                 |
-| shell:Fonts                           | %WinDir%\\Fonts                                                                          |
-| shell:Games (removed in version 1803) | Games                                                                                    |
-| shell:GameTasks                       | %LocalAppData%\\Microsoft\\Windows\\GameExplorer                                         |
-| shell:History                         | %LocalAppData%\\Microsoft\\Windows\\History                                              |
-| shell:HomeGroupCurrentUserFolder      | Homegroup\\(user-name)                                                                   |
-| shell:HomeGroupFolder                 | Homegroup                                                                                |
-| shell:ImplicitAppShortcuts            | %AppData%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\ImplicitAppShortcuts |
-| shell:InternetFolder                  | Internet Explorer                                                                        |
-| shell:Libraries                       | Libraries                                                                                |
-| shell:Links                           | %UserProfile%\\Links                                                                     |
-| shell:Local AppData                   | %LocalAppData%                                                                           |
-| shell:LocalAppDataLow                 | %UserProfile%\\AppData\\LocalLow                                                         |
-| shell:MusicLibrary                    | Libraries\\Music                                                                         |
-| shell:MyComputerFolder                | This PC                                                                                  |
-| shell:My Music                        | %UserProfile%\\Music                                                                     |
-| shell:My Pictures                     | %UserProfile%\\Pictures                                                                  |
-| shell:My Video                        | %UserProfile%\\Videos                                                                    |
-| shell:NetHood                         | %AppData%\\Microsoft\\Windows\\Network Shortcuts                                         |
-| shell:NetworkPlacesFolder             | Network                                                                                  |
-| shell:OneDrive                        | OneDrive                                                                                 |
-| shell:OneDriveCameraRoll              | %UserProfile%\\OneDrive\\Pictures\\Camera Roll                                           |
-| shell:OneDriveDocuments               | %UserProfile%\\OneDrive\\Documents                                                       |
-| shell:OneDriveMusic                   | %UserProfile%\\OneDrive\\Music                                                           |
-| shell:OneDrivePictures                | %UserProfile%\\OneDrive\\Pictures                                                        |
-| shell:Personal                        | %UserProfile%\\Documents                                                                 |
-| shell:PicturesLibrary                 | Libraries\\Pictures                                                                      |
-| shell:PrintersFolder                  | All Control Panel Items\\Printers                                                        |
-| shell:PrintHood                       | %AppData%\\Microsoft\\Windows\\Printer Shortcuts                                         |
-| shell:Profile                         | %UserProfile%                                                                            |
-| shell:ProgramFiles                    | %ProgramFiles%                                                                           |
-| shell:ProgramFilesCommon              | %ProgramFiles%\\Common Files                                                             |
-| shell:ProgramFilesCommonX64           | %ProgramFiles%\\Common Files (64-bit Windows only)                                       |
-| shell:ProgramFilesCommonX86           | %ProgramFiles(x86)%\\Common Files (64-bit Windows only)                                  |
-| shell:ProgramFilesX64                 | %ProgramFiles% (64-bit Windows only)                                                     |
-| shell:ProgramFilesX86                 | %ProgramFiles(x86)% (64-bit Windows only)                                                |
-| shell:Programs                        | %AppData%\\Microsoft\\Windows\\Start Menu\\Programs                                      |
-| shell:Public                          | %Public%                                                                                 |
-| shell:PublicAccountPictures           | %Public%\\AccountPictures                                                                |
-| shell:PublicGameTasks                 | %ProgramData%\\Microsoft\\Windows\\GameExplorer                                          |
-| shell:PublicLibraries                 | %Public%\\Libraries                                                                      |
-| shell:Quick Launch                    | %AppData%\\Microsoft\\Internet Explorer\\Quick Launch                                    |
-| shell:Recent                          | %AppData%\\Microsoft\\Windows\\Recent                                                    |
-| shell:RecordedTVLibrary               | Libraries\\Recorded TV                                                                   |
-| shell:RecycleBinFolder                | Recycle Bin                                                                              |
-| shell:ResourceDir                     | %WinDir%\\Resources                                                                      |
-| shell:Ringtones                       | %ProgramData%\\Microsoft\\Windows\\Ringtones                                             |
-| shell:Roamed Tile Images              | %LocalAppData%\\Microsoft\\Windows\\RoamedTileImages                                     |
-| shell:Roaming Tiles                   | %AppData%\\Microsoft\\Windows\\RoamingTiles                                              |
-| shell:SavedGames                      | %UserProfile%\\Saved Games                                                               |
-| shell:Screenshots                     | %UserProfile%\\Pictures\\Screenshots                                                     |
-| shell:Searches                        | %UserProfile%\\Searches                                                                  |
-| shell:SearchHistoryFolder             | %LocalAppData%\\Microsoft\\Windows\\ConnectedSearch\\History                             |
-| shell:SearchHomeFolder                | search-ms:                                                                               |
-| shell:SearchTemplatesFolder           | %LocalAppData%\\Microsoft\\Windows\\ConnectedSearch\\Templates                           |
-| shell:SendTo                          | %AppData%\\Microsoft\\Windows\\SendTo                                                    |
-| shell:Start Menu                      | %AppData%\\Microsoft\\Windows\\Start Menu                                                |
-| shell:StartMenuAllPrograms            | StartMenuAllPrograms                                                                     |
-| shell:Startup                         | %AppData%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup                             |
-| shell:SyncCenterFolder                | Control Panel\\All Control Panel Items\\Sync Center                                      |
-| shell:SyncResultsFolder               | Control Panel\\All Control Panel Items\\Sync Center\\Sync Results                        |
-| shell:SyncSetupFolder                 | Control Panel\\All Control Panel Items\\Sync Center\\Sync Setup                          |
-| shell:System                          | %WinDir%\\System32                                                                       |
-| shell:SystemCertificates              | %AppData%\\Microsoft\\SystemCertificates                                                 |
-| shell:SystemX86                       | %WinDir%\\SysWOW64                                                                       |
-| shell:Templates                       | %AppData%\\Microsoft\\Windows\\Templates                                                 |
-| shell:ThisPCDesktopFolder             | Desktop                                                                                  |
-| shell:UsersFilesFolder                | %UserProfile%                                                                            |
-| shell:User Pinned                     | %AppData%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned                       |
-| shell:UserProfiles                    | %HomeDrive%\\Users                                                                       |
-| shell:UserProgramFiles                | %LocalAppData%\\Programs                                                                 |
-| shell:UserProgramFilesCommon          | %LocalAppData%\\Programs\\Common                                                         |
-| shell:UsersLibrariesFolder            | Libraries                                                                                |
-| shell:VideosLibrary                   | Libraries\\Videos                                                                        |
-| shell:Windows                         | %WinDir%                                                                                 |
+| Shell Command                     | Opens                                                                  |
+| --------------------------------- | ---------------------------------------------------------------------- |
+| shell:3D Objects                  | `%UserProfile%\3D Objects`                                             |
+| shell:AccountPictures             | `%AppData%\Microsoft\Windows\AccountPictures`                          |
+| shell:AddNewProgramsFolder        | `Control Panel\All Control Panel Items\Get Programs`                   |
+| shell:Administrative Tools        | `%AppData%\Microsoft\Windows\Start Menu\Programs\Administrative Tools` |
+| shell:AppData                     | `%AppData%`                                                            |
+| shell:Application Shortcuts       | `%LocalAppData%\Microsoft\Windows\Application Shortcuts`               |
+| shell:AppsFolder                  | `Applications`                                                         |
+| shell:AppUpdatesFolder            | `Installed Updates`                                                    |
+| shell:Cache                       | `%LocalAppData%\Microsoft\Windows\INetCache`                           |
+| shell:Camera Roll                 | `%UserProfile%\Pictures\Camera Roll`                                   |
+| shell:CD Burning                  | `%LocalAppData%\Microsoft\Windows\Burn\Burn`                           |
+| shell:ChangeRemoveProgramsFolder  | `Control Panel\All Control Panel Items\Programs and Features`          |
+| shell:Common Administrative Tools | `%ProgramData%\Microsoft\Windows\Start ...`                            |
+| ...                               | `(...) Menu\Programs\Administrative Tools`                             |
+| shell:Common AppData              | `%ProgramData%`                                                        |
+| shell:Common Desktop              | `%Public%\Desktop`                                                     |
+| shell:Common Documents            | `%Public%\Documents`                                                   |
+| shell:CommonDownloads             | `%Public%\Downloads`                                                   |
+| shell:CommonMusic                 | `%Public%\Music`                                                       |
+| shell:CommonPictures              | `%Public%\Pictures`                                                    |
+| shell:Common Programs             | `%ProgramData%\Microsoft\Windows\Start Menu\Programs`                  |
+| shell:CommonRingtones             | `%ProgramData%\Microsoft\Windows\Ringtones`                            |
+| shell:Common Start Menu           | `%ProgramData%\Microsoft\Windows\Start Menu`                           |
+| shell:Common Startup              | `%ProgramData%\Microsoft\Windows\Start Menu\Programs\Startup`          |
+| shell:Common Templates            | `%ProgramData%\Microsoft\Windows\Templates`                            |
+| shell:CommonVideo                 | `%Public%\Videos`                                                      |
+| shell:ConflictFolder              | `Control Panel\All Control Panel Items\Sync Center\Conflicts`          |
+| shell:ConnectionsFolder           | `Control Panel\All Control Panel Items\Network Connections`            |
+| shell:Contacts                    | `%UserProfile%\Contacts`                                               |
+| shell:ControlPanelFolder          | `Control Panel\All Control Panel Items`                                |
+| shell:Cookies                     | `%LocalAppData%\Microsoft\Windows\INetCookies`                         |
+| shell:Cookies\Low                 | `%LocalAppData%\Microsoft\Windows\INetCookies\Low`                     |
+| shell:CredentialManager           | `%AppData%\Microsoft\Credentials`                                      |
+| shell:CryptoKeys                  | `%AppData%\Microsoft\Crypto`                                           |
+| shell:desktop                     | `Desktop`                                                              |
+| shell:device Metadata Store       | `%ProgramData%\Microsoft\Windows\DeviceMetadataStore`                  |
+| shell:documentsLibrary            | `Libraries\Documents`                                                  |
+| shell:downloads                   | `%UserProfile%\Downloads`                                              |
+| shell:dpapiKeys                   | `%AppData%\Microsoft\Protect`                                          |
+| shell:Favorites                   | `%UserProfile%\Favorites`                                              |
+| shell:Fonts                       | `%WinDir%\Fonts`                                                       |
+| shell:Games (removed in 1803)     | `Games`                                                                |
+| shell:GameTasks                   | `%LocalAppData%\Microsoft\Windows\GameExplorer`                        |
+| shell:History                     | `%LocalAppData%\Microsoft\Windows\History`                             |
+| shell:HomeGroupCurrentUserFolder  | `Homegroup\(user-name)`                                                |
+| shell:HomeGroupFolder             | `Homegroup`                                                            |
+| shell:ImplicitAppShortcuts        | `%AppData%\Microsoft\Internet Explorer\Quick`                          |
+| ...                               | `(...) Launch\User Pinned\ImplicitAppShortcuts`                        |
+| shell:InternetFolder              | `Internet Explorer`                                                    |
+| shell:Libraries                   | `Libraries`                                                            |
+| shell:Links                       | `%UserProfile%\Links`                                                  |
+| shell:Local AppData               | `%LocalAppData%`                                                       |
+| shell:LocalAppDataLow             | `%UserProfile%\AppData\LocalLow`                                       |
+| shell:MusicLibrary                | `Libraries\Music`                                                      |
+| shell:MyComputerFolder            | `This PC`                                                              |
+| shell:My Music                    | `%UserProfile%\Music`                                                  |
+| shell:My Pictures                 | `%UserProfile%\Pictures`                                               |
+| shell:My Video                    | `%UserProfile%\Videos`                                                 |
+| shell:NetHood                     | `%AppData%\Microsoft\Windows\Network Shortcuts`                        |
+| shell:NetworkPlacesFolder         | `Network`                                                              |
+| shell:OneDrive                    | `OneDrive`                                                             |
+| shell:OneDriveCameraRoll          | `%UserProfile%\OneDrive\Pictures\Camera Roll`                          |
+| shell:OneDriveDocuments           | `%UserProfile%\OneDrive\Documents`                                     |
+| shell:OneDriveMusic               | `%UserProfile%\OneDrive\Music`                                         |
+| shell:OneDrivePictures            | `%UserProfile%\OneDrive\Pictures`                                      |
+| shell:Personal                    | `%UserProfile%\Documents`                                              |
+| shell:PicturesLibrary             | `Libraries\Pictures`                                                   |
+| shell:PrintersFolder              | `All Control Panel Items\Printers`                                     |
+| shell:PrintHood                   | `%AppData%\Microsoft\Windows\Printer Shortcuts`                        |
+| shell:Profile                     | `%UserProfile%`                                                        |
+| shell:ProgramFiles                | `%ProgramFiles%`                                                       |
+| shell:ProgramFilesCommon          | `%ProgramFiles%\Common Files`                                          |
+| shell:ProgramFilesCommonX64       | `%ProgramFiles%\Common Files (64-bit Windows only)`                    |
+| shell:ProgramFilesCommonX86       | `%ProgramFiles(x86)%\Common Files (64-bit Windows only)`               |
+| shell:ProgramFilesX64             | `%ProgramFiles% (64-bit Windows only)`                                 |
+| shell:ProgramFilesX86             | `%ProgramFiles(x86)% (64-bit Windows only)`                            |
+| shell:Programs                    | `%AppData%\Microsoft\Windows\Start Menu\Programs`                      |
+| shell:Public                      | `%Public%`                                                             |
+| shell:PublicAccountPictures       | `%Public%\AccountPictures`                                             |
+| shell:PublicGameTasks             | `%ProgramData%\Microsoft\Windows\GameExplorer`                         |
+| shell:PublicLibraries             | `%Public%\Libraries`                                                   |
+| shell:Quick Launch                | `%AppData%\Microsoft\Internet Explorer\Quick Launch`                   |
+| shell:Recent                      | `%AppData%\Microsoft\Windows\Recent`                                   |
+| shell:RecordedTVLibrary           | `Libraries\Recorded TV`                                                |
+| shell:RecycleBinFolder            | `Recycle Bin`                                                          |
+| shell:ResourceDir                 | `%WinDir%\Resources`                                                   |
+| shell:Ringtones                   | `%ProgramData%\Microsoft\Windows\Ringtones`                            |
+| shell:Roamed Tile Images          | `%LocalAppData%\Microsoft\Windows\RoamedTileImages`                    |
+| shell:Roaming Tiles               | `%AppData%\Microsoft\Windows\RoamingTiles`                             |
+| shell:SavedGames                  | `%UserProfile%\Saved Games`                                            |
+| shell:Screenshots                 | `%UserProfile%\Pictures\Screenshots`                                   |
+| shell:Searches                    | `%UserProfile%\Searches`                                               |
+| shell:SearchHistoryFolder         | `%LocalAppData%\Microsoft\Windows\ConnectedSearch\History`             |
+| shell:SearchHomeFolder            | `search-ms:`                                                           |
+| shell:SearchTemplatesFolder       | `%LocalAppData%\Microsoft\Windows\ConnectedSearch\Templates`           |
+| shell:SendTo                      | `%AppData%\Microsoft\Windows\SendTo`                                   |
+| shell:Start Menu                  | `%AppData%\Microsoft\Windows\Start Menu`                               |
+| shell:StartMenuAllPrograms        | `StartMenuAllPrograms`                                                 |
+| shell:Startup                     | `%AppData%\Microsoft\Windows\Start Menu\Programs\Startup`              |
+| shell:SyncCenterFolder            | `Control Panel\All Control Panel Items\Sync Center`                    |
+| shell:SyncResultsFolder           | `Control Panel\All Control Panel Items\Sync Center\Sync Results`       |
+| shell:SyncSetupFolder             | `Control Panel\All Control Panel Items\Sync Center\Sync Setup`         |
+| shell:System                      | `%WinDir%\System32`                                                    |
+| shell:SystemCertificates          | `%AppData%\Microsoft\SystemCertificates`                               |
+| shell:SystemX86                   | `%WinDir%\SysWOW64`                                                    |
+| shell:Templates                   | `%AppData%\Microsoft\Windows\Templates`                                |
+| shell:ThisPCDesktopFolder         | `Desktop`                                                              |
+| shell:UsersFilesFolder            | `%UserProfile%`                                                        |
+| shell:User Pinned                 | `%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned`       |
+| shell:UserProfiles                | `%HomeDrive%\Users`                                                    |
+| shell:UserProgramFiles            | `%LocalAppData%\Programs`                                              |
+| shell:UserProgramFilesCommon      | `%LocalAppData%\Programs\Common`                                       |
+| shell:UsersLibrariesFolder        | `Libraries`                                                            |
+| shell:VideosLibrary               | `Libraries\Videos`                                                     |
+| shell:Windows                     | `%WinDir%`                                                             |
 
-### RunDll Commands
-
-List  of Rundll32 Commands in Windows 10                                                                                 |
-| Function                                                              | Rundll32 command                                                                          |
-| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| About Windows                                                         | Rundll32.exe shell32.dll,ShellAbout                                                       |
-| Add Network Location Wizard                                           | Rundll32 %SystemRoot%\system32\shwebsvc.dll,AddNetPlaceRunDll                             |
-| Add Printer Wizard                                                    | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter                                |
-| Add Standard TCP/IP Printer Port Wizard                               | Rundll32.exe tcpmonui.dll,LocalAddPortUI                                                  |
-| Control Panel                                                         | Rundll32.exe shell32.dll,Control_RunDLL                                                   |
-| Date and Time                                                         | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl                                      |
-| Date and Time - Additional Clocks tab                                 | Rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                                   |
-| Desktop Icon Settings                                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0                                       |
-| Device Installation Settings                                          | Rundll32.exe %SystemRoot%\System32\newdev.dll,DeviceInternetSettingUi                     |
-| Device Manager                                                        | Rundll32.exe devmgr.dll DeviceManager_Execute                                             |
-| Display Settings                                                      | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl                                          |
-| Ease of Access Center                                                 | Rundll32.exe shell32.dll,Control_RunDLL access.cpl                                        |
-| Environment Variables                                                 | Rundll32.exe sysdm.cpl,EditEnvironmentVariables                                           |
-| File Explorer Options - General tab                                   | Rundll32.exe shell32.dll,Options_RunDLL 0                                                 |
-| File Explorer Options - Search tab                                    | Rundll32.exe shell32.dll,Options_RunDLL 2                                                 |
-| File Explorer Options - View tab                                      | Rundll32.exe shell32.dll,Options_RunDLL 7                                                 |
-| Fonts folder                                                          | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL FontsFolder                               |
-| Forgotten Password Wizard                                             | Rundll32.exe keymgr.dll,PRShowSaveWizardExW                                               |
-| Game Controllers                                                      | Rundll32.exe shell32.dll,Control_RunDLL joy.cpl                                           |
-| Hibernate or Sleep                                                    | Rundll32.exe powrprof.dll,SetSuspendState                                                 |
-| Indexing Options                                                      | Rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll                                     |
-| Infared                                                               | Rundll32.exe shell32.dll,Control_RunDLL irprops.cpl                                       |
-| Internet Explorer - delete all browsing history                       | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 255                                       |
-| Internet Explorer - delete all browsing history and add-ons history   | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 4351                                      |
-| Internet Explorer - delete cookies and website data                   | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 2                                         |
-| Internet Explorer - delete download history                           | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16384                                     |
-| Internet Explorer - delete form data                                  | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16                                        |
-| Internet Explorer - delete history                                    | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 1                                         |
-| Internet Explorer - delete passwords                                  | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 32                                        |
-| Internet Explorer - delete temporary Internet files and website files | Rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 8                                         |
-| Internet Explorer - Organize Favorites                                | Rundll32.exe shdocvw.dll,DoOrganizeFavDlg                                                 |
-| Internet Properties - General tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl                                       |
-| Internet Properties - Security tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1                                    |
-| Internet Properties - Privacy tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2                                    |
-| Internet Properties - Content tab                                     | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3                                    |
-| Internet Properties - Connections tab                                 | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4                                    |
-| Internet Properties - Programs tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5                                    |
-| Internet Properties - Advanced tab                                    | Rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6                                    |
-| Keyboard Properties                                                   | Rundll32.exe shell32.dll,Control_RunDLL main.cpl @1                                       |
-| Lock PC                                                               | Rundll32.exe user32.dll,LockWorkStation                                                   |
-| Map Network Drive wizard                                              | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL Connect                                   |
-| Mouse Button swap left and right button function                      | Rundll32.exe user32.dll,SwapMouseButton                                                   |
-| Mouse Properties - Buttons tab                                        | Rundll32.exe shell32.dll,Control_RunDLL main.cpl                                          |
-| Mouse Properties - Pointers tab                                       | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1                                       |
-| Mouse Properties - Pointer Options tab                                | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,2                                       |
-| Mouse Properties - Wheel tab                                          | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3                                       |
-| Mouse Properties - Hardware tab                                       | Rundll32.exe shell32.dll,Control_RunDLL main.cpl,,4                                       |
-| Network Connections                                                   | Rundll32.exe shell32.dll,Control_RunDLL ncpa.cpl                                          |
-| ODBC Data Source Administrator                                        | Rundll32.exe shell32.dll,Control_RunDLL odbccp32.cpl                                      |
-| Offline Files (General tab)                                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,0                                      |
-| Offline Files (Disk Usage tab)                                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,1                                      |
-| Offline Files (Encryption tab)                                        | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,2                                      |
-| Offline Files (Network tab)                                           | Rundll32.exe Shell32.dll,Control_RunDLL cscui.dll,,3                                      |
-| Pen and Touch                                                         | Rundll32.exe shell32.dll,Control_RunDLL tabletpc.cpl                                      |
-| Personalization - Background Settings                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2                                       |
-| Power Options                                                         | Rundll32.exe shell32.dll,Control_RunDLL powercfg.cpl                                      |
-| Printer User Interface                                                | Rundll32.exe Printui.dll,PrintUIEntry /?                                                  |
-| Printers folder                                                       | Rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL PrintersFolder                            |
-| Process idle tasks                                                    | Rundll32.exe advapi32.dll,ProcessIdleTasks                                                |
-| Programs and Features                                                 | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,0                                     |
-| Region - Formats tab                                                  | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,0                                       |
-| Region - Location tab                                                 | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,1                                       |
-| Region - Administrative tab                                           | Rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,2                                       |
-| Safely Remove Hardware                                                | Rundll32.exe shell32.dll,Control_RunDLL HotPlug.dll                                       |
-| Screen Saver Settings                                                 | Rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1                                       |
-| Security and Maintenance                                              | Rundll32.exe shell32.dll,Control_RunDLL wscui.cpl                                         |
-| Set Program Access and Computer Defaults                              | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3                                     |
-| Set Up a Network wizard                                               | Rundll32.exe shell32.dll,Control_RunDLL NetSetup.cpl                                      |
-| Sleep or Hibernate                                                    | Rundll32.exe powrprof.dll,SetSuspendState                                                 |
-| Sound - Playback tab                                                  | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,0                                      |
-| Sound - Recording tab                                                 | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,1                                      |
-| Sound - Sounds tab                                                    | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,2                                      |
-| Sound - Communications tab                                            | Rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,3                                      |
-| Speech Properties - Text to Speech tab                                | Rundll32.exe shell32.dll,Control_RunDLL %SystemRoot%\System32\Speech\SpeechUX\sapi.cpl,,1 |
-| Start Settings                                                        | Rundll32.exe shell32.dll,Options_RunDLL 3                                                 |
-| Stored User Names and Passwords                                       | Rundll32.exe keymgr.dll,KRShowKeyMgr                                                      |
-| System Properties - Computer Name tab                                 | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,1                                      |
-| System Properties - Hardware tab                                      | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,2                                      |
-| System Properties - Advanced tab                                      | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,3                                      |
-| System Properties - System Protection tab                             | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,4                                      |
-| System Properties - Remote tab                                        | Rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,5                                      |
-| Taskbar Settings                                                      | Rundll32.exe shell32.dll,Options_RunDLL 1                                                 |
-| Text Services and Input Languages                                     | Rundll32.exe Shell32.dll,Control_RunDLL input.dll,,{C07337D3-DB2C-4D0B-9A93-B722A6C106E2} |
-| User Accounts                                                         | Rundll32.exe shell32.dll,Control_RunDLL nusrmgr.cpl                                       |
-| Windows Features                                                      | Rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2                                     |
-| Windows Firewall                                                      | Rundll32.exe shell32.dll,Control_RunDLL firewall.cpl                                      |
-| Windows To Go Startup Options                                         | Rundll32.exe pwlauncher.dll,ShowPortableWorkspaceLauncherConfigurationUX                  |
 
 ### MMC Syntax
 
@@ -1257,30 +1614,30 @@ List  of Rundll32 Commands in Windows 10                                        
 | Server Roles, Features                    | ServerManager.msc              |
 | Component Services                        | Comexp.msc                     |
 | Computer Management                       | Compmgmt.msc                   |
-|  Win Mangement Instrum         | WmiMgmt.msc                    |
-| Notifications/Start menu/pol           | DevModeRunAsUserConfig.msc     |
-| SQL Server configuration Man          | SQLServerManager11.msc         |
+| Win Mangement Instrum                     | WmiMgmt.msc                    |
+| Notifications/Start menu/pol              | DevModeRunAsUserConfig.msc     |
+| SQL Server configuration Man              | SQLServerManager11.msc         |
 | Event Viewer                              | Eventvwr.msc                   |
 | AD Domains and Trusts                     | Domain.msc                     |
 | AD Sites and Services                     | DSsite.msc                     |
 | ADSI Edit                                 | ADSIedit.msc                   |
-| **_Disc, File_**                                |                                |
-| Win Local Backup                      | WLBadmin.msc                   |
+| **_Disc, File_**                          |                                |
+| Win Local Backup                          | WLBadmin.msc                   |
 | Disk Manager                              | DiskMgmt.msc                   |
 | Failover cluster Manager                  | Cluadmin.exe                   |
 | Storage Mgmt                              | StorageMgmt.msc                |
-| Win Server Backup (Local+Rem)      | WBadmin.msc                    |
+| Win Server Backup (Local+Rem)             | WBadmin.msc                    |
 | Disk Defragmenter                         | Defrag.exe (formerly Dfrg.msc) |
 | Distributed File Service Mgmt             | DFSmgmt.msc                    |
 | Shared Folders open files                 | FSmgmt.msc                     |
 | File Server Resource manager              | FSRM.msc                       |
-| **_Hardware_**                                  |                                |
+| **_Hardware_**                            |                                |
 | Device Manager                            | Devmgmt.msc                    |
 | DNS Manager                               | DNSmgmt.msc                    |
 | NAP client configuration                  | NapCLCfg                       |
-| Quality of Service Control Man    | ACSsnap.msc                    |
+| Quality of Service Control Man            | ACSsnap.msc                    |
 | Telephony Management                      | TAPImgmt.msc                   |
-| **_Policy_**                                    |                                |
+| **_Policy_**                              |                                |
 | Local Group Policy Editor                 | GPedit.msc                     |
 | Group Policy Management                   | GPmc.msc                       |
 | Local Security Settings Manager           | SecPol.msc                     |
@@ -1288,20 +1645,20 @@ List  of Rundll32 Commands in Windows 10                                        
 | Group Policy Starter GPO Editor           | GPTedit.msc                    |
 | Resultant Set of Policy                   | RSOP.msc                       |
 | Print Management                          | PrintManagement.msc            |
-| **_Remote Access_**                             |                                |
-| Win Firewall                          | WF.msc                         |
+| **_Remote Access_**                       |                                |
+| Win Firewall                              | WF.msc                         |
 | Teminal Services RDP                      | MSTSC                          |
 | Remote Desktop                            | TSmmc.msc                      |
 | Terminal Server Manager                   | TSadmin.exe                    |
 | Teminal Services RDP to Console           | MSTSC /v:[server] /console     |
-| **_Security_**                                  |                                |
+| **_Security_**                            |                                |
 | Certificate Templates                     | Certtmpl.msc                   |
 | AD Users and Computers                    | DSA.msc                        |
 | Trusted Platform Module                   | TPM.msc                        |
 | Embedded Lockdown Manager                 | EmbeddedLockdown.msc           |
 | Local Users and Groups Manager            | LUsrMgr.msc                    |
-| Certificates Management Cur user    | Certmgr.msc                    |
-| Certificates Management Local mach   | Certlm.msc                     |
+| Certificates Management Cur user          | Certmgr.msc                    |
+| Certificates Management Local mach        | Certlm.msc                     |
 | Authorization manager                     | AZman.msc                      |
 | Certification Authority Management        | Certsrv.msc                    |
 |                                           |                                |
@@ -1328,192 +1685,186 @@ OR
 
 (Always Open Control Panel in icons view) - x1`%windir%\explorer.exe shell:::{21EC2020-3AEA-1069-A2DD-08002B30309D}`
 
+| Date and Time (Date and Time) control /name Microsoft.DateAndTime                            |
 
 
-
-| Control Panel Item                | Commands                                                                                             |
-| --------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Add a Device wizard               | %windir%\\System32\\DevicePairingWizard.exe                                                          |
-| Add Hardware wizard               | %windir%\\System32\\hdwwiz.exe                                                                       |
-| Add a Printer wizard              | rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter                                           |
-| Additional Clocks                 | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                                              |
-| Administrative Tools              | control /name Microsoft.AdministrativeTools                                                          |
-|                                   |                                                                                                      |
-|                                   | control admintools                                                                                   |
-| AutoPlay                          | control /name Microsoft.AutoPlay                                                                     |
-| Backup and Restore (Win 7)        | control /name Microsoft.BackupAndRestoreCenter                                                       |
-| BitLocker Drive Encryption        | control /name Microsoft.BitLockerDriveEncryption                                                     |
-| Color and Appearance              | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921} -Microsoft.Personalization\\pageColorization |
-| Color Management                  | control /name Microsoft.ColorManagement                                                              |
-| Credential Manager                | control /name Microsoft.CredentialManager                                                            |
-| Date and Time (Date and Time)     | control /name Microsoft.DateAndTime                                                                  |
-|                                   |                                                                                                      |
-|                                   | control timedate.cpl                                                                                 |
-|                                   |                                                                                                      |
-|                                   | control date/time                                                                                    |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,0                                              |
-| Date and Time (Additional Clocks) | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                                              |
-| Default Programs                  | control /name Microsoft.DefaultPrograms                                                              |
-| Desktop Background                | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921} -Microsoft.Personalization\\pageWallpaper    |
-| Desktop Icon Settings             | rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0                                                  |
-| Device Manager                    | control /name Microsoft.DeviceManager                                                                |
-|                                   |                                                                                                      |
-|                                   | control hdwwiz.cpl                                                                                   |
-|                                   |                                                                                                      |
-|                                   | devmgmt.msc                                                                                          |
-| Devices and Printers              | control /name Microsoft.DevicesAndPrinters                                                           |
-|                                   |                                                                                                      |
-|                                   | control printers                                                                                     |
-| Ease of Access Center             | control /name Microsoft.EaseOfAccessCenter                                                           |
-|                                   |                                                                                                      |
-|                                   | control access.cpl                                                                                   |
-| File Explorer Opts (General tab)  | control /name Microsoft.FolderOpts                                                                   |
-|                                   |                                                                                                      |
-|                                   | control folders                                                                                      |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Options_RunDLL 0                                                            |
-| File Explorer Opts (View tab)     | rundll32.exe shell32.dll,Options_RunDLL 7                                                            |
-| File Explorer Opts (Search tab)   | rundll32.exe shell32.dll,Options_RunDLL 2                                                            |
-| File History                      | control /name Microsoft.FileHistory                                                                  |
-| Fonts                             | control /name Microsoft.Fonts                                                                        |
-|                                   |                                                                                                      |
-|                                   | control fonts                                                                                        |
-| Game Controllers                  | control /name Microsoft.GameControllers                                                              |
-|                                   |                                                                                                      |
-|                                   | control joy.cpl                                                                                      |
-| Get Programs                      | control /name Microsoft.GetPrograms                                                                  |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,1                                                |
-| HomeGroup                         | control /name Microsoft.HomeGroup                                                                    |
-| Indexing Opts                     | control /name Microsoft.IndexingOptions                                                              |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll                                                |
-| Infrared                          | control /name Microsoft.Infrared                                                                     |
-|                                   |                                                                                                      |
-|                                   | control irprops.cpl                                                                                  |
-|                                   |                                                                                                      |
-|                                   | control /name Microsoft.InfraredOptions                                                              |
-| Internet Prop (General tab)       | control /name Microsoft.InternetOptions                                                              |
-|                                   |                                                                                                      |
-|                                   | control inetcpl.cpl                                                                                  |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,0                                               |
-| Internet Prop (Security tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1                                               |
-| Internet Prop (Privacy tab)       | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2                                               |
-| Internet Prop (Content tab)       | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3                                               |
-| Internet Prop (Connections tab)   | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4                                               |
-| Internet Prop (Programs tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5                                               |
-| Internet Prop (Advanced tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6                                               |
-| iSCSI Initiator                   | control /name Microsoft.iSCSIInitiator                                                               |
-| Keyboard                          | control /name Microsoft.Keyboard                                                                     |
-|                                   |                                                                                                      |
-|                                   | control keyboard                                                                                     |
-| Language                          | control /name Microsoft.Language                                                                     |
-| Mouse Prop                        | control /name Microsoft.Mouse                                                                        |
-| (Buttons tab 0)                   |                                                                                                      |
-|                                   | control main.cpl                                                                                     |
-|                                   |                                                                                                      |
-|                                   | control mouse                                                                                        |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,0                                                  |
-| Mouse Prop                        | control main.cpl,,1                                                                                  |
-| (Pointers tab 1)                  |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1                                                  |
-| Mouse Prop                        | control main.cpl,,2                                                                                  |
-| (Pointer Opt tab 2)               |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,2                                                  |
-| Mouse Prop                        | control main.cpl,,3                                                                                  |
-| (Wheel tab 3)                     |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3                                                  |
-| Mouse Prop (Hardware tab 4)       | control main.cpl,,4                                                                                  |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,4                                                  |
-| Network and Sharing Center        | control /name Microsoft.NetworkAndSharingCenter                                                      |
-| Network Connections               | control ncpa.cpl                                                                                     |
-|                                   |                                                                                                      |
-|                                   | control netconnections                                                                               |
-| Network Setup Wizard              | control netsetup.cpl                                                                                 |
-| Notification Area Icons           | explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}                                              |
-| ODBC Data Source Administrator    | control odbccp32.cpl                                                                                 |
-| Offline Files                     | control /name Microsoft.OfflineFiles                                                                 |
-| Perf Opts (Vis Effects)           | %windir%\\system32\\SystemPropertiesPerformance.exe                                                  |
-| Perf Opts (DEP)                   | %windir%\\system32\\SystemPropertiesDataExecutionPrevention.exe                                      |
-| Personalization                   | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}                                              |
-| Phone and Modem                   | control /name Microsoft.PhoneAndModem                                                                |
-|                                   |                                                                                                      |
-|                                   | control telephon.cpl                                                                                 |
-| Power Opts                        | control /name Microsoft.PowerOptions                                                                 |
-|                                   |                                                                                                      |
-| _Power Opts_                      | control powercfg.cpl                                                                                 |
-| - Advanced settings               | control powercfg.cpl,,1                                                                              |
-| - Create a Power Plan             | control /name Microsoft.PowerOptions /page pageCreateNewPlan                                         |
-| - Edit Plan Settings              | control /name Microsoft.PowerOptions /page pagePlanSettings                                          |
-| - System Settings                 | control /name Microsoft.PowerOptions /page pageGlobalSettings                                        |
-| Presentation Settings             | %windir%\\system32\\PresentationSettings.exe                                                         |
-| Programs and Features             | control /name Microsoft.ProgramsAndFeatures                                                          |
-|                                   |                                                                                                      |
-|                                   | control appwiz.cpl                                                                                   |
-| Recovery                          | control /name Microsoft.Recovery                                                                     |
-| Region (Formats tab)              | control /name Microsoft.RegionAndLanguage                                                            |
-|                                   |                                                                                                      |
-|                                   | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Formats"                                |
-|                                   |                                                                                                      |
-|                                   | control intl.cpl                                                                                     |
-|                                   |                                                                                                      |
-|                                   | control international                                                                                |
-| Region (Location tab)             | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Location"                               |
-| Region (Administrative tab)       | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Administrative"                         |
-| RemoteApp and Desktop Connections | control /name Microsoft.RemoteAppAndDesktopConnections                                               |
-| Scanners and Cameras              | control /name Microsoft.ScannersAndCameras                                                           |
-|                                   |                                                                                                      |
-|                                   | control sticpl.cpl                                                                                   |
-| Screen Saver Settings             | rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1                                                  |
-| Security and Maintenance          | control /name Microsoft.ActionCenter                                                                 |
-|                                   |                                                                                                      |
-|                                   | control wscui.cpl                                                                                    |
-| Set Associations                  | control /name Microsoft.DefaultPrograms /page pageFileAssoc                                          |
-| Set Default Programs              | control /name Microsoft.DefaultPrograms /page pageDefaultProgram                                     |
-| Set Program Acc and Defaults      | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3                                                |
-| Sound (Playback tab)              | control /name Microsoft.Sound                                                                        |
-|                                   |                                                                                                      |
-|                                   | control mmsys.cpl                                                                                    |
-|                                   |                                                                                                      |
-|                                   | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,0                             |
-| Sound (Recording tab)             | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,1                             |
-| Sound (Sounds tab)                | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,2                             |
-| Sound (Communications tab)        | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,3                             |
-| Speech Recognition                | control /name Microsoft.SpeechRecognition                                                            |
-| Storage Spaces                    | control /name Microsoft.StorageSpaces                                                                |
-| Sync Center                       | control /name Microsoft.SyncCenter                                                                   |
-| System                            | control /name Microsoft.System                                                                       |
-|                                   |                                                                                                      |
-|                                   | control sysdm.cpl                                                                                    |
-| System Icons                      | explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9} \\SystemIcons,,0                             |
-| System Prop (Computer Name)       | %windir%\\System32\\SystemPropertiesComputerName.exe                                                 |
-| System Prop (Hardware)            | %windir%\\System32\\SystemPropertiesHardware.exe                                                     |
-| System Prop (Advanced)            | %windir%\\System32\\SystemPropertiesAdvanced.exe                                                     |
-| System Prop (System Protection)   | %windir%\\System32\\SystemPropertiesProtection.exe                                                   |
-| System Prop (Remote)              | %windir%\\System32\\SystemPropertiesRemote.exe                                                       |
-| Tablet PC Settings                | control /name Microsoft.TabletPCSettings                                                             |
-| Text to Speech                    | control /name Microsoft.TextToSpeech                                                                 |
-| Troubleshooting                   |                                                                                                      |
-| User Accounts                     | control /name Microsoft.UserAccounts                                                                 |
-|                                   |                                                                                                      |
-|                                   | control userpasswords                                                                                |
-| User Accounts (netplwiz)          | netplwiz                                                                                             |
-|                                   |                                                                                                      |
-|                                   | control userpasswords2                                                                               |
-| Windows Defender Antivirus        | %ProgramFiles%\\Windows Defender\\MSASCui.exe                                                        |
-| Windows Defender Firewall         | control /name Microsoft.WindowsFirewall                                                              |
-|                                   |                                                                                                      |
-|                                   | control firewall.cpl                                                                                 |
-| Windows Features                  | %windir%\\System32\\OptionalFeatures.exe                                                             |
-|                                   |                                                                                                      |
-|                                   | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2                                                |
-| Windows Mobility Center           | control /name Microsoft.MobilityCenter                                                               |
-| Windows To Go                     | %windir%\\System32\\pwcreator.exe                                                                    |
-| Work Folders                      | %windir%\\System32\\WorkFolders.exe                                                                  |
+| Control Panel Item                | Commands                                                                     |
+| --------------------------------- | ---------------------------------------------------------------------------- |
+| Add a Device wizard               | %windir%\\System32\\DevicePairingWizard.exe                                  |
+| Add Hardware wizard               | %windir%\\System32\\hdwwiz.exe                                               |
+| Add a Printer wizard              | rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter                   |
+| Additional Clocks                 | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                      |
+| Administrative Tools              | control /name Microsoft.AdministrativeTools                                  |
+|                                   |                                                                              |
+|                                   | **control admintools**                                                       |
+| AutoPlay                          | control /name Microsoft.AutoPlay                                             |
+| Backup and Restore (Win 7)        | control /name Microsoft.BackupAndRestoreCenter                               |
+| BitLocker Drive Encryption        | control /name Microsoft.BitLockerDriveEncryption                             |
+| Color and Appearance              | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}...                   |
+|                                   | (cont...) -Microsoft.Personalization\\pageColorization                       |
+| Color Management                  | control /name Microsoft.ColorManagement                                      |
+| Credential Manager                | control /name Microsoft.CredentialManager                                    |
+|                                   | control timedate.cpl                                                         |
+|                                   |                                                                              |
+|                                   | **control date/time**                                                        |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,0                      |
+| Date and Time (Add'l Clocks)      | rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1                      |
+| Default Programs                  | control /name Microsoft.DefaultPrograms                                      |
+| Desktop Background                | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}                      |
+|                                   | (cont...) -Microsoft.Personalization\\pageWallpaper                          |
+| Desktop Icon Settings             | rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0                          |
+| Device Manager                    | control /name Microsoft.DeviceManager                                        |
+|                                   | control hdwwiz.cpl                                                           |
+|                                   |                                                                              |
+|                                   | devmgmt.msc                                                                  |
+| Devices and Printers              | control /name Microsoft.DevicesAndPrinters                                   |
+|                                   |                                                                              |
+|                                   | control printers                                                             |
+| Ease of Access Center             | control /name Microsoft.EaseOfAccessCenter                                   |
+|                                   |                                                                              |
+|                                   | control access.cpl                                                           |
+| File Explorer Opts (General tab)  | control /name Microsoft.FolderOpts                                           |
+|                                   |                                                                              |
+|                                   | **control folders**                                                          |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Options_RunDLL 0                                    |
+| File Explorer Opts (View tab)     | rundll32.exe shell32.dll,Options_RunDLL 7                                    |
+| File Explorer Opts (Search tab    | rundll32.exe shell32.dll,Options_RunDLL 2                                    |
+| File History                      | control /name Microsoft.FileHistory                                          |
+| Fonts                             | control /name Microsoft.Fonts                                                |
+|                                   |                                                                              |
+|                                   | **control fonts**                                                            |
+| Game Controllers                  | control /name Microsoft.GameControllers                                      |
+|                                   |                                                                              |
+|                                   | control joy.cpl                                                              |
+| Get Programs                      | control /name Microsoft.GetPrograms                                          |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,1                        |
+| HomeGroup                         | control /name Microsoft.HomeGroup                                            |
+| Indexing Opts                     | control /name Microsoft.IndexingOptions                                      |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll                        |
+| Infrared                          | control /name Microsoft.Infrared                                             |
+|                                   |                                                                              |
+|                                   | control irprops.cpl                                                          |
+|                                   |                                                                              |
+|                                   | control /name Microsoft.InfraredOptions                                      |
+| Internet Prop (General tab)       | control /name Microsoft.InternetOptions                                      |
+|                                   |                                                                              |
+|                                   | control inetcpl.cpl                                                          |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,0                       |
+| Internet Prop (Security tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1                       |
+| Internet Prop (Privacy tab)       | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2                       |
+| Internet Prop (Content tab)       | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3                       |
+| Internet Prop (Connections tab)   | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4                       |
+| Internet Prop (Programs tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5                       |
+| Internet Prop (Advanced tab)      | rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6                       |
+| iSCSI Initiator                   | control /name Microsoft.iSCSIInitiator                                       |
+| Keyboard                          | control /name Microsoft.Keyboard                                             |
+|                                   |                                                                              |
+|                                   | control keyboard                                                             |
+| Language                          | control /name Microsoft.Language                                             |
+| Mouse Prop                        | control /name Microsoft.Mouse                                                |
+| (Buttons tab 0)                   |                                                                              |
+|                                   | control main.cpl                                                             |
+|                                   |                                                                              |
+|                                   | control mouse                                                                |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,0                          |
+| Mouse Prop                        | control main.cpl,,1                                                          |
+| (Pointers tab 1)                  |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,1                          |
+| Mouse Prop                        | control main.cpl,,2                                                          |
+| (Pointer Opt tab 2)               |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,2                          |
+| Mouse Prop                        | control main.cpl,,3                                                          |
+| (Wheel tab 3)                     |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,3                          |
+|                                   |                                                                              |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL main.cpl,,4                          |
+| Network and Sharing Center        | control /name Microsoft.NetworkAndSharingCenter                              |
+| Network Connections               | control ncpa.cpl                                                             |
+|                                   |                                                                              |
+|                                   | control netconnections                                                       |
+| Network Setup Wizard              | control netsetup.cpl                                                         |
+| Notification Area Icons           | explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}                      |
+| ODBC Data Source Administrator    | control odbccp32.cpl                                                         |
+| Offline Files                     | control /name Microsoft.OfflineFiles                                         |
+| Perf Opts (Vis Effects)           | %windir%\\system32\\SystemPropertiesPerformance.exe                          |
+| Perf Opts (DEP)                   | %windir%\\system32\\SystemPropertiesDataExecutionPrevention.exe              |
+| Personalization                   | explorer shell:::{ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}                      |
+| Phone and Modem                   | control /name Microsoft.PhoneAndModem                                        |
+|                                   |                                                                              |
+|                                   | control telephon.cpl                                                         |
+| Power Opts                        | control /name Microsoft.PowerOptions                                         |
+|                                   |                                                                              |
+| _Power Opts_                      | control powercfg.cpl                                                         |
+| - Advanced settings               | control powercfg.cpl,,1                                                      |
+| - Create a Power Plan             | control /name Microsoft.PowerOptions /page pageCreateNewPlan                 |
+| - Edit Plan Settings              | control /name Microsoft.PowerOptions /page pagePlanSettings                  |
+| - System Settings                 | control /name Microsoft.PowerOptions /page pageGlobalSettings                |
+| Presentation Settings             | %windir%\\system32\\PresentationSettings.exe                                 |
+| Programs and Features             | control /name Microsoft.ProgramsAndFeatures                                  |
+|                                   |                                                                              |
+|                                   | control appwiz.cpl                                                           |
+| Recovery                          | control /name Microsoft.Recovery                                             |
+| Region (Formats tab)              | control /name Microsoft.RegionAndLanguage                                    |
+|                                   |                                                                              |
+|                                   | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Formats"        |
+|                                   |                                                                              |
+|                                   | control intl.cpl                                                             |
+|                                   |                                                                              |
+|                                   | control international                                                        |
+| Region (Location tab)             | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Location"       |
+| Region (Administrative tab)       | control /name Microsoft.RegionalAndLanguageOptions /page /p:"Administrative" |
+| RemoteApp and Desktop Connections | control /name Microsoft.RemoteAppAndDesktopConnections                       |
+| Scanners and Cameras              | control /name Microsoft.ScannersAndCameras                                   |
+|                                   |                                                                              |
+|                                   | control sticpl.cpl                                                           |
+| Screen Saver Settings             | rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1                          |
+| Security and Maintenance          | control /name Microsoft.ActionCenter                                         |
+|                                   |                                                                              |
+|                                   | control wscui.cpl                                                            |
+| Set Associations                  | control /name Microsoft.DefaultPrograms /page pageFileAssoc                  |
+| Set Default Programs              | control /name Microsoft.DefaultPrograms /page pageDefaultProgram             |
+| Set Program Acc and Defaults      | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3                        |
+| Sound (Playback tab)              | control /name Microsoft.Sound                                                |
+|                                   |                                                                              |
+|                                   | control mmsys.cpl                                                            |
+|                                   |                                                                              |
+|                                   | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,0     |
+| Sound (Recording tab)             | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,1     |
+| Sound (Sounds tab)                | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,2     |
+| Sound (Communications tab)        | %windir%\\System32\\rundll32.exe shell32.dll,Control_RunDLL mmsys.cpl,,3     |
+| Speech Recognition                | control /name Microsoft.SpeechRecognition                                    |
+| Storage Spaces                    | control /name Microsoft.StorageSpaces                                        |
+| Sync Center                       | control /name Microsoft.SyncCenter                                           |
+| System                            | control /name Microsoft.System                                               |
+|                                   |                                                                              |
+|                                   | control sysdm.cpl                                                            |
+| System Icons                      | explorer shell:::{05d7b0f4-2121-4eff-bf6b-ed3f69b894d9} \\SystemIcons,,0     |
+| System Prop (Computer Name)       | %windir%\\System32\\SystemPropertiesComputerName.exe                         |
+| System Prop (Hardware)            | %windir%\\System32\\SystemPropertiesHardware.exe                             |
+| System Prop (Advanced)            | %windir%\\System32\\SystemPropertiesAdvanced.exe                             |
+| System Prop (System Protection)   | %windir%\\System32\\SystemPropertiesProtection.exe                           |
+| System Prop (Remote)              | %windir%\\System32\\SystemPropertiesRemote.exe                               |
+| Tablet PC Settings                | control /name Microsoft.TabletPCSettings                                     |
+| Text to Speech                    | control /name Microsoft.TextToSpeech                                         |
+| Troubleshooting                   |                                                                              |
+| User Accounts                     | control /name Microsoft.UserAccounts                                         |
+|                                   | control userpasswords                                                        |
+| User Accounts (netplwiz)          | netplwiz                                                                     |
+|                                   | control userpasswords2                                                       |
+| Windows Defender Antivirus        | %ProgramFiles%\\Windows Defender\\MSASCui.exe                                |
+| Windows Defender Firewall         | control /name Microsoft.WindowsFirewall                                      |
+|                                   | control firewall.cpl                                                         |
+| Windows Features                  | %windir%\\System32\\OptionalFeatures.exe                                     |
+|                                   | rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2                        |
+| Windows Mobility Center           | control /name Microsoft.MobilityCenter                                       |
+| Windows To Go                     | %windir%\\System32\\pwcreator.exe                                            |
+| Work Folders                      | %windir%\\System32\\WorkFolders.exe                                          |
 
 *[DEP]: Data Execution Prevention
 
@@ -1601,6 +1952,89 @@ Examples:
 - `REG ADD HKLM\Software\MyCo /v Path /t REG_EXPAND_SZ /d ^%systemroot^%` - Adds a value (name: Path, type: REG_EXPAND_SZ, data: %systemroot%)   Notice:  Use the caret symbol ( ^ ) inside the expand string
 
 
+#### Query
+
+
+```batch
+reg Query /?
+
+REG QUERY KeyName [/v [ValueName] | /ve] [/s]
+          [/f Data [/k] [/d] [/c] [/e]] [/t Type] [/z] [/se Separator]
+          [/reg:32 | /reg:64]
+
+  KeyName  [\\Machine\]FullKey
+           Machine - Name of remote machine, omitting defaults to the
+                     current machine. Only HKLM and HKU are available on
+                     remote machines
+           FullKey - in the form of ROOTKEY\SubKey name
+                ROOTKEY - [ HKLM | HKCU | HKCR | HKU | HKCC ]
+                SubKey  - The full name of a registry key under the
+                          selected ROOTKEY
+
+  /v       Queries for a specific registry key values.
+           If omitted, all values for the key are queried.
+
+           Argument to this switch can be optional only when specified
+           along with /f switch. This specifies to search in valuenames only.
+
+  /ve      Queries for the default value or empty value name (Default).
+
+  /s       Queries all subkeys and values recursively (like dir /s).
+
+  /se      Specifies the separator (length of 1 character only) in
+           data string for REG_MULTI_SZ. Defaults to "\0" as the separator.
+
+  /f       Specifies the data or pattern to search for.
+           Use double quotes if a string contains spaces. Default is "*".
+
+  /k       Specifies to search in key names only.
+
+  /d       Specifies the search in data only.
+
+  /c       Specifies that the search is case sensitive.
+           The default search is case insensitive.
+
+  /e       Specifies to return only exact matches.
+           By default all the matches are returned.
+
+  /t       Specifies registry value data type.
+           Valid types are:
+             REG_SZ, REG_MULTI_SZ, REG_EXPAND_SZ,
+             REG_DWORD, REG_QWORD, REG_BINARY, REG_NONE
+           Defaults to all types.
+
+  /z       Verbose: Shows the numeric equivalent for the type of the valuename.
+
+  /reg:32  Specifies the key should be accessed using the 32-bit registry view.
+
+  /reg:64  Specifies the key should be accessed using the 64-bit registry view.
+
+Examples:
+
+  REG QUERY HKLM\Software\Microsoft\ResKit /v Version
+    Displays the value of the registry value Version
+
+  REG QUERY \\ABC\HKLM\Software\Microsoft\ResKit\Nt\Setup /s
+    Displays all subkeys and values under the registry key Setup
+    on remote machine ABC
+
+  REG QUERY HKLM\Software\Microsoft\ResKit\Nt\Setup /se #
+    Displays all the subkeys and values with "#" as the seperator
+    for all valuenames whose type is REG_MULTI_SZ.
+
+  REG QUERY HKLM /f SYSTEM /t REG_SZ /c /e
+    Displays Key, Value and Data with case sensitive and exact
+    occurrences of "SYSTEM" under HKLM root for the data type REG_SZ
+
+  REG QUERY HKCU /f 0F /d /t REG_BINARY
+    Displays Key, Value and Data for the occurrences of "0F" in data
+    under HKCU root for the data type REG_BINARY
+
+  REG QUERY HKLM\SOFTWARE /ve
+    Displays Value and Data for the empty value (Default)
+    under HKLM\SOFTWARE
+```
+
 ### Powercfg
 
 Edit the power configuration settings
@@ -1618,16 +2052,61 @@ standby-timeout-dc
 hibernate-timeout-ac
 hibernate-timeout-dc
 
+### SleepStudy
+
+`powercfg sleepstudy`
+
+passing this will output an HTML file into the file you are in.
+
+### Logman
+
+`logman` looks at the currently running loggers from performance manager.
+
+
 ### netsh
 
 View the Windows Network Config Script:
-
+ 
 This shows all the settings
 
 ```batch
 netsh
 >dump
 ```
+## net
+
+NET
+    [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+      HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+      STATISTICS | STOP | TIME | USE | USER | VIEW ]
+      
+### Attrib
+
+Sets and changes file attributes.
+
+[Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
+
+- R - **ReadOnly**
+- A - **Archive file attribute.**
+- S - System file attribute.
+- H - Hidden file attribute.
+- O - *Offline attribute.*
+- I - **Not content indexed file attribute.**
+- X - *No scrub file attribute.*
+- V - *Integrity attribute.*
+- P - *Pinned attribute.*
+- U - *Unpinned attribute.*
+- B - *SMR Blob attribute.*
+
+
+
+A few useful aspects:
+
+Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive attribute.  Any file that changes from that point on will have it set.  Then you can run backup only files with `+A` attribute.
+
+I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
+
+Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
 
 ### BCDEdit
 
@@ -1640,6 +2119,26 @@ bcdedit /set {bootmgr} displaybootmenu yes
 echo to turn off
 bcdedit /set {bootmgr} displaybootmenu no
 ```
+
+### BCDBoot
+
+To repair a non booting computer- 
+
+```batch
+Diskpart
+List disk  
+REM   (Note which disk is your Boot drive number mine is 0)
+Sel disk 0 (SYSTEM DISK)
+List vol               (Note which volume is the EFI partition mine is 4)
+Sel vol 4 (Will be FAT32)
+assign letter=V:
+Exit
+Format V: /FS:Fat32
+REM Or I did 
+mkdir EFIOLD
+mv EFI EFIOLD
+bcdboot C:\windows /s V: /f UEFI 
+
 
 ### WMIC Windows Management Instrumentation Console
 
@@ -1659,6 +2158,174 @@ diskpart
     automount scrub
 ```
 
+To make a drive read only
+
+```batch
+diskpart
+    list disks
+    sel dis #
+    attributes disk set readonly
+    exit
+
+    list vol
+    sel vol #
+    attributes vol set readonly
+    exit
+```
+
+To clean a disk with a recovery volume on it
+
+```batch
+diskpart
+    list disks
+    sel dis #
+    clean
+    exit
+```
+
+To delete a protected volume- like the windows recovery drive
+
+```batch
+diskpart
+    list part
+    sel part #
+    delete partition override
+    exit
+```
+
+
+## Changing Computer State
+
+### Locking a Computer-  Calling User32.dll functions
+
+The only way to lock a computer directly with the standard available tools is to call the `LockWorkstation()` function in `user32.dll`:
+
+        rundll32.exe user32.dll,LockWorkStation
+
+
+This command immediately locks the workstation. It uses `rundll32.exe`, which runs Windows DLLs (and saves their libraries for repeated use) to run `user32.dll`, a library of Windows management functions.
+
+When you lock a workstation while Fast User Switching is enabled, such as on Windows XP, the computer displays the user logon screen rather than starting the current user's screensaver.
+
+To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` command-line tool.
+
+### Logging Off the Current Session
+
+You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
+
+You can also use the shutdown.exe tool with its logoff option:
+
+        shutdown.exe -l
+        shutdown /t=0
+
+A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32Shutdown method**. Invoking the method with the **0** flag initiates logoff:
+
+		(Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
+
+For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
+
+### Shutting Down or Restarting a Computer
+
+Shutting down and restarting computers are generally the same types of task. Tools that shut down a computer will generally restart it as well—and vice versa. There are two straightforward options for restarting a computer from Windows PowerShell. Use either `Tsshutdn.exe` or `Shutdown.exe` with appropriate arguments. You can get detailed usage information from `tsshutdn.exe /?` or `shutdown.exe /?`.
+
+
+#### shutdown.exe
+
+!!!note note: It also gives information on the counts and reasons
+
+        Usage: shutdown.exe [/i | /l | /s | /sg | /r | /g | /a | /p | /h | /e | /o] [/hybrid] [/soft] [/fw] [/f]
+            [/m \\computer][/t xxx][/d [p|u:]xx:yy [/c "comment"]]
+
+            No args    Display help. This is the same as typing /?.
+            /?         Display help. This is the same as not typing any options.
+            /i         Display the graphical user interface (GUI).
+                    This must be the first option.
+            /l         Log off. This cannot be used with /m or /d options.
+            /s         Shutdown the computer.
+            /sg        Shutdown the computer. On the next boot,
+                    restart any registered applications.
+            /r         Full shutdown and restart the computer.
+            /g         Full shutdown and restart the computer. After the system is
+                    rebooted, restart any registered applications.
+            /a         Abort a system shutdown.
+                    This can only be used during the time-out period.
+                    Combine with /fw to clear any pending boots to firmware.
+            /p         Turn off the local computer with no time-out or warning.
+                    Can be used with /d and /f options.
+            /h         Hibernate the local computer.
+                    Can be used with the /f option.
+            /hybrid    Performs a shutdown of the computer and prepares it for fast startup.
+                    Must be used with /s option.
+            /fw        Combine with a shutdown option to cause the next boot to go to the
+                    firmware user interface.
+            /e         Document the reason for an unexpected shutdown of a computer.
+            /o         Go to the advanced boot options menu and restart the computer.
+                    Must be used with /r option.
+            /m \\computer Specify the target computer.
+            /t xxx     Set the time-out period before shutdown to xxx seconds.
+                    The valid range is 0-315360000 (10 years), with a default of 30.
+                    If the timeout period is greater than 0, the /f parameter is
+                    implied.
+            /c "comment" Comment on the reason for the restart or shutdown.
+                    Maximum of 512 characters allowed.
+            /f         Force running applications to close without forewarning users.
+                    The /f parameter is implied when a value greater than 0 is
+                    specified for the /t parameter.
+            /d [p|u:]xx:yy  Provide the reason for the restart or shutdown.
+                    p indicates that the restart or shutdown is planned.
+                    u indicates that the reason is user defined.
+                    If neither p nor u is specified the restart or shutdown is
+                    unplanned.
+                    xx is the major reason number (positive integer less than 256).
+                    yy is the minor reason number (positive integer less than 65536).
+
+        Reasons on this computer:
+        (E = Expected U = Unexpected P = planned, C = customer defined)
+        Type	Major	Minor	Title
+
+        U  	    0	0	Other (Unplanned)
+        E   	0	0	Other (Unplanned)
+        E P 	0	0	Other (Planned)
+        U  	    0	5	Other Failure: System Unresponsive
+        E   	1	1	Hardware: Maintenance (Unplanned)
+        E P 	1	1	Hardware: Maintenance (Planned)
+        E   	1	2	Hardware: Installation (Unplanned)
+        E P 	1	2	Hardware: Installation (Planned)
+        E   	2	2	Operating System: Recovery (Unplanned)
+        E P 	2	2	Operating System: Recovery (Planned)
+        P 	    2	3	Operating System: Upgrade (Planned)
+        E   	2	4	Operating System: Reconfiguration (Unplanned)
+        E P 	2	4	Operating System: Reconfiguration (Planned)
+          P	    2	16	Operating System: Service pack (Planned)
+                2	17	Operating System: Hot fix (Unplanned)
+          P     2	17	Operating System: Hot fix (Planned)
+                2	18	Operating System: Security fix (Unplanned)
+          P     2	18	Operating System: Security fix (Planned)
+        E   	4	1	Application: Maintenance (Unplanned)
+        E P 	4	1	Application: Maintenance (Planned)
+        E P 	4	2	Application: Installation (Planned)
+        E   	4	5	Application: Unresponsive
+        E   	4	6	Application: Unstable
+        U  	    5	15	System Failure: Stop error
+        U  	    5	19	Security issue (Unplanned)
+        E   	5	19	Security issue (Unplanned)
+        E P 	5	19	Security issue (Planned)
+        E   	5	20	Loss of network connectivity (Unplanned)
+        U  	    6	11	Power Failure: Cord Unplugged
+        U  	    6	12	Power Failure: Environment
+          P	    7	0	Legacy API shutdown
+
+!!!warning `tsshutdn.exe` is not found on W10 pro.
+
+You can also perform shutdown and restart operations directly from Windows PowerShell as well.
+
+To shut down the computer, use the `Stop-Computer` command
+
+To restart the operating system, use the `Restart-Computer` command
+
+To force an immediate restart, use the -Force parameter. `Restart-Computer -Force`
+
+
 ### Services (sc)
 
 See the [Streamline Windows Batch File](#Batch-File) for more examples?
@@ -1667,6 +2334,42 @@ See the [Streamline Windows Batch File](#Batch-File) for more examples?
 sc start vmms
 sc queryex eventlog vmms
 ```
+
+### VSSADMIN
+
+Take a look and see where your computer is storing ShadowCopy Backups
+
+`vssadmin list providers` list the things making shadowcopies.  Just Windows usually.
+
+`vssadmin list volumes` -list the drives where shadow copies are kept
+
+`vssadmin list shadows` - more interesting, lists the specific backups. Like this:
+
+        Contents of shadow copy set ID: {91131afe-b83c-44cd-b243-142b8ed9d4b7}
+        Contained 1 shadow copies at creation time: 3/24/2019 5:02:29 AM
+            Shadow Copy ID: {db24bd58-fcb5-4fe4-877f-af5c43cadc5f}
+                Original Volume: (X:)\\?\Volume{8e24b15f-7991-4509-bdcd-46e88aafab92}\
+                Shadow Copy Volume: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy36
+                Originating Machine: DESKTOP
+                Service Machine: DESKTOP
+                Provider: 'Microsoft Software Shadow Copy provider 1.0'
+                Type: DataVolumeRollback
+                Attributes: Persistent, No auto release, No writers, Differential
+
+`vssadmin list shadowstorage` -shows by drive how much space is taken up and how much is left.
+        Shadow Copy Storage association
+        For volume: (P:)\\?\Volume{11696a83-1b1a-44da-b6af-a7dca2d81c33}\
+        Shadow Copy Storage volume: (P:)\\?\Volume{11696a83-1b1a-44da-b6af-a7dca2d81c33}\
+        Used Shadow Copy Storage space: 32.1 MB (0%)
+        Allocated Shadow Copy Storage space: 5.12 GB (1%)
+        Maximum Shadow Copy Storage space: 102 GB (26%)
+
+`vssadmin list writers` - not that interesting lists services that use VSS. **Will tell you if there is an error from each service**
+
+`vssadmin Resize ShadowStorage` -
+
+`vssadmin Delete Shadows /For=C:`
+
 
 ### schtasks
 
@@ -1723,52 +2426,503 @@ mkdir d:\asussync\backups\
 "C:\Program Files\WinRar\WinRAR.exe" a -ag+YYMMM{v}nn-- -@+ "D:\ASUSsync\Backups\vsCodeBackUp.rar" @"D:\Asussync\backups\backups.txt"
 ```
 
+#### Backup
+
+!!!Warning Warning: This is a pop-up mess...Diasble Javascript before you go [Source](http://rareelement.tripod.com/winrar_sk.htm)
+
+##### Full Backup
+Intro: This is a backup of ALL the existing files in source folder.
+Comment: This backup may be done once a while to get a complete snapshot of all the file at that moment.
+Restoration: To restore a file, files can be directly retrieved from this archive (if no newer backup exists)
+
+Command line:
+`winrar.exe a -se -rr3% -ac -ag+YYYYMMDD_full_ -k -m5 -ms -os -r -ep1 e:\mydoc.rar @mydocpath.txt`
+
+| command/switch | Purpose Used                                                     |
+| -------------- | ---------------------------------------------------------------- |
+| a              | add files to archive                                             |
+| -se            | solid archive based on file extensions[1]                        |
+| -ac            | clear archive attribute after archival                           |
+| -ag+YYYYMMDD_  | add current date in archive name                                 |
+| -k             | protect archive from tamper or accidental modification           |
+| -m5            | use best compression (also slowest)                              |
+| -ms            | Do not waste time in re-compressing compressed files [2]         |
+| -os            | keep NTFS streams (recommended if your files are stored on NTFS) |
+| -r             | recurs subfolders                                                |
+| -ep1           | strip base folder name                                           |
+| -rr3%          | recovery record is 3%                                            |
+
+Additional
+
+- md128
+
+- mct -text compression
+
+winrar.exe a -se -rr3% -ac -ag+YYYYMMDD_full_ -k -m5 -ms -os -r -ep1 -mc30:128t+ -md128 e:\ASUSsyncBU.rar @.\BackupPaths.txt
+
+[1]- not recommended due to data loss risk on low quality media
+
+[2]- such as ace, arj, bz2, cab, gz, jpeg, jpg, lha, lzh, mp3, rar, zip, taz, tgz, z
+
+[3]- (alter as per the reliability of your media)
+
+#####  Incremental Backup
+
+Intro: Takes backup of the files modified since the last backup.
+
+Comment: Takes very less time as only a small number of files are usually changed daily. These are the files backup up by this method.
+
+Restoration: To restore a file, you need to first retrieve the last FULL backup, then ALL the incremental backups up to the date required in chronologically dated order, starting from the oldest to the latest.
+
+
+Command Line: `winrar.exe a -se -rr3% -ac -ag+YYYYMMDD_incr_ -k -m4 -ms -os -r -ep1 -ac -ao e:\mydoc.rar @mydocpath.txt`
+
+Command/switches used with purpose:
+
+| command/switch           | Purpose Used                                   |
+| ------------------------ | ---------------------------------------------- |
+| All from the FULL backup | As tabulate above                              |
+| -ao                      | add only the files with archive bit on         |
+| -m4                      | Replaced -m5 with -m4 for faster daily backups |
+| REMOVE -m5               | Replaced -m5 with -m4 for faster daily backups |
+
+##### Differential Backup
+
+Intro: Takes backup of all files since the last FULL backup.
+
+Comment: Takes more time to backup with time. This is because this backup backups up all files modified since the last FULL backup.
+
+Restoration: To restore a file, retrieve the last FULL backup, and then the latest differential backup file.
+
+
+Command Line: `winrar.exe a -se -rr3% -ag+YYYYMMDD_diff_ -k -m4 -ms -os -r -ep1 -ao e:\mydoc.rar @mydocpath.txt`
+
+Command/switches used with purpose:
+
+| command/switch           | Purpose Used                                           |
+| ------------------------ | ------------------------------------------------------ |
+| All from the FULL backup | As tabulate above                                      |
+| -ao                      | add only the files with archive bit on                 |
+| REMOVE -ac               | to prevent the archive bit from changing due to backup |
+| -m4                      | Replaced -m5 with -m4 for faster daily backups         |
+| REMOVE -m5               | Replaced -m5 with -m4 for faster daily backups         |
+
+
 ### 7zip
- 
- 
+
+
  7z.exe a -t7z backup.7z -mx5 -m0=lzma2 -ms=200f -mmt=8
     "%inkscapePath%" --without-gui --file="%%cd%%\%%i" --export-png="%%cd%%\tmp\%%j\%%~ni-%%j.png" --export-dpi=%%j
     set /a innercount=innercount+1
 7z a  \%fileName%.7z ".\*\*.png" -r -y -aoa -bse1 -bso0 -w".\tmp\" -m0=LZMAs=100f10m
 
--bsxy
+- bsxy
 comes in pairs x= (p - info, e- error, ? i forgot 3 debug maybe?) and y is 0 nowhere, 1 stdout 2 stderr the screen.
 
 `-bse1 > Errorlog.txt` pipes out the error messages.
 ::-bse1 bs is redirect output and e is error and 1 is sted out
 ::-bso0 redirects standard output messages to 0 (off)
 
-::setting methods is complicated af  
+::setting methods is complicated af
 
 methods
 :: this is supposed to be the method  -m0=LZMA2s=100f10m
 s=100f10m = solid format 100files or 10 Mb
--mx(1-9) sets default strength from store to ultra eg -mx1
+- mx(1-9) sets default strength from store to ultra eg -mx1
 
 Another example `7z.exe a -t7z backup.7z -mx1 -m0=lzma2:d=1024m:fb=273 -ms=16g -mmt=24`
--mmt=# is number of cpu threads
--ms=16g is solid, break into 16gb, can use b,k,m,g and f for files.
+- mmt=# is number of cpu threads
+- ms=16g is solid, break into 16gb, can use b,k,m,g and f for files.
 fb is fast bytes (IDK)
 d: is directory size.T
 There is a ton more.
 
- -aoa - append and overwrite
+ - aoa - append and overwrite
 
- -y dont ask
- 
- -r subfolders.
+ - y dont ask
 
- -w".\tmp\" workign directory?
+ - r subfolders.
+
+ - w".\tmp\" workign directory?
 
  format is always 7z. then command.  a for add.  then archive.  The rest can be allegely any order.  Its confusing as hell
 
-### Converting SVG
-
+### Inkscape
 [Inkscape Command Line](https://inkscape.org/doc/inkscape-man.html)
 
 %inkscapePath%" --without-gui --file=".\%%i" --export-png=".\tmp\%%j\%DirN%\%%~ni-%%j.png" --export-dpi=%%j
 
 See the batch script in scripts
+
+### ImageMagick
+
+[Image Magic Formats](https://imagemagick.org/script/formats.php)
+
+[Image Magic CLI Doc](https://www.imagemagick.org/script/command-line-processing.php)
+
+[Magick Examples](https://www.imagemagick.org/Usage/)
+
+[Magick Doc Thumbnails](https://www.imagemagick.org/Usage/thumbnails/#html)
+
+Make sure its added to PATH
+
+then its run with `magick.exe`
+
+The ImageMagick command-line consists of
+
+one or more required input filenames.
+zero, one, or more image settings.
+zero, one, or more image operators.
+zero, one, or more image sequence operators.
+zero, one, or more image stacks.
+zero or one output image filenames (required by convert, composite, montage, compare, import, conjure).
+
+`magick logo: gif:- | display gif:-`
+magick.exe montage  -label '%f' -size 128x128 '.\*.svg[128x128]' -auto-orient -caption "scraping-166"-geometry '100x100x10x10'-tile 8x "index.png"
+magick.exe montage  -label '%f' -size 128x128 '.\*.svg[128x128]' -auto-orient -title  "Contents of %d "-geometry '100x100x10x10'-tile 8x "index.png"
+
+magick -list tool | clip:
+
+animate
+compare
+composite
+conjure
+convert
+display
+identify
+import
+mogrify
+montage
+stream
+
+
+  montage -label '%t\n%[width]x%[height]' \
+          - size 512x512 '../img_photos/*_orig.*[120x90]' -auto-orient \
+          - geometry +5+5 -tile 5x  -frame 5  -shadow  photo_index.html
+
+
+  montage -label '%t'  -size 128x128  -auto-orient -geometry +5+5 -tile 10x  -title "Font-Awesome Directory" -frame 5  -shadow './*.svg[128x128]'  photo_index-%d.html
+
+  montage -label '%t'  -size 128x128 './100/*.svg[128x128]' -auto-orient -geometry +5+5 -tile 5x  -frame 5  -shadow -monitor photo_index-%d.html
+
+    Title settings
+        montage -pointsize 24  -background Lavender \
+                - font Candice      -label Candice      label:Abc-123 \
+                - font Corsiva      -label Corsiva      label:Abc-123 \
+                - font SheerBeauty  -label SheerBeauty  label:Abc-123 \
+                - font Ravie        -label Ravie        label:Abc-123 \
+                - font Arial        -label Arial        label:Abc-123 \
+                - font ArialI       -label ArialI       label:Abc-123 \
+                - font ArialB       -label ArialB       label:Abc-123 \
+                - font ArialBk      -label ArialBk      label:Abc-123 \
+                - font CourierNew   -label CourierNew   label:Abc-123 \
+                - font LokiCola     -label LokiCola     label:Abc-123 \
+                - font Gecko        -label Gecko        label:Abc-123 \
+                - font Wedgie       -label Wedgie       label:Abc-123 \
+                - font WebDings     -label WebDings     label:Abc-123 \
+                - font WingDings    -label WingDings    label:Abc-123 \
+                - font WingDings2   -label WingDings2   label:Abc-123 \
+                - font Zymbols      -label Zymbols      label:Abc-123 \
+                \
+                - frame 5  -geometry +2+2   -font Arial -pointsize 12 \
+                - background none  -bordercolor SkyBlue  -mattecolor DodgerBlue \
+                montage_fonts.gif
+```
+ convert image.png  -background white \
+          \( -clone 0 -resize 16x16 -extent 16x16 \) \
+          \( -clone 0 -resize 32x32 -extent 32x32 \) \
+          \( -clone 0 -resize 48x48 -extent 48x48 \) \
+          \( -clone 0 -resize 64x64 -extent 64x64 \) \
+          - delete 0 -alpha off -colors 256 favicon.ico
+```
+Single Letter Attribute Percent Escapes
+Here are common single letter escapes (short form) is used to report the most common attributes and properties of an image, such as: the image filename filename, type, width, height.
+- \n - newline
+- \r - carriage return
+- < - less-than character.
+- > - greater-than character.
+- & - ampersand character.
+- %% - a percent sign
+- %b - file size of image read in (use -precision 16 to force results in B)
+- %c - comment meta-data property
+- %d - directory component of path
+- %e - filename extension or suffix
+- %f - filename (including suffix)
+- %g - **layer canvas page geometry (equivalent to "%Wx%H%X%Y")**
+- %h - current image height in pixels
+- %i - image filename (note: becomes output filename for "info:")
+- %k - CALCULATED: number of unique colors
+- %l - label meta-data property
+- %m - image file format (file magic)
+- %n - number of images in current image sequence
+- %o - output filename (used for delegates)
+- %p - index of image in current image list
+- %q - quantum depth (compile-time constant)
+- %r - image class and colorspace
+- %s - scene number (from input unless re-assigned)
+- %t - **filename without directory or extension (suffix)**
+- %u - unique temporary filename (used for delegates)
+- %w - current width in pixels
+- %x - x resolution (density)
+- %y - y resolution (density)
+- %z - image depth (as read in unless modified, image save depth)
+- %A - image transparency channel enabled (true/false)
+- %B - file size of image read in bytes
+- %C - image compression type
+- %D - image GIF dispose method
+- %G - original image size (%wx%h; before any resizes)
+- %H - page (canvas) height
+- %M - Magick filename (original file exactly as given, including read mods)
+- %O - page (canvas) offset ( = %X%Y )
+- %P - page (canvas) size ( = %Wx%H )
+- %Q - image compression quality ( 0 = default )
+- %S - ?? scenes ??
+- %T - image time delay (in centi-seconds)
+- %U - image resolution units
+- %W - page (canvas) width
+- %X - page (canvas) x offset (including sign)
+- %Y - page (canvas) y offset (including sign)
+- %Z - unique filename (used for delegates)
+- %@ - CALCULATED: trim bounding box (without actually trimming)
+- %# - CALCULATED: 'signature' hash of image values
+
+!!!Note Note This information was gathered using: `magick montage -list | clip`  A neat trick if I dont say so myself.
+This lists all the parameters that can be set.  the `list` command is supposed to bring up more information on the command.  `magic montage -list compress`
+
+Version: ImageMagick 7.0.8-32 Q16 x64 2019-03-05 http://www.imagemagick.org
+Copyright: Copyright (C) 1999-2018 ImageMagick Studio LLC
+License: http://www.imagemagick.org/script/license.php
+Visual C++: 180040629
+Features: Cipher DPC HDRI Modules OpenMP
+Delegates (built-in): bzlib cairo flif freetype gslib heic jng jp2 jpeg lcms lqr lzma openexr pangocairo png ps raw rsvg tiff webp xml zlib
+Usage: montage [options ...] file [ [options ...] file ...] file
+
+- Image Settings:
+  - adjoin              join images into a single multi-image file
+  - affine matrix       affine transform matrix
+  - alpha option        on, activate, off, deactivate, set, opaque, copy
+                       transparent, extract, background, or shape
+  - authenticate password
+                       decipher image with this password
+  - blue-primary point  chromaticity blue primary point
+  - bordercolor *color*   border color
+  -**caption** *string*      assign a caption to an image
+  - colors value        preferred number of colors in the image
+  - colorspace type     alternate image colorsapce
+  - comment string      annotate image with comment
+  - compose operator    composite operator
+  - compress type       type of pixel compression when writing the image
+  - define format:option
+                       define one or more image format options
+  - density geometry    horizontal and vertical density of the image
+  - depth value         image depth
+  - display server      query font from this X server
+  - dispose method      layer disposal method
+  - dither method       apply error diffusion to image
+  - draw string         annotate the image with a graphic primitive
+  - encoding type       text encoding type
+  - endian type         endianness (MSB or LSB) of the image
+  - extract geometry    extract area from image
+  - fill color          color to use when filling a graphic primitive
+  - filter type         use this filter when resizing an image
+  - font name           render text with this font
+  - format "string"     output formatted image characteristics
+  - gamma value         level of gamma correction
+  - geometry geometry   preferred tile and border sizes
+  - gravity direction   which direction to gravitate towards
+  - green-primary point chromaticity green primary point
+  - identify            identify the format and characteristics of the image
+  - interlace *type*      type of image interlacing scheme
+  - interpolate method  pixel color interpolation method
+  - kerning value       set the space between two letters
+  -**label** *string*        assign a label to an image
+  - limit type value    pixel cache resource limit
+  - matte               store matte channel if the image has one
+  - mattecolor color    frame color
+  - mode type           framing style
+  - monitor             monitor progress
+  - page geometry       size and location of an image canvas (setting)
+  - pointsize value     font point size
+  - profile filename    add, delete, or apply an image profile
+  - quality value       JPEG/MIFF/PNG compression level
+  - quantize colorspace reduce colors in this colorspace
+  - quiet               suppress all warning messages
+  - red-primary point   chromaticity red primary point
+  - regard-warnings     pay attention to warning messages
+  - respect-parentheses settings remain in effect until parenthesis boundary
+  - sampling-factor geometry
+                       horizontal and vertical sampling factor
+  - scenes range        image scene range
+  - seed value          seed a new sequence of pseudo-random numbers
+  - set attribute value set an image attribute
+  - shadow              add a shadow beneath a tile to simulate depth
+  - size geometry       width and height of image
+  - stroke color        color to use when stroking a graphic primitive
+  - support factor      resize support: > 1.0 is blurry, < 1.0 is sharp
+  - synchronize         synchronize image to storage device
+  - taint               declare the image as modified
+  - texture filename    name of texture to tile onto the image background
+  - thumbnail geometry  create a thumbnail of the image
+  - tile geometry       number of tiles per row and column
+  - title string        decorate the montage image with a title
+  - transparent-color color
+                       transparent color
+  - treedepth value     color tree depth
+  - trim                trim image edges
+  - units type          the units of image resolution
+  - verbose             print detailed information about the image
+  - virtual-pixel method
+                       virtual pixel access method
+  - white-point point   chromaticity white point
+
+Image Operators:
+  - adaptive-sharpen geometry
+                       adaptively sharpen pixels; increase effect near edges
+  - annotate geometry text
+                       annotate the image with text
+  - auto-orient         automagically orient image
+  - blur geometry      reduce image noise and reduce detail levels
+  - border geometry     surround image with a border of color
+  - channel mask        set the image channel mask
+  - crop geometry       preferred size and location of the cropped image
+  - extent geometry     set the image size
+  - flatten             flatten a sequence of images
+  - flip                flip image in the vertical direction
+  - flop                flop image in the horizontal direction
+  - frame geometry      surround image with an ornamental border
+  - monochrome          transform image to black and white
+  - polaroid angle      simulate a Polaroid picture
+  - repage geometry     size and location of an image canvas (operator)
+  - resize geometry     resize the image
+  - rotate degrees      apply Paeth rotation to the image
+  - scale geometry      scale the image
+  - strip               strip image of all profiles and comments
+  - transform           affine transform image
+  - transpose           flip image vertically and rotate 90 degrees
+  - transparent color   make this color transparent within the image
+  - type type           image type
+  - unsharp geometry    sharpen the image
+
+Image Sequence Operators:
+  - coalesce            merge a sequence of images
+  - composite           composite image
+
+Image Stack Operators:
+  - clone indexes       clone an image
+  - delete indexes      delete the image from the image sequence
+  - duplicate count,indexes
+                       duplicate an image one or more times
+  - insert index        insert last image into the image sequence
+  - reverse             reverse image sequence
+  - swap indexes        swap two images in the image sequence
+
+Miscellaneous Options:
+  - debug events        display copious debugging information
+  - help                print program options
+  - list type           print a list of supported option arguments
+  - log format          format of debugging information
+  - version             print version information
+
+In addition to those listed above, you can specify these standard X
+resources as command line options:  -background, -bordercolor,
+- mattecolor, -borderwidth, -font, or -title
+
+By default, the image format of 'file' is determined by its magic
+number.  To specify a particular image format, precede the filename
+with an image format name and a colon (i.e. ps:image) or specify the
+image type as the filename suffix (i.e. image.ps).  Specify 'file' as
+'-' for standard input or output.
+
+`magick montage *.svg "File-directory.png` works
+`magick montage *.svg -label %t "File-directory.png` does not work
+`magick montage -label %t -tile 5x *.svg  "File-directory.png` does  work
+`magick montage -label %t -tile 10x20 *.png -resize 128x128  ..\FlatIcons(png)-index.html` does  work - out puts out1.png, out2.png
+out.gif also works, about half the size. out.html produces html and a mapped png.
+
+
+
+
+!!!code Convert an icon
+
+        convert *.png -define icon:auto-resize=256,128,64,48,32,16 %t.ico
+        magick convert *.png -define icon:auto-resize=256,128,64,48,32,16 "%t.ico"
+
+       magick convert [name].svg -render -define icon:auto-resize [name].ico
+
+
+!!!warning [From](https://imagemagick.org/script/command-line-options.php)
+        Some 'properties' must be defined in a specific way to be used. For example only 'properties' prefixed with "filename:" can be used to modify the output filename of an image. For example
+
+        convert rose: -set filename:mysize '%wx%h' 'rose_%[filename:mysize].png'
+
+  so then this works:
+
+`magick convert xxx.svg -render -define icon:auto-resize -set filename:name %t '%[filename:name].ico'` only it leaves quotes
+
+magick convert archway.svg -resize 512x512 -transparent #FFFFFF  -define icon:auto-resize   -set filename:name %t   %[filename:name].ico
+
+still with problems but the closest Ive gotten
+
+the background is infact listed as white- using `magick identify -verbose archway.svg`
+
+using `magick mogrify archway.svg -background #00000000` destroyed the image.
+
+`magick convert arrow.svg -background #00000000 -define rsvg %[basename]2.svg` - bad
+
+
+`convert -density 384 -background transparent -fill "#607D8B" -colorize 100 favicon.svg -define icon:auto-resize -colors 256 favicon.ico` [source](https://gist.github.com/azam/3b6995a29b9f079282f3)
+
+`magick convert  -density 384 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 %[basename]2.ico` name not working
+
+!!!success THIS WORKS! Where fill is the output color.
+    magick convert  -density 384 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name].ico
+
+magick convert  -density 256x256 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name]2.ico
+
+
+### Choco 
+
+#### Install with cmd.exe
+
+        @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+#### Install with Powershell
+
+Run
+     
+     Get-ExecutionPolicy
+     
+If it returns `Restricted`, then run
+        
+         Set-ExecutionPolicy AllSigned 
+         
+or 
+
+        Set-ExecutionPolicy Bypass -Scope Process.   
+
+Finally run (this contains the above)
+
+        Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+
+#### Set Global Confirm
+
+        choco config set --name allowGlobalConfirmation --value true
+
+then
+
+        choco feature enable -n allowGlobalConfirmation
+
+#### Get Installed Programs
+
+        choco list --lo
+
+        
+
+### pandoc
+
+pandoc" +RTS -K512m -RTS ECHOICU.utf8.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output ECHOICU.tex --template "C:\Users\s163837\Documents\R\win-library\3.5\rmarkdown\rmd\latex\default-1.17.0.2.tex" --highlight-style tango --pdf-engine pdflatex --variable graphics=yes --variable "geometry:margin=1in" --variable "compact-title:yes"
+output file: ECHOICU.knit.md
 
 ### Verifier
 
@@ -1781,34 +2935,34 @@ to set variablsand have things expand.  Ess. like temp env vars.
 Set /A VarName = Expression, where expression is a string, number or math
 Set /P VarName = The Prompt to ask user.
 
-### Prompt 
+### Prompt
 
 Changes the prompt.  Lots of fun
 
-Default is `$P$G>`. 
+Default is `$P$G>`.
 
 Uses this table:
 
-- $A  `&`           (Ampersand) 
-- $B  `|`           (pipe) 
-- $C `(`           (Left parenthesis) 
-- $D Current date 
-- $E Escape code  (ASCII code 27) 
-- $F  `)`           (Right parenthesis) 
-- $G ` >`           (greater-than sign) 
-- $H  Backspace   (erases previous character) 
-- $L  `<`           (less-than sign) 
+- $A  `&`           (Ampersand)
+- $B  `|`           (pipe)
+- $C `(`           (Left parenthesis)
+- $D Current date
+- $E Escape code  (ASCII code 27)
+- $F  `)`           (Right parenthesis)
+- $G ` >`           (greater-than sign)
+- $H  Backspace   (erases previous character)
+- $L  `<`           (less-than sign)
 - $M  Display the remote name for Network drives
-- $N  Current drive 
-- $P  Current drive and path 
-- $Q  `=`           (equal sign) 
-- $S              (space) 
-- $T  Current time 
-- $V  Windows version number 
-- $_  Carriage return and linefeed 
+- $N  Current drive
+- $P  Current drive and path
+- $Q  `=`           (equal sign)
+- $S              (space)
+- $T  Current time
+- $V  Windows version number
+- $_  Carriage return and linefeed
 - `$$  $`           (dollar sign)
 - $+  Will display plus signs (`+`) one for each level of the PUSHD directory stack
-- 
+-
 ### Fix DICOM Errors
 
 !!!Important
@@ -1821,13 +2975,14 @@ Import-Module .\DCOMPermissions.psm1
 Grant-DComPermission -ApplicationID "{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}" -Account "SYSTEM" -Type Launch -Permissions LocalLaunch,LocalActivation -OverrideConfigurationPermissions
 ```
 
+
 ### Shimgen
 
 Using the .Net and Chocolatey Shimgen has been super useful.
 
 First copy it from `%ChocolateyInstall%\tools` to `%ChocolateyInstall%\bin` so its on **PATH**.  (I cant remember if You need to add \bin to path or it comes that way?)  Anyway- Add `C:\ProgramData\Chocolatey\bin` to path.
 
-Then run 
+Then run
 
 ```batch
 cd /d %ChocolateyInstall%\tools
@@ -1836,6 +2991,11 @@ shimgen -o="kdiff.exe" -p="..\..\..\Program Files\Kdiff3\Kdiff3.exe" -i=".\kdiff
 ```
 
 Somehow shimgen knows to put things in Chocolatey\bin, so paths are relative to that.  Even attempting to put it in another folder fails- by explicitly setting output.  Will work fine like this though  You hae to generate a a relative path from the `C:\ProgramData\Chocolatey\bin` back to the file.
+
+!!!Note - The Easy Way- go to directory of SOURCE - in this case winrar
+    `c:\Program Files\WinRAR>shimgen -o='WinRar.exe' -p="%cd%\WinRAR.exe" -i=.\WinRAR.exe --gui`
+
+
 
 ## Other Notes
 
@@ -1861,11 +3021,25 @@ In Windows
 
 ### Correct Selection
 
-1. While on your desktop or in File Explorer, select one or more items you want to create shortcuts for.  Press and hold the Alt or Ctrl+Shift keys, drag and drop the selected item(s) to where you want to create the shortcut(s) at, and release the Alt or Ctrl+Shift keys. 
+1. While on your desktop or in File Explorer, select one or more items you want to create shortcuts for.  Press and hold the Alt or Ctrl+Shift keys, drag and drop the selected item(s) to where you want to create the shortcut(s) at, and release the Alt or Ctrl+Shift keys.
 
-When you are moving things you should right click in the destination or right click driag. 
+When you are moving things you should right click in the destination or right click driag.
 
-## Registry Changes
+## Registry
+
+### Important Locations
+
+Computer\HKEY_CURRENT_USER\Environment
+Computer\HKEY_CURRENT_USER\Console
+Computer\HKEY_CURRENT_USER\Control Panel\Colors
+Computer\HKEY_CURRENT_USER\Control Panel\Cursors
+Computer\HKEY_CURRENT_USER\Control Panel\Desktop
+Computer\HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics
+Computer\HKEY_CURRENT_USER\Control Panel\Mouse
+Computer\HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys
+Computer\HKEY_CURRENT_USER\Control Panel\Personalization\Desktop Slideshow
+Computer\HKEY_CURRENT_USER\Control Panel\Quick Actions\Pinned
+### Registry Changes
 
 Syntax of .Reg Files
 A .reg file has the following syntax:
@@ -1900,6 +3074,7 @@ DataTypex is the data type for the registry value and immediately follows the eq
 - REG_DWORD - dword
 - REG_EXPAND_SZ - hexadecimal(2)
 - REG_MULTI_SZ - hexadecimal(7)
+-
 
 ### Adding Registry Subkeys or Adding and Changing Registry Values
 
@@ -2010,17 +3185,17 @@ Enable Remote desktop related rules.  Unclear which these are.
 
 [Source](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
 
-- `Address block`- Address range
-- `------------------`- ---------------------------
-- `0.0.0.0/8`- 0.0.0.0–0.255.255.255
-- `10.0.0.0/8`- 10.0.0.0–10.255.255.255
-- `100.64.0.0/10`- 100.64.0.0–100.127.255.255
-- `127.0.0.0/8`- 127.0.0.0–127.255.255.255
-- `169.254.0.0/16`- 169.254.0.0–169.254.255.255
-- `172.16.0.0/12`- 172.16.0.0–172.31.255.255
-- `192.0.0.0/24`- 192.0.0.0–192.0.0.255
-- `192.0.2.0/24`- 192.0.2.0–192.0.2.255
-- `192.88.99.0/24`- 192.88.99.0–192.88.99.255
+| Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
+| ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 0.0.0.0/8          | 0.0.0.0–0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
+| 10.0.0.0/8         | 10.0.0.0–10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
+| 100.64.0.0/10      | 100.64.0.0–100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
+| 127.0.0.0/8        | 127.0.0.0–127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
+| 169.254.0.0/16     | 169.254.0.0–169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
+| 172.16.0.0/12      | 172.16.0.0–172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
+| 192.0.0.0/24       | 192.0.0.0–192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
+| 192.0.2.0/24       | 192.0.2.0–192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
+| 192.88.99.0/24     | 192.88.99.0–192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
 | 192.168.0.0/16     | 192.168.0.0–192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
 | 198.18.0.0/15      | 198.18.0.0–198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
 | 198.51.100.0/24    | 198.51.100.0–198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
@@ -2029,7 +3204,7 @@ Enable Remote desktop related rules.  Unclear which these are.
 | 240.0.0.0/4        | 240.0.0.0–255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
 | 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
 
-such as would have normally been retrieved from a DHCP server. 
+such as would have normally been retrieved from a DHCP server.
 
 #### IPV6
 
@@ -2082,6 +3257,559 @@ This is the source of two separate packages:
 
 - [Debloat Windows 10](https://github.com/W4RH4WK/Debloat-Windows-10)
 - [Remove-Windows10-Bloat.bat](https://gist.githubusercontent.com/matthewjberger/2f4295887d6cb5738fa34e597f457b7f/raw/b23fa065febed8a2d7c2f030fba6da381f640997/Remove-Windows10-Bloat.bat)
+
+
+## VS Code RegExp
+
+[Reference 1](https://stackoverflow.com/questions/42179046/what-flavor-of-regex-does-visual-studio-code-use/42184299#42184299)
+
+There are many flavors of RegExp- VS Code uses Rust [Rust RegExp](https://docs.rs/regex/0.2.10/regex/) specifically [Here](https://docs.rs/regex/0.2.10/regex/#syntax)
+
+[Microsoft VS RegExp](https://docs.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2012/2k3te2cs(v=vs.110))
+exe64=x64\\(.*?)(
+
+[Substitutions in Reg Exp](https://docs.microsoft.com/en-us/dotnet/standard/base-types/substitutions-in-regular-expressions)
+
+[File](..)
+
+[GOOD- Quick Reference](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
+[PDF Version](https://download.microsoft.com/download/D/2/4/D240EBF6-A9BA-4E4F-A63F-AEB6DA0B921C/Regular%20expressions%20quick%20reference.pdf)
+
+
+
+!!!Note Note- The link- `Microsoft VS RegExp` suggests an older easier form of RegExp thats worth checking out if this isnt working
+
+- Wildcards
+  - `.` - 1   match a single char (any, except new line `\n`)
+  - `*` - 0+  - zero or more occurances.
+  - `+` - 1+  -one or more occurances.  Requires its occurance.
+  - `?` - match 0 or more, but as few characters as possible (?).
+    - `.+`  = one or more of any char **As above- this is a (non-null) Wildcard**
+    - `.*` = zero or more of any char.  **This is a wildcard functionally**
+    - `*?`,`+?`, `??`, `{#...}?` Lazy modifiers of the above.
+  - {#} - specify the number of times something *preceeding* should occur.  Goes after. `[0-9]{3} = 142 or 999`
+    - {#,#} - specify a range of occurances.  e.g. [0-9]{2,4}  match 10 - 9999
+    - {#,} - match at least # times
+- Anchors
+  - `^` - anchor to front
+  - `\r?$` -anchor to rear.  Old character was just `$`
+- Parens and brackets
+  - [...] - give characters to match.
+    - [\], [c] - match a single char
+    - [a-f], [0-9] - match a range
+    - [pre], [.)-] - match a single character in a set. [abc] = a, b, c not d, matches a in aa.
+  - (...) - specify a string to search for
+    - (...) -> `\1` define a pattern then Reference it later (in the same pattern) with \1 (\2, \3) etc.  `({3}[x])z\1 = xxxzxxx`
+    - (...) -> `$1` - in replacements, VS 2011+ replaced \1 with $1.
+- Logic
+  - `?!` = NOT , `real(?!ity)` matched real and really but not reality.
+  - [^...] - NOT in set - as above for brackets, but invalidates `be[^abc]` does not match bear but would match bee.
+  - `|` = OR - Match either the sequence before or after. `([0-9]|[a-f]|[^g-z])` - to find hex `#([0-9]|[a-f]){6}` find hex colors
+- Types
+  - `(\b\S+\s?){1,}`  USEFUL- find words - start at word boundary -repeat to go to non-space- find 0 or 1 space- then all of it {1,}- one or more words.
+  - `\p{...}` match a type
+  - `\b` -specifies a word boundary- usually a space `\bin` matches inside but not bin.
+  - `\r?\n` - line break carriage return.   This is system independent - 0 or more \r (returns), then \n.  Or at least Unix/Win
+  - `(?([^\r\n])\s)` Whitespace
+  - `\d` digit
+  - \u#### -unicode (specific char)
+  - `((\".+?\")|('.+?'))` = quoted string
+  - `\b0[xX]([0-9a-fA-F])\b` matches hex- Matches "0xc67f" but not "0xc67fc67f".
+  - `\b[0-9]*\.*[0-9]+\b` int and floats.
+- Characters
+  - `\` -escape character - e.g. `\.` is a literal `.` not anychar.
+  - \b - word boundary
+  - \t tab character (\u0009)
+  - \r carriage return \u000D
+  - \v vert tab
+  - \f form feed
+  - `\n` new line (\u000A)
+  - `\e` escape \u001b
+  - `\###` | `\##` matches an **ASCII Character** in Octal | Hex
+  - `\cC` matches CtrlC
+  - `\octal` 2-3 digit octal character code
+  - `\x` hex 2-digit hex character code
+  - `\u` hex 4-digit hex character code
+  - `\b` Backspace \u0008 NOTE-This is redundant with word boundry, not sure how it'd work.
+  - `\e` Escape \u001B
+- Classes- generally UPPER CASE is NOT a category.
+  - \S -any non-White-Space
+  - \s - any whitespace character
+  - \D - Matches a nondigit char - equiv to `\P{Nd}`
+  - \d - a decimal digit (e.g number 0-9)
+    - \d{1,5}- Match from one to five decimal digits.
+  - `\w` Alphanumeric ('Word character')
+  - \W non word character
+  - \p{**} - is in a category
+  - \P{**} is NOT in a category
+  - Categories (more specific classes) (`\p{...}`)
+    - Ll  -Letter, Lowercase
+    - Lu  -Letter, Uppercase
+    - Lt  -Letter, Titlecase
+    - Lo  -Letter, Other
+    - Lm  -Letter, Modifier
+    - Mn  -Mark, Nonspacing
+    - Nd  -Number, Decimal Digit
+    - Pc  -Punctuation, Connector. This category includes ten characters, the most commonly used of which is the LOWLINE character (_), u+005F.
+    - L -Any letter
+    - Mn - Mark, Nonspacing
+    - Mc - Mark, Spacing Combining
+    - Me - Mark, Enclosing
+    - M - All diacritic marks. This includes the Mn, Mc, and Me categories.
+    - Nd - Number, Decimal Digit
+    - Nl - Number, Letter
+    - No - Number, Other
+    - N - All numbers. This includes the Nd, Nl, and No categories.
+    - Pc - Punctuation, Connector
+    - Pd - Punctuation, Dash
+    - Ps - Punctuation, Open
+    - Pe - Punctuation, Close
+    - Pi - Punctuation, Initial quote (may behave like Ps or Pe depending on usage)
+    - Pf - Punctuation, Final quote (may behave like Ps or Pe depending on usage)
+    - Po - Punctuation, Other
+    - P - All punctuation characters. This includes the Pc, Pd, Ps, Pe, Pi, Pf, and Po categories.
+    - Sm - Symbol, Math
+    - Sc - Symbol, Currency
+    - Sk - Symbol, Modifier
+    - So - Symbol, Other
+    - S - All symbols. This includes the Sm, Sc, Sk, and So categories.
+    - Zs - Separator, Space
+    - Zl - Separator, Line
+    - Zp - Separator, Paragraph
+    - Z - All separator characters. This includes the Zs, Zl, and Zp categories.
+    - Cc - Other, Control
+    - Cf - Other, Format
+    - Cs - Other, Surrogate
+    - Co - Other, Private Use
+    - Cn - Other, Not Assigned (no characters have this property)
+    - C - All control characters. This includes the Cc, Cf, Cs, Co, and Cn categories.
+- Anchors
+  - `^`  match must occur at the _beginning_ of the string;
+    - multiline mode, it must occur at the beginning of the line.
+  - `$`  the match must occur at _the end of the string or before \n_ at the end of the string;
+    - in multiline mode, it must occur at the end of the line or before \n at the end of the line.
+  - `\A`  The match must occur at the beginning of the string only (no multiline support).
+  - `\Z`  The match must occur at the end of the string, or before \n at the end of the string.
+  - `\z`  The match must occur at the end of the string only.
+  - `\G`  The match must start at the position where the previous match ended.
+  - `\b`  The match must occur on a **word boundary.**
+  - `\B`  The match must not occur on a word boundary.
+^()(\S+?)([ ]{2,}\t*[ ]{2,})(\b.*)$
+^()(\S+?)(([ ]{3,}|)\t*([ ]{3,}|))(\b.*)$
+
+Group Referencing (Reusing a previously used group)
+- `(exp)` Indexed group
+- `(?<name>exp)` -  Named group
+- `(?<name1-name2>exp)` - Balancing group
+- `(?:exp)` - Noncapturing group
+- `(?=exp)` - Zero-width positive lookahead
+- `(?!exp)` - Zero-width negative lookahead
+- `(?<=exp)` - Zero-width positive lookbehind
+- `(?<!exp)` - Zero-width negative lookbehind
+- `(?>exp)` - Non-backtracking (greedy)
+
+Use To substitute
+- `$n` - Substring matched by group number n
+- `${` - name}     Substring matched by group
+- `$$` - Literal $ character
+- `$&` - Copy of whole match
+- `` $` `` ([[DollarSign + Backtick]]- Text before the match
+- `$'` - Text after the match
+- `$+` - Last captured group
+- `$` - _   Entire input string
+
+Conditionals
+
+- `a |b` - Either a or b
+- `(?(exp) yes | no)` -> `yes` if exp is matched and  =`no` if exp isn't matched
+- `(?(name) yes | no)` -> `yes` if name is matched  and  = `no` if name isn't matched
+
+Comments
+- `(?# comment)` Add inline comment
+- `#` Add x-mode comment
+-
+backreferencing
+- `\n` - Indexed group
+- `\k<name>` - Named group
+- Options
+- `(?imnsximnsx)` Set or disable the specified options
+- `(?imnsximnsx:exp)` Set or disable the specified options within the expression
+  - `i` - Case-insensitive
+  - `m` - Multiline mode
+  - `n` - Explicit (named)
+  - `s` - Single-line mode
+  - `x` - Ignore white space
+
+Greedy Lazy Matches
+0 or more times | `*` Greedy `*?`  Lazy
+1 or more times | `+` Greedy  `+?`  Lacy
+ `?` |  `??` Lazy 0 or 1 time |
+`{n}` `{n}?` Exactly n times
+`{n,}` `{n,}?` At least n times
+`{n,m}` `{n,m}?` From n to m times
+
+| Greedy    | Lazy       | Matches           |
+| --------- | ---------- | ----------------- |
+| `*`       | `*?`       | 0 or more times   |
+| `+`       | `+?`       | 1 or more times   |
+| `?`       | `??`       | 0 or 1 time       |
+| `{`n`}`   | `{`n`}?`   | Exactly n times   |
+| `{`n,`}`  | `{`n,`}?`  | At least n times  |
+| `{`n,m`}` | `{`n,m`}?` | From n to m times |
+
+Note- `{n,m}` and similar are recorded weird because they disappear from table when entered verbatim, it must be the format of the table code.
+
+
+The regular expression pattern \b`(?<n2>\d{2}-)?``(?(n2)``\d{7}`|`\d{3}-\d{2}-\d{4}`)\b is interpreted as shown in the following table.
+
+Pattern  Description
+- `\b`  Start at a word boundary.
+- `(?<n2>\d{2}-)?` Match zero or one occurrence of two digits followed by a hyphen. Name this capturing group n2.
+- `(?(n2)`  Test whether n2 was matched in the input string.
+- `)\d{7}`   If n2 was matched, match seven decimal digits.
+- `|\d{3}-\d{2}-\d{4}` If n2 was not matched, match three decimal digits, a hyphen, two decimal digits, another hyphen, and four decimal digits.
+- `\b`  Match a word boundary.
+
+### Examples
+
+Verifying Email:
+
+```c#
+ public static void Main()
+   {
+      Stopwatch sw;
+      string[] addresses = { "AAAAAAAAAAA@contoso.com",
+                             "AAAAAAAAAAaaaaaaaaaa!@contoso.com" };
+      // The following regular expression should not actually be used to
+      // validate an email address.
+      string pattern = @"^[0-9A-Z]([-.\w]*[0-9A-Z])*$";
+      string input;
+
+      foreach (var address in addresses) {
+         string mailBox = address.Substring(0, address.IndexOf("@"));
+         int index = 0;
+         for (int ctr = mailBox.Length - 1; ctr >= 0; ctr--) {
+            index++;
+
+            input = mailBox.Substring(ctr, index);
+            sw = Stopwatch.StartNew();
+            Match m = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
+            sw.Stop();
+            if (m.Success)
+               Console.WriteLine("{0,2}. Matched '{1,25}' in {2}",
+                                 index, m.Value, sw.Elapsed);
+            else
+               Console.WriteLine("{0,2}. Failed  '{1,25}' in {2}",
+                                 index, input, sw.Elapsed);
+         }
+         Console.WriteLine();
+      }
+   }
+```
+
+Example with open and close paren- might need this someday.
+
+<https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference>
+
+[Better Source](https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions#balancing_group_definition)
+
+(?< name1 - name2 > subexpression )
+
+Defines a balancing group definition. For more information, see the "Balancing Group Definition" section in Grouping Constructs.
+
+`(((?'Open'\()[^\(\)]*)+((?'Close-Open'\))[^\(\)]*)+)*(?(Open)(?!))$`
+
+"((1-3)*(3-1))" in "3+2^((1-3)*(3-1))"
+
+
+[Parsing a string - Serial No Example in C#](https://stackoverflow.com/questions/18229939/regex-check-and-pad-string-to-ensure-certain-string-format-is-use)
+
+#### My Examples
+
+
+(^[a-zA-Z]*?) Standard
+
+Finding a table
+
+`(^\|)(.*?)(\|)(.*?)(\|$)`
+
+!!!example For parsing tables:
+    Intention is to find `^| ... | ... |$`
+
+        `(^[\[\_.\:\+\*-\w]*)([\t]{2})(.*?$)` -
+    convert input from R into (- `xxxx` - xxxx)
+
+
+!!!code Convert var: text -
+         (^[.$\w\s\(\;\)]*)([:])
+
+!!!note Bold betweem the parentheses (xxx) -> **(xxx)**
+            ([(])(.*?)([)])
+            **$1$2$3**
+
+
+!!!note   A series of entries like this:
+    It would not continue the match onto the following line for some reason.
+        encoding:
+        The name of an encoding, default "native.enc". See connections.
+        encoding:
+        The name of an encoding, default "native.enc". See connections.
+
+        (^[a-z.]+?)(:)([\n^.*])
+    and replace with    -
+
+            `$1`
+
+    Or also, though I am not sure this wasnt something else:
+
+          (^[\w]*?)([\n])(^.*?$)
+    replace with
+
+            $1 $3
+
+
+
+!!!attention Matches patterns with a single word, and then the next     line- like this
+    !!!quote
+        **timeout**\
+        timeout in seconds, ignored if 0. This is a limit for the elapsed time running command in a separate process. Fractions of seconds are ignored.
+
+        **show.output.on.console**\
+        logical (not NA), indicates whether to capture the output of the command and show it on the R console (not used by Rterm, which shows the output in the terminal unless wait is false).
+
+        **invisible**\
+        logical (not NA), indicates whether a command window should be visible on the screen.**
+
+    !!!done    Which returns text like this:
+        - _timeout_ - timeout in seconds, ignored if 0. This is a limit for the elapsed time running command in a separate process. Fractions of seconds are ignored.
+        - _show.output.on.console_ - logical (not NA), indicates whether to capture the output of the command and show it on the R console (not used by Rterm, which shows the output in the terminal unless wait is false).
+        - _minimized_ - logical (not NA), indicates whether a command window should be displayed initially as a minimized window.
+
+        !!!tip Use:
+
+                (^[\b\w., ]+?)([\n]|[\t\n])(^.+?$)
+                (^[\b\w., ]+?)([\n])(^.+?$)
+
+            and replace with
+
+                        - _$1_ - $3
+                        - `$1` - $3
+                        - **$1** - $3
+
+!!!example  [[Replace]]
+    !!!quote Used for grabbing flags and commenting them
+        -d --diff <file> <file>           Compare two files with each other.
+        -a --add <folder>                 Add folder(s) to the last active window.
+        -g --goto <file:line[:character]> Open a file at the path on the specified
+                                            line and character position.
+        -n --new-window                   Force to open a new window.
+        -r --reuse-window                 Force to open a file or folder in an
+
+
+        !!!tip Use:
+                (-{1,2}[\w\S]+)(( \<.{3,30}\>)|)
+
+            replace with
+
+               `$1$3`
+
+            !!!done    Which returns text like this:
+       `-d` `--diff <file> <file>`           Compare two files with each other.
+        `-a` `--add <folder>`                 Add folder(s) to the last active window.
+        `-g` `--goto <file:line[:character]>` Open a file at the path on the specified
+                                            line and character position.
+        `-n` `--new-window`                   Force to open a new window.
+        `-r` `--reuse-window`                 Force to open a file or folder in an
+
+
+``(`)([ ]{3,})(\S)`` -> `$1 | $3`
+
+!!!attention To match... TEMPLATE
+    !!!quote Input from
+        example
+
+    !!!done    Which returns text like this:
+        result
+
+        !!!tip Use:
+                <code>
+
+            replace with
+
+                <code>
+
+!!!example  [[Replace]]
+    !!!quote [[Source]]
+        example\
+        example\
+        example\
+        example
+
+        !!!tip Use:
+                <code>
+                <code>
+                <code>
+
+            replace with
+
+                <code>
+
+            !!!done    Which returns text like this:
+                - example
+                - example
+                - example
+                - example
+
+
+!!!example  [[Replace]]
+    !!!quote [[Source]]
+        example\
+        example\
+        example\
+        example
+
+    !!!tip Use:
+            <code>
+            <code>
+            <code>
+
+        replace with
+
+            <code>
+
+        !!!done    Which returns text like this:
+            - example
+            - example
+            - example
+            - example
+
+
+!!!example  [[Replace]]
+    !!!quote [[Source]]
+        example\
+        example\
+        example\
+        example
+
+        !!!tip Use:
+                <code>
+                <code>
+                <code>
+
+            replace with
+
+                <code>
+
+    !!!done    Which returns text like this:
+        - example
+        - example
+        - example
+        - example
+
+
+!!!example  [[Replace]]
+    !!!quote [[Source]]
+        example\
+        example\
+        example\
+        example
+
+    !!!tip Use:
+            <code>
+            <code>
+            <code>
+
+        replace with
+
+            <code>
+
+    !!!done    Which returns text like this:
+        - example
+        - example
+        - example
+        - example
+
+
+
+!!!note   Replace 1 or two # with ># (##, >##) to remove comments in code blocks
+            (\#)(\#|)
+            (\#)(\#)([]|[ ])
+    replace with : version 2 removes the space after.
+
+!!!note Replace literal *'tabular'* data into an unordered list with code indicators around the first col.  This is for items that are generally:
+        item    definition
+        item2   definition2
+        item3   definition3
+
+    yields:
+
+        - `item` - definition
+        - `item2` - definition2
+        - `item3` - definition3
+
+    Rex Exp - more general and dynamic moving down this list.  Right now the last one performs the best.
+
+        1. (\S*?)(\t)(.*) -most specific
+        2. ^()(\S*?)(\t)(.*)$ -add empty group to make replacements match.
+        3. ^([\s]*?)([\S]*?)(\t| )(.*)$
+        4. ^([\s\t ]*?)(\b[\S]+?)(\t|[ ]*)(\b.*)$
+        5. (\S*?)(\t|[ ]*)(\b\S.*)$
+        6. ^()(\S+?)([ ]*\t+[ ]*)(\b.*)$
+        7. ^()(\S+?)(([ ]{3,}|)\t*([ ]{3,}|))(\b.*)$
+
+!!!note   Replace 1 or two # with ># (##, >##) to remove comments in code blocks
+            (\#)(\#|)
+            (\#)(\#)([]|[ ])
+    replace with : version 2 removes the space after.
+
+            >$1$2
+
+
+
+## Other Tips, Tricks and Hacks
+
+### Get any programs location using the registry.
+
+This is in powershell
+```ps1
+>#get the path to 7-zip from the registry
+$7zip = Join-Path (get-item HKLM:\SOFTWARE\7-Zip).GetValue('Path') '7z.exe'
+```
+The commandline has an equivalent (Reg)
+
+```batch
+>reg Query HKLM\Software\7-Zip
+
+HKEY_LOCAL_MACHINE\Software\7-Zip
+    Path64    REG_SZ    C:\Program Files\7-Zip\
+    Path    REG_SZ    C:\Program Files\7-Zip\
+```
+
+Not sure how youd parse the output
+
+### Norives
+
+
+Hide drive mappings in 'My Computer', Windows Explorer and the standard Open dialog box.
+
+Each letter is one bit more in binary.
+
+So drive A(1) = 1, drive B(2)=2, driveC(3)=4, D=8, E=16 and so on.
+
+Copy the result into the registry to hide the drive letter(s)
+
+User Key:
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+
+System Key:
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+
+Value Name: NoDrives
+Data Type: DWORD
+
+After changing the registry, logoff or reboot so that it takes effect.
+
+Drive mappings hidden with a nodrives registry setting are still available, just type the drive letter into the explorer address bar.
 
 ### Batch File
 

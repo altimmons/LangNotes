@@ -4,6 +4,8 @@
 
 Online Docs:
 
+!!!tip [UNOFFICIAL Windows Binaries for popular Python Libs](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycurl)
+
 2.7:
 
 3.7:
@@ -20,6 +22,12 @@ Online Docs:
 [RexExp](https://docs.python.org/3/howto/regex.html)
 
 [Installing Modules](https://docs.python.org/3/installing/index.html)
+
+[DataModel](https://docs.python.org/3.8/reference/datamodel.html)
+
+Good-
+[Official- Brief Tour of the Std Library](https://docs.python.org/3.8/tutorial/stdlib.html)
+(https://docs.python.org/3.8/tutorial/stdlib2.html)
 
 ## BASICS
 
@@ -50,6 +58,64 @@ py -2 -m pip install --upgrade pip
 `py -3 -m pip install` py is the Windows Launcher, that helps launch the correct version, -3 selects the version, -m says to run the following package name as a script (`pip`).
 
 Thought there was something special about proxies, with the work computer, but it appears to be working fine with just the environment variables set.
+
+pypi.org lists the packages.  The source for the simple view - <https://pypi.org/simple/>
+
+`pip install -Iv http://sourceforge.net/projects/mysql-python/files/mysql-python/1.2.2/MySQL-python-1.2.2.tar.gz/download`
+
+good options
+
+-v (verbose)
+
+Install suboptions
+
+- `-I` (--ignore-installed)
+- `--force-reinstall`
+- `progress-bar [off|_on_|ascii|pretty|emoji]`
+- (get a specific version) pip install notebook==5.7.5)
+
+Uninstall Options
+  `-r`, `--requirement <file>`    Uninstall all the packages listed in the given requirements file.  This option can be used multiple times.
+  `-y`, `--yes`                   Don't ask for confirmation of uninstall deletions.
+
+## Environments
+
+### Virtualenv
+
+Syntax to make a virtual env in the current directory.
+
+`virtualenv --python="c:/Python37/python.exe" .\`
+### virtualenv
+
+Virtualenv package - creates a new environment where you can add packages for the program.
+
+!!!code start with `
+
+`virtualenv [OPTIONS] ENV_DIR`- Where ENV_DIR is an absolute or relative path to a directory to create the virtual environment in.
+
+__Options__ for venv
+
+- `--version` - show program’s version number and exit
+- `-h`, `--help` - how this help message and exit
+- `-v`, `--verbose` - Increase verbosity.
+- `-q`, `--quiet` - Decrease verbosity.
+- `-p PYTHON_EXE`, `--python=PYTHON_EXE` - The Python interpreter to use, e.g., `–python=python2.5` will use the python2.5 interpreter to create the new environment. The default is the interpreter that `virtualenv` was installed with (like `/usr/bin/python`)
+- `--clear` - Clear out the non-root install and start from scratch.
+- `--system-site-packages` - Give the virtual environment access to the global site-packages.
+- `--always-copy` - Always copy files rather than symlinking.
+- `--relocatable` - Make an EXISTING virtualenv environment relocatable. This fixes up scripts and makes all .pth files relative.
+- `--unzip-setuptools` - Unzip Setuptools when installing it.
+- `--no-setuptools` - Do not install setuptools in the new virtualenv.
+- `--no-pip` - Do not install pip in the new virtualenv.
+- `--no-wheel` - Do not install wheel in the new virtualenv.
+- `--extra-search-dir=DIR` - Directory to look for setuptools/pip distributions in. This option can be specified multiple times.
+- `--prompt=PROMPT` - Provides an alternative prompt prefix for this environment.
+- `--download` - Download preinstalled packages from PyPI.
+- `--no-download` - Do not download preinstalled packages from PyPI.
+- `--no-site-packages` - DEPRECATED. Retained only for backward compatibility. Not having access to global site-packages is now the default behavior.
+- `--distribute`
+- `--setuptools` - Legacy; now have no effect.
+
 
 ### Python 2 vs Python 3
 
@@ -101,11 +167,176 @@ Python 3 installs 3 versions of PIP, for example, python 3.6 installs:
 
 Sp, using `RapidEnivronmentEditor` RapidEE, add to path `D:\Visual Studio\Shared\Python36_64\Scripts` so that you can then call pip3.exe
 
-### Managing Python with Conda
+## Anaconda and Jupyter
+
+### Jupyter
+
+#### Installing Kernals
+
+[All Kernals Link](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels)
+[VPython](https://pypi.org/project/IVisual/)
+[ApacheToree (ApacheSpark) Scala, R, Python](https://github.com/apache/incubator-toree)
+[SciJava](https://github.com/scijava/scijava-jupyter-kernel)
+[BeakerX](http://beakerx.com/)
+[BeakerX iBinder](https://hub.mybinder.org/user/twosigma-beakerx-7t846vvm/notebooks/StartHere.ipynb)
+[Micropython](https://github.com/goatchurchprime/jupyter_micropython_kernel/)
+[IJava](https://github.com/SpencerPark/IJava)
+
+
+##### BeakerX
+
+conda install -c conda-forge ipywidgets beakerx
+
+Installation with Conda
+We recommend conda to install Jupyter and BeakerX, and to manage your Python environments. BeakerX works with Python 3.4 and above. Conda forge hosts the lastest version.
+
+conda create -y -n beakerx 'python>=3'
+source activate beakerx
+conda config --env --add pinned_packages 'openjdk>8.0.121'
+conda install -y -c conda-forge ipywidgets beakerx
+Installation for Jupyter Lab
+You can try it as follows. Note that installing Lab extensions requires npm.
+
+conda create -y -n labx 'python>=3'
+source activate labx
+conda config --env --add pinned_packages 'openjdk>8.0.121'
+conda install -y -c conda-forge jupyterlab beakerx
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install beakerx-jupyterlab
+Upgrading
+If you have an environment with a previous version of BeakerX, to upgrade to the latest version use:
+
+conda update -c conda-forge beakerx
+Running BeakerX
+Start it with
+
+jupyter notebook
+or just
+
+beakerx
+Installation with Pip
+You can also install BeakerX with pip.
+
+pip install beakerx
+beakerx install
+Uninstallation with Pip
+beakerx uninstall
+pip uninstall beakerx
+
+
+##### Bash
+
+A Jupyter kernel for bash
+
+This requires IPython 3.
+
+To install:
+
+        pip install bash_kernel
+        python -m bash_kernel.install
+To use it, run one of:
+
+        jupyter notebook
+In the notebook interface, select Bash from the 'New' menu
+        jupyter qtconsole --kernel bash
+        jupyter console --kernel bash
 
 Anaconda can manage multiple python installs as well. Now that I've finally figured out how py.exe works.
 
 See here: [Conda Environment](https://conda.io/docs/user-guide/tasks/manage-python.html).
+
+##### Javascript
+
+Ubuntu
+To install IJavascript in Ubuntu 16.04 LTS, run:
+
+        sudo apt-get install nodejs-legacy npm ipython ipython-notebook
+        sudo npm install -g ijavascript
+        ijsinstall
+
+Windows (Official Python Distribution) In the command line:
+
+        pip3 install --upgrade pip
+        pip3 install jupyter
+        npm install -g ijavascript
+        ijsinstall
+
+Or run:
+
+        %appdata%\npm\ijsinstall
+
+Then you can run jupyter notebook in your terminal to load Jupyter Notebook. When you create a new Jupyter Notebook, you should see the Javascript (Node) kernel available.
+
+Windows (Anaconda Distribution)  Open the Anaconda prompt and run:
+
+        conda install nodejs
+        npm install -g ijavascript
+        ijsinstall
+
+###### Scala
+
+    [Scala Git](https://github.com/mattpap/IScala)
+
+To start IPython with IScala backend manually, issue:
+
+ipython console --KernelManager.kernel_cmd='["java", "-jar", "lib/IScala.jar", "--connection-file", "{connection_file}", "--parent"]'
+
+##### GO
+[Gophernotes](https://github.com/gopherdata/gophernotes#windows)
+
+build and install gophernotes (using the pre-built binaries and zmq-win\build.bat):
+
+        REM Download w/o building.
+        go get -d -u github.com/gopherdata/gophernotes
+        cd %GOPATH%\src\github.com\gopherdata\gophernotes\zmq-win
+
+        REM Build x64 version.
+        build.bat amd64
+        move gophernotes.exe %GOPATH%\bin
+        copy lib-amd64\libzmq.dll %GOPATH%\bin
+
+        REM Build x86 version.
+        build.bat 386
+        move gophernotes.exe %GOPATH%\bin
+        copy lib-386\libzmq.dll %GOPATH%\bin
+
+Copy the kernel config:
+
+        mkdir %APPDATA%\jupyter\kernels\gophernotes
+        xcopy %GOPATH%\src\github.com\gopherdata\gophernotes\kernel %APPDATA%\jupyter\kernels\gophernotes /s
+
+Note, if you have the JUPYTER_PATH environmental variable set or if you are using an older version of Jupyter, you may need to copy this kernel config to another directory. You can check which directories will be searched by executing:
+
+jupyter --data-dir
+Update %APPDATA%\jupyter\kernels\gophernotes\kernel.json with the FULL PATH to your gophernotes.exe (in %GOPATH%\bin), unless it's already on the PATH. For example:
+
+        {
+            "argv": [
+            "C:\\gopath\\bin\\gophernotes.exe",
+            "{connection_file}"
+            ],
+            "display_name": "Go",
+            "language": "go",
+            "name": "go"
+        }
+
+Docker
+You can try out or run Jupyter + gophernotes without installing anything using Docker. To run a Go notebook that only needs things from the standard library, run:
+
+    $ docker run -it -p 8888:8888 gopherdata/gophernotes
+
+Or to run a Go notebook with access to common Go data science packages (gonum, gota, golearn, etc.), run:
+
+        $    docker run -it -p 8888:8888 gopherdata/gophernotes:latest-ds
+
+In either case, running this command should output a link that you can follow to access Jupyter in a browser. Also, to save notebooks to and/or load notebooks from a location outside of the Docker image, you should utilize a volume mount. For example:
+
+        $ docker run -it -p 8888:8888 -v /path/to/local/notebooks:/path/to/notebooks/in/docker gopherdata/gophernotes
+
+##### C#
+
+[Link for C#](https://github.com/zabirauf/icsharp/wiki/Installation)
+
 
 ### Errors (relating to Version)
 
@@ -162,11 +393,68 @@ Python 2 forces integer types with integer operators-  e.g.
 -python 3 `5/2 =2.5`
 -python 3 has the floor operator to match this output- `5//2 = 2`
 
+### Compile Code
+
+pyinstaller is simple.  Pip install pyinstaller, then check it by test running it.  Then just feed it the path and file.  It packs it up and you're done.
+
+There's a more elaborate method using cython.
+
+Cython Method
+
+`pip install cython`
+
+typing files- add declarations. Or maybe using PyRi
+
+Declare things as `cdef` `def` (which is effectively 'pdef'), `cpdef` -`cdef` means its only accessible in c code.  `cpdef` means accessible in both, and `def` won't be converted to **c**.
+
+```py
+cpdef int test(int x): #add return var
+    cdef int y = 0  #declare types
+    cdef int i
+    for i in range(x):
+        y += 1
+    return y
+
+```
+
+save file as `*.pyx`
+
+`setup.py` should contain:
+
+```py
+#setup.py
+from disutils.core import Setup
+from Cython.Build import cythonize #note capitals
+
+setup(ext_modules = cythonize('example_cy.pyx))
+```
+
+from command line: run `python3 setup.py build_ext --inplace` -> this creates `*.so` file.
+
+`cython -a example_cy.pyx`
+
+comments of video says using pyximport keeps you from having to use setup.py
+
+Also recommended is `cython --embed greet.py -o greet.c`
+
+People recomment numba jit and numba vectorize
+
+#### Python Byte Code
+
+Some tips for experts:
+
+- You can use the -O or -OO switches on the Python command to reduce the size of a compiled module. The -O switch removes assert statements, the -OO switch removes both assert statements and __doc__ strings. Since some programs may rely on having these available, you should only use this option if you know what you’re doing. “Optimized” modules have an opt- tag and are usually smaller. Future releases may change the effects of optimization.
+- A program doesn’t run any faster when it is read from a .pyc file ; only the speed with which they are loaded is faster
+- The module `compileall` can create .pyc files for all modules in a directory.
+There is more detail on this process, including a flow chart of the decisions, in PEP 3147.
+
+
 ### Interrupt
 
 interrupt key (normally [[Ctrl]] + [[C]] or [[Delete]])
 
 Throws `KeyboardInterruptError` -During execution, a check for interrupts is made regularly.
+
 
 ### KEYWORDS
 
@@ -232,7 +520,49 @@ See Online doc [Keywords](https://docs.python.org/3/reference/lexical_analysis.h
 
 `__*` - is a Class-private name
 
-### import
+## Files, Modules, Packages and Libraries
+
+### Directory Structure
+
+[SourceInfo](https://packaging.python.org/guides/distributing-packages-using-setuptools/#setup-py)
+
+```py
+sound/                          Top-level package
+      __init__.py               Initialize the sound package
+      setup.py?                 #
+      formats/                  Subpackage for file format conversions
+              __init__.py
+              wavread.py
+              wavwrite.py
+              aiffread.py
+              aiffwrite.py
+              auread.py
+              auwrite.py
+              ...
+      effects/                  Subpackage for sound effects
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              ...
+      filters/                  Subpackage for filters
+              __init__.py
+              equalizer.py
+              vocoder.py
+              karaoke.py
+...
+
+Top-level package
+__init__.py
+setup.py
+
+`__init__.py` code defines a list named __all__, it is taken to be the list of module names that should be imported when from package import * is encountered. It is up to the package author to keep this list up-to-date when a new version of the package is released. Package authors may also decide not to support it
+
+### Importing modules
+
+[Ref on Syntax](https://docs.python.org/3/reference/simple_stmts.html#import)
+
+[Ref on Mechanics](https://docs.python.org/3/reference/import.html#importsystem)
 
 import is used to make specialty functions available
 
@@ -264,6 +594,78 @@ from . import mod              #from a module in the 'pkg' package  imports 'pkg
 from ..subpkg2 import mod      #from within 'pkg.subpkg1' you will 'import pkg.subpkg2.mod'
 ```
 
+`import fibo` - This does not enter the names of the functions defined in fibo directly in the current symbol table; it only enters the module name fibo there. Using the module name you can access the functions:
+
+```py
+>>> fibo.fib(1000)
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+>>> fibo.fib2(100)
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+>>> fibo.__name__
+'fibo'
+>>> fib = fibo.fib
+>>> fib(500)
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
+```
+If you intend to use a function often you can assign it to a local name:
+
+**Each module has its own private symbol table, which is used as the global symbol table by all functions defined in the module.** Thus, the author of a module can use global variables in the module without worrying about accidental clashes with a user’s global variables. On the other hand, if you know what you are doing you can touch a module’s global variables with the same notation used to refer to its functions, modname.itemname.
+And a variant to import all names that a module defines:
+```py
+>>> from fibo import fib, fib2
+>>> from fibo import *
+>>> from fibo import fib as fibonacci
+>>> import fibo as fib
+```
+This does not introduce the module name from which the imports are taken in the local symbol table (so in the example, fibo is not defined).
+
+Importing searches for a file named `spam.py` in a list of directories given by the variable `sys.path`. `sys.path` is initialized from these locations:
+
+- The directory containing the input script (or the current directory when no file is specified).
+- PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).
+- The installation-dependent default.
+
+
+
+To import from a directory, there needs to be a file (empty) called `__init__.py`.  Presumably you can probably put things in it.
+
+To import from the same directory you use dot notation.
+
+e.g. the same directory is -
+
+`import .module as ModuleName`
+from package import item, where item is a submodule (or subpackage) of the package, or some other name defined in the package, like a function, class or variable.
+and from sub directory `\sub\` you say:
+```py
+import sub.module
+from sub.module import class
+from . import echo
+from .. import formats
+```
+
+You can also write relative imports, with the from module import name form of import statement. These imports use leading dots to indicate the current and parent packages involved in the relative import. From the surround module for example, you might use:
+
+
+### Get the Version number of the interpreter
+
+```py
+M, m = sys.version_info[0:2]
+#or
+M, m, _, _, _ = sys.version_info
+```
+
+Note: `sys.version_info` is not a function. Calling `sys.version_info()` leads to an error
+
+#### __main__
+
+```py
+if __name__ == '__main__' :
+    # any amount of code to exercise the functions
+    # defined above
+```
+
+Determines if the current file is the main file that is executed.
+
 #### USEFUL MODULES
 
 See [Packages](#Packages) for notes on useful 3rd party, and at least less core, modules that are useful and have specific notes...
@@ -278,6 +680,22 @@ import \*:
 - `matplotlib` -
 
 Hello world is just one line of code
+
+### print()
+
+see (Strings- Print)[#### Print]
+
+### KEYWORDS
+
+See Online doc [Keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
+
+False await else import pass
+None break except in raise
+True class finally is return
+and continue for lambda try
+as def from nonlocal while
+assert del global not with
+async elif if or yield
 
 #### NONE
 
@@ -296,24 +714,24 @@ This is a **specification statement**. Tbe statement in a **multiline quote just
 
 ### Escape Characters
 
-Escape Sequence | Meaning | Notes|
-**\*\***\_\_\_**\*\***|**\*\*\*\***\_\_\_\_**\*\*\*\***|\***\*\_\*\***|
-`\newline`| Backslash and newline ignored| |
-`\\`| Backslash (\)| |
-`\'`| Single quote (')| |
-`\"`| Double quote (")| |
-`\a`| ASCII Bell (BEL)| |
-`\b`| ASCII Backspace (BS)| |
-`\f`| ASCII Formfeed (FF)| |
-`\n`| ASCII Linefeed (LF)| |
-`\r`| ASCII Carriage Return (CR)| |
-`\t`| |ASCII Horizontal Tab (TAB)| |
-`\v`| ASCII Vertical Tab (VT)| |
-`\ooo`| Character with octal value ooo| (1,3)|
-`\xhh`| Character with hex value hh |(2,3)|
-`\N{name}`| Character named name in the Unicode database| (4)|
-`\uxxxx`| Character with 16-bit hex value xxxx| (5)|
-`\Uxxxxxxxx`| Character with 32-bit hex value xxxxxxxx| (6)|
+| Escape Sequence | Meaning                                      | Note                       |
+| --------------- | -------------------------------------------- | -------------------------- |
+| `\newline`      | Backslash and newline ignored                |                            |
+| `\\`            | Backslash (\)                                |                            |
+| `\'`            | Single quote (')                             |                            |
+| `\"`            | Double quote (")                             |                            |
+| `\a`            | ASCII Bell (BEL)                             |                            |
+| `\b`            | ASCII Backspace (BS)                         |                            |
+| `\f`            | ASCII Formfeed (FF)                          |                            |
+| `\n`            | ASCII Linefeed (LF)                          |                            |
+| `\r`            | ASCII Carriage Return (CR)                   |                            |
+| `\t`            |                                              | ASCII Horizontal Tab (TAB) |
+| `\v`            | ASCII Vertical Tab (VT)                      |                            |
+| `\ooo`          | Character with octal value ooo               | (1,3)                      |
+| `\xhh`          | Character with hex value hh                  | (2,3)                      |
+| `\N{name}`      | Character named name in the Unicode database | (4)                        |
+| `\uxxxx`        | Character with 16-bit hex value xxxx         | (5)                        |
+| `\Uxxxxxxxx`    | Character with 32-bit hex value xxxxxxxx     | (6)                        |
 
 Notes:
 
@@ -337,6 +755,8 @@ Strings can be prefixed with Raw, Unicode, Formatted, or Raw & Formatted- "r" | 
 [Formatted String Literals](https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals)
 
 Some examples of formatted string literals:
+
+See the [Section on String Formatting](#STRING-FORMATTING)  section for more on formatting strings.  This is on string format as in **Date Type**
 
 ```py
 >>> name = "Fred"
@@ -448,82 +868,104 @@ Python has a few built in functions:
 
 [Defined Here](https://docs.python.org/3/library/functions.html)
 
+- [`__import__()`](#import)
 - abs() - absolute
-- divmod()
-- input()
-- open()
-- staticmethod()
 - all()
-- enumerate()
-- int()
-- ord()
-- [str()](#str())
 - any()
-- eval()
-- isinstance()
-- pow()
-- sum()
+- * ascii()
 - basestring()
+- bin()
+- bool()
+- * breakpoint()
+- bytearray()
+- * bytes()
+- callable()
+- chr()
+- classmethod()
+- cmp()
+- compile()
+- complex()
+- * copyright()
+- credits
+- delattr()
+- [dict()](#{DICTIONARY})
+- dir() - get all the methods related to an object
+- divmod()
+- enumerate()
+- eval()
 - execfile()
 - issubclass()
 - [print()](#print())
-- super()
-- bin()
+- * exec()
+- * exit()
 - file()
-- iter()
-- property()
-- [tuple()](#(TUPLES))
-- bool()
 - filter()
-- len()
-- [range()](#RANGES)
-- [type()](#Type-Command)
-- bytearray()
 - float()
-- [list()](#[LISTS])
-- raw_input()
-- unichr()
-- callable()
 - format()
-- locals()
-- reduce()
-- unicode()
-- chr()
 - frozenset()
-- long()
-- reload()
-- vars()
-- classmethod()
 - getattr()
-- [map()](#{DICTIONARY})
-- repr()
-- xrange()
-- cmp()
 - globals()
-- max()
-- reversed()
-- [zip()](#zip(()))
-- compile()
 - hasattr()
-- memoryview()
-- round()
-- [`__import__()`](#import)
-- complex()
 - hash()
-- min() - find the minimum of a set of values
-- [set()](#Sets)
-- delattr()
 - help() - get documentation on a command
-- next()
-- setattr()
-- [dict()](#{DICTIONARY})
 - hex()
-- object()
-- slice()
-- dir() - get all the methods related to an object
 - id()
+- input()
+- int()
+- isinstance()
+- issubclass()
+- iter()
+- len()
+- * license
+- [list()](#[LISTS])
+- locals()
+- long()
+- [map()](#{DICTIONARY})
+
+- max()
+- memoryview()
+- min() - find the minimum of a set of values
+- next()
+- object()
 - oct()
+- open()
+- ord()
+- pow()
+- [print()](#print())
+- property()
+- * quit()
+- [range()](#RANGES)
+- raw_input()
+- reduce()
+- reload()
+- repr()
+- reversed()
+- round()
+- setattr()
+- [set()](#Sets)
+- slice()
 - sorted()
+- staticmethod()
+- [str()](#str())
+- sum()
+- super()
+- [tuple()](#(TUPLES))
+- [type()](#Type-Command)
+- unichr()
+- unicode()
+- vars()
+- xrange()
+- [zip()](#zip(()))
+
+ '__build_class__'
+ '__debug__'
+ '__doc__'
+ '__import__'
+ '__loader__'
+ '__name__'
+ '__package__'
+ '__spec__',
+
 
 ### help()
 
@@ -550,6 +992,13 @@ dir() -briefly returns all the methods associated with an object- "attributes" e
     - for **a class object:** _ its attributes, and recursively the attributes of its bases._
     - for _any other object:_ its attributes, its class's attributes, and recursively the attributes of its class's base classes.
     - If no argument is passed- it will return all the names in the current scope.
+
+dir() does not list the names of built-in functions and variables. If you want a list of those, they are defined in the standard module builtins:
+        >>> import builtins
+        >>> dir(builtins)
+    >>>  #Returns all the methods for that object
+
+    help(str.__add__) #Works to get the specific help lines for obj.method.
 
 ### Exit() vs Quit()
 
@@ -656,6 +1105,7 @@ False
 True
 ```
 
+
 ### map()
 
 The `map()` function in Python takes in a function and a list.
@@ -687,6 +1137,9 @@ Output: [2, 10, 8, 12, 16, 22, 6, 24]
 ```
 
 You can of course achieve the same effect with a list comprehension.
+
+## Basics and Useful bits
+
 
 ## Values
 
@@ -942,147 +1395,78 @@ Use split to split at a particular character. Returns a tuple.
 - **str**.`split('`_[split string]_`')` - Split a string into a list based on the delimiter you provide
 
 Other String Methods:
+- `__add__`
+- `__class__`
+- `__contains__`
+- `__delattr__`
+- `__doc__`
+- `__eq__`
+- `__format__`
+- `__ge__`
+- `__getattribute__`
+- `__getitem__`
+- `__getnewargs__`
+- `__getslice__`
+- `__gt__`
+- `__hash__`
+- `__init__`
+- `__le__`
+- `__len__`
+- `__lt__`
+- `__mod__`
+- `__mul__`
+- `__ne__`
+- `__new__`
+- `__reduce__`
+- `__reduce_ex__`
+- `__repr__`
+- `__rmod__`
+- `__rmul__`
+- `__setattr__`
+- `__sizeof__`
+- `__str__`,
+- `__subclasshook__`
+- `_formatter_field_name_split`
+- `_formatter_parser`
+- **`capitalize`**
+- `center`
+- `count`
+- `decode`
+- `encode`
+- `endswith`
+- `expandtabs`
+- **`find`**
+- `format`
+- `index`
+- `isalnum`
+- `isalpha`
+- `isdigit`
+- `islower`
+- `isspace`
+- `istitle`
+- `isupper`
+- `join`
+- `ljust`
+- `lower`
+- `lstrip`
+- `partition`
+- `replace`
+- `rfind`
+- `rindex`
+- `rjust`
+- `rpartition`
+- `rsplit`
+- `rstrip`
+- `split`
+- `splitlines`
+- `startswith`
+- `strip`
+- `swapcase`
+- `title`
+- `translate`
+- `upper`
+- `zfill`
 
-`__add__`
-
-`__class__`
-
-`__contains__`
-
-`__delattr__`
-
-`__doc__`
-
-`__eq__`
-
-`__format__`
-
-`__ge__`
-
-`__getattribute__`
-
-`__getitem__`
-
-`__getnewargs__`
-
-`__getslice__`
-
-`__gt__`
-
-`__hash__`
-
-`__init__`
-
-`__le__`
-
-`__len__`
-
-`__lt__`
-
-`__mod__`
-
-`__mul__`
-
-`__ne__`
-
-`__new__`
-
-`__reduce__`
-
-`__reduce_ex__`
-
-`__repr__`
-
-`__rmod__`
-
-`__rmul__`
-
-`__setattr__`
-
-`__sizeof__`
-
-`__str__`,
-`__subclasshook__`
-
-`_formatter_field_name_split`
-
-`_formatter_parser`
-
-**`capitalize`**
-
-`center`
-
-`count`
-
-`decode`
-
-`encode`
-
-`endswith`
-
-`expandtabs`
-
-**`find`**
-
-`format`
-
-`index`
-
-`isalnum`
-
-`isalpha`
-
-`isdigit`
-
-`islower`
-
-`isspace`
-
-`istitle`
-
-`isupper`
-
-`join`
-
-`ljust`
-
-`lower`
-
-`lstrip`
-
-`partition`
-
-`replace`
-
-`rfind`
-
-`rindex`
-
-`rjust`
-
-`rpartition`
-
-`rsplit`
-
-`rstrip`
-
-`split`
-
-`splitlines`
-
-`startswith`
-
-`strip`
-
-`swapcase`
-
-`title`
-
-`translate`
-
-`upper`
-
-`zfill`
 
 ```py
 print(long_string.capitalize())
@@ -1113,13 +1497,18 @@ for c in str(1952):
 print(sumDigits)
 ```
 
-#### String formatting
+#### STRING FORMATTING
+
+
+[Official Doc](https://docs.python.org/3/library/string.html#string.Formatter.vformat)
 
 Do C like string formatting like `sprintf()`.
 
 The format is `print` then a quoted string `"a string here"` followed by a `%` and then in parentheses a comma separated list of values of the appropriate type.
 
 e.g. `print "insert %i as an %s" % (1,"string")`
+!!!warning Warning: %  vs `{}` notation
+    It appears that technically % is deprecated.  See below in advanced.
 
 % values
 
@@ -1135,25 +1524,31 @@ e.g. `print "insert %i as an %s" % (1,"string")`
 - r - string using the repr() method
 - s - string using the string() method
 
-| Conversion | Meaning                                                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| 'd'        | Signed integer decimal.                                                                                                                    |
-| 'i'        | Signed integer decimal.                                                                                                                    |
-| 'o'        | Signed octal value.                                                                                                                        |
-| 'u'        | Obsolete type – it is identical to 'd'.                                                                                                    |
-| 'x'        | Signed hexadecimal (lowercase).                                                                                                            |
-| 'X'        | Signed hexadecimal (uppercase).                                                                                                            |
-| 'e'        | Floating point exponential format (lowercase).                                                                                             |
-| 'E'        | Floating point exponential format (uppercase).                                                                                             |
-| 'f'        | Floating point decimal format.                                                                                                             |
-| 'F'        | Floating point decimal format.                                                                                                             |
-| 'g'        | Floating point format. Uses lowercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise. |
-| 'G'        | Floating point format. Uses uppercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise. |
-| 'c'        | Single character (accepts integer or single character string).                                                                             |
-| 'r'        | String (converts any Python object using repr()).                                                                                          |
-| 's'        | String (converts any Python object using str()).                                                                                           |
-| '%'        | No argument is converted, results in a '%' character in the result.                                                                        |
 
+
+
+
+| Conversion | Meaning                                                        |
+| ---------- | -------------------------------------------------------------- |
+| 'd'        | Signed integer decimal.                                        |
+| 'i'        | Signed integer decimal.                                        |
+| 'o'        | Signed octal value.                                            |
+| 'u'        | Obsolete type – it is identical to 'd'.                        |
+| 'x'        | Signed hexadecimal (lowercase).                                |
+| 'X'        | Signed hexadecimal (uppercase).                                |
+| 'e'        | Floating point exponential format (lowercase).                 |
+| 'E'        | Floating point exponential format (uppercase).                 |
+| 'f'        | Floating point decimal format.                                 |
+| 'F'        | Floating point decimal format.                                 |
+| 'g'        | Floating point format.[[1]]                                    |
+| 'G'        | Floating point format. [[2]]                                   |
+| 'c'        | Single character (accepts integer or single character string). |
+| 'r'        | String (converts any Python object using repr()).              |
+| 's'        | String (converts any Python object using str()).               |
+| '%'        | No arg converted, results in  '%' char in result.              |
+
+**[[1]]** Uses lowercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise.
+**[[2]]** Uses uppercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise.
 Flag Meaning
 
 - `#` The value conversion will use the “alternate form” (where defined below).
@@ -1163,6 +1558,12 @@ Flag Meaning
 - `+` A sign character ('+' or '-') will precede the conversion (overrides a “space” flag).
 
 A length modifier (h, l, or L) may be present, but is ignored as it is not necessary for Python – so e.g. %ld is identical to %d.
+
+Finally, the type determines how the data should be presented.
+
+The available string presentation types are:
+
+
 
 The above is from the manual/documentation, I think it refers to another language
 
@@ -1196,6 +1597,257 @@ number = 3729
 >>> '3,729'
 ```
 
+!!!info **Advanced Specification**
+
+
+## TO DO Edit Dowq
+
+Format strings contain “replacement fields” surrounded by curly braces {}. Anything that is not contained in braces is considered literal text, which is copied unchanged to the output. If you need to include a brace character in the literal text, it can be escaped by doubling: {{ and }}.
+
+The grammar for a replacement field is as follows:
+
+            replacement_field ::=  "{" [field_name] ["!" conversion] [":" format_spec] "}"
+            field_name        ::=  arg_name ("." attribute_name | "[" element_index "]")*
+            arg_name          ::=  [identifier | digit+]
+            attribute_name    ::=  identifier
+            element_index     ::=  digit+ | index_string
+            index_string      ::=  <any source character except "]"> +
+            conversion        ::=  "r" | "s" | "a"
+            format_spec       ::=  <described in the next section>
+
+The field_name itself begins with an arg_name that is either a number or a keyword. If it’s a number, it refers to a positional argument, and if it’s a keyword, it refers to a named keyword argument. If the numerical arg_names in a format string are 0, 1, 2, … in sequence, they can all be omitted (not just some) and the numbers 0, 1, 2, … will be automatically inserted in that order. Because arg_name is not quote-delimited, it is not possible to specify arbitrary dictionary keys (e.g., the strings '10' or ':-]') within a format string. The arg_name can be followed by any number of index or attribute expressions. An expression of the form '.name' selects the named attribute using getattr(), while an expression of the form '[index]' does an index lookup using __getitem__()
+
+The conversion field causes a type coercion before formatting. Normally, the job of formatting a value is done by the __format__() method of the value itself. However, in some cases it is desirable to force a type to be formatted as a string, overriding its own definition of formatting. By converting the value to a string before calling __format__(), the normal formatting logic is bypassed.
+
+Three conversion flags are currently supported: '!s' which calls str() on the value, '!r' which calls repr() and '!a' which calls ascii().
+
+Some examples:
+
+"Harold's a clever {0!s}"        # Calls str() on the argument first
+"Bring out the holy {name!r}"    # Calls repr() on the argument first
+"More {!a}"                      # Calls ascii() on the argument first
+The format_spec field contains a specification of how the value should be presented, including such details as field width, alignment, padding, decimal precision and so on. Each value type can define its own “formatting mini-language” or interpretation of the format_spec.
+
+Most built-in types support a common formatting mini-language, which is described in the next section.
+
+A format_spec field can also include nested replacement fields within it. These nested replacement fields may contain a field name, conversion flag and format specification, but deeper nesting is not allowed. The replacement fields within the format_spec are substituted before the format_spec string is interpreted. This allows the formatting of a value to be dynamically specified.\
+
+    The general form of a standard format specifier [[format_spec]] is:
+        format_spec     ::=  [[fill]align][sign][#][0][width][grouping_option][.precision][type]
+        fill            ::=  <any character>
+        align           ::=  "<" | ">" | "=" | "^"
+        sign            ::=  "+" | "-" | " "
+        width           ::=  digit+
+        grouping_option ::=  "_" | ","
+        precision       ::=  digit+
+        type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
+
+##### Align
+
+**[[<]]** - Forces the field to be left-aligned within the available space (this is the default for most objects).
+**[[>]]** - Forces the field to be right-aligned within the available space (this is the default for numbers).
+**[[=]]** - Forces the padding to be placed after the sign (if any) but before the digits. This is used for printing fields in the form ‘+000000120’. This alignment option is only valid for numeric types. It becomes the default when ‘0’ immediately precedes the field width.
+**[[^]]** - Forces the field to be centered within the available space.
+
+##### Sign
+
+__Numbers Only__
+**[[+]]** - indicates that a sign should be used for both positive as well as negative numbers.
+**[[-]]** - indicates that a sign should be used only for negative numbers (this is the default behavior).
+**[[s]]** -   indicates that a leading space should be used on positive numbers, and a minus sign on negative numbers.
+
+**[[#]]** - option causes the “alternate form” to be used for the conversion
+
+##### Grouping Option
+
+**[[,]]** - option signals the use of a comma for a thousands separator. For a locale aware separator, use the **[[n]]** - integer presentation type instead.
+**[[_]]** - option signals the use of an underscore for a thousands separator for floating point presentation types and for integer presentation type 'd'. For integer presentation types 'b', 'o', 'x', and 'X', underscores will be inserted every 4 digits (3.6+)
+
+**The available string presentation types are:**
+**[[s]]** - String format. This is the default type for strings and may be omitted.
+[[None]] - The same as 's'.
+
+
+##### Type
+
+**The available integer presentation types are:**
+
+**[[b]]** - Binary format. Outputs the number in base 2.
+**[[c]]** - Character. Converts the integer to the corresponding unicode character before printing.
+**[[d]]** - Decimal Integer. Outputs the number in base 10.
+**[[o]]** - Octal format. Outputs the number in base 8.
+**[[x]]** - Hex format. Outputs the number in base 16, using lower-case letters for the digits above 9.
+**[[X]]** - Hex format. Outputs the number in base 16, using upper-case letters for the digits above 9.
+**[[n]]** - Number. This is the same as 'd', except that it uses the current locale setting to insert the appropriate number separator characters.
+[[None]] - The same as 'd'.
+
+**The available presentation types for floating point and decimal values are:**
+
+
+**[[e]]** - Exponent notation. Prints the number in scientific notation using the letter ‘e’ to indicate the exponent. The default precision is 6.
+**[[E]]** - Exponent notation. Same as **[[e]]** - except it uses an upper case ‘E’ as the separator character.
+**[[f]]** - Fixed-point notation. Displays the number as a fixed-point number. The default precision is 6.
+**[[F]]** - Fixed-point notation. Same as 'f', but converts nan to NAN and inf to INF.
+**[[g]]** - General format. For a given precision p >= 1, this rounds the number to p significant digits and then formats the result in either fixed-point format or in scientific notation, depending on its magnitude.
+
+The precise rules are as follows: suppose that the result formatted with presentation type **[[e]]** - and precision p-1 would have exponent exp. Then if -4 <= exp < p, the number is formatted with presentation type **[[f]]** - and precision p-1-exp. Otherwise, the number is formatted with presentation type **[[e]]** - and precision p-1. In both cases insignificant trailing zeros are removed from the significand, and the decimal point is also removed if there are no remaining digits following it.
+
+Positive and negative infinity, positive and negative zero, and nans, are formatted as inf, -inf, 0, -0 and nan respectively, regardless of the precision.
+
+A **precision of 0** is treated as equivalent to a precision of 1. The default precision is 6.
+
+**[[G]]** - General format. Same as **[[g]]** - except switches to **[[E]]** - if the number gets too large. The representations of infinity and NaN are uppercased, too.
+**[[n]]** - Number. This is the same as 'g', except that it uses the current locale setting to insert the appropriate number separator characters.
+**[[%]]** - Percentage. Multiplies the number by 100 and displays in fixed ('f') format, followed by a percent sign.
+[[None]] - Similar to 'g', except that fixed-point notation, when used, has at least one digit past the decimal point. The default precision is as high as needed to represent the particular value. The overall effect is to match the output of str() as altered by the other format modifiers.
+
+
+```py
+Some simple format string examples:
+
+"First, thou shalt count to {0}"  # References first positional argument
+"Bring me a {}"                   # Implicitly references the first positional argument
+"From {} to {}"                   # Same as "From {0} to {1}"
+"My quest is {name}"              # References keyword argument 'name'
+"Weight in tons {0.weight}"       # 'weight' attribute of first positional arg
+"Units destroyed: {players[0]}"   # First element of keyword argument 'players'.
+
+Accessing arguments by position:
+
+>>>
+>>> '{0}, {1}, {2}'.format('a', 'b', 'c')
+'a, b, c'
+>>> '{}, {}, {}'.format('a', 'b', 'c')  # 3.1+ only
+'a, b, c'
+>>> '{2}, {1}, {0}'.format('a', 'b', 'c')
+'c, b, a'
+>>> '{2}, {1}, {0}'.format(*'abc')      # unpacking argument sequence
+'c, b, a'
+>>> '{0}{1}{0}'.format('abra', 'cad')   # arguments' indices can be repeated
+'abracadabra'
+
+#Accessing arguments by name:
+>>> 'Coordinates: {latitude}, {longitude}'.format(latitude='37.24N', longitude='-115.81W')
+'Coordinates: 37.24N, -115.81W'
+>>> coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
+>>> 'Coordinates: {latitude}, {longitude}'.format(**coord)
+'Coordinates: 37.24N, -115.81W'
+
+
+#Accessing arguments’ attributes:
+>>>
+>>> c = 3-5j
+>>> ('The complex number {0} is formed from the real part {0.real} '
+...  'and the imaginary part {0.imag}.').format(c)
+'The complex number (3-5j) is formed from the real part 3.0 and the imaginary part -5.0.'
+>>> class Point:
+...     def __init__(self, x, y):
+...         self.x, self.y = x, y
+...     def __str__(self):
+...         return 'Point({self.x}, {self.y})'.format(self=self)
+...
+>>> str(Point(4, 2))
+'Point(4, 2)'
+
+
+#Accessing arguments’ items:
+>>>
+>>> coord = (3, 5)
+>>> 'X: {0[0]};  Y: {0[1]}'.format(coord)
+'X: 3;  Y: 5'
+
+#Replacing %s and %r:
+>>>
+>>> "repr() shows quotes: {!r}; str() doesn't: {!s}".format('test1', 'test2')
+"repr() shows quotes: 'test1'; str() doesn't: test2"
+
+>>>
+#Aligning the text and specifying a width:
+>>> '{:<30}'.format('left aligned')
+'left aligned                  '
+>>> '{:>30}'.format('right aligned')
+'                 right aligned'
+>>> '{:^30}'.format('centered')
+'           centered           '
+>>> '{:*^30}'.format('centered')  # use '*' as a fill char
+'***********centered***********'
+
+#Replacing %+f, %-f, and % f and specifying a sign:
+>>>
+>>> '{:+f}; {:+f}'.format(3.14, -3.14)  # show it always
+'+3.140000; -3.140000'
+>>> '{: f}; {: f}'.format(3.14, -3.14)  # show a space for positive numbers
+' 3.140000; -3.140000'
+>>> '{:-f}; {:-f}'.format(3.14, -3.14)  # show only the minus -- same as '{:f}; {:f}'
+'3.140000; -3.140000'
+
+#Replacing %x and %o and converting the value to different bases:
+>>>
+>>> # format also supports binary numbers
+>>> "int: {0:d};  hex: {0:x};  oct: {0:o};  bin: {0:b}".format(42)
+'int: 42;  hex: 2a;  oct: 52;  bin: 101010'
+>>> # with 0x, 0o, or 0b as prefix:
+>>> "int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}".format(42)
+'int: 42;  hex: 0x2a;  oct: 0o52;  bin: 0b101010'
+
+#Using the comma as a thousands separator:
+>>>
+>>> '{:,}'.format(1234567890)
+'1,234,567,890'
+
+#Expressing a percentage:
+>>>
+>>> points = 19
+>>> total = 22
+>>> 'Correct answers: {:.2%}'.format(points/total)
+'Correct answers: 86.36%'
+
+#Using type-specific formatting:
+>>>
+>>> import datetime
+>>> d = datetime.datetime(2010, 7, 4, 12, 15, 58)
+>>> '{:%Y-%m-%d %H:%M:%S}'.format(d)
+'2010-07-04 12:15:58'
+
+#Nesting arguments and more complex examples:
+>>>
+>>> for align, text in zip('<^>', ['left', 'center', 'right']):
+...     '{0:{fill}{align}16}'.format(text, fill=align, align=align)
+...
+'left<<<<<<<<<<<<'
+'^^^^^center^^^^^'
+'>>>>>>>>>>>right'
+>>>
+>>> octets = [192, 168, 0, 1]
+>>> '{:02X}{:02X}{:02X}{:02X}'.format(*octets)
+'C0A80001'
+>>> int(_, 16)
+3232235521
+>>>
+>>> width = 5
+>>> for num in range(5,12):
+...     for base in 'dXob':
+...         print('{0:{width}{base}}'.format(num, base=base, width=width), end=' ')
+...     print()
+...
+    5     5     5   101
+    6     6     6   110
+    7     7     7   111
+    8     8    10  1000
+    9     9    11  1001
+   10     A    12  1010
+   11     B    13  1011
+```
+#### My Examples
+
+
+```py
+urlsub1 = 202
+url_start = 1
+"https://image.flaticon.com/icons/svg/{0:0=3d}/{0:0=3d}{1:0=3d}.svg".format(urlsub1, url_start)
+
+```
+
 
 ### Boolean
 
@@ -1224,7 +1876,21 @@ Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
 
 Syntax is similar to Java, and probably other languages.
 
+### Try Catch Syntax
+
 ```py
+while True:
+    try:
+        x = int(input("Please enter a number"))
+        break
+    except ValueError:
+        print("Oops, that was no valid number. Try again...")
+```
+
+A more complicated and complete but generic example:
+
+```py
+import sys  #for the traceback
 def exampleMethod(*args):
     try:
     #statements to try
@@ -1236,6 +1902,10 @@ def exampleMethod(*args):
         #handling code.
     except:
         #adding an except without a type is risky, but catches all. Should go at the end.
+        tb = sys.exc_info()[2] #requires `import sys`
+        raise OtherException(...).with_traceback(tb)
+    except Exception as e: # Exception is the most base class, catches all. 'as e' shorter I guess.
+        print('Error:', e)
     else:
         #Unusal Python bit- code that is executed IF NO EXCEPTION occurrs.
     finally:
@@ -1260,6 +1930,11 @@ Sometimes the tabstop is greater, sometimes equal?
 
 If an exception occurs which does not match the exception named in the except clause, it is passed on to outer try statements; if no handler is found, it is an **unhandled exception** and **execution stops** with a message.
 
+`raise` -throw equivalent in Java- raise a new exception.
+
+`with_traceback(tb)` This method sets tb as the new traceback for the exception and returns the exception object. It is usually used in exception handling code like the example above.
+
+`as e` - just gives an alias, shorter.
 
 ### Error Types
 
@@ -1510,17 +2185,280 @@ class TransitionErrpr(Error):
         self.message = message
 ```
 
-### Try Catch Syntax
+### Errno
+
+errno.errorcode
+Dictionary providing a mapping from the errno value to the string name in the underlying system. For instance, errno.errorcode[errno.EPERM] maps to 'EPERM'.
+
+To translate a numeric error code to an error message, use os.strerror().
+
+Of the following list, symbols that are not used on the current platform are not defined by the module. The specific list of defined symbols is available as errno.errorcode.keys(). Symbols available can include:
+
+- errno.EPERM - Operation not permitted
+- errno.ENOENT - No such file or directory
+- errno.ESRCH - No such process
+- errno.EINTR - Interrupted system call
+- errno.EIO - I/O error
+- errno.ENXIO - No such device or address
+- errno.E2BIG - Arg list too long
+- errno.ENOEXEC - Exec format error
+- errno.EBADF - Bad file number
+- errno.ECHILD - No child processes
+- errno.EAGAIN - Try again
+- errno.ENOMEM - Out of memory
+- errno.EACCES - Permission denied
+- errno.EFAULT - Bad address
+- errno.ENOTBLK - Block device required
+- errno.EBUSY - Device or resource busy
+- errno.EEXIST - File exists
+- errno.EXDEV - Cross-device link
+- errno.ENODEV - No such device
+- errno.ENOTDIR - Not a directory
+- errno.EISDIR - Is a directory
+- errno.EINVAL - Invalid argument
+- errno.ENFILE - File table overflow
+- errno.EMFILE - Too many open files
+- errno.ENOTTY - Not a typewriter
+- errno.ETXTBSY - Text file busy
+- errno.EFBIG - File too large
+- errno.ENOSPC - No space left on device
+- errno.ESPIPE - Illegal seek
+- errno.EROFS - Read-only file system
+- errno.EMLINK - Too many links
+- errno.EPIPE - Broken pipe
+- errno.EDOM - Math argument out of domain of func
+- errno.ERANGE - Math result not representable
+- errno.EDEADLK - Resource deadlock would occur
+- errno.ENAMETOOLONG - File name too long
+- errno.ENOLCK - No record locks available
+- errno.ENOSYS - Function not implemented
+- errno.ENOTEMPTY - Directory not empty
+- errno.ELOOP - Too many symbolic links encountered
+- errno.EWOULDBLOCK - Operation would block
+- errno.ENOMSG - No message of desired type
+- errno.EIDRM - Identifier removed
+- errno.ECHRNG - Channel number out of range
+- errno.EL2NSYNC - Level 2 not synchronized
+- errno.EL3HLT - Level 3 halted
+- errno.EL3RST - Level 3 reset
+- errno.ELNRNG - Link number out of range
+- errno.EUNATCH - Protocol driver not attached
+- errno.ENOCSI - No CSI structure available
+- errno.EL2HLT - Level 2 halted
+- errno.EBADE - Invalid exchange
+- errno.EBADR - Invalid request descriptor
+- errno.EXFULL - Exchange full
+- errno.ENOANO - No anode
+- errno.EBADRQC - Invalid request code
+- errno.EBADSLT - Invalid slot
+- errno.EDEADLOCK - File locking deadlock error
+- errno.EBFONT - Bad font file format
+- errno.ENOSTR - Device not a stream
+- errno.ENODATA - No data available
+- errno.ETIME - Timer expired
+- errno.ENOSR - Out of streams resources
+- errno.ENONET - Machine is not on the network
+- errno.ENOPKG - Package not installed
+- errno.EREMOTE - Object is remote
+- errno.ENOLINK - Link has been severed
+- errno.EADV - Advertise error
+- errno.ESRMNT - Srmount error
+- errno.ECOMM - Communication error on send
+- errno.EPROTO - Protocol error
+- errno.EMULTIHOP - Multihop attempted
+- errno.EDOTDOT - RFS specific error
+- errno.EBADMSG - Not a data message
+- errno.EOVERFLOW - Value too large for defined data type
+- errno.ENOTUNIQ - Name not unique on network
+- errno.EBADFD - File descriptor in bad state
+- errno.EREMCHG - Remote address changed
+- errno.ELIBACC - Can not access a needed shared library
+- errno.ELIBBAD - Accessing a corrupted shared library
+- errno.ELIBSCN - .lib section in a.out corrupted
+- errno.ELIBMAX - Attempting to link in too many shared libraries
+- errno.ELIBEXEC - Cannot exec a shared library directly
+- errno.EILSEQ - Illegal byte sequence
+- errno.ERESTART - Interrupted system call should be restarted
+- errno.ESTRPIPE - Streams pipe error
+- errno.EUSERS - Too many users
+- errno.ENOTSOCK - Socket operation on non-socket
+- errno.EDESTADDRREQ - Destination address required
+- errno.EMSGSIZE - Message too long
+- errno.EPROTOTYPE - Protocol wrong type for socket
+- errno.ENOPROTOOPT - Protocol not available
+- errno.EPROTONOSUPPORT - Protocol not supported
+- errno.ESOCKTNOSUPPORT - Socket type not supported
+- errno.EOPNOTSUPP - Operation not supported on transport endpoint
+- errno.EPFNOSUPPORT - Protocol family not supported
+- errno.EAFNOSUPPORT - Address family not supported by protocol
+- errno.EADDRINUSE - Address already in use
+- errno.EADDRNOTAVAIL - Cannot assign requested address
+- errno.ENETDOWN - Network is down
+- errno.ENETUNREACH - Network is unreachable
+- errno.ENETRESET - Network dropped connection because of reset
+- errno.ECONNABORTED - Software caused connection abort
+- errno.ECONNRESET - Connection reset by peer
+- errno.ENOBUFS - No buffer space available
+- errno.EISCONN - Transport endpoint is already connected
+- errno.ENOTCONN - Transport endpoint is not connected
+- errno.ESHUTDOWN - Cannot send after transport endpoint shutdown
+- errno.ETOOMANYREFS - Too many references: cannot splice
+- errno.ETIMEDOUT - Connection timed out
+- errno.ECONNREFUSED - Connection refused
+- errno.EHOSTDOWN - Host is down
+- errno.EHOSTUNREACH - No route to host
+- errno.EALREADY - Operation already in progress
+- errno.EINPROGRESS - Operation now in progress
+- errno.ESTALE - Stale NFS file handle
+- errno.EUCLEAN - Structure needs cleaning
+- errno.ENOTNAM - Not a XENIX named type file
+- errno.ENAVAIL - No XENIX semaphores available
+- errno.EISNAM - Is a named type file
+- errno.EREMOTEIO - Remote I/O error
+- errno.EDQUOT - Quota exceeded
+
+### Traceback
+
+Traceback Examples
+This simple example implements a basic read-eval-print loop, similar to (but less useful than) the standard Python interactive interpreter loop. For a more complete implementation of the interpreter loop, refer to the code module.
 
 ```py
-while True:
+import sys, traceback
+
+def run_user_code(envdir):
+    source = input(">>> ")
     try:
-        x = int(input("Please enter a number"))
-        break
-    except ValueError:
-        print("Oops, that was no valid number. Try again...")
+        exec(source, envdir)
+    except Exception:
+        print("Exception in user code:")
+        print("-"*60)
+        traceback.print_exc(file=sys.stdout)
+        print("-"*60)
+
+envdir = {}
+while True:
+    run_user_code(envdir)
 ```
 
+The following example demonstrates the different ways to print and format the exception and traceback:
+
+```py
+import sys, traceback
+
+def lumberjack():
+    bright_side_of_death()
+
+def bright_side_of_death():
+    return tuple()[0]
+
+try:
+    lumberjack()
+except IndexError:
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+    print("*** print_tb:")
+    traceback.print_tb(exc_traceback, limit=1, file=sys.stdout)
+    print("*** print_exception:")
+    # exc_type below is ignored on 3.5 and later
+    traceback.print_exception(exc_type, exc_value, exc_traceback,
+                              limit=2, file=sys.stdout)
+    print("*** print_exc:")
+    traceback.print_exc(limit=2, file=sys.stdout)
+    print("*** format_exc, first and last line:")
+    formatted_lines = traceback.format_exc().splitlines()
+    print(formatted_lines[0])
+    print(formatted_lines[-1])
+    print("*** format_exception:")
+    # exc_type below is ignored on 3.5 and later
+    print(repr(traceback.format_exception(exc_type, exc_value,
+                                          exc_traceback)))
+    print("*** extract_tb:")
+    print(repr(traceback.extract_tb(exc_traceback)))
+    print("*** format_tb:")
+    print(repr(traceback.format_tb(exc_traceback)))
+    print("*** tb_lineno:", exc_traceback.tb_lineno)
+```
+
+The output for the example would look similar to this:
+
+```py
+*** print_tb:
+  File "<doctest...>", line 10, in <module>
+    lumberjack()
+*** print_exception:
+Traceback (most recent call last):
+  File "<doctest...>", line 10, in <module>
+    lumberjack()
+  File "<doctest...>", line 4, in lumberjack
+    bright_side_of_death()
+IndexError: tuple index out of range
+*** print_exc:
+Traceback (most recent call last):
+  File "<doctest...>", line 10, in <module>
+    lumberjack()
+  File "<doctest...>", line 4, in lumberjack
+    bright_side_of_death()
+IndexError: tuple index out of range
+*** format_exc, first and last line:
+Traceback (most recent call last):
+IndexError: tuple index out of range
+*** format_exception:
+['Traceback (most recent call last):\n',
+ '  File "<doctest...>", line 10, in <module>\n    lumberjack()\n',
+ '  File "<doctest...>", line 4, in lumberjack\n    bright_side_of_death()\n',
+ '  File "<doctest...>", line 7, in bright_side_of_death\n    return tuple()[0]\n',
+ 'IndexError: tuple index out of range\n']
+*** extract_tb:
+[<FrameSummary file <doctest...>, line 10 in <module>>,
+ <FrameSummary file <doctest...>, line 4 in lumberjack>,
+ <FrameSummary file <doctest...>, line 7 in bright_side_of_death>]
+*** format_tb:
+['  File "<doctest...>", line 10, in <module>\n    lumberjack()\n',
+ '  File "<doctest...>", line 4, in lumberjack\n    bright_side_of_death()\n',
+ '  File "<doctest...>", line 7, in bright_side_of_death\n    return tuple()[0]\n']
+*** tb_lineno: 10
+
+
+```
+The following example shows the different ways to print and format the stack:
+
+```py
+>>> import traceback
+>>> def another_function():
+...     lumberstack()
+...
+>>> def lumberstack():
+...     traceback.print_stack()
+...     print(repr(traceback.extract_stack()))
+...     print(repr(traceback.format_stack()))
+...
+>>> another_function()
+  File "<doctest>", line 10, in <module>
+    another_function()
+  File "<doctest>", line 3, in another_function
+    lumberstack()
+  File "<doctest>", line 6, in lumberstack
+    traceback.print_stack()
+[('<doctest>', 10, '<module>', 'another_function()'),
+ ('<doctest>', 3, 'another_function', 'lumberstack()'),
+ ('<doctest>', 7, 'lumberstack', 'print(repr(traceback.extract_stack()))')]
+['  File "<doctest>", line 10, in <module>\n    another_function()\n',
+ '  File "<doctest>", line 3, in another_function\n    lumberstack()\n',
+ '  File "<doctest>", line 8, in lumberstack\n    print(repr(traceback.format_stack()))\n']
+```
+
+This last example demonstrates the final few formatting functions:
+
+```py
+>>> import traceback
+>>> traceback.format_list([('spam.py', 3, '<module>', 'spam.eggs()'),
+...                        ('eggs.py', 42, 'eggs', 'return "bacon"')])
+['  File "spam.py", line 3, in <module>\n    spam.eggs()\n',
+ '  File "eggs.py", line 42, in eggs\n    return "bacon"\n']
+>>> an_error = IndexError('tuple index out of range')
+>>> traceback.format_exception_only(type(an_error), an_error)
+['IndexError: tuple index out of range\n']
+
+```
 ## LISTS, TUPLES and DICTIONARIES
 
 | `LISTS`           | **TUPLES**         | _DICTIONARES_             |                                                                                              |
@@ -2135,7 +3073,7 @@ You can also map multiple pairs using a tuple. **This won't work with lists beca
 directory[last,first] = number
 #where (last,first) is the tuple object that forms a key.
 for last, first in directory:
-	print(first, last, directory[last,first]) #to print the phonebook.
+    print(first, last, directory[last,first]) #to print the phonebook.
 ```
 
 ### {DICTIONARY}
@@ -2395,11 +3333,11 @@ In the context of Boolean operations, and also when expressions are used by cont
 
 ```py
 if value %2-==1:
-	print 'odd'
+    print 'odd'
 elif value%2 ==0:
-	print 'even'
+    print 'even'
 else:
-	print 'neither'
+    print 'neither'
 ```
 
 _there is no 'end' statement, code is determined by whitespace (indents)_
@@ -2525,11 +3463,11 @@ for i in obj:
 
 ```py
 for print in [0,1,2,3,4,5,6,7]:
-	print value
-	if value %2-==1:
-		print 'odd'
-	else value%2 ==0:
-		print 'even'
+    print value
+    if value %2-==1:
+        print 'odd'
+    else value%2 ==0:
+        print 'even'
 
 #Other Examples
 for key in x:
@@ -2975,12 +3913,12 @@ Importantly, this method allows you to change the values within the range. (Not 
 
 ```py
 for value in range(0,8):
-	print value
-	if value %2-==1:
-		print 'odd'
-	elif value%2 ==0:
-		print 'even'
-	else:
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
 
 [0,1,2,3,4,5,6,7]
 range(5)
@@ -3085,23 +4023,23 @@ class C: pass       #a class with no methods (yet)
 ```py
 x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dict
 for key, value in enumerate(x):
-	print value
-	if value %2-==1:
-		print 'odd'
-	elif value%2 ==0:
-		print 'even'
-	else:
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
 #reduces code by one line vs:
 
 x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dictionary
  for key in x:  #dict x
-	value = x[key]
-	print value
-	if value %2-==1:
-		print 'odd'
-	elif value%2 ==0:
-		print 'even'
-	else:
+    value = x[key]
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
 ```
 
 #### Other iterable Functions
@@ -3135,6 +4073,83 @@ for k, v in d.items():
     print(k, v)
 list(d.items())
 ```
+
+
+```py
+class yrange:
+    def __init__(self, n):
+        self.i = 0
+        self.n = n
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.i < self.n:
+            i = self.i
+            self.i += 1
+            return i
+        else:
+            raise StopIteration()
+```
+
+My Stack() class as a generator:
+
+
+### Generators
+
+[Generator Info](https://wiki.python.org/moin/Generators)
+
+ The following implements generator as an iterable object.
+
+The following implements generator as an iterable object.
+
+``py`
+>#Using the generator pattern (an iterable)
+class firstn(object):
+    def __init__(self, n):
+        self.n = n
+        self.num, self.nums = 0, []
+
+    def __iter__(self):
+        return self
+
+    # Python 3 compatibility
+    def __next__(self):
+        return self.next()
+
+    def next(self):
+        if self.num < self.n:
+            cur, self.num = self.num, self.num+1
+            return cur
+        else:
+            raise StopIteration()
+
+sum_of_first_n = sum(firstn(1000000))
+```
+
+
+```py
+def zeros():
+    while True:
+        yield 0
+
+def ones():
+    while True:
+        yield 1
+```
+
+#### Empty Generator
+
+```py
+    def __iter__(self):
+        return iter(())
+
+    def __iter__(self):
+        return
+        yield
+```
+
 
 ## FUNCTIONS
 
@@ -3408,11 +4423,69 @@ The above is an example of a lambda function. Running just the lambda shows that
 print('What is your name?')
 
 Stores everything typed up until ENTER
-name = sys.stdin.readline()
+name = sys.stdin.readline() - this wasnt working for me
 
 print('Hello', name)
 
+input() - input is used to read integers
+
+```py
+age = input("What is your age? ")
+print "Your age is: ", age
+type(age)
+```
+
+raw_input() - raw_input is used to read text (strings) from the user:
+
+```py
+name = raw_input("What is your name? ")
+type(name)
+```
+
 ## FILE I/O
+
+Class IO
+
+- io
+  - _IOBase_
+    - fileno
+    - seek
+    - truncate
+    - **methods**
+      - close, flush
+      - closed, seekable, writable, readable
+      - __enter__, __exit__
+      - __iter__, __next__
+      - isatty, tell
+      - readlines, wrielines
+  - _RAWIOBase(IOBase)_
+    - readinto
+    - write
+    - **methods**: read, readall
+  - _BufferedIOBase(IOBase)_
+    - detach
+    - read, write
+    - readline
+    - **methods** - readinto, readinto1
+  - _TextIOBase(IOBase)_
+    - detach
+    - read, write
+    - readline
+    - **methods** encoding, errors, newlines
+    - _TextIOWrapper(IOBase)_
+    - _StringIO(IOBase)_
+
+
+
+```
+from os import path
+
+here = path.abspath(path.dirname(__file__))
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+```
+
+
 
 End of line characters can be Unix/Linux, Windows, or Mac style.
 
@@ -3436,7 +4509,26 @@ test_file = open("test.txt", "r")
 test_file = open("test.txt")
 #Opens a file for reading and writing
 test_file = open("test.txt", "r+")
+#Opens a file for reading and writing
+test_file = open("test.txt", "x") # create
+```
 
+[Open Docs](https://docs.python.org/3/library/functions.html#open)
+
+| Character | Meaning                                                         |
+| --------- | --------------------------------------------------------------- |
+| 'r'       | open for reading (default)                                      |
+| 'w'       | open for writing, truncating the file first                     |
+| 'x'       | open for exclusive creation, failing if the file already exists |
+| 'a'       | open for writing, appending to the end of the file if it exists |
+| 'b'       | binary mode                                                     |
+| 't'       | text mode (default)                                             |
+| '+'       | open a disk file for updating (reading and writing)             |
+
+
+mode is an optional string that specifies the mode in which the file is opened. It defaults to 'r' which means open for reading in text mode. Other common values are 'w' for writing (truncating the file if it already exists), 'x' for exclusive creation and 'a' for appending (which on some Unix systems, means that all writes append to the end of the file regardless of the current seek position). In text mode, if encoding is not specified the encoding used is platform dependent: locale.getpreferredencoding(False) is called to get the current locale encoding. (For reading and writing raw bytes use binary mode and leave encoding unspecified.) The available modes are:
+
+```py
 #Get the file mode used
 print(test_file.mode)
 
@@ -3459,6 +4551,22 @@ print(text_in_file)
 #Delete the file
 os.remove("test.txt")
 ```
+file error handling
+
+```py
+try:
+    with open(argv[1]) as f:
+        s = f.read()
+        print 'read', len(s), 'bytes.'
+except IOError as x:
+    if x.errno == errno.ENOENT:
+        print argv[1], '- does not exist'
+    elif x.errno == errno.EACCES:
+        print argv[1], '- cannot be read'
+    else:
+        print argv[1], '- some other error'
+```
+
 ### Using Paths
 
 Cant use relative paths outright.  Use `Os` to manipulate filesystem
@@ -3491,6 +4599,138 @@ fullpath = getcwd() = subpath
 hfile = fullpath + 'headers'
 exists(hfile)
 $True
+```
+
+```
+try:
+    fp = open("myfile")
+except PermissionError:
+    return "some Default message"
+else:
+    with fp:
+        return fp.read()
+```
+Typing the exact path in didnt work at all.  Despite a mix of all kinds of slashes.  A path of the form `C:\dir1\dir2\dir3\dir4\` just didnt work, even replacing `/` with `\` and `\\`.
+
+```py
+import os
+from pathlib import Path
+from pathlib import WindowsPath as WP
+from pathlib import PureWindowsPath as PWP
+
+#Tried with and without the terminal `/`
+path = 'C:\\ASUSsync\\VS Code\\Python\\Data Structures\\TOHfinal\\etc\\Box'
+wp = 'C:/ASUSsync/VS Code/Python/Data Structures/TOHfinal/etc/Box'
+sub = '/DataStructures/TOHfinal/etc/Box'
+subw = '\\DataStructures\\TOHfinal\\etc\\Box'
+
+p = Path(path)
+print(p.exists())
+q = WP(wp)
+print(q.exists())
+p = Path(wp)
+print(p.exists())
+q = WP(path)
+print(q.exists())
+p = Path(sub)
+print(p.exists())
+q = WP(sub)
+print(q.exists())
+$ False
+$ False
+$ False
+$ False
+$ False
+$ False
+```
+
+I cannot figure out why this is. Yet this works.  And the docs show a very similar example.
+
+```py
+import os
+from pathlib import Path
+p = Path(os.getcwd())
+r = p / 'DataStructures' / 'TOHfinal' / 'etc' / 'Box'
+print(str(r), type(r), r.exists())
+
+#using this you can get to the '/=' operator to traverse
+>>> p /= 'file.txt'
+>>> str(p)
+'C:\\ASUSsync\\VS Code\\Python\\file.txt'
+```
+
+
+PATH.`parts` returns a tuple of all the file parts.
+
+!!!note it is not PATH`.parts()`, because its not a method, just an attribute? Or something.
+
+```py
+>>> p.parts #split the path to get each loc
+('C:\\', 'ASUSsync', 'VS Code', 'Python', 'file.txt')
+>>> p.parts[-1] #get the file name
+'file.txt'
+#could check x.is_dir() before grabbing the last bit.
+>>> p.is_dir()
+False
+>>> p.parts[-1].split('.')
+['file', 'txt']
+>>> p.parts[-1].split('.')[0]
+'file'
+```
+
+### Resource Managers
+
+The better way to open files.  Has something to do with minimizing resources.
+
+```py
+with open('test.txt', 'r') as file:
+        file_contents = f.read()
+
+words = file_contents.split(' ')
+word_count = len(words)
+print(word_count)
+```
+
+### JSON
+
+Using the json library, opens a json file as a dictionary.
+
+loads a dictionary, with keys that are dictionary keys.  Arrays become lists.  And so on.
+
+```py
+import json
+dd = json.loads(datadict)
+
+datadict = '''
+ {
+        "intro" : "TODO- provide and intro",
+        "args" : [
+            {
+                "name" : "output",
+                "short" : "-o",
+                "long" : "--output",
+                "positional" : true,
+                "nargs" : 2,
+                "type" : "str",
+                "optional" : false,
+                "action" : "store_true"
+                "default" : "TOH-Output.txt",
+                "help"  : "The location to save the file output."
+            },
+            {
+                "name" : "print",
+                "positional" : true,
+                "optional" : false,
+                "short" : "-p",
+                "long" : "--print",
+                "nargs" : "",
+                "type" : "",
+                "action" : "store_true"
+                "help"  : "Print output to the terminal (in addition to the file output."
+            }
+        ]
+'''
+
 ```
 
 
@@ -3816,6 +5056,7 @@ Other conditions, call other dunder methods. `print()` for instance, calls the d
 These are the inbuilt actions in python.  There are many.
 
 [example source](https://www.youtube.com/watch?v=cKPlPJyQrt4&t=4606s)
+
 ```py
 class Polynomial:
     def __init__(self, *coeffs):
@@ -3832,7 +5073,6 @@ class Polynomial:
 
     def __call__(self):
         pass
-
 ```
 
 Other methods
@@ -3847,7 +5087,53 @@ Other methods
 - `__del__` called when the instance is about to be destroyed.
 - `__call__` is used when you call object()
 - `__next__` is part of the iterator behavior provides the behavior to iterate over the class
+- `__bytes__`
+- object.__lt__(self, other)
+object.__le__(self, other)
+object.__eq__(self, other)
+object.__ne__(self, other)
+object.__gt__(self, other)
+object.__ge__(self, other)
+object.__hash__
+The only required property is that objects which compare equal have the same hash value; it is advised to mix together the hash values of the components of the object that also play a part in comparison of objects by packing them into a tuple and hashing the tuple. Example:
 
+```py
+def __hash__(self):
+    return hash((self.name, self.nick, self.color))
+```
+object.__bool__(self)
+object.__getattr__(self, name)
+object.__getattribute__(self, name)
+object.__setattr__(self, name, value)
+object.__delattr__(self, name)
+object.__dir__(self)
+
+```py
+import sys
+from types import ModuleType
+
+class VerboseModule(ModuleType):
+    def __repr__(self):
+        return f'Verbose {self.__name__}'
+
+    def __setattr__(self, attr, value):
+        print(f'Setting {attr}...')
+        super().__setattr__(attr, value)
+
+sys.modules[__name__].__class__ = VerboseModule
+```
+
+__doc__ - The function’s documentation string, or None if unavailable; not inherited by subclasses. - Writable
+__name__ - The function’s name. - Writable
+__qualname__ - The function’s qualified name. Writable
+__module__ - The name of the module the function was defined in, or None if unavailable. - Writable
+__defaults__ - A tuple containing default argument values for those arguments that have defaults, or None if no arguments have a default value. - Writable
+__code__ - The code object representing the compiled function body. - Writable
+__globals__ - A reference to the dictionary that holds the function’s global variables — the global namespace of the module in which the function was defined. - Read-only
+__dict__ - The namespace supporting arbitrary function attributes. - Writable
+__closure__ - None or a tuple of cells that contain bindings for the function’s free variables. See below for information on the cell_contents attribute. - Read-only
+__annotations__ - A dict containing annotations of parameters. The keys of the dict are the parameter names, and 'return' for the return annotation, if provided. - Writable
+__kwdefaults__ - A dict containing defaults for keyword-only parameters. - Writable
 
 #### Functional Methods
 
@@ -4181,8 +5467,63 @@ print('add(10)', add(10))
 '''code block'''
 ```
 
+## Unit Testting
+
+Checks that a function named `add_2` is a function `self.assert_(isinstance(add_2, types.FunctionType))`
+        
+
+ `self.assertEquals(add_2(4), 6)`
 
 ## GUIs
+
+### Curses
+
+!!!warn Warn: The Windows version of Python doesn’t include the curses module. A ported version called UniCurses is available. You could also try the Console module written by Fredrik Lundh, which doesn’t use the same API as curses but provides cursor-addressable text output and full support for mouse and keyboard input.
+
+THe basic outline of a curses program
+
+```py
+import curses
+
+stdscr = curses.initscr()
+curses.noecho() #does not send keys to the screen
+curses.cbreak() #allows curses to react to key presses.
+stdscr.keypad(True) #allow curses to respond to special keys like 'Home'
+
+#exiting - The opposite of the above
+curses.nocbreak()
+stdscr.keypad(False)
+curses.echo()
+curses.endwin()
+```
+
+A common problem when debugging a curses application is to get your terminal messed up when the application dies without restoring the terminal to its previous state.
+
+
+In Python you can avoid these complications and make debugging much easier by importing the curses.wrapper() function and using it like this:
+
+```py
+from curses import wrapper
+
+def main(stdscr):
+
+    # Clear screen
+    stdscr.clear()
+
+    # This raises ZeroDivisionError when i == 10.
+    for i in range(0, 11):
+        v = i-10
+        stdscr.addstr(i, 0, '10 divided by {} is {}'.format(v, 10/v))
+
+    stdscr.refresh()
+    stdscr.getkey()
+
+wrapper(main)
+```
+
+#### Windows-curses
+
+
 
 ### tKinter
 
@@ -4669,8 +6010,456 @@ run()
 
 ## Packages
 
+### Timeit
+
+```py
+import timeit
+t1 = timeit.timeit(someFunc())
+t2 = timeit.timeit(someFunc2())
+print('Cython is {}x faster'.format(t1/t2))
+```
+
+also logtimer, time_benchmark
+
 ### Twill
 
 Python 3 version is twill3.
 
+
+### Generate a progress bar automatically
+
+```py
+from time import sleep
+from tqdm import tqdm
+
+for i in tqdm(range(1000))
+    sleep(0.01)
+```
+
+### argparse
+```py
+import argparse
+
+    parser = argparse.ArgumentParser(description="version " + __version__, prog="almonds",
+                                     formatter_class=lambda prog:
+                                     argparse.RawTextHelpFormatter(prog, max_help_position=45))
+
+    parser.add_argument("save", nargs="?", type=str, default=None,
+                        help="path of a save to load")
+    parser.add_argument("-p", "--processes", type=int, metavar="N",
+                        default=multiprocessing.cpu_count(),
+                        help="number of concurrent processes")
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-r", "--char-ratio", type=float,
+                       default=0.428, metavar="RATIO",
+                       help="width to height ratio of the terminal characters")
+    group.add_argument("-d", "--dimensions", type=int, nargs=2,
+                       metavar=("W", "H"), help="width and height of the terminal characters")
+
+    parser.add_argument("-z", "--qwertz", action="store_true", default=False,
+                        help='swap the "z" and "y" keys')
+
+    parser.print_help = wrap_prolog(parser.print_help, "\n".join(splash))
+    parser.print_usage = wrap_prolog(parser.print_usage, "")
+
+    args = parser.parse_args()
+
+```
+
+Define -
+
+`class argparse.ArgumentParser(prog=None, usage=None, description=None, epilog=None, parents=[], formatter_class=argparse.HelpFormatter, prefix_chars='-', fromfile_prefix_chars=None, argument_default=None, conflict_handler='error', add_help=True, allow_abbrev=True)`
+
+Create a new ArgumentParser object. All parameters should be passed as keyword arguments. Each parameter has its own more detailed description below, but in short they are:
+- `prog` - The name of the program (default: sys.argv[0])
+- `usage` - The string describing the program usage (default: generated from arguments added to parser)
+- `description` - Text to display before the argument help (default: none)
+- `epilog` - Text to display after the argument help (default: none)
+- `parents` - A list of ArgumentParser objects whose arguments should also be included
+- `formatter_class` - A class for customizing the help output
+  - class argparse.RawDescriptionHelpFormatter
+  - class argparse.RawTextHelpFormatter
+  - class argparse.ArgumentDefaultsHelpFormatter
+  - class argparse.MetavarTypeHelpFormatter
+- `prefix_chars` - The set of characters that prefix optional arguments (default: ‘-‘)
+- `fromfile_prefix_chars` - The set of characters that prefix files from which additional arguments should be read (default: None)
+- `argument_default` - The global default value for arguments (default: None)
+- `conflict_handler` - The strategy for resolving conflicting optionals (usually unnecessary)
+- `add_help` - Add a -h/--help option to the parser (default: True)
+- `allow_abbrev` - Allows long options to be abbreviated if the abbreviation is unambiguous. (default: True)
+
+```py3
+
+```
+The `add_argument()` method must know whether an optional argument, like -f or --foo, or a positional argument, like a list of filenames, is expected. The first arguments passed to `add_argument()` must therefore be either a series of flags, or a simple argument name.
+
+For example, an **optional** argument could be created like:
+
+        >>> parser.add_argument('-f', '--foo')
+
+while a **positional** argument could be created like:
+
+        >>> parser.add_argument('bar')
+
+Formal Definition:  `ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest])`
+
+Define how a single command-line argument should be parsed. Each parameter has its own more detailed description below, but in short they are:
+
+- `name` or flags - Either a name or a list of option strings, e.g. foo or -f, --foo.
+- `action` - The basic type of action to be taken when this argument is encountered at the command line.
+  - `'store'`- just stores the argument’s value. This is the default action.
+  - `'store_const'` - This stores the value specified by the const keyword argument. The 'store_const' action is usually a flag - e.g.
+    - `'store_true'`
+    - `'store_false'`
+  - `'append'` - This stores a list, and appends each argument value to the list.
+  - `'append_const'` - This stores a list, and appends the value specified by the const keyword argument to the list.
+  - `'count'` - This counts the number of times a keyword argument occurs. e.g. `-vvv`
+  - 'help' - This prints a complete help message for all the options in the current parser and then exits.
+  - 'version' - This expects a version= keyword argument in the add_argument() call, and prints version information and exits
+- `nargs` - The number of command-line arguments that should be consumed.
+  !!!warning NOTE: if you specify **nargs** it will return a list.  Even if `nargs=1`.
+- `const` - A constant value required by some action and nargs selections.
+- `default` - The value produced if the argument is absent from the command line.
+- `type` - The type to which the command-line argument should be converted.
+- `choices` - A container of the allowable values for the argument.
+- `required` - Whether or not the command-line option may be omitted (optionals only).
+- `help` - A brief description of what the argument does.
+- `metavar` - A name for the argument in usage messages.
+- `dest` - The name of the attribute to be added to the object returned by parse_args(). (e.g. the var name - dest=foo, arg.foo)
+
+types of args
+
+**positional** is a required value, just after the program name.  Ideally the program will either run by itself or just positional variable
+
+`parser.add_argument("square", help="display a square of a given number", type=int)`
+
+```py
+import argparse #
+
+parser = argparse.ArgumentParser() #
+parser.add_argument("square", help="display a square of a given number", type=int)
+args = parser.parse_args() #
+print(args.square)
+```
+
+Note: to avoid having an error returned when no arg is supplied (and just print help) - either extend the error method or check length.  The first returns an error message and prints help for all errors in parsing. Like -blahblah.
+
+[source](https://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu)
+
+```py
+#method 1 - more flexible way.
+import argparse
+import sys
+
+class MyParser(argparse.ArgumentParser):
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(2)
+
+parser = MyParser()
+#Note this is MyParser(*args) now instead of argparse.ArgumentParser(*args)
+parser.add_argument('foo', nargs='+')
+args = parser.parse_args()
+
+#method 2 Easier way
+import argparse
+import sys
+
+parser=argparse.ArgumentParser()
+parser.add_argument('foo', nargs='+')
+if len(sys.argv)==1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
+args=parser.parse_args()
+```
+
+Note: from here on the bits marked by comment flags are implied.
+
+
+**choices** -constrain the input to a few select values
+
+`parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],help="increase output verbosity")`
+
+```py
+parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
+                    help="increase output verbosity")
+
+```
+**true/false** - is either present or not.
+
+`parser.add_argument("-v", "--verbose", help="increase output verbosity",action="store_true")`
+
+```py
+parser.add_argument("-v", "--verbose", help="increase output verbosity",
+                    action="store_true")
+args = parser.pzarse_args()
+if args.verbose:
+    print("verbosity turned on")
+```
+
+**count** - counts the number of times a value is provided.
+
+`parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")`
+
+```py
+parser.add_argument("-v", "--verbosity", action="count", default="0",
+                    help="increase output verbosity")
+if args.verbosity >= 2:
+    print("the square of {} equals {}".format(args.square, answer))
+elif args.verbosity >= 1:
+    print("{}^2 == {}".format(args.square, answer))
+else:
+    print('...')
+
+$ python3 prog.py 4 -vvv
+the square of 4 equals 16
+$ python3 prog.py 4 -vvvv
+```
+
+Remember that by default, if an optional argument isn’t specified, it gets the None value, and that cannot be compared to an int value (hence the TypeError exception).
+
+**groups**
+
+groups can combine flags that should be mutually exclusive.
+
+```py
+import argparse
+
+parser = argparse.ArgumentParser(description="calculate X to the power of Y")
+group = parser.add_mutually_exclusive_group()
+group.add_argument("-v", "--verbose", action="store_true")
+group.add_argument("-q", "--quiet", action="store_true")
+parser.add_argument("x", type=int, help="the base")
+parser.add_argument("y", type=int, help="the exponent")
+args = parser.parse_args()
+answer = args.x**args.y
+
+if args.quiet:
+    print(answer)
+elif args.verbose:
+    print("{} to the power {} equals {}".format(args.x, args.y, answer))
+else:
+    print("{}^{} == {}".format(args.x, args.y, answer))
+
+##out
+$ python3 prog.py --help
+usage: prog.py [-h] [-v | -q] x y
+
+calculate X to the power of Y
+
+positional arguments:
+  x              the base
+  y              the exponent
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --verbose
+  -q, --quiet
+```
+
+### Windows Modules
+
+the idea is to collect modules that would provide AHK like functionality
+
+- ?pip-Win (1.4) - Pip-Win is a tiny python package manager with virtualenv that is super easy to install on Windows
+-  supervisor-win (4.0.1)         - A system for controlling process state under WINDOWS
+win-devices (0.0.2)            - A module to return video devices connected to a Windows computer
+
+
+
+fasttext-win (0.8.3)           - A Python interface for Facebook fastText library
+os-win (4.2.0)                 - Windows / Hyper-V library for OpenStack projects.
+win-nic (1.0.1)                - Python package to interface with network intetrface cards (NICs) on Windows-based computers.
+virtualenvwrapper-win (1.2.5)  - Port of Doug Hellmann's virtualenvwrapper to Windows batch scripts
+win-bash-aliases (0.0.3)       - Windows WSL bash aliases for cmd and powershell
+win-inet-pton (1.1.0)          - Native inet_pton and inet_ntop implementation for Python on Windows (with ctypes).
+pyenv-win (1.2.2)              - pyenv lets you easily switch between multiple versions of Python. It's simple, unobtrusive, and follows the UNIX tradition of single-purpose tools that do
+                                 one thing well.
+sanic-win (0.6.1)              - A microframework based on uvloop, httptools, and learnings of flask
+aiowintest (0.0.5)             - Python implementation of the Win-Test UDP protocol
+windows-curses (1.1)                                  - Support for the standard curses module on Windows
+windows (0.1.1)                                       - This package name is reserved by Microsoft Corporation
+EasyDialogs-for-Windows (46691.0)                     - EasyDialogs for Windows
+plover-windows-brightness (0.0.2)                     - Change Windows monitor brightness with Plover
+py-windows-exe (1.0.0)                                - Functions needed when running a Python program as a Windows exe
+windows-rbs-parser (0.0.1)                            - Python library/tool which is able to parse .rbs files used by the windows diagnostics framework
+os-windows (0.0.1)                                    -
+capstone-windows (3.0.4)                              - Capstone disassembly engine
+some-windows-snippets (0.0.0)                         - description
+os-windows (0.0.1)                                    -
+capstone-windows (3.0.4)                              - Capstone disassembly engine
+
+
+WMI (1.4.9)                                           - Windows Management Instrumentation
+pkgtest (0.0.0)                                       - Control the Windows GUI
+swdpp (0.0.5)                                         - sliding window DPP
+syspy (0.2)                                           - Windows System Informations
+win32core (221.36)                                    - Python for Window Extensions
+pygst_utils (0.3.post10)                              - GStreamer Windows server
+registry (0.4.2)                                      - Windows registry API
+sifr (0.0.4)                                          - Window based counters
+win32ext (221.2)                                      - Python for Window Extensions
+azuremonitor (0.1)                                    - Windows Azure Monitor
+ration (0.1.3)                                        - Civilized window management
+WinDeft (1.0.0)                                       - Windows Defender Tester.
+pmuxy (0.1.3)                                         - A tmux windows manager
+win32gui (221.6)                                      - Python for Window Extensions
+infi.winver (1.0.3)                                   - get windows version
+guippy (0.1.1)                                        - Control the Windows GUI
+rage (0.1.0)                                          - Windows Registry Manipulation
+mypc (0.0.1)                                          - Open "This PC" on Windows.
+jqpython (0.1)                                        - python + jq for windows
+winshell (0.6)                                        - Windows shell functions
+pywin32 (224)                                         - Python for Window Extensions
+  INSTALLED: 224 (latest)
+WinWallpaper (1.0)                                    - Windows Background Changer
+Bourbon (1.1)                                         - WSGI Windows Service
+windirs (1.1.1)                                       - Windows path wrapper
+uiautomation (1.1.15)                                 - Python UIAutomation for Windows
+time-window (0.0.1)                                   - A Time Window library
+wpi (0.10.2)                                          - Windows Printer Installer
+infi.wioctl (0.1.15)                                  - Windows ioctl wrapper
+pywincert (1.0.2)                                     - Wrapper for Windows makecert
+paws-cli (0.6.0)                                      - A tool used to provision Windows systems and configure Windows services.
+wslexplorer (0.1.2)                                   - Simple script that launches Window Explorer from Windows Subsystem for Linux
+icaclswrap (0.2.0)                                    - Windows ACL permissions management through wrapping windows executable icacls
+winappdbg (1.5)                                       - Windows application debugging engine
+M2CryptoWin32 (0.21.1-3)                              - M2Crypto for Windows (32-bit)
+z3c.recipe.winservice (0.7.0)                         - Zope3 windows service installer
+powershellmagic (0.1.0)                               - IPython magic for Windows PowerShell
+PyRexecd (0.3.1)                                      - Standalone SSH server for Windows
+MP_Sliding_Window (0.0.26)                            - Multiprocessing Based Sliding window
+jaraco.video (3.0)                                    - A pure-python framegrabber for Windows
+time-series (0.2)                                     - Python implementation of a sliding window.
+Pysam-Win-AltAnalyze (0.5.9)                          - Pysam for Windows Altanalyze installation
+wrun (0.1.6)                                          - Run Remote Windows Executables
+infi.eventlog (0.1.11)                                - Bindings to Windows Event Log
+winwifi (0.0.17)                                      - A Windows Wi-Fi CLI
+simpleazure (0.1.5)                                   - Python Library for Windows Azure
+CobraWinLDTP (4.0.0)                                  - Windows GUI Test automation
+weighslide (0.1.7)                                    - Flexible sliding window analysis
+rolling (0.2.0)                                       - Efficient rolling window algorithms
+infi.systray (0.1.11)                                 - Windows system tray icon
+M2CryptoWin64 (0.21.1-3)                              - M2Crypto for Windows (64-bit)
+infi.wmpio (0.1.29)                                   - Windows MPIO Management in Python
+rio-mucho (1.0.0)                                     - Windowed multiprocessing wrapper for rasterio
+sx-tiling (0.0.0)                                     - tiling window manager plugin
+bearlibterminal (0.15.7)                              - BearLibTerminal is a pseudoterminal window library
+TestcaseSelector (1.3.2)                              - Unittest test selector window
+winproxy (0.3.0a1)                                    - A Proxy Selection Tool for Windows
+datetimewindow (0.1.0.3)                              - Data type for windows of datetimes.
+AL---Application-Launcher (1.0.7)                     - Freeware application launcher for windows
+dympy (0.0.3)                                         - Python-Dymola communication on windows
+PrintOnline (0.0.8)                                   - A online printer manager for Windows.
+odoo8-addon-mail-read-new-window (8.0.1.0.0.99.dev9)  - Open mail in new window
+WinPET (1.0.2)                                        - Windows Privilege Escalation Tester.
+tinycc (1.1)                                          - TinyCC compiler bundle for windows
+tkinterquickhelper (1.5.72)                           - Helpers for tkinter, extra windows.
+caffe-ssd-x86 (1.0.0.1)                               - Baidu Caffe SSD For Windows
+PyCY (1.0.0)                                          - wrapper for windows CY type
+pyface (6.0.0)                                        - traits-capable windowing framework
+WinService (0.0.1)                                    - Package to manage windows service
+WinSys-3.x (0.5.2)                                    - Python tools for the Windows sysadmin
+py_win_keyboard_layout (0.2)                          - Interaction with keyboard layout on windows
+PyWinMouse (1.0)                                      - Python Windows Mouse Utilities
+pysam-win (0.5.12)                                    - Pysam for Windows Altanalyze installation
+
+
+## Python on windows
+
+(Python) PS D:\ASUSsync\VS Code\Python> pip search windows
+
+
+
+**InterOp**
+win-app-packager
+virtualenvwrapper-win
+pip-Win
+pyenv-win
+win-inet-pton
+win-bash-aliases
+
+**Utils**
+
+
+**Windows Funcs**
+some-windows-snippets
+windows-curses
+uiautomation
+os-windows
+EasyDialogs-for-Windows
+py-windows-exe
+plover-windows-brightness
+temper-windows
+wpi
+infi.wioctl
+pywincert
+pywin32
+pmuxy
+winshell
+WinWallpaper
+Bourbon
+syspy
+windirs
+swdpp
+win32gui
+infi.winver
+guippy
+WinDeft
+rage
+mypc
+jqpython
+WMI
+pkgtest
+win32core
+win32compat
+pygst_utils
+registry
+paws-cli
+icaclswrap
+PyCY
+wslexplorer
+gettext_windows
+iis_bridge
+winregrc
+infi.win32service
+tinycc
+tkinterquickhelper
+sifr
+WinService
+py_win_keyboard_layout
+PyRexecd
+WinSys-3.x
+jaraco.video
+PyWinMouse
+PrintOnline
+WinPET
+infi.systray
+M2CryptoWin64
+infi.wmpio
+win32ext
+winproxy
+AL---Application-Launcher
+M2CryptoWin32
+winappdbg
+z3c.recipe.winservice
+powershellmagic
+winwifi
+pyAA
+mpns-client
+fasttext-win
+supervisor-win
+rtsf-win
+os-win
+pdbparse
+pycab
+toga-mfc
+
+
+**Hardware**
+win-devices
+win-nic
+aiowintest
 

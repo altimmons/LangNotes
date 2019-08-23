@@ -2,6 +2,10 @@
 
 - [Java Notes](#java-notes)
   - [Syntax](#syntax)
+  - [Maven](#maven)
+  - [Other Java Ext](#other-java-ext)
+    - [SDKMAN!](#sdkman)
+    - [Comments](#comments)
     - [Print](#print)
       - [Printf](#printf)
   - [Types](#types)
@@ -20,39 +24,12 @@
     - [modifiers](#modifiers)
     - [Constructors](#constructors)
     - [Subclass](#subclass)
-      - [Writing](#writing)
-        - [As Text](#as-text)
-        - [AsBytes](#asbytes)
-        - [PrintStream](#printstream)
-      - [Reading](#reading)
-        - [AsBytes](#asbytes-1)
-    - [Logging](#logging)
-  - [Exceptions](#exceptions)
-    - [Class location](#class-location)
-      - [Getting the method](#getting-the-method)
-      - [Types and Causes](#types-and-causes)
-        - [Full List of Exceptions (Alpha)](#full-list-of-exceptions-alpha)
-        - [Runtime Exceptions](#runtime-exceptions)
-        - [IOException](#ioexception)
-        - [FileNotFoundException](#filenotfoundexception)
-        - [SecurityException](#securityexception)
-        - [NullPointerException](#nullpointerexception)
-        - [IllegalArgumentException](#illegalargumentexception)
-        - [ArithmeticException](#arithmeticexception)
-        - [ClassNotFoundException](#classnotfoundexception)
-        - [IndexOutofBounds](#indexoutofbounds)
-        - [InputMismatchException](#inputmismatchexception)
-      - [Handling:](#handling)
-    - [System.getProperty](#systemgetproperty)
-    - [Line Terminators](#line-terminators)
-  - [Graphs](#graphs)
-  - [Error Translation](#error-translation)
-    - [Syntax error on 'class', @ expected](#syntax-error-on-class--expected)
-  - [GUI](#gui)
-    - [Text Based- LANTERNA](#text-based--lanterna)
-    - [Swing](#swing)
-  - [Etc.](#etc)
-    - [JShell](#jshell)
+        - [continue](#continue)
+      - [Switch (Case)](#switch-case)
+  - [IO Notes](#io-notes)
+    - [System.in and System.out](#systemin-and-systemout)
+    - [Reading and Writing Files](#reading-and-writing-files)
+    - [Reading and Writing for Badasses](#reading-and-writing-for-badasses)
       - [Editing](#editing)
     - [Console Colors:](#console-colors)
   - [Config IntelliJ](#config-intellij)
@@ -66,7 +43,7 @@
 
 Conventions-
 
-Classes start with a capital letter. 
+Classes start with a capital letter.
 
 Object instances go onto the heap. References to objects go on the stack.`
 
@@ -76,6 +53,85 @@ Object instances go onto the heap. References to objects go on the stack.`
         return return_type
     }
 }
+
+## Standard Directory Layout
+| LOCATION           | CONTENTS                                                                   |
+| ------------------ | -------------------------------------------------------------------------- |
+| src/main/java      | Application/Library sources                                                |
+| src/main/resources | Application/Library resources                                              |
+| src/main/filters   | Resource filter files                                                      |
+| src/main/webapp    | Web application sources                                                    |
+| src/test/java      | Test sources                                                               |
+| src/test/resources | Test resources                                                             |
+| src/test/filters   | Test resource filter files                                                 |
+| src/it             | Integration Tests (primarily for plugins)                                  |
+| src/assembly       | Assembly descriptors                                                       |
+| src/site           | Site                                                                       |
+| LICENSE.txt        | Project's license                                                          |
+| NOTICE.txt         | Notices and attributions required by libraries that the project depends on |
+| README.txt         | Project's readme                                                           |
+
+## Maven
+
+In vsCode
+
+Start maven project
+
+
+Value for **groupId:** This serves as the group identifier of your Maven project, it should be in a form similar to Java packages, such as org.example.learnlib
+Value for **artifactId:** This serves as the group-local identifier of your Maven project. It should be in a very simple, all-lowercase form, such as my-project.
+Value for **version:** The (initial) version of your project. The default is 1.0-SNAPSHOT.
+Value for **package:** The name of your root package. The default is the groupId you entered before.
+
+        Define value for property 'groupId': : org.example.learnlib
+        Define value for property 'artifactId': : my-project
+        Define value for property 'version':  1.0-SNAPSHOT: :
+        Define value for property 'package':  org.example.learnlib: :
+        [INFO] Using property: learnlibVersion = 0.13.1
+        Confirm properties configuration:
+        groupId: org.example
+        artifactId: my-project
+        version: 1.0-SNAPSHOT
+        package: org.example
+        learnlibVersion: 0.13.1
+        Y: :
+
+### Maven Lifecycle Stages
+
+- validate - validate the project is correct and all necessary information is available
+- compile - compile the source code of the project
+- test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+- package - take the compiled code and package it in its distributable format, such as a JAR.
+- verify - run any checks on results of integration tests to ensure quality criteria are met
+- install - install the package into the local repository, for use as a dependency in other projects locally
+- deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects
+
+## Other Java Ext
+
+- Ant
+- Gradle
+- Ivy
+- Antlr
+- Junit4
+- Jython
+- Groovy
+
+
+### SDKMAN! 
+
+(The Software Development Kit Manager)
+
+        $curl -s get.sdkman.io | bash
+
+### Comments
+
+`//` marks a comment
+
+`/* */` marks multiline comments
+
+`/**...*...*/` marks javadoc
+
+`#region` and `#endregion` marks regions.
 
 ### Print
 
@@ -133,7 +189,7 @@ sequence:
 **Width:**
 Specifies the field width for outputting the argument and represents the minimum number of characters to
 be written to the output. Include space for expected commas and a decimal point in the determination of
-the width for numerical values. 
+the width for numerical values.
 
 **Precision:**
 Used to restrict the output depending on the conversion. It specifies the number of digits of precision when
@@ -191,7 +247,7 @@ Primitive type variables are declared.  Variables can contain letters, digits, u
 
 ### null
 
-Only object references can be null, not primitives. In Java, int is a primitive type and it is not considered an object. Only objects can have a null value. 
+Only object references can be null, not primitives. In Java, int is a primitive type and it is not considered an object. Only objects can have a null value.
 
 Use the object methods (int -> Integer)
 
@@ -208,9 +264,9 @@ Use the object methods (int -> Integer)
 ### Arrays
 
 Array declarations are finicky.  Even base classes need to be instantiated. You declare an array with brackets after a type.
-
+[Java Array Doc ](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html)
 ```Java
-int[] intArray;  
+int[] intArray;
 >>> intArray[2]= 2; //error
 intArray = new int[];  //intArray cant be assigned to until its instantiated.
 int[] intArray = new int[]; //these two are equivalent essentially.
@@ -268,7 +324,7 @@ Integer.class.isInstance("s"); // false
 
 ### Access Control
 
-!!!tldr Class can be public (everywhere) or nothing(package private). Methods   
+!!!tldr Class can be public (everywhere) or nothing(package private). Methods
 
 A method can be **public**, **private**, **package private**.
 
@@ -279,7 +335,7 @@ At the member level—`public`, `private`, `protected`, or `package-private` (no
 
 A class may be declared with the modifier `public`, in which case that class is visible to all classes everywhere. If a class has no modifier (the default, also known as `package-private`), it is visible only within its own package (packages are named groups of related classes — you will learn about them in a later lesson.)
 
-At the member level, you can also use the `public` modifier or no modifier (`package-private`) just as with top-level classes, and with the same meaning. For members, there are two additional access modifiers: `private` and `protected`. The `private` modifier specifies that the member can only be accessed in its own class. 
+At the member level, you can also use the `public` modifier or no modifier (`package-private`) just as with top-level classes, and with the same meaning. For members, there are two additional access modifiers: `private` and `protected`. The `private` modifier specifies that the member can only be accessed in its own class.
 
 The _`protected`_ modifier specifies that the member can only be accessed within its own package (as with package-private) and, in addition, by a subclass of its class in another package.
 
@@ -293,17 +349,17 @@ The _`protected`_ modifier specifies that the member can only be accessed within
 public class [filename]{
     public static void main(String[] args){
     //code here
-    }   
+    }
 }
 ```
 #### Static
- 
+
 When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object. Static is a non-access modifier in Java which is applicable for the following:
 
 - variables
 - methods
 - nested classes
-- blocks - 
+- blocks -
 
 
 ##### blocks
@@ -311,22 +367,22 @@ When a member is declared static, it can be accessed before any objects of its c
  If you need to do computation in order to initialize your static variables, you can declare a static block that gets executed exactly once, when the class is first loaded. Consider the following java program demonstrating use of static blocks.
 
 ```Java
-class Test 
-{ 
-    static int a = 10; // static variable 
-    static int b; 
-      
-    static {     // static block 
-        System.out.println("Static block initialized."); 
-        b = a * 4; 
-    } 
-  
-    public static void main(String[] args) { 
-       System.out.println("from main"); 
-       System.out.println("Value of a : "+a); 
-       System.out.println("Value of b : "+b); 
-    } 
-} 
+class Test
+{
+    static int a = 10; // static variable
+    static int b;
+
+    static {     // static block
+        System.out.println("Static block initialized.");
+        b = a * 4;
+    }
+
+    public static void main(String[] args) {
+       System.out.println("from main");
+       System.out.println("Value of a : "+a);
+       System.out.println("Value of b : "+b);
+    }
+}
 ```
 
 
@@ -394,7 +450,8 @@ class Cat extends Animal{
     @override
     void move(){ ... }
 }
-...
+```
+
 
 ### Inner Class
 
@@ -416,20 +473,20 @@ Like class, interface can also be nested and can have access specifiers.
 Following example demonstrates a nested class.
 
 ```java
-class Outer { 
-   // Simple nested inner class 
-   class Inner { 
-      public void show() { 
-           System.out.println("In a nested class method"); 
-      } 
-   } 
-} 
-class Main { 
-   public static void main(String[] args) { 
-       Outer.Inner in = new Outer().new Inner(); 
-       in.show(); 
-   } 
-} 
+class Outer {
+   // Simple nested inner class
+   class Inner {
+      public void show() {
+           System.out.println("In a nested class method");
+      }
+   }
+}
+class Main {
+   public static void main(String[] args) {
+       Outer.Inner in = new Outer().new Inner();
+       in.show();
+   }
+}
 ```
 
 **Output**
@@ -440,25 +497,25 @@ class Main {
 As a side note, we can’t have static method in a nested inner class because an inner class is implicitly associated with an object of its outer class so it cannot define any static method for itself. For example the following program **doesn’t compile.**
 
 ```java
-class Outer { 
-   void outerMethod() { 
-      System.out.println("inside outerMethod"); 
-   } 
-   class Inner { 
-      public static void main(String[] args){ 
-         System.out.println("inside inner class Method"); 
-      } 
-   } 
+class Outer {
+   void outerMethod() {
+      System.out.println("inside outerMethod");
+   }
+   class Inner {
+      public static void main(String[] args){
+         System.out.println("inside inner class Method");
+      }
+   }
 }
 //doesnt work
 ```
 
 **Output:**
 
-        Error illegal static declaration in inner class 
-        Outer.Inner public static void main(String[] args) 
-        modifier ‘static’ is only allowed in constant 
-        variable declaration 
+        Error illegal static declaration in inner class
+        Outer.Inner public static void main(String[] args)
+        modifier ‘static’ is only allowed in constant
+        variable declaration
 
 An interface can also be nested and nested interfaces have some interesting properties. We will be covering nested interfaces in the next post.
 
@@ -467,24 +524,24 @@ An interface can also be nested and nested interfaces have some interesting prop
 Inner class can be declared within a method of an outer class. In the following example, Inner is an inner class in outerMethod().
 
 ```java
-class Outer { 
-	void outerMethod() { 
-		System.out.println("inside outerMethod"); 
-		// Inner class is local to outerMethod() 
-		class Inner { 
-			void innerMethod() { 
-				System.out.println("inside innerMethod"); 
-			} 
-		} 
-		Inner y = new Inner(); 
-		y.innerMethod(); 
-	} 
-} 
-class MethodDemo { 
-	public static void main(String[] args) { 
-		Outer x = new Outer(); 
-		x.outerMethod(); 
-	} 
+class Outer {
+	void outerMethod() {
+		System.out.println("inside outerMethod");
+		// Inner class is local to outerMethod()
+		class Inner {
+			void innerMethod() {
+				System.out.println("inside innerMethod");
+			}
+		}
+		Inner y = new Inner();
+		y.innerMethod();
+	}
+}
+class MethodDemo {
+	public static void main(String[] args) {
+		Outer x = new Outer();
+		x.outerMethod();
+	}
 }
 ```
 
@@ -497,24 +554,24 @@ Method Local inner classes can’t use local variable of outer method until that
 
 ```java
 
-class Outer { 
-   void outerMethod() { 
-      int x = 98; 
-      System.out.println("inside outerMethod"); 
-      class Inner { 
-         void innerMethod() { 
-            System.out.println("x= "+x); 
-         } 
-      } 
-      Inner y = new Inner(); 
-      y.innerMethod(); 
-   } 
-} 
-class MethodLocalVariableDemo { 
-   public static void main(String[] args) { 
-      Outer x=new Outer(); 
-      x.outerMethod(); 
-   } 
+class Outer {
+   void outerMethod() {
+      int x = 98;
+      System.out.println("inside outerMethod");
+      class Inner {
+         void innerMethod() {
+            System.out.println("x= "+x);
+         }
+      }
+      Inner y = new Inner();
+      y.innerMethod();
+   }
+}
+class MethodLocalVariableDemo {
+   public static void main(String[] args) {
+      Outer x=new Outer();
+      x.outerMethod();
+   }
 }
 ```
 **Output**
@@ -526,31 +583,31 @@ class MethodLocalVariableDemo {
 But the following code compiles and runs fine (Note that x is final this time)
 
 ```java
-class Outer { 
-   void outerMethod() { 
-      final int x=98; 
-      System.out.println("inside outerMethod"); 
-      class Inner { 
-         void innerMethod() { 
-            System.out.println("x = "+x); 
-         } 
-      } 
-      Inner y = new Inner(); 
-      y.innerMethod(); 
-   } 
-} 
-class MethodLocalVariableDemo { 
-    public static void main(String[] args){ 
-      Outer x = new Outer(); 
-      x.outerMethod(); 
-    } 
+class Outer {
+   void outerMethod() {
+      final int x=98;
+      System.out.println("inside outerMethod");
+      class Inner {
+         void innerMethod() {
+            System.out.println("x = "+x);
+         }
+      }
+      Inner y = new Inner();
+      y.innerMethod();
+   }
+}
+class MethodLocalVariableDemo {
+    public static void main(String[] args){
+      Outer x = new Outer();
+      x.outerMethod();
+    }
 }
 ```
 
 **Output**
 
         Inside outerMethod
-        X = 98 
+        X = 98
 
 The main reason we need to declare a local variable as a final is that local variable lives on stack till method is on the stack but there might be a case the object of inner class still lives on the heap.
 
@@ -561,19 +618,19 @@ Method local inner class can’t be marked as private, protected, static and tra
 Static nested classes are not technically an inner class. They are like a static member of outer class.
 
 ```java
-class Outer { 
-   private static void outerMethod() { 
-     System.out.println("inside outerMethod"); 
-   } 
-     
-   // A static inner class 
-   static class Inner { 
-     public static void main(String[] args) { 
-        System.out.println("inside inner class Method"); 
-        outerMethod(); 
-     } 
-   } 
-  
+class Outer {
+   private static void outerMethod() {
+     System.out.println("inside outerMethod");
+   }
+
+   // A static inner class
+   static class Inner {
+     public static void main(String[] args) {
+        System.out.println("inside inner class Method");
+        outerMethod();
+     }
+   }
+
 }
 ```
 func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, x))))))))))
@@ -583,7 +640,7 @@ func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, func(vars, i++, 
 **Output**
 
         inside inner class Method
-        inside outerMethod 
+        inside outerMethod
 
 #### Anonymous inner classes
 
@@ -592,53 +649,53 @@ Anonymous inner classes are declared without any name at all. They are created i
 a) As subclass of specified type
 
 ```java
-class Demo { 
-   void show() { 
-      System.out.println("i am in show method of super class"); 
-   } 
-} 
-class Flavor1Demo { 
-  
-   //  An anonymous class with Demo as base class 
-   static Demo d = new Demo() { 
-       void show() { 
-           super.show(); 
-           System.out.println("i am in Flavor1Demo class"); 
-       } 
-   }; 
-   public static void main(String[] args){ 
-       d.show(); 
-   } 
+class Demo {
+   void show() {
+      System.out.println("i am in show method of super class");
+   }
+}
+class Flavor1Demo {
+
+   //  An anonymous class with Demo as base class
+   static Demo d = new Demo() {
+       void show() {
+           super.show();
+           System.out.println("i am in Flavor1Demo class");
+       }
+   };
+   public static void main(String[] args){
+       d.show();
+   }
 }
 ```
 
 **Output**
 
         i am in show method of super class
-        i am in Flavor1Demo class 
+        i am in Flavor1Demo class
 
 In the above code, we have two class Demo and Flavor1Demo. Here demo act as super class and anonymous class acts as a subclass, both classes have a method show(). In anonymous class show() method is overridden.
 
 a) As implementer of the specified interface
 
 ```java
-class Flavor2Demo { 
-  
-    // An anonymous class that implements Hello interface 
-    static Hello h = new Hello() { 
-        public void show() { 
-            System.out.println("i am in anonymous class"); 
-        } 
-    }; 
-  
-    public static void main(String[] args) { 
-        h.show(); 
-    } 
-} 
-  
-interface Hello { 
-    void show(); 
-} 
+class Flavor2Demo {
+
+    // An anonymous class that implements Hello interface
+    static Hello h = new Hello() {
+        public void show() {
+            System.out.println("i am in anonymous class");
+        }
+    };
+
+    public static void main(String[] args) {
+        h.show();
+    }
+}
+
+interface Hello {
+    void show();
+}
 ```
 
 **Output:**
@@ -646,6 +703,168 @@ interface Hello {
         i am in anonymous class
 
 In above code we create an object of anonymous inner class but this anonymous inner class is an implementer of the interface Hello. Any anonymous inner class can implement only one interface at one time. It can either extend a class or implement interface at a time.
+
+
+### Singleton Class
+
+a singleton class is a class that 
+- can have only one object (an instance of the class) at a time.
+- if we try to instantiate the Singleton class, the new variable also points to the first instance created.
+- whatever modifications we do to any variable inside the class through any instance, it affects the variable of the single instance everywhere
+
+!!!faq Static and Singleton Sound very similar. - From[ Stack Exchange](https://stackoverflow.com/questions/519520/difference-between-static-class-and-singleton-pattern):
+        The big difference between a singleton and a bunch of static methods is that **singletons can implement interfaces (or derive from useful base classes,** although that's less common, in my experience), so you can pass around the singleton as if it were "just another" implementation.
+
+    And also [here](https://bytes.com/topic/c-sharp/answers/271199-diff-between-singleton-class-static-class#post1084937):
+
+        A singleton allows access to a single created instance - that instance (or rather, a reference to that instance) can be passed as a parameter to other methods, and treated as a normal object.
+
+        A static class allows only static methods.
+
+
+**Normal class** vs **Singleton class:** Difference in normal and singleton class in terms of instantiation is that, For normal class we use constructor, whereas for singleton class we use `getInstance()` method (Example code:I). In general, to avoid confusion we may also use the class name as method name while defining this method
+
+**Eager initialization:**  simplest method.
+
+- object of class is created when it is loaded to the memory by JVM by assigning the reference an instance directly.
+- It can be used when program will always use instance of this class, or *the cost of creating the instance is not too large in terms of resources and time*
+- instance of class is created always, whether it is required or not.
+- Exception handling is not possible.
+
+```java
+public class GFG {  // Eager Initialization //
+    // public instance initialized when loading the class
+    public static GFG instance = new GFG();
+
+    private GFG()
+    {
+        // private constructor
+    }
+}
+```
+
+**Using static block:** This is also a *sub part of Eager initialization*. The only difference is object is created in a static block so that we can have access on its creation, like exception handling. In this way also, object is created at the time of class loading.
+
+It can be used when there is a chance of exceptions in creating object with eager initialization.
+
+```java
+public class GFG { // Using Static block
+    // public instance
+    public static GFG instance;
+
+    private GFG(){
+        // private constructor
+    }
+
+    static{  //I added static
+        // static block to initialize instance 
+        instance = new GFG(); 
+    }
+}
+```
+
+**Lazy initialization:** In this method, object is created only if it is needed. 
+
+- An implementation of getInstance() method is required which return the instance.
+- There is a null check that if object is not created then create, otherwise return previously created.
+- To **make sure that class cannot be instantiated in any other way, constructor is made final.** As object is created with in a method, it ensures that object will not be created until and unless it is required. Instance is kept private so that no one can access it directly.
+- It can be used in a single threaded environment because multiple threads can break singleton property because they can access get instance method simultaneously and create multiple objects.
+
+```java
+public class GFG { // With Lazy initialization 
+// private instance, can only be accessed by getInstance() method 
+private static GFG instance;
+
+    private GFG(){ 
+        // private constructor 
+    } 
+
+    public static GFG getInstance() { //method to ret inst of class 
+        if (instance == null) { 
+        // if instance is null, initialize 
+            instance = new GFG(); 
+        } 
+        return instance;
+    } 
+}
+```
+
+**Thread Safe Singleton:** A thread safe singleton in created so that singleton property is maintained even in multithreaded environment. To make a singleton class thread-safe, getInstance() method is made synchronized so that multiple threads can’t access it simultaneously.
+
+```java
+// Thread Safe  Singleton class 
+public class GFG { 
+// private instance, can only be accessed by getInstance() method 
+    private static GFG instance; 
+
+    private GFG() { 
+        // private constructor 
+    } 
+
+    //synchronized method to control simultaneous access 
+    synchronized public static GFG getInstance() { 
+        if (instance == null) { 
+            // if instance is null, initialize 
+            instance = new GFG(); 
+        } 
+        return instance; 
+    } 
+}
+```
+
+**Lazy initialization with Double check locking:** In this mechanism, we overcome the overhead problem of synchronized code. In this method, getInstance is not synchronized but the block which creates instance is synchronized so that minimum number of threads have to wait and that’s only for first time.
+// Java code to explain double check locking 
+public class GFG 
+{ 
+// private instance, so that it can be 
+// accessed by only by getInstance() method 
+private static GFG instance; 
+
+private GFG() 
+{ 
+	// private constructor 
+} 
+
+public static GFG getInstance() 
+{ 
+	if (instance == null) 
+	{ 
+	//synchronized block to remove overhead 
+	synchronized (GFG.class) 
+	{ 
+		if(instance==null) 
+		{ 
+		// if instance is null, initialize 
+		instance = new GFG(); 
+		} 
+		
+	} 
+	} 
+	return instance; 
+} 
+}
+Bill Pugh Singleton Implementation: Prior to Java5, memory model had a lot of issues and above methods caused failure in certain scenarios in multithreaded environment. So, Bill Pugh suggested a concept of inner static classes to use for singleton.
+// Java code for Bill Pugh Singleton Implementaion 
+public class GFG 
+{ 
+
+private GFG() 
+{ 
+	// private constructor 
+} 
+
+// Inner class to provide instance of class 
+private static class BillPughSingleton 
+{ 
+	private static final GFG INSTANCE = new GFG(); 
+} 
+
+public static GFG getInstance() 
+{ 
+	return BillPughSingleton.INSTANCE; 
+} 
+}
+
 
 ## Operators
 
@@ -779,6 +998,10 @@ public class main{
 }
 ```
 
+
+
+
+
 ### Operators
 
 Operator Precedence
@@ -819,6 +1042,74 @@ Rank Operator Operation Associativity
 *=, /=, %=, +=, ‐=,
 <<=, >>=, >>>=, &=, |=
 Compound assignment
+
+## RegEx -Java Style
+
+[Doc on Matcher](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/regex/Matcher.html)
+
+No.	Character Class	Description
+[abc]	a, b, or c (simple class)
+[^abc]	Any character except a, b, or c (negation)
+[a-zA-Z]	a through z or A through Z, inclusive (range)
+[a-d[m-p]]	a through d, or m through p: [a-dm-p] (union)
+[a-z&&[def]]	d, e, or f (intersection)
+[a-z&&[^bc]]	a through z, except for b and c: [ad-z] (subtraction)
+[a-z&&[^m-p]]	a through z, and not m through p: [a-lq-z](subtraction)
+
+
+Regex	Description
+X?	X occurs once or not at all
+X+	X occurs once or more times
+X*	X occurs zero or more times
+X{n}	X occurs n times only
+X{n,}	X occurs n or more times
+X{y,z}	X occurs at least y times but less than z times
+
+.	Any character (may or may not match terminator)
+\d	Any digits, short of [0-9]
+\D	Any non-digit, short for [^0-9]
+\s	Any whitespace character, short for [\t\n\x0B\f\r]
+\S	Any non-whitespace character, short for [^\s]
+\w	Any word character, short for [a-zA-Z_0-9]
+\W	Any non-word character, short for [^\w]
+\b	A word boundary
+\B	A non word boundary
+
+!!!: Its confusing using this method - below is actually a pretty good example.  You call a pattern and create it.  then you give it a pattern. (pattern.compile(xx)) then you can keep going anonymously (like 2) or break it out and make it.
+
+
+
+```java
+import java.util.regex.*;
+public class RegexExample1{
+    public static void main(String args[]){
+        //1st way
+        Pattern p = Pattern.compile(".s");//. represents single character
+        Matcher m = p.matcher("as");
+        boolean b = m.matches();
+
+        //2nd way
+        boolean b2=Pattern.compile(".s").matcher("as").matches();
+
+        //3rd way
+        boolean b3 = Pattern.matches(".s", "as");
+
+        System.out.println(b+" "+b2+" "+b3);
+
+    }
+}
+      Pattern pRegEx =
+      Pattern.compile("([A-Za-z])([\\s]*?)([\\W\\S])([\\s]*?)([\\d]{1,2})");
+#Method 1
+        if(pRegEx.matcher(inputString).matches()){
+            pRegEx.matcher(inputString).group(1)= x
+            pRegEx.matcher(inputString).group(4)= y
+
+        Matcher match =  pRegEx.matcher(inputString);
+        if(match.matches()){
+            match.group(1)= x
+            match.group(4)= y
+```
 
 ## Control Statements
 
@@ -882,22 +1173,22 @@ fAlpha = fUC || fLC;
  }
 ```
 ```Java
-// JAVA program to iterate over an array using for loop 
-import java.io.*; 
-class GFG { 
+// JAVA program to iterate over an array using for loop
+import java.io.*;
+class GFG {
 
-	public static void main(String args[]) throws IOException 
-	{ 
-		int ar[] = { 1, 2, 3, 4, 5, 6, 7, 8 }; 
-		int x; 
-		// iterating over an array 
-		for (int i : ar) { 
-			// accessing each element of array 
-			x = i; 
-			System.out.print(x + " "); 
-		} 
-	} 
-} 
+	public static void main(String args[]) throws IOException
+	{
+		int ar[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+		int x;
+		// iterating over an array
+		for (int i : ar) {
+			// accessing each element of array
+			x = i;
+			System.out.print(x + " ");
+		}
+	}
+}
 ```
 The same can be done for enums
 
@@ -909,62 +1200,133 @@ Enum class is present in java.lang package. It is the common base class of all J
         public abstract class Enum<E extends Enum>
         extends Object
         implements Comparable, Serializable
-        
+
 Enum class provides 10 useful methods. Most of them are overridden from Object class. These methods are declared as final in Enum class so the programmer cannot modify any of the enum constants.
 //TODO https://www.geeksforgeeks.org/java-lang-enum-class-java/ check and see if this is useful.  Just skimmed it.
 
 ```Java
-// Program that demonstrates iteration 
-// over enums using forEach() 
-import java.util.Arrays; 
-import java.util.EnumSet; 
-  
-public class GFG { 
+// Program that demonstrates iteration
+// over enums using forEach()
+import java.util.Arrays;
+import java.util.EnumSet;
+
+public class GFG {
     public enum seasons x
-    { 
-        Spring, 
-        Summer, 
-        Monsoon, 
-        Autumn, 
-        Winter 
+    {
+        Spring,
+        Summer,
+        Monsoon,
+        Autumn,
+        Winter
     }
 
-import java.util.EnumSet; 
+import java.util.EnumSet;
 
-    public void iterEnum()   
-    { 
-        // Convert enum to set and apply forEach() 
-        EnumSet.allOf(seasons.class) 
-            .forEach(season -> System.out.println(season)); 
+    public void iterEnum()
+    {
+        // Convert enum to set and apply forEach()
+        EnumSet.allOf(seasons.class)
+            .forEach(season -> System.out.println(season));
     }
 
-import java.util.Arrays; 
+import java.util.Arrays;
 
     public void iterSet()
     {
-        // Convert enum to set and apply forEach() 
-        Arrays.asList(seasons.values()).forEach(season -> 
-                                 System.out.println(season)); 
+        // Convert enum to set and apply forEach()
+        Arrays.asList(seasons.values()).forEach(season ->
+                                 System.out.println(season));
     }
 
-    public static void forEnums() 
-    { 
-        // iterate over enums using for loop 
-        for (seasons s : seasons.values()) { 
-            System.out.println(s); 
-        } 
-    }  
-import java.util.stream.Stream; 
-  
-    public void iterStream(){
-                // iteration over enum using java.util.stream 
-        Stream.of(seasons.values()).forEach(System.out::println); 
+    public static void forEnums()
+    {
+        // iterate over enums using for loop
+        for (seasons s : seasons.values()) {
+            System.out.println(s);
+        }
     }
-} 
+import java.util.stream.Stream;
+
+    public void iterStream(){
+                // iteration over enum using java.util.stream
+        Stream.of(seasons.values()).forEach(System.out::println);
+    }
+}
 ```
+
 
 Iterate Using java.util.stream: Iteration over enum can also be done using java.util.stream class. Create the stream of enum.values() using Stream.of() method by passing eum.values() at parameter to function.
 Below program illustrate the iteration over enum using java.util.stream:
+
+##### break 
+
+The break statement has two forms: labeled and unlabeled. 
+
+The unlabeled form is below in the `switch` statement.  
+
+You can also use an unlabeled break to terminate a `for`, `while`, or `do-while` loop
+
+       for (i = 0; i < arrayOfInts.length; i++) {
+            if (arrayOfInts[i] == searchfor) {
+                foundIt = true;
+                break;
+            }
+        }
+        
+The break statement, shown in boldface, terminates the for loop when that value is found. Control flow then transfers **to the statement after the for loop**. 
+
+ a labeled break terminates the outer for loop (labeled "search"):
+
+ ```java
+ 
+ search:
+    for (int a : arrayA){
+        for ( int b : arrayB ){
+            //codee
+            break search;
+        }
+    }
+```
+The `break` statement terminates the labeled statement; *it does not transfer the flow of control to the label*. Control flow is transferred to the *statement immediately following the labeled (terminated) statement*.
+
+##### continue
+
+The `continue` statement skips the current iteration of a `for`, `while` , or `do-while` loop. The unlabeled form skips to the end of the innermost loop's body and evaluates the boolean expression that controls the loop. 
+
+A _labeled_ `continue` statement skips the current iteration of an outer loop marked with the given label. 
+
+```java
+class ContinueWithLabelDemo {
+    public static void main(String[] args) {
+
+        String searchMe = "Look for a substring in me";
+        String substring = "sub";
+        boolean foundIt = false;
+
+        int max = searchMe.length() - 
+                  substring.length();
+
+    test:
+        for (int i = 0; i <= max; i++) {
+            int n = substring.length();
+            int j = i;
+            int k = 0;
+            while (n-- != 0) {
+                if (searchMe.charAt(j++) != substring.charAt(k++)) {
+                    continue test;
+                }
+            }
+            foundIt = true;
+                break test;
+        }
+        System.out.println(foundIt ? "Found it" : "Didn't find it");
+    }
+}
+```
+
+Without the label, only the inner loop would terminate.  Labeled- the other loop is able to be called to skip.
+
+
 
 #### Switch (Case)
 
@@ -997,7 +1359,7 @@ Below program illustrate the iteration over enum using java.util.stream:
         }
         return s;
     }
-    
+
     private String shortOrdinal(int i){
         i= i % 10;
         String s;
@@ -1072,9 +1434,9 @@ This throws `Exception SecurityException` if for some reason its not permitted.
 ```java
   private void  readAndWrite() {
     try {
-          new BufferedOutputStream( 
-              new FileOutputStream( 
-                  new File( 
+          new BufferedOutputStream(
+              new FileOutputStream(
+                  new File(
                       "Outfile64-new.txt"
                   )
               )
@@ -1082,9 +1444,9 @@ This throws `Exception SecurityException` if for some reason its not permitted.
               new BufferedInputStream(
                   new FileInputStream(
                       new File(
-                          FULLPATH + INTRO_FILE 
-                      ) 
-                  ) 
+                          FULLPATH + INTRO_FILE
+                      )
+                  )
               ).readAllBytes()  ) );
     }catch(Exception ignore){}
   }
@@ -1207,6 +1569,116 @@ System.Logger Levels vs. java.util.logging Levels.
 | WARNING | WARNING |
 | ERROR   | SEVERE  |
 | OFF     | OFF     |
+
+
+All are the following ways to declare a logger- the global logger.
+
+
+```Java
+private final static Logger LOGGER = Logger.getLogger( "" );
+private final static Logger LOGGER = Logger.getLogger( LogMan.class.getName() );
+private final static Logger LOGGER = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
+```
+
+```java
+public static void setup(){
+
+  //removes default settings for the root logger
+  LogManager.getLogManager().reset();
+  LOGGER.setLevel( Level.ALL );
+ 
+  
+  //Setup the console handler
+  ConsoleHandler ch = new ConsoleHandler();
+  ch.setLevel( LogMan.INIT_CONSOLE_LEVEL );
+  LOGGER.addHandler( ch );
+
+  
+  //Setup a file handler
+  try{
+    FileHandler fh = new FileHandler(LogMan.strLogFileName);
+    fh.setLevel( LogMan.INIT_FILE_LEVEL );
+    SimpleFormatter.format=  ;
+    LOGGER.addHandler( fh );
+    
+  }catch( IOException e ){
+    String absPath = Paths.get(LogMan.strLogFileName).toFile().getAbsolutePath();
+    LOGGER.severe( "IOException starting log file. " +
+        absPath + " is not accessible.");
+  }
+
+}
+```
+
+
+
+
+
+
+
+
+Format the given LogRecord.
+
+Format the given LogRecord.
+
+The formatting can be customized by specifying the format string in the [`java.util.logging.SimpleFormatter.format`](#formatting) property. The given `LogRecord` will be formatted as if by calling:
+
+```java
+   String.format(format, date, source, logger, level, message, thrown)
+```
+where the arguments are:
+
+1.  `format` - the format string specified in the `java.util.logging.SimpleFormatter.format` property or the default format.
+2.  `date` - a `ZonedDateTime` "class in java.time" object representing event time (LogRecord.html#getInstant()) of the log record in the `ZoneId.systemDefault()` (ZoneId.html#systemDefault()) system time zone.
+3.  `source` - a string representing the caller, if available; otherwise, the logger's name.
+4.  `logger` - the logger's name.
+5.  `level` - the log level.
+6.  `message` - the formatted log message returned from the `Formatter.formatMessage(LogRecord)` method. It uses `java.text` class in java.text formatting and does not use the `java.util.Formatter format` argument.
+6.  `thrown` - a string representing the [throwable](LogRecord.html#getThrown()) associated with the log record and its backtrace beginning with a newline character, if any; otherwise, an empty string.
+Some example formats:
+
+```java
+java.util.logging.SimpleFormatter.format="%4$s: %5$s [%1$tc]%n"
+```
+
+This prints 1 line with the log level `(4$)`, the log message `(5$)` and the timestamp `(1$)` in a square bracket.
+
+     WARNING: warning message [Tue Mar 22 13:11:31 PDT 2011]
+
+    
+```java.md
+java.util.logging.SimpleFormatter.format="%1$tc %2$s%n%4$s: %5$s%6$s%n"
+```
+This prints 2 lines where:
+- the first line includes the timestamp `(1$)` `%1$tc` 
+- the source `(2$)` `%2$s%`
+- the second line includes the log level `(4$)` `%n%4$s:`
+- the log message `(5$)` `%5$s` 
+- followed with the throwable and its backtrace `(6$)` `%6$s%n`, if any:
+
+        Tue Mar 22 13:11:31 PDT 2011 MyClass fatal
+        SEVERE: several message with an exception
+        java.lang.IllegalArgumentException: invalid argument
+                at MyClass.mash(MyClass.java:9)
+                at MyClass.crunch(MyClass.java:6)
+                at MyClass.main(MyClass.java:3)
+     
+```java
+java.util.logging.SimpleFormatter.format="%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%n"
+```
+
+
+This prints 2 lines similar to the example above with a different date/time formatting and does not print the throwable and its backtrace:
+
+     Mar 22, 2011 1:11:31 PM MyClass fatal
+     SEVERE: several message with an exception
+     
+java.util.logging.SimpleFormatter.format="%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS.%1$tN %1$Tp %2$s%n%4$s: %5$s%6$s%n"
+Since JDK 9, java.util.logging uses java.time to create more precise time stamps. The format above can be used to add a .%1$tN to the date/time formatting so that nanoseconds will also be printed:
+
+     Feb 06, 2015 5:33:10.279216000 PM example.Main main
+     INFO: This is a test
+
 ## Exceptions
 
 ### Class location
@@ -1364,7 +1836,7 @@ Detail on each below-
 - NoninvertibleTransformException
 - NotBoundException
 - NotOwnerException
-- ParseException
+- ParseException #takes (String, int) as message, parse location
 - ParserConfigurationException
 - PrinterException
 - PrintException
@@ -1673,6 +2145,423 @@ class stackNode() {
 
 Remove the '()' after class- `class stackNode{`
 
+
+## Recursion
+
+Recursive example 1
+
+```java
+
+import java.util.Scanner;
+
+public class FibonacciSequence {
+   /* Output the Fibonacci sequence step-by-step.
+      Fibonacci sequence starts as:
+      0 1 1 2 3 5 8 13 21 ... in which the first
+      two numbers are 0 and 1 and each additional
+      number is the sum of the previous two numbers
+   */
+   public static void computeFibonacci(int fibNum1, int fibNum2, int runCnt) {
+      System.out.println(fibNum1 + " + " + fibNum2 + " = " +
+                         (fibNum1 + fibNum2));
+
+      if (runCnt <= 1) { // Base case: Ran for user specified
+                         // number of steps, do nothing
+      }
+      else {             // Recursive case: compute next value
+         computeFibonacci(fibNum2, fibNum1 + fibNum2, runCnt - 1);
+      }
+   }
+
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      int runFor;     // User specified number of values computed
+
+      // Output program description
+      System.out.println("This program outputs the\n" +
+                         "Fibonacci sequence step-by-step,\n" +
+                         "starting after the first 0 and 1.\n");
+
+      // Prompt user for number of values to compute
+      System.out.print("How many steps would you like? ");
+      runFor = scnr.nextInt();
+
+      // Output first two Fibonacci values, call recursive function
+      System.out.println("0\n1");
+      computeFibonacci(0, 1, runFor);
+   }
+}
+```
+
+andther example of the same:
+
+```java
+
+public class FibonacciSequence {
+   public static int computeFibonacci(int N) {
+
+      //System.out.println("FIXME: Complete this method.");
+      //System.out.println("Currently just returns 0.");
+      if (N == 1 || N == 0){
+         return N;
+      }
+      //f(N) = f(N-1) + f(N-2)
+      //0 1 2 3 5 8 11
+      if (N > 1){
+         return (computeFibonacci(N-1) + computeFibonacci(N-2));
+      }
+      return 0;
+   }
+
+   public static void main(String[] args) {
+      int N;      // F_N, starts at 0
+      for (int i = 0; i<=10; i++){
+         N=i;
+      System.out.print("F_" + N + " is " + computeFibonacci(N) + "\t--");
+      if (i%4==0) System.out.println();
+      }
+   }
+}
+```
+
+Euclids Greatest Common Division Eq.
+
+```java
+import java.util.Scanner;
+
+public class GCDCalc {
+   /* Determine the greatest common divisor
+      of two numbers, e.g. GCD(8, 12) = 4
+   */
+   public static int gcdCalculator(int inNum1, int inNum2) {
+      int gcdVal;     // Holds GCD results
+
+      if (inNum1 == inNum2) {   // Base case: Numbers are equal
+         gcdVal = inNum1;       // Return value
+      }
+      else {                    // Recursive case: subtract smaller from larger
+         if (inNum1 > inNum2) { // Call function with new values
+            gcdVal = gcdCalculator(inNum1 - inNum2, inNum2);
+         }
+         else { // n1 is smaller
+            gcdVal = gcdCalculator(inNum1, inNum2 - inNum1);
+         }
+      }
+
+      return gcdVal;
+   }
+
+   public static void main (String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      int gcdInput1;     // First input to GCD calc
+      int gcdInput2;     // Second input to GCD calc
+      int gcdOutput;     // Result of GCD
+
+      // Print program function
+      System.out.println("This program outputs the greatest \n" +
+                         "common divisor of two numbers.");
+
+      // Prompt user for input
+      System.out.print("Enter first number: ");
+      gcdInput1 = scnr.nextInt();
+
+      System.out.print("Enter second number: ");
+      gcdInput2 = scnr.nextInt();
+
+      // Check user values are > 1, call recursive GCD function
+      if ((gcdInput1 < 1) || (gcdInput2 < 1)) {
+         System.out.println("Note: Neither value can be below 1.");
+      }
+      else {
+         gcdOutput = gcdCalculator(gcdInput1, gcdInput2);
+         System.out.println("Greatest common divisor = " +  gcdOutput);
+      }
+   }
+}
+```
+
+
+power Val
+
+```java
+public class ExponentMethod {
+   public static int raiseToPower(int baseVal, int exponentVal) {
+      int resultVal;
+      if (exponentVal == 0) {
+         resultVal = 1;
+      }
+      else {
+         resultVal = baseVal * raiseToPower(baseVal, exponentVal-1);
+      }
+      return resultVal;
+   }
+
+   public static void main (String [] args) {
+      int userBase;
+      int userExponent;
+      userBase = 4;
+      userExponent = 2;
+      System.out.println(userBase + "^" + userExponent + " = "
+        + raiseToPower(userBase, userExponent));
+   }
+}
+```
+
+
+Searching
+
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class NameFinder {
+   /* Finds index of string in vector of strings, else -1.
+      Searches only with index range low to high
+      Note: Upper/lower case characters matter
+   */
+   public static int findMatch(ArrayList<String> stringList, String itemMatch,
+                               int lowVal, int highVal, String indentAmt) { // indentAmt used for print debug
+      int midVal;        // Midpoint of low and high values
+      int itemPos;       // Position where item found, -1 if not found
+      int rangeSize;     // Remaining range of values to search for match
+
+      System.out.println(indentAmt + "Find() range " + lowVal + " " + highVal);
+      rangeSize = (highVal - lowVal) + 1;
+      midVal = (highVal + lowVal) / 2;
+
+      if (itemMatch.equals(stringList.get(midVal))) {           // Base case 1: item found at midVal position
+         System.out.println(indentAmt + "Found person.");
+         itemPos = midVal;
+      }
+      else if (rangeSize == 1) {                                // Base case 2: match not found
+         System.out.println(indentAmt + "Person not found.");
+         itemPos = -1;
+      }
+      else {                                                    // Recursive case: search lower or upper half
+         if (itemMatch.compareTo(stringList.get(midVal)) < 0) { // Search lower half, recursive call
+            System.out.println(indentAmt + "Searching lower half.");
+            itemPos = findMatch(stringList, itemMatch, lowVal, midVal, indentAmt + "   ");
+         }
+         else {                                                 // Search upper half, recursive call
+            System.out.println(indentAmt + "Searching upper half.");
+            itemPos = findMatch(stringList, itemMatch, midVal + 1, highVal, indentAmt + "   ");
+         }
+      }
+
+      System.out.println(indentAmt + "Returning pos = " + itemPos + ".");
+      return itemPos;
+   }
+
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      ArrayList<String> attendeesList = new ArrayList<String>(); // List of attendees
+      String attendeeName;                                       // Name of attendee to match
+      int matchPos;                                              // Matched position in attendee list
+
+      // Omitting part of program that adds attendees
+      // Instead, we insert some sample attendees in sorted order
+      attendeesList.add("Adams, Mary");
+      attendeesList.add("Carver, Michael");
+      attendeesList.add("Domer, Hugo");
+      attendeesList.add("Fredericks, Carlos");
+      attendeesList.add("Li, Jie");
+
+      // Find "Aaron, Joe"
+      attendeeName = "Aaron, Joe";
+
+      // Call function to match name, output results
+      matchPos = findMatch(attendeesList, attendeeName, 0, attendeesList.size() - 1, "   ");
+      if (matchPos >= 0) {
+         System.out.println("Found at position " + matchPos + ".");
+      }
+      else {
+         System.out.println("Not found.");
+      }
+   }
+}
+```
+
+
+Generics
+
+```java
+
+import java.util.ArrayList;
+
+public class ShoppingSpreeCombinations {
+   public static final int MAX_SHOPPING_BAG_SIZE = 3; // Max number of items in shopping bag
+
+   /* Output every combination of items that fit
+      in a shopping bag. Each recursive call moves
+      one item into the shopping bag.
+   */
+   public static void shoppingBagCombinations(ArrayList<GroceryItem> currBag,          // Bag contents
+                                              ArrayList<GroceryItem> remainingItems) { // Available items
+      int bagValue;               // Cost of items in shopping bag
+      GroceryItem tmpGroceryItem; // Grocery item to add to bag
+      int i;                      // Loop index
+
+      if (currBag.size() == MAX_SHOPPING_BAG_SIZE) {   // Base case: Shopping bag full
+         bagValue = 0;
+         for (i = 0; i < currBag.size(); ++i) {
+            bagValue += currBag.get(i).priceDollars;
+            System.out.print(currBag.get(i).itemName + "  ");
+         }
+         System.out.println("= $" + bagValue);
+      }
+      else {                                           // Recursive case: move one
+         for (i = 0; i < remainingItems.size(); ++i) { // item to bag
+            // Move item into bag
+            tmpGroceryItem = remainingItems.get(i);
+            remainingItems.remove(i);
+            currBag.add(tmpGroceryItem);
+
+            shoppingBagCombinations(currBag, remainingItems);
+
+            // Take item out of bag
+            remainingItems.add(i, tmpGroceryItem);
+            currBag.remove(currBag.size() - 1);
+         }
+      }
+   }
+
+   public static void main(String[] args) {
+      ArrayList<GroceryItem> possibleItems = new ArrayList<GroceryItem>(); // Possible shopping items
+      ArrayList<GroceryItem> shoppingBag = new ArrayList<GroceryItem>();   // Current shopping bag
+      GroceryItem tmpGroceryItem;                                          // Temp item
+
+      // Populate grocery with different items
+      tmpGroceryItem = new GroceryItem();
+      tmpGroceryItem.itemName = "Milk";
+      tmpGroceryItem.priceDollars = 2;
+      possibleItems.add(tmpGroceryItem);
+
+      tmpGroceryItem = new GroceryItem();
+      tmpGroceryItem.itemName = "Belt";
+      tmpGroceryItem.priceDollars = 24;
+      possibleItems.add(tmpGroceryItem);
+
+      tmpGroceryItem = new GroceryItem();
+      tmpGroceryItem.itemName = "Toys";
+      tmpGroceryItem.priceDollars = 19;
+      possibleItems.add(tmpGroceryItem);
+
+      tmpGroceryItem = new GroceryItem();
+      tmpGroceryItem.itemName = "Cups";
+      tmpGroceryItem.priceDollars = 12;
+      possibleItems.add(tmpGroceryItem);
+
+      // Try different combinations of three items
+      shoppingBagCombinations(shoppingBag, possibleItems);
+   }
+}
+
+//-------------------------file
+public class GroceryItem {
+   public String itemName;  // Name of item
+   public int priceDollars; // Price of item
+}
+
+```
+
+
+Traveling Salesman Problem
+
+```java
+import java.util.ArrayList;
+
+public class TravelingSalesmanPaths {
+   public static final int NUM_CITIES = 3;                                // Number of cities
+   public static int[][] cityDistances = new int[NUM_CITIES][NUM_CITIES]; // Distance between cities
+   public static String[] cityNames = new String[NUM_CITIES];             // City names
+
+   /* Output every possible travel path.
+      Each recursive call moves to a new city.
+   */
+   public static void travelPaths(ArrayList<Integer> currPath,
+                                  ArrayList<Integer> needToVisit) {
+      int totalDist;     // Total distance given current path
+      int tmpCity;       // Next city distance
+      int i;             // Loop index
+
+      if ( currPath.size() == NUM_CITIES ) { // Base case: Visited all cities
+         totalDist = 0;                      // Return total path distance
+         for (i = 0; i < currPath.size(); ++i) {
+            System.out.print(cityNames[currPath.get(i)] + "   ");
+
+            if (i > 0) {
+               totalDist += cityDistances[currPath.get(i - 1)][currPath.get(i)];
+            }
+         }
+
+         System.out.println("= " + totalDist);
+      }
+      else {                                 // Recursive case: pick next city
+         for (i = 0; i < needToVisit.size(); ++i) {
+            // add city to travel path
+            tmpCity = needToVisit.get(i);
+            needToVisit.remove(i);
+            currPath.add(tmpCity);
+
+            travelPaths(currPath, needToVisit);
+
+            // remove city from travel path
+            needToVisit.add(i, tmpCity);
+            currPath.remove(currPath.size() - 1);
+         }
+      }
+   }
+
+   public static void main (String[] args) {
+      ArrayList<Integer> needToVisit = new ArrayList<Integer>(); // Cities left to visit
+      ArrayList<Integer> currPath = new ArrayList<Integer>();    // Current path traveled
+
+      // Initialize distances array
+      cityDistances[0][0] = 0;
+      cityDistances[0][1] = 960;  // Boston-Chicago
+      cityDistances[0][2] = 2960; // Boston-Los Angeles
+      cityDistances[1][0] = 960;  // Chicago-Boston
+      cityDistances[1][1] = 0;
+      cityDistances[1][2] = 2011; // Chicago-Los Angeles
+      cityDistances[2][0] = 2960; // Los Angeles-Boston
+      cityDistances[2][1] = 2011; // Los Angeles-Chicago
+      cityDistances[2][2] = 0;
+
+      cityNames[0] = "Boston";
+      cityNames[1] = "Chicago";
+      cityNames[2] = "Los Angeles";
+
+      needToVisit.add(new Integer(0)); // Boston
+      needToVisit.add(new Integer(1)); // Chicago
+      needToVisit.add(new Integer(2)); // Los Angeles
+
+      // Explore different paths
+      travelPaths(currPath, needToVisit);
+   }
+}
+ ```
+
+ binary search
+
+ When the low and high indices are equal, the list has 1 item to search. If the 1 item doesn't match the key, then BinarySearch makes a recursive call with a low argument greater than the high argument.
+
+ ```java
+
+ BinarySearch(numbers, low, high, key) {
+  if (low > high)
+     return -1
+
+  mid = (low + high) / 2
+  if (numbers[mid] < key) {
+     return BinarySearch(numbers, mid + 1, high, key)
+  }
+  else if (numbers[mid] > key) {
+     return BinarySearch(numbers, low, mid - 1, key)
+  }
+  return mid
+}
+```
+
 ## GUI
 
 ### Text Based- LANTERNA
@@ -1719,14 +2608,14 @@ Start with JShell.  Is in JDK 9+, `jshell -v` starts jshell in *verbose* mode.
   - truncation
 - `/types`
 - `/vars`
-- `/!`           
-- `/-<n>` return n-th previous snippet         
-- `/<id>`               
-- `/drop`               
-- `context`      
-- `id`           
-- `intro`        
-- `rerun`        
+- `/!`
+- `/-<n>` return n-th previous snippet
+- `/<id>`
+- `/drop`
+- `context`
+- `id`
+- `intro`
+- `rerun`
 - `shortcuts`
 
 [[Tab]] works and does a lot for completion, /[[Tab]] shows all the commands.  `/list` [[Tab]] shows the options associated `-all`, `-history`, and `-start`.  Pressing tab again gives synopsis.
@@ -1769,7 +2658,7 @@ x ==> null
 ```
 
 
-#### Editing 
+#### Editing
 
 To edit all existing snippets at once in an editor, use `/edit` without an option. To edit a specific snippet in an editor, use the `/edit` command with the snippet name or ID. Use the `/list` command to get the snippet IDs. The following example opens an editor to edit the snippet named volume, which was defined in Forward References:  `jshell> /edit volume`
 You can also enter new snippets in the editor. When you save in the editor, any snippet that is changed or new is entered into the JShell session. Feedback from the snippets is shown in the JShell window, however, no JShell prompt is shown. You can’t enter commands or snippets in the JShell window until the editor is closed.
@@ -1824,7 +2713,7 @@ If you don’t specify an editor, then the following environment variables are c
 
 ### Set Path Vars
 
-Settings ([[Alt]] + [[F7]]) and then set up Scratch Dir and Console Dir- 
+Settings ([[Alt]] + [[F7]]) and then set up Scratch Dir and Console Dir-
 
 `C:\Users\andyt\.IntelliJIdea2018.2\config\scratches`
 `C:\Users\andyt\.IntelliJIdea2018.2\config\consoles\jshell\`

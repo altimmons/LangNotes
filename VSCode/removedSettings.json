@@ -1,0 +1,97 @@
+{
+        "replacerules.rules": [
+        {
+
+            "name":"Tab Separated Definitions",
+            "find": "^(.+?)(\\t)(.+?)$",
+            "replace": "`$1` - $3",
+            "flags":"",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },
+        {
+            "name":"Line Separated to Code",
+            "find": "(^[\\b\\w., ]+?)([\\n]|[\\t\\n])(^.+?$)",
+            "replace": "- `$1` - $3",
+            "flags":"m",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },{
+            "name":"Line Separated to Bold",
+            "find": "(^[\\b\\w., ]+?)([\\n])(^.+?$)",
+            "replace": "- **$1** - $3",
+            "flags":"m",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },{
+            "name":"Line Separated to UL",
+            "find": " ^(.*?)(\\t\\n)(.*?$)(\\n) *",
+            "replace": "- _$1_ - $3",
+            "flags":"m",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },{
+            "name":"Tabular Data to Code",
+            "find": "^()(\\S+?)(([ ]{3,}|)\\t*([ ]{3,}|))(\\b.*)$",
+            "replace": "$1- `$2` - $4",
+            "flags":"m",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },{
+            "name":"Line Separated to UL",
+            "find": "(\\S*?)(\\t)(.*)",
+            "replace": "$1- `$2` - $4",
+            "flags":"m",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        },{
+            "name":"Line and Colon Separated Definitions",
+            "find": "(^[a-z.]+?)(:)([\\n^.*])",
+            "replace": "`$1` - $3",
+            "flags":"",
+            "languages":[
+                "markdown",
+                "text",
+                "javascript",
+                "python"
+            ]
+        } 
+        
+    ],
+
+    "textMateRules": [
+        {
+          "name": "Some Name",
+          "scope":"markup.inline.raw",
+          "settings": {
+            "foreground": "#fd8726",
+            
+            "fontStyle": "bold"
+          }
+        }
+      ]
+}

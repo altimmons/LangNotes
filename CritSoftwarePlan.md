@@ -30,6 +30,9 @@
   - Any
 - Windows Network Monitor 3
   This holds the command line install instructions for the files beneath root, with the idea of creating a common repo that has all the customizations I like in a single package to be run on a new machine.
+Miktex
+MingGW
+
 
 ### Install AHK
 
@@ -186,6 +189,86 @@ wsltty 1.9.0
 yarn 1.7.0
 ```
 
+```Work Computer redo
+Chocolatey v0.10.11
+7zip 19.0
+7zip.commandline 16.02.0.20170209
+7zip.install 19.0
+7zip.portable 18.6
+adobereader 2019.010.20098
+autohotkey 1.1.30.00
+autohotkey-compiler 1.0
+autohotkey.install 1.1.30.01
+autohotkey.portable 1.1.30.01
+caffeine 1.64.0.20180720
+chocolatey 0.10.11
+chocolatey-core.extension 1.3.3
+chocolatey-misc-helpers.extension 0.0.3
+chocolatey-windowsupdate.extension 1.0.3
+chocolateygui 0.16.0
+chromium 71.0.3578.98
+cutepdf 3.2
+DotNet4.5.2 4.5.2.20140902
+favbinedit 1.2.3
+fiddler 5.0.20182.28034
+freecommander 2009.2.2
+Ghostscript.app 9.26
+git.install 2.20.1
+greenshot 1.2.10.6
+hex2dec 1.10
+hxd 2.2.1.0
+io-ninja 3.10.2
+jdk11 11.0.1
+jdk8 8.0.191
+jre8 8.0.201
+k-litecodecpackfull 14.6.0
+KB2919355 1.0.20160915
+KB2919442 1.0.20160915
+KB2999226 1.0.20181019
+KB3033929 1.0.4
+KB3035131 1.0.2
+kdiff3 0.9.98
+lastpass 4.19.0
+logparser 2.2.0.1
+logparserstudio 2.2
+miktex.install 2.9.6813
+mingw 8.1.0
+msys2 20180531.0.0
+ndm 1.2.0
+nodejs.install 11.6.0
+nuget.commandline 4.9.2
+NugetPackageExplorer 5.0.132
+osquery 3.3.1
+pandoc 2.5
+PDFCreator 3.4.0
+pdfsam 4.0.1
+PDFXchangeEditor 7.0.328.2
+PDFXChangeViewer 2.5.317.20161116
+pip 1.2.0
+processhacker.install 2.39
+python 3.7.2
+python3 3.7.2
+R.Studio 1.1.463
+rainmeter 4.2.0.3111
+rapidee 9.2.937
+scenebuilder9 9.0.1
+setpoint 6.69.114
+spacesniffer 1.3.0.2
+sysinternals 2018.12.27
+tccle 14.0.0.920161009
+ultrasearch.portable 2.2
+vcredist140 14.16.27012.6
+vcredist2008 9.0.30729.6161
+vlc 3.0.6
+vscode 1.30.1
+windirstat 1.1.2.20161210
+windowserrorlookuptool 3.0.7
+winlogbeat 6.5.4
+winrar 5.61
+wsltty 1.9.5
+yarn 1.12.3
+```
+
 _Virtual Machine_
 
 ```
@@ -242,12 +325,12 @@ Cmder (includes)
 - ConEmu
 - Clink
 - TCC/LE
-- 
+-
 
 
 #### Config
 
-All config files must be in this folder. If there is no option to set this folder 
+All config files must be in this folder. If there is no option to set this folder
 directly, it has to be hardlinked.
 
 * `user-aliases.cmd`: aliases in cmd; called from vendor\init.bat; autocreated from

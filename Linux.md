@@ -90,7 +90,7 @@ antigen apply
 
 ## Setup and Running
 
-...nothing here
+Pressing [[escape]]
 
 `Alt-2` gets out of the boot screen and gets to a prompt.  `Alt-1` returns.
 
@@ -99,6 +99,98 @@ antigen apply
 WSL - Windows Subsystem for Linux
 
 alt 2639
+
+## File Structure
+
+- `/` - **Root**
+   - `bin` - **Binary** - biinaries are stored here, like *ls* and other things a regular single user might use.
+   - `sbin` - System Binaries -- binary tools a system administrator might use.
+   - `boot` - boot related files
+   - `dev` - devices- devoces are mounted here. along with their drivers.
+      - `sda` 
+      - `sdb` ... etc- hard disk mounting.
+   - `etc` - Et cetera - "edit to configure" mneumonic- system wide settings- not per user settings
+   - `home` 
+   - `lib`
+      -`lib32`, `lib64` - libraries required for bin
+   - `media` - Media directory, used to be called `mnt`  or in general most OS'es manage media for you by mounting devices (typically removable devices) while the user can use mount.  Things like USB sticks, external drives are found in `media` or `mnt`;
+   - `opt` - contains manually installed software from vendors resides.  Usually user installed software doesnt go here.  But User created software can go here.
+   - `proc` - process - Psudofiles that contain info on system processes or resources. Each Process has its own "pseudofile".  These are not actual files.  CPU information is in here.
+   - `root` - Root User Home Folder- not a typical user directory.  Files stored here require root access.  This was to make sure that if user directories were on another directory, it wouldnt be lost.
+   - `run` - variable- TempFS file system- like a temp directory.  It is stored in Ram and lost when the computer reboots.
+   - `snap` -Snap Package directory- where Ubuntu stores the Snap packages.
+   - `srv` - Service Directory- usually empty, but if computer is a webserver- then website or FTP files are stored here.
+   - `sys` - System Files- contains Kernal pseudofiles.  It is not permanent.  Allows very low level access to kernal- for things like updating Video Card Settings.
+   - `tmp` - Temporary- this is for applications to use during a session- things like temproray copies of a Document in progress.  A crashed program may lose access to the folder and it can begin to fill.  Might need to be cleared by Root user in Single User Mode.
+   - `usr` - User or Unix System Resources - holds applications installed by the user.  These must be considered  non-essential.
+      - `bin` - binaries
+      - `sbin`- administration binaries
+      - `lib` - libraries., also `lib32` and `lib64`
+      - `src` Source - where programs installed from source are stored.
+      - `local` - to indicate machine local users--
+         - `bin` - binaries
+         - `sbin`- administration binaries
+         - `lib` - libraries., also `lib32` and `lib64`
+         - `src` Source - where programs installed from source are stored.
+      - `share` - The site for larger program installs.
+         - `bin` - binaries
+         - `sbin`- administration binaries
+         - `lib` - libraries., also `lib32` and `lib64`
+         - `src` Source - where programs installed from source are stored.
+         - `local` - to indicate machine local users--
+            - `bin` - binaries
+            - `sbin`- administration binaries
+            - `lib` - libraries., also `lib32` and `lib64`
+            - `src` Source - where programs installed from source are stored.
+   - `var` - Variable -this folder contains files that are expected to grow in size
+      - `log` - contains log files
+      - `crash` contains information on crashes.
+      - `spool` contains printer documents
+      - `cache` contains cached folders
+   - `home` - links variably to each users home directory.
+      - `.cache` - stores program cache
+      - `.config` - Application (user specific) configuration settings.  Desktop settings, etc.
+      - `.themes` - Desktop Themes.
+      - `.*` - hidden files for programs.
+    
+
+## File permissions
+
+Basically its {`d`/`-`}(`u`ser)`rwx`(`g`roup)`rwx`( `o`thers)`rwx` w/ `-` turning it off.
+Access Levels
+- None (-)
+- read (r)
+- write (w)
+- execute (x)
+
+You can see these by using the ls -l Unix command.
+
+0123456789
+
+`drwxr-xr-x`
+
+`-rwxr-xr-x`
+
+`-rwxrwxrwx`
+
+The first character represents the entry type.  The entry type for a directory is 'd'.  
+
+All files have a hyphen (-) as their entry type.  The remaining nine characters indicate the permissions themselves in 3 groups of three.  
+
+1 through 3 show user (u) permissions;
+4 through 6 are group (g) permissions;
+7 through 9 are other (o) permissions (users who are not the owner and are not members of the group own the file/directory, a.k.a. "the world"). 
+
+can also take away the read and write permissions by doing the following:
+
+chmod o-rw /home/yourusername
+
+### CHMOD
+
+to give the world permission to read and write to your home directory, then you would use the command below:
+
+chmod o+rw /home/youruserna
+
 
 ## Path
 
@@ -148,7 +240,7 @@ A collection of short (1 liner or so) quick bash commands
   `ssh -L 3337:127.0.0.1:6379 root@emkc.org -N`
   `bg`
   `redis-cli -p 3337`
-  
+
 Not sure I understand this fully. SSH is opened on 3337 to connect to 127...via 6379, followed by a login?I think the redis-cli is to demonstrate its success.
 
 -quickly create folders
@@ -282,21 +374,21 @@ Less is used to view man,  its like linux notepad.
 [Less Doc](https://linux.die.net/man/1/less)
 [SS64 Brief Notes](https://ss64.com/bash/less.html)
 
-| frwrd/down/next | back/up/prev |     | action                                                           |
-| --------------- | ------------ | --- | ---------------------------------------------------------------- |
-| g   <           | G   >        |     | TO beginning or End                                              |
-| f {space}       | b            | *   | move one window                                                  |
-| z               | w            | **  | move (N1) lines (Nominally 1 window), #z sets N1                 |
-| d               | u            | **  | move (N2) lines (Nominally 1/2 window), #d/u sets N2             |
-| e j {Enter}     | y k          | *   | move one *(N) line                                               |
-| {R arrow}       | {L arrow}    |     | Scroll Sideways                                                  |
-| /pattern        | ?pattern     |     | Start a search                                                   |
-| n               | N            |     | Go to the next found item                                        |
-| M{letter}       | m{letter}    |     | Mark position (A...B...C.etc.) at bottom / top of page. ***      |
-| '$              | '^           |     | (Mark syntax) Go to End/Beginn.                                  |
-| t               | T            | *   | Go to the next (*Nth) Tag                                        |
-| {  (  [         | ]  )  }      | *   | Find the next (*Nth) open/close bracket. Search is rev for Open. |
-| :n              | :p           | *   | Examine the next (*Nth) file from command line ****              |
+| frwrd/down/next | back/up/prev |    | action                                                           |
+|-----------------|--------------|----|------------------------------------------------------------------|
+| g   <           | G   >        |    | TO beginning or End                                              |
+| f {space}       | b            | *  | move one window                                                  |
+| z               | w            | ** | move (N1) lines (Nominally 1 window), #z sets N1                 |
+| d               | u            | ** | move (N2) lines (Nominally 1/2 window), #d/u sets N2             |
+| e j {Enter}     | y k          | *  | move one *(N) line                                               |
+| {R arrow}       | {L arrow}    |    | Scroll Sideways                                                  |
+| /pattern        | ?pattern     |    | Start a search                                                   |
+| n               | N            |    | Go to the next found item                                        |
+| M{letter}       | m{letter}    |    | Mark position (A...B...C.etc.) at bottom / top of page. ***      |
+| '$              | '^           |    | (Mark syntax) Go to End/Beginn.                                  |
+| t               | T            | *  | Go to the next (*Nth) Tag                                        |
+| {  (  [         | ]  )  }      | *  | Find the next (*Nth) open/close bracket. Search is rev for Open. |
+| :n              | :p           | *  | Examine the next (*Nth) file from command line ****              |
 
 
 (*) the command can be preceded by an integer to repeat the command N times.  E.g. `5e` moves forward 5 lines.
@@ -312,7 +404,7 @@ Upper case and lower case are distinct.  Some are predefined.
 
 `F` - to the end, `[Esc]F` advances towards end but stops if search string is found. You can also search adjacent files.  See help.
 
-supposedly typing /pattern or ?pattern kicks off a search but it didnt work.  Can be (Needs to be?) preceeded by `!` Non, `*` search multiple files `@` start at first (/) or last (?) file, `[Ctrl]K` highlight only, `[Ctrl]R` Dont use regular expressions. 
+supposedly typing /pattern or ?pattern kicks off a search but it didnt work.  Can be (Needs to be?) preceeded by `!` Non, `*` search multiple files `@` start at first (/) or last (?) file, `[Ctrl]K` highlight only, `[Ctrl]R` Dont use regular expressions.
 `/pattern` - Search forward, `?pattern` search back, `n` - next find, `N` Previous.  `&pattern` to show only matching lines.
 
 Maybe its not working bc it expects a regexp.
@@ -352,7 +444,7 @@ Most options can be changed either on the command line, or from within less by u
 Options can be given in one of two forms: either a single character preceded by a -, or a name preceeded by --.
 
 | Short             | Long                                      | Breif Description                                                                             |
-| ----------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+|-------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------|
 |                   | FINDING                                   |                                                                                               |
 | -a                | --search-skip-screen                      | Forward search, skips current screen.                                                         |
 | -g                | --hilite-search                           | Highlight only last match for searches.                                                       |
@@ -441,7 +533,7 @@ Display output one screen at a time, less provides more emulation and extensive 
 - `RETURN`      Display next k lines of text.  Defaults to 1. Argument becomes new default.
 - `d`, `^D`     Scroll k lines.  Default is current scroll size, initially 1.   Argument becomes new default.
 - `q`, `Q`,
-  - `INTERRUPT` Exits the more command.  
+  - `INTERRUPT` Exits the more command.
 - `s`           Skip forward k lines of text.  Defaults to 1.
 - `f`           Skip forward k screenfuls of text.  Defaults to 1.
 - `b`, `^B`     Skip backwards k screenfuls of text.  Defaults to 1.
@@ -854,7 +946,7 @@ Use:
 wget https://raw.githubusercontent.com/KittyKatt/screenFetch/master/screenfetch-dev
 chmod +x screenfetch-dev
 ./screenfetch-dev
-#if the old one (above) was installed- 
+#if the old one (above) was installed-
 sudo rm /usr/bin/screenfetch
 remname ./screenfetch-dev screenfetch
 sudo mv screenfetch /user/bin
@@ -957,11 +1049,11 @@ Enclosing characters in single quotes **(`'`) preserves the literal value of eac
 
 Enclosing characters in double quotes (`"`) **preserves the literal value of all characters within the quotes, with the exception of `$`, `` ` ``(backtick), `\`, and, when history expansion is enabled, `!`.**
 
- When the shell is in POSIX mode, the `!` has no special meaning within double quotes, even when history expansion is enabled. The characters `$` and `` ` `` retain their special meaning within double quotes (see Shell Expansions). The backslash retains its special meaning only when followed by one of the following characters: `$`, `` ` ``, `"`, `\`, or newline. Within double quotes, backslashes that are followed by one of these characters are removed. Backslashes preceding characters without a special meaning are left unmodified. 
+ When the shell is in POSIX mode, the `!` has no special meaning within double quotes, even when history expansion is enabled. The characters `$` and `` ` `` retain their special meaning within double quotes (see Shell Expansions). The backslash retains its special meaning only when followed by one of the following characters: `$`, `` ` ``, `"`, `\`, or newline. Within double quotes, backslashes that are followed by one of these characters are removed. Backslashes preceding characters without a special meaning are left unmodified.
 
 A double quote may be quoted within double quotes by preceding it with a backslash. If enabled, history expansion will be performed unless an `!` appearing in double quotes is escaped using a backslash. The backslash preceding the `!` is not removed.
 
-The special parameters `*` and `@` have special meaning when in double quotes 
+The special parameters `*` and `@` have special meaning when in double quotes
 
 #### ANSI C Quoting
 
@@ -1429,7 +1521,56 @@ There is no rename command...?  rename is a program in Apt that is vastly more c
 
 Then `!:1` references the arguments from the input.  Add to profile any aliases.
 
+#### yes
 
+[Source of Yes Info](https://linuxhint.com/bash_yes_command/)
+
+Typing `yes` causes 'y' to be printed over and over.
+
+This is intentional.  Any word after `yes` is repeated infinite time.  `yes test` prints "test" over and over.
+
+You can use `yes` command to prevent from overwriting the existing file or forcefully overwrite the existing file. In the following commands, the first command is used to prevent the overwrite and the second command is used to overwrite the file without any permission.
+
+```bash
+cat hello.txt
+cat sample.txt
+cp -i sample.txt hello.txt
+yes n | cp -i sample.txt hello.txt #prevent overwiting by saying no to each
+yes | cp -i sample.txt hello.txt #force overwrite by saying yes to each.
+```
+
+You can use `yes` command to run any script multiple times in the command line. In this example, `yes` command is used to run while loop repeatedly ten times. Here, `yes` command will continuously send the numeric value from 1 to 10 to the loop and the loop will print the values in regular interval of one second.
+
+
+```Bash
+$ yes "$(seq 1 10)" | while read n; do  echo $n; sleep 1; done
+```
+
+```Bash
+#Example 5
+#!/bin/bash
+#Read the value passed from yes command
+read string
+
+#check the string value is empty or not
+if [ "$string" == "" ]; then
+
+echo "Empty value is passed by yes command"
+else
+newstr="The value passed by yes command is $string"
+echo $newstr
+fi
+
+#Which is read and run by:
+$ yes "" | bash yes_script.sh
+>>>Empty value is passed by yes command
+#or
+$yes testing | bash yes_script.sh
+>>>The value passed by yes is testing
+```
+Or write a string over and over into a file, for "testing" or something:
+
+`yes 'Add this line for testing' | head -50 > testfile`
 
 ## Pi Notes
 
@@ -1629,3 +1770,166 @@ echo "hello again" | sudo tee /home/test.txt
 echo "hello again" | sudo tee -a /home/test.txt
 
 ```
+
+
+## Setting up Linux
+
+### Adding Windows Network Share--
+
+
+CURL https://getmic.ro | bash
+
+`sudo apt-get installl nautilus-share`
+
+`sudo apt autoremove` cleaned up 400 mb
+
+$need GCC and fortran
+
+sudo apt-get update
+sudo apt install gcc
+suro apt install gfortran
+
+sudo add-apt-repository ppaLmarutter/c2d4u3.5
+
+$to sources add R
+
+nano /etc/apt/sources.list
+        dep https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/
+
+sudo add-apt-repository ppa:marutter/c2d4u
+sudo add-apt-repository ppa:marutter/c2d4u3.5
+
+
+sudo apt-get install r-base-dev
+```bash
+deb http://ppa.launchpad.net/marutter/c2d4u/ubuntu bionic main
+deb-src http://ppa.launchpad.net/marutter/c2d4u/ubuntu bionic main
+deb http://ppa.launchpad.net/marutter/c2d4u3.5/ubuntu bionic main
+deb-src http://ppa.launchpad.net/marutter/c2d4u3.5/ubuntu bionic main
+```
+```
+
+sudo nano /etc/default/grub
+go to
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+change to
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash video=hyperv_fb:2560x1600"
+then write out ([[Ctrl]]+[[O]])
+sudo update-grub
+sudo apt-get install linux-image-extra-virtual
+
+sudo apt-get update
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update;
+sudo apt install git
+git clone https://github.com/jterry75/xrdp-init.git ~/xrdp-init
+
+
+
+
+
+```bash
+sudo apt-get update
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update; sudo apt install git
+git clone https://github.com/jterry75/xrdp-init.git ~/xrdp-init
+```
+
+1.2 Make the scripts executable and run them...
+
+```bash
+cd ~/xrdp-init/ubuntu/18.04/
+sudo chmod +x install.sh
+sudo ./install.sh
+reboot
+```
+
+
+1.3 <After Reboot> Run script again to finish setting up VM
+
+```bash
+cd ~/xrdp-init/ubuntu/18.04/
+sudo ./install.sh
+Shutdown Ubuntu VM
+```
+
+Register Ubuntu Session ~ run this command on host PC using powershell with admin rights:
+
+```ps1
+Set-VM -VMName YourUbuntuVMNameHere -EnhancedSessionTransportType HvSocket
+Restart VM
+```
+https://github.com/craigcabrey/luminance
+
+git clone https://github.com/craigcabrey/luminance.git ~/luminance
+sudo apt-get install libgtk-3-dev
+sudo apt install python3-pip
+
+[Themes](https://linuxconfig.org/how-to-install-gnome-on-ubuntu-18-04-bionic-beaver-linux)
+To perform a vanilla installation of Gnome desktop execute the following linux command:
+
+sudo apt install gnome-session gdm3
+In order to install the full Ubuntu Gnome desktop use the tasksel command. In case the tasksel command is not available on your system you can install it by:
+
+$ sudo apt install tasksel
+Once the tasksel command is installed, begin the Gnome desktop installation by executing:
+
+$ sudo tasksel install ubuntu-desktop
+To start Gnome session on a system without a current graphical user interface (GUI), login to your console and execute:
+
+$ sudo service gdm3 start
+
+VNC Server
+
+[VNC Howto](https://linuxconfig.org/vnc-server-on-ubuntu-18-04-bionic-beaver-linux)
+ sudo apt install vnc4server xfce4 xfce4-goodies
+
+#other things
+sudo apt install gnome-tweaks
+sudo apt install snapd
+sudo apt install htop
+sudo apt install
+sudo apt install
+sudo apt install
+
+Paper Theme
+sudo add-apt-repository -u ppa:snwh/ppa
+
+
+sudo apt-get install paper-icon-theme
+
+sudo dpkg -i paper*.deb
+
+
+sudo apt-get install -f
+tool
+
+#deepin
+sudo add-apt-repository ppa:leaeasy/dde
+sudo apt-get update
+sudo apt-get install dde
+sudo apt install dde dde-file-manager
+sudo apt install deepin-gtk-theme
+
+
+
+Kubuntu
+https://linuxconfig.org/how-to-install-kde-plasma-desktop-on-ubuntu-18-04-bionic-beaver-linux
+
+
+ sudo tasksel install kubuntu-desktop
+  sudo apt install sddm
+
+
+f the sddm is already installed than try to reconfigure it in order to make sddm the default display manager for your system:
+
+$ sudo dpkg-reconfigure sddm
+
+
+**Resize LVM**
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe"
+
+sudo apt-get update
+sudo apt-get install system-config-lvm
+

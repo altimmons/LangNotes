@@ -6,11 +6,33 @@ TOC
 [[TOC]]
 
 
-External
+## New Settings to update
+
+```json
+"code-runner.fileDirectoryAsCwd": true,
+"code-runner.terminalRoot": "/mnt/",
+"code-runner.saveAllFilesBeforeRun": true
+ "breadcrumbs.enabled": true,
+
+```External
 
 [VSCode Docs Editing](https://code.visualstudio.com/docs/editor/codebasics)
 
 [VSCode Doc-Navigation](https://code.visualstudio.com/docs/editor/editingevolved)
+
+
+Replace Rules  bhughes339.replacerules
+
+Favorite Themes:
+
+Grigoryvp memory theme
+Adapta Nokoto
+Ark Dark
+Atom One Dark
+electron
+Hopskotch (textmate)
+Viow Darker
+
 
 ## Config
 Nevermind the above:
@@ -23,13 +45,23 @@ code --list-extensions | xargs -L 1 echo code --install-extension
 ## Settings (Global)
 
 For Extension info and setup- go to [Configurations](#Configurations)
-GitHub GIST ID for Settings Sync
-60c9fd462ef31067f7c7c7dd1a89aafd
 
-Personal Access Token on GitHub
-e253b1882c10bb5edea7dd8b91a26b8c9d47c33a
+!!!Attention GitHub GIST ID for Settings Sync Has Changed
+    ~~60c9fd462ef31067f7c7c7dd1a89aafd~~ New Code Issued 3/24/19:
 
-Making a quick way to change shortcuts-
+    !!!check 14f847af7982b94685f70da49cdf01f64f6f5c8a
+
+```java
+14f847af7982b94685f70da49cdf01f64f6f5c8a
+```
+
+
+
+!!!faq Personal Access Token on GitHub
+      e253b1882c10bb5edea7dd8b91a26b8c9d47c33a
+
+Currently Using Remark
+
 
 ### Keybindings
 
@@ -596,7 +628,9 @@ satokaz.vscode-markdown-header-
 mushan.vscode-paste-image
 
 Replace with below as it allows pasting text too;
-[Markdown Paste](telesoho.vscode-markdown-paste-image)
+Markdown Paste
+
+telesoho.vscode-markdown-paste-image
 
 Desired State
 
@@ -710,7 +744,7 @@ Markdownit not working
 - statiolake.vscode-markdown-run-snippet
 - **132**
 
-[Markdown Script]() - A vscode extension to enhanced markdown code block
+Markdown Script - A vscode extension to enhanced markdown code block
 
 - Adds `click to copy | click to run` buttons.
   - Do I still need to use the code runner bit?
@@ -723,6 +757,8 @@ Markdownit not working
 - 731
 - Seems just like TOC
 - Disabled
+-
+- jrieken.md-navigate
 
 [Code Runner](https://github.com/formulahendry/vscode-code-runner.git) - Run code snippet or code file for multiple languages: C, C++, Java, JavaScript, PHP, Python, Perl, Perl 6, Ruby, Go, Lua, Groovy, PowerShell, BAT/CMD, BASH/SH, F# Script, F# (.NET Core), C# Script, C# (.NET Core), VBScript, TypeScript, CoffeeScript, Scala, Swift, Julia, Crystal, OCaml Script, R, AppleScript, Elixir, Visual Basic .NET, Clojure, Haxe, Objective-C, Rust, Racket, AutoHotkey, AutoIt, Kotlin, Dart, Free Pascal, Haskell, Nim, D, and custom command
 
@@ -861,7 +897,7 @@ One of these was better than the rest. I need to do testing here.
 
 You can start the electron ipc server manually by command eiis
 
-[Markdown Imsize Support]() -Adds size-specified image syntax support to VS Code's builtin markdown preview
+Markdown Imsize Support -Adds size-specified image syntax support to VS Code's builtin markdown preview
 
 - Enable Image Resizing?
 - amoosbr.markdown-imsize
@@ -1175,11 +1211,12 @@ Also the Java_Home Var.
 requires: `.prettierrc.json` file.
 [Remark GitHub](https://github.com/remarkjs/remark)
 
-GitHub GIST ID for Settings Sync
-60c9fd462ef31067f7c7c7dd1a89aafd
 
-Personal Access Token on GitHub
-e253b1882c10bb5edea7dd8b91a26b8c9d47c33a
+!!!warn GitHub GIST ID for Settings Sync
+    60c9fd462ef31067f7c7c7dd1a89aafd
+
+!!!warning Personal Access Token on GitHub
+      e253b1882c10bb5edea7dd8b91a26b8c9d47c33a
 
 Currently Using Remark
 
@@ -1547,6 +1584,13 @@ Microsoft Go
 Shell launcher tyriar.shell-launcher - good needs configuration
 Theme by language
 jsaulou.theme-by-language
+
+### Sync Local Settings
+
+[Sync Local Settings Docs](http://shanalikhan.github.io/2016/07/31/Visual-Studio-code-sync-setting-edit-manually.html)
+
+[Older Settings](http://shanalikhan.github.io/2017/02/19/Option-to-ignore-settings-folders-code-settings-sync.html)
+
 +++++ CRITICAL Settings Sync shan.code-settings-sync
 
 filename syncLocalSettings.json
@@ -1688,19 +1732,6 @@ Key Binding set to Ctrl + \` Ctrl + \` (Double Press)
       "label": "WSL"
     }
   ]
-```
-
-## Push to Github
-
-```bash
-git config --global credential.helper wincred
-
-cd md
-git init
-git add . #add everything
-git commit -m "Message"
-gitr remote add github https://github.com/altimmons/Notes.git
-
 ```
 
 ## Work Config

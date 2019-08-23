@@ -5,10 +5,10 @@ git clone --recursive git://github.com/rshipp/ahk-libs.git
 ## Expression vs Legacy Mode
 
 
-Some commands are bizarrely mixed - 
+Some commands are bizarrely mixed -
 `WinGet, WinList,  List, %Title%`
 
-This example uses string concatenation with `.`. THe second example Uses expression mode `%` to declare that strings are quoted and variables are unquoted.  
+This example uses string concatenation with `.`. THe second example Uses expression mode `%` to declare that strings are quoted and variables are unquoted.
 ```ahk
 if WinExist("ahk_class Notepad") or WinExist("ahk_class" . ClassName)
     WinActivate  ; Uses the last found window.
@@ -71,9 +71,9 @@ MyVar := ""
 
 Both of these store blank values. But `MyVar = ""` will store `""`.
 
-###  Storing values in variables: 
+###  Storing values in variables:
 
-To store a string or number in a variable, there are two methods: `legacy` and `expression`. 
+To store a string or number in a variable, there are two methods: `legacy` and `expression`.
 
 The `legacy` method uses the equal sign operator (`=`) to assign **unquoted literal strings** or **variables enclosed in percent signs.** For example:
 
@@ -122,15 +122,15 @@ Legacy or command syntax generally only allows a single action per line, but use
 
 Unquoted text is simply text, not enclosed in quote marks, just straight up. Since the text has no explicit start and end marks, it ends at the end of the line or the end of the parameter. Leading and trailing spaces and tabs are ignored. Within unquoted text, the following characters have special meaning:
 
-•`%`: Enclose a variable name in percent signs to include the contents of that variable. For example, The year is %A_Year%.
+`%`: Enclose a variable name in percent signs to include the contents of that variable. For example, The year is %A_Year%.
 
-!!!Note: Variable names are not always enclosed in percent signs; they are required only within unquoted text. Percent signs should not be used anywhere else, except to create a dynamic variable reference or dynamic function call. 
+!!!Note: Variable names are not always enclosed in percent signs; they are required only within unquoted text. Percent signs should not be used anywhere else, except to create a dynamic variable reference or dynamic function call.
 
-!!!Note: Only a plain variable name can be used. Array elements, properties and other expressions are not supported. 
+!!!Note: Only a plain variable name can be used. Array elements, properties and other expressions are not supported.
 
-•`,`: Comma is used to delimit (separate) the parameters of a command, with some exceptions. It has no special meaning when used in an assignment or comparison, so is interpreted literally in such cases.
+`,`: Comma is used to delimit (separate) the parameters of a command, with some exceptions. It has no special meaning when used in an assignment or comparison, so is interpreted literally in such cases.
 
-**•\`:** An escape character is usually used to indicate that the character immediately following it should be interpreted differently than it normally would. For example, \`% produces a literal percent sign and **\`,** produces a literal comma. Some other common escape sequences produce special characters, such as **\`t** (tab), **\`n** (linefeed), and **\`r** (carriage return).
+**`\`:** An escape character is usually used to indicate that the character immediately following it should be interpreted differently than it normally would. For example, \`% produces a literal percent sign and **\`,** produces a literal comma. Some other common escape sequences produce special characters, such as **\`t** (tab), **\`n** (linefeed), and **\`r** (carriage return).
 
 Commands accept a mixture of unquoted text, variable names and numeric expressions. `Send, The time is %A_Hour% o'clock.`
 
@@ -146,7 +146,7 @@ There are also several other control flow statements (such as loops) which use l
 
 - #SingleInstance, Force|Ignore|Off
 - #Persistent =If this directive is present anywhere in the script, that script will stay running after the auto-execute section.  Also, implies SingleInstance, though this can be over-ridden.
-- #EscapeChar (`) - the default is backtick 
+- #EscapeChar (`) - the default is backtick
 - #DerefChar (%)e.g. #  ; Change it from its normal default, which is %.
 - #Delimiter (,)\  ; Change it from its normal default, which is comma.\
 - #HotkeyModifierTimeout - in milliseconds, the delay waiting for key combo, -1 is infinite.
@@ -154,11 +154,11 @@ There are also several other control flow statements (such as loops) which use l
 - #MaxThreadsPerHotKey [(1)-20] - default 1, the number of simultaneous instances. Up to MaxThreads obviously.
 - #MaxThreads - [1-(10)-255] the number of threads, default is 10.
 - #MaxMem (Mb) [0-(64)-4096] Default is 64- The number of mb *per* var
-- #HotKeyInterval (millis) - Default is 2000, 
+- #HotKeyInterval (millis) - Default is 2000,
 - #MaxHotKeysPerInterval (int) -Default is 70, with the above, will display an error dialogue if exceeded - e.g. 70 hot key calls in 2 seconds.
 - ~~#AllowSameLineComments~~ Deprecated. Default enabled
 - #InputLevel [(0)-100] - See levels, sets a level to send keys, a higher level input (artificial key stroke), will be interpreted by a lower level hotkey as if it were hit normally.  By Default all are 0, so you cannot trigger a hotkey yourself (unless you change this.)
-- #ClipboardTimeout (millis)[-1|0|(1000)-?max] - sets how long to wait on getting clipboard data, 
+- #ClipboardTimeout (millis)[-1|0|(1000)-?max] - sets how long to wait on getting clipboard data,
 - #Hotstring [NoMouse|EndChars NewChars|New Options]
   - NoMouse keeps mouse from resetting hotstring recognizer if the mouse is moved
   - EndChars (NewChars) - `#Hotstring EndChars -()[]{}':;"/\,.?!``n ``t`  changes the endchars for hostrings.
@@ -175,7 +175,7 @@ There are also several other control flow statements (such as loops) which use l
 - #Include <LibName>
 - #IncludeAgain FileOrDirName
 - #MenuMaskKey - Changes which key is used to mask Win or Alt keyup events.A key name or VKnn sequence which specifies a non-zero virtual keycode.  The mask key is sent automatically to prevent the Start menu or the active window's menu bar from activating at unexpected times.
-- #Warn [WarningType, WarningMode] 
+- #Warn [WarningType, WarningMode]
   - WarningType
     - UseUnsetLocal
     - UseUnsetGlobal
@@ -245,7 +245,7 @@ If `#Persistent` is added to an existing script, you might want to change some o
 
 Var = %Clipboard% and Clipboard = New Text.
 .
-You can also pipe the output directly to the clipboard by downloading cb.zip¬ (4 KB) and then following this example:
+You can also pipe the output directly to the clipboard by downloading cb.zip~ (4 KB) and then following this example:
 `"C:\Program Files\AutoHotkey\AutoHotkey.exe" /ErrorStdOut "My Script.ahk" 2>&1 |cb.exe`
 
 ### StdOut
@@ -281,7 +281,7 @@ FileAppend
 `FileAppend, Another line.``n, C:\My Documents\Test.txt`
 
 ```ahk
-; The following example demonstrates how to automate FTP uploading using the operating 
+; The following example demonstrates how to automate FTP uploading using the operating
 ; system's built-in FTP command. This script has been tested on Windows XP.
 
 FTPCommandFile = %A_ScriptDir%\FTPCommands.txt
@@ -359,15 +359,15 @@ LShift
 
 #### Keys
 
-SCnnn Specify for nnn the scan code of a key. Recognizes unusual keys not mentioned above. See Special Keys for details. 
+SCnnn Specify for nnn the scan code of a key. Recognizes unusual keys not mentioned above. See Special Keys for details.
 
 VKnn - Specify for nn the hexadecimal virtual key code of a key. This rarely-used method also prevents certain types of hotkeys from requiring the keyboard hook. For example, the following hotkey does not use the keyboard hook, but as a side-effect it is triggered by pressing either Home or NumpadHome:
 
 `^VK24::MsgBox You pressed Home or NumpadHome while holding down Control.`
 
 Known limitation: VK hotkeys that are forced to use the keyboard hook, such as *VK24 or ~VK24, will fire for only one of the keys, not both (e.g. NumpadHome but not Home).For more information about the VKnn method, see Special Keys.
- 
-Warning: Only Send, GetKeyName, GetKeyVK, GetKeySC and #MenuMaskKey support combining VKnn and SCnnn. 
+
+Warning: Only Send, GetKeyName, GetKeyVK, GetKeySC and #MenuMaskKey support combining VKnn and SCnnn.
 
 [v1.1.27+]: The presence of an invalid suffix prevents VKnn from being recognized. For example, vk1Bsc001:: raises an error in v1.1.27+, but sc001 was ignored (had no effect) in previous versions.
 
@@ -397,7 +397,7 @@ As with all # directives -- which are processed only once when the script is lau
 
 By default, hotkeys that use the keyboard hook cannot be triggered by means of the Send command. Similarly, mouse hotkeys cannot be triggered by commands such as Click because all mouse hotkeys use the mouse hook. One workaround is to use Gosub to jump directly to the hotkey's subroutine. For example: `Gosub #LButton`.
 
-- #InstallKeybdHook 
+- #InstallKeybdHook
 - #InstallMouseHook
 
 Unneccessary, the script will install if needed.  Cost about 500kb memory- 450 for keyboard.
@@ -415,7 +415,7 @@ Send btw{Space} ; Does not produce "by the way ".
 SendLevel 1
 Send btw{Space} ; Produces "by the way ".
 ```
-By default, hook hotkeys and hotstrings ignore keyboard and mouse events generated by any AutoHotkey script. In some cases it can be useful to override this behaviour; for instance, to allow a remapped key to be used to trigger other hotkeys. 
+By default, hook hotkeys and hotstrings ignore keyboard and mouse events generated by any AutoHotkey script. In some cases it can be useful to override this behaviour; for instance, to allow a remapped key to be used to trigger other hotkeys.
 
 
 ###
@@ -969,7 +969,67 @@ List(listName,integer)
 
 ### = vs :=
 
+## Settings 
+
+
+- DetectHiddenWindows, On|Off
+- DetectHiddenText, On|Off
+- SetTitleMatchMode, Fast|Slow|RegEx
+- SetTitleMatchMode 1|2|3
+- SetBatchLines, -1 | 20ms | LineCount
+- SendMode, Event|Play|Input|InputThenPlay
+- SetKeyDelay, [ Delay, PressDuration]
+- SetMouseDelay, Delay
+- SetWinDelay, Delay
+- SetControlDelay, Delay
+- SetDefaultMouseSpeed, Speed
+- CoordMode, ToolTip|Pixel|Mouse [, Screen|Relative]
+- SetStoreCapslockMode, On|Off
+- AutoTrim, On|Off
+- SetFormat, float|integer, TotalWidth.DecimalPlaces|hex|d
+- StringCaseSense, On|Off|Locale
+- Thread, NoTimers|Priority|Interrupt
+- Critical, [ Off]
+
+
+
+- #AllowSameLineComments
+- #ClipboardTimeout, Milliseconds
+- #CommentFlag, NewString
+- #ErrorStdOut
+- #EscapeChar, NewChar
+- #HotkeyInterval, Milliseconds
+- #HotkeyModifierTimeout, Milliseconds
+- #Hotstring, NewOptions
+- #If, [Expression]
+- #IfTimeout, Timeout
+- #IfWinActive, [ WinTitle, WinText]
+- #IfWinExist, [ WinTitle, WinText]
+- #IfWinNotActive, [ WinTitle, WinText]
+- #IfWinNotExist, [ WinTitle, WinText]
+- #Include, FileOrDirName
+- #IncludeAgain, FileOrDirName
+- #InputLevel, [Level]
+- #InstallKeybdHook
+- #InstallMouseHook
+- #KeyHistory, MaxEvents
+- #LTrim, On|Off
+- #MaxHotkeysPerInterval, Value
+- #MaxMem, Megabytes
+- #MaxThreads, Value
+- #MaxThreadsBuffer, On|Off
+- #MenuMaskKey, KeyName
+- #NoEnv
+- #NoTrayIcon
+- #Persistent
+- #SingleInstance, [force|ignore|off]
+- #UseHook, [On|Off]
+- #Warn, [WarningType, WarningMode]
+- #WinActivateForce
+
+
 ## Control Statements
+
 
 ### No Case or Switch
 
@@ -1193,8 +1253,94 @@ Sleep, 100
 MsgBox The Win-Z hotkey was pressed.
 Gosub MySubroutine
 return
-   
+
 MySubroutine:
 Sleep 1000
 return  ;required
 ```
+
+### Debugging:
+
+Commands such as ListVars and Pause can help you debug a script. For example, the following two lines, when temporarily inserted at carefully chosen positions, create "break points" in the script:
+
+        ListVars
+        ListLines
+        KeyHistory
+        OutputDebug
+        Pause
+
+When encountered these two lines, it will display the current contents of all variables for your inspection.
+
+`#Warn` - Enables or disables warnings for specific conditions which may indicate an error, such as a typo or missing "global" declaration.
+
+        #Warn WarningType, WarningMode
+            WarningType = All|UseUnsetLocal/UseUnsetGlobal|UseEnv|LocalSameAsGlobal|ClassOverwrite
+            WarningMode = MsgBox|StdOut|OutputDebug|Off
+
+
+`UseUnsetLocal` or `UseUnsetGlobal`: Warn when a variable is read without having previously been assigned a value or initialized with VarSetCapacity. If the variable is intended to be empty, assign an empty string to suppress this warning.
+
+`UseEnv`: Warn when an environment variable is automatically used in place of an empty script variable. This sometimes occurs when an environment variable's name unexpectedly matches a variable used by the script. This warning occurs when the variable is accessed, but never occurs if the script enables #NoEnv (recommended for multiple reasons).
+
+```ahk
+#Warn
+;#NoEnv             ; Add this if "temp" is not intended to be an environment variable.
+;EnvGet temp, TEMP  ; This would copy the environment variable's value into the script variable.
+temp := ""          ; Despite this line, temp still seems to have a value.
+MsgBox % temp       ; This accesses the environment variable named "TEMP".
+```
+
+
+`LocalSameAsGlobal`: Before the script starts to run, display a warning for each undeclared local variable which has the same name as a global variable. This is intended to prevent errors caused by forgetting to declare a global variable inside a function before attempting to access it. If the variable really was intended to be local, a declaration such as local x or static y can be used to suppress the warning. This warning is never shown for variables inside a force-local function.
+
+```ahk
+#Warn
+g := 1
+ShowG() {       ; The warning is displayed even if the function is never called.
+    ;global g   ; <-- This is required to access the global variable.
+    MsgBox % g  ; Without the declaration, "g" is an empty local variable.
+}
+```
+`ClassOverwrite` [v1.1.27+]: Before the script starts to run, show a warning for each assignment targetting a class variable. For example, box := new Box will show a warning if Box is a class, since this would overwrite the class (within the super-global variable, Box). Warnings are also shown for output variables of commands, but not ByRef parameters. Warnings are not shown for nested classes or dynamic variable references.
+
+`WarningMode`  A value indicating how warnings should be delivered. If omitted, it defaults to MsgBox.
+
+`MsgBox`: Show a message box describing the warning. Note that once the message box is dismissed, the script will continue as usual.
+
+`StdOut` [v1.1.04+]: Send a description of the warning to stdout (the program's standard output stream), along with the filename and line number. This allows fancy editors such as SciTE to capture warnings without disrupting the script - the user can later jump to each offending line via the editor's output pane.
+
+`OutputDebug`: Send a description of the warning to the debugger for display. If a debugger is not active, this will have no effect. For more details, see OutputDebug.
+
+`Off`: Disable warnings of the given WarningType.
+
+
+`Interactive Debugging`
+
+Interactive debugging is possible with a supported DBGp client. Typically the following actions are possible:
+
+Set and remove breakpoints on lines - pause execution when a breakpoint is reached.
+Step through code line by line - step into, over or out of functions and subroutines.
+Inspect all variables or a specific variable.
+View the stack of running subroutines and functions.
+Note that this functionality is disabled for compiled scripts.
+
+To enable interactive debugging, first launch a supported debugger client then launch the script with the /Debug command-line switch.
+
+```autohotkey
+AutoHotkey.exe /Debug=SERVER:PORT ...
+
+;SERVER and PORT may be omitted. For example, the following are equivalent:
+
+AutoHotkey /Debug "myscript.ahk"
+AutoHotkey /Debug=localhost:9000 "myscript.ahk"
+```
+
+To attach the debugger to a script which is already running, send it a message as shown below:
+
+ScriptPath := "" ; SET THIS TO THE FULL PATH OF THE SCRIPT
+DetectHiddenWindows On
+if WinExist(ScriptPath " ahk_class AutoHotkey")
+    ; Optional parameters:
+    ;   wParam  = the IPv4 address of the debugger client, as a 32-bit integer.
+    ;   lParam  = the port which the debugger client is listening on.
+    PostMessage DllCall("RegisterWindowMessage", "str", "AHK_ATTACH_DEBUGGER")
