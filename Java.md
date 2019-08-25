@@ -77,6 +77,18 @@ In vsCode
 
 Start maven project
 
+```bash
+#I had more luck in WSL than cmd
+mvn archetype:generate 
+#millions of options zip by- try:
+maven-archetype-simple
+de.tebros:simple-maven-archetype (This is a archetype for a simple maven project with JUnit 5 and Log4j 2)
+org.apache.maven.archetypes:maven-archetype-quickstart (An archetype which contains a sample Maven project.)51
+```
+groupid -> edu.datastructures
+artifactId -> (becomes the root folder)
+pakage-> becomes a package within
+
 
 Value for **groupId:** This serves as the group identifier of your Maven project, it should be in a form similar to Java packages, such as org.example.learnlib
 Value for **artifactId:** This serves as the group-local identifier of your Maven project. It should be in a very simple, all-lowercase form, such as my-project.
@@ -96,6 +108,95 @@ Value for **package:** The name of your root package. The default is the groupId
         learnlibVersion: 0.13.1
         Y: :
 
+### POM
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.datastruc</groupId>
+  <artifactId>p3_huffman</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>p3_huffman</name>
+  <description>Huffman Encoder app</description>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.jhu.edu/or/something</url>
+
+  <properties>
+        <!-- java version  -->
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <!-- variables -->
+  </properties>
+
+<dependencies>
+<dependency>
+    <!-- groupid -->
+    <groupId>commons-cli</groupId>
+    <!-- artifact id -->
+    <artifactId>commons-cli</artifactId>
+    <!-- version -->
+    <version>1.4</version>
+    <!-- can also reference a property with '${prop.name} -->
+            <scope>compile</scope>
+            <scope>test</scope>
+</dependency>
+</dependencies>
+```
+
+#### JUnit
+
+[Documentation](https://junit.org/junit5/docs/current/user-guide/index.pdf)
+
+```xml
+  <dependencies>
+  <!-- start cut and paste -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-commons</artifactId>
+        <version>1.5.1</version>
+    </dependency>
+
+    <!-- end cut and pase -->
+</dependencies>
+```
+- `@Test` -  Denotes that a method is a test method. Unlike JUnit 4’s @Test annotation, this annotation does not declare any attributes, since test extensions in JUnit Jupiter operate based on their own dedicated annotations. Such methods are inherited unless they are overridden.
+- `@ParameterizedTest` -  Denotes that a method is a parameterized test. Such methods are inherited unless they are overridden.
+- `@RepeatedTest` -  Denotes that a method is a test template for a repeated test. Such methods are inherited unless they are overridden.
+- `@TestFactory` -  Denotes that a method is a test factory for dynamic tests. Such methods are inherited unless they are overridden.
+- `@TestTemplate` -  Denotes that a method is a template for test cases designed to be invoked multiple times depending on the number of invocation contexts returned by the registered providers. Such methods are inherited unless they are overridden.
+- `@TestMethodOrder` -  Used to configure the test method execution order for the annotated test class; similar to JUnit 4’s @FixMethodOrder. Such annotations are inherited.
+- `@TestInstance` -  Used to configure the test instance lifecycle for the annotated test class. Such annotations are inherited.
+- `@DisplayName` -  Declares a custom display name for the test class or test method. Such annotations are not inherited.
+- `@DisplayNameGeneration` -  Declares a custom display name generator for the test class. Such annotations are inherited.
+- `@BeforeEach` -  Denotes that the annotated method should be executed before each @Test, @RepeatedTest, @ParameterizedTest, or @TestFactory method in the current class;analogous to JUnit 4’s @Before. Such methods are inherited unless they are overridden.
+- `@AfterEach` -  Denotes that the annotated method should be executed after each @Test, @RepeatedTest, @ParameterizedTest, or @TestFactory method in the current class; analogous to JUnit 4’s @After. Such methods are inherited unless they are overridden.
+- `@BeforeAll` -  Denotes that the annotated method should be executed before all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class; analogous to JUnit 4’s @BeforeClass. Such methods are inherited (unless they are hidden or overridden) and must be static (unless the "per-class" test instance lifecycle is used).
+- `@AfterAll` -  Denotes that the annotated method should be executed after all @Test, @RepeatedTest, @ParameterizedTest, and @TestFactory methods in the current class; analogous to JUnit 4’s @AfterClass. Such methods are inherited (unless they are hidden or overridden) and must be static (unless the "per-class" test instance lifecycle is used).
+- `@Nested` -  Denotes that the annotated class is a non-static nested test class. @BeforeAll and @AfterAll methods cannot be used directly in a @Nested test class unless the "per-class" test instance lifecycle is used. Such annotations are not inherited.
+- `@Tag` -  Used to declare tags for filtering tests, either at the class or method level; analogous to test groups in TestNG or Categories in JUnit 4. Such annotations are inherited at the class level but not at the method level.
+- `@Disabled` -  Used to disable a test class or test method; analogous to JUnit 4’s @Ignore. Such annotations are not inherited.
+- `@Timeout` -  Used to fail a test, test factory, test template, or lifecycle method if its execution exceeds a given duration. Such annotations are inherited.
+- `@ExtendWith` -  Used to register extensions declaratively. Such annotations are inherited. @RegisterExtension Used to register extensions programmatically via fields. Such fields are inherited unless they are shadowed.
+- `@TempDir` -  Used to supply a temporary directory via field injection or parameter injection in a lifecycle method or test method; located in the org.junit.jupiter.api.io package.
+
+
 ### Maven Lifecycle Stages
 
 - validate - validate the project is correct and all necessary information is available
@@ -105,6 +206,38 @@ Value for **package:** The name of your root package. The default is the groupId
 - verify - run any checks on results of integration tests to ensure quality criteria are met
 - install - install the package into the local repository, for use as a dependency in other projects locally
 - deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects
+
+- `validate` -
+- `initialize` -
+- `generate-sources` -
+- `process-sources` -
+- `generate-resources` -
+- `process-resources` -
+- `compile` -
+- `process-classes` -
+- `generate-test-sources` -
+- `process-test-sources` -
+- `generate-test-resources` -
+- `process-test-resources` -
+- `test-compile` -
+- `process-test-classes` -
+- `test` -
+- `prepare-package` -
+- `package` -
+- `pre-integration-test` -
+- `integration-test` -
+- `post-integration-test` -
+- `verify` -
+- `install` -
+- `deploy` -
+- `pre-clean` -
+- `clean` -
+- `post-clean` -
+- `pre-site` -
+- `site` -
+- `post-site` -
+- `site-deploy` -
+
 
 ## Other Java Ext
 
@@ -2562,6 +2695,64 @@ public class TravelingSalesmanPaths {
 }
 ```
 
+## Lambda Methods
+
+### java.util.function Package
+
+The java.util.function package in Java 8 contains many builtin functional interfaces like-
+
+**_Predicate:_** The Predicate interface has an abstract method test which gives a Boolean value as a result for the specified argument. Its prototype is
+
+        public Predicate
+        {
+        public boolean test(T  t);
+        }
+        
+_**BinaryOperator:**_ The BinaryOperator interface has an abstract method apply which takes two argument and returns a result of same type. Its prototype is
+
+        public interface BinaryOperator 
+        {
+            public T apply(T x, T y);
+        }
+
+_**Function:**_ The Function interface has an abstract method apply which takes argument of type T and returns a result of type R. Its prototype is
+
+        public interface Function 
+        {
+        public R apply(T t);
+        }
+
+```java
+
+// A simple program to demonstrate the use 
+// of predicate interface 
+import java.util.*; 
+import java.util.function.Predicate; 
+  
+class Test 
+{ 
+    public static void main(String args[]) 
+    { 
+  
+        // create a list of strings 
+        List<String> names = 
+            Arrays.asList("Geek","GeeksQuiz","g1","QA","Geek2"); 
+  
+        // declare the predicate type as string and use 
+        // lambda expression to create object 
+        Predicate<String> p = (s)->s.startsWith("G"); 
+  
+        // Iterate through the list 
+        for (String st:names) 
+        { 
+            // call the test method 
+            if (p.test(st)) 
+                System.out.println(st); 
+        } 
+    } 
+}
+```
+
 ## GUI
 
 ### Text Based- LANTERNA
@@ -2720,3 +2911,143 @@ Settings ([[Alt]] + [[F7]]) and then set up Scratch Dir and Console Dir-
 
 
 
+## Appendix
+
+### POM JUnit
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.datastruc</groupId>
+  <artifactId>p3_huffman</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>p3_huffman</name>
+  <description>Huffman Encoder app</description>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.jhu.edu/or/something</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- java version  -->
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <junit.jupiter.version>5.5.1</junit.jupiter.version>
+    <junit.platform.version>1.5.1</junit.platform.version>
+  </properties>
+  <dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit.jupiter.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.jupiter.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+    <dependency>
+        <groupId>commons-cli</groupId>
+        <artifactId>commons-cli</artifactId>
+        <version>1.4</version>
+        <scope>compile</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>${junit.platform.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-engine</artifactId>
+        <version>${junit.platform.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-runner</artifactId>
+        <version>${junit.platform.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite-api</artifactId>
+        <version>${junit.platform.version}</version>
+
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-commons</artifactId>
+        <version>${junit.platform.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-surefire-provider -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-surefire-provider</artifactId>
+        <version>1.3.2</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-console</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-console-standalone</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-testkit -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-testkit</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-reporting -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-reporting</artifactId>
+        <version>${junit.platform.version}</version>
+    </dependency>
+
+  </dependencies>
+```
