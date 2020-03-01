@@ -36,6 +36,8 @@
     - [Set Path Vars](#set-path-vars)
 
 
+
+
 ## Syntax
 
 ...
@@ -71,6 +73,44 @@ Object instances go onto the heap. References to objects go on the stack.`
 | NOTICE.txt         | Notices and attributions required by libraries that the project depends on |
 | README.txt         | Project's readme                                                           |
 
+## JavaDoc
+
+[Tools Reference (JDK 8)](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/toc.html)
+[JDK 12 Tools Ref](https://docs.oracle.com/en/java/javase/12/tools/tools-and-command-reference.html)
+[JDK 12 Javadoc Guide](https://www.oracle.com/pls/topic/lookup?ctx=javase12&id=JSJAV-GUID-7A344353-3BBF-45C4-8B28-15025DDCC643)\
+[JDK 12 Main Doc Page](https://docs.oracle.com/en/java/javase/12/)
+
+
+Syntax - block comment with two stars instead of one.
+
+      /**
+      * etc
+      */
+
+Uses tags
+
+
+    Tag	Introduced in JDK/SDK
+    @author	1.0
+    {@code}	1.5
+    {@docRoot}	1.3
+    @deprecated	1.0
+    @exception	1.0
+    {@inheritDoc}	1.4
+    {@link}	1.2
+    {@linkplain}	1.4
+    {@literal}	1.5
+    @param	1.0
+    @return	1.0
+    @see	1.0
+    @serial	1.2
+    @serialData	1.2
+    @serialField	1.2
+    @since	1.1
+    @throws	1.2
+    {@value}	1.4
+    @version	1.0
+
 ## Maven
 
 In vsCode
@@ -78,9 +118,9 @@ In vsCode
 Start maven project
 
 ```bash
-#I had more luck in WSL than cmd
-mvn archetype:generate 
-#millions of options zip by- try:
+$#I had more luck in WSL than cmd
+mvn archetype:generate
+$# millions of options zip by- try:
 maven-archetype-simple
 de.tebros:simple-maven-archetype (This is a archetype for a simple maven project with JUnit 5 and Log4j 2)
 org.apache.maven.archetypes:maven-archetype-quickstart (An archetype which contains a sample Maven project.)51
@@ -250,7 +290,7 @@ Value for **package:** The name of your root package. The default is the groupId
 - Groovy
 
 
-### SDKMAN! 
+### SDKMAN!
 
 (The Software Development Kit Manager)
 
@@ -840,7 +880,7 @@ In above code we create an object of anonymous inner class but this anonymous in
 
 ### Singleton Class
 
-a singleton class is a class that 
+a singleton class is a class that
 - can have only one object (an instance of the class) at a time.
 - if we try to instantiate the Singleton class, the new variable also points to the first instance created.
 - whatever modifications we do to any variable inside the class through any instance, it affects the variable of the single instance everywhere
@@ -890,13 +930,13 @@ public class GFG { // Using Static block
     }
 
     static{  //I added static
-        // static block to initialize instance 
-        instance = new GFG(); 
+        // static block to initialize instance
+        instance = new GFG();
     }
 }
 ```
 
-**Lazy initialization:** In this method, object is created only if it is needed. 
+**Lazy initialization:** In this method, object is created only if it is needed.
 
 - An implementation of getInstance() method is required which return the instance.
 - There is a null check that if object is not created then create, otherwise return previously created.
@@ -904,98 +944,98 @@ public class GFG { // Using Static block
 - It can be used in a single threaded environment because multiple threads can break singleton property because they can access get instance method simultaneously and create multiple objects.
 
 ```java
-public class GFG { // With Lazy initialization 
-// private instance, can only be accessed by getInstance() method 
+public class GFG { // With Lazy initialization
+// private instance, can only be accessed by getInstance() method
 private static GFG instance;
 
-    private GFG(){ 
-        // private constructor 
-    } 
+    private GFG(){
+        // private constructor
+    }
 
-    public static GFG getInstance() { //method to ret inst of class 
-        if (instance == null) { 
-        // if instance is null, initialize 
-            instance = new GFG(); 
-        } 
+    public static GFG getInstance() { //method to ret inst of class
+        if (instance == null) {
+        // if instance is null, initialize
+            instance = new GFG();
+        }
         return instance;
-    } 
+    }
 }
 ```
 
 **Thread Safe Singleton:** A thread safe singleton in created so that singleton property is maintained even in multithreaded environment. To make a singleton class thread-safe, getInstance() method is made synchronized so that multiple threads can’t access it simultaneously.
 
 ```java
-// Thread Safe  Singleton class 
-public class GFG { 
-// private instance, can only be accessed by getInstance() method 
-    private static GFG instance; 
+// Thread Safe  Singleton class
+public class GFG {
+// private instance, can only be accessed by getInstance() method
+    private static GFG instance;
 
-    private GFG() { 
-        // private constructor 
-    } 
+    private GFG() {
+        // private constructor
+    }
 
-    //synchronized method to control simultaneous access 
-    synchronized public static GFG getInstance() { 
-        if (instance == null) { 
-            // if instance is null, initialize 
-            instance = new GFG(); 
-        } 
-        return instance; 
-    } 
+    //synchronized method to control simultaneous access
+    synchronized public static GFG getInstance() {
+        if (instance == null) {
+            // if instance is null, initialize
+            instance = new GFG();
+        }
+        return instance;
+    }
 }
 ```
 
 **Lazy initialization with Double check locking:** In this mechanism, we overcome the overhead problem of synchronized code. In this method, getInstance is not synchronized but the block which creates instance is synchronized so that minimum number of threads have to wait and that’s only for first time.
-// Java code to explain double check locking 
-public class GFG 
-{ 
-// private instance, so that it can be 
-// accessed by only by getInstance() method 
-private static GFG instance; 
+// Java code to explain double check locking
+public class GFG
+{
+// private instance, so that it can be
+// accessed by only by getInstance() method
+private static GFG instance;
 
-private GFG() 
-{ 
-	// private constructor 
-} 
+private GFG()
+{
+	// private constructor
+}
 
-public static GFG getInstance() 
-{ 
-	if (instance == null) 
-	{ 
-	//synchronized block to remove overhead 
-	synchronized (GFG.class) 
-	{ 
-		if(instance==null) 
-		{ 
-		// if instance is null, initialize 
-		instance = new GFG(); 
-		} 
-		
-	} 
-	} 
-	return instance; 
-} 
+public static GFG getInstance()
+{
+	if (instance == null)
+	{
+	//synchronized block to remove overhead
+	synchronized (GFG.class)
+	{
+		if(instance==null)
+		{
+		// if instance is null, initialize
+		instance = new GFG();
+		}
+
+	}
+	}
+	return instance;
+}
 }
 Bill Pugh Singleton Implementation: Prior to Java5, memory model had a lot of issues and above methods caused failure in certain scenarios in multithreaded environment. So, Bill Pugh suggested a concept of inner static classes to use for singleton.
-// Java code for Bill Pugh Singleton Implementaion 
-public class GFG 
-{ 
+// Java code for Bill Pugh Singleton Implementaion
+public class GFG
+{
 
-private GFG() 
-{ 
-	// private constructor 
-} 
+private GFG()
+{
+	// private constructor
+}
 
-// Inner class to provide instance of class 
-private static class BillPughSingleton 
-{ 
-	private static final GFG INSTANCE = new GFG(); 
-} 
+// Inner class to provide instance of class
+private static class BillPughSingleton
+{
+	private static final GFG INSTANCE = new GFG();
+}
 
-public static GFG getInstance() 
-{ 
-	return BillPughSingleton.INSTANCE; 
-} 
+public static GFG getInstance()
+{
+	return BillPughSingleton.INSTANCE;
+}
 }
 
 
@@ -1213,35 +1253,35 @@ X{y,z}	X occurs at least y times but less than z times
 
 
 ```java
-import java.util.regex.*;
-public class RegexExample1{
-    public static void main(String args[]){
-        //1st way
-        Pattern p = Pattern.compile(".s");//. represents single character
-        Matcher m = p.matcher("as");
-        boolean b = m.matches();
+  import java.util.regex.*;
+  public class RegexExample1{
+      public static void main(String args[]){
+          //1st way
+          Pattern p = Pattern.compile(".s");//. represents single character
+          Matcher m = p.matcher("as");
+          boolean b = m.matches();
 
-        //2nd way
-        boolean b2=Pattern.compile(".s").matcher("as").matches();
+          //2nd way
+          boolean b2=Pattern.compile(".s").matcher("as").matches();
 
-        //3rd way
-        boolean b3 = Pattern.matches(".s", "as");
+          //3rd way
+          boolean b3 = Pattern.matches(".s", "as");
 
-        System.out.println(b+" "+b2+" "+b3);
+          System.out.println(b+" "+b2+" "+b3);
 
-    }
-}
-      Pattern pRegEx =
-      Pattern.compile("([A-Za-z])([\\s]*?)([\\W\\S])([\\s]*?)([\\d]{1,2})");
-#Method 1
-        if(pRegEx.matcher(inputString).matches()){
-            pRegEx.matcher(inputString).group(1)= x
-            pRegEx.matcher(inputString).group(4)= y
+      }
+  }
+        Pattern pRegEx =
+        Pattern.compile("([A-Za-z])([\\s]*?)([\\W\\S])([\\s]*?)([\\d]{1,2})");
+  #Method 1
+          if(pRegEx.matcher(inputString).matches()){
+              pRegEx.matcher(inputString).group(1)= x
+              pRegEx.matcher(inputString).group(4)= y
 
-        Matcher match =  pRegEx.matcher(inputString);
-        if(match.matches()){
-            match.group(1)= x
-            match.group(4)= y
+          Matcher match =  pRegEx.matcher(inputString);
+          if(match.matches()){
+              match.group(1)= x
+              match.group(4)= y
 ```
 
 ## Control Statements
@@ -1250,26 +1290,28 @@ public class RegexExample1{
 
 General format:
 
-```java
-boolean fUC=false,fAlpha=false;
+  ```java
+  boolean fUC=false,fAlpha=false;
 
-//looking at ASCII Charactercodes to set some flags
-if(x>=65  && x <=90){
-    fUC=true;
-    fAlpha=true;
-}else{
-    fUC = false
-}
-```
+  //looking at ASCII Charactercodes to set some flags
+  if(x>=65  && x <=90){
+      fUC=true;
+      fAlpha=true;
+  }else{
+      fUC = false
+  }
+  ```
+
 #### Ternary Operators
 
 Can Also do this with Ternary Operators
+
 ```java
-result = (expression == eval) ? result_if_true : result_if_false;
-fNum = (x>=30  && x <=39) ? true : false;
-fUC = ((x>=65  && x <=90) ? true : false;
-fLC = (x>=97  && x <=122) ? true : false;
-fAlpha =(fUC || fLC) ? true : false;
+    result = (expression == eval) ? result_if_true : result_if_false;
+    fNum = (x>=30  && x <=39) ? true : false;
+    fUC = ((x>=65  && x <=90) ? true : false;
+    fLC = (x>=97  && x <=122) ? true : false;
+    fAlpha =(fUC || fLC) ? true : false;
 ```
 
 #### Coalesceing
@@ -1305,6 +1347,21 @@ fAlpha = fUC || fLC;
      //do stuff
  }
 ```
+
+Interesting twist on the for loop (from java.util.treemap)
+
+```
+public boolean containsValue(Object value) {
+    for (Entry<K,V> e = getFirstEntry(); e != null; e = successor(e))
+        if (valEquals(value, e.value))
+            return true;
+    return false;
+}
+```
+
+#### Collections
+
+Works with any collection- Emnums, Arrays, etc.
 ```Java
 // JAVA program to iterate over an array using for loop
 import java.io.*;
@@ -1323,6 +1380,7 @@ class GFG {
 	}
 }
 ```
+
 The same can be done for enums
 
 
@@ -1386,16 +1444,17 @@ import java.util.stream.Stream;
     }
 }
 ```
+[Iterating over Enums](https://www.baeldung.com/java-enum-iteration)
 
 
 Iterate Using java.util.stream: Iteration over enum can also be done using java.util.stream class. Create the stream of enum.values() using Stream.of() method by passing eum.values() at parameter to function.
 Below program illustrate the iteration over enum using java.util.stream:
 
-##### break 
+##### break
 
-The break statement has two forms: labeled and unlabeled. 
+The break statement has two forms: labeled and unlabeled.
 
-The unlabeled form is below in the `switch` statement.  
+The unlabeled form is below in the `switch` statement.
 
 You can also use an unlabeled break to terminate a `for`, `while`, or `do-while` loop
 
@@ -1405,13 +1464,13 @@ You can also use an unlabeled break to terminate a `for`, `while`, or `do-while`
                 break;
             }
         }
-        
-The break statement, shown in boldface, terminates the for loop when that value is found. Control flow then transfers **to the statement after the for loop**. 
+
+The break statement, shown in boldface, terminates the for loop when that value is found. Control flow then transfers **to the statement after the for loop**.
 
  a labeled break terminates the outer for loop (labeled "search"):
 
  ```java
- 
+
  search:
     for (int a : arrayA){
         for ( int b : arrayB ){
@@ -1424,9 +1483,9 @@ The `break` statement terminates the labeled statement; *it does not transfer th
 
 ##### continue
 
-The `continue` statement skips the current iteration of a `for`, `while` , or `do-while` loop. The unlabeled form skips to the end of the innermost loop's body and evaluates the boolean expression that controls the loop. 
+The `continue` statement skips the current iteration of a `for`, `while` , or `do-while` loop. The unlabeled form skips to the end of the innermost loop's body and evaluates the boolean expression that controls the loop.
 
-A _labeled_ `continue` statement skips the current iteration of an outer loop marked with the given label. 
+A _labeled_ `continue` statement skips the current iteration of an outer loop marked with the given label.
 
 ```java
 class ContinueWithLabelDemo {
@@ -1436,7 +1495,7 @@ class ContinueWithLabelDemo {
         String substring = "sub";
         boolean foundIt = false;
 
-        int max = searchMe.length() - 
+        int max = searchMe.length() -
                   substring.length();
 
     test:
@@ -1719,21 +1778,21 @@ public static void setup(){
   //removes default settings for the root logger
   LogManager.getLogManager().reset();
   LOGGER.setLevel( Level.ALL );
- 
-  
+
+
   //Setup the console handler
   ConsoleHandler ch = new ConsoleHandler();
   ch.setLevel( LogMan.INIT_CONSOLE_LEVEL );
   LOGGER.addHandler( ch );
 
-  
+
   //Setup a file handler
   try{
     FileHandler fh = new FileHandler(LogMan.strLogFileName);
     fh.setLevel( LogMan.INIT_FILE_LEVEL );
     SimpleFormatter.format=  ;
     LOGGER.addHandler( fh );
-    
+
   }catch( IOException e ){
     String absPath = Paths.get(LogMan.strLogFileName).toFile().getAbsolutePath();
     LOGGER.severe( "IOException starting log file. " +
@@ -1778,15 +1837,15 @@ This prints 1 line with the log level `(4$)`, the log message `(5$)` and the tim
 
      WARNING: warning message [Tue Mar 22 13:11:31 PDT 2011]
 
-    
+
 ```java.md
 java.util.logging.SimpleFormatter.format="%1$tc %2$s%n%4$s: %5$s%6$s%n"
 ```
 This prints 2 lines where:
-- the first line includes the timestamp `(1$)` `%1$tc` 
+- the first line includes the timestamp `(1$)` `%1$tc`
 - the source `(2$)` `%2$s%`
 - the second line includes the log level `(4$)` `%n%4$s:`
-- the log message `(5$)` `%5$s` 
+- the log message `(5$)` `%5$s`
 - followed with the throwable and its backtrace `(6$)` `%6$s%n`, if any:
 
         Tue Mar 22 13:11:31 PDT 2011 MyClass fatal
@@ -1795,7 +1854,7 @@ This prints 2 lines where:
                 at MyClass.mash(MyClass.java:9)
                 at MyClass.crunch(MyClass.java:6)
                 at MyClass.main(MyClass.java:3)
-     
+
 ```java
 java.util.logging.SimpleFormatter.format="%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS %1$Tp %2$s%n%4$s: %5$s%n"
 ```
@@ -1805,7 +1864,7 @@ This prints 2 lines similar to the example above with a different date/time form
 
      Mar 22, 2011 1:11:31 PM MyClass fatal
      SEVERE: several message with an exception
-     
+
 java.util.logging.SimpleFormatter.format="%1$tb %1$td, %1$tY %1$tl:%1$tM:%1$tS.%1$tN %1$Tp %2$s%n%4$s: %5$s%6$s%n"
 Since JDK 9, java.util.logging uses java.time to create more precise time stamps. The format above can be used to add a .%1$tN to the date/time formatting so that nanoseconds will also be printed:
 
@@ -2707,49 +2766,49 @@ The java.util.function package in Java 8 contains many builtin functional interf
         {
         public boolean test(T  t);
         }
-        
+
 _**BinaryOperator:**_ The BinaryOperator interface has an abstract method apply which takes two argument and returns a result of same type. Its prototype is
 
-        public interface BinaryOperator 
+        public interface BinaryOperator
         {
             public T apply(T x, T y);
         }
 
 _**Function:**_ The Function interface has an abstract method apply which takes argument of type T and returns a result of type R. Its prototype is
 
-        public interface Function 
+        public interface Function
         {
         public R apply(T t);
         }
 
 ```java
 
-// A simple program to demonstrate the use 
-// of predicate interface 
-import java.util.*; 
-import java.util.function.Predicate; 
-  
-class Test 
-{ 
-    public static void main(String args[]) 
-    { 
-  
-        // create a list of strings 
-        List<String> names = 
-            Arrays.asList("Geek","GeeksQuiz","g1","QA","Geek2"); 
-  
-        // declare the predicate type as string and use 
-        // lambda expression to create object 
-        Predicate<String> p = (s)->s.startsWith("G"); 
-  
-        // Iterate through the list 
-        for (String st:names) 
-        { 
-            // call the test method 
-            if (p.test(st)) 
-                System.out.println(st); 
-        } 
-    } 
+// A simple program to demonstrate the use
+// of predicate interface
+import java.util.*;
+import java.util.function.Predicate;
+
+class Test
+{
+    public static void main(String args[])
+    {
+
+        // create a list of strings
+        List<String> names =
+            Arrays.asList("Geek","GeeksQuiz","g1","QA","Geek2");
+
+        // declare the predicate type as string and use
+        // lambda expression to create object
+        Predicate<String> p = (s)->s.startsWith("G");
+
+        // Iterate through the list
+        for (String st:names)
+        {
+            // call the test method
+            if (p.test(st))
+                System.out.println(st);
+        }
+    }
 }
 ```
 
@@ -3051,3 +3110,1661 @@ Settings ([[Alt]] + [[F7]]) and then set up Scratch Dir and Console Dir-
 
   </dependencies>
 ```
+
+
+## Java Binaries
+
+      jabswitch.exe
+      jaccessinspector.exe -GUI
+      jaccesswalker.exe -GUI
+      jaotc.exe
+      jar.exe
+      jarsigner.exe
+      java.exe
+      javac.exe
+      javadoc.exe
+      javap.exe
+      javaw.exe
+      jcmd.exe
+      jconsole.exe
+      jdb.exe
+      jdeprscan.exe
+      jdeps.exe
+      jhsdb.exe
+      jimage.exe
+      jinfo.exe
+      jjs.exe
+      jlink.exe
+      jmap.exe
+      jmod.exe
+      jps.exe
+      jrunscript.exe
+      jshell.exe
+      jstack.exe
+      jstat.exe
+      jstatd.exe
+      keytool.exe
+      kinit.exe
+      klist.exe
+      ktab.exe
+      pack200.exe
+      rmic.exe
+      rmid.exe
+      rmiregistry.exe
+      serialver.exe
+      unpack200.exe
+
+
+
+### Java.exe
+
+help doc:
+
+      Usage: java [options] <mainclass> [args...]
+                 (to execute a class)
+         or  java [options] -jar <jarfile> [args...]
+                 (to execute a jar file)
+         or  java [options] -m <module>[/<mainclass>] [args...]
+             java [options] --module <module>[/<mainclass>] [args...]
+                 (to execute the main class in a module)
+
+       Arguments following the main class, -jar <jarfile>, -m or --module
+       <module>/<mainclass> are passed as the arguments to main class.
+
+       where options include:
+
+          -cp <class search path of directories and zip/jar files>
+          -classpath <class search path of directories and zip/jar files>
+          --class-path <class search path of directories and zip/jar files>
+                        A ; separated list of directories, JAR archives,
+                        and ZIP archives to search for class files.
+          -p <module path>
+          --module-path <module path>...
+                        A ; separated list of directories, each directory
+                        is a directory of modules.
+          --upgrade-module-path <module path>...
+                        A ; separated list of directories, each directory
+                        is a directory of modules that replace upgradeable
+                        modules in the runtime image
+          --add-modules <module name>[,<module name>...]
+                        root modules to resolve in addition to the initial module.
+                        <module name> can also be ALL-DEFAULT, ALL-SYSTEM,
+                        ALL-MODULE-PATH.
+          --list-modules
+                        list observable modules and exit
+          -d <module name>
+          --describe-module <module name>
+                        describe a module and exit
+          --dry-run     create VM and load main class but do not execute main method.
+                        The --dry-run option may be useful for validating the
+                        command-line options such as the module system configuration.
+          --validate-modules
+                        validate all modules and exit
+                        The --validate-modules option may be useful for finding
+                        conflicts and other errors with modules on the module path.
+          -D<name>=<value>
+                        set a system property
+          -verbose:[class|module|gc|jni]
+                        enable verbose output
+          -version      print product version to the error stream and exit
+          --version     print product version to the output stream and exit
+          -showversion  print product version to the error stream and continue
+          --show-version
+                        print product version to the output stream and continue
+          --show-module-resolution
+                        show module resolution output during startup
+          -? -h -help
+                        print this help message to the error stream
+          --help        print this help message to the output stream
+          -X            print help on extra options to the error stream
+          --help-extra  print help on extra options to the output stream
+          -ea[:<packagename>...|:<classname>]
+          -enableassertions[:<packagename>...|:<classname>]
+                        enable assertions with specified granularity
+          -da[:<packagename>...|:<classname>]
+          -disableassertions[:<packagename>...|:<classname>]
+                        disable assertions with specified granularity
+          -esa | -enablesystemassertions
+                        enable system assertions
+          -dsa | -disablesystemassertions
+                        disable system assertions
+          -agentlib:<libname>[=<options>]
+                        load native agent library <libname>, e.g. -agentlib:jdwp
+                        see also -agentlib:jdwp=help
+          -agentpath:<pathname>[=<options>]
+                        load native agent library by full pathname
+          -javaagent:<jarpath>[=<options>]
+                        load Java programming language agent, see java.lang.instrument
+          -splash:<imagepath>
+                        show splash screen with specified image
+                        HiDPI scaled images are automatically supported and used
+                        if available. The unscaled image filename, e.g. image.ext,
+                        should always be passed as the argument to the -splash option.
+                        The most appropriate scaled image provided will be picked up
+                        automatically.
+                        See the SplashScreen API documentation for more information
+          @argument files
+                        one or more argument files containing options
+          -disable-@files
+                        prevent further argument file expansion
+      To specify an argument for a long option, you can use --<name>=<value> or
+      --<name> <value>.
+
+
+### javac.exe
+
+      Usage: javac <options> <source files>
+      where possible options include:
+        @<filename>                  Read options and filenames from file
+        -Akey[=value]                Options to pass to annotation processors
+        --add-modules <module>(,<module>)*
+              Root modules to resolve in addition to the initial modules, or all modules
+              on the module path if <module> is ALL-MODULE-PATH.
+        --boot-class-path <path>, -bootclasspath <path>
+              Override location of bootstrap class files
+        --class-path <path>, -classpath <path>, -cp <path>
+              Specify where to find user class files and annotation processors
+        -d <directory>               Specify where to place generated class files
+        -deprecation
+              Output source locations where deprecated APIs are used
+        --enable-preview
+              Enable preview language features. To be used in conjunction with either -source or --release.
+        -encoding <encoding>         Specify character encoding used by source files
+        -endorseddirs <dirs>         Override location of endorsed standards path
+        -extdirs <dirs>              Override location of installed extensions
+        -g                           Generate all debugging info
+        -g:{lines,vars,source}       Generate only some debugging info
+        -g:none                      Generate no debugging info
+        -h <directory>
+              Specify where to place generated native header files
+        --help, -help, -?            Print this help message
+        --help-extra, -X             Print help on extra options
+        -implicit:{none,class}
+              Specify whether or not to generate class files for implicitly referenced files
+        -J<flag>                     Pass <flag> directly to the runtime system
+        --limit-modules <module>(,<module>)*
+              Limit the universe of observable modules
+        --module <module-name>, -m <module-name>
+              Compile only the specified module, check timestamps
+        --module-path <path>, -p <path>
+              Specify where to find application modules
+        --module-source-path <module-source-path>
+              Specify where to find input source files for multiple modules
+        --module-version <version>
+              Specify version of modules that are being compiled
+        -nowarn                      Generate no warnings
+        -parameters
+              Generate metadata for reflection on method parameters
+        -proc:{none,only}
+              Control whether annotation processing and/or compilation is done.
+        -processor <class1>[,<class2>,<class3>...]
+              Names of the annotation processors to run; bypasses default discovery process
+        --processor-module-path <path>
+              Specify a module path where to find annotation processors
+        --processor-path <path>, -processorpath <path>
+              Specify where to find annotation processors
+        -profile <profile>
+              Check that API used is available in the specified profile
+        --release <release>
+              Compile for a specific VM version. Supported targets: 6, 7, 8, 9, 10, 11
+        -s <directory>               Specify where to place generated source files
+        -source <release>
+              Provide source compatibility with specified release
+        --source-path <path>, -sourcepath <path>
+              Specify where to find input source files
+        --system <jdk>|none          Override location of system modules
+        -target <release>            Generate class files for specific VM version
+        --upgrade-module-path <path>
+              Override location of upgradeable modules
+        -verbose                     Output messages about what the compiler is doing
+        --version, -version          Version information
+        -Werror                      Terminate compilation if warnings occur
+
+
+### jar.exe
+
+
+      Usage: jar [OPTION...] [ [--release VERSION] [-C dir] files] ...
+      jar creates an archive for classes and resources, and can manipulate or
+      restore individual classes or resources from an archive.
+
+       Examples:
+       # Create an archive called classes.jar with two class files:
+       jar --create --file classes.jar Foo.class Bar.class
+       # Create an archive using an existing manifest, with all the files in foo/:
+       jar --create --file classes.jar --manifest mymanifest -C foo/ .
+       # Create a modular jar archive, where the module descriptor is located in
+       # classes/module-info.class:
+       jar --create --file foo.jar --main-class com.foo.Main --module-version 1.0
+           -C foo/ classes resources
+       # Update an existing non-modular jar to a modular jar:
+       jar --update --file foo.jar --main-class com.foo.Main --module-version 1.0
+           -C foo/ module-info.class
+       # Create a multi-release jar, placing some files in the META-INF/versions/9 directory:
+       jar --create --file mr.jar -C foo classes --release 9 -C foo9 classes
+
+      To shorten or simplify the jar command, you can specify arguments in a separate
+      text file and pass it to the jar command with the at sign (@) as a prefix.
+
+       Examples:
+       # Read additional options and list of class files from the file classes.list
+       jar --create --file my.jar @classes.list
+
+
+       Main operation mode:
+
+        -c, --create               Create the archive
+        -i, --generate-index=FILE  Generate index information for the specified jar
+                                   archives
+        -t, --list                 List the table of contents for the archive
+        -u, --update               Update an existing jar archive
+        -x, --extract              Extract named (or all) files from the archive
+        -d, --describe-module      Print the module descriptor, or automatic module name
+
+       Operation modifiers valid in any mode:
+
+        -C DIR                     Change to the specified directory and include the
+                                   following file
+        -f, --file=FILE            The archive file name. When omitted, either stdin or
+                                   stdout is used based on the operation
+            --release VERSION      Places all following files in a versioned directory
+                                   of the jar (i.e. META-INF/versions/VERSION/)
+        -v, --verbose              Generate verbose output on standard output
+
+       Operation modifiers valid only in create and update mode:
+
+        -e, --main-class=CLASSNAME The application entry point for stand-alone
+                                   applications bundled into a modular, or executable,
+                                   jar archive
+        -m, --manifest=FILE        Include the manifest information from the given
+                                   manifest file
+        -M, --no-manifest          Do not create a manifest file for the entries
+            --module-version=VERSION    The module version, when creating a modular
+                                   jar, or updating a non-modular jar
+            --hash-modules=PATTERN Compute and record the hashes of modules
+                                   matched by the given pattern and that depend upon
+                                   directly or indirectly on a modular jar being
+                                   created or a non-modular jar being updated
+        -p, --module-path          Location of module dependence for generating
+                                   the hash
+
+       Operation modifiers valid only in create, update, and generate-index mode:
+
+        -0, --no-compress          Store only; use no ZIP compression
+
+       Other options:
+
+        -?, -h, --help[:compat]    Give this, or optionally the compatibility, help
+            --help-extra           Give help on extra options
+            --version              Print program version
+
+       An archive is a modular jar if a module descriptor, 'module-info.class', is
+       located in the root of the given directories, or the root of the jar archive
+       itself. The following operations are only valid when creating a modular jar,
+       or updating an existing non-modular jar: '--module-version',
+       '--hash-modules', and '--module-path'.
+
+       Mandatory or optional arguments to long options are also mandatory or optional
+       for any corresponding short options.
+
+
+       jabswitch [/enable | /disable | /version | /?]
+
+       Description:
+         jabswitch enables or disables the Java Access Bridge.
+
+       Parameters:
+         /enable   Enable the Java Accessibility Bridge.
+         /disable  Disable the Java Accessibility Bridge.
+         /version  Display the version.
+         /?        Display this usage information.
+
+       Note:
+         The Java Access Bridge can also be enabled with the
+         Windows Ease of Access control panel (which can be
+         activated by pressing Windows + U).  The Ease of Access
+         control panel has a Java Access Bridge checkbox.  Please
+         be aware that unchecking the checkbox has no effect and
+         in order to disable the Java Access Bridge you must run
+         jabswitch.exe from the command line.
+
+### jaotc
+
+      Usage: jaotc <options> list
+
+        list       A : separated list of class names, modules, jar files
+                   or directories which contain class files.
+
+      where options include:
+        --output <file>            Output file name
+        --class-name <class names> List of classes to compile
+        --jar <jarfiles>           List of jar files to compile
+        --module <modules>         List of modules to compile
+        --directory <dirs>         List of directories where to search for files to compile
+        --search-path <dirs>       List of directories where to search for specified files
+        --compile-commands <file>  Name of file with compile commands
+        --compile-for-tiered       Generate profiling code for tiered compilation
+        --compile-with-assertions  Compile with java assertions
+        --compile-threads <number> Number of compilation threads to be used
+        --ignore-errors            Ignores all exceptions thrown during class loading
+        --exit-on-error            Exit on compilation errors
+        --info                     Print information during compilation
+        --verbose                  Print verbose information
+        --debug                    Print debug information
+        -? -h --help               Print this help message
+        --version                  Version information
+        --linker-path              Full path to linker executable
+        -J<flag>                   Pass <flag> directly to the runtime system
+
+### jarsigner
+
+      Usage: jarsigner [options] jar-file alias
+             jarsigner -verify [options] jar-file [alias...]
+
+      [-keystore <url>]           keystore location
+      [-storepass <password>]     password for keystore integrity
+      [-storetype <type>]         keystore type
+      [-keypass <password>]       password for private key (if different)
+      [-certchain <file>]         name of alternative certchain file
+      [-sigfile <file>]           name of .SF/.DSA file
+      [-signedjar <file>]         name of signed JAR file
+      [-digestalg <algorithm>]    name of digest algorithm
+      [-sigalg <algorithm>]       name of signature algorithm
+      [-verify]                   verify a signed JAR file
+      [-verbose[:suboptions]]     verbose output when signing/verifying.
+                                  suboptions can be all, grouped or summary
+      [-certs]                    display certificates when verbose and verifying
+      [-tsa <url>]                location of the Timestamping Authority
+      [-tsacert <alias>]          public key certificate for Timestamping Authority
+      [-tsapolicyid <oid>]        TSAPolicyID for Timestamping Authority
+      [-tsadigestalg <algorithm>] algorithm of digest data in timestamping request
+      [-altsigner <class>]        class name of an alternative signing mechanism
+                                  (This option has been deprecated.)
+      [-altsignerpath <pathlist>] location of an alternative signing mechanism
+                                  (This option has been deprecated.)
+      [-internalsf]               include the .SF file inside the signature block
+      [-sectionsonly]             don't compute hash of entire manifest
+      [-protected]                keystore has protected authentication path
+      [-providerName <name>]      provider name
+      [-addprovider <name>        add security provider by name (e.g. SunPKCS11)
+        [-providerArg <arg>]] ... configure argument for -addprovider
+      [-providerClass <class>     add security provider by fully-qualified class name
+        [-providerArg <arg>]] ... configure argument for -providerClass
+      [-strict]                   treat warnings as errors
+      [-conf <url>]               specify a pre-configured options file
+      [-? -h --help]              Print this help message
+
+### javadoc
+
+[Documentation on JavaDoc (JDK v 1.6)](https://docs.oracle.com/javase/6/docs/technotes/tools/windows/javadoc.html#examples)
+
+      Usage:
+          javadoc [options] [packagenames] [sourcefiles] [@files]
+      where options include:
+          --add-modules <module>(,<module>)*
+                        Root modules to resolve in addition to the initial modules,
+                        or all modules on the module path if <module> is
+                        ALL-MODULE-PATH.
+          -bootclasspath <path>
+                        Override location of platform class files used for non-modular
+                        releases
+          -breakiterator
+                        Compute first sentence with BreakIterator
+          --class-path <path>, -classpath <path>, -cp <path>
+                        Specify where to find user class files
+          -doclet <class>
+                        Generate output via alternate doclet
+          -docletpath <path>
+                        Specify where to find doclet class files
+          --enable-preview
+                        Enable preview language features. To be used in conjunction with
+                        either -source or --release.
+          -encoding <name>
+                        Source file encoding name
+          -exclude <pkglist>
+                        Specify a list of packages to exclude
+          --expand-requires <value>
+                        Instructs the tool to expand the set of modules to be
+                        documented. By default, only the modules given explicitly on
+                        the command line will be documented. A value of "transitive"
+                        will additionally include all "requires transitive"
+                        dependencies of those modules. A value of "all" will include
+                        all dependencies of those modules.
+          -extdirs <dirlist>
+                        Override location of installed extensions
+          --help, -help, -?, -h
+                        Display command line options and exit
+          --help-extra, -X
+                        Print a synopsis of nonstandard options and exit
+          -J<flag>      Pass <flag> directly to the runtime system
+          --limit-modules <module>(,<module>)*
+                        Limit the universe of observable modules
+          -locale <name>
+                        Locale to be used, e.g. en_US or en_US_WIN
+          --module <module>(,<module>)*
+                        Document the specified module(s)
+          --module-path <path>, -p <path>
+                        Specify where to find application modules
+          --module-source-path <path>
+                        Specify where to find input source files for multiple modules
+          -package
+                        Show package/protected/public types and members. For
+                        named modules, show all packages and all module details.
+          -private
+                        Show all types and members. For named modules,
+                        show all packages and all module details.
+          -protected
+                        Show protected/public types and members (default). For
+                        named modules, show exported packages and the module's API.
+          -public
+                        Show only public types and members. For named modules,
+                        show exported packages and the module's API.
+          -quiet        Do not display status messages
+          --release <release>
+                        Provide source compatibility with specified release
+          --show-members <value>
+                        Specifies which members (fields, methods, etc.) will be
+                        documented, where value can be one of "public", "protected",
+                        "package" or "private". The default is "protected", which will
+                        show public and protected members, "public" will show only
+                        public members, "package" will show public, protected and
+                        package members and "private" will show all members.
+          --show-module-contents <value>
+                        Specifies the documentation granularity of module
+                        declarations. Possible values are "api" or "all".
+          --show-packages <value>
+                        Specifies which modules packages will be documented. Possible
+                        values are "exported" or "all" packages.
+          --show-types <value>
+                        Specifies which types (classes, interfaces, etc.) will be
+                        documented, where value can be one of "public", "protected",
+                        "package" or "private". The default is "protected", which will
+                        show public and protected types, "public" will show only
+                        public types, "package" will show public, protected and
+                        package types and "private" will show all types.
+          -source <release>
+                        Provide source compatibility with specified release
+          --source-path <path>, -sourcepath <path>
+                        Specify where to find source files
+          -subpackages <subpkglist>
+                        Specify subpackages to recursively load
+          --system <jdk>
+                        Override location of system modules used for modular releases
+          --upgrade-module-path <path>
+                        Override location of upgradeable modules
+          -verbose      Output messages about what Javadoc is doing
+          --version     Print version information
+
+      Provided by the Standard doclet:
+          --add-stylesheet <file>
+                        Additional stylesheet file for the generated documentation
+          --allow-script-in-comments
+                        Allow JavaScript in options and comments
+          -author       Include @author paragraphs
+          -bottom <html-code>
+                        Include bottom text for each page
+          -charset <charset>
+                        Charset for cross-platform viewing of generated documentation
+          -d <directory>
+                        Destination directory for output files
+          -docencoding <name>
+                        Specify the character encoding for the output
+          -docfilessubdirs
+                        Recursively copy doc-file subdirectories
+          -doctitle <html-code>
+                        Include title for the overview page
+          -excludedocfilessubdir <name>:..
+                        Exclude any doc-files subdirectories with given name
+          -footer <html-code>
+                        Include footer text for each page
+          --frames      Enable the use of frames in the generated output
+          -group <name> <g1>:<g2>...
+                        Group specified elements together in overview page
+          -header <html-code>
+                        Include header text for each page
+          -helpfile <file>
+                        Include file that help link links to
+          -html4        Generate HTML 4.01 output
+          -html5        Generate HTML 5 output
+          --javafx, -javafx
+                        Enable JavaFX functionality
+          -keywords     Include HTML meta tags with package, class and member info
+          -link <url>   Create links to javadoc output at <url>
+          -linkoffline <url1> <url2>
+                        Link to docs at <url1> using package list at <url2>
+          -linksource   Generate source in HTML
+          --main-stylesheet <file>, -stylesheetfile <file>
+                        File to change style of the generated documentation
+          -nocomment    Suppress description and tags, generate only declarations
+          -nodeprecated
+                        Do not include @deprecated information
+          -nodeprecatedlist
+                        Do not generate deprecated list
+          --no-frames   Disable the use of frames in the generated output (default)
+          -nohelp       Do not generate help link
+          -noindex      Do not generate index
+          -nonavbar     Do not generate navigation bar
+          -noqualifier <name1>:<name2>:..
+                        Exclude the list of qualifiers from the output
+          -nosince      Do not include @since information
+          -notimestamp  Do not include hidden time stamp
+          -notree       Do not generate class hierarchy
+          --override-methods (detail|summary)
+                        Document overridden methods in the detail or summary sections
+          -overview <file>
+                        Read overview documentation from HTML file
+          -serialwarn   Generate warning about @serial tag
+          -sourcetab <tab length>
+                        Specify the number of spaces each tab takes up in the source
+          -splitindex   Split index into one file per letter
+          -tag <name>:<locations>:<header>
+                        Specify single argument custom tags
+          -taglet       The fully qualified name of Taglet to register
+          -tagletpath   The path to Taglets
+          -top <html-code>
+                        Include top text for each page
+          -use          Create class and package usage pages
+          -version      Include @version paragraphs
+          -windowtitle <text>
+                        Browser window title for the documentation
+
+      GNU-style options may use = instead of whitespace to separate the name of an
+      option from its value.
+
+
+### javap
+
+      Usage: javap <options> <classes>
+      where possible options include:
+        -? -h --help -help               Print this help message
+        -version                         Version information
+        -v  -verbose                     Print additional information
+        -l                               Print line number and local variable tables
+        -public                          Show only public classes and members
+        -protected                       Show protected/public classes and members
+        -package                         Show package/protected/public classes
+                                         and members (default)
+        -p  -private                     Show all classes and members
+        -c                               Disassemble the code
+        -s                               Print internal type signatures
+        -sysinfo                         Show system info (path, size, date, MD5 hash)
+                                         of class being processed
+        -constants                       Show final constants
+        --module <module>, -m <module>   Specify module containing classes to be disassembled
+        --module-path <path>             Specify where to find application modules
+        --system <jdk>                   Specify where to find system modules
+        --class-path <path>              Specify where to find user class files
+        -classpath <path>                Specify where to find user class files
+        -cp <path>                       Specify where to find user class files
+        -bootclasspath <path>            Override location of bootstrap class files
+
+      GNU-style options may use = instead of whitespace to separate the name of an option
+      from its value.
+
+      Each class to be shown may be specified by a filename, a URL, or by its fully
+      qualified class name. Examples:
+         path/to/MyClass.class
+         jar:file:///path/to/MyJar.jar!/mypkg/MyClass.class
+         java.lang.Object
+
+### javaw
+
+nothing
+
+
+### jcmd
+
+On its own shows all running java programs
+
+      Usage: jcmd <pid | main class> <command ...|PerfCounter.print|-f file>
+         or: jcmd -l
+         or: jcmd -h
+
+        command must be a valid jcmd command for the selected jvm.
+        Use the command "help" to see which commands are available.
+        If the pid is 0, commands will be sent to all Java processes.
+        The main class argument will be used to match (either partially
+        or fully) the class used to start Java.
+        If no options are given, lists Java processes (same as -l).
+
+        PerfCounter.print display the counters exposed by this process
+        -f  read and execute commands from the file
+        -l  list JVM processes on the local machine
+        -? -h --help print this help message
+
+### jconsole
+
+Java Monitoring and Management Console - GUI
+
+Similar to the Java Mission Control
+
+### jdb
+
+on its own opens a prompt.
+
+Usage: jdb <options> <class> <arguments>
+
+      where options include:
+          -? -h --help -help print this help message and exit
+          -sourcepath <directories separated by ";">
+                            directories in which to look for source files
+          -attach <address>
+                            attach to a running VM at the specified address using standard connector
+          -listen <address>
+                            wait for a running VM to connect at the specified address using standard connector
+          -listenany
+                            wait for a running VM to connect at any available address using standard connector
+          -launch
+                            launch VM immediately instead of waiting for 'run' command
+          -listconnectors   list the connectors available in this VM
+          -connect <connector-name>:<name1>=<value1>,...
+                            connect to target VM using named connector with listed argument values
+          -dbgtrace [flags] print info for debugging jdb
+          -tclient          run the application in the HotSpot(TM) Client Compiler
+          -tserver          run the application in the HotSpot(TM) Server Compiler
+
+      options forwarded to debuggee process:
+          -v -verbose[:class|gc|jni]
+                            turn on verbose mode
+          -D<name>=<value>  set a system property
+          -classpath <directories separated by ";">
+                            list directories in which to look for classes
+          -X<option>        non-standard target VM option
+
+      <class> is the name of the class to begin debugging
+      <arguments> are the arguments passed to the main() method of <class>
+
+      For command help type 'help' at jdb prompt
+
+### jdeprscan
+
+      Usage: jdeprscan [options] {dir|jar|class} ...
+
+      options:
+              --class-path PATH
+              --for-removal
+              --full-version
+        -? -h --help
+        -l    --list
+              --release 6|7|8|9|10|11
+        -v    --verbose
+              --version
+
+      Scans each argument for usages of deprecated APIs. An argument
+      may be a directory specifying the root of a package hierarchy,
+      a JAR file, a class file, or a class name. The class name must be
+      specified using a fully qualified class name using the $ separator
+      character for nested classes, for example,
+
+          java.lang.Thread$State
+
+      The --class-path option provides a search path for resolution
+      of dependent classes.
+
+      The --for-removal option limits scanning or listing to APIs that are
+      deprecated for removal. Cannot be used with a release value of 6, 7, or 8.
+
+      The --full-version option prints out the full version string of the tool.
+
+      The --help (-? -h) option prints out a full help message.
+
+      The --list (-l) option prints out the set of deprecated APIs. No scanning is done,
+      so no directory, jar, or class arguments should be provided.
+
+      The --release option specifies the Java SE release that provides the set
+      of deprecated APIs for scanning.
+
+      The --verbose (-v) option enables additional message output during processing.
+
+      The --version option prints out the abbreviated version string of the tool.
+
+### jdeps
+
+      Usage: jdeps <options> <path ...>]
+      <path> can be a pathname to a .class file, a directory, a JAR file.
+
+      Possible options include:
+        -h -? --help                  Print this help message
+        -dotoutput <dir>
+        --dot-output <dir>            Destination directory for DOT file output
+        -s       -summary             Print dependency summary only.
+        -v       -verbose             Print all class level dependences
+                                      Equivalent to -verbose:class -filter:none.
+        -verbose:package              Print package-level dependences excluding
+                                      dependences within the same package by default
+        -verbose:class                Print class-level dependences excluding
+                                      dependences within the same package by default
+        -apionly
+        --api-only                    Restrict analysis to APIs i.e. dependences
+                                      from the signature of public and protected
+                                      members of public classes including field
+                                      type, method parameter types, returned type,
+                                      checked exception types etc.
+        -jdkinternals
+        --jdk-internals               Finds class-level dependences on JDK internal
+                                      APIs. By default, it analyzes all classes
+                                      on --class-path and input files unless -include
+                                      option is specified. This option cannot be
+                                      used with -p, -e and -s options.
+                                      WARNING: JDK internal APIs are inaccessible.
+        -cp <path>
+        -classpath <path>
+        --class-path <path>           Specify where to find class files
+        --module-path <module path>   Specify module path
+        --upgrade-module-path <module path>  Specify upgrade module path
+        --system <java-home>          Specify an alternate system module path
+        --add-modules <module-name>[,<module-name>...]
+                                      Adds modules to the root set for analysis
+        --multi-release <version>     Specifies the version when processing
+                                      multi-release jar files.  <version> should
+                                      be integer >= 9 or base.
+        -q       -quiet               Suppress warning messages
+        -version --version            Version information
+
+      Module dependence analysis options:
+        -m <module-name>
+        --module <module-name>        Specify the root module for analysis
+        --generate-module-info <dir>  Generate module-info.java under the specified
+                                      directory. The specified JAR files will be
+                                      analyzed. This option cannot be used with
+                                      --dot-output or --class-path. Use
+                                      --generate-open-module option for open modules.
+        --generate-open-module <dir>  Generate module-info.java for the specified
+                                      JAR files under the specified directory as
+                                      open modules. This option cannot be used with
+                                      --dot-output or --class-path.
+        --check <module-name>[,<module-name>...
+                                      Analyze the dependence of the specified modules
+                                      It prints the module descriptor, the resulting
+                                      module dependences after analysis and the
+                                      graph after transition reduction.  It also
+                                      identifies any unused qualified exports.
+        --list-deps                   Lists the module dependences.  It also prints
+                                      any JDK internal API packages if referenced.
+                                      This option does not show dependences on the
+                                      class path or not found.
+        --list-reduced-deps           Same as --list-deps with not listing
+                                      the implied reads edges from the module graph.
+                                      If module M1 reads M2, and M2 requires
+                                      transitive on M3, then M1 reading M3 is implied
+                                      and is not shown in the graph.
+        --print-module-deps           Same as --list-reduced-deps with printing
+                                      a comma-separated list of module dependences.
+                                      This output can be used by jlink --add-modules
+                                      in order to create a custom image containing
+                                      those modules and their transitive dependences.
+
+      Options to filter dependences:
+        -p <pkg>
+        -package <pkg>
+        --package <pkg>               Finds dependences matching the given package
+                                      name (may be given multiple times).
+        -e <regex>
+        -regex <regex>
+        --regex <regex>               Finds dependences matching the given pattern.
+        --require <module-name>       Finds dependences matching the given module
+                                      name (may be given multiple times). --package,
+                                      --regex, --require are mutual exclusive.
+        -f <regex> -filter <regex>    Filter dependences matching the given
+                                      pattern. If given multiple times, the last
+                                      one will be used.
+        -filter:package               Filter dependences within the same package.
+                                      This is the default.
+        -filter:archive               Filter dependences within the same archive.
+        -filter:module                Filter dependences within the same module.
+        -filter:none                  No -filter:package and -filter:archive
+                                      filtering.  Filtering specified via the
+                                      -filter option still applies.
+
+
+      Options to filter classes to be analyzed:
+        -include <regex>              Restrict analysis to classes matching pattern
+                                      This option filters the list of classes to
+                                      be analyzed.  It can be used together with
+                                      -p and -e which apply pattern to the dependences
+        -P       -profile             Show profile containing a package
+        -R       -recursive           Recursively traverse all run-time dependences.
+                                      The -R option implies -filter:none.  If -p,
+                                      -e, -f option is specified, only the matching
+                                      dependences are analyzed.
+        -I       --inverse            Analyzes the dependences per other given options
+                                      and then find all artifacts that directly
+                                      and indirectly depend on the matching nodes.
+                                      This is equivalent to the inverse of
+                                      compile-time view analysis and print
+                                      dependency summary.  This option must use
+                                      with --require, --package or --regex option.
+        --compile-time                Compile-time view of transitive dependences
+                                      i.e. compile-time view of -R option.
+                                      Analyzes the dependences per other given options
+                                      If a dependence is found from a directory,
+                                      a JAR file or a module, all classes in that
+                                      containing archive are analyzed.
+
+### jhsdb
+
+Java HotSpot Debugger?  eg jhsdb.exe hsdb opens GUI
+
+      clhsdb       	command line debugger
+      debugd       	debug server
+      hsdb         	ui debugger
+      jstack --help	to get more information
+      jmap   --help	to get more information
+      jinfo  --help	to get more information
+      jsnap  --help	to get more information
+
+### jimage
+
+      Usage: jimage <extract | info | list | verify> <options> jimage...
+
+        extract  - Extract all jimage entries and place in a directory specified
+                   by the --dir=<directory> (default=.) option.
+
+        info     - Prints detailed information contained in the jimage header.
+
+        list     - Prints the names of all the entries in the jimage.  When used with
+                   --verbose, list will also print entry size and offset attributes.
+
+        verify   - Reports on any .class entries that dont verify as classes.
+
+      Possible options include:
+                --dir                        Target directory for extract directive
+        -?, -h, --help                       Print this help message
+                --include <pattern-list>     Pattern list for filtering entries.
+                --verbose                    Listing prints entry size and offset
+                                             attributes
+                --version                    Print version information
+
+      For options requiring a <pattern-list>, the value will be a comma separated
+      list of elements each using one the following forms:
+        <glob-pattern>
+        glob:<glob-pattern>
+        regex:<regex-pattern>
+
+### jinfo
+
+      Usage:
+          jinfo <option> <pid>
+             (to connect to a running process)
+
+      where <option> is one of:
+          -flag <name>         to print the value of the named VM flag
+          -flag [+|-]<name>    to enable or disable the named VM flag
+          -flag <name>=<value> to set the named VM flag to the given value
+          -flags               to print VM flags
+          -sysprops            to print Java system properties
+          <no option>          to print both VM flags and system properties
+          -? | -h | --help | -help to print this help message
+
+### jjs
+
+On its own opens a terminal, with a warning it will soon be removed
+
+      jjs [<options>] <files> [-- <arguments>]
+              -D (-Dname=value. Set a system property. This option can be repeated.)
+
+              --add-modules (--add-modules modules. Specify the root user java modules.)
+
+              -cp, -classpath (-cp path. Specify where to find user class files.)
+
+              -doe, -dump-on-error (Dump a stack trace on errors.)
+                      param: [true|false]   default: false
+
+              -fv, -fullversion (Print full version info of Nashorn.)
+                      param: [true|false]   default: false
+
+              -fx (Launch script as an fx application.)
+                      param: [true|false]   default: false
+
+              -h, --help (Print this help message.)
+                      param: [true|false]   default: false
+
+              --language (Specify ECMAScript language version.)
+                      param: [es5|es6]   default: es5
+
+              --module-path (--module-path path. Specify where to find user java modules.)
+
+              --no-deprecation-warning (Do not show nashorn deprecation warning.)
+                      param: [true|false]   default: false
+
+              -ot, --optimistic-types (Use optimistic type assumptions with deoptimizing recompilation.
+                                      This makes the compiler try, for any program symbol whose type cannot
+                                      be proven at compile time, to type it as narrow and primitive as
+                                      possible. If the runtime encounters an error because symbol type
+                                      is too narrow, a wider method will be generated until steady stage
+                                      is reached. While this produces as optimal Java Bytecode as possible,
+                                      erroneous type guesses will lead to longer warmup. Optimistic typing
+                                      is currently enabled by default, but can be disabled for faster
+                                      startup performance.)
+                      param: [true|false]   default: true
+
+              -scripting (Enable scripting features.)
+                      param: [true|false]   default: false
+
+              -strict (Run scripts in strict mode.)
+                      param: [true|false]   default: false
+
+              -t, -timezone (Set timezone for script execution.)
+                      param: <timezone>   default: America/New_York
+
+              -v, -version (Print version info of Nashorn.)
+                      param: [true|false]   default: false
+
+### jlink
+
+      Error: --output must be specified
+      Usage: jlink <options> --module-path <modulepath> --add-modules <module>[,<module>...]
+      Use --help for a list of possible options
+
+help:
+
+      Usage: jlink <options> --module-path <modulepath> --add-modules <module>[,<module>...]
+      Possible options include:
+            --add-modules <mod>[,<mod>...]    Root modules to resolve
+            --bind-services                   Link in service provider modules and
+                                              their dependences
+        -c, --compress=<0|1|2>                Enable compression of resources:
+                                                Level 0: No compression
+                                                Level 1: Constant string sharing
+                                                Level 2: ZIP
+            --disable-plugin <pluginname>     Disable the plugin mentioned
+            --endian <little|big>             Byte order of generated jimage
+                                              (default:native)
+        -h, --help, -?                        Print this help message
+            --ignore-signing-information      Suppress a fatal error when signed
+                                              modular JARs are linked in the image.
+                                              The signature related files of the
+                                              signed modular JARs are not copied to
+                                              the runtime image.
+            --launcher <name>=<module>[/<mainclass>]
+                                              Add a launcher command of the given
+                                              name for the module and the main class
+                                              if specified
+            --limit-modules <mod>[,<mod>...]  Limit the universe of observable
+                                              modules
+            --list-plugins                    List available plugins
+        -p, --module-path <path>              Module path
+            --no-header-files                 Exclude include header files
+            --no-man-pages                    Exclude man pages
+            --output <path>                   Location of output path
+            --post-process-path <imagefile>   Post process an existing image
+            --resources-last-sorter <name>    The last plugin allowed to sort
+                                              resources
+            --save-opts <filename>            Save jlink options in the given file
+        -G, --strip-debug                     Strip debug information
+            --suggest-providers [<name>,...]  Suggest providers that implement the
+                                              given service types from the module path
+        -v, --verbose                         Enable verbose tracing
+            --version                         Version information
+            @<filename>                       Read options from file
+
+
+  ### jmap
+
+      Usage:
+          jmap -clstats <pid>
+              to connect to running process and print class loader statistics
+          jmap -finalizerinfo <pid>
+              to connect to running process and print information on objects awaiting finalization
+          jmap -histo[:live] <pid>
+              to connect to running process and print histogram of java object heap
+              if the "live" suboption is specified, only count live objects
+          jmap -dump:<dump-options> <pid>
+              to connect to running process and dump java heap
+          jmap -? -h --help
+              to print this help message
+
+          dump-options:
+            live         dump only live objects; if not specified,
+                         all objects in the heap are dumped.
+            format=b     binary format
+            file=<file>  dump heap to <file>
+
+          Example: jmap -dump:live,format=b,file=heap.bin <pid>
+
+### jmod
+
+      Usage: jmod (create|extract|list|describe|hash) <OPTIONS> <jmod-file>
+
+      Main operation modes:
+        create    - Creates a new jmod archive
+        extract   - Extracts all the files from the archive
+        list      - Prints the names of all the entries
+        describe  - Prints the module details
+        hash      - Records hashes of tied modules.
+
+       Option                              Description
+       ------                              -----------
+        -?, -h, --help                      Print this help message
+        --class-path <path>                 Application jar files|dir containing
+                                              classes
+        --cmds <path>                       Location of native commands
+        --config <path>                     Location of user-editable config files
+        --dir <path>                        Target directory for extract
+        --dry-run                           Dry run of hash mode
+        --exclude <pattern-list>            Exclude files matching the supplied
+                                              comma separated pattern list, each
+                                              element using one the following
+                                              forms: <glob-pattern>, glob:<glob-
+                                              pattern> or regex:<regex-pattern>
+        --hash-modules <regex-pattern>      Compute and record hashes to tie a
+                                              packaged module with modules
+                                              matching the given <regex-pattern>
+                                              and depending upon it directly or
+                                              indirectly. The hashes are recorded
+                                              in the JMOD file being created, or a
+                                              JMOD file or modular JAR on the
+                                              module path specified the jmod hash
+                                              command.
+        --header-files <path>               Location of header files
+        --help-extra                        Print help on extra options
+        --legal-notices <path>              Location of legal notices
+        --libs <path>                       Location of native libraries
+        --main-class <String: class-name>   Main class
+        --man-pages <path>                  Location of man pages
+        --module-version <module-version>   Module version
+        -p, --module-path <path>            Module path
+        --target-platform <String: target-  Target platform
+          platform>
+        --version                           Version information
+        @<filename>                         Read options from the specified file
+
+### jps
+
+A process manager?
+
+      10544 Main
+      29040
+      29072 Main
+      22148 Launcher
+      27476
+      7540
+      25048 Launcher
+      25512 RemoteMavenServer36
+      19900 Jps
+
+      usage: jps [--help]
+             jps [-q] [-mlvV] [<hostid>]
+
+      Definitions:
+          <hostid>:      <hostname>[:<port>]
+          -? -h --help -help: Print this help message and exit.
+
+### jrunscript
+
+      jrunscript.exe
+      Warning: Nashorn engine is planned to be removed from a future JDK release
+      nashorn> quit
+      function quit() { [native code] }
+      nashorn> quit()
+
+      C:\Program Files\Java\JDK-11\bin>jrunscript.exe -h
+      Usage: jrunscript [options] [arguments...]
+
+      where [options] include:
+        -classpath <path>    Specify where to find user class files
+        -cp <path>           Specify where to find user class files
+        -D<name>=<value>     Set a system property
+        -J<flag>             Pass <flag> directly to the runtime system
+        -l <language>        Use specified scripting language
+        -e <script>          Evaluate given script
+        -encoding <encoding> Specify character encoding used by script files
+        -f <script file>     Evaluate given script file
+        -f -                 Interactive mode, read script from standard input
+                             If this is used, this should be the last -f option
+        -? -h --help -help   Print this help message and exit
+        -q                   List all scripting engines available and exit
+
+      If [arguments..] are present and if no -e or -f option is used, then first
+      argument is script file and the rest of the arguments, if any, are passed
+      as script arguments. If [arguments..] and -e or -f option is used, then all
+      [arguments..] are passed as script argume
+
+### jshell
+      |  Welcome to JShell -- Version 11.0.3
+      |  For an introduction type: /help intro
+
+        Usage:   jshell <option>... <load-file>...
+        where possible options include:
+          --class-path <path>   Specify where to find user class files
+          --module-path <path>  Specify where to find application modules
+          --add-modules <module>(,<module>)*
+                                Specify modules to resolve, or all modules on the
+                                  module path if <module> is ALL-MODULE-PATHs
+          --enable-preview      Allow code to depend on preview features of this release
+          --startup <file>      One run replacement for the startup definitions
+          --no-startup          Do not run the startup definitions
+          --feedback <mode>     Specify the initial feedback mode. The mode may be
+                                  predefined (silent, concise, normal, or verbose) or
+                                  previously user-defined
+          -q                    Quiet feedback.  Same as: --feedback concise
+          -s                    Really quiet feedback.  Same as: --feedback silent
+          -v                    Verbose feedback.  Same as: --feedback verbose
+          -J<flag>              Pass <flag> directly to the runtime system.
+                                  Use one -J for each runtime flag or flag argument
+          -R<flag>              Pass <flag> to the remote runtime system.
+                                  Use one -R for each remote flag or flag argument
+          -C<flag>              Pass <flag> to the compiler.
+                                  Use one -C for each compiler flag or flag argument
+          --version             Print version information and exit
+          --show-version        Print version information and continue
+          --help, -?, -h        Print this synopsis of standard options and exit
+          --help-extra, -X      Print help on non-standard options and exit
+
+        A file argument may be a file name, or one of the predefined file names: DEFAULT,
+        PRINTING, or JAVASE.
+        A load-file may also be "-" to indicate standard input, without interactive I/O.
+
+        For more information on the evaluation context options (--class-path,
+        --module-path, and --add-modules) see:
+              /help context
+
+        A path lists the directories and archives to search. For Windows, use a
+        semicolon (;) to separate items in the path. On other platforms, use a
+        colon (:) to separate items.
+
+      jshell>
+
+      jshell> /help
+      |  Type a Java language expression, statement, or declaration.
+      |  Or type one of the following commands:
+      |  /list [<name or id>|-all|-start]
+      |       list the source you have typed
+      |  /edit <name or id>
+      |       edit a source entry
+      |  /drop <name or id>
+      |       delete a source entry
+      |  /save [-all|-history|-start] <file>
+      |       Save snippet source to a file
+      |  /open <file>
+      |       open a file as source input
+      |  /vars [<name or id>|-all|-start]
+      |       list the declared variables and their values
+      |  /methods [<name or id>|-all|-start]
+      |       list the declared methods and their signatures
+      |  /types [<name or id>|-all|-start]
+      |       list the type declarations
+      |  /imports
+      |       list the imported items
+      |  /exit [<integer-expression-snippet>]
+      |       exit the jshell tool
+      |  /env [-class-path <path>] [-module-path <path>] [-add-modules <modules>] ...
+      |       view or change the evaluation context
+      |  /reset [-class-path <path>] [-module-path <path>] [-add-modules <modules>]...
+      |       reset the jshell tool
+      |  /reload [-restore] [-quiet] [-class-path <path>] [-module-path <path>]...
+      |       reset and replay relevant history -- current or previous (-restore)
+      |  /history [-all]
+      |       history of what you have typed
+      |  /help [<command>|<subject>]
+      |       get information about using the jshell tool
+      |  /set editor|start|feedback|mode|prompt|truncation|format ...
+      |       set configuration information
+      |  /? [<command>|<subject>]
+      |       get information about using the jshell tool
+      |  /!
+      |       rerun last snippet -- see /help rerun
+      |  /<id>
+      |       rerun snippets by ID or ID range -- see /help rerun
+      |  /-<n>
+      |       rerun n-th previous snippet -- see /help rerun
+      |
+      |  For more information type '/help' followed by the name of a
+      |  command or a subject.
+      |  For example '/help /list' or '/help intro'.
+      |
+      |  Subjects:
+      |
+      |  intro
+      |       an introduction to the jshell tool
+      |  id
+      |       a description of snippet IDs and how use them
+      |  shortcuts
+      |       a description of keystrokes for snippet and command completion,
+      |       information access, and automatic code generation
+      |  context
+      |       a description of the evaluation context options for /env /reload and /reset
+      |  rerun
+      |       a description of ways to re-evaluate previously entered snippets
+
+
+### jstack
+
+      jstack.exe -h
+      Usage:
+          jstack [-l][-e] <pid>
+              (to connect to running process)
+
+      Options:
+          -l  long listing. Prints additional information about locks
+          -e  extended listing. Prints additional information about threads
+          -? -h --help -help to print this help message
+
+### jstat
+
+      Usage: jstat --help|-options
+             jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]
+
+      Definitions:
+        <option>      An option reported by the -options option
+        <vmid>        Virtual Machine Identifier. A vmid takes the following form:
+                           <lvmid>[@<hostname>[:<port>]]
+                      Where <lvmid> is the local vm identifier for the target
+                      Java virtual machine, typically a process id; <hostname> is
+                      the name of the host running the target Java virtual machine;
+                      and <port> is the port number for the rmiregistry on the
+                      target host. See the jvmstat documentation for a more complete
+                      description of the Virtual Machine Identifier.
+        <lines>       Number of samples between header lines.
+        <interval>    Sampling interval. The following forms are allowed:
+                          <n>["ms"|"s"]
+                      Where <n> is an integer and the suffix specifies the units as
+                      milliseconds("ms") or seconds("s"). The default units are "ms".
+        <count>       Number of samples to take before terminating.
+        -J<flag>      Pass <flag> directly to the runtime system.
+        -? -h --help  Prints this help message.
+        -help         Prints this help message.
+
+### jstatd
+
+      Could not create remote object
+      java.security.AccessControlException: access denied ("java.util.PropertyPermission" "java.rmi.server.ignoreSubClasses" "write")
+              at java.base/java.security.AccessControlContext.checkPermission(AccessControlContext.java:472)
+              at java.base/java.security.AccessController.checkPermission(AccessController.java:895)
+              at java.base/java.lang.SecurityManager.checkPermission(SecurityManager.java:322)
+              at java.base/java.lang.System.setProperty(System.java:888)
+              at jdk.jstatd/sun.tools.jstatd.Jstatd.main(Jstatd.java:140)
+
+      C:\Program Files\Java\JDK-11\bin>jstatd - h
+      usage: jstatd [-nr] [-p port] [-n rminame]
+             jstatd -?|-h|--help
+
+### keytool.exe
+
+      Key and Certificate Management Tool
+
+      Commands:
+
+       -certreq            Generates a certificate request
+       -changealias        Changes an entry's alias
+       -delete             Deletes an entry
+       -exportcert         Exports certificate
+       -genkeypair         Generates a key pair
+       -genseckey          Generates a secret key
+       -gencert            Generates certificate from a certificate request
+       -importcert         Imports a certificate or a certificate chain
+       -importpass         Imports a password
+       -importkeystore     Imports one or all entries from another keystore
+       -keypasswd          Changes the key password of an entry
+       -list               Lists entries in a keystore
+       -printcert          Prints the content of a certificate
+       -printcertreq       Prints the content of a certificate request
+       -printcrl           Prints the content of a CRL file
+       -storepasswd        Changes the store password of a keystore
+
+      Use "keytool -?, -h, or --help" for this help message
+      Use "keytool -command_name --help" for usage of command_name.
+      Use the -conf <url> option to specify a pre-configured options file.
+
+### kinit
+
+    >kinit -h
+    Usage:
+
+    1. Initial ticket request:
+        kinit [-A] [-f] [-p] [-c cachename] [-l lifetime] [-r renewable_time]
+              [[-k [-t keytab_file_name]] [principal] [password]
+    2. Renew a ticket:
+        kinit -R [-c cachename] [principal]
+
+    Available options to Kerberos 5 ticket request:
+            -A   do not include addresses
+            -f   forwardable
+            -p   proxiable
+            -c   cache name (i.e., FILE:\d:\myProfiles\mykrb5cache)
+            -l   lifetime
+            -r   renewable time (total lifetime a ticket can be renewed)
+            -k   use keytab
+            -t   keytab file name
+            principal   the principal name (i.e., qweadf@ATHENA.MIT.EDU qweadf)
+            password    the principal's Kerberos password
+
+            >kinit
+            Exception:  Can not obtain principal name
+            java.lang.IllegalArgumentException:  Can not obtain principal name
+                    at java.security.jgss/sun.security.krb5.internal.tools.Kinit.acquire(Kinit.java:188)
+                    at java.security.jgss/sun.security.krb5.internal.tools.Kinit.<init>(Kinit.java:134)
+                    at java.security.jgss/sun.security.krb5.internal.tools.Kinit.main(Kinit.java:96)
+
+### klist
+
+      >klist
+      Credentials cache C:\Users\andyt\krb5cc_andyt not found.
+
+      C:\Program Files\Java\JDK-11\bin>klist -h
+
+      Usage: klist [[-c] [-f] [-e] [-a [-n]]] [-k [-t] [-K]] [name]
+         name  name of credentials cache or  keytab with the prefix. File-based cache or keytab's prefix is FILE:.
+         -c specifies that credential cache is to be listed
+         -k specifies that key tab is to be listed
+         options for credentials caches:
+              -f       shows credentials flags
+              -e       shows the encryption type
+              -a       shows addresses
+                -n       do not reverse-resolve addresses
+         options for keytabs:
+              -t       shows keytab entry timestamps
+              -K       shows keytab entry key value
+              -e       shows keytab entry key type
+
+### ktab
+
+      No default key table exists.
+
+      C:\Program Files\Java\JDK-11\bin>ktab -h
+
+      Usage: ktab <commands> <options>
+
+      Available commands:
+
+      -l [-e] [-t]
+          list the keytab name and entries. -e with etype, -t with timestamp.
+      -a <principal name> [<password>] [-n <kvno>] [-append]
+          add new key entries to the keytab for the given principal name with
+          optional <password>. If a <kvno> is specified, new keys' Key Version
+          Numbers equal to the value, otherwise, automatically incrementing
+          the Key Version Numbers. If -append is specified, new keys are
+          appended to the keytab, otherwise, old keys for the
+          same principal are removed.
+      -d <principal name> [-f] [-e <etype>] [<kvno> | all | old]
+          delete key entries from the keytab for the specified principal. If
+          <kvno> is specified, delete keys whose Key Version Numbers match
+          kvno. If "all" is specified, delete all keys. If "old" is specified,
+          delete all keys except those with the highest kvno. Default action
+          is "all". If <etype> is specified, only keys of this encryption type
+          are deleted. <etype> should be specified as the numberic value etype
+          defined in RFC 3961, section 8. A prompt to confirm the deletion is
+          displayed unless -f is specified.
+
+      Common option(s):
+
+      -k <keytab name>
+          specify keytab name and path with prefix FILE:
+
+### Pack200
+
+         Warning: The pack200 tool is deprecated, and is planned for removal in a future JDK release.
+
+        Usage:  pack200 [-opt... | --option=value]... x.pack[.gz] y.jar
+        (For more information, run pack200 --help .)
+
+        C:\Program Files\Java\JDK-11\bin>pack200.exe --help
+
+        Warning: The pack200 tool is deprecated, and is planned for removal in a future JDK release.
+
+        Usage:  pack200 [-opt... | --option=value]... x.pack[.gz] y.jar
+
+        Packing Options
+          -r, --repack                    repack or normalize a jar, suitable for
+                                          signing with jarsigner
+          -g, --no-gzip                   output a plain pack file, suitable to be
+                                          compressed with a file compression utility
+          --gzip                          (default) post compress the pack output
+                                          with gzip
+          -G, --strip-debug               remove debugging attributes (SourceFile,
+                                          LineNumberTable, LocalVariableTable
+                                          and LocalVariableTypeTable) while packing
+          -O, --no-keep-file-order        do not transmit file ordering information
+          --keep-file-order               (default) preserve input file ordering
+          -S{N}, --segment-limit={N}      limit segment sizes (default unlimited)
+          -E{N}, --effort={N}             packing effort (default N=5)
+          -H{h}, --deflate-hint={h}       transmit deflate hint: true, false,
+                                          or keep (default)
+          -m{V}, --modification-time={V}  transmit modtimes: latest or keep (default)
+          -P{F}, --pass-file={F}          transmit the given input element(s) unchanged
+          -U{a}, --unknown-attribute={a}  unknown attribute action: error, strip,
+                                          or pass (default)
+          -C{N}={L}, --class-attribute={N}={L}  (user-defined attribute)
+          -F{N}={L}, --field-attribute={N}={L}  (user-defined attribute)
+          -M{N}={L}, --method-attribute={N}={L} (user-defined attribute)
+          -D{N}={L}, --code-attribute={N}={L}   (user-defined attribute)
+          -f{F}, --config-file={F}        read file F for Pack200.Packer properties
+          -v, --verbose                   increase program verbosity
+          -q, --quiet                     set verbosity to lowest level
+          -l{F}, --log-file={F}           output to the given log file,
+                                          or '-' for System.out
+          -?, -h, --help                  print this help message
+          -V, --version                   print program version
+          -J{X}                           pass option X to underlying Java VM
+
+        Notes:
+          The -P, -C, -F, -M, and -D options accumulate.
+          Example attribute definition:  -C SourceFile=RUH .
+          Config. file properties are defined by the Pack200 API.
+          For meaning of -S, -E, -H-, -m, -U values, see Pack200 API.
+          Layout definitions (like RUH) are defined by JSR 200.
+
+        Repacking mode updates the JAR file with a pack/unpack cycle:
+            pack200 [-r|--repack] [-opt | --option=value]... [repackedy.jar] y.jar
+
+            Exit Status:
+              0 if successful, >0 if an error occurred
+
+            Warning: The pack200 tool is deprecated, and is planned for removal in a future JDK release.
+
+### rmic
+
+        Usage: rmic <options> <class names>
+
+        where <options> includes:
+          -keep          Do not delete intermediate generated source files
+          -keepgenerated (same as "-keep")
+          -v1.1          Create stubs/skeletons for 1.1 stub protocol version (deprecated)
+          -vcompat       Create stubs/skeletons compatible with both
+                                   1.1 and 1.2 stub protocol versions (deprecated)
+          -v1.2          (default) Create stubs for 1.2 stub protocol version only (deprecated)
+          -g             Generate debugging info
+          -nowarn        Generate no warnings
+          -nowrite       Do not write compiled classes to the file system
+          -verbose       Output messages about what the compiler is doing
+          -classpath <path>      Specify where to find input class files
+          -bootclasspath <path>  Override location of bootstrap class files
+          -d <directory>         Specify where to place generated class files
+          -J<runtime flag>       Pass argument to the java interpreter
+
+### rmid
+
+      Activation.main: warning: sun.rmi.activation.execPolicy system
+          property unspecified and no ExecPermissions/ExecOptionPermissions
+          granted; subsequent activation attempts may fail due to unsuccessful
+          ExecPermission/ExecOptionPermission permission checks.
+          To configure security, refer to the rmid documentation.
+
+
+      C:\Program Files\Java\JDK-11\bin>rmid -h
+      rmid: invalid option: -h
+      Usage: rmid <options>
+
+      where <options> include:
+        -port <port>        Specify port for rmid to use
+        -log <directory>    Specify directory in which rmid writes log
+        -stop               Stop current invocation of rmid (for specified port)
+        -C<runtime flag>    Pass argument to each child process (activation group)
+        -J<runtime flag>    Pass argument to the java interpreter
+
+
+### rmiregistry.exe
+
+        rmiregistry.exe -h
+        port argument, -h, is not a number.
+        Usage: rmiregistry <options> <port>
+
+        where <options> includes:
+          -J<runtime flag> Pass argument to the java interpreter
+
+### serialver
+
+serialver -h
+Invalid flag -h.
+use: serialver [-classpath classpath] [classname...]
+
+
+
+### servertool
+
+        servertool -h
+
+
+        Welcome to the Java IDL Server Tool
+        please enter commands at the prompt
+
+        servertool > help
+
+
+                Available Commands:
+                -------------------
+
+                register     - register an activatable server
+                unregister   - unregister a registered server
+                getserverid  - return the server id for an applicationName
+                list         - list all registered servers
+                listappnames - list applicationNames currently defined
+                listactive   - list currently active servers
+                locate       - locate ports of specific type for a registered server
+                locateperorb - locate ports for a specific orb of registered server
+                orblist      - list of orb names and their mapping
+                shutdown     - shutdown a registered server
+                startup      - start a registered server
+                help         - get help
+                quit         - quit this tool
+
+
+### unpack200
+
+        unpack200.exe -h
+
+        Warning: The unpack200.exe tool is deprecated, and is planned for removal in a future JDK release.
+
+        Usage:  unpack200.exe [-opt... | --option=value]... x.pack[.gz] y.jar
+
+        Unpacking Options
+          -H{h}, --deflate-hint={h}     override transmitted deflate hint:
+                                        true, false, or keep (default)
+          -r, --remove-pack-file        remove input file after unpacking
+          -v, --verbose                 increase program verbosity
+          -q, --quiet                   set verbosity to lowest level
+          -l{F}, --log-file={F}         output to the given log file,
+                                        or '-' for standard output (default)
+          -?, -h, --help                print this help message
+          -V, --version                 print program version
+
+        Exit Status:
+          0 if successful, >0 if an error occurred
+
+in JRE Only
+
+### orbd
+
+locks when run alone
+
+
+      >orbd -h
+      Sep 05, 2019 1:19:36 AM com.sun.corba.se.impl.transport.SocketOrChannelAcceptorImpl initialize
+      SEVERE: "IOP00410216: (COMM_FAILURE) Unable to create listener thread on the specified port: 1049"
+      org.omg.CORBA.COMM_FAILURE:   vmcid: SUN  minor code: 216  completed: No
+              at com.sun.corba.se.impl.logging.ORBUtilSystemException.createListenerFailed(Unknown Source)
+              at com.sun.corba.se.impl.logging.ORBUtilSystemException.createListenerFailed(Unknown Source)
+              at com.sun.corba.se.impl.transport.SocketOrChannelAcceptorImpl.initialize(Unknown Source)
+              at com.sun.corba.se.impl.transport.CorbaTransportManagerImpl.getAcceptors(Unknown Source)
+              at com.sun.corba.se.impl.transport.CorbaTransportManagerImpl.addToIORTemplate(Unknown Source)
+              at com.sun.corba.se.spi.oa.ObjectAdapterBase.initializeTemplate(Unknown Source)
+              at com.sun.corba.se.impl.oa.toa.TOAImpl.<init>(Unknown Source)
+              at com.sun.corba.se.impl.oa.toa.TOAFactory.getTOA(Unknown Source)
+              at com.sun.corba.se.impl.orb.ORBImpl.connect(Unknown Source)
+              at com.sun.corba.se.impl.activation.RepositoryImpl.<init>(Unknown Source)
+              at com.sun.corba.se.impl.activation.ORBD.startActivationObjects(Unknown Source)
+              at com.sun.corba.se.impl.activation.ORBD.run(Unknown Source)
+              at com.sun.corba.se.impl.activation.ORBD.main(Unknown Source)
+      Caused by: java.net.BindException: Address already in use: bind
+              at sun.nio.ch.Net.bind0(Native Method)
+              at sun.nio.ch.Net.bind(Unknown Source)
+              at sun.nio.ch.Net.bind(Unknown Source)
+              at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+              at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+              at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+              at com.sun.corba.se.impl.transport.DefaultSocketFactoryImpl.createServerSocket(Unknown Source)
+              ... 11 more
+
+And more
+
+JavaFX only
+
+### idlj
+
+        idlj
+        com.sun.tools.corba.se.idl.InvalidArgument: No IDL file was specified.
+
+        Compiler Usage:
+
+            java com.sun.tools.corba.se.idl.toJavaPortable.Compile [options] <idl file>
+
+        where <idl file> is the name of a file containing IDL definitions, and
+        [options] is any combination of the options listed below.  The options
+        are optional and may appear in any order; <idl file> is required and
+        must appear last.
+
+        Options:
+        -d <symbol>               This is equivalent to the following line in an
+                                  IDL file:  #define <symbol>
+        -emitAll                  Emit all types, including those found in #included files.
+        -f<side>                  Define what bindings to emit.  <side> is one of client,
+                                  server, all, serverTIE, allTIE.  serverTIE and allTIE
+                                  cause delegate model skeletons to be emitted.  If this
+                                  flag is not used, -fclient is assumed.
+        -i <include path>         By default, the current directory is scanned for
+                                  included files.  This option adds another directory.
+        -keep                     If a file to be generated already exists, do not
+                                  overwrite it.  By default it is overwritten.
+        -noWarn                   Suppress warnings.
+        -oldImplBase              Generate skeletons compatible with old (pre-1.4) JDK ORBs.
+        -pkgPrefix <t> <prefix>   When the type or module name <t> is encountered at
+                                  file scope, begin the Java package name for all files
+                                  generated for <t> with <prefix>.
+        -pkgTranslate <t> <pkg>   When the type or module name <t> in encountered, replace
+                                  it with <pkg> in the generated java package.  Note that
+                                  pkgPrefix changes are made first.  <t> must match the
+                                  full package name exactly.  Also, <t> must not be
+                                  org, org.omg, or any subpackage of org.omg.
+        -skeletonName <xxx%yyy>   Name the skeleton according to the pattern.
+                                  The defaults are:
+                                  %POA for the POA base class (-fserver or -fall)
+                                  _%ImplBase for the oldImplBase base class
+                                  (-oldImplBase and (-fserver or -fall)).
+        -td <dir>                 use <dir> for the output directory instead of
+                                  the current directory.
+        -tieName <xxx%yyy>        Name the tie according to the pattern.  The defaults are:
+                                  %POATie for the POA tie (-fserverTie or -fallTie)
+                                  %_Tie for the oldImplBase tie
+                                  (-oldImplBase and (-fserverTie or -fallTie)).
+        -v, -verbose              Verbose mode.
+        -version                  Display the version number and quit.
+
+
+### appletviewer
+
+        appletviewer.exe
+        Warning: Applet API and AppletViewer are deprecated.
+        Usage: appletviewer <options> url(s)
+
+        where <options> include:
+          -encoding <encoding>    Specify character encoding used by HTML files
+          -J<runtime flag>        Pass argument to the java interpreter
+
+        The -J option is non-standard and subject to change without notice.
+
+
+
+C:\Program Files\Java\JFx-9\bin\appletviewer.exe
+C:\Program Files\Java\JFx-9\bin\ssvagent.exe
+C:\Program Files\Java\JFx-9\bin\tnameserv.exe
+C:\Program Files\Java\JFx-9\bin\tnameserv.exe
