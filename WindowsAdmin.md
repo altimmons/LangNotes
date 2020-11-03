@@ -4,6 +4,15 @@
 
 ["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
 
+
+## Good and Useful Links
+
+- [Windows Command Line](https://www.windows-commandline.com/)
+- [SS64](https://ss64.com/nt/)
+
+
+
+
 ## Notes
 
 Note for Windows users on 64-bit systems
@@ -17,6 +26,10 @@ Note for Windows users on 64-bit systems
 code _ , where _ is
 
 - `.`(period) Open "Code" **in** *the* Current dir
+- `..` prior directory.  
+
+Every directory has 2 members by default - its links in the linked graph. `.` or 'this' and `..` or 'parent'.
+
 
 ## Windows Functions
 
@@ -39,6 +52,23 @@ see with `gci env:` in Powershell,
 `C:\Users\s163837\AppData\Local\Microsoft\Windows\WinX`
 
 
+### Change the *Send To* Context Menu
+
+[[Win]] + [[R]] -> `shell:sendto`
+
+
+
+File Explorer, or Windows Explorer, opens to the SendTo folder for your user account; specifically it's: c:\users\[username]\AppData\Roaming\Microsoft\Windows\SendTo
+
+[Source](https://www.pcmag.com/news/352810/how-to-customize-the-send-to-menu-in-windows)
+
+
+Create shortcuts in `c:\users\[username]\AppData\Roaming\Microsoft\Windows\SendTo` to send files.
+
+
+!!!Note-you can also add applications.
+
+
 ## Location of Personal Data
 
 ### Open/Save Menu
@@ -46,9 +76,9 @@ see with `gci env:` in Powershell,
 All files opened or saved with the Open/ Save dialog are stored here:
 
 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU 
- 
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU
+
 Can be viewed with Nirsoft - OpenSaveFilesView
 
 C:\Documents and Settings\[Your Profile]\Recent
@@ -56,12 +86,12 @@ C:\Documents and Settings\[Your Profile]\Recent
 ### Folder Settings
 
 
-Windows uses the following Registry keys to save the folders information: 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\ShellNoRoam 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell 
-HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell (Only in Windows Vista) 
+Windows uses the following Registry keys to save the folders information:
+HKEY_CURRENT_USER\Software\Microsoft\Windows\ShellNoRoam
+HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell
+HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell (Only in Windows Vista)
 
-### User Assist 
+### User Assist
 
 Nirsoft - UserAssistView
 
@@ -70,16 +100,162 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist 
 
 ### Passwords
 
-DataProtectionDecryptor is a powerful tool for Windows that allows you to decrypt passwords and other information encrypted by the DPAPI (Data Protection API) system of Windows operating system. 
+DataProtectionDecryptor is a powerful tool for Windows that allows you to decrypt passwords and other information encrypted by the DPAPI (Data Protection API) system of Windows operating system.
 
-Here's some examples for passwords and other data encrypted with DPAPI: 
+Here's some examples for passwords and other data encrypted with DPAPI:
 
-Passwords of Microsoft Outlook accounts, stored in the Registry under HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\15.0\Outlook\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Outlook\Profiles (Depending on version of Outlook) 
-Credentials files of Windows (e.g: C:\Users\[User Profile]\AppData\Roaming\Microsoft\Credentials , C:\Users\[User Profile]\AppData\Local\Microsoft\Credentials ) 
-Wireless network keys (Stored inside XML files under C:\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces ) 
-Passwords in some versions of Internet Explorer, stored in the following Registry key: HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage2 
-Passwords stored in the passwords file of Chrome Web browser ('Login Data' file in the profile of Chrome). 
-Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome) 
+Passwords of Microsoft Outlook accounts, stored in the Registry under HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\15.0\Outlook\Profiles or HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Outlook\Profiles (Depending on version of Outlook)
+Credentials files of Windows (e.g: C:\Users\[User Profile]\AppData\Roaming\Microsoft\Credentials , C:\Users\[User Profile]\AppData\Local\Microsoft\Credentials )
+Wireless network keys (Stored inside XML files under C:\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces )
+Passwords in some versions of Internet Explorer, stored in the following Registry key: HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage2
+Passwords stored in the passwords file of Chrome Web browser ('Login Data' file in the profile of Chrome).
+Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome)
+
+## Notes to Be Placed
+
+### Changing Startup OPTIONS
+
+[[Windows]] + [[Pause/Break]] - then "Advanced Settings" -> Then Under Advanced "Startup and Recovery"-
+Disable Memory Dump.  You cxan also change Boot Options.
+
+### Stopping Just In Time debugging
+
+To Stop Debugging Queries (An uncaught exception occured do you want to debug?) - Go to services
+
+
+[Source](https://docs.microsoft.com/en-us/visualstudio/debugger/debug-using-the-just-in-time-debugger?view=vs-2019#BKMK_Enablingz)
+
+In the Registry Editor window, locate and delete the following registry entries:
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\DbgManagedDebugger
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
+
+If your computer is running a 64-bit operating system, also delete the following registry entries:
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\DbgManagedDebugger
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
+
+Try setting
+
+HKCU\Software\Microsoft\Windows\Windows Error Reporting\DontShowUI
+
+to 1.
+### NoDrives
+
+
+Hide drive mappings in 'My Computer', Windows Explorer and the standard Open dialog box.
+
+Each letter is one bit more in binary.
+
+So drive A(1) = 1, drive B(2)=2, driveC(3)=4, D=8, E=16 and so on.
+
+Copy the result into the registry to hide the drive letter(s)
+
+User Key:
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+
+System Key:
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+
+Value Name: NoDrives
+Data Type: DWORD
+
+After changing the registry, logoff or reboot so that it takes effect.
+
+Drive mappings hidden with a nodrives registry setting are still available, just type the drive letter into the explorer address bar.
+
+
+### Setting Explorer to My PC not Quick Access
+
+```batch
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "LaunchTo" /t REG_DWORD /d 1 /f
+```
+
+To force Windows Error Reporting (WER) to take a crash dump and close the app, instead of prompting you to debug the program, you can set these registry entries:
+
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting]
+"ForceQueue"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\Consent]
+"DefaultConsent"=dword:00000001
+
+HKCU\Software\Microsoft\Windows\Windows Error Reporting\DontShowUI
+
+to 1.
+
+[WER Settings](https://msdn.microsoft.com/ja-jp/windows/bb513638%28v=vs.80%29?f=255&MSPPError=-2147217396)
+[Backup](https://docs.microsoft.com/en-us/windows/win32/wer/wer-settings)
+
+After this is set, when your apps crash, you should see *.hdmp and *.mdmp files in:
+
+%ALLUSERSPROFILE%\Microsoft\Windows\WER\
+
+[StackOverFlow](https://stackoverflow.com/questions/3561545/how-to-terminate-a-program-when-it-crashes-which-should-just-fail-a-unit-test/3637710#3637710)
+
+Option 1: Disable globally
+
+Works globally on the entire user account or machine, which can be both a benefit and a drawback.
+
+Set [HKLM|HKCU]\Software\Microsoft\Windows\Windows Error Reporting\DontShowUI to 1. [More info](http://msdn.microsoft.com/en-us/library/bb513638%28VS.85%29.aspx)
+
+Option 2: Disable for the application
+Option 2a: Disable for a function:
+
+Requires modification to the crashing program, requires Windows 7/2008 R2 (desktop apps only) or higher, described in documenation as preferred to SetErrorMode, suitable for a thread-safe library function.
+
+Call and reset SetThreadErrorMode:
+
+DWORD OldThreadErrorMode = 0;
+SetThreadErrorMode(SEM_FAILCRITICALERRORS,& OldThreadErrorMode);
+    …
+SetThreadErrorMode (z_OldThreadErrorMode, NULL);
+More info: not much available?
+
+Option 3: Specify a handler
+
+Requires modification to the crashing program.
+
+Use SetUnhandledExceptionFilter to set your own structured exception handler that simply exits, probably with reporting and possibly an attempt at clean-up.
+
+Option 4: Catch as an exception
+
+Requires modification to the crashing program. For .NET applications only.
+
+Wrap all code into a global try/catch block. Specify the HandleProcessCorruptedStateExceptionsAttribute and possibly also the SecurityCriticalAttribute on the method catching the exceptions. More info: Handling corrupted state exceptions
+
+Note: this might not catch crashes caused by the Managed Debugging Assistants; if so, these also need to be disabled in the application.
+
+Option 5: Stop the reporting process
+
+Works globally on the entire user account, but only for a controlled duration.
+
+Kill the Windows Error Reporting process whenever it shows up:
+
+var werKiller = new Thread(() =>
+{
+    while (true)
+    {
+        foreach (var proc in Process.GetProcessesByName("WerFault"))
+            proc.Kill();
+        Thread.Sleep(3000);
+    }
+});
+werKiller.IsBackground = true;
+werKiller.Start();
+This is still not completely bullet-proof though, because a console application may crash via a different error message, apparently displayed by an internal function called NtRaiseHardError:
+Requires modification to the crashing program, described in documentation as best practice, unsuitable for a library function.
+
+Call SetErrorMode: SetErrorMode(SetErrorMode(0) | SEM_NOGPFAULTERRORBOX); (or with SEM_FAILCRITICALERRORS). More info: Disabling the program crash dialog (explains the odd arrangement of calls).
+
+### Register a DLL
+
+If you are using Windows 7 or newer, open the folder containing the new DLL file, hold the Shift key and right-click in the folder, and select "Open command window here". The Command Prompt will open directly to that folder.
+Type regsvr32 dllname.dll and press Enter. This will add the DLL file to Windows Registry.
+Type regsvr32 -u dllname.dll to remove the DLL file from the Windows Registry.
 
 
 
@@ -117,6 +293,8 @@ When you write a query with optional criteria, you use the following syntax:
 
 Content = Led Zeppelin + file kind = music + length = short (1 – 5 minutes)
 
+
+
 ## Keyboard SHortcuts
 
 ### Windows Keys
@@ -149,6 +327,193 @@ Left Windows + ...
 [Alt] + [Left] = Go Back
 [Alt] + [Right] = Go Forward
 
+### Start + Run Shortcuts
+
+[Src](https://ss64.com/nt/run.html)
+
+
+
+ccessibility Options 	utilman
+or
+control access.cpl
+Add Hardware Wizard 	hdwwiz
+Programs and Features
+(Add New Programs)
+(Add Remove Windows Components)
+(Set Program Access & Defaults ) 	appwiz.cpl
+control appwiz.cpl,,1
+control appwiz.cpl,,2
+control appwiz.cpl,,3
+Administrative Tools 	control admintools
+Advanced User Accounts Control Panel 	netplwiz
+Authorization Manager 	azman.msc
+Automatic Update 	control wuaucpl.cpl
+Backup and Restore Utility 	sdclt
+Bluetooth Transfer Wizard 	fsquirt
+Calculator 	calc
+Certificate Manager 	certmgr.msc
+Character Map 	charmap
+Check Disk Utility 	chkdsk
+Clear Type (tune or turn off) 	cttune
+Color Management 	colorcpl.exe
+Command Prompt 	cmd
+Component Services 	dcomcnfg
+or
+comexp.msc
+Computer Management 	CompMgmtLauncher.exe
+or
+compmgmt.msc
+Control Panel 	control
+Credential (passwords) Backup and Restore Wizard 	credwiz
+Data Execution Prevention 	SystemPropertiesDataExecutionPrevention
+Date and Time Properties 	timedate.cpl
+Device Manager 	hdwwiz
+or
+devmgmt.msc
+Device Pairing Wizard 	DevicePairingWizard
+Digitizer Calibration Tool (Tablets/Touch screens) 	tabcal
+Direct X Control Panel (if installed) 	directx.cpl
+Direct X Troubleshooter 	dxdiag
+Disk Cleanup Utility 	cleanmgr
+Disk Defragmenter 	dfrgui
+defrag
+Disk Management 	diskmgmt.msc
+Disk Partition Manager 	diskpart
+Display Color Calibration 	dccw
+Display DPI / Text size 	dpiscaling
+Display Properties (Themes, Desktop, Screensaver) 	control desktop
+Display Properties (Resolution, Orientation) 	desk.cpl
+Display Properties (Color & Appearance) 	control color
+Documents (open 'My Documents' folder) 	documents
+Downloads (open 'Downloads' folder) 	downloads
+Driver Verifier Utility 	verifier
+DVD Player 	dvdplay
+Edit Environment Variables 	rundll32.exe sysdm.cpl,EditEnvironmentVariables
+Encrypting File System Wizard (EFS) 	rekeywiz
+Event Viewer 	eventvwr.msc
+File Signature Verification Tool (Device drivers) 	sigverif
+Files and Settings Transfer Tool 	%systemroot%\system32\migwiz\migwiz.exe
+Firewall Control Panel 	firewall.cpl
+Folders Properties 	control folders
+Fonts list
+	control fonts
+Font preview 	fontview arial.ttf
+Game Controllers 	joy.cpl
+Local Group Policy Editor 	gpedit.msc
+Internet Properties 	inetcpl.cpl
+IP Configuration 	ipconfig
+iSCSI Initiator configuration 	iscsicpl
+Keyboard Properties 	control keyboard
+Language Pack Installer 	lpksetup
+Local Security Policy 	secpol.msc
+Local Users and Groups 	lusrmgr.msc
+Log out 	logoff
+Microsoft Malicious Software Removal Tool 	mrt
+Microsoft Management Console 	mmc
+Access (Microsoft Office) 	msaccess
+Excel (Microsoft Office) 	Excel
+Powerpoint (Microsoft Office) 	powerpnt
+Word (Microsoft Office) 	winword
+Microsoft Paint 	mspaint
+Microsoft Support Diagnostic Tool 	msdt
+Mouse Properties 	control mouse
+or
+main.cpl
+Network Connections 	control netconnections
+or
+ncpa.cpl
+Projector:
+Connect to Network Projector
+Switch projector display 	netproj
+
+displayswitch
+Notepad 	notepad
+ODBC Data Source Admin
+Default ODBC driver:
+32-bit ODBC driver under 64-bit platform:
+	
+C:\windows\system32\odbcad32.exe
+C:\windows\sysWOW64\odbcad32.exe
+ODBC configuration - Install/configure MDAC drivers 	odbcconf
+On Screen Keyboard 	osk
+OOB Getting Started 	gettingstarted
+Password - Create a Windows Password Reset Disk (USB) 	"C:\Windows\system32\rundll32.exe" keymgr.dll,PRShowSaveWizardExW
+Pen and Touch (Tablet/Pen input configuration) 	tabletpc.cpl
+Performance Monitor 	perfmon.msc
+Phone and Modem Options 	telephon.cpl
+Phone Dialer 	dialer
+Power Configuration 	powercfg.cpl and powercfg.exe
+Presentation Settings 	PresentationSettings
+Problem Steps Recorder 	psr
+Program Access and Computer Defaults - browser / email / media 	computerdefaults
+Printers and Faxes 	control printers
+Print Management (.msc) 	PrintManagement
+Printer Migration (backup/restore) 	printbrmui and printbrm.exe
+Printer user interface (List all printui.dll options) 	printui
+Private Character Editor 	eudcedit
+Regional Settings - Language, Date/Time format, keyboard locale. 	intl.cpl
+Registry Editor 	regedit
+Remote Assistance 	msra
+Remote Desktop 	mstsc
+Resource Monitor 	resmon
+Resultant Set of Policy 	rsop.msc
+Settings (Windows 10) 	ms-settings:
+Scheduled Tasks 	control schedtasks
+Screenshot Snipping Tool 	snippingtool
+Security Center 	wscui.cpl
+Services 	services.msc
+Shared Folder Wizard 	shrpubw
+Shared Folders 	fsmgmt.msc
+Shut Down Windows 	shutdown
+Software Licensing/Activation 	slui
+Sounds and Audio 	mmsys.cpl
+Sound Recorder 	soundrecorder
+Sound Volume 	sndvol
+Syncronization Tool (Offline files) 	mobsync
+System Configuration Utility 	msconfig
+System File Checker Utility (Scan/Purge) 	sfc
+System Information 	msinfo32
+System Properties
+	
+
+sysdm.cpl SystemProperties
+or
+sysdm.cpl DisplaySYSDMCPL
+System Properties - Performance 	SystemPropertiesPerformance
+System Properties - Hardware 	SystemPropertiesHardware
+System Properties - Advanced 	SystemPropertiesAdvanced
+System Repair - Create a System Repair Disc 	recdisc
+System Restore 	rstrui
+Task Manager 	taskmgr
+Task Scheduler 	taskschd.msc
+Telnet Client 	telnet
+Trusted Platform Module Initialization Wizard 	tpmInit
+
+User Accounts (Autologon) 	control userpasswords2
+User Account Control (UAC) Settings 	UserAccountControlSettings
+User Profiles - Edit/Change type 	C:\Windows\System32\rundll32.exe sysdm.cpl,EditUserProfiles
+Windows Disc Image Burning Tool 	isoburn C:\movies\madmax.iso
+Windows Explorer 	explorer.exe
+explorer.exe .  Will open at the current directory
+Windows Features 	optionalfeatures
+Windows Firewall
+Windows Firewall with Advanced Security 	firewall.cpl
+wf.msc
+Windows Image Acquisition (scanner) 	wiaacmgr
+Windows Magnifier 	magnify
+Windows Management Infrastructure 	wmimgmt.msc
+Windows Memory Diagnostic Scheduler 	mdsched
+Windows Mobility Center (Mobile PCs only) 	mblctr
+Windows PowerShell 	powershell
+Windows PowerShell ISE 	powershell_ise
+Windows Security Action Center 	wscui.cpl
+Windows Script Host(VBScript) 	wscript NAME_OF_SCRIPT.VBS
+Windows System Security Tool. Encrypt the SAM database.
+(boot password.) 	syskey
+Windows Update 	wuapp
+Windows Update Standalone Installer 	wusa
+Windows Version (About Windows) 	winver
+WordPad 	write
 ## Basic Commands
 
 
@@ -319,6 +684,244 @@ Get a list of all WMI classes with the word “COM” in them (doing a case sens
 ```
 
 ## Command Line
+
+
+When you are using a Microsoft MS-DOS command prompt shell window, you can type the following commands into the window. Click a command shown below for a description of how to use that command.
+
+- `cd` - Change directory or display current directory path.
+- `cls` - Clear the window.
+- `dir` - Display list of contents of current directory.
+- `help` - Display list of commands or help about a command.
+- `notepad` - Run the Windows Notepad text editor.
+- `type` - Displays the contents of a text file.
+
+Some other useful commands are:
+
+- `assoc` - Displays or modifies filename extension associations.
+- `attrib` - Displays or changes file attributes.
+- `call` - Calls one batch program file from another.
+- `chkdsk` - Checks a disk and displays a status report.
+- `chkntfs` - Displays or modifies the checking of disk at startup.
+- `color` - Sets the text and background colors.
+- `comp` - Compares the contents of two files or sets of files.
+- `copy` - Copies one or more files to another location. See also: xcopy
+- `date` - Displays or sets the computer's date. See also: time
+- `del (or erase)` - Deletes one or more files.
+- `defrag` - Defragment the specified storage device.
+- `doskey` - Display command history; define macros.
+- `echo` - Displays messages, or turns command echoing on/off.
+- `edit` - Runs the MS-DOS text editor. See also: notepad
+- `exit` - Closes the MS-DOS window.
+- `fc` - Compares two files or sets of files and displays the differences.
+- `find` - Searches for a text string in a file or files.
+- `findstr` - Search for a regular expression text string in a file or files.
+- `goto` - Used in a batch program file to jump to a particular line.
+- `if` - Used in a batch program file to perform conditional testing.
+- `md (or mkdir)` - Creates a directory.
+- `more` - Displays the contents of a file one screen at a time.
+- `move` - Moves one or more files from one directory to another directory.
+- `rd (or rmdir)` - Removes a directory.
+- `rem` - Used in a batch program file to identify comments.
+- `ren (or rename)` - Renames a file or files.
+- `sort` - Sorts input.
+- `start` - Starts a new window to run a specified program or command.
+- `time` - Displays or sets the computer's time. See also: date
+- `tree` - Graphically displays the directory structure of a drive or directory.
+- `xcopy` - Copies files and directory trees. See also: copy
+
+The following internet related commands are not part of MS-DOS but can be typed at the MS-DOS command prompt:
+
+- `arp` - Displays ARP (address resolution protocol) translation tables.
+- `ftp` - FTP (file transfer program) to transfer files to/from server.c
+- `ipconfig` - Displays internet configuration, including IP address.
+- `netsh` - Network services shell.
+- `nslookup` - Lookup IP address to/from domain name.
+- `netstat` - Displays current TCP/IP network connections and statistics.
+- `ping` - Ping the specified internet IP address or host name.
+- `telnet` - Starts a text-based telnet session to the specified host.
+- `tftp` - Transfers files to/from remote computer running TFTP service.
+- `tracert` - Traces the route to the specified IP address or host.
+
+The following command are not part of MS-DOS and do not come with Windows but are available from third-parties. Some are equivalent to the Linux utility by the same name.
+
+- `config` - Defragment one or more files (rather than entire drive).
+- `clip` - Copy command output to Windows clipboard. See: paste
+- `du` - Displays disk usage for selected files or directories.
+- `lynx` - Text based web browser.
+- `paste` - Paste Windows clipboard to command input. See: clip
+- `strings` - Find all strings of a specified minimum length.
+- `whois` - Lookup domain ownership information.
+
+See also: Frequently Asked Questions (FAQ)
+See also: Command-line reference A-Z
+ 
+### Redirection
+
+[Section copied verbatim from:](https://ss64.com/nt/syntax-redirection.html)
+
+
+[More Redirection](https://stackoverflow.com/questions/9878007/why-doesnt-my-stderr-redirection-end-after-command-finishes-and-how-do-i-fix-i)
+
+
+
+!!!important How-to: Redirection
+
+  `command > filename`        Redirect command output to a file
+
+  `command >> filename`       APPEND into a file
+
+  `command < filename`        Type a text file and pass the text to command
+
+  `commandA  |  commandB`     Pipe the output from commandA into commandB
+
+  `commandA &  commandB`      Run commandA and then run commandB
+  `commandA && commandB`      Run commandA, if it succeeds then run commandB
+  `commandA || commandB`      Run commandA, if it fails then run commandB
+
+  `commandA && commandB || commandC`
+                              If commandA succeeds run commandB, if it fails commandC
+
+Success and failure are based on the **Exit Code** of the command.
+In most cases the Exit Code is the same as the ErrorLevel
+
+Numeric handles:
+
+STDIN  = 0  Keyboard input
+STDOUT = 1  Text output
+STDERR = 2  Error text output
+UNDEFINED = 3-9
+
+   command 2> filename       Redirect any error message into a file
+   command 2>> filename      Append any error message into a file
+  (command)2> filename       Redirect any CMD.exe error into a file
+   command > file 2>&1       Redirect errors and output to one file
+   command > fileA 2> fileB  Redirect output and errors to separate files
+
+   command 2>&1 >filename    This will fail!
+
+Redirect to NUL (hide errors)
+
+   command 2> nul            Redirect error messages to NUL
+   command >nul 2>&1         Redirect error and output to NUL
+   command >filename 2> nul  Redirect output to file but suppress error
+  (command)>filename 2> nul  Redirect output to file but suppress CMD.exe errors
+
+Any long filenames must be surrounded in "double quotes".
+A CMD error is an error raised by the command processor itself rather than the program/command.
+
+Redirection with > or 2> will overwrite any existing file.
+
+You can also redirect to a printer with > PRN or >LPT1
+Multiple commands on one line
+
+    In a batch file the default behaviour is to read and expand variables one line at a time, if you use & to run multiple commands on a single line, then any variable changes will not be visible until execution moves to the next line. For example:
+
+     SET /P _cost="Enter the price: " & ECHO %_cost%
+
+    This behaviour can be changed using SETLOCAL EnableDelayedExpansion
+
+Creating a new file
+
+    Create empty files using the NUL device:
+
+    Type NUL >EmptyFile.txt
+    or
+    Copy NUL EmptyFile.txt
+
+
+To prevent the > and < characters from causing redirection, escape with a caret: ^> or ^<
+
+!!!important escape with a caret: `^` e.g. ^> or ^<
+
+Redirect multiple lines by bracketing a set of commands:
+
+(
+  Echo sample text1
+  Echo sample text2
+) > c:\logfile.txt 
+
+Exit Codes
+
+    If the filename or command is not found then redirection will set an Exit Code of 1
+
+Unicode
+
+    The CMD Shell can redirect ASCII/ANSI (the default) or Unicode (UCS-2 le) but not UTF-8.
+    This can be selected by launching CMD /A or CMD /U
+
+    With the default settings a UCS-2 file can be converted by redirecting it (note it's the redirection not the TYPE/MORE command that makes the encoding change)
+    TYPE unicode.txt > asciifile.txt
+
+    European characters like ABCàéÿ will usually convert correctly, but others like £¥ƒ€ will become random extended ASCII characters: œ¾Ÿ?
+
+Pipes and CMD.exe
+
+    When a command is piped with '| batch_command ' this will instantiate a new CMD.exe instance, in effect running:
+
+    C:\Windows\system32\cmd.exe /C /S /D "batch_command"
+
+    This has several side effects:
+    Any newline (CR/LF) characters in the batch_command will be turned into & operators. (see StackOverflow)
+    If the batch_command includes any caret escape characters ^ they will need to be doubled up so that the escape survives into the new CMD shell.
+
+    Starting a new CMD shell also has a small (likely unnoticable) effect on performance.
+
+    For example, this syntax works, but would fail if the second or subsequent (piped) lines were indented with a space:
+    @Echo Off
+    echo abc def |^
+    find "abc" |^
+    find "def"> outfile.txt
+
+    Multi-line single commands with lots of parameters, can be indented as in this example:
+
+    Echo abc def ^
+      ghi jkl ^
+      mno pqr
+
+When redirecting the output of DIR to a file, you may notice that the output file (if in the same folder) will be listed with a size of 0 bytes. The command interpreter first creates the empty destination file, then runs the DIR command and finally saves the redirected text into the file.
+
+The maximum number of consecutive pipes is 2042
+
+Examples:
+
+   DIR >MyFileListing.txt
+   
+   DIR /o:n >"Another list of Files.txt"
+
+   DIR C:\ >List_of_C.txt 2>errorlog.txt
+
+   DIR C:\ >List_of_C.txt & DIR D:\ >List_of_D.txt
+
+   ECHO y| DEL *.txt
+
+   ECHO Some text ^<html tag^> more text
+
+   COPY nul empty.txt
+
+   MEM /C >>MemLog.txt
+
+   Date /T >>MemLog.txt
+
+   SORT < MyTextFile.txt
+
+   SET _output=%_missing% 2>nul
+   
+   FIND /i "Jones" < names.txt >logfile.txt
+
+   (TYPE logfile.txt >> newfile.txt) 2>nul
+
+“Stupidity, outrage, vanity, cruelty, iniquity, bad faith, falsehood,
+we fail to see the whole array when it is facing in the same direction as we” ~ Jean Rostand (French Historian)
+
+Related:
+
+conIN$ and conOUT$ behave like stdin and stdout, or 0 and 1 streams but only with internal commands.
+SORT - Sort input.
+CMD Syntax
+TYPE - Display the contents of one or more text files.
+Successive redirections explained (1>&3 ) - Stack Overflow.
+Equivalent bash command (Linux): Redirection - Spooling output to a file, piping input.
+
 
 ### Paths
 
@@ -569,6 +1172,144 @@ Current command set:
 That's let me watch/convert from most video and audio formats, convert/extract/build pdf files, ...
 If VS would only add one thing.....tell the actual DLL that was not found when it reports a DLL or one of its dependencies could not be loaded........................
 The OS has the information since it could not find/load the DLL and should have a way to report it back to VS in debug mode.....
+
+### FOR Command
+
+Runs a specified command for each file in a set of files.
+
+`FOR %variable IN (set) DO command [command-parameters]`
+
+  `%variable`  Specifies a single letter replaceable parameter.
+  `(set)`      Specifies a set of one or more files.  Wildcards may be used.
+  `command`    Specifies the command to carry out for each file.
+  `command-parameters` Specifies parameters or switches for the specified command.
+
+To use the FOR command in a batch program, specify %%variable instead
+of %variable.  Variable names are case sensitive, so %i is different
+from %I.
+
+If Command Extensions are enabled, the following additional
+forms of the FOR command are supported:
+
+`FOR /D %variable IN (set) DO command [command-parameters]`
+
+    If set contains wildcards, then specifies to match against directory
+    names instead of file names.
+
+`FOR /R [[drive:]path] %variable IN (set) DO command [command-parameters]`
+
+    Walks the directory tree rooted at [drive:]path, executing the FOR
+    statement in each directory of the tree.  If no directory
+    specification is specified after /R then the current directory is
+    assumed.  If set is just a single period (.) character then it
+    will just enumerate the directory tree.
+
+      FOR /L %variable IN (start,step,end) DO command [command-parameters]
+
+The set is a sequence of numbers from start to end, by step amount.
+So (1,1,5) would generate the sequence 1 2 3 4 5 and (5,-1,1) would  generate the sequence (5 4 3 2 1)
+
+    FOR /F ["options"] %variable IN (file-set) DO command [command-parameters]
+    FOR /F ["options"] %variable IN ("string") DO command [command-parameters]
+    FOR /F ["options"] %variable IN ('command') DO command [command-parameters]
+
+or, if usebackq option present:
+
+    FOR /F ["options"] %variable IN (file-set) DO command [command-parameters]
+    FOR /F ["options"] %variable IN ('string') DO command [command-parameters]
+    FOR /F ["options"] %variable IN (`command`) DO command [command-parameters]
+
+file-set is one or more file names.  Each file is opened, read and processed before going on to the next file in file-set. 
+
+Processing consists of reading in the file, breaking it up into individual lines of text and then parsing each line into zero or more tokens.  The body of the for loop is then called with the variable value(s) set to the found token string(s).  By default, `/F` passes the first blank separated token from each line of each file. Blank lines are skipped.  You can override the default parsing behavior by specifying the optional "options" parameter.  This is a quoted string which contains one or more keywords to specify different parsing options.  
+
+The keywords are:
+
+        `eol=c`           - specifies an end of line comment character (just one)
+        `skip=n`          - specifies the number of lines to skip at the beginning of the file.
+        `delims=xxx `     - specifies a delimiter set.  This replaces the default delimiter set of space and tab.
+        `tokens=x,y,m-n`  - specifies which tokens from each line are to be passed to the for body for each iteration.
+        This will cause additional variable names to be allocated.  The m-n form is a range, specifying the mth through the nth tokens.  If the last character in the tokens= string is an asterisk, then an additional variable is allocated and receives the remaining text on the line after the last token parsed.
+        `usebackq` - specifies that the new semantics are in force, where a back quoted string is executed as a command and a single quoted string is a
+                          literal string command and allows the use of
+                          double quotes to quote file names in
+                          file-set.
+
+    Some examples might help:
+
+FOR /F "eol=; tokens=2,3* delims=, " %i in (myfile.txt) do @echo %i %j %k
+
+    would parse each line in myfile.txt, ignoring lines that begin with
+    a semicolon, passing the 2nd and 3rd token from each line to the for
+    body, with tokens delimited by commas and/or spaces.  Notice the for
+    body statements reference %i to get the 2nd token, %j to get the
+    3rd token, and %k to get all remaining tokens after the 3rd.  For
+    file names that contain spaces, you need to quote the filenames with
+    double quotes.  In order to use double quotes in this manner, you also
+    need to use the usebackq option, otherwise the double quotes will be
+    interpreted as defining a literal string to parse.
+
+    %i is explicitly declared in the for statement and the %j and %k
+    are implicitly declared via the tokens= option.  You can specify up
+    to 26 tokens via the tokens= line, provided it does not cause an
+    attempt to declare a variable higher than the letter 'z' or 'Z'.
+    Remember, FOR variables are single-letter, case sensitive, global,
+    and you can't have more than 52 total active at any one time.
+
+    You can also use the FOR /F parsing logic on an immediate string, by
+    making the file-set between the parenthesis a quoted string,
+    using single quote characters.  It will be treated as a single line
+    of input from a file and parsed.
+
+    Finally, you can use the FOR /F command to parse the output of a
+    command.  You do this by making the file-set between the
+    parenthesis a back quoted string.  It will be treated as a command
+    line, which is passed to a child CMD.EXE and the output is captured
+    into memory and parsed as if it was a file.  So the following
+    example:
+
+      FOR /F "usebackq delims==" %i IN (`set`) DO @echo %i
+
+    would enumerate the environment variable names in the current
+    environment.
+
+In addition, substitution of FOR variable references has been enhanced.
+You can now use the following optional syntax:
+
+    %~I         - expands %I removing any surrounding quotes (")
+    %~fI        - expands %I to a fully qualified path name
+    %~dI        - expands %I to a drive letter only
+    %~pI        - expands %I to a path only
+    %~nI        - expands %I to a file name only
+    %~xI        - expands %I to a file extension only
+    %~sI        - expanded path contains short names only
+    %~aI        - expands %I to file attributes of file
+    %~tI        - expands %I to date/time of file
+    %~zI        - expands %I to size of file
+    %~$PATH:I   - searches the directories listed in the PATH
+                   environment variable and expands %I to the
+                   fully qualified name of the first one found.
+                   If the environment variable name is not
+                   defined or the file is not found by the
+                   search, then this modifier expands to the
+                   empty string
+
+The modifiers can be combined to get compound results:
+
+    %~dpI       - expands %I to a drive letter and path only
+    %~nxI       - expands %I to a file name and extension only
+    %~fsI       - expands %I to a full path name with short names only
+    %~dp$PATH:I - searches the directories listed in the PATH
+                   environment variable for %I and expands to the
+                   drive letter and path of the first one found.
+    %~ftzaI     - expands %I to a DIR like output line
+
+In the above examples %I and PATH can be replaced by other valid
+values.  The %~ syntax is terminated by a valid FOR variable name.
+Picking upper case variable names like %I makes it more readable and
+avoids confusion with the modifiers, which are not case sensitive.
+
+
 
 ### Command Line Commands
 
@@ -1094,12 +1835,26 @@ If you have already typed a few commands, you can press F7 to get an ANSI popup 
 F11 or "ALT-ENTER" in the command prompt (any prompt, cmd, powershell, or bash) will make it full screen. I like to put my command prompt on another virtual desktop and then use CTRL-WIN-ARROWS to move between them.
 
 
-###  ?
+### Env access
 
+You can acess env sort of like Powershell
+
+`cd $env:LocalAppData`
+ only works in powershell.  So not really new...
+ 
+
+
+###  Clip - Clipboard CMD
+
+Pipe commands to and from then clipboard
+
+```bat
 cd | clip
 dir /b /s | clip
 mode con rate=32 delay=1
 echo AT&F&C1&D2M1L3S11=33 > COM
+```
+
 
 ### mpcmdrun.exe (Windows Defen
 
@@ -1354,6 +2109,7 @@ Function Get-DecompiledHTMLHelp
     }
 
 }
+```
 
 ### RunDll and its command
 
@@ -1890,10 +2646,291 @@ findstr /c:"[SR]" %windir%\Logs\CBS\CBS.log >%userprofile%\Desktop\sfcdetails.tx
 
 ### DISM
 
+!!!Important DISM has a huge number of relevant and powerful features that control the functioning of windows:
+
+
+```ps1
+Deployment Image Servicing and Management tool
+Version: 10.0.18362.1
+
+
+DISM.exe [dism_options] {Imaging_command} [<Imaging_arguments>]
+DISM.exe {/Image:<path_to_offline_image> | /Online} [dism_options] 
+         {servicing_command} [<servicing_arguments>]
+
+DESCRIPTION:
+
+  DISM enumerates, installs, uninstalls, configures, and updates features
+  and packages in Windows images. The commands that are available depend 
+  on the image being serviced and whether the image is offline or running.
+
+
+GENERIC IMAGING COMMANDS:
+
+  /Split-Image            - Splits an existing .wim file into multiple 
+                            read-only split WIM (SWM) files.
+  /Apply-Image            - Applies an image.
+  /Get-MountedImageInfo   - Displays information about mounted WIM and VHD
+                            images.
+  /Get-ImageInfo          - Displays information about images in a WIM, a VHD
+                            or a FFU file.
+  /Commit-Image           - Saves changes to a mounted WIM or VHD image.
+  /Unmount-Image          - Unmounts a mounted WIM or VHD image.
+  /Mount-Image            - Mounts an image from a WIM or VHD file.
+  /Remount-Image          - Recovers an orphaned image mount directory.
+  /Cleanup-Mountpoints    - Deletes resources associated with corrupted
+                            mounted images.
+
+WIM COMMANDS:
+
+  /Apply-CustomDataImage  - Dehydrates files contained in the custom data image.
+  /Capture-CustomImage    - Captures customizations into a delta WIM file on a 
+                            WIMBoot system. Captured directories include all 
+                            subfolders and data.
+  /Get-WIMBootEntry       - Displays WIMBoot configuration entries for the 
+                            specified disk volume.
+  /Update-WIMBootEntry    - Updates WIMBoot configuration entry for the 
+                            specified disk volume.
+  /List-Image             - Displays a list of the files and folders in a 
+                            specified image.
+  /Delete-Image           - Deletes the specified volume image from a WIM file
+                            that has multiple volume images.
+  /Export-Image           - Exports a copy of the specified image to another
+                            file.
+  /Append-Image           - Adds another image to a WIM file.
+  /Capture-Image          - Captures an image of a drive into a new WIM file.
+                            Captured directories include all subfolders and 
+                            data.
+  /Get-MountedWimInfo     - Displays information about mounted WIM images.
+  /Get-WimInfo            - Displays information about images in a WIM file.
+  /Commit-Wim             - Saves changes to a mounted WIM image.
+  /Unmount-Wim            - Unmounts a mounted WIM image.
+  /Mount-Wim              - Mounts an image from a WIM file.
+  /Remount-Wim            - Recovers an orphaned WIM mount directory.
+  /Cleanup-Wim            - Deletes resources associated with mounted WIM 
+                            images that are corrupted.
+
+FFU COMMANDS:
+
+  /Capture-Ffu            - Captures a physical disk image into a new FFU file.
+  /Apply-Ffu              - Applies an .ffu image.
+  /Split-Ffu              - Splits an existing .ffu file into multiple read-only
+                            split FFU files.
+
+IMAGE SPECIFICATIONS:
+
+  /Online                 - Targets the running operating system.
+  /Image                  - Specifies the path to the root directory of an
+                            offline Windows image.
+
+DISM OPTIONS:
+
+  /English                - Displays command line output in English.
+  /Format                 - Specifies the report output format.
+  /WinDir                 - Specifies the path to the Windows directory.
+  /SysDriveDir            - Specifies the path to the system-loader file named
+                            BootMgr.
+  /LogPath                - Specifies the logfile path.
+  /LogLevel               - Specifies the output level shown in the log (1-4).
+  /NoRestart              - Suppresses automatic reboots and reboot prompts.
+  /Quiet                  - Suppresses all output except for error messages.
+  /ScratchDir             - Specifies the path to a scratch directory.
+
+For more information about these DISM options and their arguments, specify an
+option immediately before /?.
+
+  Examples:     
+    DISM.exe /Mount-Wim /?
+    DISM.exe /ScratchDir /?
+    DISM.exe /Image:C:\test\offline /?
+    DISM.exe /Online /?
+
+
+
+PS C:\WINDOWS\system32> dism.exe /ScratchDir /?
+
+Deployment Image Servicing and Management tool
+Version: 10.0.18362.1
+
+
+/ScratchDir:<path_to_directory>
+
+  Specifies a temporary directory to be used for extracting files for 
+  servicing. The directory must exist.
+
+  If not set, the temporary directory will be used.
+
+    Example:
+      DISM.exe /Image:C:\test\offline /scratchdir:D:\Scratch
+
+
+
+PS C:\WINDOWS\system32> dism.exe /online /?
+
+Deployment Image Servicing and Management tool
+Version: 10.0.18362.1
+
+Image Version: 10.0.18363.778
+
+
+The following commands may be used to service the image:
+
+OS UNINSTALL SERVICING COMMANDS:
+
+  /Set-OSUninstallWindow  - Sets the OS Uninstall Window.
+  /Get-OSUninstallWindow  - Gets the OS Uninstall Window.
+  /Remove-OSUninstall     - Remove the OS Uninstall.
+  /Initiate-OSUninstall   - Initiates the OS Uninstall
+
+WINDOWS EDITION SERVICING COMMANDS:
+
+  /Optimize-Image         - Performs specified configurations to an offline 
+                            image.
+  /Set-ProductKey         - Sets the product key of the offline image.
+  /Get-TargetEditions     - Displays a list of Windows editions that an image 
+                            can be upgraded to.
+  /Get-CurrentEdition     - Displays the edition of the current image.
+  /Set-Edition            - Upgrades an image to a higher edition.
+
+DEFAULT ASSOCIATIONS COMMANDS:
+
+  /Remove-DefaultAppAssociations - Removes the default application associations
+                            from a Windows image.
+  /Import-DefaultAppAssociations - Imports a set of default application 
+                            associations to a Windows image.
+  /Get-DefaultAppAssociations - Displays the list of default application 
+                            associations from a Windows image.
+  /Export-DefaultAppAssociations - Exports the default application associations
+                            from a running operating system.
+
+PROVISIONING PACKAGE SERVICING COMMANDS:
+
+  /Get-ProvisioningPackageInfo - Gets the information of provisioning package.
+  /Add-ProvisioningPackage - Adds provisioning package.
+
+APPX SERVICING COMMANDS:
+
+  /Get-NonRemovableAppPolicy - Lists the package families configured 
+                            to be nonremovable by enterprise policy.
+  /Set-NonRemovableAppPolicy - Sets enterprise nonremovable policy for 
+                            a given package family. 
+  /Optimize-ProvisionedAppxPackages - Optimizes provisioned appx footprint by 
+                            hard-linking identical files across appx packages.
+  /Set-ProvisionedAppxDataFile - Places custom data into the specified app 
+                            package (.appx or .appxbundle). The specified  
+                            application package must already be in the image.
+  /Remove-ProvisionedAppxPackage - Removes app packages (.appx or .appxbundle)
+                            from the image. App packages will not be installed 
+                            when new user accounts are created.
+  /Add-ProvisionedAppxPackage - Adds app packages (.appx or .appxbundle) to the
+                            image and sets them to install for each new user.
+  /Get-ProvisionedAppxPackages - Displays information about app packages 
+                            (.appx or .appxbundle) in an image that are 
+                            set to install for each new user.
+
+UNATTEND SERVICING COMMANDS:
+
+  /Apply-Unattend         - Applies an unattend file to an image.
+
+DRIVER SERVICING COMMANDS:
+
+  /Remove-Driver          - Removes driver packages from an offline image.
+  /Add-Driver             - Adds driver packages to an offline image.
+  /Get-DriverInfo         - Displays information about a specific driver
+                            in an offline image or a running operating system.
+  /Get-Drivers            - Displays information about all drivers in
+                            an offline image or a running operating system.
+  /Export-Driver          - Export all third-party driver packages from an
+                            offline image or a running operating system.
+
+INTERNATIONAL SERVICING COMMANDS:
+
+  /Set-LayeredDriver      - Sets keyboard layered driver.
+  /Set-UILang             - Sets the default system UI language that is used
+                            in the mounted offline image.
+  /Set-UILangFallback     - Sets the fallback default language for the system 
+                            UI in the mounted offline image.
+  /Set-UserLocale         - Sets the user locale in the mounted offline image.
+  /Set-SysLocale          - Sets the language for non-Unicode programs (also
+                            called system locale) and font settings in the 
+                            mounted offline image.
+  /Set-InputLocale        - Sets the input locales and keyboard layouts to 
+                            use in the mounted offline image.
+  /Set-TimeZone           - Sets the default time zone in the mounted offline
+                            image.
+  /Set-AllIntl            - Sets all international settings in the mounted
+                            offline image.
+  /Set-SKUIntlDefaults    - Sets all international settings to the default
+                            values for the specified SKU language in the
+                            mounted offline image.
+  /Gen-LangIni            - Generates a new lang.ini file.
+  /Set-SetupUILang        - Defines the default language that will be used
+                            by setup.
+  /Get-Intl               - Displays information about the international 
+                            settings and languages.
+
+APPLICATION SERVICING COMMANDS:
+
+  /Check-AppPatch         - Displays information if the MSP patches are 
+                            applicable to the mounted image.
+  /Get-AppPatchInfo       - Displays information about installed MSP patches.
+  /Get-AppPatches         - Displays information about all applied MSP patches
+                            for all installed applications.
+  /Get-AppInfo            - Displays information about a specific installed MSI
+                            application.
+  /Get-Apps               - Displays information about all installed MSI
+                            applications.
+
+PACKAGE SERVICING COMMANDS:
+
+  /Add-Package            - Adds packages to the image.
+  /Remove-Package         - Removes packages from the image.
+  /Enable-Feature         - Enables a specific feature in the image.
+  /Disable-Feature        - Disables a specific feature in the image.
+  /Get-Packages           - Displays information about all packages in 
+                            the image.
+  /Get-PackageInfo        - Displays information about a specific package.
+  /Get-Features           - Displays information about all features in
+                            a package.
+  /Get-FeatureInfo        - Displays information about a specific feature.
+  /Cleanup-Image          - Performs cleanup and recovery operations on the
+                            image.
+  /Export-Source          - Export a set of capabilities into a new repository.
+  /Add-Capability         - Add one or more capabilities to an image.
+  /Remove-Capability      - Remove a capability from one image.
+  /Get-Capabilities       - Get capabilities in the image.
+  /Get-CapabilityInfo     - Get information of a capability in the image.
+
+For more information about these servicing commands and their arguments,
+specify a command immediately before /?.
+
+     Examples: 
+         DISM.exe /Image:C:\test\offline /Apply-Unattend /?
+         DISM.exe /Image:C:\test\offline /Get-Features /?
+         DISM.exe /Online /Get-Drivers /?
+
+
+
+PS C:\WINDOWS\system32> 
+```
+
+
+#### Check a systems health with DISM
+
 ```bat
 Dism /Online /Cleanup-Image /CheckHealth
 Dism /Online /Cleanup-Image /ScanHealth
 Dism /Online /Cleanup-Image /RestoreHealth
+```
+
+#### Add or Remove Windows Features:
+
+[Source on installing wsl2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-install)
+
+
+```
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
 ### reg
@@ -1912,37 +2949,37 @@ Return Code: (Except for REG COMPARE)   0 - Successful, 1 - Failed
 
 For help on a specific operation type:  `REG Operation /?`. Examples:
 
-  REG QUERY /?
-  REG ADD /?
-  REG DELETE /?
-  REG COPY /?
-  REG SAVE /?
-  REG RESTORE /?
-  REG LOAD /?
-  REG UNLOAD /?
-  REG COMPARE /?
-  REG EXPORT /?
-  REG IMPORT /?
-  REG FLAGS /?
+    REG QUERY /?
+    REG ADD /?
+    REG DELETE /?
+    REG COPY /?
+    REG SAVE /?
+    REG RESTORE /?
+    REG LOAD /?
+    REG UNLOAD /?
+    REG COMPARE /?
+    REG EXPORT /?
+    REG IMPORT /?
+    REG FLAGS /?
 
 C:\Windows\system32>reg add /?
 
-- REG ADD KeyName [/v ValueName | /ve] [/t Type] [/s Separator] [/d Data] [/f] [/reg:32 | /reg:64]
-  - KeyName  [\\Machine\]FullKey
-    - Machine  Name of remote machine - omitting defaults to the current machine. Only HKLM and HKU are available on remote machines.
-    - FullKey  ROOTKEY\SubKey
-    - ROOTKEY  [ HKLM | HKCU | HKCR | HKU | HKCC ]
-      - SubKey   The full name of a registry key under the selected ROOTKEY.
+    - REG ADD KeyName [/v ValueName | /ve] [/t Type] [/s Separator] [/d Data] [/f] [/reg:32 | /reg:64]
+      - KeyName  [\\Machine\]FullKey
+        - Machine  Name of remote machine - omitting defaults to the current machine. Only HKLM and HKU are available on remote machines.
+        - FullKey  ROOTKEY\SubKey
+        - ROOTKEY  [ HKLM | HKCU | HKCR | HKU | HKCC ]
+          - SubKey   The full name of a registry key under the selected ROOTKEY.
 
-- /v       The value name, under the selected Key, to add.
-- /ve      adds an empty value name (Default) for the key.
-- /t       RegKey data types
-  -   [ REG_SZ | REG_MULTI_SZ | REG_EXPAND_SZ | REG_DWORD | REG_QWORD | REG_BINARY | REG_NONE ] If omitted, REG_SZ is assumed.
-- /s       Specify one character that you use as the separator in your data string for REG_MULTI_SZ. If omitted, use "\0" as the separator.
-- /d       The data to assign to the registry ValueName being added.
-- /f       Force overwriting the existing registry entry without prompt.
-- /reg:32  Specifies the key should be accessed using the 32-bit registry view.
-- /reg:64  Specifies the key should be accessed using the 64-bit registry view.
+    - /v       The value name, under the selected Key, to add.
+    - /ve      adds an empty value name (Default) for the key.
+    - /t       RegKey data types
+      -   [ REG_SZ | REG_MULTI_SZ | REG_EXPAND_SZ | REG_DWORD | REG_QWORD | REG_BINARY | REG_NONE ] If omitted, REG_SZ is assumed.
+    - /s       Specify one character that you use as the separator in your data string for REG_MULTI_SZ. If omitted, use "\0" as the separator.
+    - /d       The data to assign to the registry ValueName being added.
+    - /f       Force overwriting the existing registry entry without prompt.
+    - /reg:32  Specifies the key should be accessed using the 32-bit registry view.
+    - /reg:64  Specifies the key should be accessed using the 64-bit registry view.
 
 Examples:
 
@@ -2066,23 +3103,448 @@ passing this will output an HTML file into the file you are in.
 ### netsh
 
 View the Windows Network Config Script:
- 
+
 This shows all the settings
 
 ```batch
 netsh
 >dump
 ```
-## net
+### net
 
 NET
     [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
       HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
       STATISTICS | STOP | TIME | USE | USER | VIEW ]
-      
+
+Samba Shares- if cached credentials are preventing connecting
+
+There are two solutions-
+
+1. Go to control Panel, then Credentials, then Windows Credentials, and delete the related passwords
+
+2. `net use` to list recent connections
+
+`net use \\192.168.1.200\IPC$ /DELETE` to delete the connection
+`net use \\192.168.107.41\share /delete` 
+
+net session \\samba.server.ip.address /delete
+
+        NET
+            [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+            HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+            STATISTICS | STOP | TIME | USE | USER | VIEW ]
+
+            NET ACCOUNTS
+            [/FORCELOGOFF:{minutes | NO}] [/MINPWLEN:length]
+                    [/MAXPWAGE:{days | UNLIMITED}] [/MINPWAGE:days]
+                    [/UNIQUEPW:number] [/DOMAIN]
+
+            Force user logoff how long after time expires?:       Never
+        Minimum password age (days):                          0
+        Maximum password age (days):                          42
+        Minimum password length:                              0
+        Length of password history maintained:                None
+        Lockout threshold:                                    Never
+        Lockout duration (minutes):                           30
+        Lockout observation window (minutes):                 30
+        Computer role:                                        WORKSTATION
+        The command completed successfully.
+
+
+
+        NET COMPUTER
+        \\computername {/ADD | /DEL}
+
+        >net computer \\192.168.1.200 /ADD
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+        NET CONFIG
+
+        The following running services can be controlled:
+
+        Server
+        Workstation
+
+        [SERVER | WORKSTATION]
+
+        NET CONFIG SERVER
+        [/AUTODISCONNECT:time]
+                        [/SRVCOMMENT:"text"]
+                        [/HIDDEN:{YES | NO}]
+
+
+        Computer name                        \\DESKTOP
+        Full Computer name                   DESKTOP
+        User name                            andy.timmons@live.com
+
+        Workstation active on
+                NetBT_Tcpip_{B60B77BB-75C5-491E-AB09-BACC27B5D760} (2CFDA1B95FA1)
+                NetBT_Tcpip_{59A52F56-D600-48B3-A1C6-7392EE3612CE} (00155D0A3465)
+
+        Software version                     Windows 10 Pro
+
+        Workstation domain                   WORKGROUP
+        Logon domain                         MicrosoftAccount
+
+        COM Open Timeout (sec)               0
+        COM Send Count (byte)                16
+        COM Send Timeout (msec)              250
+        The command completed successfully.      
+
+
+        net continue
+        The syntax of this command is:
+
+        NET CONTINUE
+        service
+
+        net file (Open Network Files?)
+        There are no entries in the list.
+
+
+        net file /?
+        The syntax of this command is:
+
+        NET FILE
+        [id [/CLOSE]]
+
+
+        net group /?
+        The syntax of this command is:
+
+        NET GROUP
+        [groupname [/COMMENT:"text"]] [/DOMAIN]
+                    groupname {/ADD [/COMMENT:"text"] | /DELETE}  [/DOMAIN]
+                    groupname username [...] {/ADD | /DELETE} [/DOMAIN]
+
+        net group
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NET HELP
+        command
+            -or-
+        NET command /HELP
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NAMES
+        The following types of names are used with Windows:
+
+        Computername      A unique name that identifies a computer on
+                        the local-area network.
+
+        Devicename        The name by which Windows identifies a disk resource
+                        or printer. A disk resource is identified by a drive
+                        letter followed by a colon (for example, D:). A
+                        printer is identified by a port name followed by a colon
+                        (for example, LPT1:).
+
+        Workgroup         A group of computers on the network. Each workgroup
+                        has a unique name.
+
+        Localgroup        A group of names in a Workgroup that are granted the
+                        same rights.
+
+        Domain            A group of Windows Servers, Windows Workstations
+                        and other computers on the network. A
+                        domain has a unique name. Usually, you must log on in
+                        a domain to gain access to the network. Domains are
+                        created and managed with Windows Server.
+
+        Global group      A group of names in a domain that are granted the
+                        same rights.
+
+        Filename          The name of a file. Under the file allocation table
+                        (FAT) file system, a filename can have as many as eight
+                        characters, followed by a period (.) and an extension of
+                        as many as three characters. Under NTFS and HPFS, a
+                        filename can have as many as 254 characters.
+
+        Network path      A description of the location of a shared resource,
+                        consisting of a computer's computername followed by
+                        the sharename of the resource. The computername
+                        is preceded by two backslashes, and the sharename is
+                        preceded by one backslash (for example,
+                        \\SERVER1\RESOURCE).
+
+        Path              The location of a directory. A path can consist of a
+                        devicename and one or more directory names. A
+                        backslash (\) precedes each directory name (for example,
+                        C:\CUSTOMER\CORP\ACCT).
+
+        Pathname          A path and a filename. The filename is preceded by a
+                        backslash (\) (for example, C:\CUSTOMER\CORP\REPORT.DOC).
+
+        Sharename         A name that identifies a shared resource on a computer. A
+                        sharename is used with the computer's computername to form
+                        a network path (as in \\SERVER\RESOURCE).
+
+        Username          The name a person supplies when logging on at
+                        a computer.
+
+        To view these definitions one screen at a time, type NET HELP NAMES | MORE.
+
+
+
+        The syntax of this command is:
+
+        SERVICES
+        NET START can be used to start services, including:
+
+        NET START BROWSER
+        NET START DHCP CLIENT
+        NET START EVENTLOG
+        NET START FILE REPLICATION
+        NET START NETLOGON
+        NET START PLUG AND PLAY
+        NET START REMOTE ACCESS CONNECTION MANAGER
+        NET START ROUTING AND REMOTE ACCESS
+        NET START RPCSS
+        NET START SCHEDULE
+        NET START SERVER
+        NET START SPOOLER
+        NET START TCP/IP NETBIOS HELPER
+        NET START UPS
+        NET START WORKSTATION
+
+        When typed at the command prompt, service names of two words or more must
+        be enclosed in quotation marks. For example, NET START "DHCP Client"
+        starts the DHCP Client service.
+
+
+        The syntax of this command is:
+
+        SYNTAX
+        The following conventions are used to indicate command syntax:
+
+        -  Capital letters represent words that must be typed as shown. Lower-
+        case letters represent names of items that may vary, such as filenames.
+
+        -  The [ and ] characters surround optional items that can be supplied
+        with the command.
+
+        -  The { and } characters surround lists of items. You must supply one
+        of the items with the command.
+
+        -  The | character separates items in a list. Only one of the items can
+        be supplied with the command.
+
+        For example, in the following syntax, you must type NET COMMAND and
+        either SWITCH1 or SWITCH2. Supplying a name is optional.
+            NET COMMAND [name] {SWITCH1 | SWITCH2}
+
+        -  The [...] characters mean you can repeat the previous item.
+        Separate items with spaces.
+
+        -  The [,...] characters mean you can repeat the previous item, but
+        you must separate items with commas or semicolons, not spaces.
+
+        -  When typed at the command prompt, service names of two words or
+        more must be enclosed in quotation marks. For example,
+        NET START "COMPUTER BROWSER" starts the computer browser service.
+
+
+### Where 
+
+Useful Command Line Searching
+
+[Source](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/where_1)
+
+
+
+Displays the location of files that match the given search pattern.
+
+      where [/r <Dir>] [/q] [/f] [/t] [$<ENV>:|<Path>:]<Pattern>[ ...]
+
+Parameters
+Parameter 	Description
+- `/r <Dir> ` - Indicates a recursive search, starting with the specified directory.
+- `/q ` - Returns an exit code (0 for success, 1 for failure) without displaying the list of matched files.
+- `/f ` - Displays the results of the where command in quotation marks.
+- `/t ` - Displays the file size and the last modified date and time of each matched file.
+- `[$<ENV>:|<Path>:]<Pattern>[ ...] ` - Specifies the search pattern for the files to match. At least one pattern is required, and the pattern can include wildcard characters (* and ?). By default, where searches the current directory and the paths that are specified in the PATH environment variable. You can specify a different path to search by using the format $ENV:Pattern (where ENV is an existing environment variable containing one or more paths) or by using the format Path:Pattern (where Path is the directory path you want to search). These optional formats should not be used with the /r command-line option.
+- `/? ` - Displays help at the command prompt.
+
+
+Remarks
+
+    If you do not specify a file name extension, the extensions listed in the PATHEXT environment variable are appended to the pattern by default.
+    Where can run recursive searches, display file information such as date or size, and accept environment variables in place of paths on local computers.
+
+Examples
+
+To find all files named Test in drive C of the current computer and its subdirectories, type:
+
+where /r c:\ test
+
+To list all files in the Public directory, type:
+
+where $public:*.*
+
+To find all files named Notepad in drive C of the remote computer, Computer1, and its subdirectories, type:
+
+where /r \\computer1\c notepad.*
+
+
+
+### FType 
+
+See what is used to open specific programs. 
+
+
+!!!example A working Example:
+    This is really specific, so you can use assoc like this `assoc .docx`
+
+
+    ```cmd
+    >assoc .docx | clip 
+    .docx=Word.Document.12
+
+
+    >FType Word.Document.12  |clip
+    Word.Document.12="C:\Program Files\Microsoft Office\Root\Office16\WINWORD.EXE" /n "%1" /o "%u"
+    ```
+
+    This gives you the precise command string that is executed when opening a *docx* file.
+
+
+
+[Doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftype)
+Syntax
+
+Displays or modifies file types that are used in file name extension associations. If used without an assignment operator (=), this command displays the current open command string for the specified file type. If used without parameters, this command displays the file types that have open command strings defined.
+
+ftype [<filetype>[=[<opencommandstring>]]]
+
+- `#### Parameter` - Description
+
+- `<filetype>` - Specifies the file type to display or change.
+- `<opencommandstring>` - Specifies the open command string to use when opening files of the specified file type.
+- `/?` - Displays help at the command prompt.
+
+
+#### Has some weird parameter passing stuff
+
+- `Variable ` - Replacement value
+- `%0 or %1 ` - Gets substituted with the file name being launched through the association.
+- `%* ` - Gets all of the parameters.
+- `%2, %3, ... ` - Gets the first parameter (%2), the second parameter (%3), and so on.
+- `%~<n> ` - Gets all of the remaining parameters starting with the nth parameter, where n can be any number from 2 to 9.
+
+#### Examples
+
+To display the current file types that have open command strings defined, type:
+
+`ftype`
+
+To display the current open command string for the txtfile file type, type:
+
+`ftype txtfile`
+
+This command produces output similar to the following:
+
+`txtfile=%SystemRoot%\system32\NOTEPAD.EXE %1`
+
+To delete the open command string for a file type called example, type:
+
+`ftype example=`
+
+To associate the .pl file name extension with the PerlScript file type and enable the PerlScript file type to run PERL.EXE, type the following commands:
+
+      assoc .pl=PerlScript
+      ftype PerlScript=perl.exe %1 %*
+
+To eliminate the need to type the .pl file name extension when invoking a Perl script, type:
+
+        set PATHEXT=.pl;%PATHEXT%
+
+
+### Assoc 
+
+
+Displays or modifies file name extension associations. If used without parameters, assoc displays a list of all the current file name extension associations.
+
+Syntax `assoc [<.ext>[=[<filetype>]]]`
+
+- `Parameter ` - Description
+- `<.ext>` - Specifies the file name extension.
+- `<filetype>` Specifies the file type to associate with the specified file name extension.
+- `/?` - Displays help at the command prompt.
+Remarks
+
+    To remove the file type association for a file name extension, add a white space after the equal sign by pressing the SPACEBAR.
+
+    To view current file types that have open command strings defined, use the ftype command.
+
+    To redirect the output of assoc to a text file, use the > redirection operator.
+
+Examples
+
+To view the current file type association for the file name extension .txt, type:
+
+`assoc .txt`
+
+To remove the file type association for the file name extension .bak, type:
+
+`assoc .bak=`
+
+!!! Note Note: Make sure you add a space after the equal sign.
+
+To view the output of assoc one screen at a time, type:
+
+`assoc | more`
+
+To send the output of assoc to the file assoc.txt, type:
+
+`assoc>assoc.txt`
+
+
 ### Attrib
 
 Sets and changes file attributes.
+
+
+`attrib -a example.doc`
+
+The above command will unset archive attribute for the file example.doc
 
 [Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
 
@@ -2098,7 +3560,19 @@ Sets and changes file attributes.
 - U - *Unpinned attribute.*
 - B - *SMR Blob attribute.*
 
+Parameter	Description
+- `{+|-}r ` - Sets (+) or clears (-) the Read-only file attribute.
+- `{+\|-}a ` - Sets (+) or clears (-) the Archive file attribute. This attribute set marks files that have changed since the last time they were backed up. Note that the xcopy command uses archive attributes.
+- `{+\|-}s ` - Sets (+) or clears (-) the System file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}h ` - Sets (+) or clears (-) the Hidden file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}i ` - Sets (+) or clears (-) the Not Content Indexed file attribute.
+- `[<drive>:][<path>][<filename>] ` - Specifies the location and name of the directory, file, or group of files for which you want to display or change attributes.
 
+You can use the ? and * wildcard characters in the filename parameter to display or change the attributes for a group of files.
+- `/s ` - Applies attrib and any command-line options to matching files in the current directory and all of its subdirectories.
+- `/d ` - Applies attrib and any command-line options to directories.
+- `/l ` - Applies attrib and any command-line options to the Symbolic Link, rather than the target of the Symbolic Link.
+- `/? ` - Displays help at the command prompt.
 
 A few useful aspects:
 
@@ -2107,6 +3581,107 @@ Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive att
 I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
 
 Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
+
+#### Groups of files
+
+[Source](https://www.windows-commandline.com/clear-archive-attribute-from-command/)
+There is no direct command for setting/unsetting attributes for a group of files. Attrib command works on one file at a time. You can use the following batch file command though.
+
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+
+```batch
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+REM This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+REM To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+```
+
+On the other hand,  `attrib` command accepts wild characters and can process files in bulk. The syntax for bulk processing is given below [Source](https://www.windows-commandline.com/attrib-command/)
+
+
+
+```batch
+
+attrib +[R/H/S/A]  *
+
+
+REM To set attribute for files of certain type/extension
+
+attrib +[R/H/S/A] *.ext
+
+
+REM To set attribute for all files in current directory
+
+attrib +[R/H/S/A]
+
+
+REM Example: Set hidden attribute on all PDF files in the current directory
+
+attrib +H *.pdf
+```
+
+note- unsure if in the above example `+[R/H/S/A]` is valid syntax.  I think they mean one of those.
+
+
+### Typeperf
+
+Seems like a benchmarking bit of software?  Unknown previously *(to me)*
+Microsoft r TypePerf.exe (10.0.18362.1)
+
+
+[Doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/type)
+
+
+
+      Typeperf writes performance data to the command window or to a log file. To
+      stop Typeperf, press CTRL+C.
+
+      Usage:
+      typeperf { <counter [counter ...]> 
+                                      | -cf <filename> 
+                                      | -q [object] 
+                                      | -qx [object] 
+                                      } [options]
+
+      Parameters:
+        <counter [counter ...]>       Performance counters to monitor.
+
+      Options:
+        -?                            Displays context sensitive help.
+        -f <CSV|TSV|BIN|SQL>          Output file format. Default is CSV.
+        -cf <filename>                File containing performance counters to
+                                      monitor, one per line.
+        -si <[[hh:]mm:]ss>            Time between samples. Default is 1 second.
+        -o <filename>                 Path of output file or SQL database. Default
+                                      is STDOUT.
+        -q [object]                   List installed counters (no instances). To
+                                      list counters for one object, include the
+                                      object name, such as Processor.
+        -qx [object]                  List installed counters with instances. To
+                                      list counters for one object, include the
+                                      object name, such as Processor.
+        -sc <samples>                 Number of samples to collect. Default is to
+                                      sample until CTRL+C.
+        -config <filename>            Settings file containing command options.
+        -s <computer_name>            Server to monitor if no server is specified
+                                      in the counter path.
+        -y                            Answer yes to all questions without prompting.
+
+      Note:
+        Counter is the full name of a performance counter in
+        "\\<Computer>\<Object>(<Instance>)\<Counter>" format,
+        such as "\\Server1\Processor(0)\% User Time".
+
+      Examples:
+        typeperf "\Processor(_Total)\% Processor Time"
+        typeperf -cf counters.txt -si 5 -sc 50 -f TSV -o domain2.tsv
+        typeperf -qx PhysicalDisk -o counters.txt
+
 
 ### BCDEdit
 
@@ -2122,22 +3697,22 @@ bcdedit /set {bootmgr} displaybootmenu no
 
 ### BCDBoot
 
-To repair a non booting computer- 
+To repair a non booting computer-
 
 ```batch
 Diskpart
-List disk  
-REM   (Note which disk is your Boot drive number mine is 0)
+List disk
+REM   (Note which disk is your Boot drive number mine is 0)3
 Sel disk 0 (SYSTEM DISK)
 List vol               (Note which volume is the EFI partition mine is 4)
 Sel vol 4 (Will be FAT32)
 assign letter=V:
 Exit
 Format V: /FS:Fat32
-REM Or I did 
+REM Or I did
 mkdir EFIOLD
 mv EFI EFIOLD
-bcdboot C:\windows /s V: /f UEFI 
+bcdboot C:\windows /s V: /f UEFI
 
 
 ### WMIC Windows Management Instrumentation Console
@@ -2193,6 +3768,205 @@ diskpart
     exit
 ```
 
+###  wmic
+
+[wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
+
+
+
+Displays WMI information inside an interactive command shell.
+
+`wmic </parameter>`
+
+- Sub-commands The following sub-commands are available at all times:
+- `class ` - Escapes from the default alias mode of WMIC to access classes in the WMI schema directly.
+- `path ` - Escapes from the default alias mode of WMIC to access instances in the WMI schema directly.
+- `context ` - Displays the current values of all global switches.
+- `[quit | exit] ` - Exits the WMIC command shell.
+Examples
+
+To display the current values of all global switches, type:
+
+wmic context
+
+Output similar to the following displays:
+
+NAMESPACE    : root\cimv2
+ROLE         : root\cli
+NODE(S)      : BOBENTERPRISE
+IMPLEVEL     : IMPERSONATE
+[AUTHORITY   : N/A]
+AUTHLEVEL    : PKTPRIVACY
+LOCALE       : ms_409
+PRIVILEGES   : ENABLE
+TRACE        : OFF
+RECORD       : N/A
+INTERACTIVE  : OFF
+FAILFAST     : OFF
+OUTPUT       : STDOUT
+APPEND       : STDOUT
+USER         : N/A
+AGGREGATE    : ON
+
+To change the language ID used by the command line to English (locale ID 409), type:
+
+wmic /locale:ms_409
+
+
+### prompt 
+
+Prompt adds some interesting changes to the prompt, though they tend not to stick.
+
+Changes the Cmd.exe command prompt, including displaying any text you want, such as the name of the current directory, the time and date, or the Microsoft Windows version number. If used without parameters, this command resets the command prompt to the default setting, which is the current drive letter and directory followed by the greater than symbol (>).
+
+Syntax:  `prompt [<text>]`
+- `<text> ` - Specifies the text and information that you want to include in the command prompt.
+- `/? ` - Displays help at the command prompt.
+
+The character combinations you can include instead of, or in addition to, one or more character strings in the text parameter:
+- `    $q ` - = (Equal sign)
+- `    $$ ` - $ (Dollar sign)
+- `    $t ` - Current time
+- `    $d ` - Current date
+- `    $p ` - Current drive and path
+- `    $v ` - Windows version number
+- `    $n ` - Current drive
+- `    $g ` - > (Greater than sign)
+- `    $l ` - < (Less than sign)
+- `    $b ` - | (Pipe symbol)
+- `    $_ ` - ENTER-LINEFEED
+- `    $e ` - ANSI escape code (code 27)
+- `    $h ` - Backspace (to delete a character that has been written to the command line)
+- `    $a ` - & (Ampersand)
+- `    $c ` - ( (Left parenthesis)
+- `    $f ` - ) (Right parenthesis)
+- `    $s ` - Space
+
+    When command extensions are enabled the prompt command supports the following formatting characters:
+    Table 3
+
+- `    $+ ` - Zero or more plus sign (+) characters, depending on the depth of the pushd directory stack (one character for each level pushed).
+- `    $m ` - The remote name associated with the current drive letter or the empty string if current drive is not a network drive.
+
+    If you include the $p character in the text parameter, your disk is read after you enter each command (to determine the current drive and path). This can take extra time, especially for floppy disk drives.
+
+Examples
+
+To set a two-line command prompt with the current time and date on the first line and the greater than sign on the next line, type:
+
+prompt $d$s$s$t$_$g
+
+The prompt is changed as follows, where the date and time are current:
+
+Fri 06/01/2007  13:53:28.91
+
+To set the command prompt to display as an arrow (-->), type:
+
+prompt --$g
+
+To manually change the command prompt to the default setting (the current drive and path followed by the greater than sign), type:
+
+prompt $p$g
+### rem
+
+
+#### in a batch file:  
+
+[src](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem_1)
+
+
+Records comments (remarks) in a batch file or CONFIG.SYS. If no comment is specified, rem adds vertical spacing.
+
+`rem [<Comment>]`
+- `<Comment> ` - Specifies a string of characters to include as a comment.
+- `/? ` - Displays help at the command prompt.
+
+    The rem command does not display comments on the screen. You must use the echo on command in your batch or CONFIG.SYS file to display comments on the screen.
+    You cannot use a redirection character (< or >) or pipe (|) in a batch file comment.
+    Although you can use rem without a comment to add vertical spacing to a batch file, you can also use blank lines. Blank lines are ignored when a batch program is processed.
+
+- Examples
+
+To shows a batch file that uses remarks for comments and for vertical spacing:
+
+        @echo off
+        rem  This batch program formats and checks new disks.
+        rem  It is named Checknew.bat.
+        rem
+        rem echo Insert new disk in Drive B.
+        pause
+        format b: /v chkdsk b:
+
+To include an explanatory comment before the prompt command in your CONFIG.SYS file, add the following lines to CONFIG.SYS:
+
+        rem Set prompt to indicate current directory
+        prompt $p$g
+
+#### rem - in a script: 
+
+Provides a way to add comments to a script.
+
+- Examples
+
+In this example script, rem is used to provide a comment about what the script does:
+
+        rem The commands in this script set up 3 drives.
+        rem The first drive is a primary partition and is
+        rem assigned the letter D. The second and third drives
+        rem are logical partitions, and are assigned letters
+        rem E and F.
+        create partition primary size=2048
+        assign d:
+        create partition extended
+        create partition logical size=2048
+        assign e:
+        create partition logical
+        assign f:
+
+### replace
+
+[ref](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/replace)
+
+
+Replaces files. If used with the /a option, replace adds new files to a directory instead of replacing existing files.
+
+`replace [<Drive1>:][<Path1>]<FileName> [<Drive2>:][<Path2>] [/a] [/p] [/r] [/w]`
+`replace [<Drive1>:][<Path1>]<FileName> [<Drive2>:][<Path2>] [/p] [/r] [/s] [/w] [/u]`
+
+- `[<Drive1>:][<Path1>]<FileName>` - Specifies the location and name of the source file or set of files. FileName is required, and can include wildcard characters (* and ?).
+- `[<Drive2>:][<Path2>]` - Specifies the location of the destination file. You cannot specify a file name for files you replace. If you do not specify a drive or path, replace uses the current drive and directory as the destination.
+- `/a` - Adds new files to the destination directory instead of replacing existing files. You cannot use this command-line option with the /s or /u command-line option.
+- `/p` - Prompts you for confirmation before replacing a destination file or adding a source file.
+- `/r` - Replaces Read-only and unprotected files. If you attempt to replace a Read-only file, but you do not specify /r, an error results and stops the replacement operation.
+- `/w` - Waits for you to insert a disk before the search for source files begins. If you do not specify /w, replace begins replacing or adding files immediately after you press ENTER.
+- `/s` - Searches all subdirectories in the destination directory and replaces matching files. You cannot use /s with the /a command-line option. The replace command does not search subdirectories that are specified in Path1.
+- `/u` - Replaces only those files on the destination directory that are older than those in the source directory. You cannot use /u with the /a command-line option.
+- `/?` - Displays help at the command prompt.
+
+
+As replace adds or replaces files, the file names are displayed on the screen. After replace is finished, a summary line is displayed in one of the following formats:
+
+          nnn files added
+          nnn files replaced
+          no file added
+          no file replaced
+
+If you are using floppy disks and you need to switch disks during the replace operation, you can specify the /w command-line option so that replace will wait for you to switch the disks.
+  
+You cannot use replace to update hidden files or system files.
+
+
+The following table shows each exit code and a brief description of its meaning:
+
+          |Exit code|Description| |---------|-----------| |0|The replace command successfully replaced or added the files.| |1|The replace command encountered an incorrect version of MS-DOS.| |2|The replace command could not find the source files.| |3|The replace command could not find the source or destination path.| |5|The user does not have access to the files that you want to replace.| |8|There is insufficient system memory to carry out the command.| |11|The user used the wrong syntax on the command line.|
+
+
+You can use the ERRORLEVEL parameter on the if command line in a batch program to process exit codes that are returned by replace.
+
+
+To update all the versions of a file named Phones.cli (which appear in multiple directories on drive C), with the latest version of the Phones.cli file from a floppy disk in drive A, type:
+
+      replace a:\phones.cli c:\ /s
 
 ## Changing Computer State
 
@@ -2603,26 +4377,35 @@ stream
 
   montage -label '%t'  -size 128x128  -auto-orient -geometry +5+5 -tile 10x  -title "Font-Awesome Directory" -frame 5  -shadow './*.svg[128x128]'  photo_index-%d.html
 
-  montage -label '%t'  -size 128x128 './100/*.svg[128x128]' -auto-orient -geometry +5+5 -tile 5x  -frame 5  -shadow -monitor photo_index-%d.html
+  !!!code Best Working Example Here
+    ~~montage -label '%t'  -size 256x256 ./*.svg[128x128]' -auto-orient -geometry +5+5 -tile 5x  frame 5  -shadow -monitor ../photo_index-%d.html~~
+     montage -label '%t'  -size 256x256 ./*.svg -auto-orient -geometry +5+5 -tile 5x  -frame 5  -shadow -monitor ../svg2_photo_index-%d.html
 
-    Title settings
+
+!!!example To Convert, and show the  fonts in the example below I used:
+        ^(  - font )(\S*)
+  
+  Replaced With
+        $1**$2**{style="font-family:'$2'"}
+
+  Title settings
         montage -pointsize 24  -background Lavender \
-                - font Candice      -label Candice      label:Abc-123 \
-                - font Corsiva      -label Corsiva      label:Abc-123 \
-                - font SheerBeauty  -label SheerBeauty  label:Abc-123 \
-                - font Ravie        -label Ravie        label:Abc-123 \
-                - font Arial        -label Arial        label:Abc-123 \
-                - font ArialI       -label ArialI       label:Abc-123 \
-                - font ArialB       -label ArialB       label:Abc-123 \
-                - font ArialBk      -label ArialBk      label:Abc-123 \
-                - font CourierNew   -label CourierNew   label:Abc-123 \
-                - font LokiCola     -label LokiCola     label:Abc-123 \
-                - font Gecko        -label Gecko        label:Abc-123 \
-                - font Wedgie       -label Wedgie       label:Abc-123 \
-                - font WebDings     -label WebDings     label:Abc-123 \
-                - font WingDings    -label WingDings    label:Abc-123 \
-                - font WingDings2   -label WingDings2   label:Abc-123 \
-                - font Zymbols      -label Zymbols      label:Abc-123 \
+  - font **Candice**{style="font-family:Candice"}      -label Candice      label:Abc-123 \
+  - font **Corsiva**{style="font-family:'Corsiva'"}     -label Corsiva      label:Abc-123 \
+  - font **SheerBeauty**{style="font-family:'SheerBeauty'"}  -label SheerBeauty  label:Abc-123 \
+  - font **Ravie**{style="font-family:'Ravie'"}        -label Ravie        label:Abc-123 \
+  - font **Arial**{style="font-family:'Arial'"}        -label Arial        label:Abc-123 \
+  - font **ArialI**{style="font-family:'ArialI'"}       -label ArialI       label:Abc-123 \
+  - font **ArialB**{style="font-family:'ArialB'"}       -label ArialB       label:Abc-123 \
+  - font **ArialBk**{style="font-family:'ArialBk'"}      -label ArialBk      label:Abc-123 \
+  - font **CourierNew**{style="font-family:'CourierNew'"}   -label CourierNew   label:Abc-123 \
+  - font **LokiCola**{style="font-family:'LokiCola'"}     -label LokiCola     label:Abc-123 \
+  - font **Gecko**{style="font-family:'Gecko'"}        -label Gecko        label:Abc-123 \
+  - font **Wedgie**{style="font-family:'Wedgie'"}       -label Wedgie       label:Abc-123 \
+  - font **WebDings**{style="font-family:'WebDings'"}     -label WebDings     label:Abc-123 \
+  - font **WingDings**{style="font-family:'WingDings'"}    -label WingDings    label:Abc-123 \
+  - font **WingDings2**{style="font-family:'WingDings2'"}   -label WingDings2   label:Abc-123 \
+  - font **Zymbols**{style="font-family:'Zymbols'"}      -label Zymbols      label:Abc-123 \
                 \
                 - frame 5  -geometry +2+2   -font Arial -pointsize 12 \
                 - background none  -bordercolor SkyBlue  -mattecolor DodgerBlue \
@@ -2840,7 +4623,11 @@ image type as the filename suffix (i.e. image.ps).  Specify 'file' as
 out.gif also works, about half the size. out.html produces html and a mapped png.
 
 
+!!!code Top Example
 
+        montage -label '%t'  -size 256x256 ./*.* -scale 256x256 -auto-orient -geometry +5+5 -tile 10x  -frame 5  -shadow -monitor ./_index-%d.html 
+
+magick montage -label %t -tile 10x20 *.png -resize 128x128  .\%d-index.html
 
 !!!code Convert an icon
 
@@ -2879,8 +4666,17 @@ using `magick mogrify archway.svg -background #00000000` destroyed the image.
 
 magick convert  -density 256x256 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name]2.ico
 
+### Graphics Magic
 
-### Choco 
+
+!!!note This works:
+    gm montage -geometry 256x256x10x10 -thumnail 256x256 -tile 25x25 *.svg _ImageDirectory.html
+
+    Somewhat
+
+    Though many svg's fail.
+
+### Choco
 
 #### Install with cmd.exe
 
@@ -2889,16 +4685,16 @@ magick convert  -density 256x256 -background transparent -fill "#607D8B" -colori
 #### Install with Powershell
 
 Run
-     
-     Get-ExecutionPolicy
-     
-If it returns `Restricted`, then run
-        
-         Set-ExecutionPolicy AllSigned 
-         
-or 
 
-        Set-ExecutionPolicy Bypass -Scope Process.   
+     Get-ExecutionPolicy
+
+If it returns `Restricted`, then run
+
+         Set-ExecutionPolicy AllSigned
+
+or
+
+        Set-ExecutionPolicy Bypass -Scope Process.
 
 Finally run (this contains the above)
 
@@ -2917,7 +4713,7 @@ then
 
         choco list --lo
 
-        
+
 
 ### pandoc
 
@@ -3171,6 +4967,15 @@ you can say program /? for more info
 
 ## Network
 
+## Cloudflare DNS
+
+ipv4
+- 1.1.1.1
+- 1.0.0.1
+ipv6
+- 2606:4700:4700::1111
+- 2606:4700:4700::1001
+
 ### Proxy Management
 
 ? Cntlm: Fast NTLM Authentication Proxy in C - not sure if this is part of the work computer or if I installed this...
@@ -3225,6 +5030,19 @@ such as would have normally been retrieved from a DHCP server.
 |                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
 |                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |
 
+
+
+The Internet Engineering Task Force (IETF) has directed the Internet Assigned Numbers Authority (IANA) to reserve the following IPv4 address ranges for private networks:[1](p4)
+
+
+| RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
+| ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
+| 24-bit block | 10.0.0.0 – 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
+| 20-bit block | 172.16.0.0 – 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
+| 16-bit block | 192.168.0.0 – 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
+
+
+Also note the 169.254 address
 
 ## Setup Git
 
@@ -3811,6 +5629,14 @@ After changing the registry, logoff or reboot so that it takes effect.
 
 Drive mappings hidden with a nodrives registry setting are still available, just type the drive letter into the explorer address bar.
 
+
+### Setting Explorer to My PC not Quick Access
+
+```batch
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "LaunchTo" /t REG_DWORD /d 1 /f
+```
+
+
 ### Batch File
 
 ```batch
@@ -4074,3 +5900,41 @@ function Elevate-Privileges {
 ```
 
 block-telemetry.ps1
+
+
+## Stop Web ASsembly
+
+[About Wasm](https://developer.mozilla.org/en-US/docs/WebAssembly)
+
+[Source](https://github.com/stevespringett/disable-webassembly#disabling-guidance)
+
+
+### Disabling Guidance
+
+
+
+!!!warning FireFox
+
+    Enter `about:config` in the URL bar and change javascript.options.wasm to false
+
+!!!note Chrome/Chromium
+
+    Chrome must be launched with the following command-line argument: --js-flags=--noexpose_wasm. On Windows and Linux/Unix, simply appending the argument after the chrome executable is all that's required. For example:
+
+        chrome --js-flags=--noexpose_wasm
+    
+    Should work on Chrome Clonesm as well. e.g. Brave, etcv.
+
+!!!bug On macOS, the syntax is a bit different.
+
+      open /Applications/Google\ Chrome.app --args --js-flags=--noexpose_wasm
+
+
+On Windows, modifying the registry may also be beneficial in order to maintain state between Chrome auto-updates.
+
+    HKEY_CLASSES_ROOT\ChromeHTML\shell\open\command
+    HKEY_CLASSES_ROOT\http\shell\open\command
+    HKEY_CLASSES_ROOT\https\shell\open\command
+
+Uncheck the write permission on these keys so that the changes persist on next auto-update of Chrome. Thanks to @tophf for providing information about the flag and registry settings.
+

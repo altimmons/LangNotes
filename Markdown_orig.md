@@ -774,52 +774,57 @@ Also, [CSS Syntax](https://www.w3schools.com/css/css_syntax.asp) May also be rel
 
 styled sample{style="text-align:center"}
 
-test{style="text-align:center"}
+1. test{style="text-align:center"}
 
-{style="text-align:center"} works if on a line by itself
+2. {style="text-align:center"} works if on a line by itself
 
-Test2{..h1}
+3. Test2{..h1}
 
-Another test{style="border: 5px solid red"}
+4. Another test{style="border: 5px solid red"}
 
-Another test{style="border: dotted blue"}
+5. Another test{style="border: dotted blue"}
 
-Another test{style="border: ridge blue"}
+6. Another test{style="border: ridge blue"}
 
-Another test{style="border: 10px inset blue"}
-
-Another test{style="border: 10px outset blue"}
-
-Another test{style="border: 10px ridge blue"}
-
-Another test{style="border: 10px groove blue ; margin: 0px 10px"}
-
-Another test{style="border: outset purple"}
-
-Another test{style="border: ridge; border-color : green;"}
-
-test{style="background: -webkit-linear-gradient(60deg, #FFFFFF, #AAAAAA); border: inset; margin: 20px }
-
-Another test{style="border: dotted blue; border-width: thin medium thick 10px;"}
-
-Another test{style="border: dotted; border-color: blue green red orange; border-width: thin medium 5px 10px;"}
-
-Another test{style="border: double"}
-
-Another Test {style="color: red;  text-align: center;"}
-
-Another Test {style="color: red;  text-align: center; margin:auto; border: medium inset green; width: 20vw; background: linear-gradient(to right, #f46b45,#eea849); height:3vw; padding-top:20px;font-size:150%; width-min:100px"}
+7. Another test{style="border: 10px inset blue"}
 
 
-test{style="<i class="material-icons">cloud</i>"}
+8. Another test{style="border: 10px outset blue"}
 
-tes
-         {style="color: red;  text-align: center; font-weight:100"}
+9. Another test{style="border: 10px ridge blue"}
 
-Text Test {style="font-family:'Times New Roman', Times, serif;"}
+10. Another test{style="border: 10px groove blue ; margin: 0px 10px"}
 
-XML Tools
+11. Another test{style="border: outset purple"}
 
+12. Another test{style="border: ridge; border-color : green;"}
+
+13. test{style="background: -webkit-linear-gradient(60deg, #FFFFFF, #AAAAAA); border: inset; margin: 20px }
+
+
+14. Another test{style="border: dotted blue; border-width: thin medium thick 10px;"}
+
+
+15. Another test{style="border: dotted; border-color: blue green red orange; border-width: thin medium 5px 10px;"}
+
+
+
+16. Another test{style="border: double"}
+
+17. Another Test {style="color: red;  text-align: center;"}
+
+18. Another Test {style="color: red;  text-align: center; margin:auto; border: medium inset green; width: 20vw; background: linear-gradient(to right, #f46b45,#eea849); height:3vw; padding-top:20px;font-size:150%; width-min:100px"}
+
+
+19. test9{style="<i class="material-icons">cloud</i>"}
+
+20. tes  {style="color: red;  text-align: center; font-weight:100"}
+
+
+21.. Text Test {style="font-family:'Times New Roman', Times, serif;"}
+
+
+22. XML Tools {style="<i class="material-icons">cloud</i>"}
 
 test{style="font-family:}
 - text

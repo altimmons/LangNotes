@@ -10,7 +10,7 @@ Some commands are bizarrely mixed -
 
 This example uses string concatenation with `.`. THe second example Uses expression mode `%` to declare that strings are quoted and variables are unquoted.
 ```ahk
-if WinExist("ahk_class Notepad") or WinExist("ahk_class" . ClassName)
+if Win4("ahk_class Notepad") or WinExist("ahk_class" . ClassName)
     WinActivate  ; Uses the last found window.
 
 MsgBox % "The active window's ID is " . WinExist("A")

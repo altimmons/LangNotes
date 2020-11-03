@@ -109,6 +109,11 @@ Requirements
 
 [[TOC]]
 
+[[def]] *[TOC]: Table of contents
+
+This is a TOC example
+
+
 ## Cold Folding Commands
 
 C#: `#region` and `#endregion`

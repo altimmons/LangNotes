@@ -1,0 +1,1201 @@
+<!DOCTYPE html><html><head>
+      <title>DataStructuresLab3</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"TeX":{"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]},"HTML-CSS":{"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="file:///c:\Users\andyt\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.3\node_modules\@shd101wyy\mume\dependencies\mathjax\MathJax.js" charset="UTF-8"></script>
+        
+      
+      
+
+      
+      <script type="text/javascript" src="file:///c:\Users\andyt\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.5.3\node_modules\@shd101wyy\mume\dependencies\mermaid\mermaid.min.js" charset="UTF-8"></script>
+      
+      
+      
+      
+      
+
+      <style>
+      pre{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;padding:1em;margin:.5em 0;overflow:auto;line-height:1.5;tab-size:4;hyphens:none;color:#c5c8c6;background-color:#27292c !important;border:#43484c;border-radius:3px}pre[class*="language-"]{padding:1em}code[class*="language-"] .token.comment,pre[class*="language-"] .token.comment,code[class*="language-"] .token.prolog,pre[class*="language-"] .token.prolog,code[class*="language-"] .token.doctype,pre[class*="language-"] .token.doctype,code[class*="language-"] .token.cdata,pre[class*="language-"] .token.cdata{color:#7C7C7C}code[class*="language-"] .token.punctuation,pre[class*="language-"] .token.punctuation{color:#96CBFE}code[class*="language-"] .namespace,pre[class*="language-"] .namespace{opacity:.7}code[class*="language-"] .token.constant,pre[class*="language-"] .token.constant{color:#99CC99}code[class*="language-"] .token.boolean,pre[class*="language-"] .token.boolean,code[class*="language-"] .token.number,pre[class*="language-"] .token.number,code[class*="language-"] .token.function-name,pre[class*="language-"] .token.function-name{color:#FF73FD}code[class*="language-"] .token.tag,pre[class*="language-"] .token.tag{color:#96CBFE}code[class*="language-"] .token.selector,pre[class*="language-"] .token.selector{color:#96CBFE}code[class*="language-"] .token.attr-name,pre[class*="language-"] .token.attr-name{color:#C6C5FE}code[class*="language-"] .token.string,pre[class*="language-"] .token.string{color:#A8FF60}code[class*="language-"] .token.char,pre[class*="language-"] .token.char{color:#FF8000}code[class*="language-"] .token.entity,pre[class*="language-"] .token.entity{color:#FFD2A7}code[class*="language-"] .token.url,pre[class*="language-"] .token.url{color:#7C7C7C}code[class*="language-"] .token.operator,pre[class*="language-"] .token.operator{color:#EDEDED}code[class*="language-"] .token.atrule,pre[class*="language-"] .token.atrule,code[class*="language-"] .token.attr-value,pre[class*="language-"] .token.attr-value,code[class*="language-"] .token.keyword,pre[class*="language-"] .token.keyword{color:#CFCB90}code[class*="language-"] .token.function,pre[class*="language-"] .token.function{color:#FFD2A7}code[class*="language-"] .token.class-name,pre[class*="language-"] .token.class-name{color:#FFD2A7}code[class*="language-"] .token.variable,pre[class*="language-"] .token.variable{color:#C6C5FE}code[class*="language-"] .token.regex,pre[class*="language-"] .token.regex,code[class*="language-"] .token.important,pre[class*="language-"] .token.important{color:#E9C062}code[class*="language-"] .token.important,pre[class*="language-"] .token.important,code[class*="language-"] .token.bold,pre[class*="language-"] .token.bold{font-weight:bold}code[class*="language-"] .token.italic,pre[class*="language-"] .token.italic{font-style:italic}code[class*="language-"] .token.entity,pre[class*="language-"] .token.entity{cursor:help}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:rgba(153,122,102,0.08);background:linear-gradient(to right, rgba(153,122,102,0.1) 70%, rgba(153,122,102,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:rgba(153,122,102,0.4);color:#f5f2f0;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px white}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#EEFFFF;background-color:#263238;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#fff}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#9cffff}html body strong{color:#fff}html body del{color:#9cffff}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#82AAFF;text-decoration:none}html body a:hover{color:#abc6ff;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#9cffff;border-left:4px solid #475d69}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#475d69;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#fff}html body table td,html body table th{border:1px solid #475d69;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#fff;background-color:#364850;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#475d69;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#fff;border:1px solid #475d69;border-bottom:2px solid #3b4d56;padding:2px 4px;background-color:#364850;border-radius:3px}@media print{html body{background-color:#263238}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#fff;page-break-after:avoid}html body blockquote{color:#9cffff}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="lab-3-huffman-encoding">Lab 3 Huffman Encoding</h1>
+
+<p>Andrew Timmons<br>
+Data Structures<br>
+Project 3</p>
+<h2 class="mume-header" id="general-overview">General Overview</h2>
+
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="toc"><div class="input-div"><div class="btn-group"><div class="run-btn btn"><span>&#x25B6;&#xFE0E;</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div></div><div class="output-div"></div></div><h3 class="mume-header" id="directory-structure">Directory Structure</h3>
+
+<p>!!!Summary<br>
+Folder PATH listing<br>
+Volume serial number is E4CA-B907<br>
+C:.<br>
+&#x251C;&#x2500;&#x2500;&#x2500;.idea<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;codeStyles<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;inspectionProfiles<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;libraries<br>
+&#x251C;&#x2500;&#x2500;&#x2500;bak<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;removed<br>
+&#x251C;&#x2500;&#x2500;&#x2500;doc<br>
+&#x251C;&#x2500;&#x2500;&#x2500;lib<br>
+&#x251C;&#x2500;&#x2500;&#x2500;Logs<br>
+&#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x251C;&#x2500;&#x2500;&#x2500;out<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Derelict_Classes<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Graphical_Resources<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;InteralFiles<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;codeStyles<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;inspectionProfiles<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;libraries<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;RemovedClasses<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;report<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;dsRes<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Internal_Project_Files<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;codeStyles<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;inspectionProfiles<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;libraries<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;   &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;graph<br>
+&#x2502;       &#x2502;   &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;paintables<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;RemovedClasses<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;report<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;dsRes<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;Sources<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;main<br>
+&#x2502;       &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;java<br>
+&#x2502;       &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;                   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;                       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;                           &#x2514;&#x2500;&#x2500;&#x2500;graph<br>
+&#x2502;       &#x2502;                               &#x2514;&#x2500;&#x2500;&#x2500;paintables<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;P4encoding_jar<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;Logs<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;P4encoding<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;codeStyles<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;inspectionProfiles<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;libraries<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;RemovedClasses<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;report<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;dsRes<br>
+&#x2502;       &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;Sources<br>
+&#x2502;       &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;main<br>
+&#x2502;       &#x2502;   &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;java<br>
+&#x2502;       &#x2502;   &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;   &#x2502;                   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;   &#x2502;                       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;P4encoding_2<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;artifacts<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;codeStyles<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;inspectionProfiles<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;libraries<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;RemovedClasses<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;report<br>
+&#x2502;       &#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;dsRes<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;           &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Report<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;Report<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Report1<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;Report<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;       &#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;3X<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;Sources<br>
+&#x2502;       &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;Sources<br>
+&#x2502;       &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;main<br>
+&#x2502;       &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;java<br>
+&#x2502;       &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;       &#x2502;                   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;       &#x2502;                       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;       &#x2502;                           &#x2514;&#x2500;&#x2500;&#x2500;graph<br>
+&#x2502;       &#x2502;                               &#x2514;&#x2500;&#x2500;&#x2500;paintables<br>
+&#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;zDerelictClasses<br>
+&#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;DerelictClasses<br>
+&#x251C;&#x2500;&#x2500;&#x2500;res<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;1.5x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;1x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;2x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;3x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;4x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;6x<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;android<br>
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;drawable-hdpi<br>
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;drawable-mdpi<br>
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;drawable-xhdpi<br>
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;drawable-xxhdpi<br>
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;drawable-xxxhdpi<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;ios<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;@1x<br>
+&#x2502;       &#x251C;&#x2500;&#x2500;&#x2500;@2x<br>
+&#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;@3x<br>
+&#x251C;&#x2500;&#x2500;&#x2500;src<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;main<br>
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;java<br>
+&#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;   &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;   &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;   &#x2502;                   &#x2514;&#x2500;&#x2500;&#x2500;graph<br>
+&#x2502;   &#x2502;                       &#x2514;&#x2500;&#x2500;&#x2500;paintables<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;test<br>
+&#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;java<br>
+&#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;                   &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2514;&#x2500;&#x2500;&#x2500;target<br>
+&#x251C;&#x2500;&#x2500;&#x2500;classes<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;META-INF<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;org<br>
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;timmons<br>
+&#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;datastructures<br>
+&#x2502;   &#x2502;           &#x2514;&#x2500;&#x2500;&#x2500;graph<br>
+&#x2502;   &#x2502;               &#x2514;&#x2500;&#x2500;&#x2500;paintables<br>
+&#x2502;   &#x251C;&#x2500;&#x2500;&#x2500;RemovedClasses<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;report<br>
+&#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;dsRes<br>
+&#x251C;&#x2500;&#x2500;&#x2500;generated-sources<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;annotations<br>
+&#x251C;&#x2500;&#x2500;&#x2500;maven-archiver<br>
+&#x2514;&#x2500;&#x2500;&#x2500;maven-status<br>
+&#x2514;&#x2500;&#x2500;&#x2500;maven-compiler-plugin<br>
+&#x251C;&#x2500;&#x2500;&#x2500;compile<br>
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;default-compile<br>
+&#x2514;&#x2500;&#x2500;&#x2500;testCompile<br>
+&#x2514;&#x2500;&#x2500;&#x2500;default-testCompile</p>
+<pre class="language-text">There are some files that I have annotated ` *TRUNCATED*`. Basically, I took out some of the image directories so that this tree wouldn&apos;t take up pages and pages of the report, needlessly.  I will talk about the image directories briefly later, but they hold the images for the GUI in multiple sizes, hence the reason to truncate them (copies at 1x, 1.5x, 2x, 3x, etc...).
+</pre>
+<p>The project structure is seen above.  I did not really implement much testing in this project as I did in the last one.  It is still something I am trying to get a grasp of.</p>
+<p>!!! output files are found in <code>.\logs\</code> with the console output under <code>output##-##-##</code> and the debug/log/error output in the <code>java0.log</code> &amp; <code>java1.log</code>.</p>
+<h2 class="mume-header" id="class-overview">Class Overview</h2>
+
+<pre class="language-text">  Folder PATH listing
+  Volume serial number is E4CA-B907
+  C:.
+  &#x2502;   App.java
+  &#x2502;   CellBoldRendmpl.java
+  &#x2502;   CustomJTable.java
+  &#x2502;   Decoder.java
+  &#x2502;   Encoder.java
+  &#x2502;   ExceptionGroup.java
+  &#x2502;   FileChooser.java
+  &#x2502;   GraphicalElements.java
+  &#x2502;   HTMLLister.java
+  &#x2502;   HTMLOutStream.java
+  &#x2502;   Huffcoder.java
+  &#x2502;   IconSz.java
+  &#x2502;   ListViewer.java
+  &#x2502;   LogLister.java
+  &#x2502;   LogMan.java
+  &#x2502;   Node.java
+  &#x2502;   NullStream.java
+  &#x2502;   Processor.java
+  &#x2502;   Sys.java
+  &#x2502;   TableRendererImpl.java
+  &#x2502;   Token.java
+  &#x2502;   TokenQueue.java
+  &#x2502;   Tree.java
+  &#x2502;   TreeBrowserModel.java
+  &#x2502;   TreeBuilder.java
+  &#x2502;   TreeListener.java
+  &#x2502;   TreeLister.java
+  &#x2502;   
+  &#x2514;&#x2500;&#x2500;&#x2500;graph
+      &#x2502;   GDimension.java
+      &#x2502;   GNode.java
+      &#x2502;   GraphicalTree.java
+      &#x2502;   GTree.java
+      &#x2502;   Location.java
+      &#x2502;   Tree.java
+      &#x2502;   
+      &#x2514;&#x2500;&#x2500;&#x2500;paintables
+              Circle.java
+              Line.java
+              PaintableObjects.java
+              Text.java
+</pre>
+<ul>
+<li>
+<p><code>App.java</code> - the primary class for the program.  Drives the whole thing.</p>
+</li>
+<li>
+<p><code>Sys.java</code> - an abstract class that stores <code>final</code> settings, and parameters.  I know some people frown on having a single <code>abstract</code> class or <code>interface</code> that only serves to store things like this and call it bad form, while others say that it is a good practice.  In the end, as I write more, I find that I like it.  It is easy to reference anything stored there, with a quick qualified call (hence the short name), and I know where each of the settings are.  In the case of a  GUI, I would likely have a second referencing <em>magic number</em> type values for that aspect of the program.  There are a few useful methods thrown in there as well.  I was thinking a useful thing to do moving forward is to have a class that I throw frequently used methods into for these assignments, then I can start with a blank program and my abstract class and pull in methods that I have written previously.</p>
+</li>
+<li>
+<p><code>LogMan.java</code> - this handles a lot of the work of the loggers, though in retrospect, much of it is superfluous as I experimented with logs back when I thought I was way ahead of the ball on the project.  Some of it was copied from a previous project in which I tried logging, though very little.</p>
+</li>
+<li>
+<p><code>Processor.java</code> - handles the file opening and parsing of the program. I had envisioned this a universal file opener, that if it took a slightly malformed path, could manage it, adjust it on the fly and make it work.  When I was writing this over a month ago, I really didn&#x2019;t know enough to do it, and it has way too much boilerplate.  I know a fair size bit more now and I think I could do much better.  It also handles the parsing of the file.</p>
+</li>
+<li>
+<p><code>NullStream</code> - initially it was supposed to discard Console output.  Then what I really wanted to do was to redirect the console output to an HTMLList Pane in the GUI, so you could have a GUI based console.  I think I nearly had this working, but had to abandon it due to time.</p>
+</li>
+<li>
+<p><code>Token</code> - stores the object of the letters and the values and provides methods for accessing them.</p>
+</li>
+<li>
+<p><code>TokenQueue</code> - stores a priorityQueue of the objects for use in encoding.  Essentially a linked stack.</p>
+</li>
+<li>
+<p><code>Node</code> -  Extends Token, to allow Token to become a tree node.  Allows the Node to operate like a stack, or Linked List, with previous and next fields, and also like a tree Node, with Parent, left child, and right child fields.</p>
+</li>
+<li>
+<p><code>HuffCoder</code> - Takes the completed TokenQueue and adds it to a tree.</p>
+</li>
+<li>
+<p><code>TreeLister</code> - Take the tree and does pre-order traversal in order to encode the Huffman Encoding.</p>
+</li>
+<li>
+<p><code>TreeBuilder</code>, <code>GraphicalOutput</code> <code>GraphicalElements</code>, <code>TreeListener</code>, <code>TreeTable</code> all implement aspects of the GUI from the interactive tree to the interactive buttons.</p>
+</li>
+<li>
+<p><code>TableRendererImpl</code> - Changing the look and font of text in the GUI objects is not exactly straight forward.  But I did eventually figure it out, first in JPane, in the message dialogue, then as the table fomatter here.</p>
+</li>
+</ul>
+<p><code>pkg Graph</code>, and <code>pkg graph.paintables</code> was an attempt to actually draw a tree on a canvas.  I initially envisioned that this should be easy, as each node would be drawn, saw 1/3 left and 1/3 right the X pos of the node.  But it very quickly started getting more complicated than I expected.  There are also a number of classes in the deprecated folder that I wrote and removed.</p>
+<h2 class="mume-header" id="file-management">File Management</h2>
+
+<p>I spent a great deal of time managing the output and input of this program.  I still struggle with IO operations and I think thats why I focus on it so much.  I put the Logger (java.util.Logger) class back to work in this program.  In theory it is supposed to help with debugging, but I find I spend vastly more time battling with it than I do actually debugging it.  What also happens is I am not consistent as I should be in what output gets sent to System.err,  System.out, and the various Logs.  I keep hoping that I will become facile at logs and be able to use that easily moving forward.  Instead, I ended up getting this in an additional day late because I could not get the log output to shift from the console to the file as expected.  The relevant class in this case is <code>LogMan</code>.  I will try not to spend too much time on the nuances here, but its worth a brief discussion based on the hours I battled with it.  In addition the class is a bit of a mess, with all the last second reconfiguring.</p>
+<p>The first call in the program instantiates LogMan.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token class-name">LogMan</span> logMan <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LogMan</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">LogMan</span><span class="token punctuation">.</span><span class="token function">redirectConsole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+</pre><p>I generate the appropriate directory if its missing - called &#x201C;Logs&#x201D; which should be in the executing directory of the program.  It does this through a call to <code>System.getProperty( &quot;user.dir&quot; );</code> Then it removes the <code>ConsoleHandler</code> from the Global Logger, which is the default method.  I learned that by default, all logging calls are passed up to the global, where the default handler, <code>ConsoleHandler</code>, grabs them and writes them to the <em>PrintStream</em> <code>System.err</code>.  This was difficult to solve.  I kept getting output anyway.  Another critical point is that anything with a <code>java.util.Logging.Level</code> above or equal to <code>Level.CONFIG</code> is written to the console anyway.  That was part of the problem.  I create a <code>FileHandler</code> and <code>Filter</code> and <code>Formatter</code> and add that handler to the Global Logger.  That still didn&#x2019;t give File Output.  I then tried adding the <code>FileHandler</code> to all of the loggers which I was able to access through the <code>LogManager</code> class.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java">     <span class="token class-name">LogManager</span> logManager <span class="token operator">=</span> <span class="token class-name">LogManager</span><span class="token punctuation">.</span><span class="token function">getLogManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token class-name">Enumeration</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> loggerNames <span class="token operator">=</span> logManager<span class="token punctuation">.</span><span class="token function">getLoggerNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+         loggerNames<span class="token punctuation">.</span><span class="token function">hasMoreElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token class-name">String</span> name       <span class="token operator">=</span> loggerNames<span class="token punctuation">.</span><span class="token function">nextElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">Logger</span> thisLogger <span class="token operator">=</span> <span class="token class-name">Logger</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span> name <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token class-name">Handler</span> handler <span class="token operator">:</span> thisLogger<span class="token punctuation">.</span><span class="token function">getHandlers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span> handler <span class="token keyword">instanceof</span> <span class="token class-name">ConsoleHandler</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+          thisLogger<span class="token punctuation">.</span><span class="token function">removeHandler</span><span class="token punctuation">(</span> handler <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">//tell all the kids to listen to their parents.</span>
+      thisLogger<span class="token punctuation">.</span><span class="token function">setUseParentHandlers</span><span class="token punctuation">(</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      thisLogger<span class="token punctuation">.</span><span class="token function">addHandler</span><span class="token punctuation">(</span> fileHandler <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre><p>Iterating through each Logger, removing ConsoleHandler and adding FileHandler still didn&#x2019;t work.  Finally, buried in a <em>StackOverflow</em> post, and in several others, a rather vague mention of properties was mentioned.  Complicating things, Logger also allows reading settings from a Properties file.  After heading down that path for way too long, I finally hit upon,</p>
+<pre data-role="codeBlock" data-info="java" class="language-java">       <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span> <span class="token string">&quot;java.util.logging.SimpleFormatter.format&quot;</span> <span class="token punctuation">,</span>
+            <span class="token function">getFormatString</span><span class="token punctuation">(</span> formatOption <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span> <span class="token string">&quot;java.util.logging.FileHandler.pattern&quot;</span> <span class="token punctuation">,</span>
+            tempFile<span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><p>as the solution. However, not I think I get 2 copies out to a file.  Yet, with the deadline well passed, I think I&#x2019;ll have to leave well enough alone.  Here, I also got the Formatter to work as well.  Each of those issues I must have spent greater than 8 hours on.</p>
+<p>I also redirect the console <code>PrintStream</code> to a class I wrote that extends <code>PrintStream</code>: <code>NullStream</code>.  NullStream was intended to be a dummy class that I could print to, just as in the class it extends, PrintStream.  The intention was that the  strings passed to <code>PrintStream</code> would add to a String array(initially) and  later a <code>Vector&lt;String&gt;</code> that would be taken into the  * htmlPane, in the bottom third of the GUI.  It probably looks like just a narrow white band at this point.  The hope was that I could write this  list to act like a console, such that the dialogue would be printed there.  I had also intended to write a Formatter class, to handle Log values in Green and Err output in Red, as I did for the JTable class in <code>TableRendererImpl</code>.</p>
+<h2 class="mume-header" id="program-intro">Program Intro</h2>
+
+<p>The program starts with then intro message.</p>
+<pre class="language-text">Huffman Encoding
+  Andy Timmons 2020No Arguments are required.  By default the program pulls values from &apos;./res/*&apos;.  In the GUI the Open and Save mechanisms are very nearly fully implemented, but not quite and aren&apos;t currently functional.  The program will accept the following parameters.
+  [-v] DISABLES verbose mode
+  [-d] DISABLES certain debugging messages,
+  [-c] redirects the logging from a file in ./log/ to the console.
+  [-o] redirects the general output from a file to the console. Default is ./log/output&lt;date&gt;.txt  
+  [-l] Disables most of the logging calls.
+
+
+As can be guessed, many of these calls have side-effects on others, I was not very consistent in their writing.  -v -l disables most of the program status messages.  In general though, -v, -l, -c are all superfluous to the program, as are -d.  The relevant output is either output to the console (and gui), or to the file, and gui.  I probably should have put a flag to stop the GUI (in case of compatibility errors) but that is on the list of the many things that I wanted to implement, and yet the program has already gotten so complicated that it is quite late.  So, with the date past, I decided that I would only implement centrally critical items.
+</pre>
+<p>Values can be edited in ./res/ in the relevant files- to add additional strings to decode. etc.</p>
+<h2 class="mume-header" id="parsing-data">Parsing Data</h2>
+
+<p>Following the data though, the <code>Processor</code> class spends a lot of time checking the path, then finally begins parsing.  I opted to use RegEx matching here, though I did worry about whether it would be using another class, as Dr. Chlan does not want us to do.</p>
+<p>The relevant pattern is thus, however:</p>
+<pre class="language-text">`&quot;([\\s]*?)([A-Za-z])([\\s]*?)([\\W\\S])([\\s]*?)([\\d]{1,2})(.*$)&quot;`
+</pre>
+<p>Though I am sure you are familiar with RegEx, an overview is worthwhile. Each parenthetical group obviously makes a match group.</p>
+<ol>
+<li><code>([\\s]*?)</code>: 0 or more (Lazy-e.g. as few as possible) space characters</li>
+<li><code>([A-Za-z])</code>: An alphabetic character - in the range A-Z,a-z</li>
+<li><code>([\\s]*?)</code>: Same as 1</li>
+<li><code>([\\W\\S])</code>: any Non-WhiteSpace, and Non-Word character</li>
+<li><code>([\\s]*?)</code>: Same as 1</li>
+<li><code>([\\d]{1,3})</code>: A decimal number, with a length 1:3 chars</li>
+<li><code>(.*$)</code>: Followed by any character or not to the end of the line</li>
+</ol>
+<p>The method is shown below, with superfluous logging and debugging lines removed.  I did opt to use Scanner as well in this case, rather than Character Reader like I did in one of the previous assignments, where I wanted to get as close to &#x2018;bare metal&#x2019; as possible.  In this case, I did take advantage of some higer complexity classes.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"> <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">TokenQueue</span> <span class="token function">processFile</span><span class="token punctuation">(</span> <span class="token class-name">TokenQueue</span> tokenQueue <span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">FileNotFoundException</span> <span class="token punctuation">,</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+		<span class="token class-name">String</span> REGEX_STRING <span class="token operator">=</span> <span class="token string">&quot;([\\s]*?)([A-Za-z])([\\s]*?)([\\W\\S])([\\s]*?)([\\d]{1,3})(.*$)&quot;</span><span class="token punctuation">;</span>
+		<span class="token class-name">Pattern</span> pRegEx <span class="token operator">=</span> <span class="token class-name">Pattern</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span> REGEX_STRING <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">File</span> fileRead <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span> f_workingDirectory <span class="token punctuation">,</span> f_filename <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">Scanner</span> fileScanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span> fileRead <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span> fileScanner<span class="token punctuation">.</span><span class="token function">hasNextLine</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+				<span class="token keyword">do</span> <span class="token punctuation">{</span>
+						<span class="token class-name">String</span> line <span class="token operator">=</span> fileScanner<span class="token punctuation">.</span><span class="token function">nextLine</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token class-name">Scanner</span> lineScanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span> line <span class="token punctuation">)</span><span class="token punctuation">;</span>
+						lineScanner<span class="token punctuation">.</span><span class="token function">findInLine</span><span class="token punctuation">(</span> pRegEx <span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token class-name">MatchResult</span> match <span class="token operator">=</span> lineScanner<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+						<span class="token class-name">String</span> charMatch <span class="token operator">=</span> match<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span> <span class="token number">2</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token keyword">int</span> intMatch <span class="token operator">=</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span> match<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span> <span class="token number">6</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+						lineScanner<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+				<span class="token keyword">while</span> <span class="token punctuation">(</span> fileScanner<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+				fileScanner<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+
+		fileScanner<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> tokenQueue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="mume-header" id="organizing-the-data">Organizing the data</h2>
+
+<p>Finally, though, we get to the data structures.  Here each line is read, it has 2 values, a letter and a value.  For this I created the class <code>Token</code> to hold them.  It really just creates an Object that contains these items.</p>
+<p>These then get pushed to <code>TokenQueue</code>, which is a stack, or rather, as the name suggests, a <strong>queue</strong>.  The tokens are sorted internally by value.  Below is a string representation of that action.</p>
+<pre class="language-text">H( Len=1 )&gt;-{A}~-&lt;T
+              ^new Node
+H( Len=2 )&gt;-{B}~{A}~-&lt;T
+              ^new Node
+H( Len=3 )&gt;-{B}~{C}~{A}~-&lt;T
+                  ^new Node
+H( Len=4 )&gt;-{D}~{B}~{C}~{A}~-&lt;T
+              ^new Node
+H( Len=5 )&gt;-{D}~{B}~{C}~{A}~{E}~-&lt;T
+                              ^new Node
+H( Len=6 )&gt;-{D}~{F}~{B}~{C}~{A}~{E}~-&lt;T
+                  ^new Node
+H( Len=7 )&gt;-{D}~{F}~{G}~{B}~{C}~{A}~{E}~-&lt;T
+                      ^new Node
+H( Len=8 )&gt;-{D}~{F}~{G}~{B}~{H}~{C}~{A}~{E}~-&lt;T
+                              ^new Node
+H( Len=9 )&gt;-{D}~{F}~{G}~{I}~{B}~{H}~{C}~{A}~{E}~-&lt;T
+                          ^new Node
+H( Len=10 )&gt;-{J}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{A}~{E}~-&lt;T
+              ^new Node
+H( Len=11 )&gt;-{J}~{K}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{A}~{E}~-&lt;T
+                  ^new Node
+H( Len=12 )&gt;-{J}~{K}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{A}~{L}~{E}~-&lt;T
+                                                      ^new Node
+H( Len=13 )&gt;-{J}~{K}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{M}~{A}~{L}~{E}~-&lt;T
+                                                  ^new Node
+H( Len=14 )&gt;-{J}~{K}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{M}~{A}~{L}~{N}~{E}~-&lt;T
+                                                              ^new Node
+H( Len=15 )&gt;-{J}~{K}~{D}~{F}~{G}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{L}~{N}~{E}~-&lt;T
+                                                  ^new Node
+H( Len=16 )&gt;-{J}~{K}~{D}~{F}~{P}~{G}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{L}~{N}~{E}~-&lt;T
+                              ^new Node
+H( Len=17 )&gt;-{Q}~{J}~{K}~{D}~{F}~{P}~{G}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{L}~{N}~{E}~-&lt;T
+              ^new Node
+H( Len=18 )&gt;-{Q}~{J}~{K}~{D}~{F}~{P}~{G}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{L}~{N}~{R}~{E}~-&lt;T
+                                                                              ^new Node
+H( Len=19 )&gt;-{Q}~{J}~{K}~{D}~{F}~{P}~{G}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{L}~{N}~{R}~{S}~{E}~-&lt;T
+                                                                                  ^new Node
+</pre>
+<p>It is truncated above due to space.  I have another <code>toString()</code> method that also showed the values, than in many ways was more useful, but due to space, I did not include that here.  Though, perhaps I should have.</p>
+<p>I played with this tree a great deal.  It went through many iterations as I designed and build the data structures for this project.  Unfortunately, I started this project early- a few weeks early, since I am generally too prone to playing around and perfectionism and tend to get things in late.  As I am getting close to the deadline now, and I was trying to improve a class to be a singleton class, and now nothing works and I cant for the life of me figure out how&#x2026; then I suspect it will be late anyway.  However, I am sure that the extra time spent on the project will show anyhow.  I should have focused on the critical parts first before messing around I guess.  Anyway-  I started out writing a Stack class- a traditional stack.  Then I tried to write a tree class.  I got each of these working independently, but the difficult part was the ability to A) pass data in between the two items, and B) be able to merge the object.<br>
+For this I came up with the <code>Node</code> class.</p>
+<p>Before that though, <code>Huffcoder</code> class takes the queue and breaks it back down into combined nodes. This is shown below. This is done following the rules of the encoding.</p>
+<p>The Token class is then later extended by the <code>Node</code> Class.  The <code>Node</code> class is special because it can take the Token object and allow Token to become a tree node.  Allows the Node to operate like a stack, or Linked List, with previous and next fields, and also like a tree Node, with Parent, left child, and right child fields.  So, now we can can pop the objects directly off the stack and onto the tree.  In this way there is no Node additional class for Queue vs. Tree.  Initially I had <code>Token</code> extended by <code>Node</code> extended by <code>TokenQueue</code> (under a different Name) -&gt; and then variously a Tree extending <code>Node</code> or using <code>Node</code>, or extending <code>TokenQueue</code>.  After a lot of time working on this and a bit better grasp on objects I just made the Node the class in and off itself.  There is a single recursive method to build the tree, and a single iterative method to build the Queue.  Likewise there is a semi-recursive method that converts the Queue to a tree.  The Node is just an object with 5 additional Node pointers-   <code>Node left</code>, <code>Node right</code>, <code>Node next</code>, <code>Node previous</code>, and <code>private Node root</code>.  I left the fields public, as there really wasn&#x2019;t a reason to shield them from usage.  This made the class and code much easier and quicker.  Of course, I did do it every hard way imaginable first.</p>
+<p>The class with the functional methods to break down then queue and build up the tree is <code>HuffCoder</code>.  It may be a bit opaque how HuffCoder works, as I was in an &#x2018;elegant&#x2019; code writing mood, which generally means I try and make things as brief (and thus opaque) as humanly possible.</p>
+<p>The fields <code>TreeLister completedTree</code> and <code>TokenQueue decodedTree</code> hold the fully formed tree.  These are essentially the same object with the relationship being, explicitly, <code>TokenQueue decodedTree = completedTree.reEncode( rootNode );</code>.  The latter is used to build the table of binary.</p>
+<pre class="language-text">                                                                  ^new Node
+H( Len=20 )&gt;-{P}~{YZQX}~{G}~{U}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{S}~{E}~-&lt;T
+                                                                            ^new Node
+H( Len=19 )&gt;-{G}~{U}~{I}~{B}~{H}~{C}~{O}~{M}~{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{S}~{E}~-&lt;T
+                                                                                  ^new Node
+H( Len=18 )&gt;-{I}~{B}~{H}~{C}~{O}~{M}~{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{S}~{E}~-&lt;T
+                                                                                  ^new Node
+H( Len=17 )&gt;-{H}~{C}~{O}~{M}~{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{BI}~{S}~{E}~-&lt;T
+                                                                              ^new Node
+H( Len=16 )&gt;-{O}~{M}~{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{BI}~{CH}~{S}~{E}~-&lt;T
+                                                                            ^new Node
+H( Len=15 )&gt;-{A}~{KJV}~{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{BI}~{CH}~{S}~{MO}~{E}~-&lt;T
+                                                                            ^new Node
+H( Len=14 )&gt;-{L}~{W}~{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{BI}~{CH}~{S}~{MO}~{AKJV}~{E}~-&lt;T
+                                                                        ^new Node
+H( Len=13 )&gt;-{DF}~{N}~{T}~{R}~{PYZQX}~{GU}~{BI}~{CH}~{S}~{MO}~{AKJV}~{LW}~{E}~-&lt;T
+                                                                      ^new Node
+H( Len=12 )&gt;-{T}~{R}~{PYZQX}~{GU}~{BI}~{CH}~{S}~{MO}~{AKJV}~{LW}~{E}~{NDF}~-&lt;T
+                                                                      ^new Node
+H( Len=11 )&gt;-{PYZQX}~{GU}~{BI}~{CH}~{S}~{MO}~{AKJV}~{LW}~{E}~{NDF}~{RT}~-&lt;T
+                                                                    ^new Node
+H( Len=10 )&gt;-{BI}~{CH}~{S}~{MO}~{AKJV}~{LW}~{E}~{NDF}~{RT}~{GUPYZQX}~-&lt;T
+                                                            ^new Node
+H( Len=9 )&gt;-{S}~{MO}~{AKJV}~{LW}~{E}~{NDF}~{RT}~{GUPYZQX}~{BICH}~-&lt;T
+                                                            ^new Node
+H( Len=8 )&gt;-{AKJV}~{LW}~{E}~{NDF}~{RT}~{GUPYZQX}~{BICH}~{SMO}~-&lt;T
+                                                          ^new Node
+H( Len=7 )&gt;-{E}~{NDF}~{RT}~{GUPYZQX}~{BICH}~{SMO}~{LWAKJV}~-&lt;T
+                                                    ^new Node
+H( Len=6 )&gt;-{RT}~{GUPYZQX}~{BICH}~{SMO}~{LWAKJV}~{ENDF}~-&lt;T
+                                                  ^new Node
+H( Len=5 )&gt;-{BICH}~{SMO}~{LWAKJV}~{ENDF}~{RTGUPYZQX}~-&lt;T
+                                          ^new Node
+H( Len=4 )&gt;-{LWAKJV}~{ENDF}~{RTGUPYZQX}~{SMOBICH}~-&lt;T
+                                          ^new Node
+H( Len=3 )&gt;-{RTGUPYZQX}~{SMOBICH}~{ENDFLWAKJV}~-&lt;T
+                                    ^new Node
+H( Len=2 )&gt;-{ENDFLWAKJV}~{SMOBICHRTGUPYZQX}~-&lt;T
+                          ^new Node
+H( Len=1 )&gt;-{ENDFLWAKJVSMOBICHRTGUPYZQX}~-&lt;T
+              ^new Node
+&#x2588;ENDFLWAKJVSMOBICHRTGUPYZQX(413)
+</pre>
+<p>I ran into several issues here, first I thought I had carefully thought through my decoding loop, but I was only geting a series of X&#x2019;s.  For every letter, it always ended up at X.  I solved that by figuring out that I was not resetting the position of the tree to the top, nor was I exiting my loops appropriately.  Initially, when decoding the strings that were included, I was getting numerous unexpected errors.  At first the values were not remotely close to what was expected.  I thought I had followed the instructions for sorting the nodes, or comparing nodes- but the tree, while functional, did not produce the expected translation.  I went back through the video, and through the code, and the criteria mentioned in the video are as follows:</p>
+<ol>
+<li>
+<ul>
+<li>Smaller values always go to the left.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Break tie by putting the simpler one to the left.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>then alphabetically, with the earlier value, going left.</li>
+</ul>
+</li>
+</ol>
+<p>I was only first comparing length (of the key, e.g. &#x2018;simplicity&#x2019; as put in the lecture), failing that (if the lengths are equal, which is used as a proxy for the number of descendents), falls back to the natural (alphabetic) ordering.  I was not comparing values.  So adding that in, I got most of the way there.  However, I did not get exactly what I expected.  I was getting similar values, but not totally expected values.</p>
+<p>First Line: value:01011001010110011111011011&#xFFFD;<br>
+Line result = EIEIOH<br>
+Attempting to decode given Strings</p>
+<p>First Line: value:10110000101010011011101101100010110010101100010111000110111&#xFFFD;<br>
+Line result = GKPHGBGEGLSWN<br>
+Attempting to decode given Strings</p>
+<p>First Line: value:11111110001000111111101011111011001111111000100011111000001010000001110010111<br>
+Line result = MBRMCMDMBRMAERVL<br>
+Attempting to decode given Strings</p>
+<p>First Line: value:1101101000010001111100011111101000000101100<br>
+Line result = HEKWSWORK</p>
+<p>I also subsequently fixed the strings so that they correctly describe the values etc.  Some work had to be done to clean up the odd characters at the ends of the lines, characters that may be line breaks, carriage returns, or similar, but aren&#x2019;t quite.  I had numerous issues with character encoding that set me back in several ways that this may be related to.  Initially the file that I had saved from Blackboard with the input was encoded in an odd character encoding.  I am not sure if this is my error or another error.  This may be the same issue, with the character on the end being an artifact of changing the character encoding.</p>
+<p>Anyway that character is stripped of by using RegEx pattern matching again.  Returning to the previous topic, the above strings show nearly the correct translations, as seen in the first value. The last value is known and one I added in, from the work sheet- and says HelloWorld.</p>
+<p>Several characters here are correct HE___WOR_x.</p>
+<p>Determinging this error was considerably tougher. For all practical purposes, moving through the tree was working correctly.  I finally had an insight where I realized that when things were added to the Queue, if they had the same value, and there were two nodes that equaled one another in values, e.g. a newly combined node with a value of 15, and an existing Node, disagreed on which actually came first, then you would pull two values in one case, and another two in another case, which would effectively push the expected node down the incorrect sub-branch.</p>
+<p>I thought about this, and considered that the same criteria must be being used here, as is made when determining which goes left vs. right.  At this time I had one method in the <code>Token</code> class that implemented <code>Comparable</code> interface.  I had another method in the <code>Huffcoder</code> class that had the correct comparisons.  The previous method only compared based on value, and in most cases this works fine.  I added a new method in <code>Node</code> class implementing <code>Comparable</code> (which served to mask <code>Token</code> method) and replaced the method in <code>Huffcoder</code>.</p>
+<p>This finally gives the expeceted result.</p>
+<h2 class="mume-header" id="encoding">Encoding</h2>
+
+<p>Initially, I thought I had the encoding method done quickly.</p>
+<p>It was relatively easy, I had already generated the binary, in a TreeMap&lt;String, String&gt; in order to have a simple data structure to add to the Table later.</p>
+<p>I got binary, and it looked right.  But when I wanted to swap the output of the <code>Encoder</code> class to the <code>Decoder</code> class so that I could show that I used my own data, I got bizarre values.</p>
+<p>I ended up implementing the encode method through a binary search method.  Which, given the course of the class is probably the intended method.</p>
+<p>The recursive method is given below.</p>
+<p>As mentioned in the doc, it works by appending a 1 for each move right and a 0 for each move left. It returns a null value for a failed search, and a string for a successful one.  A possible error state exists if the letter does not exist in the tree, but in this case I know that it does.  So, I did not handle it here.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token comment">/**
+   * Recursive method to turn a character into binary.
+   * @param node
+   * @param s - 
+   *          the string that is built up incrementally, to generate the 
+   *          binary, with each move left, adding a zero, and each move 
+   *          right, adding a 1.  
+   * @param value 
+   * the string (of length 1 in this case) or letter to search for.
+   * 
+   * 
+   * @return 
+   *  a null value if the search course fails, and the string if successful. 
+   *  If not a leaf, continue down the path,
+   */</span>
+  <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">preOrder</span><span class="token punctuation">(</span> <span class="token class-name">Node</span> node <span class="token punctuation">,</span> <span class="token class-name">String</span> s <span class="token punctuation">,</span> <span class="token class-name">String</span> value <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">isLeaf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//preOrder</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">getLetters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span> value <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> s<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span> <span class="token comment">//if its a leaf, dont even check.</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span> node<span class="token punctuation">.</span><span class="token function">hasLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token function">preOrder</span><span class="token punctuation">(</span> node<span class="token punctuation">.</span><span class="token function">getLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span> s <span class="token operator">+</span> <span class="token string">&quot;0&quot;</span> <span class="token punctuation">)</span> <span class="token punctuation">,</span> value <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span><span class="token function">hasRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token function">preOrder</span><span class="token punctuation">(</span> node<span class="token punctuation">.</span><span class="token function">getRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span> s <span class="token operator">+</span> <span class="token string">&quot;1&quot;</span> <span class="token punctuation">)</span> <span class="token punctuation">,</span> value <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</pre><p>Comparing the results here, shows the issues with my code and I was then able to determine my error.</p>
+<p>The code below, from <code>TreeLister.java</code> shows the error.  The corrected is shown below.</p>
+<pre data-role="codeBlock" data-info="java" class="language-java">      <span class="token comment">//						constructVisualTree();</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span> tNode<span class="token punctuation">.</span><span class="token function">hasLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">preOrderDecode</span><span class="token punctuation">(</span> tNode<span class="token punctuation">.</span>left <span class="token punctuation">,</span> <span class="token punctuation">(</span> level <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span>  binary <span class="token operator">+</span> <span class="token string">&apos;0&apos;</span>  <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span> tNode<span class="token punctuation">.</span><span class="token function">hasRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">preOrderDecode</span><span class="token punctuation">(</span> tNode<span class="token punctuation">.</span>right <span class="token punctuation">,</span> <span class="token punctuation">(</span> level <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token punctuation">(</span>  binary <span class="token operator">+</span> <span class="token string">&apos;1&apos;</span> <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+</pre><p>Initially, I had</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token string">&apos;0&apos;</span> <span class="token operator">+</span> binary
+<span class="token string">&apos;1&apos;</span> <span class="token operator">+</span> binary
+</pre><p>so it was prepending the value.  This created all the errors.  I recognized this because the binary I was getting was the reverse of the corrected binary from the BST method.  The search tree method is now the only method that works, the map only factors into the GUI table (which itself was a binary search of its own, so its actully implemented twice).</p>
+<h2>Output</h2>
+<h3>Constructing the List from the file:</h3>
+<p>The new node technique doesnt work that great with line wrapping, but perhaps it helps.</p>
+<pre class="language-text">  H( Len=1 )&gt;-{A|19}~-&lt;T
+                ^new Node
+  H( Len=2 )&gt;-{B|16}~{A|19}~-&lt;T
+                ^new Node
+  H( Len=3 )&gt;-{B|16}~{C|17}~{A|19}~-&lt;T
+                      ^new Node
+  H( Len=4 )&gt;-{D|11}~{B|16}~{C|17}~{A|19}~-&lt;T
+                ^new Node
+  H( Len=5 )&gt;-{D|11}~{B|16}~{C|17}~{A|19}~{E|42}~-&lt;T
+                                            ^new Node
+  H( Len=6 )&gt;-{D|11}~{F|12}~{B|16}~{C|17}~{A|19}~{E|42}~-&lt;T
+                      ^new Node
+  H( Len=7 )&gt;-{D|11}~{F|12}~{G|14}~{B|16}~{C|17}~{A|19}~{E|42}~-&lt;T
+                              ^new Node
+  H( Len=8 )&gt;-{D|11}~{F|12}~{G|14}~{B|16}~{C|17}~{H|17}~{A|19}~{E|42}~-&lt;T
+                                                  ^new Node
+  H( Len=9 )&gt;-{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{E|42}~-&lt;T
+                                            ^new Node
+  H( Len=10 )&gt;-{J|5}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{E|42}~-&lt;T
+                ^new Node
+  H( Len=11 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{E|42}~-&lt;T
+                      ^new Node
+  H( Len=12 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{L|20}~{E|42}~-&lt;T
+                                                                                      ^new Node
+  H( Len=13 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{M|19}~{L|20}~{E|42}~-&lt;T
+                                                                                      ^new Node
+  H( Len=14 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{A|19}~{M|19}~{L|20}~{N|24}~{E|42}~-&lt;T
+                                                                                                    ^new Node
+  H( Len=15 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{E|42}~-&lt;T
+                                                                              ^new Node
+  H( Len=16 )&gt;-{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{E|42}~-&lt;T
+                                            ^new Node
+  H( Len=17 )&gt;-{Q|1}~{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{E|42}~-&lt;T
+                ^new Node
+  H( Len=18 )&gt;-{Q|1}~{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{R|25}~{E|42}~-&lt;T
+                                                                                                                              ^new Node
+  H( Len=19 )&gt;-{Q|1}~{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{R|25}~{S|35}~{E|42}~-&lt;T
+                                                                                                                                      ^new Node
+  H( Len=20 )&gt;-{Q|1}~{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                                                                                                      ^new Node
+  H( Len=21 )&gt;-{Q|1}~{J|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                                ^new Node
+  H( Len=22 )&gt;-{Q|1}~{J|5}~{V|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                            ^new Node
+  H( Len=23 )&gt;-{Q|1}~{J|5}~{V|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                                                                                                    ^new Node
+  H( Len=24 )&gt;-{Q|1}~{X|2}~{J|5}~{V|5}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                      ^new Node
+  H( Len=25 )&gt;-{Q|1}~{X|2}~{J|5}~{V|5}~{Y|8}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                        ^new Node
+  H( Len=26 )&gt;-{Q|1}~{X|2}~{Z|3}~{J|5}~{V|5}~{Y|8}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                             ^new Node
+</pre>
+<h3>Building the tree from the Linked List</h3>
+<pre class="language-text">  H( Len=25 )&gt;-{Z|3}~{QX|3}~{J|5}~{V|5}~{Y|8}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                      ^new Node
+  H( Len=24 )&gt;-{J|5}~{V|5}~{ZQX|6}~{Y|8}~{K|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                            ^new Node
+  H( Len=23 )&gt;-{ZQX|6}~{Y|8}~{K|10}~{JV|10}~{D|11}~{F|12}~{P|13}~{G|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                      ^new Node
+  H( Len=22 )&gt;-{K|10}~{JV|10}~{D|11}~{F|12}~{P|13}~{G|14}~{ZQXY|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                            ^new Node
+  H( Len=21 )&gt;-{D|11}~{F|12}~{P|13}~{G|14}~{ZQXY|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                                                                                      ^new Node
+  H( Len=20 )&gt;-{P|13}~{G|14}~{ZQXY|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{S|35}~{E|42}~-&lt;T
+                                                                                                                        ^new Node
+  H( Len=19 )&gt;-{ZQXY|14}~{U|15}~{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{S|35}~{E|42}~-&lt;T
+                                                                                                                                      ^new Node
+  H( Len=18 )&gt;-{B|16}~{I|16}~{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{S|35}~{E|42}~-&lt;T
+                                                                                                                              ^new Node
+  H( Len=17 )&gt;-{C|17}~{H|17}~{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{S|35}~{E|42}~-&lt;T
+                                                                                                                          ^new Node
+  H( Len=16 )&gt;-{O|18}~{A|19}~{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{E|42}~-&lt;T
+                                                                                                                    ^new Node
+  H( Len=15 )&gt;-{M|19}~{L|20}~{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{OA|37}~{E|42}~-&lt;T
+                                                                                                                      ^new Node
+  H( Len=14 )&gt;-{KJV|20}~{W|21}~{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{OA|37}~{ML|39}~{E|42}~-&lt;T
+                                                                                                                ^new Node
+  H( Len=13 )&gt;-{DF|23}~{N|24}~{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{OA|37}~{ML|39}~{KJVW|41}~{E|42}~-&lt;T
+                                                                                                        ^new Node
+  H( Len=12 )&gt;-{R|25}~{T|25}~{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{OA|37}~{ML|39}~{KJVW|41}~{E|42}~{DFN|47}~-&lt;T
+                                                                                                          ^new Node
+  H( Len=11 )&gt;-{PG|27}~{ZQXYU|29}~{BI|32}~{CH|34}~{S|35}~{OA|37}~{ML|39}~{KJVW|41}~{E|42}~{DFN|47}~{RT|50}~-&lt;T
+                                                                                                    ^new Node
+  H( Len=10 )&gt;-{BI|32}~{CH|34}~{S|35}~{OA|37}~{ML|39}~{KJVW|41}~{E|42}~{DFN|47}~{RT|50}~{PGZQXYU|56}~-&lt;T
+                                                                                          ^new Node
+  H( Len=9 )&gt;-{S|35}~{OA|37}~{ML|39}~{KJVW|41}~{E|42}~{DFN|47}~{RT|50}~{PGZQXYU|56}~{BICH|66}~-&lt;T
+                                                                                      ^new Node
+  H( Len=8 )&gt;-{ML|39}~{KJVW|41}~{E|42}~{DFN|47}~{RT|50}~{PGZQXYU|56}~{BICH|66}~{SOA|72}~-&lt;T
+                                                                                ^new Node
+  H( Len=7 )&gt;-{E|42}~{DFN|47}~{RT|50}~{PGZQXYU|56}~{BICH|66}~{SOA|72}~{MLKJVW|80}~-&lt;T
+                                                                        ^new Node
+  H( Len=6 )&gt;-{RT|50}~{PGZQXYU|56}~{BICH|66}~{SOA|72}~{MLKJVW|80}~{EDFN|89}~-&lt;T
+                                                                    ^new Node
+  H( Len=5 )&gt;-{BICH|66}~{SOA|72}~{MLKJVW|80}~{EDFN|89}~{RTPGZQXYU|106}~-&lt;T
+                                                        ^new Node
+  H( Len=4 )&gt;-{MLKJVW|80}~{EDFN|89}~{RTPGZQXYU|106}~{BICHSOA|138}~-&lt;T
+                                                      ^new Node
+  H( Len=3 )&gt;-{RTPGZQXYU|106}~{BICHSOA|138}~{MLKJVWEDFN|169}~-&lt;T
+                                              ^new Node
+  H( Len=2 )&gt;-{MLKJVWEDFN|169}~{RTPGZQXYUBICHSOA|244}~-&lt;T
+                                ^new Node
+  H( Len=1 )&gt;-{MLKJVWEDFNRTPGZQXYUBICHSOA|413}~-&lt;T
+                ^new Node
+</pre>
+<h3>Now Decoding the Strings:</h3>
+<pre class="language-text">  Attempting to decode given Strings
+
+
+
+  First Line: value:01011001010110011111011011&#xFFFD;
+    Decoded result =: EIEIOH
+
+  Second Line: value:10110000101010011011101101100010110010101100010111000110111&#xFFFD;
+    Decoded result =: ZEPHYRQZULU
+
+  Third Line: value:11111110001000111111101011111011001111111000100011111000001010000001110010111
+    Decoded result =: ABRACADABRAMERLIN
+
+  Fourth Line: value:1101101000010001111100011111101000000101100
+    Decoded result =: HELLOWORLD
+
+  Fifth Line: value:10011101111001111011001111011101111000000101101000010101111110001001010101100111001
+    Decoded result =: THISISSOMECLEARTEXT
+
+  Sixth Line: value:1111101110110011101111000000100000111101000010
+    Decoded result =: ANDSOMEMORE
+
+  Seventh Line: value:1001110111111110010011110010001000111000010010011111010111100110001001100100011111100111011010100010100111101100101111001000101011101110000110110111001011110011111011110011101011101111101110110010110000101000111101110
+    Decoded result =: THATWILLBEENCODEDRATHERPOINTLESSLYINTOONESANDZEROS
+
+  Eighth Line: value:11101111010001000101101110011101011110101110001011000111100110101010100110011101101010011111111000000101011100011111101000001001100101111010110001100110101110111001
+    Decoded result =: SORRYICOULDNTGETTHETABLESWORKINGRIGHT
+
+  Ninth Line: value:100111011010101101111111000010001111011111111001100111011010101101111111000010
+    Decoded result =: THEYAREWHATTHEYARE
+</pre>
+<p>Here is the string representation of the tree.</p>
+<p>This doesnt appear to be working right now, it seems to be a result of me changing the binary from the reverse to this.  It would be an easy fix, I would have to re- reverse it before drawing the tree.  The drawing method used here is very complex, and I rememnber thinking at the time it was quite clever.  But now its so complicated I cant quickly pick through it.</p>
+<pre class="language-text">  &#x2588;MLKJVWEDFNRTPGZQXYUBICHSOA(413)
+  &#x251C;&#x252C;&#x25B8;MLKJVWEDFN(169)
+  &#x2502;&#x251C;&#x252C;&#x25B8;MLKJVW(80)
+  &#x2502;&#x2502;&#x251C;&#x2530;&#x25B8;ML(39)
+  &#x2502;&#x2502;&#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;M(19)[ &apos;0000&apos; ]
+  &#x2502;&#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;L(20)[ &apos;0001&apos; ]
+  &#x2502;&#x251C;&#x252C;&#x25B8;KJVW(41)
+  &#x2502; &#x2502;&#x251C;&#x252C;&#x25B8;KJV(20)
+  &#x2502;&#x2502; &#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;K(10)[ &apos;00100&apos; ]
+  &#x2502; &#x2502;&#x251C;&#x2530;&#x25B8;JV(10)
+  &#x2502; &#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;J(5)[ &apos;001010&apos; ]
+    &#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;V(5)[ &apos;001011&apos; ]
+    &#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;W(21)[ &apos;0011&apos; ]
+  &#x251C;&#x252C;&#x25B8;EDFN(89)
+  &#x2502; &#x251D;&#x2501;&#x25CF;&#x25BA;E(42)[ &apos;010&apos; ]
+    &#x251C;&#x252C;&#x25B8;DFN(47)
+  &#x2502;  &#x251C;&#x2530;&#x25B8;DF(23)
+  &#x2502;&#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;D(11)[ &apos;01100&apos; ]
+  &#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;F(12)[ &apos;01101&apos; ]
+    &#x251D;&#x2501;&#x25CF;&#x25BA;N(24)[ &apos;0111&apos; ]
+  &#x2514;&#x252C;&#x25B8;RTPGZQXYUBICHSOA(244)
+  &#x2502;&#x2514;&#x252C;&#x25B8;RTPGZQXYU(106)
+  &#x2502;&#x2502;&#x2514;&#x2530;&#x25B8;RT(50)
+  &#x2502;&#x2502;&#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;R(25)[ &apos;1000&apos; ]
+  &#x2502;&#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;T(25)[ &apos;1001&apos; ]
+  &#x2502;&#x2514;&#x252C;&#x25B8;PGZQXYU(56)
+  &#x2502; &#x2502;&#x2514;&#x2530;&#x25B8;PG(27)
+  &#x2502;&#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;P(13)[ &apos;10100&apos; ]
+  &#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;G(14)[ &apos;10101&apos; ]
+    &#x2502;&#x2514;&#x252C;&#x25B8;ZQXYU(29)
+  &#x2502;  &#x2502;&#x2514;&#x252C;&#x25B8;ZQXY(14)
+  &#x2502;&#x2502;  &#x2502;&#x2514;&#x252C;&#x25B8;ZQX(6)
+  &#x2502;&#x2502;&#x2502;  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;Z(3)[ &apos;1011000&apos; ]
+  &#x2502;&#x2502;  &#x2502;&#x2514;&#x2530;&#x25B8;QX(3)
+  &#x2502; &#x2502;&#x2502;  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;Q(1)[ &apos;10110010&apos; ]
+    &#x2502;&#x2502;  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;X(2)[ &apos;10110011&apos; ]
+  &#x2502;  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;Y(8)[ &apos;101101&apos; ]
+    &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;U(15)[ &apos;10111&apos; ]
+  &#x2514;&#x252C;&#x25B8;BICHSOA(138)
+  &#x2502; &#x2514;&#x252C;&#x25B8;BICH(66)
+  &#x2502;&#x2502; &#x2514;&#x2530;&#x25B8;BI(32)
+  &#x2502;&#x2502;&#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;B(16)[ &apos;11000&apos; ]
+  &#x2502;&#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;I(16)[ &apos;11001&apos; ]
+  &#x2502; &#x2514;&#x2530;&#x25B8;CH(34)
+  &#x2502; &#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;C(17)[ &apos;11010&apos; ]
+    &#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;H(17)[ &apos;11011&apos; ]
+    &#x2514;&#x252C;&#x25B8;SOA(72)
+  &#x2502;  &#x2517;&#x2501;&#x25CF;&#x25BA;S(35)[ &apos;1110&apos; ]
+    &#x2514;&#x2530;&#x25B8;OA(37)
+  &#x2502;   &#x2517;&#x2501;&#x25CF;&#x25BA;O(18)[ &apos;11110&apos; ]
+      &#x2517;&#x2501;&#x25CF;&#x25BA;A(19)[ &apos;11111&apos; ]
+</pre>
+<p>Instead, I will show what it is supposed to look like, noting that it currently needs to be updated.</p>
+<pre class="language-text">        &#x2588;ENDFLWAKJVSMOBICHRTGUPYZQX(413)
+        &#x251C;&#x252C;&#x25B8;ENDFLWAKJV(169)
+        &#x2502;&#x251C;&#x252C;&#x25B8;ENDF(89)
+        &#x2502;&#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;E(42)[ &apos;000&apos; ]
+        &#x2502;&#x2502;&#x2514;&#x252C;&#x25B8;NDF(47)
+        &#x2502;&#x2502; &#x251D;&#x2501;&#x25CF;&#x25BA;N(24)[ &apos;0100&apos; ]
+        &#x2502;&#x2502; &#x2514;&#x2530;&#x25B8;DF(23)
+        &#x2502;&#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;D(11)[ &apos;01100&apos; ]
+        &#x2502;&#x2502;  &#x2517;&#x2501;&#x25CF;&#x25BA;F(12)[ &apos;11100&apos; ]
+        &#x2502;&#x2514;&#x252C;&#x25B8;LWAKJV(80)
+        &#x2502; &#x251C;&#x2530;&#x25B8;LW(41)
+        &#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;L(20)[ &apos;0010&apos; ]
+        &#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;W(21)[ &apos;1010&apos; ]
+        &#x2502; &#x2514;&#x252C;&#x25B8;AKJV(39)
+        &#x2502;  &#x251D;&#x2501;&#x25CF;&#x25BA;A(19)[ &apos;0110&apos; ]
+        &#x2502;  &#x2514;&#x252C;&#x25B8;KJV(20)
+        &#x2502;   &#x251D;&#x2501;&#x25CF;&#x25BA;K(10)[ &apos;01110&apos; ]
+        &#x2502;   &#x2514;&#x2530;&#x25B8;JV(10)
+        &#x2502;    &#x2523;&#x2501;&#x25CF;&#x25BA;J(5)[ &apos;011110&apos; ]
+        &#x2502;    &#x2517;&#x2501;&#x25CF;&#x25BA;V(5)[ &apos;111110&apos; ]
+        &#x2514;&#x252C;&#x25B8;SMOBICHRTGUPYZQX(244)
+        &#x251C;&#x252C;&#x25B8;SMOBICH(138)
+        &#x2502;&#x251C;&#x252C;&#x25B8;SMO(72)
+        &#x2502;&#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;S(35)[ &apos;0001&apos; ]
+        &#x2502;&#x2502;&#x2514;&#x2530;&#x25B8;MO(37)
+        &#x2502;&#x2502; &#x2523;&#x2501;&#x25CF;&#x25BA;M(19)[ &apos;01001&apos; ]
+        &#x2502;&#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;O(18)[ &apos;11001&apos; ]
+        &#x2502;&#x2514;&#x252C;&#x25B8;BICH(66)
+        &#x2502; &#x251C;&#x2530;&#x25B8;BI(32)
+        &#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;B(16)[ &apos;00101&apos; ]
+        &#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;I(16)[ &apos;10101&apos; ]
+        &#x2502; &#x2514;&#x2530;&#x25B8;CH(34)
+        &#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;C(17)[ &apos;01101&apos; ]
+        &#x2502;  &#x2517;&#x2501;&#x25CF;&#x25BA;H(17)[ &apos;11101&apos; ]
+        &#x2514;&#x252C;&#x25B8;RTGUPYZQX(106)
+          &#x251C;&#x2530;&#x25B8;RT(50)
+          &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;R(25)[ &apos;0011&apos; ]
+          &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;T(25)[ &apos;1011&apos; ]
+          &#x2514;&#x252C;&#x25B8;GUPYZQX(56)
+          &#x251C;&#x2530;&#x25B8;GU(29)
+          &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;G(14)[ &apos;00111&apos; ]
+          &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;U(15)[ &apos;10111&apos; ]
+          &#x2514;&#x252C;&#x25B8;PYZQX(27)
+            &#x251D;&#x2501;&#x25CF;&#x25BA;P(13)[ &apos;01111&apos; ]
+            &#x2514;&#x252C;&#x25B8;YZQX(14)
+            &#x251D;&#x2501;&#x25CF;&#x25BA;Y(8)[ &apos;011111&apos; ]
+            &#x2514;&#x252C;&#x25B8;ZQX(6)
+            &#x251D;&#x2501;&#x25CF;&#x25BA;Z(3)[ &apos;0111111&apos; ]
+              &#x2514;&#x2530;&#x25B8;QX(3)
+              &#x2523;&#x2501;&#x25CF;&#x25BA;Q(1)[ &apos;01111111&apos; ]
+              &#x2517;&#x2501;&#x25CF;&#x25BA;X(2)[ &apos;10110011&apos; ]
+</pre>
+<p>The method is able to detect when there are &#x201C;connecting branches&#x201D; behind itself, correctly drawing the tie lines, by realizing that anywhere there is a one, there is also a down branch.  Such that 01010 would be <code>| | &#x2517;</code> for example.</p>
+<p>Continuing on.  To encode the strings:</p>
+<pre class="language-text">  Attempting to encode given Strings
+
+  First Line: value:Sally sells seashells by the seashore.&#xFFFD;
+  SALLYSELLSSEASHELLSBYTHESEASHORE
+    Encoded result =: 11101111100010001101101111001000010001111011100101111111101101101000010001111011000101101100111011010111001011111111011011111101000010
+
+  Second Line: value:Peter Piper picked a peck of pickled peppers a peck of pickled peppers Peter Piper picked.&#xFFFD;
+  PETERPIPERPICKEDAPECKOFPICKLEDPEPPERSAPECKOFPICKLEDPEPPERSPETERPIPERPICKED
+    Encoded result =: 10100010100101010001010011001101000101000101001100111010001000100110011111101000101101000100111100110110100110011101000100000101001100101000101010010100010100011101111110100010110100010011110011011010011001110100010000010100110010100010101001010001010001110101000101001010100010100110011010001010001010011001110100010001001100
+
+  Third Line: value:Houston, the Eagle has landed.&#xFFFD;
+  HOUSTONTHEEAGLEHASLANDED
+    Encoded result =: 11011111101011111101001111100111100111011010010111111010100010101101111111111000011111101110110001001100
+
+  Fourth Line: value:Is that your final answer?
+  ISTHATYOURFINALANSWER
+    Encoded result =: 1100111101001110111111110011011011111010111100001101110010111111110001111110111111000110101000
+
+  Fifth Line: value:This is some clear text
+  THISISSOMECLEARTEXT
+    Encoded result =: 10011101111001111011001111011101111000000101101000010101111110001001010101100111001
+
+  Sixth Line: value:and some more
+  ANDSOMEMORE
+    Encoded result =: 1111101110110011101111000000100000111101000010
+
+  Seventh Line: value:that will be encoded, rather pointlessly into ones and zeros
+  THATWILLBEENCODEDRATHERPOINTLESSLYINTOONESANDZEROS
+    Encoded result =: 1001110111111110010011110010001000111000010010011111010111100110001001100100011111100111011010100010100111101100101111001000101011101110000110110111001011110011111011110011101011101111101110110010110000101000111101110
+
+  Eighth Line: value:sorry I couldnt get the tables working right
+  SORRYICOULDNTGETTHETABLESWORKINGRIGHT
+    Encoded result =: 11101111010001000101101110011101011110101110001011000111100110101010100110011101101010011111111000000101011100011111101000001001100101111010110001100110101110111001
+
+  Ninth Line: value:they are what they are.
+  THEYAREWHATTHEYARE
+    Encoded result =: 100111011010101101111111000010001111011111111001100111011010101101111111000010
+  WARNING: row index is bigger than sorter&apos;s row count. Most likely this is a wrong sorter usage.
+</pre>
+<h3>GUI</h3>
+<p>Buttons have icons for Base class, Mouse over, and clicked actions.  Graphically. I did this by gathering a set of <code>svg</code>, or vector based icons.  I think they were from <a href="http://FlatIcon.com">FlatIcon.com</a>, but at this point, I do not recall.  I like the GUI, interactive aspects of programming so I have a library of 10&#x2019;s of thousands on my computer (that is essentially pointless as it&#x2019;s impractical to sort through all of them.)  I think that I generated the sets of icons using Nucleo- (<em><a href="https://nucleoapp.com/">https://nucleoapp.com/</a></em>), which as it says on its site:</p>
+<pre class="language-text">Nucleo is a beautiful library of 29689 icons, and a powerful application to collect, customize and export all your icons.
+</pre>
+<p>It is a JavaScript based application that allows you to modify vector based images, and then export them into the sets that are commonly used with programs.  I feel like there must be a basic way to then implement this into a program, perhaps with a library that selects automatically the correct image based on the current user resolution.  There must be, as the format of the exporting seems conserved in other programs I&#x2019;ve seen.  Notably, it will export as an SVG, a PNG series (1x, 1.5x, 2x, 3x 4x, Android (containing hdpi, xdpi, etc.) and iOs (which has its own resolutions)), an icon font, json, jsx and others.  While this was useful to just guess and test which correct resolution I needed, there must be a more elegant solution.</p>
+<p>Speaking of icon fonts, I made a strong effort to include font-awesome into the program.  Very early on, I had considered that maybe I could create a nice tree, in the console, using the font icons there-in.  I am a huge fan of the Nerd-Fonts <code>https://github.com/ryanoasis/nerd-fonts</code> and <code>Posh-git</code> with <code>Powerline</code>, there were also a set of modifications to the linux command line.</p>
+<p>!!!note There is a great deal more I could say on my trials and tribulations with the GUI. Things I learned, problems I over came, etc.  But as this is already late, I will generally leave the data from this point on as is and mostly incomplete.</p>
+<h3>TreeTable Class</h3>
+<p>The TreeTable Class is a custom implementation of AbstractTableModel in order to generate a graphical representation of the tree, and results.  The <code>AbstractTableModel</code> reqiores several classes to be implemented. Among them, some of them are obvious- <code>getRowCount</code> and <code>getColumnCount</code> are straight forward, along with  <code>Public String getColumnName( int columnIndex )</code>  These are easily implemented.  Since the table I built has two columns, and isn&#x2019;t editable, <code>getColumnsCount()</code> simply returns 2.</p>
+<p>The other methods required are also somewhat straight forward:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java">  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">getColumnClass</span><span class="token punctuation">(</span> <span class="token keyword">int</span> columnIndex <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isCellEditable</span><span class="token punctuation">(</span> <span class="token keyword">int</span> rowIndex <span class="token punctuation">,</span> <span class="token keyword">int</span> columnIndex <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getValueAt</span><span class="token punctuation">(</span> <span class="token keyword">int</span> rowIndex <span class="token punctuation">,</span> <span class="token keyword">int</span> columnIndex <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> tableArray<span class="token punctuation">[</span>rowIndex<span class="token punctuation">]</span><span class="token punctuation">[</span>columnIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setValueAt</span><span class="token punctuation">(</span> <span class="token class-name">Object</span> aValue <span class="token punctuation">,</span> <span class="token keyword">int</span> rowIndex <span class="token punctuation">,</span> <span class="token keyword">int</span> columnIndex <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>aValue <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      tableArray<span class="token punctuation">[</span>rowIndex<span class="token punctuation">]</span><span class="token punctuation">[</span>columnIndex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span>aValue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">try</span><span class="token punctuation">{</span>
+        tableArray<span class="token punctuation">[</span>rowIndex<span class="token punctuation">]</span><span class="token punctuation">[</span>columnIndex<span class="token punctuation">]</span> <span class="token operator">=</span> aValue<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Sys</span><span class="token punctuation">.</span>LOG_EN<span class="token punctuation">)</span>  LOG<span class="token punctuation">.</span><span class="token function">warning</span><span class="token punctuation">(</span><span class="token string">&quot;Unable to add the item to the table.  The Object that was &quot;</span>
+                    <span class="token operator">+</span> <span class="token string">&quot;attempted to be added to row &quot;</span> <span class="token operator">+</span> rowIndex <span class="token operator">+</span> <span class="token string">&quot; and &quot;</span>
+                    <span class="token operator">+</span> <span class="token string">&quot;column: &quot;</span> <span class="token operator">+</span> columnIndex <span class="token operator">+</span> <span class="token string">&quot; after being passed an object&quot;</span>
+                    <span class="token operator">+</span> <span class="token string">&quot; of class &quot;</span> <span class="token operator">+</span> aValue<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        tableArray<span class="token punctuation">[</span>rowIndex<span class="token punctuation">]</span><span class="token punctuation">[</span>columnIndex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</pre><p>The header of the file also reveals a fair amount about the structure, that is relevant for the discussion above:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TreeTable</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractTableModel</span><span class="token punctuation">{</span>
+<span class="token keyword">private</span> <span class="token keyword">int</span> rowCount<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">int</span> colCount<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> columnNames <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token string">&quot;Letter&quot;</span> <span class="token punctuation">,</span> <span class="token string">&quot;Binary&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> tableArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Logger</span> LOG <span class="token operator">=</span> <span class="token class-name">Logger</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token string">&quot;TreeTable&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">TreeTable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token punctuation">}</span>
+</pre><p>An array of two dimensions of the class String is created.  Twenty-six rows, for the 26 letters of the alphabet and two columns.  I also set up an array, manually for the column names.  I do not use a constructor here.  Adding a value is done by calling the method <code>public void setValueAt( Object aValue , int rowIndex , int columnIndex )</code> rather simply. This I just plugged into the decoding steps- by determining whenever I hit a leaf, I pass it to this method.  While that method could have been used, it would have required two calls to the class, one for each column, and require keeping track of how many letters or leaves have passed through the pre-order decoder.  Instead I implemented the following methods:</p>
+<pre data-role="codeBlock" data-info="java" class="language-java">  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addNode</span><span class="token punctuation">(</span><span class="token class-name">Node</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>n<span class="token punctuation">.</span><span class="token function">hasLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>  <span class="token operator">!</span>n<span class="token punctuation">.</span><span class="token function">hasRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token class-name">String</span> letter <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token function">getLetters</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token class-name">String</span> binary <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token function">getBinary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      rowCount <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Sys</span><span class="token punctuation">.</span>LOG_EN<span class="token punctuation">)</span>  LOG<span class="token punctuation">.</span><span class="token function">warning</span><span class="token punctuation">(</span> <span class="token string">&quot;Passed a node which is not a leaf to the handler.&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addNode</span><span class="token punctuation">(</span><span class="token class-name">String</span> let<span class="token punctuation">,</span> <span class="token class-name">String</span> bin<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    tableArray<span class="token punctuation">[</span>rowCount<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> let<span class="token punctuation">;</span>
+    tableArray<span class="token punctuation">[</span>rowCount<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> bin<span class="token punctuation">;</span>
+    rowCount <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</pre><p>This is a simplified method for adding values to the array in the decoding process.  The two are overloaded versions of the other - <code>addNode(_)</code> methods, to either take the values from the node, or the node itself and do the decoding of it within the class by calling the values from the node. See <a href="#Node-Class">Node Class</a> and the <a href="#Token-Class">Token Class</a>.</p>
+<h4>CellBoldRendmpl</h4>
+<pre data-role="codeBlock" data-info="java" class="language-java">jTable<span class="token punctuation">.</span><span class="token function">getColumn</span><span class="token punctuation">(</span> jTable<span class="token punctuation">.</span><span class="token function">getColumnName</span><span class="token punctuation">(</span> <span class="token number">0</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setCellRenderer</span><span class="token punctuation">(</span> <span class="token keyword">new</span> <span class="token class-name">CellBoldRendmpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>swing<span class="token punctuation">.</span>table</span><span class="token punctuation">.</span><span class="token class-name">DefaultTableCellRenderer</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CellBoldRendmpl</span> <span class="token keyword">extends</span> <span class="token class-name">DefaultTableCellRenderer</span><span class="token punctuation">{</span>
+  
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setValue</span><span class="token punctuation">(</span><span class="token class-name">Object</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">&quot;&lt;HTML&gt;&lt;BODY&gt;&lt;B&gt;&quot;</span> <span class="token operator">+</span> value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;&lt;/B&gt;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+<span class="token punctuation">}</span>
+</pre><h4>TableRendererImpl</h4>
+<pre data-role="codeBlock" data-info="java" class="language-java">      jTable<span class="token punctuation">.</span><span class="token function">setDefaultRenderer</span><span class="token punctuation">(</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TableRendererImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TableRendererImpl</span> <span class="token keyword">extends</span> <span class="token class-name">JLabel</span> <span class="token keyword">implements</span> <span class="token class-name">TableCellRenderer</span><span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">Logger</span> LOG <span class="token operator">=</span> <span class="token class-name">Logger</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token string">&quot;TableRendererImpl&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> emSpace        <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token number">0x2003</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">public</span> <span class="token class-name">TableRendererImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  
+  
+  <span class="token annotation punctuation">@Override</span>
+  <span class="token keyword">public</span> <span class="token class-name">Component</span> <span class="token function">getTableCellRendererComponent</span><span class="token punctuation">(</span>
+          <span class="token class-name">JTable</span> table <span class="token punctuation">,</span>
+          <span class="token class-name">Object</span> value <span class="token punctuation">,</span>
+          <span class="token keyword">boolean</span> isSelected <span class="token punctuation">,</span>
+          <span class="token keyword">boolean</span> hasFocus <span class="token punctuation">,</span>
+          <span class="token keyword">int</span> row<span class="token punctuation">,</span>
+          <span class="token keyword">int</span> column <span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setAlignmentX</span><span class="token punctuation">(</span> <span class="token class-name">Component</span><span class="token punctuation">.</span>CENTER_ALIGNMENT <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setAlignmentX</span><span class="token punctuation">(</span><span class="token class-name">Component</span><span class="token punctuation">.</span>CENTER_ALIGNMENT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>column <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token comment">//fonts not working</span>
+
+<span class="token comment">//      Font colZeroFont = Font.getFont( Font.SANS_SERIF ).deriveFont( Font.BOLD );</span>
+<span class="token comment">//      Font curFont = this.getFont();</span>
+      <span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">&quot;&lt;HTML&gt;&lt;BODY&gt;&lt;style=\&quot;font-family:verdana;text-align:center;\&quot;&gt;&lt;B&gt;&quot;</span> <span class="token operator">+</span> emSpace <span class="token operator">+</span> emSpace <span class="token operator">+</span> value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;&lt;/B&gt;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//      this.setAlignmentX( Component.CENTER_ALIGNMENT );</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setHorizontalTextPosition</span><span class="token punctuation">(</span> <span class="token number">0</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//      Font colZeroFont = Font.getFont( Font.SANS_SERIF ); //.deriveFont( Font.BOLD );</span>
+<span class="token comment">//      if(colZeroFont != null)this.setFont( colZeroFont );</span>
+<span class="token comment">//      else LOG.warning(&quot;Derived Font returned a null value;&quot;);</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setToolTipText</span><span class="token punctuation">(</span> <span class="token string">&quot;Letter Decoded Value&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>column <span class="token operator">==</span>  <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setHorizontalTextPosition</span><span class="token punctuation">(</span> <span class="token number">0</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">&quot;&lt;HTML&gt;&lt;BODY&gt;&lt;style=\&quot;font-family:monospaced;text-align:center;\&quot;&gt;&lt;I&gt;&quot;</span> <span class="token operator">+</span> emSpace <span class="token operator">+</span> emSpace <span class="token operator">+</span> value<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;&lt;/I&gt;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//     Font colOneFont = Font.getFont( Font.MONOSPACED ).deriveFont( Font.ITALIC );</span>
+<span class="token comment">//      Font colOneFont = Font.getFont( Font.MONOSPACED ); // .deriveFont( Font.ITALIC );</span>
+<span class="token comment">//      if(colOneFont != null) this.setFont( colOneFont );</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setToolTipText</span><span class="token punctuation">(</span> <span class="token string">&quot;Resulting Binary Value&quot;</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>row <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setBackground</span><span class="token punctuation">(</span> <span class="token class-name">Color</span><span class="token punctuation">.</span>LIGHT_GRAY <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setOpaque</span><span class="token punctuation">(</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setBackground</span><span class="token punctuation">(</span><span class="token class-name">Color</span><span class="token punctuation">.</span>WHITE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token comment">//    if(isSelected || hasFocus){</span>
+<span class="token comment">//      this.setBorder( BorderFactory.createDashedBorder(Color.BLACK) );</span>
+<span class="token comment">//    }</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setValue</span><span class="token punctuation">(</span><span class="token class-name">Object</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+</pre><p><img src="dsRes%5CHuffmanEncoding000002.png" alt><br>
+<img src="dsRes%5CHuffmanEncoding000003.png" alt><br>
+<img src="dsRes%5CHuffmanEncoding000004.png" alt><br>
+<img src="dsRes%5CHuffmanEncoding000005.png" alt></p>
+<pre class="language-text">ENDFLWAKJVSMOBICHRTGUPYZQX(413)
+&#x251C;&#x252C;&#x25B8;ENDFLWAKJV(169)
+&#x2502;&#x251C;&#x252C;&#x25B8;ENDF(89)
+&#x2502;&#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;E(42)[ &apos;000&apos; ]
+&#x2502;&#x2502;&#x2514;&#x252C;&#x25B8;NDF(47)
+&#x2502;&#x2502; &#x251D;&#x2501;&#x25CF;&#x25BA;N(24)[ &apos;0100&apos; ]
+&#x2502;&#x2502; &#x2514;&#x2530;&#x25B8;DF(23)
+&#x2502;&#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;D(11)[ &apos;01100&apos; ]
+&#x2502;&#x2502;  &#x2517;&#x2501;&#x25CF;&#x25BA;F(12)[ &apos;11100&apos; ]
+&#x2502;&#x2514;&#x252C;&#x25B8;LWAKJV(80)
+&#x2502; &#x251C;&#x2530;&#x25B8;LW(41)
+&#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;L(20)[ &apos;0010&apos; ]
+&#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;W(21)[ &apos;1010&apos; ]
+&#x2502; &#x2514;&#x252C;&#x25B8;AKJV(39)
+&#x2502;  &#x251D;&#x2501;&#x25CF;&#x25BA;A(19)[ &apos;0110&apos; ]
+&#x2502;  &#x2514;&#x252C;&#x25B8;KJV(20)
+&#x2502;   &#x251D;&#x2501;&#x25CF;&#x25BA;K(10)[ &apos;01110&apos; ]
+&#x2502;   &#x2514;&#x2530;&#x25B8;JV(10)
+&#x2502;    &#x2523;&#x2501;&#x25CF;&#x25BA;J(5)[ &apos;011110&apos; ]
+&#x2502;    &#x2517;&#x2501;&#x25CF;&#x25BA;V(5)[ &apos;111110&apos; ]
+&#x2514;&#x252C;&#x25B8;SMOBICHRTGUPYZQX(244)
+&#x251C;&#x252C;&#x25B8;SMOBICH(138)
+&#x2502;&#x251C;&#x252C;&#x25B8;SMO(72)
+&#x2502;&#x2502;&#x251D;&#x2501;&#x25CF;&#x25BA;S(35)[ &apos;0001&apos; ]
+&#x2502;&#x2502;&#x2514;&#x2530;&#x25B8;MO(37)
+&#x2502;&#x2502; &#x2523;&#x2501;&#x25CF;&#x25BA;M(19)[ &apos;01001&apos; ]
+&#x2502;&#x2502; &#x2517;&#x2501;&#x25CF;&#x25BA;O(18)[ &apos;11001&apos; ]
+&#x2502;&#x2514;&#x252C;&#x25B8;BICH(66)
+&#x2502; &#x251C;&#x2530;&#x25B8;BI(32)
+&#x2502; &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;B(16)[ &apos;00101&apos; ]
+&#x2502; &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;I(16)[ &apos;10101&apos; ]
+&#x2502; &#x2514;&#x2530;&#x25B8;CH(34)
+&#x2502;  &#x2523;&#x2501;&#x25CF;&#x25BA;C(17)[ &apos;01101&apos; ]
+&#x2502;  &#x2517;&#x2501;&#x25CF;&#x25BA;H(17)[ &apos;11101&apos; ]
+&#x2514;&#x252C;&#x25B8;RTGUPYZQX(106)
+  &#x251C;&#x2530;&#x25B8;RT(50)
+  &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;R(25)[ &apos;0011&apos; ]
+  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;T(25)[ &apos;1011&apos; ]
+  &#x2514;&#x252C;&#x25B8;GUPYZQX(56)
+  &#x251C;&#x2530;&#x25B8;GU(29)
+  &#x2502;&#x2523;&#x2501;&#x25CF;&#x25BA;G(14)[ &apos;00111&apos; ]
+  &#x2502;&#x2517;&#x2501;&#x25CF;&#x25BA;U(15)[ &apos;10111&apos; ]
+  &#x2514;&#x252C;&#x25B8;PYZQX(27)
+    &#x251D;&#x2501;&#x25CF;&#x25BA;P(13)[ &apos;01111&apos; ]
+    &#x2514;&#x252C;&#x25B8;YZQX(14)
+    &#x251D;&#x2501;&#x25CF;&#x25BA;Y(8)[ &apos;011111&apos; ]
+    &#x2514;&#x252C;&#x25B8;ZQX(6)
+      &#x251D;&#x2501;&#x25CF;&#x25BA;Z(3)[ &apos;0111111&apos; ]
+      &#x2514;&#x2530;&#x25B8;QX(3)
+      &#x2523;&#x2501;&#x25CF;&#x25BA;Q(1)[ &apos;01111111&apos; ]
+      &#x2517;&#x2501;&#x25CF;&#x25BA;X(2)[ &apos;11111111&apos; ]
+</pre>
+<h2>To DO</h2>
+<p>[ ] Discuss Image Generation<br>
+[ ] Tree Table Class</p>
+<p>While Java 11 correctly handles spacing in labels for swing, unfortunately Java 8 and below do not.  I initially was using 11, but then dropped back to 8 for a few reasons, one, I wasn&#x2019;t sure which version you might be using, and two, I was hoping to use JavaFx.  I spent a fair amount of time trying to figure out how to get JavaFx working.  Under 8 it was relatively simple, but in the move to 9, 10 , 11 and now 12 it has gotten progressively more difficult.  Significantly. it is no longer included in the JDK. This means that there is this obligation that it be installed, and not just installed, but correctly installed, which I found non-trivial and non-intuitive.<br>
+*<br>
+*  Dropping down to 8 was relatively simple, with a few significant differences- first String.repeat() generic method doesn&#x2019;t exist until JDK 11.  And the label in swing, performs an <em>undocumented</em> trim operation before adding text to the canvas.  This is important since to print a tree using only text, we require A) a monospaced font, and B) out leading spaces to be preserved.<br>
+&#x2000;&#x2001;&#x2002;&#x2003;<br>
+*  As such, here below, you&#x2019;ll notice I have to perform the cumbersome operation of replacing a space &quot; &quot; with an Em space- which as a reminder, is a formatters term for the width of a character &#x2018;m&#x2019; in a given typeface.  There is also an &#x2018;n&#x2019; (en space) or the width of an &#x2018;n&#x2019; (and most other characters).  Characters are generally of one of the two widths, with w, m, being em length and the rest being n.  There is also the em quad (4 em) EnQuad, 3 per Em, 4 per Em, 6 per Em, (1/3, 1/4, 1/6th), thin space, hair space, and zero width space characters - unicode 2000-2010 or so.<br>
+*<br>
+*  Thats mostly irrelevant- here (and fortunate since I am not entirely sure a regular space is the same width as an em space), but since this is a monospaced font, presumably all glyphs are the same width.  I am not sure if that applies to the &#x2018;zero width&#x2019; space.<br>
+*<br>
+*  Regardless, by replacing the spaces, with another blank character, unicode 2003, the *.trim() operation fails to recognize this as a space, and returns the correct formatting.  An odd bug to be sure.</p>
+<p>INPUT</p>
+<p>::: warning<br>
+<em>here be dragons</em><br>
+:::</p>
+<p>:::note<br>
+*a<br>
+::&#x1F4A4;:::</p>
+<p>OUTPUT</p>
+<div class="warning">
+<p><em>here be dragons</em></p>
+</div>
+markdown-it-plantuml
+INPUT
+<p>@startuml<br>
+Bob -[#red]&gt; Alice : hello<br>
+Alice -[#0000FF]-&gt;Bob : ok<br>
+@enduml<br>
+OUTPUT</p>
+<p>PlantUML</p>
+<p>markdown-it-include<br>
+Include markdown fragment files: :<a href="https://github.com/yzane/vscode-markdown-pdf/blob/master/relative-path-to-file.md">alternate-text</a>.</p>
+<p>&#x251C;&#x2500;&#x2500; [plugins]<br>
+&#x2502;  &#x2514;&#x2500;&#x2500; <a href="http://README.md">README.md</a><br>
+&#x251C;&#x2500;&#x2500; <a href="http://CHANGELOG.md">CHANGELOG.md</a><br>
+&#x2514;&#x2500;&#x2500; <a href="http://README.md">README.md</a><br>
+INPUT</p>
+<p>README Content</p>
+<p>:<a href="https://github.com/yzane/vscode-markdown-pdf/blob/master/./plugins/README.md">Plugins</a></p>
+<p>:<a href="https://github.com/yzane/vscode-markdown-pdf/blob/master/CHANGELOG.md">Changelog</a><br>
+OUTPUT</p>
+<p>Content of <a href="http://README.md">README.md</a></p>
+<p>Content of plugins/README.md</p>
+<p>Content of <a href="http://CHANGELOG.md">CHANGELOG.md</a><br>
+mermaid<br>
+INPUT</p>
+<div class="mermaid">stateDiagram
+    [*] --&gt; First
+    state First {
+        [*] --&gt; second
+        second --&gt; [*]
+    }
+</div><p>OUTPUT</p>
+<p>mermaid</p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#lab-3-huffman-encoding">Lab 3 Huffman Encoding</a>
+<ul>
+<li><a href="#general-overview">General Overview</a>
+<ul>
+<li><a href="#directory-structure">Directory Structure</a></li>
+</ul>
+</li>
+<li><a href="#class-overview">Class Overview</a></li>
+<li><a href="#file-management">File Management</a></li>
+<li><a href="#program-intro">Program Intro</a></li>
+<li><a href="#parsing-data">Parsing Data</a></li>
+<li><a href="#organizing-the-data">Organizing the data</a></li>
+<li><a href="#encoding">Encoding</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    <script>
+// config mermaid init call
+// http://knsv.github.io/mermaid/#configuration
+//
+// You can edit the 'MERMAID_CONFIG' variable below.
+MERMAID_CONFIG = {
+  startOnLoad: false
+}
+
+if (window['MERMAID_CONFIG']) {
+  window['MERMAID_CONFIG'].startOnLoad = false
+  window['MERMAID_CONFIG'].cloneCssStyles = false
+  window['MERMAID_CONFIG'].theme = "dark"
+}
+mermaid.initialize(window['MERMAID_CONFIG'] || {})
+
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+
+  Reveal.addEventListener('slidechanged', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+} else {
+  mermaid.init(null, document.getElementsByClassName('mermaid'))
+}
+</script>
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

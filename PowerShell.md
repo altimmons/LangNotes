@@ -51,8 +51,17 @@ Microsoft.Powershell.
 
 `Get-Command | Format-List *`
 
+`Out-Gridview` to get the nice interactive view
+
+
 `Show-Command`
 
+
+Module Browser
+Import-Module PowerShellGet
+
+Install-Module ISEModuleBrowserAddon
+Import-Module ISEModuleBrowserAddon
 
 
 ### Profile
@@ -299,6 +308,8 @@ PowerShell includes a set of built-in providers that you can use to access the d
 | Registry    | HKLM:, HKCU: | Windows registry                           |
 | Variable    | Variable:    | PowerShell variables                       |
 | WSMan       | WSMan:       | WS-Management configuration information    |
+
+
 ### Syntax
 
 Things take the general format `verb-noun`.
@@ -317,616 +328,6 @@ $a
 
 [Hash Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-6)
 
-### Operators
-
-[about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-6)
-
-[about_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators?view=powershell-6)
-
-
-| Operator | Description                        | Example                      |
-| -------- | ---------------------------------- | ---------------------------- |
-| +        | Adds integers; concatenates        | 6 + 2                        |
-|          | strings, arrays, and hash tables.  | "file" + "name"              |
-|          |                                    | @(1, "one") + @(2.0, "two")  |
-|          |                                    | @{"one" = 1} +  @{"two" = 2} |
-| -        | Subtracts one value from another   | 6 - 2                        |
-|          | value                              |                              |
-| -        | Makes a number a negative number   | -6                           |
-|          |                                    | (Get-Date).AddDays(-1)       |
-| *        | Multiply numbers or copy strings   | 6 * 2                        |
-|          | and arrays the specified number    | @("!") * 4                   |
-|          | of times.                          | "!" * 3                      |
-| /        | Divides two values.                | 6 / 2                        |
-| %        | Modulus - returns the remainder of | 7 % 2                        |
-|          | a division operation.              | .                            |
-| -band    | Bitwise AND                        | 5 -band 3                    |
-| -bnot    | Bitwise NOT                        | -bnot 5                      |
-| -bor     | Bitwise OR                         | 5 -bor 0x03                  |
-| -bxor    | Bitwise XOR                        | 5 -bxor 3                    |
-| -shl     | Shifts bits to the left the        | 102 -shl 2                   |
-|          | specified number of times          |                              |
-| -shr     | Shifts bits to the right           | 102 -shr 2                   |
-
-
-| The bitwise operators only work on integer types.
-
-
-Rounding is like this: (note parentheses)
-
-        PS A:\icons\scraping\166> [Int]2001/1000
-        2.001
-
-        PS A:\icons\scraping\166> [int]2001/1000
-        2.001
-
-        PS A:\icons\scraping\166> [Int] ((2001) `/` (1000))
-        2
-
-
-Overloaded __add__
-
-Expression	Result
-"file" + 16	       file16
-$array + 16	      1,2,3,16
-$array + "file"   1,2,3,file
-$array * 2	     1,2,3,1,2,3
-"file" * 3       filefilefile
-
-Because the method that is used to evaluate statements is determined by the leftmost object, addition and multiplication in PowerShell are not strictly commutative. For example, (a + b) does not always equal (b + a), and (ab) does not always equal (ba).
-
-The following examples demonstrate this principle:
-
-        Expression	Result
-        "file" + 16	file16
-        16 + "file"	Cannot convert value "file" to type "System.Int32".
-        Error: "Input string was not in a correct format."
-        At line:1 char:1
-        + 16 + "file"`
-
-### Comparison Operators
-Use comparison operators (-eq, -ne, -gt, -lt, -le, -ge) to compare values and test conditions. For example, you can compare two string values to determine whether they are equal.
-
-The comparison operators also include operators that find or replace patterns in text. The (-match, -notmatch, -replace) operators use regular expressions, and (-like, -notlike) use wildcards *.
-
-Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
-
-Bitwise comparison operators (-bAND, -bOR, -bXOR, -bNOT) manipulate the bit patterns in values.
-
-### Other Operators
-
-( ) Grouping Expression operator.
-Parenthesis/Brackets work just as they do in mathematics, each pair will determine the order of evaluation and return the result of the expression within.
-PS C:\> (2 + 3) * 5
-
-A shortcut syntax is available (…).property that returns a single property from an item or a collection (PowerShell V3.0):
-PS C:\> (dir).FullName
-To return multiple properties, pipe to ForEach-Object (%) or Select-Object
-
-Simple Parenthesis will also evaluate variable assignments - displaying the value(s).
-for example:
-$msg = "Hello World"
-"$msg"
-can be rewritten as:
-($msg = "Hello World")
-
-$( ) SubExpression operator.
-Use a subexpression to return specific properties of an object.
-Unlike simple parenthesis, a subexpression can contain multiple ; semicolon ; separated ; statements.
-
-The output of each statement contributes to the output of the subexpression. For a single result, it will return a scalar. For multiple results, it will return an array.
-Subexpressions allow you to evaluate and act on the results of an expression in a single line; with no need for an intermediate variable:
-
-        if($(code that returns a value/object) -eq "somevalue") { do_something }
-
-        PS C:\> $city="Copenhagen"
-        PS C:\> $strLength = "$($city.length)" #n.b. not "$city.length" that would return "Copenhagen.Length"
-
-        PS C:\> "The result of 2 + 3 = $(2+3)"
-        PS C:\> $(Get-WMIObject win32_Directory)
-
-##### `@( )` - Array SubExpression operator.
-
-- An array subexpression behaves just like a subexpression except that it **guarantees that the output will be an array.**
-- This works **even if there is no output at all** (gives an empy array.)
-- If the result is a scalar value then the result will be a single element array containg the scalar value.
-- (If the output is already an array then the use of an array subexpression will have no effect, it won't wrap one array inside of another array.)
-
-        PS C:\> @(Get-WMIObject win32_logicalDisk)
-
-!!!Note Using either `$( )` or` @( )` will cause the powershell parser to re-evaluate the parsing mode based on the first non-whitespace character inside the parenthesis. A neat effect of this is that object properties will be evaluated instead of being treated as literal strings:
-
-        "$user.department" ==> JDOE.department
-        "$($user.department)" ==> "Human Resources"
-
-##### `::` - Static member operator
-Call the static properties operator and methods of a .NET Framework class.
-To find the static properties and methods of an object, use the -Static parameter of Get-Member:
-
-        [datetime] | gm -static
-        [datetime]::now
-        [datetime]::Utcnow
-
-##### `,` - Comma operator
-
-- As a _binary_ operator, the comma creates an array.
-- As a _unary_ operator, the comma creates an array with one member. Place the comma before the member.
-
-[See Arrays](#arrays)
-
-##### `&` - Call operator
-
-Run a command, script, or script block. The call operator, also known as the "invocation operator," lets you run commands that are stored in variables and represented by strings. **Because the call operator does not parse the command, it cannot interpret command parameters.**
-
-        C:\PS> $c = "get-executionpolicy"
-        C:\PS> $c
-        get-executionpolicy
-        C:\PS> & $c
-        AllSigned
-
-##### `.` Dot sourcing operator
-
-Run a script in the current scope so that any functions, aliases, and variables that the script creates are added to the current scope. (**without dot sourcing, the variables created within a script will all disappear when the script finishes.**)
-
-        . C:\sample1.ps1
-        . .\sample2.ps1
-
-!!!Note: The dot sourcing operator is followed by a space. Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.
-
-##### `-f` Format operator
-
-[Format a string expression](#String-Formatting).
-
-Place `{0} {1}` etc. into the string as placemarkers where you want the variables to appear, immediately follow the string with the `-f` operator and then lastly, the list of comma separated variables which will be used to populate the placemarkers.
-
-        Get-ChildItem c:\ | ForEach-Object {'File {0} Created {1}' -f $_.fullname,$_.creationtime}
-
-Optional format string(s) can be included to add padding/alignment and display dates/times/percentages/hex etc correctly, see the -f format page for full details.
-
-        ..Range operator
-        Produce a sequence of numbers:
-
-        10..20
-        5..25
-
-##### `..` Range Operator
-
-`$B = 5..8` - $B contains: 5, 6, 7, and 8.   [See Arrays](#arrays)
-
-### Arrays
-
-To create an array named $A that contains the seven numeric (int) values of 22, 5, 10, 8, 12, 9, and 80, type:
-
-        $A = 22,5,10,8,12,9,80
-
-You can also create and initialize an array by using the range operator `(..)`. For example, to create and initialize an array named "$B" that contains the values 5 through 8, type:
-
-`$B = 5..8` - $B contains: 5, 6, 7, and 8.
-
-When no data type is specified, PowerShell creates each array as an **object array (type: `System.Object[]`).** To determine the data type of an array, use the `GetType()` method.
-
-        $a.GetType()
-
-To create a strongly typed array, that is, an array that can contain only values of a particular type, cast the variable as an array type, such as `string[]`, `long[]`, or `int32[]` or to create a strongly typed array of process objects, enter the following command:
-
-        [int32[]]$intArray = 1500,2230,3350,4000
-        [Diagnostics.Process[]]$zz = Get-Process
-
-You can use the _array operator_ to create an array of zero or one object.
-
-        PS> $a = @("Hello World")
-        PS> $a.Count
-    1
-        PS> $b = @()
-        PS> $b.Count
-    0
-
-#### Arrays of zero or one
-
-Beginning in Windows PowerShell 3.0, a collection of zero or one object has the Count and Length property. Also, you can index into an array of one object. This feature helps you to avoid scripting errors that occur when a command that expects a collection gets fewer than two items.
-
-```ps1
-#Zero objects
-    PS>$a = $null
-    PS>$a.Count
-0
-    PS>$a.Length
-0
-#One object
-    PS>$a = 4
-    PS>$a.Count
-1
-    PS>$a.Length
-1
-    PS>$a[0]
-4
-    PS>$a[-1]
-4
-```
-
-!!!Note: The array operator is particularly useful in scripts when you are getting objects, but do not know how many objects you will get. For example:
-
-        $p = @(Get-Process Notepad)
-
-#### Properties of arrays
-
-
-`Count` - which is really an alias of `Length` or `LongLength` if the array contains more than **2,147,483,647** elements.
-
-```ps1
-        $a = 0..9
-        $a.Count
-    10
-        $a.Length
-    10
-```
-
-`Rank` - Returns the number of dimensions in the array. Most arrays in PowerShell have one dimension, only. Even when you think you are building a multidimensional array; like the following example:
-
-```ps1
-        PS>$a = @(
-            @(0,1),
-            @("b", "c"),
-            @(Get-Process)
-        )
-
-        PS>[int]$r = $a.Rank
-        PS>"`$a rank: $r"
-    $a rank: 1
-```
-
-!!!Note Note the use of backtick to escape a character.
-
-Building a truly multidimensional array, in PowerShell, requires the assistance of the .Net Framework. Like in the following example:
-
-```ps1
-    PS>[int[,]]$rank2 = [int[,]]::new(5,5)
-    PS>$rank2.rank
-2
-```
-
-`Clear` Sets all element values to the default value of the array's element type. The Clear() method does not reset the size of the array.
-
-```ps1
-    PS>$a = 1, 2, 3
-    PS>$a.Clear()
-    PS>$a | % { $null -eq $_ }
-True
-True
-True
-    PS>[int[]] $intA = 1, 2, 3
-    PS>$intA.Clear()
-    PS>$intA
-0
-0
-0
-
-```
-#### Reading an Array
-
-0 indexed
-
-Use the Range operator `..`
-
-**inclusive**  - includes the last item
-
-```ps1
-        PS>$a = 1..5
-        PS>$a
-    1
-    2
-    3
-    ...
-        PS>$a[1]
-    2
-        PS>$a[0..2]
-    1
-    2
-    3
-    2
-```
-
-Negative numbers count from the end of the array. For example, "-1" refers to the last element of the array. To display the last three elements of the array, in index ascending order, type:
-
-```ps1
-        PS>$a = 0 .. 9
-        PS>$a[-3..-1]
-    7, 8, 9
-```
-
-!!!info I will show the arrays straight across from here on to save space.
-
-If you type negative indexes in descending order, your output changes.
-
-```ps1
-        PS>$a = 0 .. 9
-        PS>$a[-1..-3]
-    9, 8, 7
-```
-
-The notation cycles from the end boundary to the beginning of the array.
-
-```ps1
-        PS>$a = 0 .. 9
-        PS>$a[2..-2]
-    2, 1, 0, 9, 8
-```
-
-You can use the plus operator (+) to combine a ranges with a list of elements in an array.
-
-```ps1
-        PS>$a[+0..2+4..6+8]
-    0, 1, 2, 4, 5, 6, 8
-```
-
-#### Iterations over array elements
-
-#### ForEach
-
-[about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
-
-You can also use looping constructs, such as ForEach, For, and While loops, to refer to the elements in an array. For example, to use a `ForEach` loop to display the elements in the `$a` array, type:
-
-```ps1
-    $a = 0..9
-    foreach ($element in $a) {
-    $element
-    }
-```
-
-Likewise, the file iterator commonly used, is actually array based
-
-```ps1
-    $files = Get-ChildItem (Get-Location)
-    foreach ($file in $files){
-        $file #Action
-    }
-```
-
-`%` The ForEach operator as well
-
-```ps1
-    PS>$a = 1, 2, 3
-    PS>$a.Clear()
-    PS>$a | % { $null -eq $_ }
-True
-True
-True
-```
-And the foreach method (PS4+)
-
-```ps1
-    PS>$a = @(0 .. 3)
-    PS>$a.ForEach({ $_ * $_})
-0, 1, 4, 9
-```
-
-`ForEach(type convertToType)` The ForEach method can be used to swiftly cast the elements to a different type;
-
-        PS>@("1/1/2017", "2/1/2017", "3/1/2017").ForEach([datetime])
-    Sunday, January 1, 2017 12:00:00 AM
-    Wednesday, February 1, 2017 12:00:00 AM
-    Wednesday, March 1, 2017 12:00:00 AM
-
-`ForEach(string propertyName, object[] newValue)` The ForEach method can also be used to quickly retrieve, or set property values for every item in the collection.
-
-```ps1
-        #Set all LastAccessTime properties of files to the current date.
-    PS>(dir 'C:\Temp').ForEach('LastAccessTime', (Get-Date))
-        #View the newly set LastAccessTime of all items, and find Unique entries.
-    PS>(dir 'C:\Temp').ForEach('LastAccessTime') | Get-Unique
-Wednesday, June 20, 2018 9:21:57 AM
-```
-
-`ForEach(string methodName, object[] arguments)`  Lastly, ForEach methods can be used to execute a method on every item in the collection.
-
-        PS>("one", "two", "three").ForEach("ToUpper")
-    ONE
-    TWO
-    THREE
-
-
-[Retrieving properties and executing methods for each item in a collection can also be accomplished using "Methods of scalar objects and collections" ](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_methods?view=powershell-6)
-
-#### For Loops
-
-[about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
-
-```ps1
-    PS>$a = 0..9
-    PS>for ($i = 0; $i -le ($a.length - 1); $i += 2) {
-        $a[$i]
-    }
-```
-#### Other Methods
-
-##### Where
-
-Allows to filter or select the elements of the array. The script must evaluate to anything different than: zero (0), empty string, `$false` or `$null` for the element to show after the `Where`
-
-Where(scriptblock expression[, WhereOperatorSelectionMode mode
-                            [, int numberToReturn]])
-
-```ps1
-PS>(0..9).Where{ $_ % 2 }
-1
-3
-5
-7
-9
-```
-
-Since the evens eval to 0, they are not shown.  If expression evals to False or Null or 0 its removed
-
-##### Default or First
-The Default mode filters items using the Expression scriptblock.
-
-If a numberToReturn is provided, it specifies the maximum number of items to return.
-
-```ps1
-        #Get the zip files in the current users profile, sorted by LastAccessTime.
-    $Zips = dir $env:userprofile -Recurse '*.zip' | Sort-Object LastAccessTime
-        #Get the least accessed file over 100MB
-    $Zips.Where({$_.Length -gt 100MB}, 'Default', 1)
-```
-
-!!!: Both the Default mode and First mode return the first (numberToReturn) items, and can be used interchangeably.
-
-##### Last
-
-```ps1
-    $h = (Get-Date).AddHours(-1)
-    $logs = dir 'C:\' -Recurse '*.log' | Sort-Object CreationTime
-    # Find the last 5 log files created in the past hour.
-    $logs.Where({$_.CreationTime -gt $h}, 'Last', 5)
-```
-
-##### SkipUntil
-
-The `SkipUntil` mode skips all objects in a collection until an object passes the script block expression filter. It then returns ALL remaining collection items without testing them. Only **one** passing item is tested
-
-The number of items returned can be limited by passing a value to the numberToReturn argument.
-
-```ps1
-    $computers = "Server01", "Server02", "Server03", "localhost", "Server04"
-    #Find the first available online server.
-    $computers.Where({ Test-Connection $_ }, 'SkipUntil', 1)
-
-localhost
-```
-
-##### Until
-
-The `Until` mode inverts the SkipUntil mode. It returns ALL items in a collection until an item passes the script block expression. Once an item passes the scriptblock expression, the Where method stops processing items.
-
-This means that you will receive the first set of non-passing items from the Where method. After one item passes, the rest will NOT be tested nor returned.
-
-The number of items returned can be limited by passing a value to the `numberToReturn` argument.
-
-```ps1
-    #Retrieve the first set of numbers less than or equal to 10.
-    PS>(1..50).Where({$_ -gt 10}, 'Until')
-    #This would perform the same operation.
-    PS>(1..50).Where({$_ -le 10})
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-```
-
-!!!: Both Until and SkipUntil operate under the premise of NOT testing a batch of items.
-    `Until` returns the items **BEFORE** the first pass.\
-    `SkipUntil` returns all the items **AFTER** the first pass, including the first passing item.
-
-##### Split
-
-The `Split` mode splits, or groups collection items into two separate collections. Those that pass the scriptblock expression, and those that do not.
-
-If a `numberToReturn` is specified, the first collection, will contain the passing items, not to exceed the value specified.
-
-```ps1
-$running, $stopped = (Get-Service).Where({$_.Status -eq 'Running'}, 'Split')
-$running
-output
-
-Copy
-Status   Name               DisplayName
-------   ----               -----------
-Running  Appinfo            Application Information
-Running  AudioEndpointBu... Windows Audio Endpoint Builder
-Running  Audiosrv           Windows Audio
-...
-		$stopped
-output
-
-Copy
-Status   Name               DisplayName
-------   ----               -----------
-Stopped  AJRouter           AllJoyn Router Service
-Stopped  ALG                Application Layer Gateway Service
-Stopped  AppIDSvc           Application Identity
-...
-```
-
-#### Get the members of an array
-
-To get the properties and methods of an array, such as the `Length` property and the `SetValue` method, use the `InputObject` parameter of the `Get-Member` cmdlet.
-
-    Get-Member $a
-
-When you pipe an array to `Get-Member`, PowerShell sends the items one at a time and `Get-Member` returns the type of each item in the array (ignoring duplicates).
-
-
-When you use the `-InputObject` parameter, Get-Member returns the members of the array.
-
-    Get-Member -InputObject $a
-
-For example, the following command gets the members of the $a array variable.
-
-    ,$a | Get-Member
-
-    ,(1,2,3) | Get-Member
-
-You can also get the members of an array by typing a comma (,) before the value that is piped to the Get-Member cmdlet. The comma makes the array the second item in an array of arrays. Windows PowerShell pipes the arrays one at a time and Get-Member returns the members of the array. Like the next two examples.
-
-#### Manipulating an array
-
-You can change the elements in an array, add an element to an array, and combine the values from two arrays into a third array.
-
-To change the value of a particular element in an array, specify the array name and the index of the element that you want to change, and then use the assignment operator (=) to specify a new value for the element. For example, to change the value of the second item in the $a array (index position 1) to 10, type:
-
-
-    $a[1] = 10
-
-You can also use the SetValue method of an array to change a value. The following example changes the second value (index position 1) of the $a array to 500:
-
-    $a.SetValue(500,1)
-
-You can use the += operator to add an element to an array. The following example shows how to add an element to the $a array.
-
-    $a = @(0..4)
-    $a += 5
-
-!!!: When you use the += operator, PowerShell actually creates a new array with the values of the original array and the added value. This might cause performance issues if the operation is repeated several times or the size of the array is too big.
-
-##### Deleting From an Array
-
-It is not easy to delete elements from an array, but you can create a new array that contains only selected elements of an existing array. For example, to create the $t array with all the elements in the $a array except for the value at index position 2, type:
-
-    $t = $a[0,1 + 3..($a.length - 1)]
-
-##### Combining Arrays
-
-To combine two arrays into a single array, use the plus operator (+). The following example creates two arrays, combines them, and then displays the resulting combined array.
-
-    $x = 1,3
-    $y = 5,9
-    $z = $x + $y
-
-As a result, the $z array contains 1, 3, 5, and 9.
-
-##### Delete an Array
-
-To delete an array, assign a value of $null to the array. The following command deletes the array in the $a variable.
-
-    $a = $null
-
-You can also use the `Remove-Item` cmdlet, but assigning a value of $null is faster, especially for large arrays.
-
-
-
-### Comments
-
-Comments are marked with `#`.
-
-Block comments start with `<#` and end with `#>`.
 
 ### Data Types
 
@@ -1141,6 +542,17 @@ Display an integer with 3 digits:
         PS C:\> "{0:n3}" -f [int32]12
         012
 
+  Another:
+
+        $n = 1
+
+        Do{
+            $str = "{0,2:d2}" -f $n
+            Write-Output $str
+            $n++
+
+        }while($n -le 60 )
+
 Separate a number with dashes (# digit place holder):
 
         PS C:\> "{0:###-##-##}" -f 1234567
@@ -1225,6 +637,235 @@ As they say, "live and learn."
 PS> 'don''t'
 #don't  #this had to be escaped for linting
 ```
+##### String Actions
+
+`get-member -InputObject String`
+
+Methods:
+
+
+- `Clone` - System.Object Clone(), System.Object ICloneable.Clone()
+- `CompareTo` - int CompareTo(System.Object value), int CompareTo(string strB), int IComparable.CompareTo(System.Object obj), int IComparable[string].CompareTo(string other)
+- `Equals` - bool Equals(System.Object obj), bool Equals(string value), bool Equals(string value, System.StringComparison comparisonType), bool IEquatable[string].Equals(string other)
+- `GetEnumerator` - System.CharEnumerator GetEnumerator(), System.Collections.IEnumerator IEnumerable.GetEnumerator(), System.Collections.Generic.IEnumerator[char] IEnumerable[char].GetEnumerator()
+- `GetHashCode` - int GetHashCode()
+- `GetType` - type GetType()
+- `GetTypeCode` - System.TypeCode GetTypeCode(), System.TypeCode IConvertible.GetTypeCode()
+- `IndexOf` - int IndexOf(char value), int IndexOf(char value, int startIndex), int IndexOf(string value), int IndexOf(string value, int startIndex), int IndexOf(string value, int startIndex, int count), int IndexOf(string value, System.StringComparison ... 
+- `IndexOfAny` - int IndexOfAny(char[] anyOf), int IndexOfAny(char[] anyOf, int startIndex), int IndexOfAny(char[] anyOf, int startIndex, int count)
+- `Insert` - string Insert(int startIndex, string value)
+- `IsNormalized` - bool IsNormalized(), bool IsNormalized(System.Text.NormalizationForm normalizationForm)
+- `LastIndexOf` - int LastIndexOf(char value), int LastIndexOf(char value, int startIndex), int LastIndexOf(string value), int LastIndexOf(string value, int startIndex), int LastIndexOf(string value, int startIndex, int count), int LastIndexOf(string value, ... 
+- `LastIndexOfAny` - int LastIndexOfAny(char[] anyOf), int LastIndexOfAny(char[] anyOf, int startIndex), int LastIndexOfAny(char[] anyOf, int startIndex, int count)
+- `Normalize` - string Normalize(), string Normalize(System.Text.NormalizationForm normalizationForm)
+- `PadLeft` - string PadLeft(int totalWidth), string PadLeft(int totalWidth, char paddingChar)
+- `PadRight` - string PadRight(int totalWidth), string PadRight(int totalWidth, char paddingChar)
+- `Remove` - string Remove(int startIndex, int count), string Remove(int startIndex)
+- `Replace` - string Replace(char oldChar, char newChar), string Replace(string oldValue, string newValue)
+- `Split` - string[] Split(Params char[] separator), string[] Split(char[] separator, int count), string[] Split(char[] separator, System.StringSplitOptions options), string[] Split(char[] separator, int count, System.StringSplitOptions options), strin... 
+- `StartsWith` - bool StartsWith(string value), bool StartsWith(string value, System.StringComparison comparisonType), bool StartsWith(string value, bool ignoreCase, cultureinfo culture)
+- `Substring` - string Substring(int startIndex), string Substring(int startIndex, int length)
+- `ToBoolean` - bool IConvertible.ToBoolean(System.IFormatProvider provider)
+- `ToByte` - byte IConvertible.ToByte(System.IFormatProvider provider)
+- `ToChar` - char IConvertible.ToChar(System.IFormatProvider provider)
+- `ToCharArray` - char[] ToCharArray(), char[] ToCharArray(int startIndex, int length)
+- `ToDateTime` - datetime IConvertible.ToDateTime(System.IFormatProvider provider)
+- `ToDecimal` - decimal IConvertible.ToDecimal(System.IFormatProvider provider)
+- `ToDouble` - double IConvertible.ToDouble(System.IFormatProvider provider)
+- `ToInt16` - int16 IConvertible.ToInt16(System.IFormatProvider provider)
+- `ToInt32` - int IConvertible.ToInt32(System.IFormatProvider provider)
+- `ToInt64` - long IConvertible.ToInt64(System.IFormatProvider provider)
+- `ToLower` - string ToLower(), string ToLower(cultureinfo culture)
+- `ToLowerInvariant` - string ToLowerInvariant()
+- `ToSByte` - sbyte IConvertible.ToSByte(System.IFormatProvider provider)
+- `ToSingle` - float IConvertible.ToSingle(System.IFormatProvider provider)
+- `ToString` - string ToString(), string ToString(System.IFormatProvider provider), string IConvertible.ToString(System.IFormatProvider provider)
+- `ToType` - System.Object IConvertible.ToType(type conversionType, System.IFormatProvider provider)
+- `ToUInt16` - uint16 IConvertible.ToUInt16(System.IFormatProvider provider)
+- `ToUInt32` - uint32 IConvertible.ToUInt32(System.IFormatProvider provider)
+- `ToUInt64` - uint64 IConvertible.ToUInt64(System.IFormatProvider provider)
+- `ToUpper` - string ToUpper(), string ToUpper(cultureinfo culture)
+- `ToUpperInvariant` - string ToUpperInvariant()
+- `Trim` - string Trim(Params char[] trimChars), string Trim()
+- `TrimEnd` - string TrimEnd(Params char[] trimChars)
+- `TrimStart` - string TrimStart(Params char[] trimChars)
+
+
+Properties:
+
+- `Chars` - char Chars(int index) {get;}
+- `Length` - int Length {get;}
+
+
+###### Split
+
+Use then .split() command.
+
+
+
+        $uri = "https://cdn3.iconfinder.com/data/icons/outlined-electronic-components/108/electronicparts_nocolors-"
+        $uri.split('/')
+        >   https:
+
+            cdn3.iconfinder.com
+            data
+            icons
+            outlined-electronic-components
+            108
+            electronicparts_nocolors-
+
+        $whole_uri.Split('/')[2]
+        > cdn3.iconfinder.com
+
+Use array indexing to get a particular one.
+
+Same as `ConvertFrom-String` cmdlet. 
+
+`ConvertFrom-String`  Extracts and parses structured properties from string content.
+    
+Syntax:  
+
+        ConvertFrom-String [-InputObject] <String> [-Delimiter <String>] [-PropertyNames <String[]>] [<CommonParameters>]
+        
+        ConvertFrom-String [-InputObject] <String> [-IncludeExtent] [-TemplateContent <String[]>] [-TemplateFile <String[]>] [-UpdateTemplate] [<CommonParameters>]
+    
+    
+DESCRIPTION
+The ConvertFrom-String cmdlet extracts and parses structured properties from string content. This cmdlet generates an object by parsing text from a traditional text stream. For each string in the pipeline, the cmdlet splits the input by either a delimiter or a parse 
+
+expression, and then assigns property names to each of the resulting split elements. You can provide these property names; if you do not, they are automatically generated for you.
+
+The cmdlet's default parameter set, **ByDelimiter** , splits exactly on the regular expression delimiter. It does not perform quote matching or delimiter escaping as the Import-Csv cmdlet does.
+
+The cmdlet's alternate parameter set, TemplateParsing , generates elements from the groups that are captured by a regular expression.
+
+This cmdlet supports two modes: basic delimited parsing, and automatically-generated, example-driven parsing.
+
+Delimited parsing, by *default,* _splits the input at white space,_ and assigns property names to the resulting groups. You can customize the delimiter by piping the ConvertFrom-String results into one of the Format- cmdlets, or you can use the Delimiter* parameter.
+
+The cmdlet also supports automatically-generated, example-driven parsing based on the FlashExtract, research work by Microsoft Research (http://research.microsoft.com/en-us/um/people/sumitg/flashextract.html).
+
+See `get-help ConvertFrom-String -examples`
+
+1-This command generates an object with default property names, P1 and P2. The results are P1="Hello" and P2="World".
+
+    PS C:\>"Hello World" | ConvertFrom-String
+
+    P1    P2
+    --    --
+    Hello World
+
+1a-The command generates one object with properties P1, P2; both properties are of 'string' type, by default.
+
+    PS C:\>"Hello World" | ConvertFrom-String | Get-Member
+
+
+       TypeName: System.Management.Automation.PSCustomObject
+
+    Name        MemberType   Definition
+    ----        ----------   ----------
+    Equals      Method       bool Equals(System.Object obj)
+    GetHashCode Method       int GetHashCode()
+    GetType     Method       type GetType()
+    ToString    Method       string ToString()
+    P1          NoteProperty string P1=Hello
+    P2          NoteProperty string P2=World
+
+
+Example 2: Generate an object with default property names using a delimiter - This command generates an object with P1="He" and P2="o World" properties, by specifying the 'll' in Hello  as the delimiter.
+
+    PS C:\>"Hello World" | ConvertFrom-String -Delimiter "ll"
+
+    P1 P2
+    -- --
+    He o World
+
+  Example 3: Generate an object that contains two named properties.  This command generates an object that contains two properties: - FirstWord , with value "Hello" - SecondWord , with value "World"
+
+    PS C:\>"Hello World" | ConvertFrom-String -PropertyNames FirstWord, SecondWord
+
+    FirstWord SecondWord
+    --------- ----------
+    Hello     World
+
+Example 4: Use an expression as the value of the TemplateContent parameter, save the results in a variable.
+
+This command uses an expression as the value of the TemplateContent parameter. The expression is saved in a variable for simplicity. Windows PowerShell understands now that the string that is used on the pipeline to ConvertFrom-String has three properties: - Name - phone - age  
+    Each line in the input is evaluated by the sample matches; if the line matches the examples given in the pattern, values are extracted and passed to the output variable defined.
+
+    $template = @'
+    {Name*:Phoebe Cat}, {phone:425-123-6789}, {age:6}
+    {Name*:Lucky Shot}, {phone:(206) 987-4321}, {age:12}
+    '@
+
+    $testText = @'
+    Phoebe Cat, 425-123-6789, 6
+    Lucky Shot, (206) 987-4321, 12
+    Elephant Wise, 425-888-7766, 87
+    Wild Shrimp, (111)  222-3333, 1
+    '@
+
+    $testText  |
+        ConvertFrom-String -TemplateContent $template -OutVariable PersonalData |
+        Out-Null
+
+    Write-output ("Pet items found: " + ($PersonalData.Count))
+    $PersonalData
+    
+
+    Pet items found: 4
+
+    Name          phone           age
+    ----          -----           ---
+    Phoebe Cat    425-123-6789    6
+    Lucky Shot    (206) 987-4321  12
+    Elephant Wise 425-888-7766    87
+    Wild Shrimp   (111)  222-3333 1
+    
+The sample data, `$template` , provides two different phone formats: -  425-123-6789
+    
+    -  (206) 987-4321
+
+
+And, two different age formats:
+    -  6
+
+    -  12
+
+This implies that phones like (206) 987 4321 will not be recognized, because there's no sample data that matches that pattern (there's no hyphen between the three digit sequence and the four digit sequence). Similar with 3 or more digit ages, they will not be recognized.        
+
+
+Example 5: Specifying data types to the generated properties 
+    This is the same example as No. 4, above; the only differences are in the pattern string that includes a data type for each desired property. Notice the difference in alignment for the age column between both examples.
+
+    $template = @'
+    {[string]Name*:Phoebe Cat}, {[string]phone:425-123-6789}, {[int]age:6}
+    {[string]Name*:Lucky Shot}, {[string]phone:(206) 987-4321}, {[int]age:12}
+    '@
+
+    $testText = @'
+    Phoebe Cat, 425-123-6789, 6
+    Lucky Shot, (206) 987-4321, 12
+    Elephant Wise, 425-888-7766, 87
+    Wild Shrimp, (111)  222-3333, 1
+    '@
+
+    $testText  |
+        ConvertFrom-String -TemplateContent $template -OutVariable PersonalData | Out-Null
+    
+    Write-output ("Pet items found: " + ($PersonalData.Count))
+    $PersonalData
+
+
+    Pet items found: 4
+
+    Name          phone           age
+    ----          -----           ---
+    Phoebe Cat    425-123-6789      6
+    Lucky Shot    (206) 987-4321   12
+    Elephant Wise 425-888-7766     87
+    Wild Shrimp   (111)  222-3333   1
+
 ###### Escape
 
 Uses backtick [[`]]
@@ -1278,7 +919,7 @@ C:\PS> $string = @"
 Msg1 = Type "Windows".
 Msg2 = She said, "Hello, World."
 Msg3 = Enter an alias (or "nickname").
-Msg4 = $msg  
+Msg4 = $msg
 "@
 
 #msg4 would be replaced with the value of $msg
@@ -1334,6 +975,1122 @@ Name                           Value
 ----                           -----
 Message                        Look in c:\Windows\System32
 ```
+
+
+### Operators
+
+[about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-6)
+
+[about_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators?view=powershell-6)
+
+
+| Operator | Description                        | Example                      |
+| -------- | ---------------------------------- | ---------------------------- |
+| +        | Adds integers; concatenates        | 6 + 2                        |
+|          | strings, arrays, and hash tables.  | "file" + "name"              |
+|          |                                    | @(1, "one") + @(2.0, "two")  |
+|          |                                    | @{"one" = 1} +  @{"two" = 2} |
+| -        | Subtracts one value from another   | 6 - 2                        |
+|          | value                              |                              |
+| -        | Makes a number a negative number   | -6                           |
+|          |                                    | (Get-Date).AddDays(-1)       |
+| *        | Multiply numbers or copy strings   | 6 * 2                        |
+|          | and arrays the specified number    | @("!") * 4                   |
+|          | of times.                          | "!" * 3                      |
+| /        | Divides two values.                | 6 / 2                        |
+| %        | Modulus - returns the remainder of | 7 % 2                        |
+|          | a division operation.              | .                            |
+| -band    | Bitwise AND                        | 5 -band 3                    |
+| -bnot    | Bitwise NOT                        | -bnot 5                      |
+| -bor     | Bitwise OR                         | 5 -bor 0x03                  |
+| -bxor    | Bitwise XOR                        | 5 -bxor 3                    |
+| -shl     | Shifts bits to the left the        | 102 -shl 2                   |
+|          | specified number of times          |                              |
+| -shr     | Shifts bits to the right           | 102 -shr 2                   |
+
+
+| The bitwise operators only work on integer types.
+
+
+Rounding is like this: (note parentheses)
+
+        PS A:\icons\scraping\166> [Int]2001/1000
+        2.001
+
+        PS A:\icons\scraping\166> [int]2001/1000
+        2.001
+
+        PS A:\icons\scraping\166> [Int] ((2001) `/` (1000))
+        2
+
+
+Overloaded __add__
+
+Expression	Result
+"file" + 16	       file16
+$array + 16	      1,2,3,16
+$array + "file"   1,2,3,file
+$array * 2	     1,2,3,1,2,3
+"file" * 3       filefilefile
+
+Because the method that is used to evaluate statements is determined by the leftmost object, addition and multiplication in PowerShell are not strictly commutative. For example, (a + b) does not always equal (b + a), and (ab) does not always equal (ba).
+
+The following examples demonstrate this principle:
+
+        Expression	Result
+        "file" + 16	file16
+        16 + "file"	Cannot convert value "file" to type "System.Int32".
+        Error: "Input string was not in a correct format."
+        At line:1 char:1
+        + 16 + "file"`
+
+### Comparison Operators and Comparing Objects
+
+!!!Note -  (merged Sections) Same topic **Comparison Operators** and **Comparing Objects**
+
+[PowerShell Reference](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-6)
+
+- `-lt`- Less Than
+- `-gt`- Greater Than
+- `-ge`- Greater than or equal
+- `-le`- Less than or equal
+- `-like`
+- `-eq`- Equal
+- `-ne`- not Equal
+
+- `-match`
+- `-notmatch`
+- `-like`
+- `-notlike`
+
+- `-in`
+- `-notin`
+- `-contains`
+- `-notcontains`
+
+- `-is`
+- `-isNot`
+- `-as` - converts the input to e.g. `[DateTime]`
+
+
+Use comparison operators (`-eq`, `-ne`, `-gt`, `-lt`, `-le`, `-ge`) to compare values and test conditions. For example, you can compare two string values to determine whether they are equal.
+
+The comparison operators also include operators that find or replace patterns in text. The (`-match`, `-notmatch`, `-replace`) operators use regular expressions, and (`-like`, `-notlike`) use wildcards *.
+
+Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
+
+Bitwise comparison operators (`-bAND`, `-bOR`, `-bXOR`, `-bNOT`) manipulate the bit patterns in values.
+
+#### Examples of Comparisons
+
+```powershell
+[PS]> $property.Name
+armsvc
+
+[PS]> $property -eq "armsvc"
+False
+
+[PS]> $property.Name -eq "armsvc"
+True
+```
+
+An object has implicit methods as well.
+
+```ps1
+ $msg = Get-WinEvent -ProviderName "Microsoft-Windows-DistributedCOM"  | Where-Object {$_.Id -eq 10016}  |  Select-Object -ExpandProperty Message
+   $i = 0
+
+    for ($i=0 ; $i -lt $msg.Count ; $i++) {
+
+        #iterate through each message
+        $propertyNames = @(1,2,3,4,5,6,7,'Scope','Type',10,11,12,13,14,15,16,17,'CLSID',19,20,'APPID',22,23,24,'USER','USER2',27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54)
+        $propertySelect = @('Scope','Type','CLSID','APPID','USER','USER2')
+        $pmsg = $msg[$i]|  ConvertFrom-String -PropertyNames $propertynames | Select-Object -Property $propertySelect
+```
+
+### Other Operators
+
+- `( )` - Grouping Expression operator
+- `$( )` - SubExpression operator
+- `::` - Static member operator
+- `@( )` - Array SubExpression operator.
+- `,` - Comma operator
+- `&` - Call operator
+- `.` Dot sourcing operator
+- `-f` Format operator
+- `..` Range Operator
+- Other Symbols (Not Necessarily Operators)
+    - `#`- Line Comments
+    - `<#` and `#>` Block comments
+    - `$`  Variable Indicator
+    - `$_` Recent variable Place Holder
+    - `$var[index]` Array Accessor 
+    - `|` The Pipe Operator 
+    - `*` WildCard Operator
+    - `[]var` Cast Type Operator 
+    - `%` The ForEach Alias
+    - `?` The Where-Object Alias
+    - `'` Literal String Marker 
+    - ``( ` )``The Escape Character
+#### Grouping Expression operator `( )`
+
+`( )`
+
+Parenthesis/Brackets work just as they do in mathematics, each pair will determine the order of evaluation and return the result of the expression within.
+PS C:\> (2 + 3) * 5
+
+A shortcut syntax is available (…).property that returns a single property from an item or a collection (PowerShell V3.0):
+
+`PS C:\> (dir).FullName`
+
+To *return multiple properties, pipe to* `ForEach-Object` `(%)` or `Select-Object`
+
+Simple Parenthesis will also evaluate variable assignments - displaying the value(s).
+for example:
+
+        $msg = "Hello World"
+        "$msg"
+        can be rewritten as:
+        ($msg = "Hello World")
+
+
+#### SubExpression operator `$( )` 
+
+`$( )` 
+
+Use a subexpression to return specific properties of an object.
+Unlike simple parenthesis, a subexpression can contain multiple ; semicolon ; separated ; statements.
+
+The output of each statement contributes to the output of the subexpression. For a single result, it will return a scalar. For multiple results, it will return an array.
+Subexpressions allow you to evaluate and act on the results of an expression in a single line; with no need for an intermediate variable:
+
+        if($(code that returns a value/object) -eq "somevalue") { do_something }
+
+        PS C:\> $city="Copenhagen"
+        PS C:\> $strLength = "$($city.length)" #n.b. not "$city.length" that would return "Copenhagen.Length"
+
+        PS C:\> "The result of 2 + 3 = $(2+3)"
+        PS C:\> $(Get-WMIObject win32_Directory)
+
+#### `@( )` - Array SubExpression operator.
+
+`@( )`
+
+- An array subexpression behaves just like a subexpression except that it **guarantees that the output will be an array.**
+- This works **even if there is no output at all** (gives an empy array.)
+- If the result is a scalar value then the result will be a single element array containg the scalar value.
+- (If the output is already an array then the use of an array subexpression will have no effect, it won't wrap one array inside of another array.)
+
+        `PS C:\> @(Get-WMIObject win32_logicalDisk)`
+
+!!!Note Using either `$( )` or` @( )` will cause the powershell parser to re-evaluate the parsing mode based on the first non-whitespace character inside the parenthesis. A neat effect of this is that object properties will be evaluated instead of being treated as literal strings:
+
+        "$user.department" ==> JDOE.department
+        "$($user.department)" ==> "Human Resources"
+
+##### `::` - Static member operator
+
+Call the static properties operator and methods of a .NET Framework class.
+To find the static properties and methods of an object, use the -Static parameter of Get-Member:
+
+        [datetime] | gm -static
+        [datetime]::now
+        [datetime]::Utcnow
+
+#### `,` - Comma operator
+
+- As a _binary_ operator, the comma creates an array.
+- As a _unary_ operator, the comma creates an array with one member. Place the comma before the member.
+
+[See Arrays](#arrays)
+
+#### `&` - Call operator
+
+Run a command, script, or script block. The call operator, also known as the "invocation operator," lets you run commands that are stored in variables and represented by strings. **Because the call operator does not parse the command, it cannot interpret command parameters.**
+
+        C:\PS> $c = "get-executionpolicy"
+        C:\PS> $c
+        get-executionpolicy
+        C:\PS> & $c
+        AllSigned
+
+#### `.` Dot sourcing operator
+
+Run a script in the current scope so that any functions, aliases, and variables that the script creates are added to the current scope. (**without dot sourcing, the variables created within a script will all disappear when the script finishes.**)
+
+        . C:\sample1.ps1
+        . .\sample2.ps1
+
+!!!Note: The dot sourcing operator is followed by a space. Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.
+
+#### `-f` Format operator
+
+[Format a string expression](#String-Formatting).
+
+Place `{0} {1}` etc. into the string as placemarkers where you want the variables to appear, immediately follow the string with the `-f` operator and then lastly, the list of comma separated variables which will be used to populate the placemarkers.
+
+        Get-ChildItem c:\ | ForEach-Object {'File {0} Created {1}' -f $_.fullname,$_.creationtime}
+
+Optional format string(s) can be included to add padding/alignment and display dates/times/percentages/hex etc correctly, see the -f format page for full details.
+
+        ..Range operator
+        Produce a sequence of numbers:
+
+        10..20
+        5..25
+
+#### `..` Range Operator
+
+`$B = 5..8` - $B contains: 5, 6, 7, and 8.   [See Arrays](#arrays)
+
+
+#### Others
+
+##### `$` Variable Indicator or Symbol Indicator
+
+##### `$_` placeHolder Symbol 
+
+    Need a more correct description of this.
+
+##### Comments
+
+Comments are marked with `#`.
+
+Block comments start with `<#` and end with `#>`.
+
+##### Array Accessor 
+
+$var[index]
+
+$a[-1]
+
+##### `%` For Each, For, Where
+
+##### `|` The Pipe Operator 
+
+
+##### `*` WildCard Operator
+
+
+To get all commands in the session, type:
+
+`Get-Command *`
+
+This list includes external commands in your search path so it can contain thousands of items. It is more useful to look at a reduced set of commands.
+
+!!!Note  The asterisk (`*`) is used for wildcard matching in PowerShell command arguments. The `* `means *"match one or more of any characters".* 
+
+    You can type `Get-Command a*` to find all commands that begin with the letter "a". Unlike wildcard matching in cmd.exe, PowerShell's wildcard will also match a period.
+
+
+##### `[]var` Cast Type Operator 
+
+    See [Casting Types](#Casting-Types)
+
+#### `%` The ForEach Alias
+
+see `Get-Alias`
+
+```ps1
+    PS>$a = 1, 2, 3
+    PS>$a.Clear()
+    PS>$a | % { $null -eq $_ }
+True
+```
+
+ForEach-Object has two aliases, `ForEach` and`%`, and also supports shorthand syntax beginning in PowerShell 3.0. The following three examples are identical in function.
+
+```powershell
+Get-WMIObject Win32_LogicalDisk | ForEach-Object {$_.FreeSpace}
+Get-WMIObject Win32_LogicalDisk | ForEach {$_.FreeSpace}
+Get-WMIObject Win32_LogicalDisk | % FreeSpace
+```
+
+
+##### `?` The Where-Object Alias
+
+also `WO` 
+
+Need more
+
+
+##### `'` Literal String Marker 
+
+Single Quote
+
+##### `"` Evaluated String Marker 
+
+Need the real name for this, but double quote vars are accessable.
+
+
+##### ``( ` )``The Escape Character
+
+Double Quotes - Evaluated, Single Quotes - Literal
+
+## Arrays
+
+To create an array named $A that contains the seven numeric (int) values of 22, 5, 10, 8, 12, 9, and 80, type:
+
+        $A = 22,5,10,8,12,9,80
+
+You can also create and initialize an array by using the range operator `(..)`. For example, to create and initialize an array named "$B" that contains the values 5 through 8, type:
+
+`$B = 5..8` - $B contains: 5, 6, 7, and 8.
+
+When no data type is specified, PowerShell creates each array as an **object array (type: `System.Object[]`).** To determine the data type of an array, use the `GetType()` method.
+
+        $a.GetType()
+
+To create a strongly typed array, that is, an array that can contain only values of a particular type, cast the variable as an array type, such as `string[]`, `long[]`, or `int32[]` or to create a strongly typed array of process objects, enter the following command:
+
+        [int32[]]$intArray = 1500,2230,3350,4000
+        [Diagnostics.Process[]]$zz = Get-Process
+
+You can use the _array operator_ to create an array of zero or one object.
+
+        PS> $a = @("Hello World")
+        PS> $a.Count
+    1
+        PS> $b = @()
+        PS> $b.Count
+    0
+
+#### Arrays of zero or one
+
+Beginning in Windows PowerShell 3.0, a collection of zero or one object has the Count and Length property. Also, you can index into an array of one object. This feature helps you to avoid scripting errors that occur when a command that expects a collection gets fewer than two items.
+
+```ps1
+#Zero objects
+    PS>$a = $null
+    PS>$a.Count
+0
+    PS>$a.Length
+0
+#One object
+    PS>$a = 4
+    PS>$a.Count
+1
+    PS>$a.Length
+1
+    PS>$a[0]
+4
+    PS>$a[-1]
+4
+```
+
+!!!Note: The array operator is particularly useful in scripts when you are getting objects, but do not know how many objects you will get. For example:
+
+        $p = @(Get-Process Notepad)
+
+#### Properties of arrays
+
+
+`Count` - which is really an alias of `Length` or `LongLength` if the array contains more than **2,147,483,647** elements.
+
+```ps1
+        $a = 0..9
+        $a.Count
+    10
+        $a.Length
+    10
+```
+
+`Rank` - Returns the number of dimensions in the array. Most arrays in PowerShell have one dimension, only. Even when you think you are building a multidimensional array; like the following example:
+
+```ps1
+        PS>$a = @(
+            @(0,1),
+            @("b", "c"),
+            @(Get-Process)
+        )
+
+        PS>[int]$r = $a.Rank
+        PS>"`$a rank: $r"
+    $a rank: 1
+```
+
+!!!Note Note the use of backtick to escape a character.
+
+Building a truly multidimensional array, in PowerShell, requires the assistance of the .Net Framework. Like in the following example:
+
+```ps1
+    PS>[int[,]]$rank2 = [int[,]]::new(5,5)
+    PS>$rank2.rank
+2
+```
+
+`Clear` Sets all element values to the default value of the array's element type. The Clear() method does not reset the size of the array.
+
+```ps1
+    PS>$a = 1, 2, 3
+    PS>$a.Clear()
+    PS>$a | % { $null -eq $_ }
+True
+True
+True
+    PS>[int[]] $intA = 1, 2, 3
+    PS>$intA.Clear()
+    PS>$intA
+0
+0
+0
+
+```
+#### Reading an Array
+
+0 indexed
+
+Use the Range operator `..`
+
+**inclusive**  - includes the last item
+
+```ps1
+        PS>$a = 1..5
+        PS>$a
+    1
+    2
+    3
+    ...
+        PS>$a[1]
+    2
+        PS>$a[0..2]
+    1
+    2
+    3
+    2
+```
+
+Negative numbers count from the end of the array. For example, "-1" refers to the last element of the array. To display the last three elements of the array, in index ascending order, type:
+
+```ps1
+        PS>$a = 0 .. 9
+        PS>$a[-3..-1]
+    7, 8, 9
+```
+
+!!!info I will show the arrays straight across from here on to save space.
+
+If you type negative indexes in descending order, your output changes.
+
+```ps1
+        PS>$a = 0 .. 9
+        PS>$a[-1..-3]
+    9, 8, 7
+```
+
+The notation cycles from the end boundary to the beginning of the array.
+
+```ps1
+        PS>$a = 0 .. 9
+        PS>$a[2..-2]
+    2, 1, 0, 9, 8
+```
+
+You can use the plus operator (+) to combine a ranges with a list of elements in an array.
+
+```ps1
+        PS>$a[+0..2+4..6+8]
+    0, 1, 2, 4, 5, 6, 8
+```
+
+#### Iterations over array elements
+
+(and) [For Each](#ForEach-Object)
+
+## Loops in PS
+
+[about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
+
+[about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
+
+[about_While](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_while?view=powershell-6)
+
+[Break]()
+
+
+
+### For Loop
+
+[Source](https://www.business.com/articles/powershell-for-loop/)
+
+_Syntax-_ `for (init; condition; repeat)`
+             `{command_block}`
+
+_Key_
+   **init** - Commands, separated by commas, to run before the loop begins. Typically used to initialize a variable with a starting value.
+
+   **condition** If this evaluates to TRUE the for loop {command_block} runs when the loop has run once the condition is evaluated again
+
+   **repeat** Commands, separated by commas, to run each time the loop repeats.
+
+_Examples:_
+
+```powershell
+$text = Get-Content($env:USERPROFILE + "\Documents\someBigFile.txt")
+$pattern = "*some text"
+For($i=0; $i -lt $text.Length; $i++){
+    if($text[$i] -like $pattern){
+        "line $i contains '"$pattern'""
+    }
+}
+```
+
+I am not entirely sure what the example is doing with the quotes.  The for loop has the standard syntax.  (declaration, comparison, iteration)-> `for($i=0; $i -lt 10; $i++){"$i"}`
+
+Watch the loop with `Set-PSDebug -Trace 2`.
+
+```powershell
+For ($i=0; $i -le 10; $i++) {
+    "10 * $i = " + (10 * $i)
+    }
+
+$colors = @("Red","Orange","Yellow","Green","Blue","Indigo","Violet")
+For ($i=0; $i -lt $colors.Length; $i++) {
+    $colors[$i]
+    }
+
+    $a = 0..9
+for ($i = 0; $i -le ($a.length - 1); $i += 2) {
+  $a[$i]
+}
+```
+
+### While, Do-While, Do-Until
+
+ `While` and `Do-While` loops are both used to perform an action while the condition evaluates to `$true`, and differ only in their syntax. `Do-Until` loops have similar syntax to `Do-While`, but stop processing once the condition statement is met.
+
+```powershell
+while($true){
+    if(Test-Path ($env:USERPROFILE | "\temp.file")){
+        Break
+    } else {
+        Start-Sleep -Seconds 30
+    }
+}
+
+##The following are the 3 formats
+$i=1
+Do {
+    $i
+    $i++
+    }
+While ($i -le 10)
+
+#this is equivalent to the above
+$i=1
+Do {
+    $i
+    $i++
+    }
+Until ($i -gt 10)
+
+#also equivalent
+$i=1
+While ($i -le 10){
+    $i
+    $i++
+    }
+
+#Using Break
+$i=1
+While ($true) #infinate loop
+    {
+    $i
+    $i++
+    if ($i -gt 10) {
+        Break #exit loop when if condition.
+        }
+    }
+```
+
+### ForEach-Object
+
+This example shows Get-ChildItem, A For-EachObject loop, and an if statement example.
+
+```powershell
+$favorite = "\\fs1\Favs\Toms IT Pro.url"
+
+Get-ChildItem -Path C:\Users\ -Directory | For-EachObject {
+    $targetFav = $_.FullName + "\Favorites\Toms IT Pro.url"
+    if((Test-Path $targetFav) -eq $false){
+        Copy-Item $favorite $targetFav -Force
+    }
+}
+```
+
+At it's most simple, ForEach-Object requires only an object to be looped through and a script block containing the commands to be performed on each member of the object.
+
+These parameters can be specified either by the `-InputObject` and `-Process` parameter names, or by piping the object to the ForEach-Object cmdlet and placing the script block as the first parameter. as shown below.  `-InputObject` is used instead of the pipe.
+
+```powershell
+$myDocuments = Get-ChildItem $env:USERPROFILEDocuments -File
+#returns a list of all the file objects
+$myDocuments | ForEach-Object {$_.FullName}
+#returns a list of the 'FullName' of all the file objects (its path)
+ForEach-Object -InputObject $myDocuments -Process {$_.FullName}
+#this is equivaent to above.
+```
+
+ForEach-Object has two aliases, `ForEach` and`%`, and also supports shorthand syntax beginning in PowerShell 3.0. The following three examples are identical in function.
+
+```powershell
+Get-WMIObject Win32_LogicalDisk | ForEach-Object {$_.FreeSpace}
+Get-WMIObject Win32_LogicalDisk | ForEach {$_.FreeSpace}
+Get-WMIObject Win32_LogicalDisk | % FreeSpace
+```
+The `-Begin` and `-End` parameters can be used to define script blocks to execute just before or after the contents of the -Process script block. This can be used to set or modify a variable before or after execution of the loop.
+
+```powershell
+Get-PackageSource |ForEach-Object {
+    Write-Host ($_ |Select -ExpandProperty Name)
+    Set-PackageSource -Name ($_ |Select -ExpandProperty Name) -Trusted
+    }  #doesnt work as intended, but syntax is correct anyway.
+
+#Equivalent:
+Get-PackageSource |ForEach-Object {Write-Host ($_.Name)}
+Get-PackageSource |% {Write-Host ($_.Name)}
+#Braces are required, o/w error.
+```
+
+Another common example
+
+```ps1
+$files = get-ChildItem $inputPath
+
+foreach ($file in $files)
+{
+    $outFilename = $targetPath + $file.Name
+    write-host $outFilename
+}
+```
+
+
+
+#### ForEach
+
+[about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
+
+You can also use looping constructs, such as ForEach, For, and While loops, to refer to the elements in an array. For example, to use a `ForEach` loop to display the elements in the `$a` array, type:
+
+```ps1
+    $a = 0..9
+    foreach ($element in $a) {
+    $element
+    }
+```
+
+Likewise, the file iterator commonly used, is actually array based
+
+```ps1
+    $files = Get-ChildItem (Get-Location)
+    foreach ($file in $files){
+        $file #Action
+    }
+```
+
+`%` The ForEach operator as well
+
+```ps1
+    PS>$a = 1, 2, 3
+    PS>$a.Clear()
+    PS>$a | % { $null -eq $_ }
+True
+True
+True
+```
+And the foreach method (PS4+)
+
+```ps1
+    PS>$a = @(0 .. 3)
+    PS>$a.ForEach({ $_ * $_})
+0, 1, 4, 9
+```
+
+`ForEach(type convertToType)` The ForEach method can be used to swiftly cast the elements to a different type;
+
+        PS>@("1/1/2017", "2/1/2017", "3/1/2017").ForEach([datetime])
+    Sunday, January 1, 2017 12:00:00 AM
+    Wednesday, February 1, 2017 12:00:00 AM
+    Wednesday, March 1, 2017 12:00:00 AM
+
+`ForEach(string propertyName, object[] newValue)` The ForEach method can also be used to quickly retrieve, or set property values for every item in the collection.
+
+```ps1
+        #Set all LastAccessTime properties of files to the current date.
+    PS>(dir 'C:\Temp').ForEach('LastAccessTime', (Get-Date))
+        #View the newly set LastAccessTime of all items, and find Unique entries.
+    PS>(dir 'C:\Temp').ForEach('LastAccessTime') | Get-Unique
+Wednesday, June 20, 2018 9:21:57 AM
+```
+
+`ForEach(string methodName, object[] arguments)`  Lastly, ForEach methods can be used to execute a method on every item in the collection.
+
+        PS>("one", "two", "three").ForEach("ToUpper")
+    ONE
+    TWO
+    THREE
+
+
+[Retrieving properties and executing methods for each item in a collection can also be accomplished using "Methods of scalar objects and collections" ](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_methods?view=powershell-6)
+
+##### The Foreach Statement Inside a Command Pipeline
+
+[Source](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_simplified_syntax?view=powershell-5.1)
+
+When Foreach appears in a command pipeline, Windows PowerShell uses the foreach alias, which calls the ForEach-Object command. When you use the foreach alias in a command pipeline, you do not include the ($<item> in $<collection>) syntax as you do with the Foreach statement. This is because the prior command in the pipeline provides this information. The syntax of the foreach alias when used in a command pipeline is as follows:
+
+      <command> | foreach {<command_block>}
+
+For example, the Foreach loop in the following command displays processes whose working set (memory usage) is greater than 20 megabytes (MB).
+
+      Write-Host "Processes with working sets greater than 20 MB."
+      Get-Process | foreach {
+         if ($_.WS -gt 20MB)
+         { Write-Host $_.name ": " ($_.WS/1MB).ToString("F0") MB -Separator ""}
+      }
+
+
+- The `Get-Process` command gets all of the processes on the computer. The `Foreach` alias performs the commands in the script block on each process in sequence.
+
+- The `IF` statement selects processes with a working set (WS) greater than 20 megabytes. The `Write-Host` cmdlet writes the name of the process followed by a colon. It divides the working set value, which is stored in bytes by 1 megabyte to get the working set value in megabytes. Then it converts the result from a double to a string. It displays the value as a fixed point number with zero decimals (F0), a space separator (" "), and then "MB".
+
+##### Beginning Middle and End Command Blocks
+
+The `foreach` alias also supports **beginning command blocks, middle command blocks, and end command blocks**. The beginning and end command blocks run once, and the middle command block runs every time the Foreach loop steps through a collection or array.
+
+The syntax of the `foreach` alias when used in a command pipeline with a beginning, middle, and ending set of command blocks is as follows:
+
+      <command> | foreach {
+          <beginning command_block>
+      } {
+          <middle command_block>
+      } {
+          <ending command_block>
+      }
+
+      The following example demonstrates the use of the beginning, middle, and end command blocks.
+
+```ps1
+Get-ChildItem | foreach {
+    $fileCount = $directoryCount = 0
+} {
+    if ($_.PsIsContainer) {$directoryCount++} else {$fileCount++}
+} {
+    "$directoryCount directories and $fileCount files"
+}
+```
+
+The *beginning* block creates and initializes two variables to 0:  `$fileCount = $directoryCount = 0}`
+
+The *middle* block evaluates whether each item returned by `Get-ChildItem` is a directory or a file: ``{if ($_.PsIsContainer) {$directoryCount++} else {$fileCount++}}``
+
+      If the item that is returned is a directory, the ``$directoryCount`` variable is incremented by 1. If the item is not a directory, the `$fileCount` variable is incremented by 1.
+
+The ending block runs after the middle block completes its looping operation and then returns the results of the operation:  ``{"$directoryCount directories and $fileCount files"}``
+
+By using the beginning, middle, and ending command block structure and the pipeline operator, you can rewrite the earlier example to find any files that are greater than 100 KB, as follows:
+
+
+```ps1
+Get-ChildItem | foreach {
+$i = 0} {
+  if ($_.length -gt 100KB) {
+    Write-Host $_.name "file size:" ($_.length / 1024).ToString("F0") KB
+    $i++
+  }
+  } {
+  if ($i -ne 0) {
+    Write-Host
+    Write-Host "$i file(s) over 100 KB in the current directory."
+  }
+  else {
+    Write-Host "No files greater than 100 KB in the current directory."
+  }
+}
+```
+
+
+###### A Complex Example
+
+The following example, a function which returns the functions that are used in scripts and script modules, demonstrates how to use the MoveNext method (which works similarly to "skip X" on a For loop) and the Current property of the $foreach variable inside of a foreach script block, even if there are unusually- or inconsistently-spaced function definitions that span multiple lines to declare the function name. The example also works if there are comments in the functions used in a script or script module.
+
+```ps1
+function Get-FunctionPosition {
+  [CmdletBinding()]
+  [OutputType('FunctionPosition')]
+  param(
+    [Parameter(Position = 0, Mandatory, ValueFromPipeline,
+      ValueFromPipelineByPropertyName)]
+    [ValidateNotNullOrEmpty()]
+    [Alias('PSPath')]
+    [System.String[]]
+    $Path
+  )
+
+  BEGIN {
+    $psExtensions = @('.ps1', '.psm1')
+    $prsErrorMsg = "File '{0}' has {1} parser errors."
+  }
+
+  PROCESS {
+    try {
+      $filesToProcess = if ($_ -is [System.IO.FileSystemInfo]) { $_ }
+                        else { Get-Item -Path $Path }
+
+      foreach ($item in $filesToProcess) {
+        if ($item.PSIsContainer -or
+          $item.Extension -notin $psExtensions) {
+          continue
+        }
+
+        $tokens = $errors = $null
+        $ast = [Management.Automation.Language.Parser]::ParseFile(
+            $item.FullName,
+            ([REF]$tokens),
+            ([REF]$errors))
+
+        if ($errors) {
+          $msg = $prsErrorMsg -f $item.FullName,$errors.Count
+          Write-Warning $msg
+        }
+
+        :tokenLoop  foreach ($token in $tokens) {
+          if ($token.Kind -ne 'Function') {
+            continue
+          }
+
+          $position = $token.Extent.StartLineNumber
+          do {
+            if (-not $foreach.MoveNext()) {
+              break tokenLoop
+            }
+
+            $token = $foreach.Current
+          } until ($token.Kind -in @('Generic', 'Identifier'))
+
+          $functionPosition = [pscustomobject]@{
+            Name     = $token.Text
+            LineNumber = $position
+            Path     = $item.FullName
+          }
+
+          $params = @{
+            'InputObject' = $functionPosition
+            'TypeName' = 'FunctionPosition'
+            'PassThru' = $true
+          }
+
+          Add-Member @params
+        }
+      }
+    }
+    catch {
+      throw
+    }
+  }
+}
+```
+
+#### For Loops
+
+[about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
+
+```ps1
+    PS>$a = 0..9
+    PS>for ($i = 0; $i -le ($a.length - 1); $i += 2) {
+        $a[$i]
+    }
+```
+#### Other Methods
+
+##### Where
+
+Allows to filter or select the elements of the array. The script must evaluate to anything different than: zero (0), empty string, `$false` or `$null` for the element to show after the `Where`
+
+Where(scriptblock expression[, WhereOperatorSelectionMode mode
+                            [, int numberToReturn]])
+
+```ps1
+PS>(0..9).Where{ $_ % 2 }
+1
+3
+5
+7
+9
+```
+
+Since the evens eval to 0, they are not shown.  If expression evals to False or Null or 0 its removed
+
+##### Default or First
+The Default mode filters items using the Expression scriptblock.
+
+If a numberToReturn is provided, it specifies the maximum number of items to return.
+
+```ps1
+        #Get the zip files in the current users profile, sorted by LastAccessTime.
+    $Zips = dir $env:userprofile -Recurse '*.zip' | Sort-Object LastAccessTime
+        #Get the least accessed file over 100MB
+    $Zips.Where({$_.Length -gt 100MB}, 'Default', 1)
+```
+
+!!!: Both the Default mode and First mode return the first (numberToReturn) items, and can be used interchangeably.
+
+##### Last
+
+```ps1
+    $h = (Get-Date).AddHours(-1)
+    $logs = dir 'C:\' -Recurse '*.log' | Sort-Object CreationTime
+    # Find the last 5 log files created in the past hour.
+    $logs.Where({$_.CreationTime -gt $h}, 'Last', 5)
+```
+
+##### SkipUntil
+
+The `SkipUntil` mode skips all objects in a collection until an object passes the script block expression filter. It then returns ALL remaining collection items without testing them. Only **one** passing item is tested
+
+The number of items returned can be limited by passing a value to the numberToReturn argument.
+
+```ps1
+    $computers = "Server01", "Server02", "Server03", "localhost", "Server04"
+    #Find the first available online server.
+    $computers.Where({ Test-Connection $_ }, 'SkipUntil', 1)
+
+localhost
+```
+
+##### Until
+
+The `Until` mode inverts the SkipUntil mode. It returns ALL items in a collection until an item passes the script block expression. Once an item passes the scriptblock expression, the Where method stops processing items.
+
+This means that you will receive the first set of non-passing items from the Where method. After one item passes, the rest will NOT be tested nor returned.
+
+The number of items returned can be limited by passing a value to the `numberToReturn` argument.
+
+```ps1
+    #Retrieve the first set of numbers less than or equal to 10.
+    PS>(1..50).Where({$_ -gt 10}, 'Until')
+    #This would perform the same operation.
+    PS>(1..50).Where({$_ -le 10})
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
+
+!!!: Both Until and SkipUntil operate under the premise of NOT testing a batch of items.
+    `Until` returns the items **BEFORE** the first pass.\
+    `SkipUntil` returns all the items **AFTER** the first pass, including the first passing item.
+
+##### Split
+
+The `Split` mode splits, or groups collection items into two separate collections. Those that pass the scriptblock expression, and those that do not.
+
+If a `numberToReturn` is specified, the first collection, will contain the passing items, not to exceed the value specified.
+
+```ps1
+$running, $stopped = (Get-Service).Where({$_.Status -eq 'Running'}, 'Split')
+$running
+output
+
+Copy
+Status   Name               DisplayName
+------   ----               -----------
+Running  Appinfo            Application Information
+Running  AudioEndpointBu... Windows Audio Endpoint Builder
+Running  Audiosrv           Windows Audio
+...
+		$stopped
+output
+
+Copy
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  AJRouter           AllJoyn Router Service
+Stopped  ALG                Application Layer Gateway Service
+Stopped  AppIDSvc           Application Identity
+...
+```
+
+#### Get the members of an array
+
+To get the properties and methods of an array, such as the `Length` property and the `SetValue` method, use the `InputObject` parameter of the `Get-Member` cmdlet.
+
+    Get-Member $a
+
+When you pipe an array to `Get-Member`, PowerShell sends the items one at a time and `Get-Member` returns the type of each item in the array (ignoring duplicates).
+
+
+When you use the `-InputObject` parameter, Get-Member returns the members of the array.
+
+    Get-Member -InputObject $a
+
+For example, the following command gets the members of the $a array variable.
+
+    ,$a | Get-Member
+
+    ,(1,2,3) | Get-Member
+
+You can also get the members of an array by typing a comma (,) before the value that is piped to the Get-Member cmdlet. The comma makes the array the second item in an array of arrays. Windows PowerShell pipes the arrays one at a time and Get-Member returns the members of the array. Like the next two examples.
+
+#### Manipulating an array
+
+You can change the elements in an array, add an element to an array, and combine the values from two arrays into a third array.
+
+To change the value of a particular element in an array, specify the array name and the index of the element that you want to change, and then use the assignment operator (=) to specify a new value for the element. For example, to change the value of the second item in the $a array (index position 1) to 10, type:
+
+
+    $a[1] = 10
+
+You can also use the SetValue method of an array to change a value. The following example changes the second value (index position 1) of the $a array to 500:
+
+    $a.SetValue(500,1)
+
+You can use the += operator to add an element to an array. The following example shows how to add an element to the $a array.
+
+    $a = @(0..4)
+    $a += 5
+
+!!!: When you use the += operator, PowerShell actually creates a new array with the values of the original array and the added value. This might cause performance issues if the operation is repeated several times or the size of the array is too big.
+
+##### Deleting From an Array
+
+It is not easy to delete elements from an array, but you can create a new array that contains only selected elements of an existing array. For example, to create the $t array with all the elements in the $a array except for the value at index position 2, type:
+
+    $t = $a[0,1 + 3..($a.length - 1)]
+
+##### Combining Arrays
+
+To combine two arrays into a single array, use the plus operator (+). The following example creates two arrays, combines them, and then displays the resulting combined array.
+
+    $x = 1,3
+    $y = 5,9
+    $z = $x + $y
+
+As a result, the $z array contains 1, 3, 5, and 9.
+
+##### Delete an Array
+
+To delete an array, assign a value of $null to the array. The following command deletes the array in the $a variable.
+
+    $a = $null
+
+You can also use the `Remove-Item` cmdlet, but assigning a value of $null is faster, especially for large arrays.
+
+
+
+### Comments
+
+Comments are marked with `#`.
+
+Block comments start with `<#` and end with `#>`.
+
 
 ## Commands
 
@@ -1405,9 +2162,9 @@ scopes specify an absolute scope. The numbers are relative and reflect
 the relationship between scopes.
 
 
-- _Global:_ The scope that is in effect when Windows PowerShell starts. Variables and functions that are present when Windows PowerShell starts have been created in the global scope. This includes automatic variables and preference variables. This also includes the variables, aliases, and functions that are in your Windows PowerShell profiles. 
+- _Global:_ The scope that is in effect when Windows PowerShell starts. Variables and functions that are present when Windows PowerShell starts have been created in the global scope. This includes automatic variables and preference variables. This also includes the variables, aliases, and functions that are in your Windows PowerShell profiles.
 
-- _Local:_ The current scope. The local scope can be the global scope or any other scope. 
+- _Local:_ The current scope. The local scope can be the global scope or any other scope.
 
 - _Script:_ The scope that is created while a script file runs. Only the commands in the script run in the script scope. To the commands in a script, the script scope is the local scope.
 
@@ -1416,7 +2173,7 @@ the relationship between scopes.
 - _Numbered Scopes:_ - You can refer to scopes by name or by a number that describes the relative position of one scope to another. Scope 0 represents the current, or local, scope. Scope 1 indicates the immediate parent scope. Scope 2 indicates the parent of the parent scope, and so on. Numbered scopes are useful if you have created many recursive scopes.
 
 ### Parent and Child Scopes
- 
+
 You can create a new scope by running a script or function, by creating a session, or by starting a new instance of Windows PowerShell. When you create a new scope, the result is a parent scope (the original scope) and a child scope (the scope that you created).
 
 
@@ -1425,16 +2182,16 @@ In Windows PowerShell, all scopes are child scopes of the global scope, but you 
 
 Unless you explicitly make the items private, the items in the parent scope are available to the child scope. However, items that you create and change in the child scope do not affect the parent scope, unless you explicitly specify the scope when you create the items.
 
-    
+
 ### Inheritance
- 
+
 A child scope does not inherit the variables, aliases, and functions from the parent scope. Unless an item is private, the child scope can view the items in the parent scope. And, it can change the items by explicitly specifying the parent scope, but the items are not part of the child scope.
 
 However, a child scope is created with a set of items. Typically, it includes all the aliases that have the AllScope option. This option is discussed later in this topic. It includes all the variables that have the AllScope option, plus some variables that can be used to customize the scope, such as `MaximumFunctionCount`.
 
 ### Checking Scope
 
-To find the items in a particular scope, use the `Scope` parameter of  `Get-Variable` or `Get-Alias`. 
+To find the items in a particular scope, use the `Scope` parameter of  `Get-Variable` or `Get-Alias`.
 
 
 For example, to get all the variables in the local scope, type:
@@ -1447,12 +2204,12 @@ To get all the variables in the global scope, type:
     get-variable -scope global
 
 !!!Summary  Summary : tJOS OS A SUMMASDF
-    
+
 
 
 
 ### Scope Modifiers
- 
+
 To specify the scope of a new variable, alias, or function, use a scope modifier. The valid values of a modifier are Global, Local, Private, and Script.
 
 The syntax for a scope modifier in a variable is:
@@ -1464,26 +2221,26 @@ The syntax for a scope modifier in a function is:
     function [<scope-modifier>]:<name> {<function-body>}
 
 
-The default scope for scripts is the script scope. The default scope for functions and aliases is the local scope, even if they are defined in a 
-script. 
+The default scope for scripts is the script scope. The default scope for functions and aliases is the local scope, even if they are defined in a
+script.
 
 #### The Standard Case (local / unspecified)
-The following command, which does not use a scope modifier, creates a variable in the current or local scope: 
+The following command, which does not use a scope modifier, creates a variable in the current or local scope:
 
-    $a = "one" 
+    $a = "one"
 
 
 
 To create the same variable in the global scope, use the Global scope modifier:
 
-    $global:a = "one" 
+    $global:a = "one"
 
 To create the same variable in the script scope, use the script scope modifier:
 
-    $script:a = "one" 
+    $script:a = "one"
 
 
-You can also use a scope modifier in functions. The following function 
+You can also use a scope modifier in functions. The following function
 definition creates a function in the global scope:
 
     function global:Hello
@@ -1492,8 +2249,8 @@ write-host "Hello, World"
     }
 
 
-You can also use scope modifiers to refer to a variable in a different 
-scope. The following command refers to the $test variable, first in the 
+You can also use scope modifiers to refer to a variable in a different
+scope. The following command refers to the $test variable, first in the
 local scope and then in the global scope:
 
     $test
@@ -1502,7 +2259,7 @@ local scope and then in the global scope:
 
 The Using scope modifier
 
-Using is a special scope modifier that identifies a local 
+Using is a special scope modifier that identifies a local
 variable in a remote command. By default, variables in remote
 commands are assumed to be defined in the remote session.
 
@@ -1510,399 +2267,6 @@ The Using scope modifier is introduced in Windows PowerShell 3.0.
 
 For more information, see about_Remote_Variables.
 
-## Useful things to do
-
-### Get Environment Vars
-
-You can navigate to the environment like a directory.
-
-```ps1
-Set-Location Env:
-Get-ChildItem
-
-gci Env: #also works ENV: and env: but not Env (no colon)
-
-#b
-Get-Item -path Env:* | Get-Member
-```
-`$` is required when you get to directly referencing it `$Env:windir`
-
-
-#### Append values to path (in Powershell)
-
-To append ";c:\temp" to the value of the Path environment variable, use the following syntax:
-
-```ps1
-$Env:path += ";c:\temp"
-
-Add-Content -Path $Profile.CurrentUserAllHosts -Value '$Env:Path += ";C:\Temp"'
-```
-
-Environment Variables That Store Preferences
-
-`$Env:PSExecutionPolicyPreference` Stores the execution policy set for the current session. Note- this only exists if set explicitly for that session (either passed as a startup arg, or using explicit command `Set-ExecutionPolicy`)
-
-` $Env:PSModulePath` on Windows the default is: `$HOME\Documents\WindowsPowerShell\Modules;$PSHOME\Modules`
-
-and on Linux or Mac
-
-`$HOME/.local/share/powershell/Modules:/usr/local/share/powershell/Modules:$PSHOME/Modules`
-
-
-!!!Attention Attention: On _Windows-_ the _semicolon_ ( ` ; ` ) in the command separates the new path from the path that precedes it in the list, while On _Linux_ or MacOS, the colon ( ` : ` ) in the command separates the new path from the path that precedes it in the list.
-
-For example, to add the *"C:\Program Files\Fabrikam\Modules" directory* to the value of the PSModulePath environment variable
-
-        `$Env:PSModulePath += ";C:\Program Files\Fabrikam\Modules"`
-
-On Linux or MacOS, to add the "/usr/local/Fabrikam/Modules" directory to the value of the PSModulePath environment variable, type:
-
-        $Env:PSModulePath += ":/usr/local/Fabrikam/Modules"
-
-### Search for files
-
-Better than Windows Search
-
-[More Info and Ideas](https://devblogs.microsoft.com/scripting/use-windows-powershell-to-search-for-files/)
-
-`gci -force -recurse -ErrorAction SilentlyContinue -Include *.exe | Where-Object { $_.BaseName -like "RTools"}`
-
-using comaprison operators:
-
-Use comparison operators (-eq, -ne, -gt, -lt, -le, -ge) to compare values and test conditions. For example, you can compare two string values to determine whether they are equal.
-
-The comparison operators also include operators that find or replace patterns in text. The (-match, -notmatch, -replace) operators use regular expressions, and (-like, -notlike) use wildcards *.
-
-Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
-
-### Loading Modules
-
-[Online Module Browser](https://docs.microsoft.com/en-us/powershell/module/)
-[Special Modules?](https://docs.microsoft.com/en-us/powershell/module/dataprotectionmanager/?view=systemcenter-ps-2016)
-[Microsoft Modules](https://docs.microsoft.com/en-us/powershell/module/?view=win10-ps)
-[https://www.powershellgallery.com/](https://www.powershellgallery.com/)
-
-ImportSystemModules
-`Get-InstalledModule` - Lists (Locally available Modules)\
-
-`Import-Module [NAME]` - Will import the given module.
-
-Some useful ones:
-ISEScriptingGeek
-ISEScriptAnalyzerAddOn
-ISEModuleBrowserAddon
-
-```powershell
-Set-Alias immo Import-Module
-immo ScriptBrowser
-IseSteroids
-ISEScriptAnalyzerAddOn
-ISEModuleBrowserAddon
-ScriptBrowser
-```
-
-Install-Package ISEModuleBrowserAddOn
-Install-Package ISEScriptAnalyzerAddOn
-
-> Find-Module -Name "*ISE*"  #REquires the "*"
-
-CommandType     Name                                               Version    Source
------------     ----                                               -------    ------
-Function        Find-Module                                        2.1.2      PowershellGet
-Function        Get-InstalledModule                                2.1.2      PowerShellGet
-Function        Install-Module                                     2.1.2      PowershellGet
-Function        Publish-Module                                     2.1.2      PowershellGet
-Function        Save-Module                                        2.1.2      PowershellGet
-Function        Uninstall-Module                                   2.1.2      PowershellGet
-Function        Update-Module                                      2.1.2      PowershellGet
-Cmdlet          Get-Module                                         3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Import-Module                                      3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          New-Module                                         3.0.0.0    Microsoft.PowerShell.Core
-Cmdlet          Remove-Module                                      3.0.0.0    Microsoft.PowerShell.Core
-Export-ModuleMember
-ImportSystemModules
-InModuleScope
-New-ModuleManifest
-Test-ModuleManifest
-Update-ModuleManifest
-
-### Get Commands
-
-
-
-
-Get-Command -Module ScriptBrowser | Select-Object -Property Name
-
-
-Get-Command -Module ISEScriptingGeek | Select-Object -Property Name | Format-Wide -Column 2
-
-1
-Install-Module -Name ISEScriptingGeek -Force -Verbose
-
-### Write Lines
-
-Add-Content c:\scripts\test.txt "The End"
-By default, data is appended after the last character. If you want to append the data on a new line in the text document, use 'n. are some other special characters that can be used with add-content cmdlet.
-
-Here are some other special characters that can be used with the add-content cmdlet.
-
-`0 -- Null
-`a -- Alert
-`b -- Backspace
-`n -- New line
-`r -- Carriage return
-`t -- Horizontal tab
-`' -- Single quote
-`" -- Double quote
-
-
-### Turn off the screen
-
-`(Add-Type '[DllImport("user32.dll")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
-
-or in Command prompt:
-
-`powershell (Add-Type '[DllImport(\"user32.dll\")]^public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
-
-### Get Module Properties
-
-```powershell
-#Example
-Get-Module -Name ISESteroids | Get-Member -MemberType Property | Format-Table Name
-#Just lists a bunch of useless fields
-Get-Module -Name ISESteroids | Get-Member -MemberType Property | Out-Gridview
-
-#Example
-Get-Module -ListAvailable -All | Format-Table -Property Name, Moduletype, Path -Groupby Name
-
-#Combining the two gives me the information of Path I wanted
-Get-Module -Name ISESteroids | Format-Table -Property Name, Moduletype, Path -Groupby Name
-
-```
-
-### Get The Commands in a Module
-
-- **Example 1: Get cmdlets, functions, and aliases** `PS C:\>Get-Command` This command gets the Windows PowerShell cmdlets, functions, and aliases that are installed on
-the computer.
-
-- **Example 2: Get commands in the current session** `Get-Command -ListImported` This command uses the ListImported parameter to get only the commands in the current session.
-
-- **Example 3: Get cmdlets and display them in order** `Get-Command -Type Cmdlet | Sort-Object -Property Noun | Format-Table -GroupBy Noun` This command gets all of the cmdlets, sorts them alphabetically by the noun in the cmdlet name, and then displays them in noun-based groups. This display can help you find the cmdlets for a task.
-
-- **Example 4: Get commands in a module** `Get-Command -Module Microsoft.PowerShell.Security, PSScheduledJob`  This command uses the Module parameter to get the commands in the Microsoft.PowerShell.Security and PSScheduledJob modules.
-
-- **Example 5: Get information about a cmdlet** `Get-Command Get-AppLockerPolicy`  This command gets information about the Get-AppLockerPolicy cmdlet. It also imports the AppLocker module, which adds all of the commands in the AppLocker module to the current session.
-
-  - When a module is imported automatically, the effect is the same as using the Import-Module cmdlet. The module can add commands, types and formatting files, and run scripts in the session.
-
-- **Example 8: Get all commands of all types** `Get-Command *` This command gets all commands of all types on the local computer, including executable files in the paths of the Path environment variable ($env:path). It returns an ApplicationInfo object System.Management.Automation.ApplicationInfo) for each file, not a FileInfo object (System.IO.FileInfo)
-
-- **Example 9: Get cmdlets by using a name** `Get-Command -ParameterName *Auth* -ParameterType AuthenticationMechanism` This command gets cmdlets that have a parameter whose name includes Auth and whose type is AuthenticationMechanism . You can use a command like this one to find cmdlets that let you specify the method that is used to authenticate the user. The ParameterType parameter distinguishes parameters that take an AuthenticationMechanism value from those that take an AuthenticationLevel parameter, even when they have similar names.
-
-- **Example 10: Get an alias** `Get-Command dir` This example shows how to use the Get-Command cmdlet with an alias. Although it is typically used on cmdlets and functions, Get-Command also gets scripts, functions, aliases, workflows, and executable files.
-
-```
-CommandType     Name                                               ModuleName
------------     ----                                               ----------
-Alias           dir -> Get-ChildItem
-```
-
-- - The output of the command shows the special view of the Name property value for aliases. The view
-shows the alias and the full command name.
-- **Example 11: Get all instances of the Notepad command** `Get-Command Notepad -All | Format-Table CommandType, Name, Definition` This example uses the All parameter of the Get-Command cmdlet to show all instances of the "Notepad" command on the local computer. The All parameter is useful when there is more than one command with the same name in the session.
-
-```
-CommandType     Name           Definition
------------     ----           ----------
-Application     notepad.exe    C:\WINDOWS\system32\notepad.exe
-Application     NOTEPAD.EXE    C:\WINDOWS\NOTEPAD.EXE
-```
-
-### Set the default output as verbose
-
-By default Powershell doesn't show Verbose output.  This is in a preference variable.  It can be changed by changing the value of the variable `$VerbosePreference`.  Simply calling `$VerbosePreference` will get the current setting.  Must be one of: `[SilentlyContinue], Stop, Continue, Inquire, Ignore, Suspend`.
-
-[More Information](https://blogs.technet.microsoft.com/heyscriptingguy/2014/07/30/use-powershell-to-write-verbose-output/)
-
-It is not recommended to set this in your profile simply.
-
-```powershell
-$VerbosePreference = "Continue"  # "Silently Continue" [Default],
-```
-
-### Fix DICOM Errors
-
-Need [Grant, Revoke, Get DCOM permissions using PowerShell](https://gallery.technet.microsoft.com/Grant-Revoke-Get-DCOM-22da5b96)
-It can be installed via ScriptBrowser
-
-```powershell
-cd "C:\Users\andyt\Documents\WindowsPowerShell\Scripts\Grant-Revoke-Get-DCOM-22da5b96\DCOMPermissions"
-Import-Module .\DCOMPermissions.psm1
-Grant-DComPermission -ApplicationID "{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}" -Account "SYSTEM" -Type Launch -Permissions LocalLaunch,LocalActivation -OverrideConfigurationPermissions
-```
-
-### Check if a directory exists and create it if not
-
-THis was designed to work with VS-Code, it might not be universal
-
-
-try{ Test-Path  -EA Stop ~\md; cd md\} catch {mkdir ~\md\; cd md\}
-
-### Check if a file exists
-
-PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMFile
-True
-
-PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMWrong
-False
-
-
-### Check if a process exists
-
-```ps1
-PS> test (get-Process |where {$_.name -eq “PowerShell”})
-TRUE
-PS> test (get-Process |where {$_.name -eq “NoSuchProcess”})
-FALSE
-```
-
-### Customize the Windows PowerShell prompt
-
-```powershell
-PS C:\>
-function prompt { 'PowerShell: ' + (get-location) + '> '}
-PowerShell: C:\WINDOWS>
-```
-
-This example shows how to customize the Windows PowerShell prompt. The function that defines the prompt includes a Get-Location command, which is run whenever the prompt appears
-in the console.
-
-The format of the default Windows PowerShell prompt is defined by a special function named prompt. You can change the prompt in your console by creating a new function named
-prompt.
-
-To see the current prompt function, type the following command: `Get-Content Function:prompt`
-
-The command begins with the function keyword followed by the function name, prompt. The function body appears within braces ( {} ).
-
-This command defines a new prompt that begins with the string PowerShell: . To append the current location, it uses a Get-Location command, which runs when the prompt function is
-called. The prompt ends with the string "> ".
-
-### Get Files
-
-Get the files in a directory
-
-```ps1
-C:\PS>Get-ChildItem -Attributes !Directory,!Directory+Hidden
-C:\PS> dir -att !d,!d+h
-```
-
-These command get all files, including hidden files, in the current directory, but exclude subdirectories. The second command uses aliases and abbreviations, but has the same effect as
-the first.
-
-`get-childitem -name`   This command retrieves only the names of items in the current directory
-
-### VHDs
-
-```ps1
-Set-Location -Path 'O:\Portable'
-Get-VHD -Path .\PortableVHD.vhdx
-Get-Command -Noun *VHD*
-
-   6 $VHD = Get-VHD -Path .\PortableVHD.vhdx
-   7 Resize-VHD -Path $VHD
-   8 Get-Help Resize-VHD
-   9 Get-Help Resize-VHD -examples
-  10 Get-VHD -Path .\PortableVHD.vhdx
-  11 1046495744 / 1024
-  12 1021968 / 1024
-  13 Get-Help Convert-VHD
-  14 Resize-VHD -Path $VHD -SizeBytes 8GB
-  15 $VHD = Get-VHD -Path .\PortableVHD.vhdx
-  16 $VHD
-  17 Resize-VHD -Path $VHD.Path -SizeBytes 8GB -Verbose -Debug
-  18 $VHD
-  19 Get-VHD -Path .\PortableVHD.vhdx
-
-## Writing Scripts
-
-### Passing Values into scripts
-
-The first command in a .PS1 file must be Param()
-
-What follows is a list of the parameters followed by some attributes, default values, data type and finally its name
-
-[See Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6)
-
-```powershell
-Param(
-  [parameter(Mandatory=$false)]
-  [alias()]
-  [Switch]
-  $Screen
-)
-```
-
-The very general format is as follows:
-```powershell
-Param(
-  [parameter(
-    Mandatory=$true, # | $false ,
-    ParameterSetName="Computer", #| "User" | <property name of a passed object>
-    ValueFromPipelineByPropertyName=$true, # |$false I guess, although, usually just omit
-    HelpMessage="displays when a mandatory parameter value is missing from a command",
-
-  )]
-  [Alias("ShorterName", "SN")]
-  [AllowNull()] # |[AllowNull()]
-  [Validate...]
-  [String] # [String[]] | [Int32] | [DateTime] | [Boolean] | [Switch]
-  $Name = Some_Default_Value
-
-  [parameter()]
-  [Switch]
-  $AnotherName
-
-  #minimally
-  [Int32]$Int_Value_Var
-)
-```
-Switch is preferred to Boolean.  Boolean variable is of the format `-Name:$true` or `-Name:$false`, but switch is the preferred way to go about this.
-
-Its not entirely clear when Parameter is required or not.  The examples dont use it if a Validate flag is also used: `[ValidateSet("Chocolate", "Strawberry", "Vanilla")][String]$flavor = Strawberry` but otherwise they seem to.  The Doc says use this or use `CmdletBinding`, which I am unsure what that is right now.
-
-There are lots of built in methods for validating input.  A brief summary of the Validation Flags and their methods that can replace `[Validate...]` is below:
-
-- `[ValidateCount(1,5)]` # Min and max number of this parameter '-Name Andy, John, David -Next'
-- `[ValidateLength(1,10)]` #Character Length
-- `[ValidatePattern("[0-9][0-9][0-9][0-9]")]` #This checks the input for 4 digits 0-9 each (2535)
-- `[ValidateRange(0,10)]` # Validates an (presumably numerical) input is within expected range
-- `[ValidateScript({$_ -ge (Get-Date)})]` #Uses a script to compare a value*
-- `[ValidateSet("Low", "Average", "High")]` #Must be one of these values**
-- `[ValidateSet([SoundNames])]` # Dynamically Generated Set, uses code to generate a set -see below
-- `[ValidateNotNull()]` #Ensures the value isnt null, some data types its inherent eg. string
-- `[ValidateNotNullOrEmpty()]` #as above, but also "empty" string (not null) or empty array
-- `[ValidateDrive("C","D","Variable","Function")]` #Something about checking paths
-- `[ValidateUserDrive()]`
-
-\*complicated, but this example checks that a given date is greater than or equal than the current date
-
-\*\*Assigning this at runtime will still check and can produced errors, eg setting $Name = "Medium" in the middle of the script will throw an error.
-
-The associated example of `[ValidateSet([SoundNames])]`:
-```powershell
-Class SoundNames : System.Management.Automation.IValidateSetValuesGenerator {
-    [String[]] GetValidValues() {
-        $SoundPaths = '/System/Library/Sounds/',
-            '/Library/Sounds','~/Library/Sounds'
-        $SoundNames = ForEach ($SoundPath in $SoundPaths) {
-            If (Test-Path $SoundPath) {
-                (Get-ChildItem $SoundPath).BaseName
-            }
-        }
-        return [string[]] $SoundNames
-    }
-}
-```
 
 ## Functions
 
@@ -1952,220 +2316,77 @@ $result = Add-Numbers (5, 10) --Wrong!
 $result = Add-Numbers 5 10    --Right
 ```
 
-### Loops in PS
+### Splatting
 
-[about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
+[Splatting Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-5.1)
 
-[about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
+Splatting is a method of passing a collection of parameter values to a command as unit. PowerShell associates each value in the collection with a command parameter. Splatted parameter values are stored in named splatting variables, which look like standard variables, but begin with an At symbol (`@`) instead of a dollar sign (`$`). The At symbol tells PowerShell that you are passing a collection of values, instead of a single value.
 
-[about_While](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_while?view=powershell-6)
+Examples
 
-[Break]()
+The first example uses the traditional format in which parameter names are omitted. The parameter values appear in position order in the command.
 
-#### ForEach-Object
+      Copy-Item "test.txt" "test2.txt" -WhatIf
 
-This example shows Get-ChildItem, A For-EachObject loop, and an if statement example.
+The second example uses array splatting. The first command creates an array of the parameter values and stores it in the $ArrayArguments variable. The values are in position order in the array. The second command uses the $ArrayArguments variable in a command in splatting. The At symbol (@ArrayArguments) replaces the dollar sign ($ArrayArguments) in the command.
 
-```powershell
-$favorite = "\\fs1\Favs\Toms IT Pro.url"
+      $ArrayArguments = "test.txt", "test2.txt"
+      Copy-Item @ArrayArguments -WhatIf
 
-Get-ChildItem -Path C:\Users\ -Directory | For-EachObject {
-    $targetFav = $_.FullName + "\Favorites\Toms IT Pro.url"
-    if((Test-Path $targetFav) -eq $false){
-        Copy-Item $favorite $targetFav -Force
-    }
-}
-```
+2- This example shows how to re-use splatted values in different commands. The commands in this example use the Write-Host cmdlet to write messages to the host program console. It uses splatting to specify the foreground and background colors.
 
-At it's most simple, ForEach-Object requires only an object to be looped through and a script block containing the commands to be performed on each member of the object.
+To change the colors of all commands, just change the value of the $Colors variable.
 
-These parameters can be specified either by the `-InputObject` and `-Process` parameter names, or by piping the object to the ForEach-Object cmdlet and placing the script block as the first parameter. as shown below.  `-InputObject` is used instead of the pipe.
+The first command creates a hash table of parameter names and values and stores the hash table in the $Colors variable.
 
-```powershell
-$myDocuments = Get-ChildItem $env:USERPROFILEDocuments -File
-#returns a list of all the file objects
-$myDocuments | ForEach-Object {$_.FullName}
-#returns a list of the 'FullName' of all the file objects (its path)
-ForEach-Object -InputObject $myDocuments -Process {$_.FullName}
-#this is equivaent to above.
-```
+      $Colors = @{ForegroundColor = "black"; BackgroundColor = "white"}
 
-ForEach-Object has two aliases, ForEach and %, and also supports shorthand syntax beginning in PowerShell 3.0. The following three examples are identical in function.
+The second and third commands use the $Colors variable for splatting in a Write-Host command. To use the $Colors variable, replace the dollar sign ($Colors) with an At symbol (@Colors).
 
-```powershell
-Get-WMIObject Win32_LogicalDisk | ForEach-Object {$_.FreeSpace}
-Get-WMIObject Win32_LogicalDisk | ForEach {$_.FreeSpace}
-Get-WMIObject Win32_LogicalDisk | % FreeSpace
-```
-The `-Begin` and `-End` parameters can be used to define script blocks to execute just before or after the contents of the -Process script block. This can be used to set or modify a variable before or after execution of the loop.
+      #Write a message with the colors in $Colors
+      Write-Host "This is a test." @Colors
 
-```powershell
-Get-PackageSource |ForEach-Object {
-    Write-Host ($_ |Select -ExpandProperty Name)
-    Set-PackageSource -Name ($_ |Select -ExpandProperty Name) -Trusted
-    }  #doesnt work as intended, but syntax is correct anyway.
+      #Write second message with same colors. The position of splatted
+      #hash table does not matter.
+      Write-Host @Colors "This is another test."
 
-#Equivalent:
-Get-PackageSource |ForEach-Object {Write-Host ($_.Name)}
-Get-PackageSource |% {Write-Host ($_.Name)}
-#Braces are required, o/w error.
-```
+This example shows how to forward their parameters to other commands by using splatting and the $PSBoundParameters automatic variable.
 
-Another common example
+The $PSBoundParameters automatic variable is a dictionary object (System.Collections.Generic.Dictionary) that contains all the parameter names and values that are used when a script or function is run.
 
-```ps1
-$files = get-ChildItem $inputPath
+3- In the following example, we use the $PSBoundParameters variable to forward the parameters values passed to a script or function from Test2 function to the Test1 function. Both calls to the Test1 function from Test2 use splatting.
 
-foreach ($file in $files)
-{
-    $outFilename = $targetPath + $file.Name
-    write-host $outFilename
-}
-```
+      function Test1
+      {
+          param($a, $b, $c)
 
-#### For Loop
+          $a
+          $b
+          $c
+      }
 
-[Source](https://www.business.com/articles/powershell-for-loop/)
+      function Test2
+      {
+          param($a, $b, $c)
 
-_Syntax-_ `for (init; condition; repeat)`
-             `{command_block}`
+          #Call the Test1 function with $a, $b, and $c.
+          Test1 @PsBoundParameters
 
-_Key_
-   **init** - Commands, separated by commas, to run before the loop begins. Typically used to initialize a variable with a starting value.
+          #Call the Test1 function with $b and $c, but not with $a
+          $LimitedParameters = $PSBoundParameters
+          $LimitedParameters.Remove("a") | Out-Null
+          Test1 @LimitedParameters
+      }
 
-   **condition** If this evaluates to TRUE the for loop {command_block} runs when the loop has run once the condition is evaluated again
+Output
 
-   **repeat** Commands, separated by commas, to run each time the loop repeats.
+      Test2 -a 1 -b 2 -c 3
+      1
+      2
+      3
+      2
+      3
 
-_Examples:_
-
-```powershell
-$text = Get-Content($env:USERPROFILE + "\Documents\someBigFile.txt")
-$pattern = "*some text"
-For($i=0; $i -lt $text.Length; $i++){
-    if($text[$i] -like $pattern){
-        "line $i contains '"$pattern'""
-    }
-}
-```
-
-I am not entirely sure what the example is doing with the quotes.  The for loop has the standard syntax.  (declaration, comparison, iteration)-> `for($i=0; $i -lt 10; $i++){"$i"}`
-
-Watch the loop with `Set-PSDebug -Trace 2`.
-
-```powershell
-For ($i=0; $i -le 10; $i++) {
-    "10 * $i = " + (10 * $i)
-    }
-
-$colors = @("Red","Orange","Yellow","Green","Blue","Indigo","Violet")
-For ($i=0; $i -lt $colors.Length; $i++) {
-    $colors[$i]
-    }
-
-    $a = 0..9
-for ($i = 0; $i -le ($a.length - 1); $i += 2) {
-  $a[$i]
-}
-```
-
-#### While, Do-While, Do-Until
-
- `While` and `Do-While` loops are both used to perform an action while the condition evaluates to `$true`, and differ only in their syntax. `Do-Until` loops have similar syntax to `Do-While`, but stop processing once the condition statement is met.
-
-```powershell
-while($true){
-    if(Test-Path ($env:USERPROFILE | "\temp.file")){
-        Break
-    } else {
-        Start-Sleep -Seconds 30
-    }
-}
-
-##The following are the 3 formats
-$i=1
-Do {
-    $i
-    $i++
-    }
-While ($i -le 10)
-
-#this is equivalent to the above
-$i=1
-Do {
-    $i
-    $i++
-    }
-Until ($i -gt 10)
-
-#also equivalent
-$i=1
-While ($i -le 10){
-    $i
-    $i++
-    }
-
-#Using Break
-$i=1
-While ($true) #infinate loop
-    {
-    $i
-    $i++
-    if ($i -gt 10) {
-        Break #exit loop when if condition.
-        }
-    }
-```
-
-### Comparing Objects
-
-[PowerShell Reference](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-6)
-
-- `-lt`- Less Than
-- `-gt`- Greater Than
-- `-ge`- Greater than or equal
-- `-le`- Less than or equal
-- `-like`
-- `-eq`- Equal
-- `-ne`- not Equal
-
-- `-match`
-- `-notmatch`
-- `-like`
-- `-notlike`
-
-- `-in`
-- `-notin`
-- `-contains`
-- `-notcontains`
-
-- `-is`
-- `-isNot`
-- `-as` - converts the input to e.g. `[DateTime]`
-
-```powershell
-[PS]> $property.Name
-armsvc
-
-[PS]> $property -eq "armsvc"
-False
-
-[PS]> $property.Name -eq "armsvc"
-True
-```
-
-An object has implicit methods as well.
-
-```ps1
- $msg = Get-WinEvent -ProviderName "Microsoft-Windows-DistributedCOM"  | Where-Object {$_.Id -eq 10016}  |  Select-Object -ExpandProperty Message
-   $i = 0
-
-    for ($i=0 ; $i -lt $msg.Count ; $i++) {
-
-        #iterate through each message
-        $propertyNames = @(1,2,3,4,5,6,7,'Scope','Type',10,11,12,13,14,15,16,17,'CLSID',19,20,'APPID',22,23,24,'USER','USER2',27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54)
-        $propertySelect = @('Scope','Type','CLSID','APPID','USER','USER2')
-        $pmsg = $msg[$i]|  ConvertFrom-String -PropertyNames $propertynames | Select-Object -Property $propertySelect
 
 
 ## Profiles
@@ -2698,6 +2919,44 @@ Get-FileName -initialDirectory "c:fso"
 
 ```
 
+### Open Folder Dialog
+
+[Sources](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.folderbrowserdialog?view=netframework-4.8)
+
+[Source2](https://stackoverflow.com/questions/8184167/prompt-for-user-input-in-powershell)
+
+[Source3](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?redirectedfrom=MSDN&view=netframework-4.8)
+
+Also same as above.
+
+```ps1
+This mostly works.
+Function Get-Directory($InitialDir){
+
+[System.Reflection.Assembly]::LoadWithPartialName(“System.windows.forms”) | Out-Null
+#OutNull to hide the success dialogue
+$OpenDirDialogue = New-Object System.Windows.Forms.FolderBrowserDialog
+$OpenDirDialogue.ShowNewFolderButton = $true
+#$OpenDirDialogue.RootFolder = Environment.SpecialFolder.Personal
+
+$OpenDirDialogue.Description = "Where to Look for Files?"
+$OpenDirDialogue.ShowDialog()
+$OpenDirDialogue.SelectedPath
+}
+```
+
+returns
+
+        PS C:\Users\andyt> Get-Directory(Get-Location)
+        OK
+        C:\Users\andyt\Desktop\TEMP_Desktop_Folder\retakes
+
+maybe it needs   `$a = $OpenDirDialogue.ShowDialog()` to catch the "OK"
+
+$InitialDir doesnt do anything.
+
+
+
 ### Prompt for input
 
 ```ps1
@@ -2804,11 +3063,11 @@ $msg[4] | ConvertFrom-String | Get-Member
         BaseName                  ScriptProperty System.Object BaseName {get=if ($this.Extension.Length -gt 0){$this.Name.Remove($this.Name.Length - $this.Extension.Length)}else{$this.Name};}
         VersionInfo               ScriptProperty System.Object VersionInfo {get=[System.Diagnostics.FileVersionInfo]::GetVersionInfo($this.FullName);}
 
-## Aliases                                                                                                              
-Alias           % -> ForEach-Object                                                                                                                                                                                                                                                  
-Alias           ? -> Where-Object                                                                                                                                                                                                                                                    
-Alias           h -> Get-History                                                                                                                                                                                                                                                     
-Alias           r -> Invoke-History 
+## Aliases
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+Alias           h -> Get-History
+Alias           r -> Invoke-History
 
 ## Commands in common with Linux and cmd
 
@@ -3042,67 +3301,115 @@ These commands are in common with Unix or cmd
 
 
 
-## Custom and Hacks
+## Scripts, Commandlets, Functions
 
-(gl|gci|measure).Count  count folder items
+[Modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/writing-portable-modules?view=powershell-6)
 
+### Scripts
 
-## Copy all of a type somewhere else
-
-gci -Recurse -File -Include "*.ttf" -Name | copy-item -Destination .\^
-
-
-## Install Fonts
+Scripts have a Data Section:
 
 ```ps1
-param(
-[Parameter(Mandatory=$true,Position=0)]
-[ValidateNotNull()]
-[array]$pcNames,
-[Parameter(Mandatory=$true,Position=1)]
-[ValidateNotNull()]
-[string]$fontFolder
-)
-$padVal = 20
-$pcLabel = "Connecting To".PadRight($padVal," ")
-$installLabel = "Installing Font".PadRight($padVal," ")
-$errorLabel = "Computer Unavailable".PadRight($padVal," ")
-$openType = "(Open Type)"
-$regPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
-$objShell = New-Object -ComObject Shell.Application
-if(!(Test-Path $fontFolder))
-{
-    Write-Warning "$fontFolder - Not Found"
+$TextMsgs = DATA {
+ConvertFrom-StringData @'
+Text001 = The $Notebook variable contains the name of the user's system notebook.
+Text002 = The $MyNotebook variable contains the name of the user's private notebook.
+'@
 }
-else
-{
-    $objFolder = $objShell.namespace($fontFolder)
-    foreach ($pcName in $pcNames)
-    {
-        Try{
-            Write-Output "$pcLabel : $pcName"
-            $null = Test-Connection $pcName -Count 1 -ErrorAction Stop
-            $destination = "\\",$pcname,"\c$\Windows\Fonts" -join ""
-            foreach ($file in $objFolder.items())
-            {
-                $fileType = $($objFolder.getDetailsOf($file, 2))
-                if(($fileType -eq "OpenType font file") -or ($fileType -eq "TrueType font file"))
-                {
-                    $fontName = $($objFolder.getDetailsOf($File, 21))
-                    $regKeyName = $fontName,$openType -join " "
-                    $regKeyValue = $file.Name
-                    Write-Output "$installLabel : $regKeyValue"
-                    Copy-Item $file.Path  $destination
-                    Invoke-Command -ComputerName $pcName -ScriptBlock { $null = New-ItemProperty -Path $args[0] -Name $args[1] -Value $args[2] -PropertyType String -Force } -ArgumentList $regPath,$regKeyname,$regKeyValue
-                }
+$TextMsgs.Text001
+
+The $Notebook variable contains the name of the user's system notebook.
+
+$TextMsgs.Text002
+
+The $MyNotebook variable contains the name of the user's private notebook.
+```
+
+Variables are not allowed here.
+
+
+### Writing Scripts
+
+#### Passing Values into scripts
+
+The first command in a .PS1 file must be Param()
+
+What follows is a list of the parameters followed by some attributes, default values, data type and finally its name
+
+[See Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-6)
+
+```powershell
+Param(
+  [parameter(Mandatory=$false)]
+  [alias()]
+  [Switch]
+  $Screen
+)
+```
+
+The very general format is as follows:
+```powershell
+Param(
+  [parameter(
+    Mandatory=$true, # | $false ,
+    ParameterSetName="Computer", #| "User" | <property name of a passed object>
+    ValueFromPipelineByPropertyName=$true, # |$false I guess, although, usually just omit
+    HelpMessage="displays when a mandatory parameter value is missing from a command",
+
+  )]
+  [Alias("ShorterName", "SN")]
+  [AllowNull()] # |[AllowNull()]
+  [Validate...]
+  [String] # [String[]] | [Int32] | [DateTime] | [Boolean] | [Switch]
+  $Name = Some_Default_Value
+
+  [parameter()]
+  [Switch]
+  $AnotherName
+
+  #minimally
+  [Int32]$Int_Value_Var
+)
+```
+Switch is preferred to Boolean.  Boolean variable is of the format `-Name:$true` or `-Name:$false`, but switch is the preferred way to go about this.
+
+Its not entirely clear when Parameter is required or not.  The examples dont use it if a Validate flag is also used: `[ValidateSet("Chocolate", "Strawberry", "Vanilla")][String]$flavor = Strawberry` but otherwise they seem to.  The Doc says use this or use `CmdletBinding`, which I am unsure what that is right now.
+
+There are lots of built in methods for validating input.  A brief summary of the Validation Flags and their methods that can replace `[Validate...]` is below:
+
+- `[ValidateCount(1,5)]` # Min and max number of this parameter '-Name Andy, John, David -Next'
+- `[ValidateLength(1,10)]` #Character Length
+- `[ValidatePattern("[0-9][0-9][0-9][0-9]")]` #This checks the input for 4 digits 0-9 each (2535)
+- `[ValidateRange(0,10)]` # Validates an (presumably numerical) input is within expected range
+- `[ValidateScript({$_ -ge (Get-Date)})]` #Uses a script to compare a value*
+- `[ValidateSet("Low", "Average", "High")]` #Must be one of these values**
+- `[ValidateSet([SoundNames])]` # Dynamically Generated Set, uses code to generate a set -see below
+- `[ValidateNotNull()]` #Ensures the value isnt null, some data types its inherent eg. string
+- `[ValidateNotNullOrEmpty()]` #as above, but also "empty" string (not null) or empty array
+- `[ValidateDrive("C","D","Variable","Function")]` #Something about checking paths
+- `[ValidateUserDrive()]`
+
+\*complicated, but this example checks that a given date is greater than or equal than the current date
+
+\*\*Assigning this at runtime will still check and can produced errors, eg setting $Name = "Medium" in the middle of the script will throw an error.
+
+The associated example of `[ValidateSet([SoundNames])]`:
+```powershell
+Class SoundNames : System.Management.Automation.IValidateSetValuesGenerator {
+    [String[]] GetValidValues() {
+        $SoundPaths = '/System/Library/Sounds/',
+            '/Library/Sounds','~/Library/Sounds'
+        $SoundNames = ForEach ($SoundPath in $SoundPaths) {
+            If (Test-Path $SoundPath) {
+                (Get-ChildItem $SoundPath).BaseName
             }
         }
-        catch{
-            Write-Warning "$errorLabel : $pcName"
-        }
+        return [string[]] $SoundNames
     }
 }
 ```
+
+
 ## COM Objects
 
 interesting bits from above:
@@ -3211,41 +3518,16 @@ Since most of the .NET Framework core classes are contained in the System namesp
 - InternetExplorer.Application
 - "Shell.Application"
 
-## Scripts, Commandlets, Functions
-
-[Modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/writing-portable-modules?view=powershell-6)
-
-### Scripts
-
-Scripts have a Data Section:
-
-```ps1
-$TextMsgs = DATA {
-ConvertFrom-StringData @'
-Text001 = The $Notebook variable contains the name of the user's system notebook.
-Text002 = The $MyNotebook variable contains the name of the user's private notebook.
-'@
-}
-$TextMsgs.Text001
-
-The $Notebook variable contains the name of the user's system notebook.
-
-$TextMsgs.Text002
-
-The $MyNotebook variable contains the name of the user's private notebook.
-```
-
-Variables are not allowed here.
 
 ## WMI Objects
 
-Cmdlets from `CimCmdlets` module are the most important cmdlets for general system management tasks. All critical subsystem settings are exposed through WMI. (Source)[https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-6]
+Cmdlets from `CimCmdlets` module are the most important cmdlets for general system management tasks. _**All critical subsystem settings are exposed through WMI. (Source)[https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-6]**_
 
 !!!Note Note - For the current computer, either use a dot `.` or omit `-ComputerName`.
 
 
-That said 
-        
+That said
+
         `Get-CimInstance -ClassName Win32_Desktop -ComputerName .`
 
 Gives me an error:
@@ -3254,7 +3536,7 @@ Gives me an error:
 
         VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_Desktop'.
 
-        Get-CimInstance : The client cannot connect to the destination specified in the request. Verify that the service on the destination is running and is accepting requests. Consult the logs and documentation for the WS-Management service running on the destination, most commonly 
+        Get-CimInstance : The client cannot connect to the destination specified in the request. Verify that the service on the destination is running and is accepting requests. Consult the logs and documentation for the WS-Management service running on the destination, most commonly
         IIS or WinRM. If the destination is the WinRM service, run the following command on the destination to analyze and configure the WinRM service: "winrm quickconfig".
         At line:1 char:1
         + Get-CimInstance -ClassName Win32_Desktop -ComputerName .
@@ -3262,27 +3544,28 @@ Gives me an error:
             + CategoryInfo          : ConnectionError: (root\cimv2:Win32_Desktop:String) [Get-CimInstance], CimException
             + FullyQualifiedErrorId : HRESULT 0x80338012,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand
             + PSComputerName        : .
-        
+
         VERBOSE: Operation 'Enumerate CimInstances' complete.
 
 While:
 
-        PS C:\WINDOWS\system32> Get-CimInstance -ClassName Win32_Desktop 
+        PS C:\WINDOWS\system32> Get-CimInstance -ClassName Win32_Desktop
 
         VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_Desktop'.
 
         VERBOSE: Operation 'Enumerate CimInstances' complete.
         SettingID Name                         ScreenSaverActive ScreenSaverSecure ScreenSaverTimeout
         --------- ----                         ----------------- ----------------- ------------------
-                NT AUTHORITY\SYSTEM          False                                                 
-                NT AUTHORITY\LOCAL SERVICE   False                                                 
-                NT AUTHORITY\NETWORK SERVICE False                                                 
-                DESKTOP\andyt                True              False             900               
-                DESKTOP\RDV GRAPHICS SERVICE False                                                 
-                DESKTOP\Backup               False                                                 
-                IIS APPPOOL\DefaultAppPool   False                                                 
-                .DEFAULT                     False                                                 
-To fix this I had to do 
+                NT AUTHORITY\SYSTEM          False
+                NT AUTHORITY\LOCAL SERVICE   False
+                NT AUTHORITY\NETWORK SERVICE False
+                DESKTOP\andyt                True              False             900
+                DESKTOP\RDV GRAPHICS SERVICE False
+                DESKTOP\Backup               False
+                IIS APPPOOL\DefaultAppPool   False
+                .DEFAULT                     False
+
+To fix this I had to do
 
 ```ps1
 Enable-PSRemoting
@@ -3305,147 +3588,9 @@ Get-CimInstance -ClassName Win32_Desktop -ComputerName .
 
 It seems that specifying Computer Name triggers it as a remote operation.
 
-### Set Network Properties
-
-#### Get-NetConnectionProfile
-
-returns the following info:
-
-        Name             : 0
-        InterfaceAlias   : LAN1
-        InterfaceIndex   : 16
-        NetworkCategory  : Private
-        IPv4Connectivity : Internet
-        IPv6Connectivity : NoTraffic
-
-#### Set-NetConnectionProfile 
-
-Can set Networks to Domain, Private and Public.  Esp. Useful when there is more than one, and Windows only lets you set the current (?Primary) one.
 
 
-
-**Windows Management Instrumentation (WMI)** is a core technology for Windows system administration because it exposes a wide range of information in a uniform manner. Because of how much WMI makes possible, the Windows PowerShell cmdlet for accessing WMI objects, Get-WmiObject, is one of the most useful for doing real work.
-
- WMI classes describe the resources that can be managed. There are hundreds of WMI classes, some of which contain dozens of properties.
-
-`Get-WmiObject` addresses this problem by making WMI discoverable. You can get a list of the WMI classes available on the local computer by typing:
-
-### Listing BIOS Information
-
-The WMI Win32_BIOS class returns fairly compact and complete information about the system BIOS on the local computer:
-
-`Get-CimInstance -ClassName Win32_BIOS -ComputerName .`
-
-            SMBIOSBIOSVersion : 1802
-            Manufacturer      : American Megatrends Inc.
-            Name              : 1802
-            SerialNumber      : System Serial Number
-            Version           : ALASKA - 1072009
-            PSComputerName    : .
-
-### Listing Processor Information
-
-        Get-CimInstance -ClassName Win32_Processor -ComputerName . | Select-Object -ExcludeProperty "CIM*"
-        Get-CimInstance -ClassName Win32_Processor
-
-        #For a generic string of the processor family -  this works: 
-        Get-CimInstance -ClassName Win32_ComputerSystem -ComputerName . | Select-Object -Property SystemType
-
-### Listing Computer Manufacturer and Model
-
-Computer model information is also available from Win32_ComputerSystem. The standard displayed output will not need any filtering to provide OEM data:
-
-
-        Get-CimInstance -ClassName Win32_ComputerSystem
-
-### Listing Installed Hotfixes
-You can list all installed hotfixes by using Win32_QuickFixEngineering:
-
-        Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName 
-
-Although you can use the Get-CimInstance's Property parameter to choose only the HotFixID, doing so will actually return more information, because all the metadata is displayed by default:
-
-        Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName . -Property HotFixID
-
-### Listing Operating System Version Information
-
-        Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property BuildNumber,BuildType,OSType,ServicePackMajorVersion,ServicePackMinorVersion
-
-You can also use wildcards with the Select-Object's Property parameter. Because all the properties beginning with either Build or ServicePack are important to use here, we can shorten this to the following form:
-
-        Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property Build*,OSType,ServicePack*
-
-### Listing Local Users and Owner
-Local general user information — number of licensed users, current number of users, and owner name — can be found with a selection of Win32_OperatingSystem class' properties. You can explicitly select the properties to display like this:
-
-		Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property NumberOfLicensedUsers,NumberOfUsers,RegisteredUser
-A more succinct version using wildcards is:
-
-		Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property *user*
-
-### Getting Available Disk Space
-
-To see the disk space and free space for local drives, you can use the Win32_LogicalDisk WMI class. You need to see only instances with a DriveType of 3 — the value WMI uses for fixed hard disks.
-
-```ps1
-Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" -ComputerName .
-
-DeviceID DriveType ProviderName VolumeName Size         FreeSpace   PSComputerName
-----    ---- --------- ------------ ---------- ----         ---------   --------------
-C:       3                      Local Disk 203912880128 65541357568 .
-Q:       3                      New Volume 122934034432 44298250240 .
-
-Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" -ComputerName . | Measure-Object -Property FreeSpace,Size -Sum | Select-Object -Property Property,Sum
-
-Property           Sum
---------           ---
-FreeSpace 109839607808
-Size      326846914560
-```
-
-### Getting Logon Session Information
-
-You can get general information about logon sessions associated with users through the `Win32_LogonSession` WMI class:
-
-		Get-CimInstance -ClassName Win32_LogonSession -ComputerName .
-
-### Getting the User Logged on to a Computer
-
-You can display the user logged on to a particular computer system using Win32_ComputerSystem. This command returns only the user logged on to the system desktop:
-
-		Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName -ComputerName .
-
-### Getting Local Time from a Computer
-
-You can retrieve the current local time on a specific computer by using the Win32_LocalTime WMI class.
-
-```ps1
-Get-CimInstance -ClassName Win32_LocalTime -ComputerName .
-
-Day          : 15
-DayOfWeek    : 4
-Hour         : 12
-Milliseconds :
-Minute       : 11
-Month        : 6
-Quarter      : 2
-Second       : 52
-WeekInMonth  : 3
-Year         : 2017
-PSComputerName : .
-```
-
-### Displaying Service Status
-
-To view the status of all services on a specific computer, you can locally use the `Get-Service` cmdlet. For remote systems, you can use the `Win32_Service` WMI class. If you also use Select-Object to filter the results to Status, Name, and DisplayName, the output format will be almost identical to that from Get-Service:
-
-		Get-CimInstance -ClassName Win32_Service -ComputerName . | Select-Object -Property Status,Name,DisplayName
-
-To allow the complete display of names for the occasional services with extremely long names, you may want to use `Format-Table` with the `AutoSize` and `Wrap` parameters, to optimize column width and allow long names to wrap instead of being truncated:
-
-		Get-CimInstance -ClassName Win32_Service -ComputerName . | Format-Table -Property Status,Name,DisplayName -AutoSize -Wrap
-
-## Listing All WMI-Objects
+### Listing All WMI-Objects
 
 ```ps1
 PS> Get-WmiObject -List
@@ -3470,7 +3615,7 @@ Get-WmiObject -List -ComputerName localhost
 
 Get-WmiObject uses the root/cimv2 namespace by default. If you want to specify another WMI namespace, use the Namespace parameter and specify the corresponding namespace path:
 
-## Get ComObject
+### Get ComObject
 
 [Source](https://www.powershellmagazine.com/2013/06/27/pstip-get-a-list-of-all-com-objects-available/)
 
@@ -3485,21 +3630,21 @@ Get-ChildItem HKLM:\Software\Classes -ErrorAction SilentlyContinue | Where-Objec
 
 ```ps1
 function Get-ComObject {
- 
+
     param(
         [Parameter(Mandatory=$true,
         ParameterSetName='FilterByName')]
         [string]$Filter,
- 
+
         [Parameter(Mandatory=$true,
         ParameterSetName='ListAllComObjects')]
         [switch]$ListAll
     )
- 
+
     $ListofObjects = Get-ChildItem HKLM:\Software\Classes -ErrorAction SilentlyContinue | Where-Object {
         $_.PSChildName -match '^\w+\.\w+$' -and (Test-Path -Path "$($_.PSPath)\CLSID")
     } | Select-Object -ExpandProperty PSChildName
- 
+
     if ($Filter) {
         $ListofObjects | Where-Object {$_ -like $Filter}
     } else {
@@ -3508,11 +3653,162 @@ function Get-ComObject {
 }
 ```
 
-## Changing Computer State
 
-### Locking a Computer
 
-### Calling User32.dll functions
+
+### Set Network Properties
+
+#### Get-NetConnectionProfile
+
+returns the following info:
+
+        Name             : 0
+        InterfaceAlias   : LAN1
+        InterfaceIndex   : 16
+        NetworkCategory  : Private
+        IPv4Connectivity : Internet
+        IPv6Connectivity : NoTraffic
+
+##### Set-NetConnectionProfile
+
+Can set Networks to Domain, Private and Public.  Esp. Useful when there is more than one, and Windows only lets you set the current (?Primary) one.
+
+
+
+**Windows Management Instrumentation (WMI)** is a core technology for Windows system administration because it exposes a wide range of information in a uniform manner. Because of how much WMI makes possible, the Windows PowerShell cmdlet for accessing WMI objects, Get-WmiObject, is one of the most useful for doing real work.
+
+ WMI classes describe the resources that can be managed. There are hundreds of WMI classes, some of which contain dozens of properties.
+
+`Get-WmiObject` addresses this problem by making WMI discoverable. You can get a list of the WMI classes available on the local computer by typing:
+
+### Get Computer Properties
+
+#### Listing BIOS Information
+
+The WMI Win32_BIOS class returns fairly compact and complete information about the system BIOS on the local computer:
+
+`Get-CimInstance -ClassName Win32_BIOS -ComputerName .`
+
+            SMBIOSBIOSVersion : 1802
+            Manufacturer      : American Megatrends Inc.
+            Name              : 1802
+            SerialNumber      : System Serial Number
+            Version           : ALASKA - 1072009
+            PSComputerName    : .
+
+#### Listing Processor Information
+
+        Get-CimInstance -ClassName Win32_Processor -ComputerName . | Select-Object -ExcludeProperty "CIM*"
+        Get-CimInstance -ClassName Win32_Processor
+
+        #For a generic string of the processor family -  this works:
+        Get-CimInstance -ClassName Win32_ComputerSystem -ComputerName . | Select-Object -Property SystemType
+
+#### Listing Computer Manufacturer and Model
+
+Computer model information is also available from Win32_ComputerSystem. The standard displayed output will not need any filtering to provide OEM data:
+
+
+`Get-CimInstance -ClassName Win32_ComputerSystem`
+
+#### Listing Installed Hotfixes
+You can list all installed hotfixes by using Win32_QuickFixEngineering:
+
+`Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName`
+
+Although you can use the Get-CimInstance's Property parameter to choose only the HotFixID, doing so will actually return more information, because all the metadata is displayed by default:
+
+`Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName . -Property HotFixID`
+
+#### Listing Operating System Version Information
+
+`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property BuildNumber,BuildType,OSType,ServicePackMajorVersion,ServicePackMinorVersion`
+
+You can also use wildcards with the Select-Object's Property parameter. Because all the properties beginning with either Build or ServicePack are important to use here, we can shorten this to the following form:
+
+        `Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property Build*,OSType,ServicePack*`
+
+#### Listing Local Users and Owner
+Local general user information — number of licensed users, current number of users, and owner name — can be found with a selection of Win32_OperatingSystem class' properties. You can explicitly select the properties to display like this:
+
+		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property NumberOfLicensedUsers,NumberOfUsers,RegisteredUser`
+A more succinct version using wildcards is:
+
+		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property *user*`
+
+#### Getting Available Disk Space
+
+To see the disk space and free space for local drives, you can use the Win32_LogicalDisk WMI class. You need to see only instances with a DriveType of 3 — the value WMI uses for fixed hard disks.
+
+```ps1
+Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" -ComputerName .
+
+DeviceID DriveType ProviderName VolumeName Size         FreeSpace   PSComputerName
+----    ---- --------- ------------ ---------- ----         ---------   --------------
+C:       3                      Local Disk 203912880128 65541357568 .
+Q:       3                      New Volume 122934034432 44298250240 .
+
+Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" -ComputerName . | Measure-Object -Property FreeSpace,Size -Sum | Select-Object -Property Property,Sum
+
+Property           Sum
+--------           ---
+FreeSpace 109839607808
+Size      326846914560
+```
+
+#### Getting Logon Session Information
+
+You can get general information about logon sessions associated with users through the `Win32_LogonSession` WMI class:
+
+		Get-CimInstance -ClassName Win32_LogonSession -ComputerName .
+
+#### Getting the User Logged on to a Computer
+
+You can display the user logged on to a particular computer system using Win32_ComputerSystem. This command returns only the user logged on to the system desktop:
+
+		Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName -ComputerName .
+
+#### Getting Local Time from a Computer
+
+You can retrieve the current local time on a specific computer by using the Win32_LocalTime WMI class.
+
+```ps1
+Get-CimInstance -ClassName Win32_LocalTime -ComputerName .
+
+Day          : 15
+DayOfWeek    : 4
+Hour         : 12
+Milliseconds :
+Minute       : 11
+Month        : 6
+Quarter      : 2
+Second       : 52
+WeekInMonth  : 3
+Year         : 2017
+PSComputerName : .
+```
+
+#### Displaying Service Status
+
+To view the status of all services on a specific computer, you can locally use the `Get-Service` cmdlet. For remote systems, you can use the `Win32_Service` WMI class. If you also use Select-Object to filter the results to Status, Name, and DisplayName, the output format will be almost identical to that from Get-Service:
+
+		Get-CimInstance -ClassName Win32_Service -ComputerName . | Select-Object -Property Status,Name,DisplayName
+
+To allow the complete display of names for the occasional services with extremely long names, you may want to use `Format-Table` with the `AutoSize` and `Wrap` parameters, to optimize column width and allow long names to wrap instead of being truncated:
+
+		Get-CimInstance -ClassName Win32_Service -ComputerName . | Format-Table -Property Status,Name,DisplayName -AutoSize -Wrap
+
+
+### Actions
+
+
+#### Locking a Computer
+
+[Was there supposed to be something here?]
+
+#### Calling User32.dll functions
+
+!!!Note This should (at least in the old windows I grew up with)- expose lots of useful methods.
 
 The only way to lock a computer directly with the standard available tools is to call the `LockWorkstation()` function in `user32.dll`:
 
@@ -3525,7 +3821,7 @@ When you lock a workstation while Fast User Switching is enabled, such as on Win
 
 To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` command-line tool.
 
-### Logging Off the Current Session
+#### Logging Off the Current Session
 
 You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
 
@@ -3540,7 +3836,7 @@ A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32S
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
-### Shutting Down or Restarting a Computer
+#### Shutting Down or Restarting a Computer
 
 Shutting down and restarting computers are generally the same types of task. Tools that shut down a computer will generally restart it as well—and vice versa. There are two straightforward options for restarting a computer from Windows PowerShell. Use either `Tsshutdn.exe` or `Shutdown.exe` with appropriate arguments. You can get detailed usage information from `tsshutdn.exe /?` or `shutdown.exe /?`.
 
@@ -3552,11 +3848,13 @@ To restart the operating system, use the `Restart-Computer` command
 
 To force an immediate restart, use the -Force parameter. `Restart-Computer -Force`
 
-## Performing Networking Tasks
-    
+
+
+### Performing Networking Tasks
+
 Because TCP/IP is the most commonly used network protocol, most low-level network protocol administration tasks involve TCP/IP. In this section, we use Windows PowerShell and WMI to do these tasks.
 
-### Listing IP Addresses for a Computer
+#### Listing IP Addresses for a Computer
 To get all IP addresses in use on the local computer, use the following command:
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true -ComputerName . | Format-Table -Property IPAddress
@@ -3583,7 +3881,7 @@ To understand why the braces appear, use the `Get-Member` cmdlet to examine the 
 
 The IPAddress property for each network adapter is actually an array. The braces in the definition indicate that IPAddress is not a *System.String* value, but an *array of System.String* values.
 
-### Listing IP Configuration Data\
+#### Listing IP Configuration Data
 
 To display detailed IP configuration data for each network adapter, use the following command:
 
@@ -3597,7 +3895,7 @@ If you are not interested in **IPX** or **WINS** properties—probably the case 
 
 This command returns detailed information about *DHCP, DNS, routing*, and other minor IP configuration properties.
 
-### Pinging Computers
+#### Pinging Computers
 
 You can perform a simple ping against a computer using by `Win32_PingStatus`. The following command performs the ping, but returns lengthy output:
 
@@ -3627,19 +3925,19 @@ Note that this technique for generating a range of addresses can be used elsewhe
 
 		$ips = 1..254 | ForEach-Object -Process {'192.168.1.' + $_}
 
-### Retrieving Network Adapter Properties
+#### Retrieving Network Adapter Properties
 
 Earlier in this user's guide, we mentioned that you could retrieve general configuration properties by using `Win32_NetworkAdapterConfiguration`. Although not strictly TCP/IP information, network adapter information such as MAC addresses and adapter types can be useful for understanding what is going on with a computer. To get a summary of this information, use the following command:
 
 		Get-WmiObject -Class Win32_NetworkAdapter -ComputerName .
         #also
         Get-NetAdapter
-    
 
-### Assigning the DNS Domain for a Network Adapter
+
+#### Assigning the DNS Domain for a Network Adapter
 
 To assign the DNS domain for automatic name resolution, use the Win32_NetworkAdapterConfiguration SetDNSDomain method. Because you assign the DNS domain for each network adapter configuration independently, you need to use a ForEach-Object statement to assign the domain to each adapter:
-  
+
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true -ComputerName . | ForEach-Object -Process { $_. SetDNSDomain('fabrikam.com') }
 
 
@@ -3649,7 +3947,7 @@ You can filter the command by using the `Where-Object` cmdlet, instead of using 
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName . | Where-Object -FilterScript {$_.IPEnabled} | ForEach-Object -Process {$_.SetDNSDomain('fabrikam.com')}
 
-### Performing DHCP Configuration Tasks
+#### Performing DHCP Configuration Tasks
 
 Modifying DHCP details involves working with a set of network adapters, just as the DNS configuration does. There are several distinct actions you can perform by using WMI, and we will step through a few of the common ones.
 
@@ -3736,3 +4034,383 @@ The net use command works as well:
 		net use B: \\FPS01\users
 
 Drives mapped with either WScript.Network or net use are immediately available to Windows PowerShell.
+
+
+
+## Useful things to do
+
+### Get Environment Vars
+
+You can navigate to the environment like a directory.
+
+```ps1
+Set-Location Env:
+Get-ChildItem
+
+gci Env: #also works ENV: and env: but not Env (no colon)
+
+#b
+Get-Item -path Env:* | Get-Member
+```
+`$` is required when you get to directly referencing it `$Env:windir`
+
+
+#### Append values to path (in Powershell)
+
+To append ";c:\temp" to the value of the Path environment variable, use the following syntax:
+
+```ps1
+$Env:path += ";c:\temp"
+
+Add-Content -Path $Profile.CurrentUserAllHosts -Value '$Env:Path += ";C:\Temp"'
+```
+
+Environment Variables That Store Preferences
+
+`$Env:PSExecutionPolicyPreference` Stores the execution policy set for the current session. Note- this only exists if set explicitly for that session (either passed as a startup arg, or using explicit command `Set-ExecutionPolicy`)
+
+` $Env:PSModulePath` on Windows the default is: `$HOME\Documents\WindowsPowerShell\Modules;$PSHOME\Modules`
+
+and on Linux or Mac
+
+`$HOME/.local/share/powershell/Modules:/usr/local/share/powershell/Modules:$PSHOME/Modules`
+
+
+!!!Attention Attention: On _Windows-_ the _semicolon_ ( ` ; ` ) in the command separates the new path from the path that precedes it in the list, while On _Linux_ or MacOS, the colon ( ` : ` ) in the command separates the new path from the path that precedes it in the list.
+
+For example, to add the *"C:\Program Files\Fabrikam\Modules" directory* to the value of the PSModulePath environment variable
+
+        `$Env:PSModulePath += ";C:\Program Files\Fabrikam\Modules"`
+
+On Linux or MacOS, to add the "/usr/local/Fabrikam/Modules" directory to the value of the PSModulePath environment variable, type:
+
+        $Env:PSModulePath += ":/usr/local/Fabrikam/Modules"
+
+### Search for files
+
+Better than Windows Search
+
+[More Info and Ideas](https://devblogs.microsoft.com/scripting/use-windows-powershell-to-search-for-files/)
+
+`gci -force -recurse -ErrorAction SilentlyContinue -Include *.exe | Where-Object { $_.BaseName -like "RTools"}`
+
+using comaprison operators:
+
+Use comparison operators (-eq, -ne, -gt, -lt, -le, -ge) to compare values and test conditions. For example, you can compare two string values to determine whether they are equal.
+
+The comparison operators also include operators that find or replace patterns in text. The (-match, -notmatch, -replace) operators use regular expressions, and (-like, -notlike) use wildcards *.
+
+Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
+
+### Loading Modules
+
+[Online Module Browser](https://docs.microsoft.com/en-us/powershell/module/)
+[Special Modules?](https://docs.microsoft.com/en-us/powershell/module/dataprotectionmanager/?view=systemcenter-ps-2016)
+[Microsoft Modules](https://docs.microsoft.com/en-us/powershell/module/?view=win10-ps)
+[https://www.powershellgallery.com/](https://www.powershellgallery.com/)
+
+ImportSystemModules
+`Get-InstalledModule` - Lists (Locally available Modules)\
+
+`Import-Module [NAME]` - Will import the given module.
+
+Some useful ones:
+ISEScriptingGeek
+ISEScriptAnalyzerAddOn
+ISEModuleBrowserAddon
+
+```powershell
+Set-Alias immo Import-Module
+immo ScriptBrowser
+IseSteroids
+ISEScriptAnalyzerAddOn
+ISEModuleBrowserAddon
+ScriptBrowser
+```
+
+Install-Package ISEModuleBrowserAddOn
+Install-Package ISEScriptAnalyzerAddOn
+
+> Find-Module -Name "*ISE*"  #REquires the "*"
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Find-Module                                        2.1.2      PowershellGet
+Function        Get-InstalledModule                                2.1.2      PowerShellGet
+Function        Install-Module                                     2.1.2      PowershellGet
+Function        Publish-Module                                     2.1.2      PowershellGet
+Function        Save-Module                                        2.1.2      PowershellGet
+Function        Uninstall-Module                                   2.1.2      PowershellGet
+Function        Update-Module                                      2.1.2      PowershellGet
+Cmdlet          Get-Module                                         3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Import-Module                                      3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          New-Module                                         3.0.0.0    Microsoft.PowerShell.Core
+Cmdlet          Remove-Module                                      3.0.0.0    Microsoft.PowerShell.Core
+Export-ModuleMember
+ImportSystemModules
+InModuleScope
+New-ModuleManifest
+Test-ModuleManifest
+Update-ModuleManifest
+
+### Get Commands
+
+
+
+
+Get-Command -Module ScriptBrowser | Select-Object -Property Name
+
+
+Get-Command -Module ISEScriptingGeek | Select-Object -Property Name | Format-Wide -Column 2
+
+1
+Install-Module -Name ISEScriptingGeek -Force -Verbose
+
+### Write Lines
+
+Add-Content c:\scripts\test.txt "The End"
+By default, data is appended after the last character. If you want to append the data on a new line in the text document, use 'n. are some other special characters that can be used with add-content cmdlet.
+
+Here are some other special characters that can be used with the add-content cmdlet.
+
+`0 -- Null
+`a -- Alert
+`b -- Backspace
+`n -- New line
+`r -- Carriage return
+`t -- Horizontal tab
+`' -- Single quote
+`" -- Double quote
+
+
+### Turn off the screen
+
+`(Add-Type '[DllImport("user32.dll")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
+
+or in Command prompt:
+
+`powershell (Add-Type '[DllImport(\"user32.dll\")]^public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
+
+### Get Module Properties
+
+```powershell
+#Example
+Get-Module -Name ISESteroids | Get-Member -MemberType Property | Format-Table Name
+#Just lists a bunch of useless fields
+Get-Module -Name ISESteroids | Get-Member -MemberType Property | Out-Gridview
+
+#Example
+Get-Module -ListAvailable -All | Format-Table -Property Name, Moduletype, Path -Groupby Name
+
+#Combining the two gives me the information of Path I wanted
+Get-Module -Name ISESteroids | Format-Table -Property Name, Moduletype, Path -Groupby Name
+
+```
+
+### Get The Commands in a Module
+
+- **Example 1: Get cmdlets, functions, and aliases** `PS C:\>Get-Command` This command gets the Windows PowerShell cmdlets, functions, and aliases that are installed on
+the computer.
+
+- **Example 2: Get commands in the current session** `Get-Command -ListImported` This command uses the ListImported parameter to get only the commands in the current session.
+
+- **Example 3: Get cmdlets and display them in order** `Get-Command -Type Cmdlet | Sort-Object -Property Noun | Format-Table -GroupBy Noun` This command gets all of the cmdlets, sorts them alphabetically by the noun in the cmdlet name, and then displays them in noun-based groups. This display can help you find the cmdlets for a task.
+
+- **Example 4: Get commands in a module** `Get-Command -Module Microsoft.PowerShell.Security, PSScheduledJob`  This command uses the Module parameter to get the commands in the Microsoft.PowerShell.Security and PSScheduledJob modules.
+
+- **Example 5: Get information about a cmdlet** `Get-Command Get-AppLockerPolicy`  This command gets information about the Get-AppLockerPolicy cmdlet. It also imports the AppLocker module, which adds all of the commands in the AppLocker module to the current session.
+
+  - When a module is imported automatically, the effect is the same as using the Import-Module cmdlet. The module can add commands, types and formatting files, and run scripts in the session.
+
+- **Example 8: Get all commands of all types** `Get-Command *` This command gets all commands of all types on the local computer, including executable files in the paths of the Path environment variable ($env:path). It returns an ApplicationInfo object System.Management.Automation.ApplicationInfo) for each file, not a FileInfo object (System.IO.FileInfo)
+
+- **Example 9: Get cmdlets by using a name** `Get-Command -ParameterName *Auth* -ParameterType AuthenticationMechanism` This command gets cmdlets that have a parameter whose name includes Auth and whose type is AuthenticationMechanism . You can use a command like this one to find cmdlets that let you specify the method that is used to authenticate the user. The ParameterType parameter distinguishes parameters that take an AuthenticationMechanism value from those that take an AuthenticationLevel parameter, even when they have similar names.
+
+- **Example 10: Get an alias** `Get-Command dir` This example shows how to use the Get-Command cmdlet with an alias. Although it is typically used on cmdlets and functions, Get-Command also gets scripts, functions, aliases, workflows, and executable files.
+
+```
+CommandType     Name                                               ModuleName
+-----------     ----                                               ----------
+Alias           dir -> Get-ChildItem
+```
+
+- - The output of the command shows the special view of the Name property value for aliases. The view
+shows the alias and the full command name.
+- **Example 11: Get all instances of the Notepad command** `Get-Command Notepad -All | Format-Table CommandType, Name, Definition` This example uses the All parameter of the Get-Command cmdlet to show all instances of the "Notepad" command on the local computer. The All parameter is useful when there is more than one command with the same name in the session.
+
+```
+CommandType     Name           Definition
+-----------     ----           ----------
+Application     notepad.exe    C:\WINDOWS\system32\notepad.exe
+Application     NOTEPAD.EXE    C:\WINDOWS\NOTEPAD.EXE
+```
+
+### Set the default output as verbose
+
+By default Powershell doesn't show Verbose output.  This is in a preference variable.  It can be changed by changing the value of the variable `$VerbosePreference`.  Simply calling `$VerbosePreference` will get the current setting.  Must be one of: `[SilentlyContinue], Stop, Continue, Inquire, Ignore, Suspend`.
+
+[More Information](https://blogs.technet.microsoft.com/heyscriptingguy/2014/07/30/use-powershell-to-write-verbose-output/)
+
+It is not recommended to set this in your profile simply.
+
+```powershell
+$VerbosePreference = "Continue"  # "Silently Continue" [Default],
+```
+
+### Fix DICOM Errors
+
+Need [Grant, Revoke, Get DCOM permissions using PowerShell](https://gallery.technet.microsoft.com/Grant-Revoke-Get-DCOM-22da5b96)
+It can be installed via ScriptBrowser
+
+```powershell
+cd "C:\Users\andyt\Documents\WindowsPowerShell\Scripts\Grant-Revoke-Get-DCOM-22da5b96\DCOMPermissions"
+Import-Module .\DCOMPermissions.psm1
+Grant-DComPermission -ApplicationID "{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}" -Account "SYSTEM" -Type Launch -Permissions LocalLaunch,LocalActivation -OverrideConfigurationPermissions
+```
+
+### Check if a directory exists and create it if not
+
+THis was designed to work with VS-Code, it might not be universal
+
+
+try{ Test-Path  -EA Stop ~\md; cd md\} catch {mkdir ~\md\; cd md\}
+
+### Check if a file exists
+
+PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMFile
+True
+
+PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMWrong
+False
+
+
+### Check if a process exists
+
+```ps1
+PS> test (get-Process |where {$_.name -eq “PowerShell”})
+TRUE
+PS> test (get-Process |where {$_.name -eq “NoSuchProcess”})
+FALSE
+```
+
+### Customize the Windows PowerShell prompt
+
+```powershell
+PS C:\>
+function prompt { 'PowerShell: ' + (get-location) + '> '}
+PowerShell: C:\WINDOWS>
+```
+
+This example shows how to customize the Windows PowerShell prompt. The function that defines the prompt includes a Get-Location command, which is run whenever the prompt appears
+in the console.
+
+The format of the default Windows PowerShell prompt is defined by a special function named prompt. You can change the prompt in your console by creating a new function named
+prompt.
+
+To see the current prompt function, type the following command: `Get-Content Function:prompt`
+
+The command begins with the function keyword followed by the function name, prompt. The function body appears within braces ( {} ).
+
+This command defines a new prompt that begins with the string PowerShell: . To append the current location, it uses a Get-Location command, which runs when the prompt function is
+called. The prompt ends with the string "> ".
+
+### Get Files
+
+Get the files in a directory
+
+```ps1
+C:\PS>Get-ChildItem -Attributes !Directory,!Directory+Hidden
+C:\PS> dir -att !d,!d+h
+```
+
+These command get all files, including hidden files, in the current directory, but exclude subdirectories. The second command uses aliases and abbreviations, but has the same effect as
+the first.
+
+`get-childitem -name`   This command retrieves only the names of items in the current directory
+
+### VHDs
+
+```ps1
+Set-Location -Path 'O:\Portable'
+Get-VHD -Path .\PortableVHD.vhdx
+Get-Command -Noun *VHD*
+
+   6 $VHD = Get-VHD -Path .\PortableVHD.vhdx
+   7 Resize-VHD -Path $VHD
+   8 Get-Help Resize-VHD
+   9 Get-Help Resize-VHD -examples
+  10 Get-VHD -Path .\PortableVHD.vhdx
+  11 1046495744 / 1024
+  12 1021968 / 1024
+  13 Get-Help Convert-VHD
+  14 Resize-VHD -Path $VHD -SizeBytes 8GB
+  15 $VHD = Get-VHD -Path .\PortableVHD.vhdx
+  16 $VHD
+  17 Resize-VHD -Path $VHD.Path -SizeBytes 8GB -Verbose -Debug
+  18 $VHD
+  19 Get-VHD -Path .\PortableVHD.vhdx
+```
+
+
+
+### Count Folder Items
+
+(gl|gci|measure).Count  count folder items
+
+
+### Copy all of a type somewhere else
+
+gci -Recurse -File -Include "*.ttf" -Name | copy-item -Destination .\^
+
+
+### Install Fonts
+
+```ps1
+param(
+[Parameter(Mandatory=$true,Position=0)]
+[ValidateNotNull()]
+[array]$pcNames,
+[Parameter(Mandatory=$true,Position=1)]
+[ValidateNotNull()]
+[string]$fontFolder
+)
+$padVal = 20
+$pcLabel = "Connecting To".PadRight($padVal," ")
+$installLabel = "Installing Font".PadRight($padVal," ")
+$errorLabel = "Computer Unavailable".PadRight($padVal," ")
+$openType = "(Open Type)"
+$regPath = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
+$objShell = New-Object -ComObject Shell.Application
+if(!(Test-Path $fontFolder))
+{
+    Write-Warning "$fontFolder - Not Found"
+}
+else
+{
+    $objFolder = $objShell.namespace($fontFolder)
+    foreach ($pcName in $pcNames)
+    {
+        Try{
+            Write-Output "$pcLabel : $pcName"
+            $null = Test-Connection $pcName -Count 1 -ErrorAction Stop
+            $destination = "\\",$pcname,"\c$\Windows\Fonts" -join ""
+            foreach ($file in $objFolder.items())
+            {
+                $fileType = $($objFolder.getDetailsOf($file, 2))
+                if(($fileType -eq "OpenType font file") -or ($fileType -eq "TrueType font file"))
+                {
+                    $fontName = $($objFolder.getDetailsOf($File, 21))
+                    $regKeyName = $fontName,$openType -join " "
+                    $regKeyValue = $file.Name
+                    Write-Output "$installLabel : $regKeyValue"
+                    Copy-Item $file.Path  $destination
+                    Invoke-Command -ComputerName $pcName -ScriptBlock { $null = New-ItemProperty -Path $args[0] -Name $args[1] -Value $args[2] -PropertyType String -Force } -ArgumentList $regPath,$regKeyname,$regKeyValue
+                }
+            }
+        }
+        catch{
+            Write-Warning "$errorLabel : $pcName"
+        }
+    }
+}
+```

@@ -333,6 +333,9 @@
     "markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
     "markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
     "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true,
+    "files.associations": {
+      "*.yaml": "home-assistant"
+    },
   },
   "launch": {
     "configurations": [],

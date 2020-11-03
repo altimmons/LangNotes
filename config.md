@@ -139,3 +139,87 @@ Example: White with opacity 0.9
  "color: white;background-image: url(https://images.pexels.com/photos/1382393/pexels-photo-1382393.jpeg?dl&fit=crop&crop=entropy&w=1920&h=1280);background-size: cover;background-position: 0% 80%;opacity: 0.2",
  "color: white;background-image: url(https://images.pexels.com/photos/1382393/pexels-photo-1382393.jpeg?dl&fit=crop&crop=entropy&w=1920&h=1280);background-size: cover;background-position: 0% 90%;opacity: 0.2",
 
+
+## Snippets
+
+
+Assign keybindings to snippets#
+You can create custom keybindings to insert specific snippets. Open keybindings.json (Preferences: Open Keyboard Shortcuts File), which defines all your keybindings, and add a keybinding passing "snippet" as an extra argument:
+
+{
+  "key": "cmd+k 1",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus",
+  "args": {
+    "snippet": "console.log($1)$0"
+  }
+}
+The keybinding will invoke the Insert Snippet command but instead of prompting you to select a snippet, it will insert the provided snippet. You define the custom keybinding as usual with a keyboard shortcut, command id, and optional when clause context for when the keyboard shortcut is enabled.
+
+Also, instead of using the snippet argument value to define your snippet inline, you can reference an existing snippet by using the langId and name arguments:
+
+{
+  "key": "cmd+k 1",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus",
+  "args": {
+    "langId": "csharp",
+    "name": "myFavSnippet"
+  }
+}
+
+Known language identifiers
+The following table lists known language identifiers:
+
+Language	Identifier
+ABAP	abap
+Windows Bat	bat
+BibTeX	bibtex
+Clojure	clojure
+Coffeescript	coffeescript
+C	c
+C++	cpp
+C#	csharp
+CSS	css
+Diff	diff
+Dockerfile	dockerfile
+F#	fsharp
+Git	git-commit and git-rebase
+Go	go
+Groovy	groovy
+Handlebars	handlebars
+HTML	html
+Ini	ini
+Java	java
+JavaScript	javascript
+JavaScript React	javascriptreact
+JSON	json
+JSON with Comments	jsonc
+LaTeX	latex
+Less	less
+Lua	lua
+Makefile	makefile
+Markdown	markdown
+Objective-C	objective-c
+Objective-C++	objective-cpp
+Perl	perl and perl6
+PHP	php
+PowerShell	powershell
+Pug	jade
+Python	python
+R	r
+Razor (cshtml)	razor
+Ruby	ruby
+Rust	rust
+SCSS	scss (syntax using curly brackets), sass (indented syntax)
+ShaderLab	shaderlab
+Shell Script (Bash)	shellscript
+SQL	sql
+Swift	swift
+TypeScript	typescript
+TypeScript React	typescriptreact
+TeX	tex
+Visual Basic	vb
+XML	xml
+XSL	xsl
+YAML	yaml

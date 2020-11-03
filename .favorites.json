@@ -1,0 +1,127 @@
+[
+    {
+        "type": "Group",
+        "name": "Notes",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "dfJU5wBauzWSXYML"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\Java.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\Java.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "YqWOhsvSAwn6G4Ho"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\Linux.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\Linux.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "clKEnGm1qikY7owN"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\Arduino.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\Arduino.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "zPtCvTUyMEHoa6pV"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\AutoHotKey.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\AutoHotKey.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "qyZ4MmA0GVXb15xT"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\C# Notes.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\C# Notes.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "EvZg16CK5lihAWP3"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\Cpp.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\Cpp.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wFqL5sIhvlicOnHK"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\IOT.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\IOT.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "atejiVG2I5vOMU4E"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\PowerShell.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\PowerShell.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "eV9YAZXf6urpKhx5"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\Python.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\Python.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "OSrkN4tRqJW2jTHD"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\R.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\R.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "0bfgDH1RhMt9Gecl"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\WindowsAdmin.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\WindowsAdmin.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "l7bzUHXDZ2MIPukW"
+    },
+    {
+        "type": "File",
+        "name": "c:\\ASUSsync\\VS Code\\md\\VSCodeNotes.md",
+        "parent_id": "dfJU5wBauzWSXYML",
+        "fsPath": "c:\\ASUSsync\\VS Code\\md\\VSCodeNotes.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "ikFjrISOyHvXdMx8"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\JetBrains_Settings\\PostFix\\CustomPostfix.postfixTemplates",
+        "parent_id": null,
+        "fsPath": "o:\\OneDrive\\Programming\\JetBrains_Settings\\PostFix\\CustomPostfix.postfixTemplates",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "wGuZxQS7LK6bVp3z"
+    }
+]

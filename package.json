@@ -1,0 +1,19 @@
+{
+  "name": "md",
+  "version": "1.0.0",
+  "description": "The modules required for running the various plugins I use for my personal vs Code markdown setup",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-mark": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy Timmons",
+  "license": "MIT"
+}

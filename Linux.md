@@ -110,6 +110,8 @@ alt 2639
       - `sda` 
       - `sdb` ... etc- hard disk mounting.
    - `etc` - Et cetera - "edit to configure" mneumonic- system wide settings- not per user settings
+     - `network` - network settings location
+     - `init.d` - startup directory
    - `home` 
    - `lib`
       -`lib32`, `lib64` - libraries required for bin
@@ -199,6 +201,52 @@ chmod o+rw /home/youruserna
 `alias python ='/usr/bin/python3.7'`
 
 ## Useful commands
+
+- `lscpu` - reports information about the cpu and processing units
+- `lshw`-  reports detailed and brief information about multiple different hardware units such as cpu, memory, disk, usb controllers, network adapters etc. Lshw extracts the information from different /proc files.
+- `hwinfo` - report detailed and brief information about multiple different hardware components, and more than what lshw can report.
+- `lspci` -  lists out all the pci buses and details about the devices connected to them. The vga adapter, graphics card, network adapter, usb ports, sata controllers, etc all fall under this category.
+- `lsscsi` -Lists out the scsi/sata devices like hard drives and optical drives.
+- `lsusb` - hows the USB controllers and details about devices connected to them. 
+  -  Use the verbose option `-v` to print detailed information about each usb port
+- `inxi` -  Inxi is a 10K line mega bash script that fetches hardware details from multiple different sources and commands on the system, and generates a beautiful looking report that non technical users can read easily.
+- `lsblk`- List out information all block devices, which are the hard drive partitions and other storage devices like optical drives and flash drives
+- `df` - Reports various partitions, their mount points and the used and available space on each.
+- `pydf` - improved version of the above.
+- `fdisk` -  modify parts and list out parts.
+- `mount` - The mount is used to mount/unmount and view mounted file systems.
+
+- Others - 
+    - lslocks
+    - lsmem
+    - lsns
+    - lssubsys
+    - lsusb.py
+    - lsattr
+    - lscgroup\
+    - lsdev
+    - lsipc
+    - lslogins
+    - lsmod
+    - lsof
+    - lsscsi
+    -  lsusb
+
+    sudo lshw -C network
+
+    ip link
+    
+`cat /proc/block` - lets you look at the devices in proc.  
+
+
+systemctl - lists running services
+systemd - can list startup routine
+ifconfig - net interfaces
+iwconfig -wireless
+sudo apt install network-manager network-manager-gnome
+wicd - another network manager
+  wicd-curses - cli gui
+xbindkeys - a grabbing keys program for X
 
 ### Show Toilet Fonts
 
@@ -1591,7 +1639,24 @@ network configuration?
 
 /etc/network/dhcpcd.conf
 
-#### Renpptomg
+
+
+### Motion Eye
+
+[Motion-Eye OS](https://github.com/ccrisan/motioneyeos)
+
+[Releases](https://github.com/ccrisan/motioneyeos/releases)
+
+#### Take image
+
+raspistill -o /home/pi/Pictures/test.jpg
+
+Flags:
+- `-o` Output [Directory]
+- `-vf` Vertical Flip
+- `-hf` Horizontal Flip
+
+#### Rebooting
 
 `systemctl reboot -i`
 or
@@ -1605,6 +1670,45 @@ Show interface summary in a table
 `netstat -i`
 
 `ifconfig`
+
+
+What you will need, in order to be able to establish this connection, are the following:
+
+`ifconfig`: Enable your wireless device.
+`iwlist`: List the available wireless access points.
+`iwconfig`: Configure your wireless connection.
+`dhclient`: Get your IP Address via dhcp.
+`wpa_supplicant`: For use with WPA authentication.
+
+Make sure you have all of the above tools o  your computer before you continue. To test for this tools you can, from within your terminal window, issue the commands:
+
+which ifconfig
+which iwlist
+which iwconfig
+which dhclient
+which wpa_supplicant
+
+
+`ifconfig wlan0 up`
+
+Where wlan0 is the name of your wireless device (this is most often the default). The above command will bring your wireless device up so it is ready to use. 
+
+scan for any wireless access points with the command:
+
+`iwlist wlan0 scan`
+
+
+ESSID: "NETWORK_NAME"
+
+iwconfig wlan0 essid NETWORK_NAME key WIRELESS_KEY
+
+Where NETWORK_NAME is the name of the network you want to connect to and WIRELESS_KEY is the security key for that network. NOTE: The iwconfig command defaults to HEX values for wireless keys. If you need to use ascii you have to prepend the “s” prefix to your key like so:
+
+iwconfig wlan0 essid NETWORK_NAME key s:WIRELESS_KEY
+
+With your connection made, you now have to get an IP address for your machine using the dhclient command like:
+
+dhclient wlan0
 
 #### "Unable to resolve hostname "hostname"
 
@@ -1733,6 +1837,7 @@ Unprivileged socket to the master daemon, only allows state retrieval.
 /run/dhcpcd-interface.sock
 Control socket to per interface daemon.
 
+
 #### sudo (Superuser DO)
 
 Get a root shell `sudo -i`
@@ -1773,6 +1878,18 @@ echo "hello again" | sudo tee -a /home/test.txt
 
 
 ## Setting up Linux
+
+## Users
+
+`id`
+
+`cat /etc/passwd`
+
+c
+
+https://www.lifewire.com/create-users-useradd-command-3572157
+
+
 
 ### Adding Windows Network Share--
 
@@ -1933,3 +2050,4 @@ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe"
 sudo apt-get update
 sudo apt-get install system-config-lvm
 
+## LK

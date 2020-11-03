@@ -29,6 +29,10 @@ Good-
 [Official- Brief Tour of the Std Library](https://docs.python.org/3.8/tutorial/stdlib.html)
 (https://docs.python.org/3.8/tutorial/stdlib2.html)
 
+## Troubleshooting
+
+ fixed once I fixed register variable HKEY_CLASSES_ROOT\Applications\python.exe\shell\open\command to proper location of Python interpreter e.g "C:\Python36\python.exe" "%1" %*
+
 ## BASICS
 
 On linux it is stored in `/usr/local/bin/python<maj-ver>.<min-ver>` Or it could be specified in anohter dir.
@@ -78,6 +82,13 @@ Uninstall Options
   `-r`, `--requirement <file>`    Uninstall all the packages listed in the given requirements file.  This option can be used multiple times.
   `-y`, `--yes`                   Don't ask for confirmation of uninstall deletions.
 
+### Find out where something is installed
+
+`pip show sympy`
+
+the show command lists the directory.
+
+Allegedly things are saved in %APPDATA%\pip or something. But not for mine.con
 ## Environments
 
 ### Virtualenv
@@ -1368,7 +1379,38 @@ Squarebrackets after the string or variable subset. 0 indexed and non-inclusive.
 aVar = "Hello"
 aVar[0] #=H
 aVar[0:3] #=Hel
+
+
+#string from 0-8(non inclusive @9) by 2
+print("abcdefghi"[0:9:2])
+>>>acegi
+
+print("a a a".rsplit(None, 1)
+>>>['a a', 'a']
+
+
+
+print("abc".ljust(10))
+"%-10s" % s  #same as above
+"{:<10}".format(s)  #same as above
+
+
+print("abc".rjust(10))
+"% 10s" % s #same as above
+"{:>10}".format(s).  #same as above
+
+
+print(str(b"abc", encoding="utf8"))
+
+
+print("{a[0]}".format(a=[1, 2]))
+>>>1
+
+
+print("abc".endswith("c", 1))
+>>>True
 ```
+
 
 #### Split
 
@@ -2588,6 +2630,24 @@ print(max(to_do_list))
 
 #Get the minimum item in list
 print(min(to_do_list))
+```
+
+#### List store with step
+
+```py
+l = [1, 2, 3, 4]
+l[0:4:2] = [5, 6]
+print(l)
+>>>[5, 2, 6, 4]
+```
+
+List slice-store 
+
+```py
+l = [10, 20]
+l[0:1] = range(4)
+print(l)
+>>>[0, 1, 2, 3, 20]
 ```
 
 #### List vs. Tuples - MIT Class Example
