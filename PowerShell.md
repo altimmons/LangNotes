@@ -12,6 +12,20 @@ Brings up the command browser in command line
 `SHOW-COMMAND`
 
 
+## Common Examples:
+```powershell
+# Three ways to filter sets.
+Get-ChildItem . -File | select -First 1 | foreach -Process { $_.Extension}
+Get-ChildItem . -File | where -Property Extension -EQ -Value ".zip"
+Get-ChildItem . -File | select -First 1 | select -Property Extension
+#take out select -first for the whole set
+#this does not work, though examples suggest it should
+ Get-ChildItem .  -Include '*.zip' -File
+
+
+Write-Warning -Message "Folder ``$(gl).Path`' is not empty as expected."
+#backtick = escape. "" allows substitutions '' does not, its literal
+```
 ## References:
 
 [Getting Started with Powershell](https://docs.microsoft.com/en-us/powershell/scripting/powershell-scripting)
@@ -640,6 +654,8 @@ PS> 'don''t'
 ##### String Actions
 
 `get-member -InputObject String`
+
+`[String] | gm` also works.
 
 Methods:
 
@@ -4414,3 +4430,192 @@ else
     }
 }
 ```
+
+
+## Displaying Markdown
+
+[More Here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/show-markdown?view=powershell-7)
+
+Show-Markdown
+Module: Microsoft.PowerShell.Utility
+
+Shows a Markdown file or string in the console in a friendly way using VT100 escape sequences or in a browser using HTML.
+
+```ps1
+Show-Markdown
+    [-Path] <String[]>
+    [-UseBrowser]
+    [<CommonParameters>]
+PowerShell
+
+Show-Markdown
+    -InputObject <PSObject>
+    [-UseBrowser]
+    [<CommonParameters>]
+PowerShell
+
+Show-Markdown
+    -LiteralPath <String[]>
+    [-UseBrowser]
+    [<CommonParameters>]
+```
+
+
+### Description
+The Show-Markdown cmdlet is used to render Markdown in a human readable format either in a terminal or in a browser.
+
+`Show-Markdown` can return a string that includes the VT100 escape sequences which the terminal renders (if it supports VT100 escape sequences). This is primarily used for viewing Markdown files in a terminal. You can also get this string via the ConvertFrom-Markdown by specifying the AsVT100EncodedString parameter.
+
+`Show-Markdown` also has the **ability to open a browser and show you a rendered version of the Markdown.** It renders the Markdown by turning it into HTML and opening the HTML file in your default browser.
+
+You can change how Show-Markdown renders Markdown in a terminal by using Set-MarkdownOption.
+
+This cmdlet was introduced in PowerShell 6.1.
+
+
+```ps1
+#Example 1: Simple example specifying a path
+
+Show-Markdown -Path ./README.md
+
+#Example 2: Simple example specifying a string
+
+@"
+# Show-Markdown
+
+## Markdown
+
+You can now interact with Markdown via PowerShell!
+
+*stars*
+__underlines__
+"@ | Show-Markdown
+
+#Example 2: Opening Markdown in a browser
+
+Show-Markdown -Path ./README.md -UseBrowser
+```
+
+### Parameters
+- `-InputObject`
+ - A Markdown string that will be shown in the terminal. If you do not pass in a supported format, Show-Markdown will emit an error.
+    - Type: - [[*PSObject*]]
+    - Position: - ***Named***
+    - Default value: - **None**
+    - Accept pipeline input: - **True**
+    - Accept wildcard characters: - **False**
+- `-LiteralPath` - Specifies the path to a Markdown file. Unlike the Path parameter, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell PowerShell not to interpret any characters as escape sequences.
+    - Type: - *String[]*
+    - Aliases: - *PSPath, LP*
+    - Position: - ***Named***
+    - Default value: - **None**
+    - Accept pipeline input: - **True**
+    - Accept wildcard characters: - **False**
+- `-Path` - Specifies the path to a Markdown file to be rendered.
+    - Type: - *String[]*
+    - Position: - *0*
+    - Default value: - **None**
+    - Accept pipeline input: - **True**
+    - Accept wildcard characters: - **True**
+- `-UseBrowser` - Compiles the Markdown input as HTML and opens it in your default browser.
+    - Type: - *SwitchParameter*
+    - Position: - ***Named***
+    - Default value: - **False**
+    - Accept pipeline input: - **False**
+    - Accept wildcard characters: - **False**
+
+
+###   Set-MarkdownOption
+
+[Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-markdownoption?view=powershell-7)
+
+
+Module: Microsoft.PowerShell.Utility
+
+Sets the colors and styles used for rendering Markdown content in the console.
+
+#### Syntax
+
+```ps1
+Set-MarkdownOption
+   [-Header1Color <String>]
+   [-Header2Color <String>]
+   [-Header3Color <String>]
+   [-Header4Color <String>]
+   [-Header5Color <String>]
+   [-Header6Color <String>]
+   [-Code <String>]
+   [-ImageAltTextForegroundColor <String>]
+   [-LinkForegroundColor <String>]
+   [-ItalicsForegroundColor <String>]
+   [-BoldForegroundColor <String>]
+   [-PassThru]
+   [<CommonParameters>]
+
+Set-MarkdownOption
+   [-PassThru]
+   -Theme <String>
+   [<CommonParameters>]
+
+Set-MarkdownOption
+   [-PassThru]
+   [-InputObject] <PSObject>
+   [<CommonParameters>]
+```
+
+#### Description
+
+Sets the colors and styles used for rendering Markdown content in the console. These styles are defined using ANSI escape codes that change the color and style of the Markdown text being rendered.
+
+
+For more information about Markdown, see the CommonMark website.
+
+#### Note
+
+The string values used in the settings are the characters that follow the Escape character ([char]0x1B) for the ANSI escape sequence. Do not include the Escape character in the string. For more information about ANSI escape codes work, see ANSI_escape_code.
+
+#### Examples
+
+```ps1
+# Example 1 - Switch to the Light Theme
+# This example selects the Light theme and displays the new configuration using the PassThru parameter.
+
+Set-MarkdownOption -Theme Light -PassThru
+
+Header1         : [7m
+Header2         : [4;33m
+Header3         : [4;34m
+Header4         : [4;35m
+Header5         : [4;36m
+Header6         : [4;30m
+Code            : [48;2;155;155;155;38;2;30;30;30m
+Link            : [4;38;5;117m
+Image           : [33m
+EmphasisBold    : [1m
+EmphasisItalics : [36m
+# Example 2 - Customize the color and style settings
+#This example changes the escape code for the Markdown headers. The default configuration for headers renders them as underlined text of various colors. This change removes the underline style.
+
+$mdOptions = Get-MarkdownOption
+$mdOptions.Header2 = '[93m'
+$mdOptions.Header3 = '[94m'
+$mdOptions.Header4 = '[95m'
+$mdOptions.Header5 = '[96m'
+$mdOptions.Header6 = '[97m'
+
+Set-MarkdownOption -InputObject $mdOptions -PassThru
+
+Header1         : [7m
+Header2         : [93m
+Header3         : [94m
+Header4         : [95m
+Header5         : [96m
+Header6         : [97m
+Code            : [48;2;155;155;155;38;2;30;30;31m
+Link            : [4;38;5;117m
+Image           : [33m
+EmphasisBold    : [1m
+EmphasisItalics : [36m
+```
+
+Parameters see link 

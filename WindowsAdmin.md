@@ -3102,6 +3102,10 @@ passing this will output an HTML file into the file you are in.
 
 ### netsh
 
+
+
+[more](### Network Trace)
+
 View the Windows Network Config Script:
 
 This shows all the settings
@@ -3685,6 +3689,10 @@ Microsoft r TypePerf.exe (10.0.18362.1)
 
 ### BCDEdit
 
+[Referencce](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcdboot-command-line-options-techref-di)
+
+
+
 #### Safemode
 
 Re-allow the **F8** menu upon startup. May not work with Windows 10.
@@ -3767,6 +3775,36 @@ diskpart
     delete partition override
     exit
 ```
+
+### BootCFG
+
+Configures, queries, or changes Boot.ini file settings.
+
+[Windows Server Doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg)
+
+
+
+Much of this is similar to the boot control in the System info box.
+
+Parameter Description
+- `bootcfg addsw` - Adds operating system load options for a specified operating system entry.
+- `bootcfg copy` - Makes a copy of an existing boot entry, to which you can add command-line options.
+- `bootcfg dbg1394` - Configures 1394 port debugging for a specified operating system entry.
+- `bootcfg debug` - Adds or changes the debug settings for a specified operating system entry.
+- `bootcfg default` - Specifies the operating system entry to designate as the default.
+- `bootcfg delete` - Deletes an operating system entry in the [operating systems] section of the Boot.ini file.
+- `bootcfg ems` - Enables the user to add or change the settings for redirection of the Emergency Management Services console to a remote computer.
+- `bootcfg query` - Queries and displays the [boot loader] and [operating systems] section entries from Boot.ini.
+- `bootcfg raw` - Adds operating system load options specified as a string to an operating system entry in the [operating systems] section of the Boot.ini file.
+- `bootcfg rmsw` - Removes operating system load options for a specified operating system entry.
+- `bootcfg timeout` - Changes the operating system time-out value.
+
+Most interesting probably is `bootcfg debug` [Basic doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-debug)
+
+
+    bootcfg /debug on /port com1 /id 2
+    bootcfg /debug edit /port com2 /baud 19200 /id 2
+    bootcfg /s srvmain /u maindom\hiropln /p p@ssW23 /debug off /id 2
 
 ###  wmic
 
@@ -4622,12 +4660,30 @@ image type as the filename suffix (i.e. image.ps).  Specify 'file' as
 `magick montage -label %t -tile 10x20 *.png -resize 128x128  ..\FlatIcons(png)-index.html` does  work - out puts out1.png, out2.png
 out.gif also works, about half the size. out.html produces html and a mapped png.
 
+This wrs 
+    magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -frame 2 -title PNGPicsheet##  .\index.mpc
+
+magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title PNGPicsheet##  .\index.gif
+
+warning - outputting as a gif takes a **really** long time. Like 1000x longer.  Outputting as an mpc is much faster, but not transferrable
+Output as *.png is MUCH faster.
+
+Also putting `-tile 15x` is much better as it leaves the length variable.
+
+
+`magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title PNGPicsheet##  .\index.gif`
+
+Use Double Quotes to bundle things
+
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
 
 !!!code Top Example
 
         montage -label '%t'  -size 256x256 ./*.* -scale 256x256 -auto-orient -geometry +5+5 -tile 10x  -frame 5  -shadow -monitor ./_index-%d.html 
 
 magick montage -label %t -tile 10x20 *.png -resize 128x128  .\%d-index.html
+
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
 
 !!!code Convert an icon
 
@@ -4966,6 +5022,21 @@ The above command says using msiexec (windows installer), run as an admin `/a` t
 you can say program /? for more info
 
 ## Network
+
+[Windows Network](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc753940(v=ws.10))
+
+[DHCP](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc896553(v=ws.10))
+
+[DNS](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732997(v=ws.10))
+
+
+[Windows 2012 Link](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831357(v=ws.11))
+
+[Current Version Networking](https://docs.microsoft.com/en-us/windows-server/networking/)
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
 
 ## Cloudflare DNS
 
@@ -5586,6 +5657,17 @@ Finding a table
 
 ## Other Tips, Tricks and Hacks
 
+
+### Explorer Tips
+
+
+    [[Win]] + [[E]] - Opens Windows Explorer
+    [[Alt]] + [[Up]] - Switches to the parent folder in the hierarchy
+    [[Alt]] [[P]] - Toggles the Preview pane
+    [[Alt]]+[[Enter]] - Opens Properties for the selected object
+    [[F2]] - Allows you to rename selection
+    [[Shift]] + [[Del]] - Deletes selection directly i.e. without moving it to Recycle Bin
+
 ### Get any programs location using the registry.
 
 This is in powershell
@@ -5605,7 +5687,7 @@ HKEY_LOCAL_MACHINE\Software\7-Zip
 
 Not sure how youd parse the output
 
-### Norives
+### No Drives
 
 
 Hide drive mappings in 'My Computer', Windows Explorer and the standard Open dialog box.
@@ -5937,4 +6019,216 @@ On Windows, modifying the registry may also be beneficial in order to maintain s
     HKEY_CLASSES_ROOT\https\shell\open\command
 
 Uncheck the write permission on these keys so that the changes persist on next auto-update of Chrome. Thanks to @tophf for providing information about the flag and registry settings.
+
+## WSL version 2 
+
+Windows Subsystem for Linux v 2
+
+[Source](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+
+[Package](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+
+
+
+
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+    ver
+
+    ## Must be > 10.0.18362.xxx
+
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+    ## download https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+    ## run
+
+    ps #open powershell
+    wsl --set-default-version 2
+
+    wsl --set-default-version 2
+      NAME      STATE           VERSION
+    * Ubuntu    Stopped         1
+      Debian    Stopped         1
+    ⚡ andyt@DESKTOP  O:\OneDrive\Backups\KEYS\Keys\PuttyGenHassIO                                                                      [13:39]
+    ❯ wsl --set-version Ubuntu 2
+
+
+## Windows Debugging
+
+Windows Kits:
+
+[Windows Debugging Kits](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools)
+
+[WDK -Win. Driver Kit](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
+
+
+[ADK- Assesment and Deployment Kit](https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+
+[HLK Windows Hardware Lab Kit](https://docs.microsoft.com/en-us/windows-hardware/test/hlk/)
+
+
+[WCF -Windows Communication Framework](https://docs.microsoft.com/en-us/dotnet/framework/wcf/tools)
+
+[Windows 10 Software Development](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/)
+
+
+
+
+
+[Technical Doc](https://docs.microsoft.com/en-us/windows/)
+
+[Great Resource on BSOD- Bug Checks](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-checks--blue-screens-)
+
+
+
+[Crash dump analysis using the Windows debuggers (WinDbg)](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/crash-dump-files)
+
+[Analyzing a Kernel-Mode Dump File with WinDbg](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/analyzing-a-kernel-mode-dump-file-with-windbg)
+
+Using the [!analyze](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-the--analyze-extension)
+
+ Extension and [!analyze](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/-analyze)
+ 
+
+!!!info Clarification
+
+[Comment Below is from here:](https://stackoverflow.com/questions/12629514/perfmon-perfmonitor-and-perfview/12634333)
+
+
+
+ Windows Performance Monitor(ing) (PerfMon) and ETW (PerfMonitor, PerfView work with ETW) are different. ETW works at kernel-level and has audit trail, whereas PerfMon works with counter objects at a higher level. For instance using ETW, it is possible to analyze service/application behavior even during system bootup and shutdown. ETW actually takes off from where PerfMon stops.
+
+Tool wise,
+
+**PerfMonitor** provides a mechanism for users to conrol the collection of ETW data by acting as an ETW Controller. It basically helps in collecting traces for Managed code, whereas other tools such as **XPerf** does it for unmanaged code
+
+**PerfView** works on the other side, used to analyze the ETW trace logs, on various aspects.
+
+**PerfMon** is designed as a horizontal screening tool that shows a broad view of the Memory/Disk/CPU/Network performance of the System/ Service or Application. It basically lets us do the following:
+
+View data from multiple computers simultaneously.
+
+See how changes you make affect the computer.
+
+Change charts of current activity while viewing them.
+
+Export Performance Monitor data to spreadsheets or database programs, or use it as raw input for C programs.
+
+Trigger a program or procedure, or send notices when a threshold is
+exceeded.
+
+Log data about various objects from different computers over time.
+You can use these log files to record typical resource use, monitor a problem, or help in capacity planning.
+
+Combine selected sections of several log files into a long-term
+archive.
+
+Report on current activity or trends over time.
+
+Save different combinations of counter and option settings for quick starts and changes
+
+Look at [this (Now Below-AT)](https://stackoverflow.com/questions/4112272/are-perfmon-performance-counters-based-on-the-same-thing-under-the-hood-as-the) for more info
+
+Perf counters and ETW are two different things, they share no underlying infrastructure.
+
+Counters are used to provide information as to how well the operating system or an application, service, or driver is performing. The counter data can help determine system bottlenecks and fine-tune system and application performance. The operating system, network, and devices provide counter data that an application can consume to provide users with a graphical view of how well the system is performing.
+
+Event Tracing for Windows (ETW) is an efficient kernel-level tracing facility that lets you log kernel or application-defined events to a log file.
+
+They can both be used for performance analysis, but ETW provides an audit trail of behaviour inside the app over time (like a traditional user-mode logfile), whereas PerfMon provides a view of either current statistics in the application ('current queue length'), or aggregated data over its lifetime (such as 'average throughput', 'total number of bytes sent').
+
+[https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/etw-tracing](https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/etw-tracing)
+
+
+ ### Network Trace
+
+[Source](https://techcommunity.microsoft.com/t5/iis-support-blog/capture-a-network-trace-without-installing-anything-amp-capture/ba-p/376503)
+
+[Commands](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11))
+
+[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
+
+
+
+    Using Netsh trace commands
+
+    Commands in the Netsh trace context
+
+        convert
+
+        correlate
+
+        diagnose
+
+        show CaptureFilterHelp
+
+        show globalKeywordsAndLevels
+
+        show helperclass
+
+        show interfaces
+
+        show provider
+
+        show providers
+
+        show scenario
+
+        show scenarios
+
+        show status
+
+        start
+
+        stop
+
+
+
+ 
+Capture a Network Trace without installing anything (& capture a network trace of a reboot)
+
+If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
+
+The short version:
+
+1. Open an elevated command prompt and run: "
+
+       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
+      
+(make sure you have a \temp directory or choose another location).
+
+2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
+
+ 
+
+3. Open an elevated command prompt and run: 
+
+        netsh trace stop
+
+ 
+
+Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
+
+ 
+
+The longer version:
+
+I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
+
+ 
+
+1. Open an elevated command prompt and run: 
+      
+        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
+      
+      
+(make sure you have a \temp directory or choose another location).
+
+
+
+[Windows Comm. Framework](https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/set-up-instructions)
+
+[More](https://docs.microsoft.com/en-us/dotnet/framework/wcf/)
+
+
 
