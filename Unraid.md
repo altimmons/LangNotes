@@ -729,10 +729,88 @@ To view
       ip monitor file var/log/rtmon.log
 
 
-## dns config 
+### dns config 
 
  cat /etc/resolv.conf 
 
+### resolv.conf
+ 
+ No connection
+
+ needed to update DNS
+
+`Resolv.conf`
+
+            # Generated DNSv4 entries:
+            nameserver 192.168.1.1
+            nameserver 192.168.1.200
+            nameserver 1.1.1.1
+            nameserver 1.0.0.1
+            search local
+            search timmons family
+
+`hosts`
+
+            169.254.0.1     DESKTOP
+            192.168.1.25    DESKTOP
+
+
+### Tools
+
+Installing NSLookup, host, dig using nerd pack
+
+need 
+`bind`
+
+requires kbd, libssagi, json-c and json-c is not working.  This fixes it
+
+            wget http://slackware.cs.utah.edu/pub/slackware/slackware64-current/slackware64/l/json-c-0.15_20200726-x86_64-1.txz
+            upgradepkg --install-new json-c-0.15_20200726-x86_64-1.txz
+
+### Listening port
+
+lsof -i -P -n
+
+sudo lsof -i -P -n | grep LISTEN
+
+sudo netstat -tulpn | grep LISTEN
+
+ ss
+ ss -tulw 
+
+
+## Webservers
+
+
+[Apache vs Nginx](https://www.digitalocean.com/community/tutorials/apache-vs-nginx-practical-considerations)
+[Comparison](https://stackshare.io/stackups/apache-httpd-vs-lighttpd-vs-nginx)
+
+
+## Docker
+
+[Docker Networking](https://docs.docker.com/network/)
+
+
+[Docker Networking Tutorial](https://docs.docker.com/network/network-tutorial-standalone/)
+
+            $ docker network ls
+
+            $ docker run -dit --name alpine1 alpine ash
+
+            $ docker run -dit --name alpine2 alpine as
+
+            $ docker network inspect bridge
+            $ docker attach alpine1
+            # ip addr show
+            # ping -c 2 google.com
+
+Detach from alpine1 without stopping it by using the detach sequence, [[CTRL]] + [[p]] [[CTRL]] + [[q]] (hold down [[CTRL]] and type [[p]] followed by [[[q]]]). If you wish, attach to alpine2 and repeat steps 4, 5, and 6 there, substituting alpine1 for alpine2.
+
+            $ docker container stop alpine1 alpine2 alpine3 alpine4
+
+            $ docker container rm alpine1 alpine2 alpine3 alpine4
+
+            $ docker network rm alpine-net
 
 ## interesting
 
@@ -1118,7 +1196,7 @@ Get a list of running processes  `tmux ls`
 - +[[%]] - Split the current pane into two, left and right.
 - +[[&]] - Kill the current window.
 - +[[']] - Prompt for a window index to select.
-- +[[,]] - Rename the current window.
+- +[[,]] - **Rename the current window.**
 - +[[-]] - Delete the most recently copied buffer of text.
 - +[[.]] - Prompt for an index to move the current window.
 - [[0]] to [[9]] - Select windows 0 to 9.
@@ -1130,7 +1208,7 @@ Get a list of running processes  `tmux ls`
 - +[[`[`]] - Enter copy mode to copy text or view the history.
 - +[[`]`]] - Paste the most recently copied buffer of text.
 - +[[c]] - Create a new window.
-- +[[d]] - Detach the current client.
+- +[[d]] - **Detach the current client.**
 - +[[f]] - Pr1ompt to search for text in open windows.
 - +[[i]] - Display some information about the current window.
 - +[[l]] - Move to the previously selected window.
@@ -1330,7 +1408,10 @@ The -o option only opens a new pipe if no previous pipe exists, allowing a pipe 
 
 `unlink-window`[-k] [-t target-window]
 (alias: `unlinkw`) Unlink target-window. Unless -k is given, a window may be unlinked only if it is linked to multiple sessions - windows may not be linked to no sessions; if -k is specified and the window is linked to only one session, it is unlinked and destroyed. 
-## Sync all the files 
+
+## Backup and Sync
+
+### Sync all the files 
 
 rsync -rlthP --stats SRC /mnt/disks/Elements/ DEST .
 rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' --dry-run  /mnt/disks/Seagate_Expansion_Drive  /mnt/user/rDriveA/Seagate_Expansion_Drive
@@ -1339,6 +1420,90 @@ rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' --dry-run  /mnt
 `rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' --exclude 'X\ backup*'  /mnt/disks/Elements/  /mnt/user/rDriveA/Elements/`
 
 `rsync -rlthP --stats --size-only --progress --del  /mnt/disks/Elements/  /mnt/user/rDriveA/Elements/`
+
+
+### Backup Restore using tar command
+
+[Source](https://www.adminschoice.com/backup-commands-examples)
+
+
+
+tar features:
+1. tar ( tape  archive ) is used for single or multiple files backup and restore on/from  a tape or file.
+2. tar can not backup special character & block device files , shows as 0 byte files with first letter of permissions as b or c for block or character.
+3. tar Works only on mounted file system, it can not access the files on unmounted file system.
+
+Backing up all files in a directory including subdirectories to a  tape device (/dev/rmt/0) or a file.
+
+
+Example 1 :
+
+            $tar    cvf    /dev/rmt/0   *
+
+In the command above Options are  c -> create ; v -> Verbose ; f->file or archive device   ; * -> all files and directories . Together the commands means create a tar file on /dev/rmt/0 from all file and directories s in the current directory.
+
+Example 2:
+
+            $tar cvf /home/backup *
+
+Create a tar  called backup in home directory , from all file and directories s in the current directory.
+
+Viewing a tar backup on a tape or file
+t option is used to see the table of content in a tar file.
+
+            $tar    tvf    /dev/rmt/0  ## view files  backed up on a tape device.
+
+            $tar tvf  /home/backup  ## view files  backed up inside the  backup
+
+In the command above Options are  c -> create ; v -> Verbose ; f->file or archive device   ; * -> all files and directories . Together the commands means create a tar file on /dev/rmt/0 from all file and directories s in the current directory.
+
+Extracting tar backup from the tape
+x option is used to extract the files from tar file.
+
+            $tar xvf /dev/rmt/0       ##extract /  restore files in to current directory.
+
+            $tar xvf /home/backup ## extract / restore files in to current directory.
+
+Note : Restoration will go to present directory or original backup path depending on
+relative or absolute path names used for backup.
+
+Some of useful tar options. 
+
+Extract & keep the  file permissions (default for superuser)
+
+            -p, –preserve-permissions
+
+Filter the archive through gzip
+
+            -z, –gzip
+
+Filter the archive through bzip2
+
+            -j, –bzip2
+
+Only append files newer than copy in archive
+
+            -u, –update
+
+Append files to the end of an archive
+
+            -r, –append
+
+Delete from the archive (not on mag tapes!)
+
+            –delete
+
+Find differences between archive and file system
+            
+            -d, –diff, –compare
+
+Test the archive volume label and exit
+
+            –test-label
+
+Change to directory DIR
+
+            -C, –directory=DIR
 
 ## List the IP Addresses
 
@@ -1652,3 +1817,7 @@ table.share_status.dashboard {background-color: #899ba6; color: #e5c9b3;}
 table.share_status.dashboard {background-color: #899ba6; color: #e5c9b3;}
 
 table.share_status.dashboard tr>td.next {
+
+## tar
+
+ tar -xJf node-v10.23.0-linux-armv6l.tar.xz
