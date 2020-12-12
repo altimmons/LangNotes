@@ -4220,6 +4220,45 @@ See the [Streamline Windows Batch File](#Batch-File) for more examples?
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
+
+### Set
+
+to set variablsand have things expand.  Ess. like temp env vars.
+
+Set /A VarName = Expression, where expression is a string, number or math
+Set /P VarName = The Prompt to ask user.
+
+### Prompt
+
+Changes the prompt.  Lots of fun
+
+Default is `$P$G>`.
+
+Uses this table:
+
+- $A  `&`           (Ampersand)
+- $B  `|`           (pipe)
+- $C `(`           (Left parenthesis)
+- $D Current date
+- $E Escape code  (ASCII code 27)
+- $F  `)`           (Right parenthesis)
+- $G ` >`           (greater-than sign)
+- $H  Backspace   (erases previous character)
+- $L  `<`           (less-than sign)
+- $M  Display the remote name for Network drives
+- $N  Current drive
+- $P  Current drive and path
+- $Q  `=`           (equal sign)
+- $S              (space)
+- $T  Current time
+- $V  Windows version number
+- $_  Carriage return and linefeed
+- `$$  $`           (dollar sign)
+- $+  Will display plus signs (`+`) one for each level of the PUSHD directory stack
+
+
+## 3rd party CLI
+
 ### Winrar
 
 Program is contained in "C:\Program Files\WinRar\WinRAR.exe" usually
@@ -4237,7 +4276,6 @@ mkdir d:\asussync\backups\
 #Using a file list and using version numbers and month string
 "C:\Program Files\WinRar\WinRAR.exe" a -ag+YYMMM{v}nn-- -@+ "D:\ASUSsync\Backups\vsCodeBackUp.rar" @"D:\Asussync\backups\backups.txt"
 ```
-
 #### Backup
 
 !!!Warning Warning: This is a pop-up mess...Diasble Javascript before you go [Source](http://rareelement.tripod.com/winrar_sk.htm)
@@ -4780,40 +4818,7 @@ output file: ECHOICU.knit.md
 
 `verifier` - Opens windows driver verifier.  Make sure to make a back up and be able to roll things back.
 
-### Set
 
-to set variablsand have things expand.  Ess. like temp env vars.
-
-Set /A VarName = Expression, where expression is a string, number or math
-Set /P VarName = The Prompt to ask user.
-
-### Prompt
-
-Changes the prompt.  Lots of fun
-
-Default is `$P$G>`.
-
-Uses this table:
-
-- $A  `&`           (Ampersand)
-- $B  `|`           (pipe)
-- $C `(`           (Left parenthesis)
-- $D Current date
-- $E Escape code  (ASCII code 27)
-- $F  `)`           (Right parenthesis)
-- $G ` >`           (greater-than sign)
-- $H  Backspace   (erases previous character)
-- $L  `<`           (less-than sign)
-- $M  Display the remote name for Network drives
-- $N  Current drive
-- $P  Current drive and path
-- $Q  `=`           (equal sign)
-- $S              (space)
-- $T  Current time
-- $V  Windows version number
-- $_  Carriage return and linefeed
-- `$$  $`           (dollar sign)
-- $+  Will display plus signs (`+`) one for each level of the PUSHD directory stack
 -
 ### Fix DICOM Errors
 
@@ -4876,6 +4881,100 @@ In Windows
 1. While on your desktop or in File Explorer, select one or more items you want to create shortcuts for.  Press and hold the Alt or Ctrl+Shift keys, drag and drop the selected item(s) to where you want to create the shortcut(s) at, and release the Alt or Ctrl+Shift keys.
 
 When you are moving things you should right click in the destination or right click driag.
+
+
+### Generate UUID
+
+
+Open PowerShell. Tip: You can add "Open PowerShell As Administrator" context menu.
+Type or copy-paste the following command: [guid]::NewGuid().This will produce a new GUID in the output.
+Alternatively, you can run the command '{'+[guid]::NewGuid().ToString()+'}' to get a new GUID in the traditional Registry format.
+
+
+There is also an application included with one of the Windows kits.
+
+For example `C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64`
+
+Unknown where it comes from.  A copy has been added to C:\Tools which should  add it to path
+
+
+## Windows Toolkits
+
+Several kits
+
+List of Several more obscure "kits" [here](https://developer.microsoft.com/en-us/windows/downloads/)
+
+
+
+HLK- Hardware Lab Kit
+WDK - Windows Driver Kit
+[ADK Installer](https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install)-Assesment and Deployment Kit
+
+
+[WDK Tools](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/index-of-windows-driver-kit-tools)
+
+
+[HLK Tools List](https://docs.microsoft.com/en-us/windows-hardware/test/hlk/user/hlk-tools-technical-reference)
+
+
+[ADK Tools list](https://docs.microsoft.com/en-us/windows-hardware/get-started/kits-and-tools-overview)
+
+[SDK](https://developer.microsoft.com/windows/downloads/sdk-archive)
+
+[Community Toolkit (UWP)](https://docs.microsoft.com/windows/communitytoolkit/)
+
+[Design Toolkit](https://docs.microsoft.com/windows/uwp/design/downloads/)
+
+[More Design](https://docs.microsoft.com/en-us/windows/uwp/design/downloads/)
+
+[Get SAtarted UWP](https://docs.microsoft.com/en-us/windows/uwp/get-started/)
+
+
+
+
+
+
+Interesting onesL
+Sensor Diagnostic Tool (sensordiagnostictool.exe)
+WDK tool: Yes 	%WindowsSdkDir%\tools\x64
+%WindowsSdkDir%\tools\x86 	Tests the driver, firmware, and hardware for sensor and location functionality. The tool invokes the sensor and location API to test data retrieval, event handling, report intervals, change sensitivity, property retrieval.
+WDK Documentation:
+Testing sensor functionality with the Sensor Diagnostic Tool
+
+Per The website: The Sensor Diagnostic Tool was used with previous versions of Windows. Microsoft recommends using the SensorExplorer to verify the installation of supported sensors. SensorExplorere is on Windows store
+
+
+Derives the computer hardware IDs from SMBIOS information.
+
+
+[tracefmt](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/tracefmt)
+
+
+
+ inspect.exe - window inspecter
+
+ oleview
+
+ wmivied
+
+ usbview
+
+##  Interesting DOC LInkts
+
+
+[Windows Shell](https://docs.microsoft.com/en-us/windows/win32/shell/shell-entry)
+
+
+[Windows Shell Samples](https://docs.microsoft.com/en-us/windows/win32/shell/samples-entry)
+
+[Windows Shell - Win32 apps | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/shell/shell-entry)
+
+[Web Services on Devices - Win32 apps | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/wsdapi/wsd-portal)
+[Index of Windows Driver Kit Tools - Windows drivers | Microsoft Docs](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/index-of-windows-driver-kit-tools#sensors)
+
+[Get started with the Universal Windows Platform (UWP) - UWP applications | Microsoft Docs](https://docs.microsoft.com/en-us/windows/uwp/get-started/)
+[Windows Terminal Settings](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/global-settings)
+
 
 ## Registry
 
@@ -6232,3 +6331,4 @@ I will do this trace for a slow boot scenario - it works fine for non reboot sce
 
 
 
+## Generate a UUID
