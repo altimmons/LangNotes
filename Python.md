@@ -2,6 +2,9 @@
 
 [[TOC]]
 
+
+## Links
+
 Online Docs:
 
 !!!tip [UNOFFICIAL Windows Binaries for popular Python Libs](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pycurl)
@@ -28,6 +31,9 @@ Online Docs:
 Good-
 [Official- Brief Tour of the Std Library](https://docs.python.org/3.8/tutorial/stdlib.html)
 (https://docs.python.org/3.8/tutorial/stdlib2.html)
+
+[Recipes « ActiveState Code](https://code.activestate.com/recipes/)
+
 
 ## Troubleshooting
 
@@ -349,6 +355,8 @@ In either case, running this command should output a link that you can follow to
 [Link for C#](https://github.com/zabirauf/icsharp/wiki/Installation)
 
 
+## Basic Principles and Setup
+
 ### Errors (relating to Version)
 
  The cryptic error:  `print '(WARNING: importing distutils, not setuptools!)'`.
@@ -460,6 +468,14 @@ Some tips for experts:
 There is more detail on this process, including a flow chart of the decisions, in PEP 3147.
 
 
+
+
+### Measuring Performance
+
+Theres not a great section for this, but frequently you want to test the performance of something. 
+
+perf stat -r 1000 python3.7 import_typing.py
+
 ### Interrupt
 
 interrupt key (normally [[Ctrl]] + [[C]] or [[Delete]])
@@ -562,6 +578,7 @@ sound/                          Top-level package
               vocoder.py
               karaoke.py
 ...
+```
 
 Top-level package
 __init__.py
@@ -863,6 +880,10 @@ In global scope: global spam
 
 ### lambda
 
+[Examples and Explination](https://realpython.com/python-lambda/)
+
+[Python Lambda](https://www.w3schools.com/python/python_lambda.asp)
+
 Program to show the use of lambda functions
 
 ```py
@@ -871,7 +892,41 @@ print(double(5))
  @Output: 10
 ```
 
- [Lambda Calculus Main Article](#Lambda-Calculus)
+
+ [Lambda Calculus as used in lists](#Lambda-Calculus)
+
+ `sp = lambda i: str(i)` 
+ 
+ this is the same as
+
+ ```py
+def sp(i): return str(i)
+
+# you can declare and use lambdas at the same time
+
+(lambda x : x + 1)(5) 
+#this creates a trivial lambda and adds one to it, then you pass that 5- gives 6;
+
+mys = "This is a test of python stringy thingys"
+(lambda s : str(s))(mys)
+
+
+(lambda s : (s, s[:21])[len(s) > 20]) #this truncates things, but it needs s to be a string
+
+(lambda s : (s, s[:21])[len(s) > 20])(mys) #truncates as exptected
+
+#so this is a lambda passing to a lamda and declaring a function, in one line
+
+truncate = (lambda s : (s, s[:21])[len(s) > 20])((lambda x : str(x))(mys)
+
+#the same as 
+def truncate(s): return (str(s), str(s)[:20])[len(str(s)) > 20]
+
+
+#final form
+
+truncate: Callable[[Any], str] = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 20])((lambda _s: str(_s))(_s))
+ ```
 
 ### Built-in Functions
 
@@ -1175,7 +1230,40 @@ print(type(a))
 >>> <type 'int'
 ```
 
-### VARIABLES
+### Expected Types
+
+def rotate(_s:list):-> list
+    return _s[1:] + [_s[0]]
+
+
+### Type Hints
+
+[Src](https://realpython.com/python-type-checking/)
+
+
+
+```py
+#headlines.py
+
+def headline(text: str, centered: bool = False) -> str:
+    if not centered:
+        return f"{text.title()}\n{'-' * len(text)}"
+    else:
+        return f" {text.title()} ".center(50, "o")
+
+print(headline("python type checking"))
+print(headline("use mypy", centered=True))
+```
+
+The above two blocks are examples of type hints. 
+
+We can add checking to the program by installing  [Mypy](http://mypy-lang.org/)
+
+install with `pip install mypy` check a given file with `mypy headlines.py`
+
+
+
+## VARIABLES
 
 A variable is a place to store values
 Its name is like a label for that value
@@ -1307,6 +1395,10 @@ module `cmath` - always available.
 Strings are an ordered collection of characters. It is a series of characters surrounded by ' or "
 
 If you must use a " or ' between the same quote escape it with \.
+
+- Single quotes: `'allows embedded "double" quotes'`
+- Double quotes: `"allows embedded 'single' quotes"`.`
+- Triple quoted: `'''Three single quotes''', """Three double quotes"""`
 
 They can be indexed using the array referencing.
 
@@ -1642,8 +1734,6 @@ number = 3729
 !!!info **Advanced Specification**
 
 
-## TO DO Edit Dowq
-
 Format strings contain “replacement fields” surrounded by curly braces {}. Anything that is not contained in braces is considered literal text, which is copied unchanged to the output. If you need to include a brace character in the literal text, it can be escaped by doubling: {{ and }}.
 
 The grammar for a replacement field is as follows:
@@ -1890,6 +1980,26 @@ url_start = 1
 
 ```
 
+### f Strings
+
+f strings are a format of printf().  They have the specific format `f'text text {value to show} text text {another value}'`
+
+Where interpreted values are given in curly braces.
+
+This is a quicker way to right things sometimes.  
+
+```py
+print(f'a={a}, b={b}')
+
+#you can also specify format.
+    def __repr__(self):
+        return (f'Pizza({self.radius!r}, '
+                f'{self.ingredients!r})')
+```
+
+See the Advanced Specification above for more- but briefly 
+
+            Three conversion flags are currently supported: '!s' which calls str() on the value, '!r' which calls repr() and '!a' which calls ascii().
 
 ### Boolean
 
@@ -2570,6 +2680,17 @@ Methods demonstrated-
 - `L.append(Obj)` - appends a list
 - `L.remove('Str')` - removes the first instance of what it finds
 
+
+!!!warning Warning- Assignment of Lists is a Shallow copy
+    ```py
+        L=[1,2,3]
+        L2 = L
+        L[0] = 2
+        print(L2) #the same as L, also edited (only a reference) 
+        #use L.copy()
+        L2=L.copy()
+    ```
+
 ```python
 L = [1,2,3]
 L=["abc", 123,  0, variable, ["another", "list"] ]
@@ -2636,10 +2757,12 @@ print(min(to_do_list))
 
 ```py
 l = [1, 2, 3, 4]
-l[0:4:2] = [5, 6]
+l[0:4:2] = [5, 6]  #so even if its out of range, - 4 is here
 print(l)
->>>[5, 2, 6, 4]
+>>>[5, 2, 6, 4] 
 ```
+
+This was confusing. But it is still **[<start>:<stop>:<step>]** with the implied defaults if left blank of **[ 0 : len(L) : 1]**
 
 List slice-store 
 
@@ -2948,6 +3071,16 @@ my_tuple[-2] #>4
 my_tuple[:3] #>(1,2,3)
 my_tuple[1:3] #>(2,3)
 my_tuple[2:] #>(3,4,5)
+mylist = [x for x in range(5)]
+mylist[0:4:2] # says take this tuple from 0-4(3 actually, and give every other.)
+#list[start, end(+1), step]
+#[0, 1, 2, 3, 4]  using [0:4:2] = [0, 2], 
+#because we only do to the 3rd element not the 5th element
+
+#so we can slice my list like
+mylist = [x for x in range(5)]
+mylist[0:4:2] = [9,8] #replace 0 and 2 
+mylist[0:5:2] #gets all and using a step of 2, we now need 3 values.
 ```
 
 #### Tuples of 0 or 1 length
@@ -3339,7 +3472,7 @@ for k, v in collections.OrderedDict(sorted(d.items())).items():
 
 ### RANGES
 
-See the section on Ranges in Iterables.
+See the section on Ranges in [Iterables](#Iterables).
 
 But, `range` together with `tuples` and `lists`, make up the `Sequence Data Types`.
 
@@ -3566,6 +3699,7 @@ for x in range(0,3):
     for y in range(0,3):
         print(num_list[x][y])
 ```
+
 
 #### comprehensions
 
@@ -3941,6 +4075,30 @@ numbers_to_strings(1)
 - (stop)
 - (start, stop)
 - (start, stop, step)
+
+
+!!!warn: Float values don't work in the range command.
+    [Link for float ranges](http://code.activestate.com/recipes/579000/)
+
+    also this works fine:
+    
+        >>> for i in range(0,100,5):
+            t = i/100
+            print(t)
+ 
+
+
+##### Methods for Float Range
+
+[frange recipe](https://code.activestate.com/recipes/577068/)
+
+[Float Range](https://perso.limsi.fr/pointal/python:floatrange)
+
+[Module on PyPI](https://pypi.python.org/pypi/floatrange/)
+
+[Floating point range « Python recipes « ActiveState Code](https://code.activestate.com/recipes/577068/)
+
+[Equally-spaced numbers (linspace) « Python recipes « ActiveState Code](https://code.activestate.com/recipes/579000/)
 
 **Reversed Example** `range( len(data) -1, -1, -1):`
 
@@ -5218,7 +5376,7 @@ class Reverse:
 
 ### Classes
 
-Defining a class, the parentheses are not obligatory.  They are just used if you want to use inheritance. `class Rabbit:` would not throw an error.
+Defining a class, the parentheses are not obligatory.  They are just used if you want to use inheritance. `class Rabbit:` would not throw an error. `class Rabbit(object):`
 
 `def __init__(self, ...)` you always need the initialzation, it always runs when calling the class.  You don't necessicarily have to pass `self` and you can even use another word to refer to self.  Self can be called 'boobs' if you want.
 
@@ -5273,6 +5431,247 @@ frogger.hop()
 ![Slide1](/Python_res/image1.png)
 
 Extending a base class is shown above.  the first line, usese the keyword class, followed by then Name, the followed by the name of the object its extending.
+
+### Method types:
+
+[Reference](https://realpython.com/instance-class-and-static-methods-demystified/)
+
+[Class Method Ref](https://docs.python.org/3/library/functions.html#classmethod)
+
+
+
+Three types: instance, class (~~more equivalent to Java static?~~ see below), and static methods.
+
+
+
+Therefore a static method can neither modify object state nor class state. Static methods are restricted in what data they can access - and they’re primarily a way to namespace your methods.
+
+```py
+class MyClass:
+    def method(self):
+        return 'instance method called', self
+
+    @classmethod
+    def classmethod(cls):
+        return 'class method called', cls
+
+    @staticmethod
+    def staticmethod():
+        return 'static method called'
+
+```
+
+In instance methods- e.g. most of them, these two are equivalent:
+
+```py
+obj = MyClass(*args)
+obj.method()
+MyClass.method(obj)
+```
+
+A function returning another function, usually applied as a function transformation using the @wrapper syntax. Common examples for decorators are classmethod() and staticmethod().
+
+The decorator syntax is merely syntactic sugar, the following two function definitions are semantically equivalent:
+
+```py
+def f(...):
+    ...
+f = staticmethod(f)
+
+@staticmethod
+def f(...):
+    ...
+```
+
+Thouhg it looks similar to static methods in Java, you've passed the self object and it calls the reference object.
+
+Class methods are more equivalent to factories that produce a certain type of class.
+
+```py
+
+class Pizza:
+    def __init__(self, ingredients):
+        self.ingredients = ingredients
+
+    def __repr__(self):
+        return f'Pizza({self.ingredients!r})'
+
+    @classmethod
+    def margherita(cls):
+        return cls(['mozzarella', 'tomatoes'])
+
+    @classmethod
+    def prosciutto(cls):
+        return cls(['mozzarella', 'tomatoes', 'ham'])
+
+#used like this.  Returns a specific class obj.
+>>> Pizza.margherita()
+Pizza(['mozzarella', 'tomatoes'])
+
+>>> Pizza.prosciutto()
+Pizza(['mozzarella', 'tomatoes', 'ham'])
+
+```
+
+#### Inbuilt methods
+
+Dunder methods-
+- `__init__` = constructor
+- `__init_subclass__` = subclass constructor
+- `__repr__` - The “official” string representation of an object. This is how you would make an object of the class. The goal of __repr__ is to be unambiguous.
+- `__str__` The “informal” or nicely printable string representation of an object. This is for the enduser.
+- `self.__class__.__name__` The instance class name (reflection)
+
+
+- Comparisons
+    - `__eq__` should return true if two objects are equal
+    - `__lt__` should return true if the passed object is less than this one.
+    - `__gt__`
+    - `__ge__`
+    - `__le__`
+
+- Manipulation
+    - `__add__` how to handle combining two objects.  If they are Linked Lists- merging them, etc.
+    - `__radd__` - the __add__ case handles `MyClass + 4` for instance.  But we can't really modify the int class in Python to handle `4 + MyClass()` because thats calling `4.__add__(myclass)`.  Instead we can add a reverse add to handle this case.  __radd__ is called when the case of 4.__add__(c) returns `Not Implemented`.  If the two are communitative - e.g. 5 + 6 = 6 + 5, but "5" + "6" is not == "6" + "5"
+            in the communitative case you can say __radd__ = __add__
+    - `__sub__`
+    - `__rsub__`
+
+##### Descriptors 
+
+descriptor is Any object which defines the methods __get__(), __set__(), or __delete__().
+
+- `__get__()`
+- `__set__()`
+- `__delete__()`
+
+Rather complex - see here [Descriptors doc](https://docs.python.org/3/reference/datamodel.html#descriptors)
+
+and [Here](https://docs.python.org/3/howto/descriptor.html#simple-example-a-descriptor-that-returns-a-constant)
+
+
+
+```py
+class Ten:
+    def __get__(self, obj, objtype=None):
+        return 10
+#To use the descriptor, it must be stored as a class variable in another class:
+
+class A:
+    x = 5                       # Regular class attribute
+    y = Ten()                   # Descriptor instance
+#An interactive session shows the difference between normal attribute lookup and descriptor lookup:
+
+>>> a = A()                     # Make an instance of class A
+>>> a.x                         # Normal attribute lookup
+5
+>>> a.y                         # Descriptor lookup
+10
+```
+
+- Others
+    - `__getattribute__`
+    - `__format__`
+    - `__getnewargs__`
+    - `__call__` - make the object callable like a function.
+
+Only need the first two using `functools` like this:
+
+```py
+from functools import total_ordering
+
+@total_ordering
+class Account:
+    # ... (see above)
+
+    def __eq__(self, other):
+        return self.balance == other.balance
+
+    def __lt__(self, other):
+        return self.balance < other.balance
+```
+##### Iteration Dunder classes
+
+- `__len__` - return the length of an item
+- `__getitem__` - return the next item
+- `__reversed__` -  return the seq. reversed
+
+##### Context Manager Dunder Classes
+
+This is a complex topic- see [here](https://dbader.org/blog/python-context-managers-and-with-statement) and [here, from which this example comes:](https://dbader.org/blog/python-dunder-methods)
+
+
+
+
+
+```py
+
+class Account:
+    # ... (see above)
+
+    def __enter__(self):
+        print('ENTER WITH: Making backup of transactions for rollback')
+        self._copy_transactions = list(self._transactions)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('EXIT WITH:', end=' ')
+        if exc_type:
+            self._transactions = self._copy_transactions
+            print('Rolling back to previous transactions')
+            print('Transaction resulted in {} ({})'.format(
+                exc_type.__name__, exc_val))
+        else:
+            print('Transaction OK')
+
+def validate_transaction(acc, amount_to_add):
+    with acc as a:
+        print('Adding {} to account'.format(amount_to_add))
+        a.add_transaction(amount_to_add)
+        print('New balance would be: {}'.format(a.balance))
+        if a.balance < 0:
+            raise ValueError('sorry cannot go in debt!')
+
+acc4 = Account('sue', 10)
+print('\nBalance start: {}'.format(acc4.balance))
+#Balance start: 10
+validate_transaction(acc4, 20)
+#ENTER WITH: Making backup of transactions for rollback
+#Adding 20 to account
+#New balance would be: 30
+#EXIT WITH: Transaction OK
+print('\nBalance end: {}'.format(acc4.balance))
+#Balance end: 30
+
+##Now with an error.
+
+acc4 = Account('sue', 10)
+# Balance start: 10
+
+print('\nBalance start: {}'.format(acc4.balance))
+try:
+    validate_transaction(acc4, -50)
+except ValueError as exc:
+    print(exc)
+# ENTER WITH: Making backup of transactions for rollback
+# Adding -50 to account
+# New balance would be: -40
+# EXIT WITH: Rolling back to previous transactions
+# ValueError: sorry cannot go in debt!
+
+print('\nBalance end: {}'.format(acc4.balance))
+# Balance end: 10
+```
+
+### Class Decorators
+
+`@classmethod` 
+
+[Doc](https://docs.python.org/3/library/functions.html#classmethod)
+
+
+
+`@property`
 
 ### Object oriented Python
 

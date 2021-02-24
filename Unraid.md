@@ -154,7 +154,34 @@ Available commands: `start stop`
 
    `for drive in $(ls -la /dev | grep -Ev 'sda|sd[a-z][0-9]' | grep sd[a-z] | awk '{print $10}'); do hours=$(smartctl --all /dev/${drive} | grep Power_On_Hours | awk '{print $10}'); echo "Power on Hours for ${drive}: ${hours}"; echo ''; done`
 
-(^- )([ ]*)(\S)  1$3
+
+## Recovering Nginx
+
+!!! Fail  : Did not succeed
+      The underlying issue was that `/boot/config/go` I had moved the emhttpd command to the bottom and it was erroring out before running it.
+
+                  # Start the Management Utility
+            /usr/local/sbin/emhttp &
+
+### stop mover
+`mover stop`
+
+### Check whats wrong:
+
+`nginx` 
+
+```txt
+Message from syslogd@Unraid at Nov 13 09:48:25 ...
+ nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to 0.0.0.0:80 failed (98: Address already in use)
+
+Message from syslogd@Unraid at Nov 13 09:48:25 ...
+ nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to [::]:80 failed (98: Address already in use)
+
+Message from syslogd@Unraid at Nov 13 09:48:25 ...
+ nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+```
+
 ## Following on Services
 
 - rc.0@
@@ -216,14 +243,17 @@ initially `/etc/exports` was
 
          #"/mnt/user/rA" -async,no_subtree_check,fsid=100 *(sec=sys,rw,insecure,anongid=100,anonuid=99,all_squash)
 
-Which gave `
-`May 9 22:30:01 Unraid mountd[30694]: refused mount request from 192.168.1.25 for /mnt/user/rA (/): not exported`
+Which gave
+
+      `May 9 22:30:01 Unraid mountd[30694]: refused mount request from 192.168.1.25 for /mnt/user/rA (/): not exported`
 
 Or similar, lost original error, added this from another user and edited.
 
 After much searching, and adding NFS rules in, I found that users go AFTER.  
 
-as opposed to THIS example "#"/mnt/user/rA"    192.168.1.0/255.255.0.0(ro,async,no_subtree_check,fsid=100) *(sec=sys,rw,insecure,anongid=100,anonuid=99,all_squ>" 
+as opposed to THIS example 
+
+      "#"/mnt/user/rA"    192.168.1.0/255.255.0.0(ro,async,no_subtree_check,fsid=100) *(sec=sys,rw,insecure,anongid=100,anonuid=99,all_squ>" 
 
 ```bash
   GNU nano 4.6                                                  exports                                                             
@@ -238,7 +268,10 @@ as opposed to THIS example "#"/mnt/user/rA"    192.168.1.0/255.255.0.0(ro,async,
 
 This seems to work.  Usng multiple users.  Will have to add laptop.
 
+
 ## More NFS
+
+!!! Attention These are Windows Specific Commands
 
  Samba was fraught with errors
 
@@ -256,24 +289,24 @@ Network Error - 53
 
 The network path was not found.
 
->mount \\169.254.0.2\
-Usage:  mount [-o options] [-u:username] [-p:<password | *>] <\\computername\sharename> <devicename | *>
+      >mount \\169.254.0.2\
+      Usage:  mount [-o options] [-u:username] [-p:<password | *>] <\\computername\sharename> <devicename | *>
 
--o rsize=size               To set the size of the read buffer in kilobytes.
--o wsize=size               To set the size of the write buffer in kilobytes.
--o timeout=time             To set the timeout value in seconds for an RPC call.
--o retry=number             To set the number of retries for a soft mount.
--o mtype=soft|hard          To set the mount type.
--o lang=euc-jp|euc-tw|euc-kr|shift-jis|big5|ksc5601|gb2312-80|ansi
-                            To specify the encoding used for file and directory
-                            names.
--o fileaccess=mode          To specify the permission mode of the file.
-                            These are used for new files created on NFS
-                            servers. Specified using UNIX style mode bits.
--o anon                     To mount as an anonymous user.
--o nolock                   To disable locking.
--o casesensitive=yes|no     To specify case sensitivity of file lookup on server.
--o sec=sys|krb5|krb5i|krb5p
+      -o rsize=size               To set the size of the read buffer in kilobytes.
+      -o wsize=size               To set the size of the write buffer in kilobytes.
+      -o timeout=time             To set the timeout value in seconds for an RPC call.
+      -o retry=number             To set the number of retries for a soft mount.
+      -o mtype=soft|hard          To set the mount type.
+      -o lang=euc-jp|euc-tw|euc-kr|shift-jis|big5|ksc5601|gb2312-80|ansi
+                                 To specify the encoding used for file and directory
+                                 names.
+      -o fileaccess=mode          To specify the permission mode of the file.
+                                 These are used for new files created on NFS
+                                 servers. Specified using UNIX style mode bits.
+      -o anon                     To mount as an anonymous user.
+      -o nolock                   To disable locking.
+      -o casesensitive=yes|no     To specify case sensitivity of file lookup on server.
+      -o sec=sys|krb5|krb5i|krb5p
 
 
 >NET USE
@@ -291,37 +324,40 @@ Disconnected           \\UNRAID\Seagate_Expansion_Drive
 OK                     \\UNRAID\IPC$             Microsoft Windows Network
 The command completed successfully.
 
->NET USE /DELETE \\UNRAID\$IPC
+`>NET USE /DELETE \\UNRAID\$IPC`
 
 >NET USE /DELETE \\169.254.0.2\rA
-\\169.254.0.2\rA was deleted successfully.
+
+      \\169.254.0.2\rA was deleted successfully.
+
 >NET USE /DELETE \\UNRAID\Seagate_Expansion_Drive
-\\UNRAID\Seagate_Expansion_Drive was deleted successfully.
+
+      \\UNRAID\Seagate_Expansion_Drive was deleted successfully.
+
 >NET USE /DELETE \\UNRAID\IPC$
-\\UNRAID\IPC$ was deleted successfully.
+      \\UNRAID\IPC$ was deleted successfully.
 
 
 >ping UNRAID
 
-Pinging Unraid.local [169.254.0.2] with 32 bytes of data:
-Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
-Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
-Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
+      Pinging Unraid.local [169.254.0.2] with 32 bytes of data:
+      Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
+      Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
+      Reply from 169.254.0.2: bytes=32 time<1ms TTL=64
 
-Ping statistics for 169.254.0.2:
-    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
-Approximate round trip times in milli-seconds:
-    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+      Ping statistics for 169.254.0.2:
+         Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+      Approximate round trip times in milli-seconds:
+         Minimum = 0ms, Maximum = 0ms, Average = 0ms
 
 >mount -u:andyt -p:Lauren7! \\UNRAID\rA\ A:
-Network Error - 31
+      Network Error - 31
 
 >NET HELPMSG 31
 
 A device attached to the system is not functioning.
 
  ```
-
 
  in syslog:
 
@@ -349,6 +385,7 @@ In addition, my changes were deleted on reboot.  Irritating, I may have to do th
 
 
 !!!Success Solution: 
+
       appended `169.254.0.0/28 192.168.1.0/24` to the end of `/etc/exports`.
 
       ```sh
@@ -357,23 +394,24 @@ In addition, my changes were deleted on reboot.  Irritating, I may have to do th
       ```
 
       now running 
+
       ```cmd
-      >mount -u:andyt -p:Lauren7! \\UNRAID\rA\ A:
-      A: is now successfully connected to \\UNRAID\rA\
+>mount -u:andyt -p:Lauren7! \\UNRAID\rA\ A:
+   A: is now successfully connected to \\UNRAID\rA\
 
 
-      >>mount
+>>mount
 
-      Local    Remote                                 Properties
-      -------------------------------------------------------------------------------
-      A:       \\UNRAID\rA\                           UID=-2, GID=-2
-                                                      rsize=1048576, wsize=1048576
-                                                      mount=soft, timeout=1.6
-                                                      retry=1, locking=yes
-                                                      fileaccess=755, lang=ANSI
-                                                      casesensitive=no
-                                                      sec=sys
-      ```
+Local    Remote                                 Properties
+-------------------------------------------------------------------------------
+A:       \\UNRAID\rA\                           UID=-2, GID=-2
+                                                rsize=1048576, wsize=1048576
+                                                mount=soft, timeout=1.6
+                                                retry=1, locking=yes
+                                                fileaccess=755, lang=ANSI
+                                                casesensitive=no
+                                                sec=sys
+```
 
 However, still getting very frequent
 
@@ -390,14 +428,7 @@ However, still getting very frequent
       Nov 3 17:52:34 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
       Nov 3 17:52:42 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
       Nov 3 17:52:42 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:52:50 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:52:50 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
-      Nov 3 17:53:46 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/): not exported
+      Nov 3 17:52:50 Unraid rpc.mountd[29835]: refused mount request from 169.254.0.1 for /IPC/ (/)
 
 Can I share data?
 
@@ -427,6 +458,7 @@ A:       \\UNRAID\rA\                           UID=-2, GID=-2
                                                 casesensitive=no
                                                 sec=sys
 ```
+
 Explorer - navigating to A:\ gives cannot be found error.
 
 However, oddly `cd /d A:` works fine...
@@ -434,7 +466,8 @@ However, oddly `cd /d A:` works fine...
 [Google reveals](https://superuser.com/questions/599641/nfs-mount-not-showing-in-windows-explorer#:~:text=If%20you%20mount%20NFS%20shares,not%20required%20for%20NFS%20mounts.)
 
 
-      If you mount NFS shares from an elevated command prompt (Run as administrator), the mount will not show up in the explorer running with normal user privileges. The solution is to unmount the share and remount it, either from explorer or from an ordinary command prompt. Admin privileges are not required for NFS mounts.
+
+      If you mount **NFS shares from an elevated command prompt** (Run as administrator), the mount will not show up in the explorer running with normal user privileges. The solution is to unmount the share and remount it, either from explorer or from an ordinary command prompt. Admin privileges are not required for NFS mounts.
 
 
 ok, unmount it
@@ -443,36 +476,36 @@ no dismount or unmount command, shows in NET USE.
 
 ```cmd
 >net use
-New connections will be remembered.
+      New connections will be remembered.
 
 
-Status       Local     Remote                    Network
+      Status       Local     Remote                    Network
 
--------------------------------------------------------------------------------
-             A:        \\UNRAID\rA\              NFS Network
-OK           V:        \\192.168.1.200\config    Microsoft Windows Network
-The command completed successfully.
+      -------------------------------------------------------------------------------
+                  A:        \\UNRAID\rA\              NFS Network
+      OK           V:        \\192.168.1.200\config    Microsoft Windows Network
+      The command completed successfully.
 
 
 >NET USE /DELETE \\UNRAID\rA\
-The network connection could not be found.
+      The network connection could not be found.
 
-More help is available by typing NET HELPMSG 2250.
+      More help is available by typing NET HELPMSG 2250.
 
 > NET HELPMSG 2250
 
-The network connection could not be found.
+      The network connection could not be found.
 
 >NET USE /DELETE \\UNRAID\rA\
-The network connection could not be found.
+      The network connection could not be found.
 
-More help is available by typing NET HELPMSG 2250.
+      More help is available by typing NET HELPMSG 2250.
 
 >NET USE /DELETE A:
-There are open files and/or incomplete directory searches pending on the connection to A:.
+      There are open files and/or incomplete directory searches pending on the connection to A:.
 
-Is it OK to continue disconnecting and force them closed? (Y/N) [N]: y
-A: was deleted successfully.
+      Is it OK to continue disconnecting and force them closed? (Y/N) [N]: y
+      A: was deleted successfully.
 ```
 
 
@@ -490,6 +523,11 @@ mount.nfs: access denied by server while mounting localhost:/mnt/user/rA
 unsure of that significance right now...
 
 then tried the below based on [this](https://ubuntuforums.org/showthread.php?t=2055587)
+
+
+!!! Important This Worked
+      
+      mount -u:andyt -p:Lauren7! \\UNRAID\mnt\user\rA\ A:
 
 ```cmd
 C:\>mount -u:andyt -p:Lauren7! \\UNRAID\mnt\user\rA\ A:
@@ -577,6 +615,39 @@ Dec 2 21:13:44 Unraid dhcpcd[3048]: br2: pid 19408 deleted route to 192.168.1.0/
 -   ip -4 route del 192.168.0.0/16 dev br3 metric 1
 -   ip -4 route del 192.168.0.0/16 dev br3 metric 1
 
+
+### More Commands 
+
+ route add -net 192.168.1.0/24 gw 192.168.1.1 metric 10 dev br0
+route add -host 169.254.0.1 metric 30 dev br 4
+
+ route add -host 169.254.0.1 metric 30 dev br4
+route add -net 192.168.2.0/24 metric 20 dev br3
+ip -4 route del 192.168.0.0/16
+
+ ip route show
+default via 192.168.1.1 dev br2 proto dhcp src 192.168.1.242 metric 4
+default via 192.168.1.1 dev br5 proto dhcp src 192.168.1.245 metric 5
+default via 192.168.1.1 dev br0 proto dhcp src 192.168.1.240 metric 220
+169.254.0.0/16 dev br4 proto kernel scope link src 169.254.0.2
+169.254.0.1 dev br4 scope link metric 30
+192.168.1.0/24 dev br2 proto dhcp scope link src 192.168.1.242 metric 4
+192.168.1.0/24 dev br5 proto dhcp scope link src 192.168.1.245 metric 5
+192.168.1.0/24 dev br0 proto dhcp scope link src 192.168.1.240 metric 220
+192.168.2.0/24 dev br3 scope link metric 20
+
+      root@Unraid:~# route del -net 192.168.1.0/24 br1
+      root@Unraid:~# route del -net 192.168.1.0/24 br2
+      root@Unraid:~# route del -net 192.168.1.0/24 br5
+      root@Unraid:~# route del -net 192.168.1.0/24 br0
+      root@Unraid:~# route add -net 192.168.1.0/24 metric 10 dev br0
+      root@Unraid:~# route add -net default gw 192.168.1.1 metric 9 dev br0
+      root@Unraid:~# route add -host 169.254.0.1 metric 30 dev br4
+      root@Unraid:~# route add -net 192.168.2.0/24 metric 40 dev br3
+      root@Unraid:~# ping -c 1 1.1.1.1
+
+
+
 ### Domain 
 
 Stored in /etc/resolv.conf
@@ -659,7 +730,7 @@ ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
       - show
       - xstats
       - afstats
-	- address 
+   - address 
       - add
       - change
       - replace
@@ -669,7 +740,7 @@ ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
       - show
       - showdump
       - restore
-	- addrlabel 
+   - addrlabel 
       - add
       - del
       - list
@@ -707,6 +778,36 @@ ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 	- vrf 
 	- sr 
 	- nexthop
+
+
+   ## interesting
+
+This DOES NOT WORK on Unraid, but has some interesting commands and bash examples./
+
+```sh
+      #!/bin/sh
+
+      # host we want to "reach"
+      host=google.com
+
+      # get the ip of that host (works with dns and /etc/hosts. In case we get  
+      # multiple IP addresses, we just want one of them
+      host_ip=$(getent ahosts "$host" | awk '{print $1; exit}')
+
+      # only list the interface used to reach a specific host/IP. We only want the part
+      # between dev and src (use grep for that)
+      ip route get "$host_ip" | grep -Po '(?<=(dev )).*(?= src| proto)'
+```
+
+more 
+
+      ip route get 8.8.8.8 | sed -n 's/.*dev \([^\ ]*\) table.*/\1/p'
+
+
+#### get route
+
+      ip route get 1.1.1.1
+
 
 ### Ping 
 
@@ -812,31 +913,6 @@ Detach from alpine1 without stopping it by using the detach sequence, [[CTRL]] +
 
             $ docker network rm alpine-net
 
-## interesting
-
-This DOES NOT WORK on Unraid, but has some interesting commands and bash examples./
-
-      #!/bin/sh
-
-      # host we want to "reach"
-      host=google.com
-
-      # get the ip of that host (works with dns and /etc/hosts. In case we get  
-      # multiple IP addresses, we just want one of them
-      host_ip=$(getent ahosts "$host" | awk '{print $1; exit}')
-
-      # only list the interface used to reach a specific host/IP. We only want the part
-      # between dev and src (use grep for that)
-      ip route get "$host_ip" | grep -Po '(?<=(dev )).*(?= src| proto)'
-
-more 
-
-      ip route get 8.8.8.8 | sed -n 's/.*dev \([^\ ]*\) table.*/\1/p'
-
-
-### get route
-
-      ip route get 1.1.1.1
 
 
 
@@ -1048,32 +1124,6 @@ Installing binutils-2.31.1 package.
 https://airsonic.github.io/docs/
 
 
-## Recovering Nginx
-
-!!! Fail  : Did not succeed
-      The underlying issue was that `/boot/config/go` I had moved the emhttpd command to the bottom and it was erroring out before running it.
-
-                  # Start the Management Utility
-            /usr/local/sbin/emhttp &
-
-### stop mover
-`mover stop`
-
-### Check whats wrong:
-
-`nginx` 
-
-```txt
-Message from syslogd@Unraid at Nov 13 09:48:25 ...
- nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to 0.0.0.0:80 failed (98: Address already in use)
-
-Message from syslogd@Unraid at Nov 13 09:48:25 ...
- nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to [::]:80 failed (98: Address already in use)
-
-Message from syslogd@Unraid at Nov 13 09:48:25 ...
- nginx: 2020/11/13 09:48:23 [emerg] 3614#3614: bind() to [::]:80 failed (98: Address already in use)
-nginx: [emerg] still could not bind()
-```
 
 `netstat -plant | grep 80`
 
@@ -1754,35 +1804,6 @@ at
 - `atrm` - deletes jobs, identified by their job number.
 - `batch` - executes commands when system load levels permit; in other words, when the load average drops below 1.5, or the value specified in the invocation of atd.
 
- route add -net 192.168.1.0/24 gw 192.168.1.1 metric 10 dev br0
-route add -host 169.254.0.1 metric 30 dev br 4
-
- route add -host 169.254.0.1 metric 30 dev br4
-route add -net 192.168.2.0/24 metric 20 dev br3
-ip -4 route del 192.168.0.0/16
-
- ip route show
-default via 192.168.1.1 dev br2 proto dhcp src 192.168.1.242 metric 4
-default via 192.168.1.1 dev br5 proto dhcp src 192.168.1.245 metric 5
-default via 192.168.1.1 dev br0 proto dhcp src 192.168.1.240 metric 220
-169.254.0.0/16 dev br4 proto kernel scope link src 169.254.0.2
-169.254.0.1 dev br4 scope link metric 30
-192.168.1.0/24 dev br2 proto dhcp scope link src 192.168.1.242 metric 4
-192.168.1.0/24 dev br5 proto dhcp scope link src 192.168.1.245 metric 5
-192.168.1.0/24 dev br0 proto dhcp scope link src 192.168.1.240 metric 220
-192.168.2.0/24 dev br3 scope link metric 20
-
-      root@Unraid:~# route del -net 192.168.1.0/24 br1
-      root@Unraid:~# route del -net 192.168.1.0/24 br2
-      root@Unraid:~# route del -net 192.168.1.0/24 br5
-      root@Unraid:~# route del -net 192.168.1.0/24 br0
-      root@Unraid:~# route add -net 192.168.1.0/24 metric 10 dev br0
-      root@Unraid:~# route add -net default gw 192.168.1.1 metric 9 dev br0
-      root@Unraid:~# route add -host 169.254.0.1 metric 30 dev br4
-      root@Unraid:~# route add -net 192.168.2.0/24 metric 40 dev br3
-      root@Unraid:~# ping -c 1 1.1.1.1
-
-
 ## Theme Engine
 
 CSS to fix column (works but not overriding)
@@ -1821,3 +1842,17 @@ table.share_status.dashboard tr>td.next {
 ## tar
 
  tar -xJf node-v10.23.0-linux-armv6l.tar.xz
+
+
+## bpytop
+
+cant remember what all needed ot be added
+
+but pybtop can be installed with pip install bpytop
+
+
+## Sensors
+
+sensors-detect - looks for sensors
+
+sensors - lists data

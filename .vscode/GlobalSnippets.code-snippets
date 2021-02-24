@@ -1,1 +1,305 @@
-C:/Users/andyt/AppData/Roaming/Code/User/snippets/CustomSnippets.code-snippets
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	//   <https://code.visualstudio.com/docs/editor/userdefinedsnippets>
+	/*
+	
+	The following variables can be used:
+
+TM_SELECTED_TEXT The currently selected text or the empty string
+TM_CURRENT_LINE The contents of the current line
+TM_CURRENT_WORD The contents of the word under cursor or the empty string
+TM_LINE_INDEX The zero-index based line number
+TM_LINE_NUMBER The one-index based line number
+TM_FILENAME The filename of the current document
+TM_FILENAME_BASE The filename of the current document without its extensions
+TM_DIRECTORY The directory of the current document
+TM_FILEPATH The full file path of the current document
+CLIPBOARD The contents of your clipboard
+WORKSPACE_NAME The name of the opened workspace or folder
+For inserting the current date and time:
+
+CURRENT_YEAR The current year
+CURRENT_YEAR_SHORT The current year's last two digits
+CURRENT_MONTH The month as two digits (example '02')
+CURRENT_MONTH_NAME The full name of the month (example 'July')
+CURRENT_MONTH_NAME_SHORT The short name of the month (example 'Jul')
+CURRENT_DATE The day of the month
+CURRENT_DAY_NAME The name of day (example 'Monday')
+CURRENT_DAY_NAME_SHORT The short name of the day (example 'Mon')
+CURRENT_HOUR The current hour in 24-hour clock format
+CURRENT_MINUTE The current minute
+CURRENT_SECOND The current second
+For inserting line or block comments, honoring the current language:
+
+BLOCK_COMMENT_START Example output: in PHP /* or in HTML <!--
+BLOCK_COMMENT_END Example output: 
+LINE_COMMENT Example output: in PHP 
+
+
+This correctly works with the selected word: eg, the snippet is placed, and the highlighted word remains highlighted, to be replaced.
+
+${1:$TM_SELECTED_TEXT }
+
+This works:
+first you select an item, then hitting tab, selects that text so you can over write it if desired.
+
+${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
+			// "[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD:?{^{http:,ftp:,file:}$3})",
+			"[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD}})",
+
+
+	*/
+	// }
+	"Link": {
+		"scope": "markdown",
+		"prefix": ".addlink",
+		"body": [
+			"[${TM_SELECTED_TEXT}]($2)",
+			"",
+			"$0"
+		],
+		"description": "Insert a link"
+	},
+	"ConvertLink": {
+		"scope": "markdown",
+		"prefix": ".linktitle",
+		"body": [
+			"[$1](${TM_SELECTED_TEXT})",
+			"",
+			"$0"
+		],
+		"description": "Take a site and make it into a link"
+	},
+	"SelectToLink": {
+		"scope": "markdown",
+		"prefix": ".selectedTextToHyperlink",
+		"body": [
+			"[${1:${TM_SELECTED_TEXT}}](${CLIPBOARD})",
+			"",
+			"$0"
+		],
+		"description": "Take a site and make it into a link"
+	},
+	"ClipboardLink": {
+		"prefix": ".clipLink",
+		"body": [
+			"[$(1:${TM_SELECTED_TEXT})](${CLIPBOARD})",
+			"",
+			"$0"
+		],
+		"scope": "markdown",
+		"description": "Take a site and make it into a link"
+	},
+	"_Code Block": {
+		"prefix": "cb",
+		"scope": "markdown",
+		"body": [
+			"",
+			"```${lang:LangName}",
+			"$1",
+			"```",
+			"",
+			"$0"
+		],
+		"description": "Produce a Code Block"
+	},
+	"_Code Block with Choices": {
+		"prefix": "_CodeBlockSelectLanguage",
+		"scope": "markdown",
+		"body": [
+			"",
+			"```${1|java, python, cmd, bash, R, js, json, C#, ps1, py3, py2, css, html, css|}",
+			"$2",
+			"```",
+			"",
+			"$0"
+		],
+		"description": "Produce a Code Block"
+	},
+	"Paste Code": {
+		"prefix": "code-clip",
+		"scope": "markdown",
+		"body": [
+			"",
+			"```${TM_FILENAME_BASE/(.*)/${1:/downcase}/}",
+			"${LINE_COMMENT}$1",
+			"${CLIPBOARD}",
+			"```",
+			"",
+			"$0"
+		],
+		"description": "Produce a Code Block"
+	},
+	"Code From Selected": {
+		"scope": "markdown",
+		"prefix": "_ConvertSelectedToCodeBlock",
+		"body": [
+			"```${TM_FILENAME_BASE/(.*)/${1:/downcase}/}",
+			"${TM_SELECTED_TEXT}",
+			"```",
+			"",
+			"$0"
+		],
+		"description": "Converts the selected text to a code block."
+	},
+	"CodeBlock from Clipboard": {
+		"scope": "markdown",
+		"prefix": "\\code",
+		"body": [
+			"```${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
+			"    ${CLIPBOARD}",
+			"```",
+			"",
+			"$0"
+		]
+	},
+
+	"Link from Clipboard": {
+		"scope": "markdown",
+		"prefix": [
+			"_link-clip",
+		],
+		"body": [
+			// "[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD:?{^{http:,ftp:,file:}$3})",
+			"[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD}})",
+			"",
+			"$0"
+		],
+		"description": "insert a link from the clipboard"
+	},
+	"test Choices (Not working)": {
+		"prefix": "test",
+		"body": [
+			"${1| red, blue, green |}"
+		],
+		"description": "Test Choices"
+	},
+	"AbbreviationA": {
+		"scope": "markdown",
+		"prefix": [
+			"!ab",
+			"abbreviation",
+			"*[x]"
+		],
+		"description": "define a markdown abbreviation, that will provide tooltips for all appearances of the word.",
+		"body": [
+			"[[def]] *[${1:$TM_SELECTED_TEXT }]: $2",
+			// "${1 | , $TM_SELECTED_TEXT, $TM_CURRENT_WORD, $CLIPBOARD, $TM_CURRENT_LINE |} ]: $3",
+			"",
+			"$0"
+		]
+	},
+	"Abbreviation": {
+		"scope": "markdown",
+		"prefix": [
+			"!ab2",
+			"Abb2",
+			"*[_] x"
+		],
+		"description": "define a markdown abbreviation, that will provide tooltips for all appearances of the word.",
+		"body": [
+			"[[def]] *[$TM_SELECTED_TEXT]: $1",
+			// "${1 | , $TM_SELECTED_TEXT, $TM_CURRENT_WORD, $CLIPBOARD, $TM_CURRENT_LINE |} ]: $3",
+			"",
+			"$0"
+		]
+	},
+	"Superscript": {
+		"scope": "markdown",
+		"prefix": [
+			"superscript",
+			"^",
+			"1",
+			"2",
+			"3",
+			"4",
+			"5",
+			"6",
+			"7",
+			"8",
+			"9",
+			"0",
+			// Need these so that its suggested when numbers are highlighted
+			"$TM_SELECTED_TEXT"
+		],
+		"description": "Make the selected text superscript",
+		"body": [
+			"^$TM_SELECTED_TEXT^ $0",
+		]
+	},
+	"Subscript": {
+		"scope": "markdown",
+		"prefix": [
+			"subscript",
+			"~",
+			"1",
+			"2",
+			"3",
+			"4",
+			"5",
+			"6",
+			"7",
+			"8",
+			"9",
+			"0"
+		],
+		"description": "Make the selected text subscript",
+		"body": [
+			"~$TM_SELECTED_TEXT~ $0",
+		]
+	},
+	"Admonition": {
+		"scope": "markdown",
+		"prefix": "!ad",
+		"body": [
+			"!!!${1|Note,Summary, Abstract, Tldr,Info, Todo,Tip, Hint,Success, Check, Done,Question, Help, Faq,Warning, Caution,Attention,Failure, Fail, Missing,Error,Bug,Danger,Example, Snippet,Quote, Cite|} ${1}: $2",
+			"\t$3",
+			"",
+			"$0"
+		],
+		"description": "Note (Blue Pencil), Summary/Abstract/Tldr (Lt. Blue Paragraph), Todo/Info (Light Blue circled i), Tip/Hint (Teal Flame), Success/Check/Done (Green Check), Question/Help/FAQ (Green Question Mark), Warning/Caution (Orange Triange Exclaim Mark), Attention (Orange Eye Exclaim Mark), Red Bug, Danger- Red Lightning Admonition, Failure, Fail, Missing, Error (Red X), Example, Snippet (Num List Blue), Quote/Cite (Grey Quote)"
+	},
+	"Make a new Snippet": {
+		"prefix": ".snip",
+		"scope": "json, code-snippets, *.code-snippets *.json",
+		"body": [
+			"\"$1\": { ",
+			"\t\"prefix\": \"$2\",",
+			"\t\"body\": [",
+			"\t\t\"$3\",",
+			"\t\t\"$4\",",
+			"\t\t\"$5\"",
+			"\t],",
+			"\t\"description\": \"$5\"",
+			"}"
+		],
+		"description": "insert a New Snippet"
+	},
+
+		"Complete Line": {
+			"scope" : "javascript, java",
+			"prefix": "complete",
+			"body": [
+				"$TM_CURRENT_LINE;",
+				"$0"
+			],
+			"description": "Complete Line"
+		},
+
+
+}
+

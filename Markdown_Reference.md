@@ -11,8 +11,11 @@ puppeteer:
     image:
         quality: 90
         fullPage: true
----
 
+---
+        "markdown.styles": [
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+]
 Sample Exporting instructions
 
 # Markdown Reference
@@ -306,6 +309,7 @@ underline
 ::: col-xs-6 alert alert-success
 success text
 :::
+
 ::: col-xs-6 alert alert-warning
 warning text
 :::
@@ -410,6 +414,21 @@ graph LR
     fa:fa-check-->fa:fa-coffee
 ```
 
+```
+\`\`\`mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+\`\`\`
+
+\`\`\`mermaid
+graph LR
+    fa:fa-check-->fa:fa-coffee
+\`\`\`
+```
+
 ### Syntax Highlighting 
 
 Mermaid Markdown Syntax Highlighting
@@ -441,6 +460,27 @@ digraph finite_state_machine {
     q2 -> q1 [ label = "b" ];
     q2 -> q2 [ label = "b" ];
 }
+```
+put in a codeblock with typecode `graphviz`
+
+```
+digraph finite_state_machine {
+    rankdir=LR;
+    size="8,5"
+
+    node [shape = doublecircle]; S;
+    node [shape = point ]; qi
+
+    node [shape = circle];
+    qi -> S;
+    S  -> q1 [ label = "a" ];
+    S  -> S  [ label = "a" ];
+    q1 -> S  [ label = "a" ];
+    q1 -> q2 [ label = "ddb" ];
+    q2 -> q1 [ label = "b" ];
+    q2 -> q2 [ label = "b" ];
+}
+
 ```
 
 ## Markdown Script [^ClickToRun]
@@ -621,6 +661,7 @@ _ sub script.
 $\sqrt{x+2}$
 $\overline x+\overline y$
 $\root 3 \of 2$
+$\radical[2]2$
 $\sqrt{x^3+\sqrt\alpha}$
 $x\times y\cdot z$    x×y·z
 $x\circ y\bullet z$x◦y•z

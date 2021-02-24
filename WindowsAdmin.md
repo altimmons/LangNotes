@@ -41,6 +41,12 @@ Every directory has 2 members by default - its links in the linked graph. `.` or
 
 see with `gci env:` in Powershell,
 
+#### Font file
+
+especially user fonts are now in user space:
+
+`C:\Users\andyt\AppData\Local\Microsoft\Windows\Fonts`
+
 #### Start Menu Location
 
 `C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu`
@@ -686,6 +692,56 @@ Get a list of all WMI classes with the word “COM” in them (doing a case sens
 ## Command Line
 
 
+[Critical Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
+
+
+
+### General Tips
+
+#### Shortcuts 
+
+Command prompt also supports drag and drop: If you want to copy the exact path to a folder or file to run the file or change the present working directory, you can simply drag and drop the file or the folder on the command prompt.
+And there are more command history features available via function keys:
+[[F1]]: Pastes per character last used command
+[[F2]] -  Pastes last used command only to a specified command character
+[[F3]] -  Pastes Last used command
+[[F4]] -  Delete command only to a specified command character
+[[F5]] -  Pastes last used command without cycling
+[[F6]] -  Pastes ^Z
+[[F7]] -  Provides a list of already used commands (selectable)
+[[F8]] -  Pastes cycleable used commands
+[[F9]] -  Will let you paste command from the list of recently used commands
+
+
+#### Spaces
+
+Paths with spaces need to be quoted.  Single quotes dont seem to work.
+
+In powershell, single quote means literal, e.g. dont replace references.  '$var'
+
+Double quotes mean, evaluate expressions then return string.  
+
+Or maybe its the other way around.  
+
+For command, from stackoverflow
+
+    CMD doesn't treat single quotes as anything but a regular character. It's not a pair/group like double quotes.
+
+    The only place where the single quote has any special meaning is in a FOR /F loop, where you are specifying a command to run and iterate over the output.
+
+        FOR /F %%d IN ('DIR /S /B C:\Windows') DO @ECHO File: %%d
+
+
+#### Command List
+
+[Complete List](https://opdhsblobprod04.blob.core.windows.net/contents/bcfb35dcab554ac89342fa948a4ebed7/b4c89455c9846c8e2fa82cea40554530?sv=2018-03-28&sr=b&si=ReadPolicy&sig=Utcqb0wBOj8RVFG5OEb6U7xsMm47uNc7kDD6FpM8xdo%3D&st=2020-12-16T15%3A27%3A44Z&se=2020-12-17T15%3A37%3A44Z)
+
+Also locally O:\OneDrive\Programming\Windows
+
+try:
+    
+    %onedrive%\Programming\Windows\'Windows Command Reference.pdf'
+
 When you are using a Microsoft MS-DOS command prompt shell window, you can type the following commands into the window. Click a command shown below for a description of how to use that command.
 
 - `cd` - Change directory or display current directory path.
@@ -780,6 +836,8 @@ See also: Command-line reference A-Z
 
   `commandA && commandB || commandC`
                               If commandA succeeds run commandB, if it fails commandC
+
+### Exit Codes
 
 Success and failure are based on the **Exit Code** of the command.
 In most cases the Exit Code is the same as the ErrorLevel
@@ -998,21 +1056,13 @@ The following table describes the notation used to indicate [command-line syntax
 | Ellipsis (…)                    | Items that can be repeated                         |
 
 
-### More
+### Other Tips
 
 [SS64 Batch Help](https://ss64.com/nt/for.html)
 
 [Microsoft (Server) Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
 
-remote desktop command line (use /console if all slots full)
-c:\> mstsc /v:SERVERNAME [/console]
-list other RDP sessions on the server
-c:\> query session
-kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
-c:\> logoff SESSIONID
-
-use mstsc /admin instead. Use mstsc /? for a list of commands.
 
 Never knew aboput clip, and while investigating a problem yesterday I found another command I knew nothing about, the "where" command, it displays the location of a file.
 
@@ -1027,18 +1077,6 @@ Ctrl-z
 cd \win*
 type *.log[tab][tab][tab][tab]
 cd syste[tab][tab]
-
-Command prompt also supports drag and drop: If you want to copy the exact path to a folder or file to run the file or change the present working directory, you can simply drag and drop the file or the folder on the command prompt.
-And there are more command history features available via function keys:
-F1: Pastes per character last used command
-F2: Pastes last used command only to a specified command character
-F3: Pastes Last used command
-F4: Delete command only to a specified command character
-F5: Pastes last used command without cycling
-F6: Pastes ^Z
-F7: Provides a list of already used commands (selectable)
-F8: Pastes cycleable used commands
-F9: Will let you paste command from the list of recently used commands
 
 I didn't know about clip, but then I've been using the UnxUtils collection for years and that has gclip, which does the same thing. I would probably have discovered clip by now if it wasn't for that.
 Someone mentioned pushd and popd; there's a good use case for these that people may not be aware of. While you can navigate to a UNC path in File Explorer you can't cd to one on the command line, but you can use pushd to achieve the same thing. It will actually map a drive to the share with the next available drive letter, before changing to the directory. When the previous directory is popped off the stack with popd, the mapped drive is released.
@@ -1311,7 +1349,17 @@ avoids confusion with the modifiers, which are not case sensitive.
 
 
 
-### Command Line Commands
+## Command Line Commands
+
+
+[All commands here](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
+
+[PDF version](https://opdhsblobprod04.blob.core.windows.net/contents/bcfb35dcab554ac89342fa948a4ebed7/b4c89455c9846c8e2fa82cea40554530?sv=2018-03-28&sr=b&si=ReadPolicy&sig=Utcqb0wBOj8RVFG5OEb6U7xsMm47uNc7kDD6FpM8xdo%3D&st=2020-12-16T15%3A27%3A44Z&se=2020-12-17T15%3A37%3A44Z)
+
+[Local version](file:///%onedrive%\Programming\Windows\Windows%20Command%20Reference.pdf)
+[Local version](file:///O:/Onedrive/Programming/Windows/Windows%20Command%20Reference.pdf)
+
+
 
 
    ADDUSERS Add or list users to/from a CSV file
@@ -1579,6 +1627,138 @@ ARP
 AT *deprecated*
 A
 
+
+### Assoc 
+
+
+Displays or modifies file name extension associations. If used without parameters, assoc displays a list of all the current file name extension associations.
+
+Syntax `assoc [<.ext>[=[<filetype>]]]`
+
+- `Parameter ` - Description
+- `<.ext>` - Specifies the file name extension.
+- `<filetype>` Specifies the file type to associate with the specified file name extension.
+- `/?` - Displays help at the command prompt.
+Remarks
+
+    To remove the file type association for a file name extension, add a white space after the equal sign by pressing the SPACEBAR.
+
+    To view current file types that have open command strings defined, use the ftype command.
+
+    To redirect the output of assoc to a text file, use the > redirection operator.
+
+Examples
+
+To view the current file type association for the file name extension .txt, type:
+
+`assoc .txt`
+
+To remove the file type association for the file name extension .bak, type:
+
+`assoc .bak=`
+
+!!! Note Note: Make sure you add a space after the equal sign.
+
+To view the output of assoc one screen at a time, type:
+
+`assoc | more`
+
+To send the output of assoc to the file assoc.txt, type:
+
+`assoc>assoc.txt`
+
+
+### Attrib
+
+Sets and changes file attributes.
+
+
+`attrib -a example.doc`
+
+The above command will unset archive attribute for the file example.doc
+
+[Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
+
+- R - **ReadOnly**
+- A - **Archive file attribute.**
+- S - System file attribute.
+- H - Hidden file attribute.
+- O - *Offline attribute.*
+- I - **Not content indexed file attribute.**
+- X - *No scrub file attribute.*
+- V - *Integrity attribute.*
+- P - *Pinned attribute.*
+- U - *Unpinned attribute.*
+- B - *SMR Blob attribute.*
+
+Parameter  Description
+- `{+|-}r ` - Sets (+) or clears (-) the Read-only file attribute.
+- `{+\|-}a ` - Sets (+) or clears (-) the Archive file attribute. This attribute set marks files that have changed since the last time they were backed up. Note that the xcopy command uses archive attributes.
+- `{+\|-}s ` - Sets (+) or clears (-) the System file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}h ` - Sets (+) or clears (-) the Hidden file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}i ` - Sets (+) or clears (-) the Not Content Indexed file attribute.
+- `[<drive>:][<path>][<filename>] ` - Specifies the location and name of the directory, file, or group of files for which you want to display or change attributes.
+
+You can use the ? and * wildcard characters in the filename parameter to display or change the attributes for a group of files.
+- `/s ` - Applies attrib and any command-line options to matching files in the current directory and all of its subdirectories.
+- `/d ` - Applies attrib and any command-line options to directories.
+- `/l ` - Applies attrib and any command-line options to the Symbolic Link, rather than the target of the Symbolic Link.
+- `/? ` - Displays help at the command prompt.
+
+A few useful aspects:
+
+Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive attribute.  Any file that changes from that point on will have it set.  Then you can run backup only files with `+A` attribute.
+
+I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
+
+Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
+
+#### Groups of files
+
+[Source](https://www.windows-commandline.com/clear-archive-attribute-from-command/)
+There is no direct command for setting/unsetting attributes for a group of files. Attrib command works on one file at a time. You can use the following batch file command though.
+
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+
+```batch
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+REM This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+REM To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+```
+
+On the other hand,  `attrib` command accepts wild characters and can process files in bulk. The syntax for bulk processing is given below [Source](https://www.windows-commandline.com/attrib-command/)
+
+
+
+```batch
+
+attrib +[R/H/S/A]  *
+
+
+REM To set attribute for files of certain type/extension
+
+attrib +[R/H/S/A] *.ext
+
+
+REM To set attribute for all files in current directory
+
+attrib +[R/H/S/A]
+
+
+REM Example: Set hidden attribute on all PDF files in the current directory
+
+attrib +H *.pdf
+```
+
+note- unsure if in the above example `+[R/H/S/A]` is valid syntax.  I think they mean one of those.
+
+
 ### MKLINK
 
         Creates a symbolic link.
@@ -1805,6 +1985,57 @@ C:\temp$ fsutil
   - removeWim           Remove a WIM from backing files
   - queryFile           Query the origin of a specific file
 
+
+### findstr
+
+Searches for strings in files.
+
+    FINDSTR [/B] [/E] [/L] [/R] [/S] [/I] [/X] [/V] [/N] [/M] [/O] [/P] [/F:file]
+            [/C:string] [/G:file] [/D:dir list] [/A:color attributes] [/OFF[LINE]]
+            strings [[drive:][path]filename[ ...]]
+
+      /B         Matches pattern if at the beginning of a line.
+      /E         Matches pattern if at the end of a line.
+      /L         Uses search strings literally.
+      /R         Uses search strings as regular expressions.
+      /S         Searches for matching files in the current directory and all
+                subdirectories.
+      /I         Specifies that the search is not to be case-sensitive.
+      /X         Prints lines that match exactly.
+      /V         Prints only lines that do not contain a match.
+      /N         Prints the line number before each line that matches.
+      /M         Prints only the filename if a file contains a match.
+      /O         Prints character offset before each matching line.
+      /P         Skip files with non-printable characters.
+      /OFF[LINE] Do not skip files with offline attribute set.
+      /A:attr    Specifies color attribute with two hex digits. See "color /?"
+      /F:file    Reads file list from the specified file(/ stands for console).
+      /C:string  Uses specified string as a literal search string.
+      /G:file    Gets search strings from the specified file(/ stands for console).
+      /D:dir     Search a semicolon delimited list of directories
+      strings    Text to be searched for.
+      [drive:][path]filename
+                Specifies a file or files to search.
+
+    Use spaces to separate multiple search strings unless the argument is prefixed
+    with /C.  For example, 'FINDSTR "hello there" x.y' searches for "hello" or
+    "there" in file x.y.  'FINDSTR /C:"hello there" x.y' searches for
+    "hello there" in file x.y.
+
+    Regular expression quick reference:
+      .        Wildcard: any character
+      *        Repeat: zero or more occurrences of previous character or class
+      ^        Line position: beginning of line
+      $        Line position: end of line
+      [class]  Character class: any one character in set
+      [^class] Inverse class: any one character not in set
+      [x-y]    Range: any characters within the specified range
+      \x       Escape: literal use of metacharacter x
+      \<xyz    Word position: beginning of word
+      xyz\>    Word position: end of word
+
+    For full information on FINDSTR regular expressions refer to the online Command
+    Reference.
 
 ### clip
 
@@ -2933,6 +3164,37 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
+
+### WSL Mount USB
+
+Create a mount location in WSL:
+
+    mkdir /mnt/f
+
+Mount the drive in WSL:
+
+    mount -t drvfs f: /mnt/f
+
+
+After this one-time setup, one can create and manipulate files from both Windows and WSL on the same drive.
+
+
+#### network storage
+
+
+Here we assume:
+	• networked storage is already showing in Windows under \\server\share
+	• we want to access this network storage from WSL as /mnt/share
+Create a mount location in WSL:
+    
+    mkdir /mnt/share
+
+Mount the network share in WSL:
+
+    mount -t drvfs '\\server\share' /mnt/share
+
+
+
 ### reg
 
 reg is a command line function to edit the registry.  An example from elsewhere in the document.
@@ -3099,9 +3361,28 @@ passing this will output an HTML file into the file you are in.
 
 `logman` looks at the currently running loggers from performance manager.
 
+### mstsc
+
+`mstsc` - Opens a remote desktop connection.  e.g. the Remote Desktop connection window.
+
+Can also use it to open just a console.
+
+    remote desktop command line (use /console if all slots full)
+    c:\> mstsc /v:SERVERNAME [/console]
+    list other RDP sessions on the server
+    c:\> query session
+    kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
+    c:\> logoff SESSIONID
+
+use mstsc /admin instead. Use mstsc /? for a list of commands.
+
 
 ### netsh
 
+
+[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
 
 
 [more](### Network Trace)
@@ -3114,6 +3395,139 @@ This shows all the settings
 netsh
 >dump
 ```
+
+
+    Commands in this context:
+    ..             - Goes up one context level.
+    ?              - Displays a list of commands.
+    abort          - Discards changes made while in offline mode.
+    add            - Adds a configuration entry to a list of entries.
+    advfirewall    - Changes to the `netsh advfirewall' context.
+    alias          - Adds an alias.
+    branchcache    - Changes to the `netsh branchcache' context.
+    bridge         - Changes to the `netsh bridge' context.
+    bye            - Exits the program.
+    commit         - Commits changes made while in offline mode.
+    delete         - Deletes a configuration entry from a list of entries.
+    dhcpclient     - Changes to the `netsh dhcpclient' context.
+    dnsclient      - Changes to the `netsh dnsclient' context.
+    dump           - Displays a configuration script.
+    exec           - Runs a script file.
+    exit           - Exits the program.
+    firewall       - Changes to the `netsh firewall' context.
+    help           - Displays a list of commands.
+    http           - Changes to the `netsh http' context.
+    interface      - Changes to the `netsh interface' context.
+    ipsec          - Changes to the `netsh ipsec' context.
+    lan            - Changes to the `netsh lan' context.
+    mbn            - Changes to the `netsh mbn' context.
+    namespace      - Changes to the `netsh namespace' context.
+    netio          - Changes to the `netsh netio' context.
+    offline        - Sets the current mode to offline.
+    online         - Sets the current mode to online.
+    p2p            - Changes to the `netsh p2p' context.
+    popd           - Pops a context from the stack.
+    pushd          - Pushes current context on stack.
+    quit           - Exits the program.
+    ras            - Changes to the `netsh ras' context.
+    rpc            - Changes to the `netsh rpc' context.
+    set            - Updates configuration settings.
+    show           - Displays information.
+    trace          - Changes to the `netsh trace' context.
+    unalias        - Deletes an alias.
+    wcn            - Changes to the `netsh wcn' context.
+    wfp            - Changes to the `netsh wfp' context.
+    winhttp        - Changes to the `netsh winhttp' context.
+    winsock        - Changes to the `netsh winsock' context.
+    wlan           - Changes to the `netsh wlan' context.
+
+      #The following sub-contexts are available:
+      advfirewall
+      branchcache 
+      bridge 
+      dhcpclient 
+      dnsclient 
+      firewall 
+      http 
+      interface 
+      ipsec 
+      lan 
+      mbn 
+      namespace 
+      netio 
+      p2p 
+      ras 
+      rpc 
+      trace 
+      wcn 
+      wfp 
+      winhttp 
+      winsock 
+      wlan
+
+
+
+#### Network Trace using netsh
+ 
+Capture a Network Trace without installing anything (& capture a network trace of a reboot)
+
+If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
+
+The short version:
+
+1. Open an elevated command prompt and run: "
+
+       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
+      
+(make sure you have a \temp directory or choose another location).
+
+2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
+
+ 
+
+3. Open an elevated command prompt and run: 
+
+        netsh trace stop
+
+ 
+
+Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
+
+ 
+
+The longer version:
+
+I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
+
+ 
+
+1. Open an elevated command prompt and run: 
+      
+        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
+      
+      
+(make sure you have a \temp directory or choose another location).
+
+
+#### Using Netsh trace commands
+
+      Commands in the Netsh trace context
+
+          convert
+          correlate
+          diagnose
+          show CaptureFilterHelp
+          show globalKeywordsAndLevels
+          show helperclass
+          show interfaces
+          show provider
+          show providers
+          show scenario
+          show scenarios
+          show status
+          start
+          stop
+
 ### net
 
 NET
@@ -3385,6 +3799,70 @@ net session \\samba.server.ip.address /delete
         more must be enclosed in quotation marks. For example,
         NET START "COMPUTER BROWSER" starts the computer browser service.
 
+### netstat
+
+Displays protocol statistics and current TCP/IP network connections.
+
+    NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]
+
+      -a            Displays all connections and listening ports.
+      -b            Displays the executable involved in creating each connection or
+                    listening port. In some cases well-known executables host
+                    multiple independent components, and in these cases the
+                    sequence of components involved in creating the connection
+                    or listening port is displayed. In this case the executable
+                    name is in [] at the bottom, on top is the component it called,
+                    and so forth until TCP/IP was reached. Note that this option
+                    can be time-consuming and will fail unless you have sufficient
+                    permissions.
+      -e            Displays Ethernet statistics. This may be combined with the -s
+                    option.
+      -f            Displays Fully Qualified Domain Names (FQDN) for foreign
+                    addresses.
+      -n            Displays addresses and port numbers in numerical form.
+      -o            Displays the owning process ID associated with each connection.
+      -p proto      Shows connections for the protocol specified by proto; proto
+                    may be any of: TCP, UDP, TCPv6, or UDPv6.  If used with the -s
+                    option to display per-protocol statistics, proto may be any of:
+                    IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, or UDPv6.
+      -q            Displays all connections, listening ports, and bound
+                    nonlistening TCP ports. Bound nonlistening ports may or may not
+                    be associated with an active connection.
+      -r            Displays the routing table.
+      -s            Displays per-protocol statistics.  By default, statistics are
+                    shown for IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, and UDPv6;
+                    the -p option may be used to specify a subset of the default.
+      -t            Displays the current connection offload state.
+      -x            Displays NetworkDirect connections, listeners, and shared
+                    endpoints.
+      -y            Displays the TCP connection template for all connections.
+                    Cannot be combined with the other options.
+      interval      Redisplays selected statistics, pausing interval seconds
+                    between each display.  Press CTRL+C to stop redisplaying
+                    statistics.  If omitted, netstat will print the current
+                    configuration information once.
+
+
+#### Useful Commands
+
+- `n` - Display the IP numbers [Number]
+- `a` - Display all connections [All]
+- `q` display all conn. including bound non-listening ports
+- `b` - Displays the application involved.
+- `o` - Display the owning process
+- `r` - routing table
+- `s` - organize by protocol
+- `p` <Protocol> - like s but filters by protocol
+
+`interval` display a live connection updating it. 
+
+    netstat -nao 
+
+    netstat -na | findstr <port>
+
+findstr is like grep.
+
+
 
 ### Where 
 
@@ -3399,7 +3877,7 @@ Displays the location of files that match the given search pattern.
       where [/r <Dir>] [/q] [/f] [/t] [$<ENV>:|<Path>:]<Pattern>[ ...]
 
 Parameters
-Parameter 	Description
+Parameter   Description
 - `/r <Dir> ` - Indicates a recursive search, starting with the specified directory.
 - `/q ` - Returns an exit code (0 for success, 1 for failure) without displaying the list of matched files.
 - `/f ` - Displays the results of the where command in quotation marks.
@@ -3501,135 +3979,6 @@ To eliminate the need to type the .pl file name extension when invoking a Perl s
         set PATHEXT=.pl;%PATHEXT%
 
 
-### Assoc 
-
-
-Displays or modifies file name extension associations. If used without parameters, assoc displays a list of all the current file name extension associations.
-
-Syntax `assoc [<.ext>[=[<filetype>]]]`
-
-- `Parameter ` - Description
-- `<.ext>` - Specifies the file name extension.
-- `<filetype>` Specifies the file type to associate with the specified file name extension.
-- `/?` - Displays help at the command prompt.
-Remarks
-
-    To remove the file type association for a file name extension, add a white space after the equal sign by pressing the SPACEBAR.
-
-    To view current file types that have open command strings defined, use the ftype command.
-
-    To redirect the output of assoc to a text file, use the > redirection operator.
-
-Examples
-
-To view the current file type association for the file name extension .txt, type:
-
-`assoc .txt`
-
-To remove the file type association for the file name extension .bak, type:
-
-`assoc .bak=`
-
-!!! Note Note: Make sure you add a space after the equal sign.
-
-To view the output of assoc one screen at a time, type:
-
-`assoc | more`
-
-To send the output of assoc to the file assoc.txt, type:
-
-`assoc>assoc.txt`
-
-
-### Attrib
-
-Sets and changes file attributes.
-
-
-`attrib -a example.doc`
-
-The above command will unset archive attribute for the file example.doc
-
-[Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
-
-- R - **ReadOnly**
-- A - **Archive file attribute.**
-- S - System file attribute.
-- H - Hidden file attribute.
-- O - *Offline attribute.*
-- I - **Not content indexed file attribute.**
-- X - *No scrub file attribute.*
-- V - *Integrity attribute.*
-- P - *Pinned attribute.*
-- U - *Unpinned attribute.*
-- B - *SMR Blob attribute.*
-
-Parameter	Description
-- `{+|-}r ` - Sets (+) or clears (-) the Read-only file attribute.
-- `{+\|-}a ` - Sets (+) or clears (-) the Archive file attribute. This attribute set marks files that have changed since the last time they were backed up. Note that the xcopy command uses archive attributes.
-- `{+\|-}s ` - Sets (+) or clears (-) the System file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
-- `{+\|-}h ` - Sets (+) or clears (-) the Hidden file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
-- `{+\|-}i ` - Sets (+) or clears (-) the Not Content Indexed file attribute.
-- `[<drive>:][<path>][<filename>] ` - Specifies the location and name of the directory, file, or group of files for which you want to display or change attributes.
-
-You can use the ? and * wildcard characters in the filename parameter to display or change the attributes for a group of files.
-- `/s ` - Applies attrib and any command-line options to matching files in the current directory and all of its subdirectories.
-- `/d ` - Applies attrib and any command-line options to directories.
-- `/l ` - Applies attrib and any command-line options to the Symbolic Link, rather than the target of the Symbolic Link.
-- `/? ` - Displays help at the command prompt.
-
-A few useful aspects:
-
-Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive attribute.  Any file that changes from that point on will have it set.  Then you can run backup only files with `+A` attribute.
-
-I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
-
-Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
-
-#### Groups of files
-
-[Source](https://www.windows-commandline.com/clear-archive-attribute-from-command/)
-There is no direct command for setting/unsetting attributes for a group of files. Attrib command works on one file at a time. You can use the following batch file command though.
-
-for /F %i in (‘dir /s /b ‘) do attrib -A %i
-This command will unset archive attributes for all the files in the current directory and in the subdirectories.
-
-To do this for a directory the command would be:
-for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
-
-```batch
-for /F %i in (‘dir /s /b ‘) do attrib -A %i
-REM This command will unset archive attributes for all the files in the current directory and in the subdirectories.
-
-REM To do this for a directory the command would be:
-for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
-```
-
-On the other hand,  `attrib` command accepts wild characters and can process files in bulk. The syntax for bulk processing is given below [Source](https://www.windows-commandline.com/attrib-command/)
-
-
-
-```batch
-
-attrib +[R/H/S/A]  *
-
-
-REM To set attribute for files of certain type/extension
-
-attrib +[R/H/S/A] *.ext
-
-
-REM To set attribute for all files in current directory
-
-attrib +[R/H/S/A]
-
-
-REM Example: Set hidden attribute on all PDF files in the current directory
-
-attrib +H *.pdf
-```
-
-note- unsure if in the above example `+[R/H/S/A]` is valid syntax.  I think they mean one of those.
 
 
 ### Typeperf
@@ -3905,6 +4254,19 @@ prompt --$g
 To manually change the command prompt to the default setting (the current drive and path followed by the greater than sign), type:
 
 prompt $p$g
+
+### rd
+
+Removes a directory
+
+`/s` recursive delete incl. files.
+
+`/q` No confirmation
+
+see also [deltree](#del)
+
+`deltree` seems to be no more
+
 ### rem
 
 
@@ -4032,7 +4394,7 @@ You can also use the shutdown.exe tool with its logoff option:
 
 A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32Shutdown method**. Invoking the method with the **0** flag initiates logoff:
 
-		(Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
+    (Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
@@ -4093,39 +4455,39 @@ Shutting down and restarting computers are generally the same types of task. Too
 
         Reasons on this computer:
         (E = Expected U = Unexpected P = planned, C = customer defined)
-        Type	Major	Minor	Title
+        Type  Major  Minor  Title
 
-        U  	    0	0	Other (Unplanned)
-        E   	0	0	Other (Unplanned)
-        E P 	0	0	Other (Planned)
-        U  	    0	5	Other Failure: System Unresponsive
-        E   	1	1	Hardware: Maintenance (Unplanned)
-        E P 	1	1	Hardware: Maintenance (Planned)
-        E   	1	2	Hardware: Installation (Unplanned)
-        E P 	1	2	Hardware: Installation (Planned)
-        E   	2	2	Operating System: Recovery (Unplanned)
-        E P 	2	2	Operating System: Recovery (Planned)
-        P 	    2	3	Operating System: Upgrade (Planned)
-        E   	2	4	Operating System: Reconfiguration (Unplanned)
-        E P 	2	4	Operating System: Reconfiguration (Planned)
-          P	    2	16	Operating System: Service pack (Planned)
-                2	17	Operating System: Hot fix (Unplanned)
-          P     2	17	Operating System: Hot fix (Planned)
-                2	18	Operating System: Security fix (Unplanned)
-          P     2	18	Operating System: Security fix (Planned)
-        E   	4	1	Application: Maintenance (Unplanned)
-        E P 	4	1	Application: Maintenance (Planned)
-        E P 	4	2	Application: Installation (Planned)
-        E   	4	5	Application: Unresponsive
-        E   	4	6	Application: Unstable
-        U  	    5	15	System Failure: Stop error
-        U  	    5	19	Security issue (Unplanned)
-        E   	5	19	Security issue (Unplanned)
-        E P 	5	19	Security issue (Planned)
-        E   	5	20	Loss of network connectivity (Unplanned)
-        U  	    6	11	Power Failure: Cord Unplugged
-        U  	    6	12	Power Failure: Environment
-          P	    7	0	Legacy API shutdown
+        U     0  0  Other (Unplanned)
+        E     0  0  Other (Unplanned)
+        E P   0  0  Other (Planned)
+        U     0  5  Other Failure: System Unresponsive
+        E     1  1  Hardware: Maintenance (Unplanned)
+        E P   1  1  Hardware: Maintenance (Planned)
+        E     1  2  Hardware: Installation (Unplanned)
+        E P   1  2  Hardware: Installation (Planned)
+        E     2  2  Operating System: Recovery (Unplanned)
+        E P   2  2  Operating System: Recovery (Planned)
+        P     2  3  Operating System: Upgrade (Planned)
+        E     2  4  Operating System: Reconfiguration (Unplanned)
+        E P   2  4  Operating System: Reconfiguration (Planned)
+          P   2  16  Operating System: Service pack (Planned)
+              2  17  Operating System: Hot fix (Unplanned)
+          P   2  17  Operating System: Hot fix (Planned)
+              2  18  Operating System: Security fix (Unplanned)
+          P   2  18  Operating System: Security fix (Planned)
+        E     4  1  Application: Maintenance (Unplanned)
+        E P   4  1  Application: Maintenance (Planned)
+        E P   4  2  Application: Installation (Planned)
+        E     4  5  Application: Unresponsive
+        E     4  6  Application: Unstable
+        U     5  15  System Failure: Stop error
+        U     5  19  Security issue (Unplanned)
+        E     5  19  Security issue (Unplanned)
+        E P   5  19  Security issue (Planned)
+        E     5  20  Loss of network connectivity (Unplanned)
+        U     6  11  Power Failure: Cord Unplugged
+        U     6  12  Power Failure: Environment
+          P   7  0  Legacy API shutdown
 
 !!!warning `tsshutdn.exe` is not found on W10 pro.
 
@@ -4258,6 +4620,12 @@ Uses this table:
 
 
 ## 3rd party CLI
+
+### Nirsoft
+
+[Nirsoft Tools](www.nirsoft.net/utils/index.html)
+
+
 
 ### Winrar
 
@@ -4721,7 +5089,22 @@ Use Double Quotes to bundle things
 
 magick montage -label %t -tile 10x20 *.png -resize 128x128  .\%d-index.html
 
-`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-1
+
+Title is wrong
+
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList0.txt ./Pycharm-INDEX_pg0of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList1.txt ./Pycharm-INDEX_pg2of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList2.txt ./Pycharm-INDEX_pg4of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList3.txt ./Pycharm-INDEX_pg6of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList4.txt ./Pycharm-INDEX_pg8of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList5.txt ./Pycharm-INDEX_pg10of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList6.txt ./Pycharm-INDEX_pg12of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList7.txt ./Pycharm-INDEX_pg14of8.png"
+
+[Montage](https://legacy.imagemagick.org/Usage/montage/)
+
+
 
 !!!code Convert an icon
 
@@ -4759,6 +5142,20 @@ using `magick mogrify archway.svg -background #00000000` destroyed the image.
     magick convert  -density 384 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name].ico
 
 magick convert  -density 256x256 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name]2.ico
+
+```
+magick montage  -tile 20x100  -density 288 -geometry 72x72+24+6 -label %t -pointsize 2.5 @TempFileList1.txt ./Trial45.html
+```
+
+This works.  Density affects scaling of SVG AND the font, so they have to be adjusted./
+
+Order of ops seems to have an effect
+
+```
+magick montage  -tile 20x  -density 288 -geometry 100x100+12+4 -label %t -pointsize 2.6 @TempFileList1.txt ./Trial45.html
+
+magick montage  -tile 20x  -density 288 -geometry 100x100+12+4 -label %t -pointsize 2.6 ./ ./Trial45.html
+```
 
 ### Graphics Magic
 
@@ -5137,7 +5534,7 @@ you can say program /? for more info
 
 
 
-## Cloudflare DNS
+### Cloudflare DNS
 
 ipv4
 - 1.1.1.1
@@ -5214,7 +5611,204 @@ The Internet Engineering Task Force (IETF) has directed the Internet Assigned Nu
 
 Also note the 169.254 address
 
+### NFS - Network File Service
+
+[Services for Network File System (NFS) command-line tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
+
+Services for Network File System (NFS) provides a file sharing solution that lets you transfer files between computers running Windows Server and UNIX operating systems using the NFS protocol.
+
+Information and links to each of the associated NFS command-line tools:
+
+| Command   | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| mapadmin  | Manage User Name Mapping for Microsoft Services for Network File System. |
+| mount     | Mount Network File System (NFS) network shares.                          |
+| nfsadmin  | Manage Server for NFS and Client for NFS.                                |
+| nfsshare  | Control Network File System (NFS) shares.                                |
+| nfsstat   | Display or reset counts of calls made to Server for NFS.                 |
+| rpcinfo   | List programs on remote computers.                                       |
+| showmount | Display mounted directories.                                             |
+
+
+### Remote Desktop Connection
+
+
+See also [mstsc](#mstsc)
+
+- `change` - Changes the Remote Desktop Session Host server settings for sign in, COM port mappings, and install mode.
+- `change logon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `change port` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `change user` - Changes the install mode for the Remote Desktop Session Host server.
+- `chglogon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `chgport` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `chgusr` - Changes the install mode for the Remote Desktop Session Host server.
+- `flattemp` - Enables or disables flat temporary folders.
+- `logoff` - Signs out a user from a session on an Remote Desktop Session Host server and deletes the session from the server.
+- `msg` - Sends a message to a user on an Remote Desktop Session Host server.
+- `mstsc` - Creates connections to Remote Desktop Session Host servers or other remote computers.
+- `qappsrv` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `qprocess` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query` - Displays information about processes, sessions, and Remote Desktop Session Host servers.
+- `query process` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query session` - Displays information about sessions on an Remote Desktop Session Host server.
+- `query termserver` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `query user` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `quser` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `qwinsta` - Displays information about sessions on an Remote Desktop Session Host server.
+- `rdpsign` - Enables you to digitally sign a Remote Desktop Protocol (.rdp) file.
+- `reset session` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `rwinsta` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `shadow` - Enables you to remotely control an active session of another user on an Remote Desktop Session Host server.
+- `tscon` - Connects to another session on an Remote Desktop Session Host server.
+- `tsdiscon` - Disconnects a session from an Remote Desktop Session Host server.
+- `tskill` - Ends a process running in a session on an Remote Desktop Session Host server.
+- `tsprof` - Copies the Remote Desktop Services user configuration information from one user to another.
+
+
+### Nirsoft Net Tools
+
+
+
+
+Network Monitoring Tools
+
+- **_SmartSniff_** [v2.29]:
+
+    SmartSniff allows you to capture TCP/IP packets that pass through your network adapter, and view the captured data as sequence of conversations between clients and servers. You can view the TCP/IP conversations in Ascii mode (for text-based protocols, like HTTP, SMTP, POP3 and FTP.) or as hex dump. (for non-text base protocols, like DNS)
+
+- **_WifiChannelMonitor_** [v1.65]:
+
+    WifiChannelMonitor captures wifi traffic on the channel you choose, using Microsoft Network Monitor capture driver in monitor mode, and displays extensive information about access points and the wifi clients connected to them. WifiChannelMonitor also allows you to view the information about wifi clients that are not connected to any access points, including the list of SSIDs (network names) that they are trying to connect. For every access point, the following information is displayed: SSID, MAC Address, Device Manufacturer , PHY Type, Channel, RSSI, Security, Beacons Count, Probe Responses Count, Data Bytes, Retransmitted Data Bytes, and more... For every client, the following information is displayed: MAC Address, Device Manufacturer, SSID list that the client tries to connect, Sent Data Bytes, Received Data Bytes, Probe Requests Count, and more...
+
+- **_NetworkTrafficView_** [v2.30]:
+
+    NetworkTrafficView is a network monitoring tool that captures the packets pass through your network adapter, and displays general statistics about your network traffic. The packets statistics is grouped by the Ethernet Type, IP Protocol, Source/Destination Addresses, and Source/Destination ports. For every statistics line, the following information is displayed: Ethernet Type (IPv4, IPv6, ARP), IP Protocol (TCP, UDP, ICMP), Source Address, Destination Address, Source Port, Destination Port, Service Name (http, ftp, and so on), Packets Count, Total Packets Size, Total Data Size, Data Speed, Maximum Data Speed, Average Packet Size, First/Last Packet Time, Duration, and process ID/Name (For TCP connections).
+
+- **_HTTPNetworkSniffer_** [v1.63]:
+
+    HTTPNetworkSniffer is a packet sniffer tool that captures all HTTP requests/responses sent between the Web browser and the Web server and displays them in a simple table. For every HTTP request, the following information is displayed: Host Name, HTTP method (GET, POST, HEAD), URL Path, User Agent, Response Code, Response String, Content Type, Referer, Content Encoding, Transfer Encoding, Server Name, Content Length, Cookie String, and more... You can easily select one or more HTTP information lines, and then export them to text/html/xml/csv file or copy them to the clipboard and then paste them into Excel.
+
+- **_AppNetworkCounter_** [v1.41]:
+
+    AppNetworkCounter is a simple tool for Windows that counts and displays the number of TCP/UDP bytes and packets sent and received by every application on your system. For every application, the following information is displayed: the number of sent and received bytes, number of sent and received packets, number of sent/received IPv4 bytes, and number of sent/received IPv6 bytes. It also displays the version information of the application - Product Name, Product Version, File Description, and Company Name.
+
+- **_LiveTcpUdpWatch_** [v1.33]:
+
+    LiveTcpUdpWatch is a tool for Windows that displays live information about all TCP and UDP activity on your system. Every line in the main table of LiveTcpUdpWatch displays the protocol (TCP/UDP/IPv4/IPv6), local/remote IP address, local/remote port, number of sent/received bytes, number of sent/received packets, connect/disconnect time (For TCP only), and the process (ID and path) responsible for this activity.
+
+- **_PingInfoView_** [v2.10]:
+
+    PingInfoView is a small utility that allows you to easily ping multiple host names and IP addresses, and watch the result in one table. It automatically ping to all hosts every number of seconds that you specify, and displays the number of succeed and failed pings, as well as the average ping time. You can also save the ping result into text/html/xml file, or copy it to the clipboard.
+
+- **_WifiInfoView_** [v2.65]:
+    WifiInfoView scans the wireless networks in your area and displays extensive information about them, including: Network Name (SSID), MAC Address, PHY Type (802.11g or 802.11n), RSSI, Signal Quality, Frequency, Channel Number, Maximum Speed, Company Name, Router Model and Router Name (Only for routers that provides this information), and more... When you select a wireless network in the upper pane of this tool, the lower pane displays the Wi-Fi information elements received from this device, in hexadecimal format. WifiInfoView also has a summary mode, which displays a summary of all detected wireless networks, grouped by channel number, company that manufactured the router, PHY type, or the maximum speed.
+
+- **_SocketSniff_** [v1.11]:
+
+    SocketSniff allows you to watch the Windows Sockets (WinSock) activity of the selected process.
+
+
+    For each created socket, the following information is displayed: socket handle, socket type, local and remote addresses, local and remote ports, total number of send/receive bytes, and more. You can also watch the content of each send or receive call, in Ascii mode or as Hex Dump.
+
+- **_CurrPorts_** [v2.63]:
+
+    CurrPorts is a network monitoring software that displays the list of all currently opened TCP/IP and UDP ports on your local computer. For each port in the list, information about the process that opened the port is also displayed, including the process name, full path of the process, version information of the process (product name, file description, and so on), the time that the process was created, and the user that created it.
+
+
+    In addition, CurrPorts allows you to close unwanted TCP connections, kill the process that opened the ports, and save the TCP/UDP ports information to HTML file , XML file, or to tab-delimited text file.
+
+    CurrPorts also automatically mark with pink color suspicious TCP/UDP ports owned by unidentified applications (Applications without version information and icons)
+      
+- **_TcpLogView_** [v1.32]:
+
+    TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)
+
+- **_ProcessTCPSummary_** [v1.11]:
+
+    ProcessTCPSummary is a simple tool for Windows that displays a summary of all process that have TCP connections or listening UDP ports. For every process, this tool displays the total number of TCP connections, number of TCP connections for each status (Established, Listening, Syn-Sent, Syn-Received...), number of IPv4 TCP connections, number of IPv6 TCP connections, common port numbers, and more... If you run ProcessTCPSummary as Administrator, you can also watch the number of TCP/UDP bytes sent and received by every process as well as the current send/receive speed.
+
+- **_NetworkConnectLog_** [v1.13]:
+
+    NetworkConnectLog is a simple utility that repeatedly scans your local area network (Using ARP and Netbios protocols) and add a new log line every time that a new computer or device connects to your network, and when a computer or device disconnects from your network. After the connect/disconnect log lines are accumulated, you can easily export the log lines to comma-delimited/tab-delimited/html/xml file.
+
+- **_NetworkLatencyView_** [v1.65]:
+
+    NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.
+
+- **_DNSQuerySniffer_** [v1.81]:
+
+    DNSQuerySniffer is a network sniffer utility that shows the DNS queries sent on your system. For every DNS query, the following information is displayed: Host Name, Port Number, Query ID, Request Type (A, AAAA, NS, MX, and so on), Request Time, Response Time, Duration, Response Code, Number of records, and the content of the returned DNS records. You can easily export the DNS queries information to csv/tab-delimited/xml/html file, or copy the DNS queries to the clipboard, and then paste them into Excel or other spreadsheet application.
+
+- **_WhoIsConnectedSniffer_** [v1.25]:
+
+    WhoIsConnectedSniffer is a network discovery tool that listens to network packets on your network adapter using a capture driver (WinpCap or MS network monitor) and accumulates a list of computer and devices currently connected to your network. WhoIsConnectedSniffer uses various protocols to detect the computers connected to your network, including ARP, UDP, DHCP, mDNS, and BROWSER. For every detected computer or device, the following information is displayed: (Some of the fields might be empty if the information cannot be found inside the packets) IP Address, MAC Address, name of the device/computer, description, Operating System, Network Adapter Company, IPv6 Address.
+
+
+
+    After collecting the connected computers/devices information, you can easily export the list to tab-delimited/comma-delimited/xml/html file.
+
+- **_Wireless Network Watcher_** [v2.22]:
+
+    Wireless Network Watcher is a small utility that scans your wireless network and displays the list of all computers and devices that are currently connected to your network. For every computer or device that is connected to your network, the following information is displayed: IP address, MAC address, the company that manufactured the network card, and optionally the computer name. You can also export the connected devices list into html/xml/csv/text file, or copy the list to the clipboard and then paste into Excel or other spreadsheet application.
+
+- **_NetworkUsageView_** [v1.21]:
+
+    NetworkUsageView extracts and displays the network usage information stored in the SRUDB.dat database of Windows 8 and Windows 10. The network usage data is collected every hour by Windows operating systems and includes the following information: The name and description of the service or application, the name and SID of the user, the network adapter, and the total number of bytes sent and received by the specified service/application.
+
+- **_WakeMeOnLan_** [v1.86]:
+
+    This utility allows you to easily turn on one or more computers remotely by sending Wake-on-LAN (WOL) packet to the remote computers. When your computers are turned on, WakeMeOnLan allows you to scan your network, and collect the MAC addresses of all your computers, and save the computers list info a file. Later, when your computers are turned off or in standby mode, you can use the stored computers list to easily choose the computer you want to turn on, and then turn on all these computers with a single click.
+
+
+    WakeMeOnLan also allows you to turn on a computer from command-line, by specifying the computer name, IP address, or the MAC address of the remote network card.
+
+- **_NetworkCountersWatch_** [v1.02]:
+
+    NetworkCountersWatch is a tool for Windows that displays system counters for every network interface on your system. The system counters include the number of incoming/outgoing bytes, number of incoming/outgoing packets, number of broadcast packets, and more. You can also initialize all counters to zero at any time in order to watch the network counters for specific event. NetworkCountersWatch also calculates and displays the current download speed and upload speed on your network interface.
+
+- **_WifiHistoryView_** [v1.56]:
+
+    WifiHistoryView is a simple tool for Windows 10/8/7/Vista that displays the history of connections to wireless networks on your computer. For every event that the computer connected to a wireless network or disconnected from it, the following information is displayed: The date/time that the event occurred, network name (SSID), profile name, network adapter name, BSSID of the router/Access Point, and more... WifiHistoryView can read the wifi history information from a running system or from external event log file of another computer.
+
+- **_NetworkOpenedFiles_** [v1.36]:
+
+    NetworkOpenedFiles is a simple tool for Windows that displays the list of all files that are currently opened by other computers on your network. For every opened filename, the following information is displayed: Filename, user name, computer name (On Windows 7/2008 or later), Permissions information (Read/Write/Create), locks count, file owner, file size, file attributes, and more...
+
+- **_NetBScanner_** [v1.11]:
+
+    NetBScanner is a network scanner tool that scans all computers in the IP addresses range you choose, using NetBIOS protocol. For every computer located by this NetBIOS scanner, the following information is displayed: IP Address, Computer Name, Workgroup or Domain, MAC Address, and the company that manufactured the network adapter (determined according to the MAC address). NetBScanner also shows whether a computer is a Master Browser. You can easily select one or more computers found by NetBScanner, and then export the list into csv/tab-delimited/xml/html file.
+
+- **_WirelessNetView_** [v1.75]:
+
+    WirelessNetView is a small utility that runs in the background, and monitor the activity of wireless networks around you. For each detected network, it displays the following information: SSID, Last Signal Quality, Average Signal Quality, Detection Counter, Authentication Algorithm, Cipher Algorithm, and more.
+
+- **_WirelessConnectionInfo_** [v1.15]:
+
+    WirelessConnectionInfo is a simple tool for Windows Vista/7/8/2008/10 that displays general information and statistics about the active wifi connection, including the SSID, BSSID, PHY Type, Signal Quality, Receiving rate, Transmission Rate, Authentication Algorithm, Channel Number, Total number of transmitted/received frames, and more...
+
+- **_AdapterWatch_** [v1.05]:
+
+    AdapterWatch displays useful information about your network adapters: IP addresses, Hardware address, WINS servers, DNS servers, MTU value, Number of bytes received or sent, The current transfer speed, and more. In addition, it displays general TCP/IP/UDP/ICMP statistics for your local computer.
+
+- **_NetResView_** [v1.27]:
+
+    NetResView is a small utility that displays the list of all network resources (computers, disk shares, and printer shares) on your LAN. As opposed to "My Network Places" module of Windows, NetResView display all network resources from all domains/workgroups in one screen, and including admin/hidden shares.
+
+- **_NetRouteView_** [v1.35]:
+
+    NetRouteView is a GUI alternative to the standard route utility (Route.exe) of Windows operating system. It displays the list of all routes on your current network, including the destination, mask, gateway, interface IP address, metric value, type, protocol, age (in seconds), interface name, and the MAC address. NetRouteView also allows you to easily add new routes, as well as to remove or modify existing static routes.
+
+- **_CountryTraceRoute_** [v1.31]:
+
+    CountryTraceRoute is a Traceroute utility, similar to the tracert tool of Windows, but with graphical user interface, and it's also much faster than tracert of Windows. CountryTraceRoute also displays the country of the owner of every IP address found in the Traceroute. After the Traceroute is completed, you can select all items (Ctrl+A) and then save them into csv/tab-delimited/html/xml file with 'Save Selected Items' option (Ctrl+S) or copy them to the clipboard (Ctrl+C) and then paste the result into Excel or other spreadsheet application.
+
+- **_SniffPass_** [v1.13] - {Password Sniffer}
+
+    SniffPass is small utility that listens to your network, capture the passwords that pass through your network adapter, and display them on the screen instantly. SniffPass can capture the passwords of the following Protocols: POP3, IMAP4, SMTP, FTP, and HTTP (basic authentication passwords).
+ 
 ## Setup Git
+
+
 
 First setup basics
 
@@ -5612,7 +6206,9 @@ Finding a table
 
 ``(`)([ ]{3,})(\S)`` -> `$1 | $3`
 
+
 !!!attention To match... TEMPLATE
+
     !!!quote Input from
         example
 
@@ -6244,84 +6840,6 @@ They can both be used for performance analysis, but ETW provides an audit trail 
 [Source](https://techcommunity.microsoft.com/t5/iis-support-blog/capture-a-network-trace-without-installing-anything-amp-capture/ba-p/376503)
 
 [Commands](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11))
-
-[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
-
-
-
-    Using Netsh trace commands
-
-    Commands in the Netsh trace context
-
-        convert
-
-        correlate
-
-        diagnose
-
-        show CaptureFilterHelp
-
-        show globalKeywordsAndLevels
-
-        show helperclass
-
-        show interfaces
-
-        show provider
-
-        show providers
-
-        show scenario
-
-        show scenarios
-
-        show status
-
-        start
-
-        stop
-
-
-
- 
-Capture a Network Trace without installing anything (& capture a network trace of a reboot)
-
-If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
-
-The short version:
-
-1. Open an elevated command prompt and run: "
-
-       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
-      
-(make sure you have a \temp directory or choose another location).
-
-2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
-
- 
-
-3. Open an elevated command prompt and run: 
-
-        netsh trace stop
-
- 
-
-Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
-
- 
-
-The longer version:
-
-I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
-
- 
-
-1. Open an elevated command prompt and run: 
-      
-        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
-      
-      
-(make sure you have a \temp directory or choose another location).
 
 
 

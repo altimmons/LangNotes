@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>C++.md</title>
+
+<!-- official styles start -->
+<!-- markdown.css -->
+<link rel="stylesheet" type="text/css" href="data:text/css;base64,LyotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICogIENvcHlyaWdodCAoYykgTWljcm9zb2Z0IENvcnBvcmF0aW9uLiBBbGwgcmlnaHRzIHJlc2VydmVkLgogKiAgTGljZW5zZWQgdW5kZXIgdGhlIE1JVCBMaWNlbnNlLiBTZWUgTGljZW5zZS50eHQgaW4gdGhlIHByb2plY3Qgcm9vdCBmb3IgbGljZW5zZSBpbmZvcm1hdGlvbi4KICotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSovCgpodG1sLCBib2R5IHsKCWZvbnQtZmFtaWx5OiB2YXIoLS1tYXJrZG93bi1mb250LWZhbWlseSwgLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAiU2Vnb2UgV1BDIiwgIlNlZ29lIFVJIiwgc3lzdGVtLXVpLCAiVWJ1bnR1IiwgIkRyb2lkIFNhbnMiLCBzYW5zLXNlcmlmKTsKCWZvbnQtc2l6ZTogdmFyKC0tbWFya2Rvd24tZm9udC1zaXplLCAxNHB4KTsKCXBhZGRpbmc6IDAgMjZweDsKCWxpbmUtaGVpZ2h0OiB2YXIoLS1tYXJrZG93bi1saW5lLWhlaWdodCwgMjJweCk7Cgl3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7Cn0KCmJvZHkgewoJcGFkZGluZy10b3A6IDFlbTsKfQoKLyogUmVzZXQgbWFyZ2luIHRvcCBmb3IgZWxlbWVudHMgKi8KaDEsIGgyLCBoMywgaDQsIGg1LCBoNiwKcCwgb2wsIHVsLCBwcmUgewoJbWFyZ2luLXRvcDogMDsKfQoKaDIsIGgzLCBoNCwgaDUsIGg2IHsKCWZvbnQtd2VpZ2h0OiBub3JtYWw7CgltYXJnaW4tYm90dG9tOiAwLjJlbTsKfQoKI2NvZGUtY3NwLXdhcm5pbmcgewoJcG9zaXRpb246IGZpeGVkOwoJdG9wOiAwOwoJcmlnaHQ6IDA7Cgljb2xvcjogd2hpdGU7CgltYXJnaW46IDE2cHg7Cgl0ZXh0LWFsaWduOiBjZW50ZXI7Cglmb250LXNpemU6IDEycHg7Cglmb250LWZhbWlseTogc2Fucy1zZXJpZjsKCWJhY2tncm91bmQtY29sb3I6IzQ0NDQ0NDsKCWN1cnNvcjogcG9pbnRlcjsKCXBhZGRpbmc6IDZweDsKCWJveC1zaGFkb3c6IDFweCAxcHggMXB4IHJnYmEoMCwwLDAsLjI1KTsKfQoKI2NvZGUtY3NwLXdhcm5pbmc6aG92ZXIgewoJdGV4dC1kZWNvcmF0aW9uOiBub25lOwoJYmFja2dyb3VuZC1jb2xvcjojMDA3YWNjOwoJYm94LXNoYWRvdzogMnB4IDJweCAycHggcmdiYSgwLDAsMCwuMjUpOwp9Cgpib2R5LnNjcm9sbEJleW9uZExhc3RMaW5lIHsKCW1hcmdpbi1ib3R0b206IGNhbGMoMTAwdmggLSAyMnB4KTsKfQoKYm9keS5zaG93RWRpdG9yU2VsZWN0aW9uIC5jb2RlLWxpbmUgewoJcG9zaXRpb246IHJlbGF0aXZlOwp9Cgpib2R5LnNob3dFZGl0b3JTZWxlY3Rpb24gLmNvZGUtYWN0aXZlLWxpbmU6YmVmb3JlLApib2R5LnNob3dFZGl0b3JTZWxlY3Rpb24gLmNvZGUtbGluZTpob3ZlcjpiZWZvcmUgewoJY29udGVudDogIiI7CglkaXNwbGF5OiBibG9jazsKCXBvc2l0aW9uOiBhYnNvbHV0ZTsKCXRvcDogMDsKCWxlZnQ6IC0xMnB4OwoJaGVpZ2h0OiAxMDAlOwp9Cgpib2R5LnNob3dFZGl0b3JTZWxlY3Rpb24gbGkuY29kZS1hY3RpdmUtbGluZTpiZWZvcmUsCmJvZHkuc2hvd0VkaXRvclNlbGVjdGlvbiBsaS5jb2RlLWxpbmU6aG92ZXI6YmVmb3JlIHsKCWxlZnQ6IC0zMHB4Owp9CgoudnNjb2RlLWxpZ2h0LnNob3dFZGl0b3JTZWxlY3Rpb24gLmNvZGUtYWN0aXZlLWxpbmU6YmVmb3JlIHsKCWJvcmRlci1sZWZ0OiAzcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjE1KTsKfQoKLnZzY29kZS1saWdodC5zaG93RWRpdG9yU2VsZWN0aW9uIC5jb2RlLWxpbmU6aG92ZXI6YmVmb3JlIHsKCWJvcmRlci1sZWZ0OiAzcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjQwKTsKfQoKLnZzY29kZS1saWdodC5zaG93RWRpdG9yU2VsZWN0aW9uIC5jb2RlLWxpbmUgLmNvZGUtbGluZTpob3ZlcjpiZWZvcmUgewoJYm9yZGVyLWxlZnQ6IG5vbmU7Cn0KCi52c2NvZGUtZGFyay5zaG93RWRpdG9yU2VsZWN0aW9uIC5jb2RlLWFjdGl2ZS1saW5lOmJlZm9yZSB7Cglib3JkZXItbGVmdDogM3B4IHNvbGlkIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC40KTsKfQoKLnZzY29kZS1kYXJrLnNob3dFZGl0b3JTZWxlY3Rpb24gLmNvZGUtbGluZTpob3ZlcjpiZWZvcmUgewoJYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNjApOwp9CgoudnNjb2RlLWRhcmsuc2hvd0VkaXRvclNlbGVjdGlvbiAuY29kZS1saW5lIC5jb2RlLWxpbmU6aG92ZXI6YmVmb3JlIHsKCWJvcmRlci1sZWZ0OiBub25lOwp9CgoudnNjb2RlLWhpZ2gtY29udHJhc3Quc2hvd0VkaXRvclNlbGVjdGlvbiAuY29kZS1hY3RpdmUtbGluZTpiZWZvcmUgewoJYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCByZ2JhKDI1NSwgMTYwLCAwLCAwLjcpOwp9CgoudnNjb2RlLWhpZ2gtY29udHJhc3Quc2hvd0VkaXRvclNlbGVjdGlvbiAuY29kZS1saW5lOmhvdmVyOmJlZm9yZSB7Cglib3JkZXItbGVmdDogM3B4IHNvbGlkIHJnYmEoMjU1LCAxNjAsIDAsIDEpOwp9CgoudnNjb2RlLWhpZ2gtY29udHJhc3Quc2hvd0VkaXRvclNlbGVjdGlvbiAuY29kZS1saW5lIC5jb2RlLWxpbmU6aG92ZXI6YmVmb3JlIHsKCWJvcmRlci1sZWZ0OiBub25lOwp9CgppbWcgewoJbWF4LXdpZHRoOiAxMDAlOwoJbWF4LWhlaWdodDogMTAwJTsKfQoKYSB7Cgl0ZXh0LWRlY29yYXRpb246IG5vbmU7Cn0KCmE6aG92ZXIgewoJdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7Cn0KCmE6Zm9jdXMsCmlucHV0OmZvY3VzLApzZWxlY3Q6Zm9jdXMsCnRleHRhcmVhOmZvY3VzIHsKCW91dGxpbmU6IDFweCBzb2xpZCAtd2Via2l0LWZvY3VzLXJpbmctY29sb3I7CglvdXRsaW5lLW9mZnNldDogLTFweDsKfQoKcCB7CgltYXJnaW4tYm90dG9tOiAwLjdlbTsKfQoKdWwsCm9sIHsKCW1hcmdpbi1ib3R0b206IDAuN2VtOwp9CgpociB7Cglib3JkZXI6IDA7CgloZWlnaHQ6IDJweDsKCWJvcmRlci1ib3R0b206IDJweCBzb2xpZDsKfQoKaDEgewoJcGFkZGluZy1ib3R0b206IDAuM2VtOwoJbGluZS1oZWlnaHQ6IDEuMjsKCWJvcmRlci1ib3R0b20td2lkdGg6IDFweDsKCWJvcmRlci1ib3R0b20tc3R5bGU6IHNvbGlkOwoJZm9udC13ZWlnaHQ6IG5vcm1hbDsKfQoKdGFibGUgewoJYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKfQoKdGggewoJdGV4dC1hbGlnbjogbGVmdDsKCWJvcmRlci1ib3R0b206IDFweCBzb2xpZDsKfQoKdGgsCnRkIHsKCXBhZGRpbmc6IDVweCAxMHB4Owp9Cgp0YWJsZSA+IHRib2R5ID4gdHIgKyB0ciA+IHRkIHsKCWJvcmRlci10b3A6IDFweCBzb2xpZDsKfQoKYmxvY2txdW90ZSB7CgltYXJnaW46IDAgN3B4IDAgNXB4OwoJcGFkZGluZzogMCAxNnB4IDAgMTBweDsKCWJvcmRlci1sZWZ0LXdpZHRoOiA1cHg7Cglib3JkZXItbGVmdC1zdHlsZTogc29saWQ7Cn0KCmNvZGUgewoJZm9udC1mYW1pbHk6IHZhcigtLXZzY29kZS1lZGl0b3ItZm9udC1mYW1pbHksICJTRiBNb25vIiwgTW9uYWNvLCBNZW5sbywgQ29uc29sYXMsICJVYnVudHUgTW9ubyIsICJMaWJlcmF0aW9uIE1vbm8iLCAiRGVqYVZ1IFNhbnMgTW9ubyIsICJDb3VyaWVyIE5ldyIsIG1vbm9zcGFjZSk7Cglmb250LXNpemU6IDFlbTsKCWxpbmUtaGVpZ2h0OiAxLjM1N2VtOwp9Cgpib2R5LndvcmRXcmFwIHByZSB7Cgl3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Cn0KCnByZTpub3QoLmhsanMpLApwcmUuaGxqcyBjb2RlID4gZGl2IHsKCXBhZGRpbmc6IDE2cHg7Cglib3JkZXItcmFkaXVzOiAzcHg7CglvdmVyZmxvdzogYXV0bzsKfQoKcHJlIGNvZGUgewoJY29sb3I6IHZhcigtLXZzY29kZS1lZGl0b3ItZm9yZWdyb3VuZCk7Cgl0YWItc2l6ZTogNDsKfQoKLyoqIFRoZW1pbmcgKi8KCi52c2NvZGUtbGlnaHQgcHJlIHsKCWJhY2tncm91bmQtY29sb3I6IHJnYmEoMjIwLCAyMjAsIDIyMCwgMC40KTsKfQoKLnZzY29kZS1kYXJrIHByZSB7CgliYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEwLCAxMCwgMTAsIDAuNCk7Cn0KCi52c2NvZGUtaGlnaC1jb250cmFzdCBwcmUgewoJYmFja2dyb3VuZC1jb2xvcjogcmdiKDAsIDAsIDApOwp9CgoudnNjb2RlLWhpZ2gtY29udHJhc3QgaDEgewoJYm9yZGVyLWNvbG9yOiByZ2IoMCwgMCwgMCk7Cn0KCi52c2NvZGUtbGlnaHQgdGggewoJYm9yZGVyLWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuNjkpOwp9CgoudnNjb2RlLWRhcmsgdGggewoJYm9yZGVyLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNjkpOwp9CgoudnNjb2RlLWxpZ2h0IGgxLAoudnNjb2RlLWxpZ2h0IGhyLAoudnNjb2RlLWxpZ2h0IHRkIHsKCWJvcmRlci1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjE4KTsKfQoKLnZzY29kZS1kYXJrIGgxLAoudnNjb2RlLWRhcmsgaHIsCi52c2NvZGUtZGFyayB0ZCB7Cglib3JkZXItY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xOCk7Cn0K"/>
+<!-- highlight.css -->
+<link rel="stylesheet" type="text/css" href="data:text/css;base64,LyoKaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2lzYWdhbGFldi9oaWdobGlnaHQuanMvbWFzdGVyL3NyYy9zdHlsZXMvdnMyMDE1LmNzcwoqLwovKgogKiBWaXN1YWwgU3R1ZGlvIDIwMTUgZGFyayBzdHlsZQogKiBBdXRob3I6IE5pY29sYXMgTExPQkVSQSA8bmxsb2JlcmFAZ21haWwuY29tPgogKi8KCgouaGxqcy1rZXl3b3JkLAouaGxqcy1saXRlcmFsLAouaGxqcy1zeW1ib2wsCi5obGpzLW5hbWUgewoJY29sb3I6ICM1NjlDRDY7Cn0KLmhsanMtbGluayB7Cgljb2xvcjogIzU2OUNENjsKCXRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lOwp9CgouaGxqcy1idWlsdF9pbiwKLmhsanMtdHlwZSB7Cgljb2xvcjogIzRFQzlCMDsKfQoKLmhsanMtbnVtYmVyLAouaGxqcy1jbGFzcyB7Cgljb2xvcjogI0I4RDdBMzsKfQoKLmhsanMtc3RyaW5nLAouaGxqcy1tZXRhLXN0cmluZyB7Cgljb2xvcjogI0Q2OUQ4NTsKfQoKLmhsanMtcmVnZXhwLAouaGxqcy10ZW1wbGF0ZS10YWcgewoJY29sb3I6ICM5QTUzMzQ7Cn0KCi5obGpzLXN1YnN0LAouaGxqcy1mdW5jdGlvbiwKLmhsanMtdGl0bGUsCi5obGpzLXBhcmFtcywKLmhsanMtZm9ybXVsYSB7Cgljb2xvcjogI0RDRENEQzsKfQoKLmhsanMtY29tbWVudCwKLmhsanMtcXVvdGUgewoJY29sb3I6ICM1N0E2NEE7Cglmb250LXN0eWxlOiBpdGFsaWM7Cn0KCi5obGpzLWRvY3RhZyB7Cgljb2xvcjogIzYwOEI0RTsKfQoKLmhsanMtbWV0YSwKLmhsanMtbWV0YS1rZXl3b3JkLAouaGxqcy10YWcgewoJY29sb3I6ICM5QjlCOUI7Cn0KCi5obGpzLXZhcmlhYmxlLAouaGxqcy10ZW1wbGF0ZS12YXJpYWJsZSB7Cgljb2xvcjogI0JENjNDNTsKfQoKLmhsanMtYXR0ciwKLmhsanMtYXR0cmlidXRlLAouaGxqcy1idWlsdGluLW5hbWUgewoJY29sb3I6ICM5Q0RDRkU7Cn0KCi5obGpzLXNlY3Rpb24gewoJY29sb3I6IGdvbGQ7Cn0KCi5obGpzLWVtcGhhc2lzIHsKCWZvbnQtc3R5bGU6IGl0YWxpYzsKfQoKLmhsanMtc3Ryb25nIHsKCWZvbnQtd2VpZ2h0OiBib2xkOwp9CgovKi5obGpzLWNvZGUgewoJZm9udC1mYW1pbHk6J01vbm9zcGFjZSc7Cn0qLwoKLmhsanMtYnVsbGV0LAouaGxqcy1zZWxlY3Rvci10YWcsCi5obGpzLXNlbGVjdG9yLWlkLAouaGxqcy1zZWxlY3Rvci1jbGFzcywKLmhsanMtc2VsZWN0b3ItYXR0ciwKLmhsanMtc2VsZWN0b3ItcHNldWRvIHsKCWNvbG9yOiAjRDdCQTdEOwp9CgouaGxqcy1hZGRpdGlvbiB7CgliYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS12c2NvZGUtZGlmZkVkaXRvci1pbnNlcnRlZFRleHRCYWNrZ3JvdW5kLCByZ2JhKDE1NSwgMTg1LCA4NSwgMC4yKSk7Cgljb2xvcjogcmdiKDE1NSwgMTg1LCA4NSk7CglkaXNwbGF5OiBpbmxpbmUtYmxvY2s7Cgl3aWR0aDogMTAwJTsKfQoKLmhsanMtZGVsZXRpb24gewoJYmFja2dyb3VuZDogdmFyKC0tdnNjb2RlLWRpZmZFZGl0b3ItcmVtb3ZlZFRleHRCYWNrZ3JvdW5kLCByZ2JhKDI1NSwgMCwgMCwgMC4yKSk7Cgljb2xvcjogcmdiKDI1NSwgMCwgMCk7CglkaXNwbGF5OiBpbmxpbmUtYmxvY2s7Cgl3aWR0aDogMTAwJTsKfQoKCi8qCkZyb20gaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2lzYWdhbGFldi9oaWdobGlnaHQuanMvbWFzdGVyL3NyYy9zdHlsZXMvdnMuY3NzCiovCi8qCgpWaXN1YWwgU3R1ZGlvLWxpa2Ugc3R5bGUgYmFzZWQgb24gb3JpZ2luYWwgQyMgY29sb3JpbmcgYnkgSmFzb24gRGlhbW9uZCA8amFzb25AZGlhbW9uZC5uYW1lPgoKKi8KCi52c2NvZGUtbGlnaHQgLmhsanMtZnVuY3Rpb24sCi52c2NvZGUtbGlnaHQgLmhsanMtcGFyYW1zLAoudnNjb2RlLWxpZ2h0IC5obGpzLW51bWJlciwKLnZzY29kZS1saWdodCAuaGxqcy1jbGFzcyAgewoJY29sb3I6IGluaGVyaXQ7Cn0KCi52c2NvZGUtbGlnaHQgLmhsanMtY29tbWVudCwKLnZzY29kZS1saWdodCAuaGxqcy1xdW90ZSwKLnZzY29kZS1saWdodCAuaGxqcy1udW1iZXIsCi52c2NvZGUtbGlnaHQgLmhsanMtY2xhc3MsCi52c2NvZGUtbGlnaHQgLmhsanMtdmFyaWFibGUgewoJY29sb3I6ICMwMDgwMDA7Cn0KCi52c2NvZGUtbGlnaHQgLmhsanMta2V5d29yZCwKLnZzY29kZS1saWdodCAuaGxqcy1zZWxlY3Rvci10YWcsCi52c2NvZGUtbGlnaHQgLmhsanMtbmFtZSwKLnZzY29kZS1saWdodCAuaGxqcy10YWcgewoJY29sb3I6ICMwMGY7Cn0KCi52c2NvZGUtbGlnaHQgLmhsanMtYnVpbHRfaW4sCi52c2NvZGUtbGlnaHQgLmhsanMtYnVpbHRpbi1uYW1lIHsKCWNvbG9yOiAjMDA3YWNjOwp9CgoudnNjb2RlLWxpZ2h0IC5obGpzLXN0cmluZywKLnZzY29kZS1saWdodCAuaGxqcy1zZWN0aW9uLAoudnNjb2RlLWxpZ2h0IC5obGpzLWF0dHJpYnV0ZSwKLnZzY29kZS1saWdodCAuaGxqcy1saXRlcmFsLAoudnNjb2RlLWxpZ2h0IC5obGpzLXRlbXBsYXRlLXRhZywKLnZzY29kZS1saWdodCAuaGxqcy10ZW1wbGF0ZS12YXJpYWJsZSwKLnZzY29kZS1saWdodCAuaGxqcy10eXBlIHsKCWNvbG9yOiAjYTMxNTE1Owp9CgoudnNjb2RlLWxpZ2h0IC5obGpzLXNlbGVjdG9yLWF0dHIsCi52c2NvZGUtbGlnaHQgLmhsanMtc2VsZWN0b3ItcHNldWRvLAoudnNjb2RlLWxpZ2h0IC5obGpzLW1ldGEsCi52c2NvZGUtbGlnaHQgLmhsanMtbWV0YS1rZXl3b3JkIHsKCWNvbG9yOiAjMmI5MWFmOwp9CgoudnNjb2RlLWxpZ2h0IC5obGpzLXRpdGxlLAoudnNjb2RlLWxpZ2h0IC5obGpzLWRvY3RhZyB7Cgljb2xvcjogIzgwODA4MDsKfQoKLnZzY29kZS1saWdodCAuaGxqcy1hdHRyIHsKCWNvbG9yOiAjZjAwOwp9CgoudnNjb2RlLWxpZ2h0IC5obGpzLXN5bWJvbCwKLnZzY29kZS1saWdodCAuaGxqcy1idWxsZXQsCi52c2NvZGUtbGlnaHQgLmhsanMtbGluayB7Cgljb2xvcjogIzAwYjBlODsKfQoKCi52c2NvZGUtbGlnaHQgLmhsanMtZW1waGFzaXMgewoJZm9udC1zdHlsZTogaXRhbGljOwp9CgoudnNjb2RlLWxpZ2h0IC5obGpzLXN0cm9uZyB7Cglmb250LXdlaWdodDogYm9sZDsKfQo="/>
+<!-- official styles end -->
+
+<!-- third party styles start -->
+<!-- markdown-it-admonition.css -->
+<link rel="stylesheet" type="text/css" href="data:text/css;base64,QGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICJNYXRlcmlhbCBJY29ucyI7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgiTWF0ZXJpYWwgSWNvbnMiKSwgbG9jYWwoIk1hdGVyaWFsSWNvbnMtUmVndWxhciIpLCB1cmwoImRhdGE6YXBwbGljYXRpb24veC1mb250LXdvZmY7Y2hhcnNldD11dGYtODtiYXNlNjQsZDA5R1JnQUJBQUFBQUFmSUFBc0FBQUFBRERBQUFRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUJIVTFWQ0FBQUJDQUFBQURNQUFBQkNzUDZ6N1U5VEx6SUFBQUU4QUFBQVJBQUFBRlpXN2tvc1kyMWhjQUFBQVlBQUFBRFRBQUFDanRQNnl0Qm5iSGxtQUFBQ1ZBQUFBeGdBQUFRNHpSdHZsR2hsWVdRQUFBVnNBQUFBTHdBQUFEWVJ3WnNuYUdobFlRQUFCWndBQUFBY0FBQUFKQWVLQXp4b2JYUjRBQUFGdUFBQUFCSUFBQUE4T0dRQUFHeHZZMkVBQUFYTUFBQUFJQUFBQUNBRzVBZndiV0Y0Y0FBQUJld0FBQUFmQUFBQUlBRWZBRVJ1WVcxbEFBQUdEQUFBQVZjQUFBS0ZrQWhvQzNCdmMzUUFBQWRrQUFBQVlnQUFBSzJ2ejd3a2VKeGpZR1JnWU9CaWtHUFFZV0IwY2ZNSlllQmdZR0dBQUpBTVkwNW1laUpRRE1vRHlyR0FhUTRnWm9PSUFnQ0tJd05QQUhpY1kyQmtQc1E0Z1lHVmdZT3BrK2tNQXdORFA0Um1mTTFneE1qQndNREV3TXJNZ0JVRXBMbW1NRGd3Vkx5NHhLenpYNGNoaHJtSzRRcFFtQkVrQndBWnlneXdlSnpGa3IwTndqQVFoWitURVA2Q1JVZkhCRXdSVVdhUVRJQ3lRYnBNd1JDc2tBNVJVSU9OeEcwUm5uTnBLQUlWNHF6UGt1LzhjMzUzQUNZQVlySWpDV0N1TUFoMnB0ZjAvaGlMM3AvZ3lQVVdhM29zcWx0MEwxenU5cjcxejhkR3JKUnlrRm9hdVhRZDkzMkxqNXZoRytNanhHZVlJOE1LRVRPYk1wc2xmNUV5UDh0Zyt2SHVuNXI1MzlQdmx2WHphVmhSRlZRRFRQRVdLVlFSOTBLaG5uQzVFazY3dlVLTjRWdUZhc00vbGRBUmo0M0NDa0NzRWpwSlNvVlZnUnlVMEdWU0s2d1VwRkZDeDhsRmdYMEJpWHBSUFFCNG5FMlRUV2pjUmhUSDN4dHRwRGh4Tjd1eFBscDN1L0ZLN21vUlBpeGFmUmlqTm9zeFN3L0xVc0l3TmNhRUhQWmdnby9GbUVLTUNLV1U0a05PT2Z0UVNsaEU4YWxuSDBJeDlCcVduSG9vUFJyVFEwK21udTJiWFR1MnBQZEdNOUxNLzZjM2Z3RUNUTTRnQkJNWVFOcXh6THJaQWpxWVNscXUyVEFIWlFBMC9EUUpINkZ0enFHRG52YnQ0R2d3dnp3L25MOEVmSDhrVzBmc3VScWhnV1hablk3TTFwaWNhVUw3RHU1QkhlRHpNSWw4M2RBdDAxNndIMXFtdnRTTW81UjZZUkpIVFIvL0ZYc2ZmL25qL3RjLzVLOVA1ZCtuUDIyK2ZGSzV1N3YzSzM5U1czeStPdERLTzNMODV2RDA5UEQ5ejVYMTdhMk4xZzR0cWswMVJscVg3Z3lvRW1uc1dRdFZyNHJ0Wk1tdWtFYUZCWnh6ZWZrQ24xMWN5S01MWmdzaFJ3Z1RZTm9MTlhDQnoyamE3SHZaRzdoRHBQU05mb281dnMwa25LLzloYityTnB1KzhrSFBnay9BbzRrSzN0V3RUcFNFdHZrQTljK3dFNlVhVWR3aWVOa2FIZzU1dEJFdFJpRVB3MXMwK0Z0cnRUY2M5dHdvMmxoTWtuVjdQWkYvY3M2K3VVRlRtcFRHYkV4N3NRQ1BTTE90dEhTM0dSbHRxcDdTTnpWU0t6bDZhV25aVC9DWDVrNi92OU4zSGg4ZkhCd2ZmSlZqaHJDNk9nSDVka0l0L3RQc3ErZC9QRDVRejdHN2VmenExVEhGamRaVlBlL042dWxRM0puRFdTRTVqdW5zRnNWSWlGd0wvaHRmMVM1Z0ozQmZPY1V4ZkhLTG56cXBGcHlmWjljWCsvNVdCNmErWTBwSHB6a05yWU5WRHdNc2lrSyt5N1d1TENSZy9vRkhrQThWVDNyRGc1Wm5VNmt0enpJTnltVjBtNzRYZDVwZklHWHlGZVZFUVNTaGt6cUc3VEJCYTJPeFZSS2l0TFh2N2gzdXVmdFhuWHE3bHoydFovV25XYTlkeDlkQ2pEaEh6bXVWUUFUbG1sanI5ZFpFclV5ZFNvMkhiaS9iMXZYdHJPZUdDazIvOHMzWmxPOCt1ZUpUOEJWbHc1cEd3Mm9ZY2NkU2lISHF4MFJsYWJIcWROUjlqQUVUbDZQcmVKY1BCbm5mcFRMbk9ROEMzT1Y4QW1RR3pvdVYxaVpkZWI1U1NJb1ZjOFc4L2tjRHRrc1VINUZyVTYvYXFCcU5XY01FenhHNERBUTE0cVJRaGk5bVdVMHJ6ZXBLZXpiamZnQ3dRS3hWWXE1YWpSZ3BScXk0NUNxd2tKeWRjRWtiVGt2Uno4UDUvMlpwRFRONG5HTmdaR0JnQU9LYjZ2Ky94dlBiZkdYZ1ptRUFnZXVCMmtrSSt2OGJGZ2JtS2lDWGc0RUpKQW9BUHlBS2hRQjRuR05nWkdCZzF2bXZ3eEREd2dBQ1FKS1JBUlh3QXdBelpRSFFlSnhqWVFDQ0ZBWUdGZ2JTTVFBY1dBQ2RBQUFBQUFBQUFBd0FMZ0JnQUlRQW1BRFNBUWdCSWdFOEFWQUJvQUhlQWZ3Q0hIaWNZMkJrWUdEZ1o3QmdZR01BQVNZZzVnSkNCb2IvWUQ0REFBL2hBV1FBZUp4bGtidHV3a0FVUk1jODhnQXBRb21VSm9xMFRkSVF6RU9wVURva0tDTlIwQnV6QmlPL3RGNlFTSmNQeUhmbEU5S2x5eWVrejJDdUc4Y3I3NTQ3TTNkOUpRTzR4amNjbko1N3ZpZDJjTUhxeERXYzQwRzRUdjFKdUVGK0ZtNmlqUmZoTStvejRSYTZlQlZ1NHdadnZNRnBYTElhNDBQWVFRZWZ3alZjNFV1NFR2MUh1RUgrRlc3aTFta0tuNkhqM0FtM3NIQzZ3bTA4T3U4dHBTWkdlMWF2MVBLZ2dqU3hQZDh6SnRTR1R1aW55VkdhNi9VdThreFpsdWRDbXp4TUV6VjBCNlUwMDRrMjVXMzVmajJ5TmxDQlNXTTFwYXVqS0ZXWlNiZmF0KzdHMm16Yzd3ZWl1MzRhY3p6Rk5ZR0JoZ2ZMZmNWNmlRUDNBQ2tTYWozNDlBeFhTTjlJVDBqMTZKZXBPYjAxZG9pS2JOV3Qxb3ZpcHB6NnNWWVl3c1hnWDJyR1ZGSWtxN1BsMlBOckk2cVc2ZU9zaGoweGFTcTltcE5FWklXczhMWlVmT291TmtWWHhwL2Q1d29xZWJlWUlmNEQySjF5d1FCNG5HM0xPdzZBSUJBRTBCMzg0QitQQWtnRWErUXdOblltSHQrRXBYU2FsNWxrU0JCbm9QOG9DRlNvMGFDRlJJY2VBMFpNbUxGQVlTVzg4cm12dE1VakczUmlROUh2cGZ1c002eldObXRjNUgvaVBld2hhNTB0T3Q1UFMvUUJ4MkllU3dBQSIpIGZvcm1hdCgid29mZiIpOwp9CgouYWRtb25pdGlvbiB7CiAgYm94LXNoYWRvdzogMCAycHggMnB4IDAgcmdiYSgwLCAwLCAwLCAuMTQpLCAwIDFweCA1cHggMCByZ2JhKDAsIDAsIDAsIC4xMiksIDAgM3B4IDFweCAtMnB4IHJnYmEoMCwgMCwgMCwgLjIpOwogIHBvc2l0aW9uOiByZWxhdGl2ZTsKICBtYXJnaW46IDEuNTYyNWVtIDA7CiAgcGFkZGluZzogMCAxLjJyZW07CiAgYm9yZGVyLWxlZnQ6IC40cmVtIHNvbGlkIHJnYmEoNjgsIDEzOCwgMjU1LCAuOCk7CiAgYm9yZGVyLXJhZGl1czogLjJyZW07CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KTsKICBvdmVyZmxvdzogYXV0bzsKfQoKLmFkbW9uaXRpb24+cCB7CiAgbWFyZ2luLXRvcDogLjhyZW07Cn0KCi5hZG1vbml0aW9uPi5hZG1vbml0aW9uLXRpdGxlIHsKICBtYXJnaW46IDAgLTEuMnJlbTsKICBwYWRkaW5nOiAuOHJlbSAxLjJyZW0gLjhyZW0gMy42cmVtOwogIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2JhKDY4LCAxMzgsIDI1NSwgLjIpOwogIGJhY2tncm91bmQtY29sb3I6IHJnYmEoNjgsIDEzOCwgMjU1LCAuMSk7CiAgZm9udC13ZWlnaHQ6IDcwMDsKfQoKLmFkbW9uaXRpb24+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgbGVmdDogMS4ycmVtOwogIGZvbnQtc2l6ZTogMS41cmVtOwogIGNvbG9yOiByZ2JhKDY4LCAxMzgsIDI1NSwgLjgpOwogIGNvbnRlbnQ6ICJcRTNDOSI7Cn0KCi5hZG1vbml0aW9uPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSB7CiAgZm9udC1mYW1pbHk6IE1hdGVyaWFsIEljb25zOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXZhcmlhbnQ6IG5vcm1hbDsKICBmb250LXdlaWdodDogNDAwOwogIGxpbmUtaGVpZ2h0OiAycmVtOwogIHRleHQtdHJhbnNmb3JtOiBub25lOwogIHdoaXRlLXNwYWNlOiBub3dyYXA7CiAgc3BlYWs6IG5vbmU7CiAgd29yZC13cmFwOiBub3JtYWw7CiAgZGlyZWN0aW9uOiBsdHI7Cn0KCi5hZG1vbml0aW9uLnN1bW1hcnksCi5hZG1vbml0aW9uLmFic3RyYWN0LAouYWRtb25pdGlvbi50bGRyIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgwLCAxNzYsIDI1NSwgLjgpOwp9CgouYWRtb25pdGlvbi5zdW1tYXJ5Pi5hZG1vbml0aW9uLXRpdGxlLAouYWRtb25pdGlvbi5hYnN0cmFjdD4uYWRtb25pdGlvbi10aXRsZSwKLmFkbW9uaXRpb24udGxkcj4uYWRtb25pdGlvbi10aXRsZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxNzYsIDI1NSwgLjEpOwogIGJvcmRlci1ib3R0b20tY29sb3I6IHJnYmEoMCwgMTc2LCAyNTUsIC4yKTsKfQoKLmFkbW9uaXRpb24uc3VtbWFyeT4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUsCi5hZG1vbml0aW9uLmFic3RyYWN0Pi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSwKLmFkbW9uaXRpb24udGxkcj4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUgewogIGNvbG9yOiByZ2JhKDAsIDE3NiwgMjU1LCAxKTsKICA7CiAgY29udGVudDogIlxFOEQyIjsKfQoKLmFkbW9uaXRpb24uaGludCwKLmFkbW9uaXRpb24udGlwIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgwLCAxOTEsIDE2NSwgLjgpOwp9CgouYWRtb25pdGlvbi5oaW50Pi5hZG1vbml0aW9uLXRpdGxlLAouYWRtb25pdGlvbi50aXA+LmFkbW9uaXRpb24tdGl0bGUgewogIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMTkxLCAxNjUsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDAsIDE5MSwgMTY1LCAuMik7Cn0KCi5hZG1vbml0aW9uLmhpbnQ+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlLAouYWRtb25pdGlvbi50aXA+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBjb2xvcjogcmdiYSgwLCAxOTEsIDE2NSwgMSk7CiAgY29udGVudDogIlxFODBFIjsKfQoKLmFkbW9uaXRpb24uaW5mbywKLmFkbW9uaXRpb24udG9kbyB7CiAgYm9yZGVyLWxlZnQtY29sb3I6IHJnYmEoMCwgMTg0LCAyMTIsIC44KTsKfQoKLmFkbW9uaXRpb24uaW5mbz4uYWRtb25pdGlvbi10aXRsZSwKLmFkbW9uaXRpb24udG9kbz4uYWRtb25pdGlvbi10aXRsZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxODQsIDIxMiwgLjEpOwogIGJvcmRlci1ib3R0b20tY29sb3I6IHJnYmEoMCwgMTg0LCAyMTIsIC4yKTsKfQoKLmFkbW9uaXRpb24uaW5mbz4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUsCi5hZG1vbml0aW9uLnRvZG8+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBjb2xvcjogcmdiYSgwLCAxODQsIDIxMiwgMSk7CiAgOwogIGNvbnRlbnQ6ICJcRTg4RSI7Cn0KCi5hZG1vbml0aW9uLnN1Y2Nlc3MsCi5hZG1vbml0aW9uLmNoZWNrLAouYWRtb25pdGlvbi5kb25lIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgwLCAyMDAsIDgzLCAuOCk7Cn0KCi5hZG1vbml0aW9uLnN1Y2Nlc3M+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmNoZWNrPi5hZG1vbml0aW9uLXRpdGxlLAouYWRtb25pdGlvbi5kb25lPi5hZG1vbml0aW9uLXRpdGxlIHsKICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDIwMCwgODMsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDAsIDIwMCwgODMsIC4yKTsKfQoKLmFkbW9uaXRpb24uc3VjY2Vzcz4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUsCi5hZG1vbml0aW9uLmNoZWNrPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSwKLmFkbW9uaXRpb24uZG9uZT4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUgewogIGNvbG9yOiByZ2JhKDAsIDIwMCwgODMsIDEpOwogIDsKICBjb250ZW50OiAiXEU4NzYiOwp9CgouYWRtb25pdGlvbi5xdWVzdGlvbiwKLmFkbW9uaXRpb24uaGVscCwKLmFkbW9uaXRpb24uZmFxIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgxMDAsIDIyMSwgMjMsIC44KTsKfQoKLmFkbW9uaXRpb24ucXVlc3Rpb24+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmhlbHA+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmZhcT4uYWRtb25pdGlvbi10aXRsZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgxMDAsIDIyMSwgMjMsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDEwMCwgMjIxLCAyMywgLjIpOwp9CgouYWRtb25pdGlvbi5xdWVzdGlvbj4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUsCi5hZG1vbml0aW9uLmhlbHA+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlLAouYWRtb25pdGlvbi5mYXE+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBjb2xvcjogcmdiYSgxMDAsIDIyMSwgMjMsIDEpOwogIDsKICBjb250ZW50OiAiXEU4ODciOwp9CgouYWRtb25pdGlvbi53YXJuaW5nLAouYWRtb25pdGlvbi5hdHRlbnRpb24sCi5hZG1vbml0aW9uLmNhdXRpb24gewogIGJvcmRlci1sZWZ0LWNvbG9yOiByZ2JhKDI1NSwgMTQ1LCAwLCAuOCk7Cn0KCi5hZG1vbml0aW9uLndhcm5pbmc+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmF0dGVudGlvbj4uYWRtb25pdGlvbi10aXRsZSwKLmFkbW9uaXRpb24uY2F1dGlvbj4uYWRtb25pdGlvbi10aXRsZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDE0NSwgMCwgLjEpOwogIGJvcmRlci1ib3R0b20tY29sb3I6IHJnYmEoMjU1LCAxNDUsIDAsIC4yKTsKfQoKLmFkbW9uaXRpb24uYXR0ZW50aW9uPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSB7CiAgY29sb3I6IHJnYmEoMjU1LCAxNDUsIDAsIDEpOwogIGNvbnRlbnQ6ICJcRTQxNyI7Cn0KCi5hZG1vbml0aW9uLndhcm5pbmc+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlLAouYWRtb25pdGlvbi5jYXV0aW9uPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSB7CiAgY29sb3I6IHJnYmEoMjU1LCAxNDUsIDAsIDEpOwogIGNvbnRlbnQ6ICJcRTAwMiI7Cn0KCi5hZG1vbml0aW9uLmZhaWx1cmUsCi5hZG1vbml0aW9uLmZhaWwsCi5hZG1vbml0aW9uLm1pc3NpbmcgewogIGJvcmRlci1sZWZ0LWNvbG9yOiByZ2JhKDI1NSwgODIsIDgyLCAuOCk7Cn0KCi5hZG1vbml0aW9uLmZhaWx1cmU+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmZhaWw+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLm1pc3Npbmc+LmFkbW9uaXRpb24tdGl0bGUgewogIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCA4MiwgODIsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDI1NSwgODIsIDgyLCAuMik7Cn0KCi5hZG1vbml0aW9uLmZhaWx1cmU+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlLAouYWRtb25pdGlvbi5mYWlsPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSwKLmFkbW9uaXRpb24ubWlzc2luZz4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUgewogIGNvbG9yOiByZ2JhKDI1NSwgODIsIDgyLCAxKTsKICA7CiAgY29udGVudDogIlxFMTRDIjsKfQoKLmFkbW9uaXRpb24uZGFuZ2VyLAouYWRtb25pdGlvbi5lcnJvciwKLmFkbW9uaXRpb24uYnVnIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgyNTUsIDIzLCA2OCwgLjgpOwp9CgouYWRtb25pdGlvbi5kYW5nZXI+LmFkbW9uaXRpb24tdGl0bGUsCi5hZG1vbml0aW9uLmVycm9yPi5hZG1vbml0aW9uLXRpdGxlLAouYWRtb25pdGlvbi5idWc+LmFkbW9uaXRpb24tdGl0bGUgewogIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyMywgNjgsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDI1NSwgMjMsIDY4LCAuMik7Cn0KCi5hZG1vbml0aW9uLmRhbmdlcj4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUgewogIGNvbG9yOiByZ2JhKDI1NSwgMjMsIDY4LCAxKTsKICBjb250ZW50OiAiXEUzRTciOwp9CgouYWRtb25pdGlvbi5lcnJvcj4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUgewogIGNvbG9yOiByZ2JhKDI1NSwgMjMsIDY4LCAxKTsKICBjb250ZW50OiAiXEUxNEMiOwp9CgouYWRtb25pdGlvbi5idWc+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBjb2xvcjogcmdiYSgyNTUsIDIzLCA2OCwgMSk7CiAgY29udGVudDogIlxFODY4IjsKfQoKLmFkbW9uaXRpb24uZXhhbXBsZSwKLmFkbW9uaXRpb24uc25pcHBldCB7CiAgYm9yZGVyLWxlZnQtY29sb3I6IHJnYmEoMCwgMTg0LCAyMTIsIC44KTsKfQoKLmFkbW9uaXRpb24uZXhhbXBsZT4uYWRtb25pdGlvbi10aXRsZSwKLmFkbW9uaXRpb24uc25pcHBldD4uYWRtb25pdGlvbi10aXRsZSB7CiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxODQsIDIxMiwgLjEpOwogIGJvcmRlci1ib3R0b20tY29sb3I6IHJnYmEoMCwgMTg0LCAyMTIsIC4yKTsKfQoKLmFkbW9uaXRpb24uZXhhbXBsZT4uYWRtb25pdGlvbi10aXRsZTpiZWZvcmUsCi5hZG1vbml0aW9uLnNuaXBwZXQ+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlIHsKICBjb2xvcjogcmdiYSgwLCAxODQsIDIxMiwgMSk7CiAgOwogIGNvbnRlbnQ6ICJcRTI0MiI7Cn0KCi5hZG1vbml0aW9uLnF1b3RlLAouYWRtb25pdGlvbi5jaXRlIHsKICBib3JkZXItbGVmdC1jb2xvcjogcmdiYSgxNTgsIDE1OCwgMTU4LCAuOCk7Cn0KCi5hZG1vbml0aW9uLnF1b3RlPi5hZG1vbml0aW9uLXRpdGxlLAouYWRtb25pdGlvbi5jaXRlPi5hZG1vbml0aW9uLXRpdGxlIHsKICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDE1OCwgMTU4LCAxNTgsIC4xKTsKICBib3JkZXItYm90dG9tLWNvbG9yOiByZ2JhKDE1OCwgMTU4LCAxNTgsIC4yKTsKfQoKLmFkbW9uaXRpb24ucXVvdGU+LmFkbW9uaXRpb24tdGl0bGU6YmVmb3JlLAouYWRtb25pdGlvbi5jaXRlPi5hZG1vbml0aW9uLXRpdGxlOmJlZm9yZSB7CiAgY29sb3I6IHJnYmEoMTU4LCAxNTgsIDE1OCwgMSk7CiAgOwogIGNvbnRlbnQ6ICJcRTI0NCI7Cn0="/>
+<!-- markdown-it-kbd.css -->
+<link rel="stylesheet" type="text/css" href="data:text/css;base64,LnZzY29kZS1saWdodCBrYmQsCi52c2NvZGUtZGFyayBrYmQsCi52c2NvZGUtaGlnaC1jb250cmFzdCBrYmQgewogIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICBwYWRkaW5nOiAzcHggNXB4OwogIGZvbnQ6IDExcHggIlNGTW9uby1SZWd1bGFyIiwgQ29uc29sYXMsICJMaWJlcmF0aW9uIE1vbm8iLCBNZW5sbywgQ291cmllciwgbW9ub3NwYWNlOwogIGxpbmUtaGVpZ2h0OiAxMHB4OwogIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7CiAgYm9yZGVyOiBzb2xpZCAxcHggI2QxZDVkYTsKICBib3JkZXItYm90dG9tLWNvbG9yOiAjYzZjYmQxOwogIGJvcmRlci1yYWRpdXM6IDNweDsKICBib3gtc2hhZG93OiBpbnNldCAwIC0xcHggMCAjYzZjYmQxOwp9CgoudnNjb2RlLWxpZ2h0IGtiZCB7CiAgY29sb3I6ICM0NDRkNTY7CiAgYmFja2dyb3VuZC1jb2xvcjogI2ZhZmJmYzsKfQ=="/>
+<!-- third party styles end -->
+
+<!-- user styles start -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<!-- user styles end -->
+
+</head>
+<body class="markdown-body vscode-body vscode-light">
+<div class="content">
+    <a for="toc-anchor" id="c-%2B%2B-class"></a><h1 id="c--class" data-line="0" class="code-line">C ++ class</h1>
+<a for="toc-anchor" id="links"></a><h2 id="links" data-line="2" class="code-line">Links</h2>
+<p data-line="4" class="code-line"><a href="https://en.cppreference.com/w/" data-href="https://en.cppreference.com/w/">Reference</a></p>
+<a for="toc-anchor" id="standard-libraries"></a><h2 id="standard-libraries" data-line="7" class="code-line">Standard Libraries</h2>
+<ul>
+<li data-line="9" class="code-line">[Language Support
+<ul>
+<li data-line="10" class="code-line">
+<cstddef>
+</li>
+<li data-line="11" class="code-line">
+<cstdlib>
+</li>
+<li data-line="12" class="code-line">
+<version>
+</li>
+<li data-line="13" class="code-line">
+<limits>
+</li>
+<li data-line="14" class="code-line">
+<climits>
+</li>
+<li data-line="15" class="code-line">
+<cfloat>
+</li>
+<li data-line="16" class="code-line">
+<cstdint>
+</li>
+<li data-line="17" class="code-line">
+<new>
+</li>
+<li data-line="18" class="code-line">
+<typeinfo>
+</li>
+<li data-line="19" class="code-line">&lt;source_location&gt;</li>
+<li data-line="20" class="code-line">
+<exception>
+</li>
+<li data-line="21" class="code-line">&lt;initializer_list&gt;</li>
+<li data-line="22" class="code-line">
+<compare>
+</li>
+<li data-line="23" class="code-line">
+<coroutine>
+</li>
+<li data-line="24" class="code-line">
+<csignal>
+</li>
+<li data-line="25" class="code-line">
+<csetjmp>
+</li>
+<li data-line="26" class="code-line">
+<cstdarg>
+</li>
+</ul>
+</li>
+<li data-line="27" class="code-line">Concepts
+<ul>
+<li data-line="28" class="code-line">
+<concepts>
+</li>
+</ul>
+</li>
+<li data-line="29" class="code-line">Diagnostics
+<ul>
+<li data-line="30" class="code-line">
+<stdexcept>
+</li>
+<li data-line="31" class="code-line">
+<cassert>
+</li>
+<li data-line="32" class="code-line">
+<cerrno>
+</li>
+<li data-line="33" class="code-line">&lt;system_error&gt;</li>
+</ul>
+</li>
+<li data-line="34" class="code-line">General utilities
+<ul>
+<li data-line="35" class="code-line">
+<utility>
+</li>
+<li data-line="36" class="code-line">
+<memory>
+</li>
+<li data-line="37" class="code-line">&lt;memory_resource&gt;</li>
+<li data-line="38" class="code-line">&lt;scoped_allocator&gt;</li>
+<li data-line="39" class="code-line">
+<bitset>
+</li>
+<li data-line="40" class="code-line">
+<tuple>
+</li>
+<li data-line="41" class="code-line">
+<optional>
+</li>
+<li data-line="42" class="code-line">
+<any>
+</li>
+<li data-line="43" class="code-line">
+<variant>
+</li>
+<li data-line="44" class="code-line">&lt;type_traits&gt;</li>
+<li data-line="45" class="code-line">
+<ratio>
+</li>
+<li data-line="46" class="code-line">
+<chrono>
+</li>
+<li data-line="47" class="code-line">
+<typeindex>
+</li>
+<li data-line="48" class="code-line">
+<functional>
+</li>
+<li data-line="49" class="code-line">
+<stacktrace>
+</li>
+<li data-line="50" class="code-line">
+<ctime>
+</li>
+</ul>
+</li>
+<li data-line="51" class="code-line">Strings
+<ul>
+<li data-line="52" class="code-line">
+<string>
+</li>
+<li data-line="53" class="code-line">&lt;string_view&gt;</li>
+<li data-line="54" class="code-line">
+<cstring>
+</li>
+<li data-line="55" class="code-line">
+<charconv>
+</li>
+<li data-line="56" class="code-line">
+<format>
+</li>
+<li data-line="57" class="code-line">
+<cctype>
+</li>
+<li data-line="58" class="code-line">
+<cwctype>
+</li>
+<li data-line="59" class="code-line">
+<cwchar>
+</li>
+<li data-line="60" class="code-line">
+<cuchar>
+</li>
+</ul>
+</li>
+<li data-line="61" class="code-line">Localization
+<ul>
+<li data-line="62" class="code-line">
+<locale>
+</li>
+<li data-line="63" class="code-line">
+<codecvt>
+</li>
+<li data-line="64" class="code-line">
+<clocale>
+</li>
+</ul>
+</li>
+<li data-line="65" class="code-line">Containers
+<ul>
+<li data-line="66" class="code-line">
+<span>
+</li>
+<li data-line="67" class="code-line">
+<array>
+</li>
+<li data-line="68" class="code-line">
+<vector>
+</li>
+<li data-line="69" class="code-line">
+<deque>
+</li>
+<li data-line="70" class="code-line">&lt;forward_list&gt;</li>
+<li data-line="71" class="code-line">
+<list>
+</li>
+<li data-line="72" class="code-line">
+<map>
+</li>
+<li data-line="73" class="code-line">
+<set>
+</li>
+<li data-line="74" class="code-line">
+<queue>
+</li>
+<li data-line="75" class="code-line">&lt;unordered_map&gt;</li>
+<li data-line="76" class="code-line">&lt;unordered_set&gt;</li>
+<li data-line="77" class="code-line">
+<stack>
+</li>
+</ul>
+</li>
+<li data-line="78" class="code-line">Iterators
+<ul>
+<li data-line="79" class="code-line">
+<iterator>
+</li>
+</ul>
+</li>
+<li data-line="80" class="code-line">Ranges
+<ul>
+<li data-line="81" class="code-line">
+<ranges>
+</li>
+</ul>
+</li>
+<li data-line="82" class="code-line">Algorithms
+<ul>
+<li data-line="83" class="code-line">
+<algorithm>
+</li>
+<li data-line="84" class="code-line">
+<execution>
+</li>
+</ul>
+</li>
+<li data-line="85" class="code-line">Numerics
+<ul>
+<li data-line="86" class="code-line">
+<complex>
+</li>
+<li data-line="87" class="code-line">
+<random>
+</li>
+<li data-line="88" class="code-line">
+<valarray>
+</li>
+<li data-line="89" class="code-line">
+<numeric>
+</li>
+<li data-line="90" class="code-line">
+<bit>
+</li>
+<li data-line="91" class="code-line">
+<numbers>
+</li>
+<li data-line="92" class="code-line">
+<cfenv>
+</li>
+<li data-line="93" class="code-line">
+<cmath>
+</li>
+</ul>
+</li>
+<li data-line="94" class="code-line">Input/Output
+<ul>
+<li data-line="95" class="code-line">
+<iosfwd>
+</li>
+<li data-line="96" class="code-line">
+<ios>
+</li>
+<li data-line="97" class="code-line">
+<iomanip>
+</li>
+<li data-line="98" class="code-line">
+<streambuf>
+</li>
+<li data-line="99" class="code-line">
+<istream>
+</li>
+<li data-line="100" class="code-line">
+<ostream>
+</li>
+<li data-line="101" class="code-line">
+<iostream>
+</li>
+<li data-line="102" class="code-line">
+<sstream>
+</li>
+<li data-line="103" class="code-line">
+<fstream>
+</li>
+<li data-line="104" class="code-line">
+<syncstream>
+</li>
+<li data-line="105" class="code-line">
+<cstdio>
+</li>
+<li data-line="106" class="code-line">
+<cinttypes>
+</li>
+<li data-line="107" class="code-line">
+<strstream>
+</li>
+</ul>
+</li>
+<li data-line="108" class="code-line">Regular expressions
+<ul>
+<li data-line="109" class="code-line">
+<regex>
+</li>
+</ul>
+</li>
+<li data-line="110" class="code-line">Filesystem support
+<ul>
+<li data-line="111" class="code-line">
+<filesystem>
+</li>
+</ul>
+</li>
+<li data-line="112" class="code-line">Thread support
+<ul>
+<li data-line="113" class="code-line">
+<thread>
+</li>
+<li data-line="114" class="code-line">
+<atomic>
+</li>
+<li data-line="115" class="code-line">
+<mutex>
+</li>
+<li data-line="116" class="code-line">&lt;shared_mutex&gt;</li>
+<li data-line="117" class="code-line">&lt;condition_variable&gt;</li>
+<li data-line="118" class="code-line">
+<future>
+</li>
+<li data-line="119" class="code-line">&lt;stop_token&gt;</li>
+<li data-line="120" class="code-line">
+<semaphore>
+</li>
+<li data-line="121" class="code-line">
+<latch>
+</li>
+<li data-line="122" class="code-line">
+<barrier>
+</li>
+</ul>
+</li>
+<li data-line="123" class="code-line">C compatibility
+<ul>
+<li data-line="124" class="code-line">
+<ciso646>
+</li>
+<li data-line="125" class="code-line">
+<cstdalign>
+</li>
+<li data-line="126" class="code-line">
+<cstdbool>
+</li>
+<li data-line="127" class="code-line">
+<ccomplex>
+</li>
+<li data-line="128" class="code-line">
+<ctgmath>
+</li>
+<li data-line="129" class="code-line">&lt;stdatomic.h&gt;</li>
+</ul>
+</li>
+</ul>
+<a for="toc-anchor" id="archetypical-program"></a><h2 id="archetypical-program" data-line="133" class="code-line">Archetypical Program</h2>
+<pre><code data-line="136" class="code-line language-cpp"><div><span class="hljs-comment">// this is a format</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-comment">/* Another comment format */</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Groovy Baby!&quot;</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> x;		<span class="hljs-comment">// This is a C++ style comment</span>
+
+	<span class="hljs-comment">// Each comment line is preceded by slashes</span>
+	<span class="hljs-comment">// This is another comment line</span>
+
+	<span class="hljs-comment">/* C++ also supports C-Style comments */</span>
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<p data-line="164" class="code-line">header files no longer contain *.h</p>
+<pre><code data-line="166" class="code-line language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;	// was &lt;stdlib.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;	// was &lt;string.h&gt;</span></span>
+                      <span class="hljs-comment">// char* functions from C</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;     // C++ string class</span></span>
+</div></code></pre>
+<a for="toc-anchor" id="include"></a><h2 id="include" data-line="174" class="code-line">include</h2>
+<div class="admonition note">
+<p class="admonition-title"> Note: If you are using the Microsoft Visual C++ IDE, you will notice that by default, all source files start as follows:</p>
+<p data-line="176" class="code-line"><code>#include &quot;stdafx.h&quot;</code><br>
+In a VC++ project, by default, every source file should start with this line, and your own include files must follow this. If you place your own include file before <code>stdafx.h</code>, they will appear to have no effect and you will get all kinds of compilation errors. This situation involves the concept of precompiled header files, which is outside the scope of this book. Consult the Microsoft documentation on precompiled header files to learn the details.</p>
+</div>
+<a for="toc-anchor" id="reserved-keywords"></a><h2 id="reserved-keywords" data-line="179" class="code-line">Reserved Keywords</h2>
+<p data-line="181" class="code-line">//42</p>
+<a for="toc-anchor" id="c%2B%2B-operators"></a><h2 id="c-operators" data-line="185" class="code-line">C++ Operators</h2>
+<p data-line="187" class="code-line">You can also just use keywords instead of chars to make more readable program</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Operator Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>and</td>
+<td>logical AND</td>
+</tr>
+<tr>
+<td>||</td>
+<td>or</td>
+<td>logical OR</td>
+</tr>
+<tr>
+<td>!</td>
+<td>not</td>
+<td>logical NOT</td>
+</tr>
+<tr>
+<td>Inequality</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>!=</td>
+<td>not_eq</td>
+<td>inequality</td>
+</tr>
+<tr>
+<td>Bitwise</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>bitand</td>
+<td>bitwise AND</td>
+</tr>
+<tr>
+<td>|</td>
+<td>bitor</td>
+<td>bitwise OR</td>
+</tr>
+<tr>
+<td>^</td>
+<td>xor</td>
+<td>bitwise exclusive OR</td>
+</tr>
+<tr>
+<td>~</td>
+<td>compl</td>
+<td>bitwise complement</td>
+</tr>
+<tr>
+<td>Bitwise Op</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&amp;=</td>
+<td>and_eq</td>
+<td>bitwise AND assignment</td>
+</tr>
+<tr>
+<td>|=</td>
+<td>or_eq</td>
+<td>bitwise inclusive OR assignment</td>
+</tr>
+<tr>
+<td>^=</td>
+<td>xor_eq</td>
+<td>bitwise exclusive OR assignment</td>
+</tr>
+</tbody>
+</table>
+<pre><code data-line="208" class="code-line language-cpp"><div><span class="hljs-comment">// Program to demonstrate &quot;and&quot; operator keyword</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Some compilers require inclusion of special header files</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iso646.h&gt;		// Required for Visual C++ 6.0</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> x = <span class="hljs-number">8</span>;
+	<span class="hljs-keyword">int</span> y;
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Enter an integer: &quot;</span>;
+	<span class="hljs-built_in">cin</span> &gt;&gt; y;
+
+	<span class="hljs-keyword">if</span> ( (x &gt; <span class="hljs-number">0</span>) &amp;&amp; (y &gt; <span class="hljs-number">0</span>) )   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Both greater than 0 \n&quot;</span>;
+
+	<span class="hljs-keyword">if</span> ( (x &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">and</span> (y &gt; <span class="hljs-number">0</span> ) ) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Same thing \n&quot;</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<a for="toc-anchor" id="operator-precedence"></a><h3 id="operator-precedence" data-line="233" class="code-line">Operator Precedence</h3>
+<p data-line="235" class="code-line"><a href="http://en.cppreference.com/w/cpp/language/operator_precedence" data-href="http://en.cppreference.com/w/cpp/language/operator_precedence">Operator Pref</a></p>
+<a for="toc-anchor" id="stdin-and-std-out"></a><h2 id="stdin-and-std-out" data-line="238" class="code-line">Stdin and Std Out</h2>
+<p data-line="240" class="code-line"><code>&lt;&lt;</code> insertion operator<br>
+<code>&gt;&gt;</code> extraction operator</p>
+<p data-line="243" class="code-line">These can be chained.</p>
+<p data-line="245" class="code-line">C++ uses the standard input stream cin and the standard output stream cout</p>
+<p data-line="247" class="code-line"><code>#include &lt;cstdlib&gt;</code><br>
+<code>#include &lt;iostream&gt;</code></p>
+<p data-line="251" class="code-line">An example of stdin and out vs. C.</p>
+<pre><code data-line="253" class="code-line language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;	// Header file defining standard C++ I/O </span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;stdio.h&gt;		// Old C language header now deprecated</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;
+
+	<span class="hljs-comment">/* The old C way */</span>
+
+	<span class="hljs-built_in">printf</span>( “Please enter an integer: “ );
+	<span class="hljs-built_in">scanf</span>( “%d”, &amp;x );
+	<span class="hljs-built_in">printf</span>( “You entered %d \n”, x );
+
+	<span class="hljs-comment">// The C++ way</span>
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; “Please enter an integer: “;
+	<span class="hljs-built_in">cin</span> &gt;&gt; x;
+	<span class="hljs-built_in">cout</span> &lt;&lt; “You entered “ &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; “x plus <span class="hljs-number">2</span> is “;
+	<span class="hljs-built_in">cout</span> &lt;&lt; x + <span class="hljs-number">2</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<pre><code data-line="279" class="code-line language-cpp"><div><span class="hljs-comment">// Program Input:	10	20</span>
+<span class="hljs-comment">//		30</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Program Output:	You entered: 10 20 30</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> x, y, z;
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;enter 3 integers: &quot;</span>;
+	<span class="hljs-built_in">cin</span> &gt;&gt; x &gt;&gt; y &gt;&gt; z;		<span class="hljs-comment">// whitespace delimits numeric input objects</span>
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;You entered: &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; y &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; z &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<a for="toc-anchor" id="stream-manipulators"></a><h3 id="stream-manipulators" data-line="300" class="code-line">Stream Manipulators</h3>
+<p data-line="302" class="code-line"><code>#include &lt;iomanip&gt;</code></p>
+<p data-line="304" class="code-line">Stream manipulators may be parameterized or non-parameterized<br>
+Must include the header file iomanip to use parameterized manipulators</p>
+<p data-line="307" class="code-line">showpoint<br>
+noshowpoint<br>
+setw(n)<br>
+boolalpha<br>
+setprecision(3)<br>
+scientific<br>
+fixed</p>
+<pre><code data-line="316" class="code-line language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iomanip&gt;		// Required for parameterized manipulators</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>	dbln	<span class="hljs-meta-string">&quot;\n\n”	// Symbolic constant prints 2 newlines
+
+using	namespace	std;
+
+int main()
+{
+	float v = 2.19512567f;
+	float c = 4.f;
+	
+	cout &lt;&lt; v &lt;&lt; endl;
+	cout &lt;&lt; c &lt;&lt; dbln;
+
+	cout &lt;&lt; showpoint &lt;&lt; v &lt;&lt; endl;	// showpoint forces dec &amp; 0’s
+	cout &lt;&lt; c &lt;&lt; dbln;
+
+	cout &lt;&lt; noshowpoint &lt;&lt; c &lt;&lt; dbln;	// reinstate default
+
+	cout &lt;&lt; setw(10) &lt;&lt; v &lt;&lt; endl;	// set field width to 10
+	cout &lt;&lt; c &lt;&lt; dbln;
+
+	return 0;
+}
+
+// Program to illustrate stream manipulators
+//
+// Program Output:	2.19513
+//		4
+//
+//		2.19513
+//		4.00000
+//
+//		4
+//
+//		   2.19513
+//		4
+
+
+
+#include	&lt;iostream&gt;
+#include	&lt;iomanip&gt;
+#define	dbln	&quot;</span>\n\n<span class="hljs-meta-string">&quot;
+using	namespace	std;
+
+int main()
+{
+	bool	b = true;
+	float	f = 3.14159f;
+
+	cout &lt;&lt; b &lt;&lt; endl;
+	cout &lt;&lt; boolalpha &lt;&lt; b &lt;&lt; dbln;
+
+	cout &lt;&lt; f &lt;&lt; endl;
+	cout &lt;&lt; scientific &lt;&lt; setprecision(3) &lt;&lt; f &lt;&lt; endl;
+	cout &lt;&lt; fixed &lt;&lt; f &lt;&lt; dbln;
+
+	return 0;
+}
+
+// Program to demonstrate stream manipulators
+//
+// Program Output:	1
+//		true
+//
+//		3.14159
+//		3.142e+000
+//		3.142
+</span></span></div></code></pre>
+<a for="toc-anchor" id="types"></a><h2 id="types" data-line="387" class="code-line">Types</h2>
+<p data-line="391" class="code-line">character	<br>
+char	<br>
+Used to hold a single character of information.  Always requires a single byte of storage.</p>
+<p data-line="395" class="code-line">integer	<br>
+int	<br>
+Used to hold a signed whole number quantity.</p>
+<p data-line="399" class="code-line">short integer	<br>
+short	<br>
+Used to hold a signed whole number quantity.  Typically only requires half the storage requirements of a signed integer.</p>
+<p data-line="403" class="code-line">long integer	<br>
+long	<br>
+Used to hold a signed whole number quantity.  Typically requires twice as much storage as a normal signed integer.</p>
+<p data-line="407" class="code-line">unsigned integer	<br>
+unsigned	<br>
+Used to hold non-negative whole number quantities.</p>
+<p data-line="411" class="code-line">floating point	<br>
+float	<br>
+Used to hold signed numbers with fractional components.</p>
+<p data-line="416" class="code-line">double precision	<br>
+double	Used to hold signed numbers with fractional components.  Typically requires twice the storage as a float.</p>
+<p data-line="420" class="code-line">extended precision</p>
+<p data-line="422" class="code-line">long double	<br>
+Extended precision for floating point types.  Implemented as part of ISO/ANSI standard.</p>
+<p data-line="425" class="code-line">boolean</p>
+<p data-line="427" class="code-line">bool	<br>
+Used to hold literal values true and false.</p>
+<p data-line="430" class="code-line">constant	<br>
+const	<br>
+Used to hold a constant value that cannot be changed during program execution.</p>
+<p data-line="436" class="code-line">long long integer	<br>
+long long	<br>
+Range is at least the same as long, but varies with compiler.</p>
+<p data-line="440" class="code-line">unsigned long long integer	<br>
+unsigned long long	<br>
+Extended range unsigned integer.</p>
+<p data-line="444" class="code-line">16-bit character	<br>
+char16_t	<br>
+A single 16-bit character.</p>
+<p data-line="449" class="code-line">32-bit character	<br>
+char32_t	<br>
+A single 32-bit character.</p>
+<p data-line="454" class="code-line">automatic	<br>
+auto	<br>
+The compiler will decide the type automatically.</p>
+<p data-line="459" class="code-line">decltype	<br>
+decltype( expr )	<br>
+The compiler determines the type of the expression expr. Useful for use with templates.</p>
+<p data-line="464" class="code-line">bool types can be used to create state variables that indicate truth or falsity<br>
+bool variables can be assigned the literal values true and false<br>
+The default value of a bool type is false</p>
+<a for="toc-anchor" id="strings"></a><h3 id="strings" data-line="469" class="code-line">Strings</h3>
+<p data-line="472" class="code-line"><code>std::string_view</code> - C++17 - you can replace <code>std::string_view</code> with <code>const std::string&amp;</code>. String_view is just a wrapper for a pointer and a length.</p>
+<a for="toc-anchor" id="type-inference-%26-alternative-function-syntax"></a><h3 id="type-inference--alternative-function-syntax" data-line="474" class="code-line">Type Inference &amp; Alternative Function Syntax</h3>
+<p data-line="476" class="code-line">C++ 11</p>
+<p data-line="478" class="code-line">Compiler deduces type at compile time</p>
+<p data-line="480" class="code-line"><code>auto</code> keyword.</p>
+<pre><code data-line="482" class="code-line language-cpp"><div><span class="hljs-keyword">auto</span> x = <span class="hljs-number">99</span>; 		
+
+<span class="hljs-keyword">auto</span> value = myFunc();
+
+
+<span class="hljs-comment">// Alternative Function Syntax … most useful when using</span>
+<span class="hljs-comment">// templates</span>
+
+
+<span class="hljs-comment">//function myfunc takes an int and returns an int, using below.  </span>
+
+<span class="hljs-comment">//is this a lambda</span>
+<span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">myFunc</span><span class="hljs-params">( <span class="hljs-keyword">int</span> x )</span> -&gt; <span class="hljs-keyword">int</span>
+</span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*x;
+}
+
+
+<span class="hljs-comment">// Ask the compiler to figure out return type … most useful</span>
+<span class="hljs-comment">// when using templates</span>
+
+<span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">myFunc</span><span class="hljs-params">( <span class="hljs-keyword">float</span> v1, <span class="hljs-keyword">float</span> v2 )</span>
+</span>{
+	<span class="hljs-keyword">return</span> v1 * v2;
+}
+
+</div></code></pre>
+<a for="toc-anchor" id="enums"></a><h2 id="enums" data-line="511" class="code-line">enums</h2>
+<pre><code data-line="513" class="code-line language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">enum</span> <span class="hljs-title">PieceType</span><span class="hljs-params">(PieceTypeKing, PieceTypeQueen, PieceTypeRook)</span></span>;
+</div></code></pre>
+<p data-line="517" class="code-line">Creates an enum, just carries the numerical int value of position.<br>
+You can also specify values-</p>
+<pre><code data-line="521" class="code-line language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">enum</span> <span class="hljs-title">PieceType</span><span class="hljs-params">(PieceTypeKing = <span class="hljs-number">2</span>, PieceTypeQueen, PieceTypeRook=<span class="hljs-number">10</span>, PieceTypeKnight)</span></span>;
+</div></code></pre>
+<p data-line="525" class="code-line">The values following will just be incremented.  e.g. King = 2, Q=3 R=10, K=11.</p>
+<a for="toc-anchor" id="strongly-typed-enums"></a><h2 id="strongly-typed-enums" data-line="527" class="code-line">Strongly Typed Enums</h2>
+<p data-line="529" class="code-line">The above always has the value given underneath.  This allows you (perhaps inappropriately) to compare two unrelated <em>enums</em>.</p>
+<p data-line="531" class="code-line">To prevent that- use strongly typed ones.</p>
+<p data-line="533" class="code-line">this is the type safe version.</p>
+<pre><code data-line="536" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PieceType</span>
+{</span>
+   King=<span class="hljs-number">1</span>,
+   Queen,
+   Rook,
+   Pawn
+};
+</div></code></pre>
+<p data-line="546" class="code-line">For an enum class, the enumeration value names are not automatically exported to the enclosing scope, which means that you always have to use the scope resolution operator:</p>
+<p data-line="549" class="code-line"><code>PieceType piece = PieceType::King;</code></p>
+<p data-line="551" class="code-line">These do not have underlying integer values, assigning numbers like above is an error.</p>
+<p data-line="553" class="code-line"><code>if(PieceType::Queen==1){} //error</code></p>
+<pre><code data-line="556" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PieceType</span> :</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span>
+{
+   King = <span class="hljs-number">1</span>,
+   Queen,
+   Rook = <span class="hljs-number">10</span>,
+   Pawn
+};
+</div></code></pre>
+<a for="toc-anchor" id="structs"></a><h2 id="structs" data-line="566" class="code-line">Structs</h2>
+<p data-line="568" class="code-line">Binds types into a new type.  Structs are the same as classes, but all items are public.</p>
+<pre><code data-line="570" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Car</span>{</span>
+
+   <span class="hljs-keyword">int</span> year;
+   <span class="hljs-keyword">int</span> miles;
+   <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> make;
+   <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValue</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">SpreadsheetCell</span>
+{</span>
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setValue</span><span class="hljs-params">(<span class="hljs-keyword">double</span> inValue)</span></span>;
+      <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getValue</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+   <span class="hljs-keyword">private</span>: <span class="hljs-comment">//can have methods and private members</span>
+      <span class="hljs-keyword">double</span> mValue;
+};
+</div></code></pre>
+<p data-line="588" class="code-line">You declare a car by just defining it: <code>Car car;</code></p>
+<p data-line="590" class="code-line">Then access each value with the <code>.</code> operator.</p>
+<a for="toc-anchor" id="typedef"></a><h3 id="typedef" data-line="592" class="code-line">typedef</h3>
+<p data-line="594" class="code-line">Using <code>typedef</code> on a <code>struct</code> defines it for external linkage.</p>
+<p data-line="597" class="code-line"><code>typedef struct { /* ... */ } S;</code></p>
+<hr>
+<hr>
+<a for="toc-anchor" id="control"></a><h2 id="control" data-line="601" class="code-line">Control</h2>
+<hr>
+<ul>
+<li data-line="603" class="code-line">Iteration constructs
+<ul>
+<li data-line="604" class="code-line">for</li>
+<li data-line="605" class="code-line">while</li>
+<li data-line="606" class="code-line">do-while</li>
+<li data-line="607" class="code-line">'enhanced' for (C++ 11)</li>
+</ul>
+</li>
+<li data-line="608" class="code-line">Decision constructs
+<ul>
+<li data-line="609" class="code-line">if-else</li>
+<li data-line="610" class="code-line">switch</li>
+<li data-line="611" class="code-line">conditional</li>
+</ul>
+</li>
+<li data-line="612" class="code-line">Other constructs
+<ul>
+<li data-line="613" class="code-line">goto</li>
+<li data-line="614" class="code-line">break - used with switch.</li>
+<li data-line="615" class="code-line">continue - can be high risk</li>
+</ul>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">continue - said hed make a comment if used.</p>
+</div>
+<a for="toc-anchor" id="variables"></a><h2 id="variables" data-line="619" class="code-line">Variables</h2>
+<ul>
+<li data-line="621" class="code-line">Variable names must begin with a letter or an underscore…remaining characters in a may be letters, digits or underscores
+<ul>
+<li data-line="622" class="code-line">Avoid beginning names with single or double underscores</li>
+</ul>
+</li>
+<li data-line="623" class="code-line">Upper &amp; lowercase letters are distinct</li>
+<li data-line="624" class="code-line">All characters in a variable name are significant</li>
+<li data-line="625" class="code-line">Must be declared, can be anywhere.</li>
+</ul>
+<pre><code data-line="627" class="code-line language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> a;		<span class="hljs-comment">// value of a is undefined</span>
+	<span class="hljs-keyword">int</span> b = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-keyword">int</span> z = <span class="hljs-number">99</span>;	<span class="hljs-comment">// can’t do this in C language, but OK in C++</span>
+	<span class="hljs-built_in">cout</span> &lt;&lt; z &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+	<span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++ )		<span class="hljs-comment">// scope of j is for loop</span>
+	{
+		<span class="hljs-built_in">cout</span> &lt;&lt; “j is “ &lt;&lt; j &lt;&lt; <span class="hljs-built_in">endl</span>;
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<a for="toc-anchor" id="initialization"></a><h3 id="initialization" data-line="647" class="code-line">Initialization</h3>
+<p data-line="649" class="code-line">Using bracket assignment- it will warn about truncation.</p>
+<p data-line="651" class="code-line">eg <code>int x = 3.14</code> - x = 3</p>
+<pre><code data-line="653" class="code-line language-cpp"><div><span class="hljs-keyword">int</span> hamburgers = {<span class="hljs-number">16</span>};	<span class="hljs-comment">// set hamburgers to 16</span>
+<span class="hljs-keyword">int</span> hotdogs {<span class="hljs-number">3</span>};		<span class="hljs-comment">// set hotdogs to 3</span>
+<span class="hljs-keyword">int</span> mustard {};		<span class="hljs-comment">// set mustard to 0</span>
+<span class="hljs-keyword">int</span> relish = {};		<span class="hljs-comment">// set relish to 0</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ketchup</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;		<span class="hljs-comment">// set ketchup to 1</span>
+
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">double</span> x = <span class="hljs-number">3.14159</span>;
+<span class="hljs-keyword">int</span> a{x}, b = {x};		<span class="hljs-comment">// truncation error</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">c</span><span class="hljs-params">(x)</span>, d </span>= x;		<span class="hljs-comment">// ok – but will truncate.  Using these assingment methods wont have checking.</span>
+<span class="hljs-keyword">int</span> a =<span class="hljs-number">3</span>;
+<span class="hljs-keyword">int</span> b{<span class="hljs-number">3</span>};
+<span class="hljs-keyword">int</span> c = {<span class="hljs-number">3</span>};
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">d</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+</div></code></pre>
+<p data-line="669" class="code-line">Uniform initialization (using <code>{}</code>) calls the default initializer for each item.  Especially for <code>0</code> initialization.  Primitive int and non float chars are 0, all floating pt values 0.0, and pointer values are <code>nullptr</code></p>
+<p data-line="671" class="code-line">It prevents narrowing.</p>
+<pre><code data-line="673" class="code-line language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>{<span class="hljs-comment">/* */</span>}
+
+<span class="hljs-keyword">int</span> x = <span class="hljs-number">3.14</span> <span class="hljs-comment">//auto narrows to 3.</span>
+func(<span class="hljs-number">3.14</span>); <span class="hljs-comment">//passes 3 automatically</span>
+<span class="hljs-comment">//these may result in a compiler error for narrowing.</span>
+
+<span class="hljs-keyword">int</span> x{<span class="hljs-number">3.14</span>} <span class="hljs-comment">//error</span>
+<span class="hljs-keyword">int</span> x = {<span class="hljs-number">3.14</span>} <span class="hljs-comment">//error</span>
+func{(<span class="hljs-number">3.14</span>)} <span class="hljs-comment">//error</span>
+
+</div></code></pre>
+<a for="toc-anchor" id="list-initialization"></a><h3 id="list-initialization" data-line="686" class="code-line">List Initialization</h3>
+<p data-line="688" class="code-line">There is a difference with Copy <code>=</code> and Direct Initilization in C++17</p>
+<a for="toc-anchor" id="direct-list-initialization"></a><h4 id="direct-list-initialization" data-line="690" class="code-line">Direct List Initialization</h4>
+<p data-line="692" class="code-line"><code>T obj {arg1, arg2, ...}</code></p>
+<pre><code data-line="694" class="code-line language-cpp"><div><span class="hljs-keyword">auto</span> a {<span class="hljs-number">11</span>}; <span class="hljs-comment">//int</span>
+
+<span class="hljs-keyword">auto</span> b {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>}; <span class="hljs-comment">//Error - no list one element allowed</span>
+</div></code></pre>
+<a for="toc-anchor" id="copy-list-initialization"></a><h4 id="copy-list-initialization" data-line="700" class="code-line">Copy List Initialization</h4>
+<p data-line="702" class="code-line"><code>T obj = {arg1, arg2, ...}</code></p>
+<pre><code data-line="704" class="code-line language-cpp"><div><span class="hljs-keyword">auto</span> a = {<span class="hljs-number">11</span>}; <span class="hljs-comment">//initilizer list&lt;int&gt;</span>
+
+<span class="hljs-keyword">auto</span> b = {<span class="hljs-number">11</span>, <span class="hljs-number">22</span>}; <span class="hljs-comment">//initilizer list&lt;int&gt;</span>
+<span class="hljs-keyword">auto</span> c = {<span class="hljs-number">11</span>, <span class="hljs-number">22.2</span>} <span class="hljs-comment">//ERROR must be same type</span>
+</div></code></pre>
+<a for="toc-anchor" id="scoping"></a><h3 id="scoping" data-line="711" class="code-line">Scoping</h3>
+<p data-line="713" class="code-line"><code>static</code> keyword- allocates memory in .data segment at compile time, is loaded at execution and remains in memory for the duration.</p>
+<p data-line="715" class="code-line">//to do week 2</p>
+<p data-line="717" class="code-line"><code>inline</code></p>
+<p data-line="719" class="code-line"><code>extern</code> - used to declare an object without defining it.  States that it is defined elsewhere in the Linkage units- e.g. in another file.</p>
+<pre data-line="721" class="code-line"><code>  `extern int n;` - ok 
+  `extern int n = 0;` not ok.
+
+  To define you need:
+
+  `extern const int n = 0`
+</code></pre>
+<a for="toc-anchor" id="namespaces"></a><h4 id="namespaces" data-line="727" class="code-line">namespaces</h4>
+<a for="toc-anchor" id="constants"></a><h2 id="constants" data-line="731" class="code-line">Constants</h2>
+<ul>
+<li data-line="733" class="code-line">Literal constants are values that appear in a program (e.g. 33, 12.99, ‘A’, “Hello”)</li>
+<li data-line="734" class="code-line">Literal constants are not addressable - Can’t directly address memory where value is stored</li>
+<li data-line="735" class="code-line">Every literal constant has an associated type</li>
+</ul>
+<p data-line="737" class="code-line">Literal integer constants are treated as signed values of type int</p>
+<pre data-line="740" class="code-line"><code>  34		// decimal notation
+  036		// octal
+  0x14		// hexadecimal
+  128L		// long (could also use l )
+  128U		// unsigned (could also use u )
+  14UL		// long unsigned
+  14LL		// long long*
+  128ULL		// unsigned long long*
+  3.14159F	// float (could also use f )
+  0.0		// double (default type)
+  7.435L		// extended precision
+  4e2		// scientific notation 
+  2.35E-2	// scientific notation
+</code></pre>
+<p data-line="754" class="code-line">f = F = float.</p>
+<p data-line="756" class="code-line">Printable literal character constants written with character inside single quotes</p>
+<pre data-line="759" class="code-line"><code>  ‘G’		// letter G
+  ‘,’		// literal comma
+  ‘ ‘		// literal blank
+  ‘5’		// literal 5
+</code></pre>
+<p data-line="764" class="code-line">Nonprintable characters, the single &amp; double quote marks, and the backslash are represented using escape sequences</p>
+<pre data-line="766" class="code-line"><code>  \n		// newline
+  \b	// backspace
+  \t		// horizontal tab		
+  \v	// vertical tab
+  \r		// carriage return	
+  \f	// formfeed
+  \a		// alert (bell)		
+  \\	// backslash
+  \’		// single quote		
+  \”	// double quote
+</code></pre>
+<p data-line="777" class="code-line">Can also use \xxx where xxx is a sequence of up to 3 octal digits</p>
+<pre data-line="779" class="code-line"><code>	\0	// null			
+  \7	// bell
+	\14	// newline		
+  \062	// ‘2’
+</code></pre>
+<p data-line="785" class="code-line">Can be used to transform a variable into an addressable constant<br>
+Must be initialized in its declaration</p>
+<p data-line="789" class="code-line">const float pi = 3.14159;	// pi is a constant<br>
+const int c;		// ERROR!! must be initialized in declaration<br>
+pi = 22.3;		// ERROR!! can’t change value</p>
+<a for="toc-anchor" id="string-literals"></a><h3 id="string-literals" data-line="794" class="code-line">String Literals</h3>
+<p data-line="796" class="code-line">String literals consist of zero or more characters enclosed in double quotes. Compiler adds terminating null character<br>
+Treated as an array of constant (const) characters<br>
+Nonprintable characters are represented by their escape sequences<br>
+“”			// null string<br>
+“A”			// not same as char literal ‘A’<br>
+“Hello”		// String literal<br>
+“Hello \t World”	// Embedded escape sequence<br>
+“Multiple line \	// Can extend for several lines<br>
+literal”		// using a backslash as the<br>
+// last character on a line</p>
+<a for="toc-anchor" id="boolean-literals"></a><h3 id="boolean-literals" data-line="807" class="code-line">Boolean literals</h3>
+<pre data-line="809" class="code-line"><code>  true, false
+</code></pre>
+<a for="toc-anchor" id="complex-types"></a><h2 id="complex-types" data-line="812" class="code-line">Complex Types</h2>
+<p data-line="815" class="code-line">arrays, structures (type struct), unions (type union), and enumerators (type enum) are legacy types from C<br>
+C++ structures can have functions as well as data types as members<br>
+The class type will be discussed later in this course</p>
+<a for="toc-anchor" id="array"></a><h3 id="array" data-line="820" class="code-line">array</h3>
+<p data-line="822" class="code-line">An  Array name is a special pointer, its a fixed pointer.  You can add to the array.</p>
+<p data-line="824" class="code-line"><code>int[] array = {1...4}</code>pos = array + 1;`</p>
+<p data-line="828" class="code-line">However you cannot reassign the array or start of the array.</p>
+<p data-line="830" class="code-line"><code>array +=1; //error</code></p>
+<a for="toc-anchor" id="structure"></a><h3 id="structure" data-line="832" class="code-line">structure</h3>
+<p data-line="834" class="code-line">You define struct names at the end:</p>
+<pre><code data-line="836" class="code-line language-cpp"><div>   <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+    <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
+        <span class="hljs-built_in">string</span> valueName;
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> value;
+    } values;
+</div></code></pre>
+<a for="toc-anchor" id="class"></a><h3 id="class" data-line="846" class="code-line">class</h3>
+<a for="toc-anchor" id="union"></a><h3 id="union" data-line="848" class="code-line">union</h3>
+<a for="toc-anchor" id="enumerator"></a><h3 id="enumerator" data-line="850" class="code-line">enumerator</h3>
+<p data-line="853" class="code-line">47-84, 114-134</p>
+<a for="toc-anchor" id="vectors"></a><h3 id="vectors" data-line="855" class="code-line">Vectors</h3>
+<p data-line="857" class="code-line">[See Initializer Lists for examples](#Initializer Lists)</p>
+<pre><code data-line="860" class="code-line language-cpp"><div><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; mSequence;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; myVec = {<span class="hljs-string">&quot;String 1&quot;</span>, <span class="hljs-string">&quot;String 2&quot;</span>, <span class="hljs-string">&quot;String 3&quot;</span>};
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; myVec;
+myVec.push_back(<span class="hljs-string">&quot;String 1&quot;</span>);
+myVec.push_back(<span class="hljs-string">&quot;String 2&quot;</span>);
+myVec.push_back(<span class="hljs-string">&quot;String 3&quot;</span>);
+mSequence.assign(args);
+</div></code></pre>
+<a for="toc-anchor" id="strings"></a><h2 id="strings-1" data-line="872" class="code-line">Strings</h2>
+<p data-line="874" class="code-line">endl</p>
+<p data-line="876" class="code-line">//38<br>
+//39</p>
+<p data-line="880" class="code-line">Using a string manipulator</p>
+<pre><code data-line="882" class="code-line language-cpp"><div><span class="hljs-comment">//40</span>
+<span class="hljs-comment">// Program to read and display a line of input</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Program Input:	That’s better</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Program Output:	You entered: That’s better</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">char</span> line[<span class="hljs-number">81</span>];
+	<span class="hljs-keyword">char</span> c;
+	<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+
+	<span class="hljs-built_in">cin</span> &gt;&gt; noskipws;		<span class="hljs-comment">// use manipulator to recognize whitespace</span>
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Please enter a line of text: &quot;</span>;
+
+	<span class="hljs-keyword">while</span> ( ( <span class="hljs-built_in">cin</span> &gt;&gt; c ) &amp;&amp; ( c != <span class="hljs-string">&#x27;\n&#x27;</span> ) )
+		line[i++] = c;
+
+	line[i] = <span class="hljs-string">&#x27;\0&#x27;</span>;
+
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;\n\nYou entered: &quot;</span> &lt;&lt; line &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<a for="toc-anchor" id="mixing-input-types"></a><h2 id="mixing-input-types" data-line="912" class="code-line">Mixing Input Types</h2>
+<p data-line="914" class="code-line">//41</p>
+<a for="toc-anchor" id="functions"></a><h2 id="functions" data-line="916" class="code-line">Functions</h2>
+<ul>
+<li data-line="918" class="code-line">Two basic types of functions
+<ul>
+<li data-line="919" class="code-line">Ordinary functions --- like in C</li>
+<li data-line="920" class="code-line">Class member functions --- used in O-O programs</li>
+</ul>
+</li>
+<li data-line="921" class="code-line">A function definition (i.e., its code) or a function prototype must appear in the code before the function is invoked</li>
+<li data-line="922" class="code-line">Normal practice is to use function prototypes</li>
+<li data-line="923" class="code-line">Functions may have arguments &amp; may return a value</li>
+</ul>
+<p data-line="925" class="code-line">//46</p>
+<p data-line="927" class="code-line">Functions need to appear before they are used, so a protoype has to occur.</p>
+<pre><code data-line="929" class="code-line language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+<span class="hljs-comment">//function prototypes</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_message</span><span class="hljs-params">()</span></span>;		<span class="hljs-comment">// A function prototype</span>
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">product</span><span class="hljs-params">( <span class="hljs-keyword">int</span> , <span class="hljs-keyword">float</span> )</span></span>; <span class="hljs-comment">// Another prototype</span>
+
+			<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+			</span>{
+				<span class="hljs-keyword">float</span> k = <span class="hljs-number">13.54f</span>;
+				<span class="hljs-keyword">float</span> num = <span class="hljs-number">43.77f</span>;
+
+				print_message();		<span class="hljs-comment">// Invoking functions</span>
+				<span class="hljs-built_in">cout</span> &lt;&lt; product( k , num );
+			}
+
+			<span class="hljs-comment">// Function definitions</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_message</span><span class="hljs-params">()</span>
+			</span>{
+				<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Where&#x27;s the Beef?&quot;</span> &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>;
+			}
+
+			<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">product</span> <span class="hljs-params">( <span class="hljs-keyword">int</span> c , <span class="hljs-keyword">float</span> f )</span>
+			</span>{
+				<span class="hljs-keyword">return</span> ( c * f );
+			}
+</div></code></pre>
+<p data-line="960" class="code-line">Typically placed at top of source file or “included” via a pre-processor directive</p>
+<p data-line="962" class="code-line">When placed outside of a function scope is from point of placement to end of source file</p>
+<p data-line="964" class="code-line">When placed inside a function scope is from point of placement to end of function</p>
+<pre><code data-line="966" class="code-line language-cpp"><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span>	<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myfunc</span><span class="hljs-params">()</span></span>;		<span class="hljs-comment">// Scope is source file</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">message</span><span class="hljs-params">()</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+	message();
+	myfunc();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myfunc</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">afunc</span><span class="hljs-params">()</span></span>;	<span class="hljs-comment">// Scope is myfunc()</span>
+
+	message();
+	<span class="hljs-built_in">cout</span> &lt;&lt; afunc();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">afunc</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">99</span>; }
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">message</span><span class="hljs-params">()</span> </span>{ <span class="hljs-built_in">cout</span> &lt;&lt; “HELLO \n”; }
+
+</div></code></pre>
+<a for="toc-anchor" id="passing-arguments-and-returning"></a><h3 id="passing-arguments-and-returning" data-line="994" class="code-line">Passing Arguments and Returning</h3>
+<p data-line="996" class="code-line">//49</p>
+<p data-line="998" class="code-line">//50</p>
+<a for="toc-anchor" id="using-const-with-function-arguments"></a><h3 id="using-const-with-function-arguments" data-line="1000" class="code-line">Using const With Function Arguments</h3>
+<p data-line="1002" class="code-line">If a value passed as a function argument should not be altered in the function, the argument should be declared as <code>const</code></p>
+<p data-line="1004" class="code-line">The C++ compiler will not allow const arguments to be modified by a function</p>
+<pre><code data-line="1007" class="code-line language-cpp"><div><span class="hljs-comment">// Function taking const argument</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myfunc</span><span class="hljs-params">( <span class="hljs-keyword">int</span> arg1, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> arg2 )</span>
+</span>{
+	arg1 = <span class="hljs-number">2</span>*arg1;		<span class="hljs-comment">// OK</span>
+	arg2 += arg1;		<span class="hljs-comment">// ERROR --- can’t change arg2</span>
+}
+</div></code></pre>
+<hr>
+<a for="toc-anchor" id="classes"></a><h2 id="classes" data-line="1018" class="code-line">Classes</h2>
+<hr>
+<pre><code data-line="1022" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpreadsheetCell</span>
+{</span>
+<span class="hljs-comment">// Remainder of the class definition omitted for brevity</span>
+<span class="hljs-keyword">private</span>:
+<span class="hljs-keyword">double</span> mValue = <span class="hljs-number">0</span>;
+};
+
+
+&lt;in class.cpp&gt;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;SpreadsheetCell.h&quot;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SpreadsheetCell::setValue</span><span class="hljs-params">(<span class="hljs-keyword">double</span> inValue)</span>
+</span>{
+   mValue = inValue;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">SpreadsheetCell::getValue</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>  <span class="hljs-comment">//use const when values arent changing</span>
+</span>{
+   <span class="hljs-keyword">return</span> mValue;
+}
+</div></code></pre>
+<a for="toc-anchor" id="brief-assignment"></a><h3 id="brief-assignment" data-line="1047" class="code-line">Brief assignment</h3>
+<hr>
+<p data-line="1050" class="code-line"><code>CircleClass(int x, int y, double radius) : mX(x), mY(y), mRadius(radius){}</code></p>
+<a for="toc-anchor" id="uniform-initialization"></a><h3 id="uniform-initialization" data-line="1053" class="code-line">Uniform Initialization</h3>
+<hr>
+<p data-line="1056" class="code-line">Structs and classes can be initiated similarly</p>
+<pre><code data-line="1058" class="code-line language-cpp"><div>
+stuct CircleStruct{
+   <span class="hljs-keyword">int</span> x,y ;
+   <span class="hljs-keyword">double</span> radius;
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CircleClass</span>{</span>
+   <span class="hljs-keyword">public</span>:
+   CircleClass(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">double</span> radius) : mX(x), mY(y), mRadius(radius){}
+
+}
+CircleStruct myCircle = {<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2.5</span>}
+CircleStruct myCircle4{<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2.5</span>}
+CircleClass myCircle2{<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2.5</span>};
+CircleClass myCircle3 = {<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2.5</span>};
+</div></code></pre>
+<p data-line="1075" class="code-line">Objects are created at the point you declare them (if they’re on the stack) or when you explicitly allocate space for them with <code>new</code>, <code>new[]</code>, or a <em>smart pointer</em>.</p>
+<hr>
+<a for="toc-anchor" id="constructors"></a><h3 id="constructors" data-line="1078" class="code-line">Constructors</h3>
+<hr>
+<div class="admonition note">
+<p class="admonition-title">C++ programmers sometimes call a constructor a ctor.</p>
+</div>
+<p data-line="1083" class="code-line">You cannot declare a constructor in terms of another:</p>
+<pre><code data-line="1086" class="code-line language-cpp"><div>SpreadsheetCell::SpreadsheetCell(string_view initialValue)
+{
+      SpreadsheetCell(stringToDouble(initialValue));
+}
+</div></code></pre>
+<p data-line="1093" class="code-line">The code will compile, link, and run, but will not do what you expect. It creates a temp object then dumps it on return. You can use <strong>Delegate constructors</strong><br>
+?Can you return it?</p>
+<p data-line="1096" class="code-line">Default constructors are needed - a constructor with 0 params- especially <strong>if the object may be used in an array</strong>.  A default constructor is also required for classes that you want to store in Standard Library containers, such as <code>std::vector</code>.</p>
+<pre><code data-line="1099" class="code-line language-cpp"><div>SpreadsheetCell cells[<span class="hljs-number">3</span>]; <span class="hljs-comment">// FAILS compilation without default constructor</span>
+SpreadsheetCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell[<span class="hljs-number">10</span>]; <span class="hljs-comment">// Also FAILS</span>
+</div></code></pre>
+<p data-line="1104" class="code-line">You can circumvent this restriction for stack-based arrays by using initializers like these:</p>
+<pre><code data-line="1106" class="code-line language-cpp"><div>SpreadsheetCell cells[<span class="hljs-number">3</span>] = {SpreadsheetCell(<span class="hljs-number">0</span>), SpreadsheetCell(<span class="hljs-number">23</span>),
+**SpreadsheetCell(<span class="hljs-number">41</span>)};**
+</div></code></pre>
+<p data-line="1111" class="code-line">There is an <em>implicit</em> default constructor, unless an explicit constructor is defined.  Then you need to explicitly declare the default if you want it available.  If you explicitly don't want a default constructor, and have no others, you need to explicitly delete it.</p>
+<pre><code data-line="1114" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+   MyClass() = <span class="hljs-keyword">default</span>;
+   MyClass(<span class="hljs-keyword">double</span> initialValue);
+   MyClass(<span class="hljs-built_in">std</span>::string_view initialValue);
+
+   <span class="hljs-comment">//explicit deletion of default.  No constructor.</span>
+<span class="hljs-keyword">public</span>:
+   MyClass() = <span class="hljs-keyword">delete</span>;
+};
+</div></code></pre>
+<hr>
+<a for="toc-anchor" id="constructor-initializers"></a><h4 id="constructor-initializers" data-line="1129" class="code-line">Constructor Initializers</h4>
+<hr>
+<pre><code data-line="1133" class="code-line language-cpp"><div>SpreadsheetCell::SpreadsheetCell(<span class="hljs-keyword">double</span> initialValue): mValue(initialValue){}
+</div></code></pre>
+<p data-line="1137" class="code-line">Each element in the list is an initialization of a data member using function notation or the uniform initialization syntax, a call to a base class constructor (see Chapter 10), or a call to a delegated constructor, which is discussed later.</p>
+<p data-line="1139" class="code-line">The initializer list is of format <code>:</code> then a comma separated list.</p>
+<pre><code data-line="1143" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpreadsheetCell</span>
+{</span>
+   <span class="hljs-keyword">public</span>:
+      SpreadsheetCell(<span class="hljs-keyword">double</span> d);
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SomeClass</span>
+{</span>
+   <span class="hljs-keyword">public</span>:
+      SomeClass();
+   <span class="hljs-keyword">private</span>:
+      SpreadsheetCell mCell; <span class="hljs-comment">//no value assigned, and no default</span>
+}; 
+
+SomeClass::SomeClass() { } <span class="hljs-comment">//err</span>
+
+SomeClass::SomeClass() : mCell(<span class="hljs-number">1.0</span>) { } <span class="hljs-comment">//now works/</span>
+</div></code></pre>
+<div class="admonition warning">
+<p class="admonition-title">ctor-initializers initialize data members in the order that they appear in the class definition, not their order in the ctor-initializer.</p>
+</div>
+<a for="toc-anchor" id="copy-constructors"></a><h4 id="copy-constructors" data-line="1166" class="code-line">Copy Constructors</h4>
+<p data-line="1168" class="code-line">Will be created by default, unless you explicitly delete or declare a new one.  But the general form is here:</p>
+<ol>
+<li data-line="1170" class="code-line">When a class object is created and initialized with an existing object of the class.</li>
+<li data-line="1171" class="code-line">When a class object is passed by value as a function arg.</li>
+<li data-line="1172" class="code-line">When a class is returned from a function.</li>
+</ol>
+<p data-line="1174" class="code-line">This is (the default version) us a shallow copy</p>
+<p data-line="1176" class="code-line">This is ok if the class only has primitive types as members or if the class does not have any pointers or reference types.</p>
+<p data-line="1178" class="code-line">-if there is a pointer in the object, then copying object 1 to object 2, affecting object 1 will affect object 2 (if there is a pointer <code>int* a</code> for instance both objects point to the same <code>int * a</code>)</p>
+<pre><code data-line="1182" class="code-line language-cpp"><div>SpreadsheetCell(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; src);
+SpreadsheetCell(<span class="hljs-keyword">const</span> SpreadsheetCell src); <span class="hljs-comment">//doing this causes infinitate recursion- because it calls copy constructor here- to copy input to src...</span>
+<span class="hljs-comment">// used like this in implementation</span>
+SpreadsheetCell::SpreadsheetCell(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; src)
+: mValue(src.mValue)
+{
+}
+</div></code></pre>
+<div class="admonition info">
+<p class="admonition-title">Info: This is important because C++ is pass by Value, so by default Objects are copied before passing to functions or methods.</p>
+</div>
+<p data-line="1194" class="code-line">If <strong>either</strong> the <code>Copy</code> or <code>Copy Assignment</code> constructor or destructor is declared, the other <em>will not</em> be (given a default).</p>
+<p data-line="1196" class="code-line">To add it back:</p>
+<pre><code data-line="1199" class="code-line language-cpp"><div>MyClass(<span class="hljs-keyword">const</span> MyClass&amp; src) = <span class="hljs-keyword">default</span>;
+
+MyClass&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> MyClass&amp; rhs) = <span class="hljs-keyword">default</span>;
+</div></code></pre>
+<p data-line="1208" class="code-line">Utilizing the copy constructor:</p>
+<pre><code data-line="1210" class="code-line language-cpp"><div><span class="hljs-function">MyClass <span class="hljs-title">myClass</span><span class="hljs-params">(params)</span></span>;
+<span class="hljs-function">MyClass <span class="hljs-title">copyClass</span><span class="hljs-params">(myClass)</span></span>;
+</div></code></pre>
+<p data-line="1215" class="code-line">where possible, pass by <code>const reference</code>.  Returning by Reference can be risky.  E.g. if you create a string in a method, and then return it by reference to avoid copying, the address  will be returned, but the underlying string will be dumped.</p>
+<p data-line="1217" class="code-line">Explicitly declare or remove the copy constructor (e.g. you dont want an object copied.) This can be used to disallow passing the object by value,</p>
+<pre><code data-line="1219" class="code-line language-cpp"><div>SpreadsheetCell(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; src) = <span class="hljs-keyword">default</span>;
+SpreadsheetCell(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; src) = <span class="hljs-keyword">delete</span>;<span class="hljs-number">1</span>
+</div></code></pre>
+<a for="toc-anchor" id="copy-assignment"></a><h4 id="copy-assignment" data-line="1224" class="code-line">Copy assignment</h4>
+<p data-line="1226" class="code-line">Works by setting one, existing object to entirely match the other.</p>
+<pre><code data-line="1228" class="code-line"><code><div>Object o(params);
+Object oo(params);
+oo=o;
+</div></code></code></pre>
+<p data-line="1234" class="code-line">At the end both still exist, just oo matches o.</p>
+<p data-line="1236" class="code-line">This constructor is indicated by <code>operator=</code> because its an overloading of the <code>=</code> command.</p>
+<p data-line="1238" class="code-line">The copy assignment constructor is <em>not</em> called in the following example.</p>
+<pre><code data-line="1241" class="code-line language-cpp"><div>Object new_obj = old_obj;
+</div></code></pre>
+<p data-line="1245" class="code-line">This is because its a declaration, and those are sent to the copy constructor. Had new_obj been already created - in another statement - it would call the <code>operator=</code> method.</p>
+<pre><code data-line="1249" class="code-line language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpreadsheetCell</span>
+{</span>
+   <span class="hljs-keyword">public</span>:
+      SpreadsheetCell&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; rhs);
+      <span class="hljs-comment">// Remainder of the class definition omitted for brevity</span>
+};
+</div></code></pre>
+<p data-line="1258" class="code-line">This returns a <code>reference</code> (unlike the copy constructor) so that it can be chained: <code>o1 = o2 = o3</code></p>
+<pre><code data-line="1262" class="code-line language-cpp"><div>myCell = anotherCell = aThirdCell;
+<span class="hljs-comment">//has the true form of </span>
+myCell.<span class="hljs-keyword">operator</span>=(anotherCell.<span class="hljs-keyword">operator</span>=(aThirdCell));
+<span class="hljs-comment">//must guard against self assignment.</span>
+myCell=myCell 
+<span class="hljs-comment">//has weird effects if there are dynamic obj inside the obj.</span>
+SpreadsheetCell&amp; SpreadsheetCell::<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; rhs)
+{
+   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;rhs) {
+      <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+   }
+   <span class="hljs-comment">//...</span>
+</div></code></pre>
+<p data-line="1277" class="code-line">This works because <code>this</code> is actually a pointer to the object.  Likewise, <code>&amp;rhs</code> is a reference.  Using the equality, we are actually comparing the value of the pointers - e.g. do they point to the same memory location, and are thus the same object. We return <code>*this</code> to de-reference the pointer and get the object itself.  This returns a reference to the object.</p>
+<p data-line="1279" class="code-line">Explicit declaration or deletion is of the form below.</p>
+<pre><code data-line="1281" class="code-line language-cpp"><div>SpreadsheetCell&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; rhs) = <span class="hljs-keyword">default</span>;
+<span class="hljs-comment">// or</span>
+SpreadsheetCell&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; rhs) = <span class="hljs-keyword">delete</span>;
+</div></code></pre>
+<p data-line="1287" class="code-line">Returning an object, e.g. string, calls the copy constructor and passes an un-named obj back.  If on the other side you assign it to a string variable then its assignment operator is called.  So, two objects are temporarily created and destroyed. <em>Return Value Optimization</em> or <em>copy elision</em> tries to remove some of these inefficiencies.</p>
+<pre data-line="1290" class="code-line"><code>     Object obj(5);
+     string s1 = obj.getString();
+</code></pre>
+<p data-line="1293" class="code-line">This calls the copy constructor for an un-named string, then calls the copy constructor for s1.  Not the assignment operator. A move constructor can also be used here and is more efficient.</p>
+<a for="toc-anchor" id="move-constructors"></a><h4 id="move-constructors" data-line="1297" class="code-line">Move Constructors</h4>
+<hr>
+<a for="toc-anchor" id="initializer-lists"></a><h4 id="initializer-lists" data-line="1300" class="code-line">Initializer Lists</h4>
+<hr>
+<p data-line="1303" class="code-line">initializer-list constructor is a constructor with an <code>std::initializer_list&lt;T&gt;</code> as first parameter,<br>
+without any additional parameters or with additional parameters having default values. Before<br>
+you can use the <code>std::initializer_list&lt;T&gt;</code> template, you need to include the <code>&lt;initializer_list&gt;</code><br>
+header.</p>
+<p data-line="1308" class="code-line">The below example shows several things.  Throwing errors.  Vectors. and initializer lists.</p>
+<pre><code data-line="1310" class="code-line language-cpp"><div><span class="hljs-meta">#inclue <span class="hljs-meta-string">&lt;initializer_list&gt;</span></span>
+<span class="hljs-meta">#inclue <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+#...
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EvenSequence</span>
+{</span>
+   <span class="hljs-keyword">public</span>:
+      
+      EvenSequence(<span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-keyword">double</span>&gt; args)  <span class="hljs-comment">//pass a list of doubles named args</span>
+      {
+         <span class="hljs-keyword">if</span> (args.size() % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span> invalid_argument(<span class="hljs-string">&quot;initializer_list should &quot;</span>
+               <span class="hljs-string">&quot;contain even number of elements.&quot;</span>);
+         } <span class="hljs-comment">//requires it to be even ?pointless? maybe example of throw</span>
+
+
+         mSequence.reserve(args.size());  <span class="hljs-comment">//get the size and reserve space.</span>
+         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; value : args) {
+            mSequence.push_back(value); <span class="hljs-comment">//push onto vector stack.</span>
+         }
+         <span class="hljs-comment">//could replace the for loop with</span>
+         mSequence.assign(args);
+      }
+
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dump</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>
+      </span>{
+         <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; value : mSequence) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="hljs-string">&quot;, &quot;</span>;
+         }
+         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; mSequence; <span class="hljs-comment">//define vector.</span>
+};
+</div></code></pre>
+<hr>
+<a for="toc-anchor" id="this-keyword"></a><h3 id="this-keyword" data-line="1352" class="code-line">this keyword</h3>
+<hr>
+<pre><code data-line="1355" class="code-line language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SpreadsheetCell::setValue</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value)</span>
+</span>{
+<span class="hljs-keyword">this</span>-&gt;value = value;
+}
+</div></code></pre>
+<p data-line="1362" class="code-line">a pointer to the object <code>this</code> is always passed to the method called.  <code>this</code> can be passed elsewhere, or used to disambiguate <code>value</code> above- which is both a data member and a function param.</p>
+<pre><code data-line="1365" class="code-line language-cpp"><div>
+<span class="hljs-comment">//declared as a stand alone function:</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printCell</span><span class="hljs-params">(<span class="hljs-keyword">const</span> SpreadsheetCell&amp; cell)</span>
+</span>{
+   <span class="hljs-built_in">cout</span> &lt;&lt; cell.getString() &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-comment">//in the object, pass a pointer to this.</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SpreadsheetCell::setValue</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value)</span>
+</span>{
+   <span class="hljs-keyword">this</span>-&gt;value = value;
+   printCell(*<span class="hljs-keyword">this</span>);
+}
+</div></code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning: When passing <code>this</code> elsewhere, make sure you pass the pointer <code>*this</code>.</p>
+<p data-line="1383" class="code-line">ALSO: Instead of writing a printCell() function, it would be more convenient<br>
+to overload the &lt;&lt; operator, as explained in Chapter 15. You can then use<br>
+the following line to print a SpreadsheetCell:</p>
+<pre data-line="1387" class="code-line"><code>       cout &lt;&lt; *this &lt;&lt; endl;
+</code></pre>
+</div>
+<hr>
+<a for="toc-anchor" id="instantiation"></a><h3 id="instantiation" data-line="1390" class="code-line">instantiation</h3>
+<hr>
+<a for="toc-anchor" id="stack-instantiation%3A"></a><h4 id="stack-instantiation" data-line="1393" class="code-line">Stack instantiation:</h4>
+<hr>
+<p data-line="1397" class="code-line">Space is reserved as soon as declared.  e.g. line 1.  Stack objects are destroyed as soon as they go out of scope (<code>{ }</code>).  This is why they don't need to be deleted.</p>
+<pre><code data-line="1399" class="code-line language-cpp"><div>SpreadsheetCell myCell, anotherCell;
+myCell.setValue(<span class="hljs-number">6</span>);
+anotherCell.setString(<span class="hljs-string">&quot;3.2&quot;</span>);
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;cell 1: &quot;</span> &lt;&lt; myCell.getValue() &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;cell 2: &quot;</span> &lt;&lt; anotherCell.getValue() &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<p data-line="1406" class="code-line">These you can access methods and public data members with the access dot <code>.</code> operator.</p>
+<p data-line="1408" class="code-line">On the stack, assuming a constructor that takes an int:: <code>SpreadsheetCell::SpreadsheetCell(int n);</code> you can call it by just putting the params in the descriptor.</p>
+<p data-line="1410" class="code-line"><code>SpreadsheetCell myCell(5), anotherCell (4);</code></p>
+<div class="admonition warning">
+<p class="admonition-title">You cannot explicitly call the Constructor, also when creating an object on the stack, omit parentheses for the default constructor.</p>
+<pre><code data-line="1414" class="code-line language-cpp"><div>SpreadsheetCell myCell.SpreadsheetCell(<span class="hljs-number">5</span>)
+</div></code></pre>
+<p data-line="1418" class="code-line">or call it later:</p>
+<pre><code data-line="1420" class="code-line language-cpp"><div>SpreadsheetCell myCell;
+myCell.SpreadsheetCell(<span class="hljs-number">5</span>);
+
+</div></code></pre>
+<p data-line="1426" class="code-line">Also, for default constructors, this looks right:</p>
+<pre><code data-line="1428" class="code-line language-cpp"><div><span class="hljs-function">SpreadsheetCell <span class="hljs-title">myCell</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// WRONG, but will compile.</span>
+myCell.setValue(<span class="hljs-number">6</span>); <span class="hljs-comment">//wont fail until &lt;-here</span>
+<span class="hljs-comment">//it must be like this:</span>
+SpreadsheetCell myCell;
+</div></code></pre>
+<p data-line="1434" class="code-line">Do not use parens () when calling the default.</p>
+<p data-line="1436" class="code-line">This problem is commonly known as <em>the most vexing parse,</em> and it means that your compiler thinks the first line is actually a function declaration for a function with the name myCell that takes zero arguments and returns a SpreadsheetCell object.</p>
+</div>
+<hr>
+<a for="toc-anchor" id="heap-instantiation"></a><h4 id="heap-instantiation" data-line="1445" class="code-line">Heap Instantiation</h4>
+<hr>
+<p data-line="1448" class="code-line">Heap objects are not destroyed when they go out of scope.  If the pointer to it is declared in a scope and that scope closes, you lose the pointer, and thus access to the object which causes a memory leak.  Use smart pointers or use delete and nullptr.</p>
+<p data-line="1450" class="code-line">Below space is not reserved until <code>new</code> or <code>make_unique</code> is called.  e.g. if you split the declaration and assignment below- you would have an indeterminate pointer which is bad, but also no space reserved.</p>
+<pre><code data-line="1452" class="code-line language-cpp"><div>SpreadsheetCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell();
+myCellp-&gt;setValue(<span class="hljs-number">3.7</span>);
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;cell 1: &quot;</span> &lt;&lt; myCellp-&gt;getValue() &lt;&lt;
+<span class="hljs-string">&quot; &quot;</span> &lt;&lt; myCellp-&gt;getString() &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-keyword">delete</span> myCellp;
+myCellp = <span class="hljs-literal">nullptr</span>;
+</div></code></pre>
+<p data-line="1461" class="code-line">Objects on the heap need to be referenced with the <strong>arrow</strong> operator <code>-&gt;</code> which combines dereference <code>*</code> and member access <code>.</code></p>
+<p data-line="1463" class="code-line">You can use this other way instead like this <code>(*myCellp).getValue()</code> for <code>myCellp-&gt;getValue()</code></p>
+<p data-line="1465" class="code-line">Must call <code>delete</code> on these (and not required but good practice to set that pointer to nullptr- as delete follows the pointer to the object.  Once its gone, the pointer still points there.), or use smart pointers:</p>
+<pre><code data-line="1468" class="code-line language-cpp"><div><span class="hljs-comment">//C++11 style</span>
+<span class="hljs-built_in">unique_ptr</span>&lt;SpreadsheetCell&gt; myCellP{make_unique&lt;SpreadsheetCell&gt;()}
+<span class="hljs-comment">//C++14 style</span>
+<span class="hljs-keyword">auto</span> myCellp = make_unique&lt;SpreadsheetCell&gt;();
+<span class="hljs-comment">//&lt;C++11 requires raw pointers.</span>
+SpreadsheeCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell();
+
+<span class="hljs-comment">// Equivalent to:</span>
+<span class="hljs-comment">// unique_ptr&lt;SpreadsheetCell&gt; myCellp(new SpreadsheetCell());</span>
+myCellp-&gt;setValue(<span class="hljs-number">3.7</span>);
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;cell 1: &quot;</span> &lt;&lt; myCellp-&gt;getValue() &lt;&lt;
+<span class="hljs-string">&quot; &quot;</span> &lt;&lt; myCellp-&gt;getString() &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<p data-line="1483" class="code-line">These all are similar</p>
+<pre><code data-line="1485" class="code-line language-cpp"><div><span class="hljs-comment">//preC++11</span>
+SpreadsheetCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell();
+<span class="hljs-comment">//AND</span>
+<span class="hljs-keyword">delete</span> myCellp;
+myCellp = <span class="hljs-literal">nullptr</span>;
+
+<span class="hljs-comment">//OR (C++14+)</span>
+<span class="hljs-keyword">auto</span> myCellp = make_unique&lt;SpreadsheetCell&gt;();
+<span class="hljs-comment">//OR (C++11+)</span>
+<span class="hljs-function"><span class="hljs-built_in">unique_ptr</span>&lt;SpreadsheetCell&gt; <span class="hljs-title">myCellp</span><span class="hljs-params">(<span class="hljs-keyword">new</span> SpreadsheetCell())</span></span>;
+</div></code></pre>
+<p data-line="1498" class="code-line">Using Heap constructors:</p>
+<pre><code data-line="1500" class="code-line language-cpp"><div><span class="hljs-comment">//C++14+</span>
+<span class="hljs-keyword">auto</span> smartCellp = make_unique&lt;SpreadsheetCell&gt;(<span class="hljs-number">4</span>);
+
+<span class="hljs-comment">// Or with raw pointers, without smart pointers (not recommended)</span>
+SpreadsheetCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell(<span class="hljs-number">5</span>);
+SpreadsheetCell* anotherCellp = <span class="hljs-literal">nullptr</span>;  <span class="hljs-comment">//if not used immed. make `nullptr`</span>
+anotherCellp = <span class="hljs-keyword">new</span> SpreadsheetCell(<span class="hljs-number">4</span>);
+
+<span class="hljs-comment">//after</span>
+<span class="hljs-keyword">delete</span> myCellp; myCellp = <span class="hljs-literal">nullptr</span>; 
+<span class="hljs-keyword">delete</span> anotherCellp; anotherCellp = <span class="hljs-literal">nullptr</span>;
+
+<span class="hljs-comment">//default constrictor is same as the first example.</span>
+<span class="hljs-comment">//Requires C++14+</span>
+<span class="hljs-keyword">auto</span> smartCellp = make_unique&lt;SpreadsheetCell&gt;();
+<span class="hljs-comment">// Or with a raw pointer (not recommended)</span>
+<span class="hljs-comment">//used pre-C++11</span>
+SpreadsheetCell* myCellp = <span class="hljs-keyword">new</span> SpreadsheetCell();
+</div></code></pre>
+<p data-line="1521" class="code-line">generally:</p>
+<p data-line="1523" class="code-line">for C++ 14+</p>
+<p data-line="1525" class="code-line"><code>auto [varName] = make_unique&lt;[Class]&gt; ( [ctor params] );</code></p>
+<p data-line="1527" class="code-line">for C++11+</p>
+<p data-line="1529" class="code-line"><code>unique_ptr&lt; [Class] &gt; [varName] (new [Class]( [ctor params] ));</code></p>
+<p data-line="1531" class="code-line">for &lt; C++ 11</p>
+<p data-line="1533" class="code-line"><code>[Class]* [varName] = new [Class]( [ctor params] )</code></p>
+<a for="toc-anchor" id="error-handling"></a><h2 id="error-handling" data-line="1536" class="code-line">Error Handling</h2>
+<pre><code data-line="1539" class="code-line language-cpp"><div>EvenSequence(<span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-keyword">double</span>&gt; args)
+{
+<span class="hljs-keyword">if</span> (args.size() % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) {
+<span class="hljs-keyword">throw</span> invalid_argument(<span class="hljs-string">&quot;initializer_list should &quot;</span>
+<span class="hljs-string">&quot;contain even number of elements.&quot;</span>);
+}
+mSequence.assign(args);
+}
+<span class="hljs-comment">//EvenSequence objects can be constructed as follows:</span>
+EvenSequence p1 = {<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>};
+p1.dump();
+<span class="hljs-keyword">try</span> {
+EvenSequence p2 = {<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>};
+} <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">const</span> invalid_argument&amp; e) {
+<span class="hljs-built_in">cout</span> &lt;&lt; e.what() &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+</div>
+
+</body>
+</html>

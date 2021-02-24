@@ -39,6 +39,55 @@ Links from [SS64](https://ss64.com/links/bash.html)
 - [bash tips](https://www.ukuug.org/events/linux2003/papers/bash_tips/) - Configure the bash terminal.
 - [Bash pitfalls](http://mywiki.wooledge.org/BashPitfalls) - GreyCat's wiki.
 
+## Useful Terminal Apps
+
+ncdu - shows du (disk usage) in a curses form
+mc -  a curses file browser
+
+joe - alternative to nano
+
+
+ccat - highlight cat
+
+
+### Docker
+ctop - nice looking docker monitor
+dry
+
+
+### Monitors
+bashtop - system viewer
+bpytop - an updated version of te above
+mtr - my traceroute, monitor a connection
+tcpdump - dumps sniffed packet headers
+iftop - interface top
+bwm-ng - a bandwidth monitor
+nmon - nice graphical monitor
+sar - can put out a slew of data
+
+### Network
+fping - check if its connected
+nload - console graphical net monitor
+
+
+- info - simply named- adds the command for the GNU coreutils doc browser, has more info than man.
+- micro -  a nicer nano - CURL https://getmic.ro | bash
+- xclip 
+- xsel - needed for clipboard in terminal
+
+
+## Alias list
+
+
+alias log="tail /var/log/syslog"
+alias llg="tac /var/log/syslog | less"
+alias clr="clear"
+alias ip='ip -c'
+alias lir="ls -liR"
+alias cd..="cd .."
+alias cat="ccat"
+
+
 ## WSL (Windows Subsystem Linux)
 
 ### Install ZSH
@@ -90,9 +139,29 @@ antigen apply
 
 ## Setup and Running
 
+### TTYs
+
 Pressing [[escape]]
 
 `Alt-2` gets out of the boot screen and gets to a prompt.  `Alt-1` returns.
+
+### SSH (and SCP) Enable
+
+At least for Ubuntu
+
+
+#Adding
+sudo apt install openssh-server
+sudo systemctl status ssh
+sudo ufw allow ssh
+
+#stop
+#start
+#Disable enable
+sudo systemctl {stop, start, disable, enable} ssh
+sudo systenctl start ssh
+sudo systenctl stop ssh
+
 
 ### Work Computer
 
@@ -477,6 +546,83 @@ Ok 9. This is the number in the [command] help >> see command(#) bit.
 
 Ironically, `man man` gets help with the manual.
 
+
+## at
+
+This also works (Examples to achieve a similar effect without at - it made sense for what I was doing at the time.)
+
+      (sleep 10 ; echo "test" > ./testfile ) &
+
+      (sleep 5 ; echo 'test\n' ) > /dev/stdout 2>&1  &
+
+      (sleep 10 ; cat /boot/config/bashcustom >> /root/.bash_profile; echo "done")>/dev/stdout &
+
+      (sleep 10 ; cat /boot/config/bashcustom >> /root/.bash_profile; source ~/.bash_profile; echo "done")>/dev/stdout &
+
+
+
+for multiple commands using a file and at is better
+
+The & makes it detach into the background
+The parentheses makes sure they run together.
+
+[at](https://www.computerhope.com/unix/uat.htm)
+
+      at 9:30 PM Tue
+      at> echo "It's 9:30 PM on Sunday."
+      at> ^D
+      [[Ctrl]] + [[D]]
+      job 1 at Sun Nov 16 09:30:00 2014
+
+
+| the expression:    | would translate to:       |
+| ------------------ | ------------------------- |
+| noon               | 12:00 PM October 18 2014  |
+| midnight           | 12:00 AM October 19 2014  |
+| teatime            | 4:00 PM October 18 2014   |
+| tomorrow           | 10:00 AM October 19 2014  |
+| noon tomorrow      | 12:00 PM October 19 2014  |
+| next week          | 10:00 AM October 25 2014  |
+| next monday        | 10:00 AM October 24 2014  |
+| fri                | 10:00 AM October 21 2014  |
+| NOV                | 10:00 AM November 18 2014 | 
+| 2:30 PM            | 2:30 PM October 18 2014   |
+| 1430               | 2:30 PM October 18 2014   |
+| 2:30 PM tomorrow   | 2:30 PM October 19 2014   |
+| 2:30 PM next month | 2:30 PM November 18 2014  |
+| 2:30 PM Fri        | 2:30 PM October 21 2014   |
+| 2:30 PM 10/21      | 2:30 PM October 21 2014   |
+| 2:30 PM 21.10.14   | 2:30 PM October 21 2014   |
+| now + 30 minutes   | 10:30 AM October 18 2014  |
+| now + 1 hour       | 11:00 AM October 18 2014  |
+| now + 4 months     | 10:00 AM February 18 2015 |
+| now + 5 years      | 10:00 AM October 18 2019  |
+
+NOV = now + 1 month
+
+
+`atq` - view the queue
+
+at [-V] [-q queue] [-f file] [-mMlv] timespec...
+at [-V] [-q queue] [-f file] [-mMkv] [-t time]
+at -c job [job...]
+atq [-V] [-q queue]
+at [-rd] job [job...]
+atrm [-V] job [job...]
+batch
+at -b
+
+
+`at -m 01:35 < my-at-jobs.txt`  Run the commands listed in the 'my-at-jobs.txt' file at 1:35 AM.
+
+at
+
+
+- `at` - executes commands at a specified time.
+- `atq` - lists the user's pending jobs, unless the user is the superuser; in that case, everybody's jobs are listed. The format of the output lines (one for each job) is: job number, date, hour, year, queue, and username.
+- `atrm` - deletes jobs, identified by their job number.
+- `batch` - executes commands when system load levels permit; in other words, when the load average drops below 1.5, or the value specified in the invocation of atd.
+
 ## Less
 
 Less is used to view man,  its like linux notepad.
@@ -680,7 +826,7 @@ ls
 
 [StackExchange Article](https://askubuntu.com/questions/900283/windows-filepath-converted-to-linux-filepath)
 
-````bash
+```bash
 file=${file/C://c}
 file=${file//\\//}
 echo $file
@@ -700,7 +846,14 @@ for f in "${filenames[@]}"; do
   f="${f//\\//}"
   echo "$f"
 done
-#If you want to put the output into an array instead of printing, replace the echo line with an assignment:
+
+```
+
+
+If you want to put the output into an array instead of printing, replace the echo line with an assignment:
+
+
+```bash
 
   filenames_out+=( "$f" )
 
@@ -726,6 +879,965 @@ file="/$(echo 'C:\Users\abcd\Downloads\testingFile.log'|tr '^C' 'c'|tr '\\' '/')
 file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^N' 'n'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^T' 't'|tr '^U' 'u'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\\' '/')"
 
 file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\\' '/')"
+```
+
+## lsof
+
+[lsof github](https://github.com/lsof-org/lsof)
+
+
+lsof is a command listing open files.
+
+This may be non standard software.  
+
+### Get ports youre listening on
+
+lsof -i -P -n
+
+sudo lsof -i -P -n | grep LISTEN
+
+sudo netstat -tulpn | grep LISTEN
+
+ ss
+ ss -tulw 
+
+How it works:
+
+    $ cat > /tmp/LOG &
+    cat > /tmp/LOG &
+    [1] 18083
+    $ lsof -p 18083
+    lsof -p 18083
+    COMMAND   PID   USER   FD   TYPE DEVICE  SIZE/OFF     NODE NAME
+    cat     18083 yamato  cwd    DIR   0,44      1580 43460784 /tmp/lsof
+    cat     18083 yamato  rtd    DIR  253,2      4096        2 /
+    cat     18083 yamato  txt    REG  253,2     47432   678364 /usr/bin/cat
+    cat     18083 yamato  mem    REG  253,2 111950656   681778 /usr/lib/locale/locale-archive
+    cat     18083 yamato  mem    REG  253,2   2119256   679775 
+
+### Option List- lots of them
+
+Options are rather cryptic.  Especially cryptic ones were removed.
+
+Defaults in parentheses; comma-separated set (s) items; dash-separated ranges.
+- `-?|-h ` - list help
+- `-a ` - AND selections (OR)
+- `-b ` - avoid kernel blocks
+- `+d  s` - dir s files
+- `+D ` D -   dir D tree *SLOW?*   
+- `+|-e ` s -  exempt s *RISKY*
+- `-i ` - select IPv[4/6] files  
+  - `-i i`   select by IPv[46] address: [46][proto][@host|addr][:svc_list|port_list]
+- `-K  [i]` - list|(i)gn tasKs    
+- `-l ` - list UID numbers
+- `-n ` - no host names         
+- `-N ` - select NFS files        
+- `-P ` - no port names           
+- `-R ` - list paRent PID
+- `-s ` - list file size        
+- `-t ` - terse listing           
+- `-T ` - disable TCP/TPI info
+- `-U ` - select Unix socket    
+- `-v ` - list version info       
+- `-V ` - verbose search
+- `+|-w ` -  Warnings (+)       
+- `-X ` - skip TCP&UDP* files     
+- `-- ` - end option scan
+- `-E ` - display endpoint info              
+- `+E ` - display endpoint info and files
+- `+f|-f ` -  +filesystem or -file names     
+- `+|-f[gG] ` - flaGs 
+- `-F  [f]` select fields; 
+- `-F? ` - for help  
+- `+|-L ` - [l] list (+) suppress (-) link counts < l (0 = all; default = 0)
+                                      
+- `+m [m]` -  use|create mount supplement
+0=9 `+|-M `  portMap registration (-)       
+- `-o o`   o 0t offset digits (8)
+- `-p s`   exclude(^)|select PIDs         
+`-S [t]` - t second stat timeout (15)
+`-T qs` - TCP/TPI Q,St (s) info
+`-g [s]` -  exclude(^)|select and print process group IDs
+
++|-r [t[m<fmt>]] repeat every t seconds (15); 
+  - `+` until no files,
+  - `-` forever.
+      An optional suffix to t is m<fmt>; m must separate t from <fmt> and
+    <fmt> is an strftime(3) format for the marker line.
+- `-s p:s`  exclude(^)|select protocol (p = TCP|UDP) states by name(s).
+- `-u s`   exclude(^)|select login|UID set s
+
+
+
+
+
+## IPCS
+
+`ipcs` shows information on the inter-process communication facilities for which the calling process has read access. By default, it shows information about all three resources: shared memory segments, message queues, and semaphore arrays.
+
+Without options, the information shall be written in short format for message queues, shared memory segments, and semaphore sets that are currently active in the system. Otherwise, the information that is displayed is controlled by the options specified.
+
+Options :
+
+- `-q` : Write information about active message queues.
+- `-m` : Write information about active shared memory segments.
+- `-s` : Write information about active semaphore sets.
+- `-a`  : Use all print options. (This is a shorthand notation for -b, -c, -o, -p, and -t.)
+- `-b`  : Write information on maximum allowable size. (Maximum number of bytes in messages on queue for message queues, size of segments for shared memory, and number of semaphores in each set for semaphores.)
+- `-c`  : Write creator’s user name and group name;.
+- `-o`  : Write information on outstanding usage. (Number of messages on queue and total number of bytes in messages on queue for message queues, and number of processes attached to shared memory segments.)
+- `-p`  : Write process number information. (Process ID of the last process to send a message and process ID of the last process to receive a message on message queues, process ID of the creating process, and process ID of the last process to attach or detach on shared memory segments.)
+- `-t`  : Write time information. (Time of the last control operation that changed the access permissions for all facilities, time of the last msgsnd() and msgrcv() operations on message queues, time of the last shmat() and shmdt() operations on shared 
+
+## IP
+
+Rather important little program.  Does a TON of stuff.
+
+Has a large slew of options.  I think commands like route etc, just are synonyms for this.
+
+[IP](https://linux.die.net/HOWTO/Adv-Routing-HOWTO/lartc.iproute2.explore.html)
+[Advanced Routing](https://linux.die.net/HOWTO/Adv-Routing-HOWTO/index.html)
+
+
+
+ip link list
+ip address show
+ip route show
+ ip neigh show
+ ip rule list
+  ip -d link list eth3 - show the details of eth3
+  ip route ls
+ip route list table local
+
+ip -c address - add color, show addresses.
+ip -c address show dev eth3 
+ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
+
+- ip
+   - link 
+      - add
+      - delete
+      - set
+      - show
+      - xstats
+      - afstats
+   - address 
+      - add
+      - change
+      - replace
+      - del
+      - save
+      - flush
+      - show
+      - showdump
+      - restore
+   - addrlabel 
+      - add
+      - del
+      - list
+      - flush
+	- route 
+      - list
+      - flush
+      - save
+      - restore
+      - showdump
+      - get
+      - add
+      - del
+      - change
+      - append
+      - replace
+	- rule 
+	- neigh 
+	- ntable 
+	- tunnel 
+	- tuntap 
+	- maddress 
+	- mroute 
+	- mrule 
+	- monitor 
+	- xfrm 
+	- netns 
+	- l2tp 
+	- fou 
+	- macsec 
+	- tcp_metrics 
+	- token 
+	- netconf 
+	- ila 
+	- vrf 
+	- sr 
+	- nexthop
+
+### Figure out how you are connecting
+
+`ip route get`
+
+    root@Unraid:~# ip route get 8.8.8.8 
+    8.8.8.8 via 192.168.1.1 dev br1 src 192.168.1.241 uid 0 
+        cache 
+
+I have this command stored in my notes, unsure what it does:
+
+      ip route get 8.8.8.8 | sed -n 's/.*dev \([^\ ]*\) table.*/\1/p' 
+
+## RSync
+
+See also [rcp](https://www.computerhope.com/unix/urcp.htm). -the rcp command copies files from one networked computer to another. 
+
+
+
+[RSync Examples](https://phoenixnap.com/kb/rsync-command-linux-examples)
+
+[Source 2](https://www.computerhope.com/unix/rsync.htm)
+  - full set of options here.
+
+
+[Source 3](https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/)
+
+[Source 4](https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/)
+
+
+
+Much of the following is copied without modification from the 1st source.
+
+The rsync utility expressions take the following form:
+
+Local to Local:  `rsync [OPTION]... [SRC]... DEST`
+Local to Remote: `rsync [OPTION]... [SRC]... [USER@]HOST:DEST`
+Remote to Local: `rsync [OPTION]... [USER@]HOST:SRC... [DEST]`
+
+
+|Options | Description|
+|-------|------------|
+| -r |sync data recursively, does not keep ownership, permissions, timestamps, or  symlinks. |
+| -a | like the recursive mode,+keeps permissions, symlinks, ownership, etc. |
+| -z | compress data during transfers to save space. |
+| -b |	Performs a backup during data synchronization.|
+| -h | Shows the numbers in the output in a human-readable format.|
+| -n | Does a dry run. Used for testing before the actual synchronization takes place.|
+| -e | use the SSH protocol for remote transfers.|
+| –progress	| Displays the transfer progress during synchronization.|
+| -v | Verbose output. Displays the details of the transfer.|
+| -q |Used to suppress the output for the rsync command and options.|
+
+
+It is worth mentioning that rsync gives different treatment to the source directories with a trailing slash (/). 
+
+If the source directory has a trailing slash, the command will copy only the directory contents to the destination directory. 
+
+When the trailing slash is omitted, rsync copies the source directory **inside** the destination directory.
+
+### Options 
+
+#### -a, --archive, 
+
+archive mode, equivalent to `-rlptgoD`. This option tells rsync to syncs directories recursively, transfer special and block devices, preserve symbolic links, modification times, groups, ownership, and permissions.
+
+#### -P
+
+equivalent to --partial --progress. When this option is used, rsync shows a progress bar during the transfer and keeps the partially transferred files. It is useful when transferring large files over slow or unstable network connections.
+
+#### --append
+
+This causes rsync to update a file by appending data onto the end of the file, which presumes that the data that already exists on the receiving side is identical with the start of the file on the sending side. If a file needs to be transferred and its size on the receiver is the same or longer than the size on the sender, the file is skipped. This does not interfere with the updating of a file's non-content attributes (e.g., permissions, ownership, etc.) when the file does not need to be transferred, nor does it affect the updating of any non-regular files. Implies --inplace, but does not conflict with --sparse (since it is always extending a file's length).
+
+This would only seem to make sense for text files.
+
+#### --existing, --ignore-non-existing
+
+This tells rsync to skip creating files (including directories) that do not exist yet on the destination. If this option is combined with the --ignore-existing option, no files will be updated (which can be useful if all you want to do is delete extraneous files).
+
+This option is a transfer rule, not an exclude, so it doesn’t affect the data that goes into the file-lists, and thus it doesn’t affect deletions. It just limits the files that the receiver requests to be transferred.
+
+#### --ignore-existing
+
+This tells rsync to skip updating files that already exist on the destination (this does not ignore existing directories, or nothing would get done). See also --existing.
+
+This option is a transfer rule, not an exclude, so it doesn’t affect the data that goes into the file-lists, and thus it doesn’t affect deletions. It just limits the files that the receiver requests to be transferred.
+
+This option can be useful for those doing backups using the --link-dest option when they need to continue a backup run that got interrupted. Since a --link-dest run is copied into a new directory hierarchy (when it is used properly), using --ignore existing will ensure that the already-handled files don’t get tweaked (which avoids a change in permissions on the hard-linked files). This does mean that this option is only looking at the existing files in the destination hierarchy itself
+
+#### --delete
+
+This tells rsync to delete extraneous files from the receiving side (ones that aren’t on the sending side), but only for the directories that are being synchronized. You must have asked rsync to send the whole directory (e.g., "dir" or "dir/") without using a wildcard for the directory's contents (e.g., "dir/*") since the wildcard is expanded by the shell and rsync thus gets a request to transfer individual files, not the files’ parent directory. Files that are excluded from the transfer are also excluded from being deleted unless you use the --delete-excluded option or mark the rules as only matching on the sending side (see the include/exclude modifiers in the FILTER RULES section). Prior to rsync 2.6.7, this option would have no effect unless --recursive was enabled. Beginning with 2.6.7, deletions will also occur when --dirs (-d) is enabled, but only for directories whose contents are being copied.
+
+This option can be dangerous if used incorrectly. It is a very good idea to first try a run using the --dry-run option (-n) to see what files are going to be deleted.
+
+If the sending side detects any I/O errors, then the deletion of any files at the destination will be automatically disabled. This is to prevent temporary filesystem failures (such as NFS errors) on the sending side from causing a massive deletion of files on the destination. You can override this with the --ignore-errors option.
+
+The --delete option may be combined with one of the --delete-WHEN options without conflict, as well as --delete-excluded. However, if none of the --delete-WHEN options are specified, rsync will choose the --delete-during algorithm when talking to rsync 3.0.0 or newer, and the --delete-before algorithm when talking to an older rsync. See also --delete-delay and --delete-after.
+
+#### -z, --compress
+
+With this option, rsync compresses the file data as it is sent to the destination machine, which reduces the amount of data being transmitted; something that is useful over a slow connection.
+
+Note that this option typically achieves better compression ratios than can be achieved by using a compressing remote shell or a compressing transport because it takes advantage of the implicit information in the matching data blocks that are not explicitly sent over the connection.
+
+See the --skip-compress option for the default list of file suffixes that will not be compressed.
+
+#### -i, --itemize-changes
+
+Requests a simple itemized list of the changes that are being made to each file, including attribute changes. This is exactly the same as specifying --out-format='%i %n%L'. If you repeat the option, unchanged files will also be output, but only if the receiving rsync is at least version 2.6.7 (you can use -vv with older versions of rsync, but that also turns on the output of other verbose messages).
+
+The "%i" escape has a cryptic output that is 11 letters long. The general format is like the string YXcstpoguax, where Y is replaced by the type of update being done, X is replaced by the file-type, and the other letters represent attributes that may be output if they are being modified.
+
+The update types that replace the Y are as follows:
+
+`<` means that a file is being transferred to the remote host (sent).
+`>` means that a file is being transferred to the local host (received).
+- `c` -  means that a local change/creation is occurring for the item (such as the creation of a directory or the changing of a symlink, etc.).
+- `h` -  means that the item is a hard link to another item (requires --hard-links).
+- `.` -  means that the item is not being updated (though it might have attributes that are being modified).
+- `*` -  means that the rest of the itemized-output area contains a message (e.g., "deleting").
+The file-types that replace the X are: f for a file, a `d` for a directory, an `L` for a symlink, a `D` for a device, and a `S` for a special file (e.g., named sockets and fifos).
+
+The other letters in the string above are the actual letters that will be output if the associated attribute for the item is being updated or a "." for no change. Three exceptions to this are:
+
+a newly created item replaces each letter with a "`+"`,
+an identical item replaces the dots with spaces, and
+an unknown attribute replaces each letter with a "`?`" (this can happen when talking to an older rsync).
+The attribute that is associated with each letter is as follows:
+
+- `c` -  means either that a regular file has a different checksum (requires --checksum) or that a symlink, device, or special file has a changed value. Note that if you are sending files to an rsync prior to 3.0.1, this change flag will be present only for checksum-differing regular files.
+- `s` -  means the size of a regular file is different and will be updated by the file transfer.
+- `t` -  means the modification time is different and is being updated to the sender's value (requires --times). An alternate value of T means that the modification time will be set to the transfer time, which happens when a file/symlink/device is updated without --times and when a symlink is changed and the receiver can’t set its time. Note: when using an rsync 3.0.0 client, you might see the s flag combined with t instead of the proper T flag for this time-setting failure.
+- `p` -  means the permissions are different and are being updated to the sender's value (requires --perms).
+- `o` -  means the owner is different and is being updated to the sender's value (requires --owner and super-user privileges).
+- `g` -  means the group is different and is being updated to the sender's value (requires --group and the authority to set the group).
+- `u` -  slot is reserved for future use.
+- `a` -  means that the ACL information changed.
+- `x` -  means that the extended attribute information changed.
+
+One other output is possible: when deleting files, the "`%i`" will output the string "`*deleting`" for each item that is being removed (assuming that you are talking to a recent enough rsync that it logs deletions instead of outputting them as a verbose message).
+
+
+#### --stats
+
+This tells rsync to print a verbose set of statistics on the file transfer, allowing you to tell how effective rsync's delta-transfer algorithm is for your data.
+
+#### -m, --prune-empty-dirs
+
+This option tells the receiving rsync to get rid of empty directories from the file-list, including nested directories that have no non-directory children. This is useful for avoiding the creation of a bunch of useless directories when the sending rsync is recursively scanning a hierarchy of files using include/exclude/filter rules.
+
+### Examples 
+
+#### Copy a single file
+
+    rsync -v /home/test/Desktop/sample.txt /home/test/Desktop/rsync/
+
+in this example, a file name backup.tar needs to be copied or synced to /tmp/backups/ folder.
+
+    root@tecmint]# rsync -zvh backup.tar /tmp/backups/
+
+      created directory /tmp/backups
+
+      backup.tar
+
+      sent 14.71M bytes  received 31 bytes  3.27M bytes/sec
+
+      total size is 16.18M  speedup is 1.10
+
+#### Copy Multiple Files Locally
+
+
+To copy multiple files with rsync, add full paths of the source files:
+
+    rsync -v /home/test/Desktop/sample.txt /home/test/Desktop/sample2rs.txt /home/test/Desktop/rsync
+
+
+#### Copy a Directory and All Subdirectories Locally (Copy Files and Directories Recursively)
+
+To copy a directory and its contents to another location on your machine, use the -a or -r option. We used the archive option:
+
+    rsync -av /home/test/Desktop/Linux /home/test/Desktop/rsync
+
+
+#### Copy a File or Directory from Local to Remote Machine
+To copy the directory /home/test/Desktop/Linux to /home/test/Desktop/rsync on a remote machine, you need to specify the IP address of the destination.
+
+Add the IP address and the destination after the source directory. Remember to put a colon (:) after the remote host’s IP address, with no spaces before the destination.
+
+The command looks like this:
+
+    rsync -av /home/test/Desktop/Linux 192.168.56.100:/home/test/Desktop/rsync
+
+Enter the password for the current user to continue. If you want to use another account for the remote connection, specify it before the IP address:
+
+    rsync -a /home/test/Desktop/Linux jay@192.168.56.100:/home/test/Desktop/rsync
+
+To copy a single file to a remote host, specify the full path of the file and the destination.
+
+    rsync -av /home/test/Desktop/sample_file.txt 192.168.56.100:/home/test/Desktop/rsync
+
+#### Specify rsync Protocol for Remote Transfers
+
+The rsync tool can be instructed with the -e option to use a specific protocol for file transfers. To use Rsync over SSH to transfer files remotely, append -e ssh to the rsync command.
+
+For example, to transfer sample.txt from your desktop to the desktop of a remote machine:
+
+    rsync -e ssh /home/test/Desktop/sample.txt 192.168.56.100:/home/test/Desktop
+
+#### Delete a Nonexistent Source File or Directory from Destination
+  
+Use the `--delete` option to keep the source and the target in sync.
+
+This option tells rsync to delete any file or directory at the destination if the source does not have it.
+
+    rsync -av --delete /home/test/Desktop/Dir1 192.168.56.100:/home/test/Desktop/rsync
+
+If a file or directory not exist at the source, but already exists at the destination, you might want to delete that existing file/directory at the target while syncing .
+
+We can use ‘–delete‘ option to delete files that are not there in source directory.
+
+Source and target are in sync. Now creating new file test.txt at the target.
+
+    [root@tecmint]# touch test.txt
+    [root@tecmint]# rsync -avz --delete root@192.168.0.100:/var/lib/rpm/ .
+    Password:
+    receiving file list ... done
+    deleting test.txt
+    ./
+    sent 26 bytes  received 390 bytes  48.94 bytes/sec
+    total size is 45305958  speedup is 108908.55
+
+#### Delete Source Files After Transfer
+
+In some scenarios, you may want to delete the source files after the transfer. For example, you may be moving a weekly backup to a new server. Once the transfer is done, you no longer need the source files on the old server.
+
+In that case, use the `--remove-source-files` flag to delete the source file you specified.
+
+For example, this command transfers the backup file weekly.zip and then deletes it from the source:
+
+    rsync -v --remove-source-files /home/test/backup/weekly.zip 192.168.56.100:/home/test/Desktop/rsync/
+
+
+#### Set Maximum File Size for Transfer
+
+To determine the maximum file size that rsync will transfer, use the `--max-size=add_size`.
+
+For example, to transfer files no larger than 500KB, use this command:
+
+    rsync -av --max-size=500k /home/test/Desktop/Dir1 192.168.56.100:/home/test/Desktop/rsync/
+
+And to Set Minimum File Size for Transfer
+
+Use `--min-size=add_size` with rsync when you do not want to transfer files smaller than the size you specify. This option is useful, for example, when you want to skip small log or thumbnail files.
+
+To skip any file smaller than 10KB, run this command:
+
+    rsync -av --min-size=10k /home/test/Desktop/ 192.168.56.100:/home/test/Desktop/rsync/
+
+#### Copy Directory Structure but Skip Files
+
+Rsync allows you to transfer only directory structure if you do not need the files at another location.
+
+To do so, add `-f"+ */" -f"- *"` before the source directory.
+
+For example, to copy the structure of the Linux directory to Documents, enter:
+
+    rsync -av -f"+ */" -f"- *"  /home/test/Desktop/Linux /home/test/Documents
+
+
+#### Add Date Stamp to Directory Name
+
+You can easily add a date to a directory name if you want to put a date stamp to your transfers.
+
+Append $(date +\\%Y-\\%m-\\%d) to the destination directory name you want to create. This option is useful when you want to keep track of when transfers took place without opening directory properties.
+
+For example:
+
+    rsync -av /home/test/Desktop/Linux /home/test/Desktop/rsync$(date +\\%Y-\\%m-\\%d)
+
+#### Do Not Copy Source File if the Same Destination File is Modified
+
+If you keep in sync two directories, rsync does not copy a file if the same one exists at the destination.
+
+Sometimes it may happen that you modify a file at the destination and do not want to let rsync overwrite it.
+
+To avoid overwriting modified destination files, use the `-u` option.
+
+For example:
+
+    rsync -avu /home/test/Desktop/Linux/ /home/test/Desktop/rsync
+
+#### Show the Difference Between the Source and Destination Files
+
+When you start transferring data, you can use the -i flag with rsync to check if there is a difference between the source and the destination.
+
+For example:
+
+    rsync -avi /home/test/Desktop/Linux/ /home/test/Desktop/rsync
+
+Terminal with the output for the `-i` rsync option.
+
+(Image shows:)
+
+    >f++++++++++ sample2rs.txt
+
+
+The example above shows the sample2rs.txt file is missing at the destination.
+
+Possible letters in the output are:
+
+    f – stands for file
+    d – shows the destination file is in question
+    t – shows the timestamp has changed
+    s – shows the size has changed
+
+### My Usage Examples
+
+### Sync all the files 
+
+rsync -rlthP --stats SRC /mnt/disks/Elements/ DEST .
+rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' --dry-run  /mnt/disks/Seagate_Expansion_Drive  /mnt/user/rDriveA/Seagate_Expansion_Drive
+`rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' /mnt/disks/Seagate_Expansion_Drive  /mnt/user/rDriveA/Seagate_Expansion_Drive`
+
+`rsync -rlthP --stats --size-only --progress --exclude '__Huge/*' --exclude 'X\ backup*'  /mnt/disks/Elements/  /mnt/user/rDriveA/Elements/`
+
+`rsync -rlthP --stats --size-only --progress --del  /mnt/disks/Elements/  /mnt/user/rDriveA/Elements/`
+
+
+
+### rtmon
+
+Stores the ipmonitor data.  Its not readable
+
+      rtmon file /var/log/rtmon.log
+
+To view 
+   
+      ip monitor file ~/rtmon.log
+      ip monitor file var/log/rtmon.log
+
+## tar
+
+[Source](https://www.adminschoice.com/backup-commands-examples)
+
+
+tar features:
+1. tar ( tape  archive ) is used for single or multiple files backup and restore on/from  a tape or file
+2. tar can not backup special character & block device files , shows as 0 byte files with first letter of permissions as b or c for block or character.
+3. tar Works only on mounted file system, it can not access the files on unmounted file system.
+
+Backing up all files in a directory including subdirectories to a  tape device (`/dev/rmt/0`) or a file.
+
+
+### Example 1 :
+
+            $tar    cvf    /dev/rmt/0   *
+
+In the command above Options are  `c` -> **create** ; `v` -> **Verbose** ; `f`-> **file** or archive device   ; `*` -> all files and directories . Together the commands means create a tar file on /dev/rmt/0 from all file and directories s *in the current directory.*
+
+### Example 2:
+
+            $tar cvf /home/backup *
+
+Create a tar  called backup in home directory , from all file and directories s in the current directory.
+
+#### Viewing a tar backup on a tape or file
+
+`t` option is used to see the table of content in a tar file.
+
+            $tar    tvf    /dev/rmt/0  ## view files  backed up on a tape device.
+
+            $tar tvf  /home/backup  ## view files  backed up inside the  backup
+
+### Extracting tar backup from the tape
+
+`x` option is used to extract the files from tar file.
+
+extract /  restore files in to current directory.
+
+            $tar xvf /dev/rmt/0       
+
+extract / restore files in to current directory.
+
+            $tar xvf /home/backup
+
+Note : Restoration will go to present directory or original backup path depending on relative or absolute path names used for backup.
+
+Some of useful tar options. 
+
+- `-p, –preserve-permissions` -  Extract & keep the  file permissions (default for superuser)
+- `-z`, `–gzip` - Filter the archive through gzip
+- `-j`, `–bzip2` - Filter the archive through bzip2
+- `-u`, `–update` Only append files newer than copy in archive
+- `-r`, `–append` -  Append files to the end of an archive
+- `–delete` - Delete from the archive (not on mag tapes!)
+- `-d`, `–diff`, `–compare` - Find differences between archive and file system
+- `–test-label` - Test the archive volume label and exit
+- `-C`, `–directory=DIR` - Change to directory DIR
+
+## find
+
+
+for directories visibility use:
+
+    find /mnt/user -type d -exec chmod 755 {} \;
+ 
+and for files within a directory use:
+
+    find /mnt/user -type f -exec chmod 700 {} \;
+
+## Less 
+
+
+      
+                              SUMMARY OF LESS COMMANDS
+
+            Commands marked with * may be preceded by a number, N.
+            Notes in parentheses indicate the behavior if N is given.
+            A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+            h  H                 Display this help.
+            q  :q  Q  :Q  ZZ     Exit.
+            ---------------------------------------------------------------------------
+
+                                    MOVING
+
+            e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
+            y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
+            f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
+            b  ^B  ESC-v      *  Backward one window (or N lines).
+            z                 *  Forward  one window (and set window to N).
+            w                 *  Backward one window (and set window to N).
+            ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+            d  ^D             *  Forward  one half-window (and set half-window to N).
+            u  ^U             *  Backward one half-window (and set half-window to N).
+            ESC-)  RightArrow *  Right one half screen width (or N positions).
+            ESC-(  LeftArrow  *  Left  one half screen width (or N positions).
+            ESC-}  ^RightArrow   Right to last column displayed.
+            ESC-{  ^LeftArrow    Left  to first column.
+            F                    Forward forever; like "tail -f".
+            ESC-F                Like F but stop when search pattern is found.
+            r  ^R  ^L            Repaint screen.
+            R                    Repaint screen, discarding buffered input.
+                  ---------------------------------------------------
+                  Default "window" is the screen height.
+                  Default "half-window" is half of the screen height.
+            ---------------------------------------------------------------------------
+
+                                    SEARCHING
+
+            /pattern          *  Search forward for (N-th) matching line.
+            ?pattern          *  Search backward for (N-th) matching line.
+            n                 *  Repeat previous search (for N-th occurrence).
+            N                 *  Repeat previous search in reverse direction.
+            ESC-n             *  Repeat previous search, spanning files.
+            ESC-N             *  Repeat previous search, reverse dir. & spanning files.
+            ESC-u                Undo (toggle) search highlighting.
+            &pattern          *  Display only matching lines
+                  ---------------------------------------------------
+                  A search pattern may begin with one or more of:
+                  ^N or !  Search for NON-matching lines.
+                  ^E or *  Search multiple files (pass thru END OF FILE).
+                  ^F or @  Start search at FIRST file (for /) or last file (for ?).
+                  ^K       Highlight matches, but don't move (KEEP position).
+                  ^R       Don't use REGULAR EXPRESSIONS.
+            ---------------------------------------------------------------------------
+
+
+## tmux
+
+[Man Page](https://linux.die.net/man/1/tmux)
+
+Tons and tons of options.  Rather complex
+
+Commmand execution starts with [[Ctrl]] + [[b]]
+
+### tmux split the screen
+
+[[Ctrl]] + [[b]], [[%]]
+
+### Switch between panes
+
+[[Ctrl]] + [[b]], [[<-]]
+[[Ctrl]] + [[b]], [[<Arrow Key>]]
+
+
+### Close a pane
+
+type exit or[[Ctrl]] + [[d]]
+
+### Open a new window
+
+[[Ctrl]] + [[b]], [[c]]
+
+? same as just running `tmux`
+
+### switch screens
+
+- **Next** - [[Ctrl]] + [[b]], [[p]]
+
+- **Previous** - [[Ctrl]] + [[b]], [[n]]
+
+### Detach a pane
+
+[[Ctrl]] + [[b]], [[d]] - detach the current pane
+
+[[Ctrl]] + [[b]], [[D]] -  Decide which to detach
+
+### To reattach a pane thats been detached
+
+`tmux attach-session`
+
+`tmux`
+[[ctrl]] + [[b]], [[%]]
+Run Rsync
+[[ctrl]] + [[b]], [[d]]
+reattach with  : `tmux attach-session`
+
+This should survive the closing of the window
+
+This is now running in the background
+
+Get a list of running processes  `tmux ls`
+[[CTRL]]+[[b]]            Send the prefix key (C-b) through to theapplication.
+
+[[CTRL]]+[[o]] Rotate the panes in the current window forwards.
+[[CTRL]]+[[z]] Suspend the tmux client.
+- +[[!]] - Break the current pane out of the window.
+- +[["]] - Split the current pane into two, top and bottom.
+- +[[#]] - List all paste buffers.
+- +[[$]] - Rename the current session.
+- +[[%]] - Split the current pane into two, left and right.
+- +[[&]] - Kill the current window.
+- +[[']] - Prompt for a window index to select.
+- +[[,]] - **Rename the current window.**
+- +[[-]] - Delete the most recently copied buffer of text.
+- +[[.]] - Prompt for an index to move the current window.
+- [[0]] to [[9]] - Select windows 0 to 9.
+- +[[:]] - Enter the tmux command prompt.
+- +[[;]] - Move to the previously active pane.
+- +[[=]] - Choose which buffer to paste interactively from a list.
+- +[[?]] - List all key bindings.
+- +[[D]] - Choose a client to detach.
+- +[[`[`]] - Enter copy mode to copy text or view the history.
+- +[[`]`]] - Paste the most recently copied buffer of text.
+- +[[c]] - Create a new window.
+- +[[d]] - **Detach the current client.**
+- +[[f]] - Pr1ompt to search for text in open windows.
+- +[[i]] - Display some information about the current window.
+- +[[l]] - Move to the previously selected window.
+- +[[n]] - Change to the next window.
+- +[[o]] - Select the next pane in the current window.
+- +[[p]] - Change to the previous window.
+- +[[q]] - Briefly display pane indexes.
+- +[[r]] - Force redraw of the attached client.
+- +[[s]] - Select a new session for the attached client interactively.
+- +[[L]] - Switch the attached client back to the last session.
+- +[[t]] - Show the time.
+- +[[w]] - Choose the current window interactively.
+- +[[x]] - Kill the current pane.
+- +[[{]] - Swap the current pane with the previous pane.
+- +[[}]] - Swap the current pane with the next pane.
+- +[[~]] - Show previous messages from tmux, if any.
+- +[[Page Up]] - Enter copy mode and scroll one page up.
+- +[[Up]], [[Down]] -[[Left]], [[Right]] - Change to the pane above, below, to the left, or to the right of the current pane.
+
+
+- [[ALT]] -[[1]] to - +[[ALT]] -[[5]]
+Arrange panes in one of the five preset layouts: even-horizontal, even-vertical, main-horizontal, main-vertical, or tiled.
+- [[ALT]] +[[n]] Move to the next window with a bell or activity marker.
+- [[ALT]] +[[o]] Rotate the panes in the current window backwards.
+- [[ALT]] +[[p]] Move to the previous window with a bell or activity marker.
+- [[CTRL]] -[[Up]], [[CTRL]] -[[Down]], [[CTRL]] -[[Left]], [[CTRL]] -[[Right]] - Resize the current pane in steps of one cell.
+- [[ALT]] -[[Up]], [[ALT]] -[[Down]], [[ALT]] -[[Left]], [[ALT]] -[[Right]] - Resize the current pane in steps of five cells. 
+
+
+
+detach-client [-P] [-s target-session] [-t target-client]
+(alias: detach) Detach the current client if bound to a key, the client specified with -t, or all clients currently attached to to the session specified by -s. If -P is given, send SIGHUP to the parent process of the client, typically causing it to exit.
+
+has-session [-t target-session]
+(alias: has) Report an error and exit with 1 if the specified session does not exist. If it does exist, exit with 0.
+
+`kill-server`
+Kill the tmux server and clients and destroy all sessions.
+
+`kill-session` [-t target-session]
+Destroy the given session, closing any windows linked to it and no other sessions, and detaching all clients attached to it.
+
+`list-clients` [-t target-session]
+(alias: `lsc`) List all clients attached to the server. If target-session is specified, list only clients connected to that session.
+
+`list-commands`
+(alias: `lscm`) List the syntax of all commands supported by tmux.
+
+`list-sessions`
+(alias: `ls`) List all sessions managed by the server.
+
+`lock-client` [-t target-client]
+(alias: `lockc`) Lock target-client, see the lock-server command.
+
+`lock-session` [-t target-session]
+(alias: `locks`) Lock all clients attached to target-session.
+
+`new-session` [-d] [-n window-name] [-s session-name] [-t target-session] [-x width] [-y height] [shell-command]
+(alias: `new`) Create a new session with name session-name. 
+
+
+`refresh-client` [-t target-client]
+(alias: `refresh`) Refresh the current client if bound to a key, or a single client if one is given with -t.
+
+`rename-session `[-t target-session] new-name
+(alias: `rename`) Rename the session to new-name.
+
+`show-messages` [-t target-client]
+(alias: `showmsgs`) Any messages displayed on the status line are saved in a per-client message log, up to a maximum of the limit set by the message-limit session option for the session attached to that client. This command displays the log for target-client.
+
+`source-file` path
+(alias: `source`) Execute commands from path.
+
+`start-server`
+(alias: `start`) Start the tmux server, if not already running, without creating any sessions.
+
+`suspend-client `[-t target-client]
+(alias: `suspendc`) Suspend a client by sending SIGTSTP (tty stop).
+
+`switch-client` [-lnp] [-c target-client] [-t target-session]
+(alias: `switchc`) Switch the current session for client target-client to target-session. If -l, -n or -p is used, the client is moved to the last, next or previous session respectively. 
+        
+- `break-pane` [-d] [-t target-pane] - (alias: `breakp`) Break target-pane off from its containing window to make it the only pane in a new window. If -d is given, the new window does not become the current window.
+
+`capture-pane` [-b buffer-index] [-E end-line] [-S start-line] [-t target-pane]
+(alias: `capturep`) Capture the contents of a pane to the specified buffer, or a new buffer if none is specified.
+
+-S and -E specify the starting and ending line numbers, zero is the first line of the visible pane and negative numbers are lines in the history. The default is to capture only the visible contents of the pane.
+
+`choose-client` [-t target-window] [template]
+Put a window into client choice mode, allowing a client to be selected interactively from a list. After a client is chosen, '%%' is replaced by the client pty(4) path in template and the result executed as a command. If template is not given, "detach-client -t '%%'" is used. This command works only from inside tmux.
+
+`choose-session` [-t target-window] [template]
+Put a window into session choice mode, where a session may be selected interactively from a list. When one is chosen, '%%' is replaced by the session name in template and the result executed as a command. If template is not given, "switch-client -t '%%'" is used. This command works only from inside tmux.
+
+`choose-window` [-t target-window] [template]
+Put a window into window choice mode, where a window may be chosen interactively from a list. After a window is selected, '%%' is replaced by the session name and window index in template and the result executed as a command. If template is not given, "select-window -t '%%'" is used. This command works only from inside tmux.
+
+`display-panes `[-t target-client]
+(alias: displayp) Display a visible indicator of each pane shown by target-client. See the display-panes-time, display-panes-colour, and display-panes-active-colour session options. While the indicator is on screen, a pane may be selected with the '0' to '9' keys.
+
+`find-window` [-t target-window] match-string
+(alias: findw) Search for the fnmatch(3) pattern match-string in window names, titles, and visible content (but not history). If only one window is matched, it'll be automatically selected, otherwise a choice list is shown. This command only works from inside tmux.
+
+`join-pane` [-dhv] [
+-l size | -p percentage] [-s src-pane] [-t dst-pane]
+(alias: `joinp`) Like split-window, but instead of splitting dst-pane and creating a new pane, split it and move src-pane into the space. This can be used to reverse break-pane.
+
+`kill-pane` [-a] [-t target-pane]
+(alias: `killp`) Destroy the given pane. If no panes remain in the containing window, it is also destroyed. The -a option kills all but the pane given with -t.
+
+`kill-window` [-t target-window]
+(alias: `killw`) Kill the current window or the window at target-window, removing it from any sessions to which it is linked.
+
+`last-pane` [-t target-window]
+(alias: `lastp`) Select the last (previously selected) pane.
+
+`last-window` [-t target-session]
+(alias: `last`) Select the last (previously selected) window. If no target-session is specified, select the last window of the current session.
+
+`link-window `[-dk] [-s src-window] [-t dst-window]
+(alias: `linkw`) Link the window at src-window to the specified dst-window. If dst-window is specified and no such window exists, the src-window is linked there. If -k is given and dst-window exists, it is killed, otherwise an error is generated. If -d is given, the newly linked window is not selected.
+
+`list-panes` [-as] [-t target]
+(alias: `lsp`) If -a is given, target is ignored and all panes on the server are listed. If -s is given, target is a session (or the current session). If neither is given, target is a window (or the current window).
+
+`list-windows` [-a] [-t target-session]
+(alias: `lsw`) If -a is given, list all windows on the server. Otherwise, list windows in the current session or in target-session.
+
+`move-window` [-dk] [-s src-window] [-t dst-window]
+(alias: `movew`) This is similar to link-window, except the window at src-window is moved to dst-window.
+
+`new-window` [-adkP] [-n window-name] [-t target-window] [shell-command]
+(alias: `neww`) Create a new window. With -a, the new window is inserted at the next index up from the specified target-window, moving windows up if necessary, otherwise target-window is the new window location.
+
+If -d is given, the session does not make the new window the current window. target-window represents the window to be created; if the target already exists an error is shown, unless the -k flag is used, in which case it is destroyed. shell-command is the command to execute. If shell-command is not specified, the value of the default-command option is used.
+
+When the shell command completes, the window closes. See the remain-on-exit option to change this behaviour.
+
+The TERM environment variable must be set to ''screen'' for all programs running inside tmux. New windows will automatically have ''TERM=screen'' added to their environment, but care must be taken not to reset this in shell start-up files.
+
+The -P option prints the location of the new window after it has been created.
+
+`next-layout` [-t target-window]
+(alias: `nextl`) Move a window to the next layout and rearrange the panes to fit.
+
+`next-window` [-a] [-t target-session]
+(alias: `next`) Move to the next window in the session. If -a is used, move to the next window with a bell, activity or content alert.
+
+`pipe-pane` [-o] [-t target-pane] [shell-command]
+(alias: `pipep`) Pipe any output sent by the program in target-pane to a shell command. A pane may only be piped to one command at a time, any existing pipe is closed before shell-command is executed. The shell-command string may contain the special character sequences supported by the status-left option. If no shell-command is given, the current pipe (if any) is closed.
+
+The -o option only opens a new pipe if no previous pipe exists, allowing a pipe to be toggled with a single key, for example:
+
+`bind-key` C-p pipe-pane -o 'cat >>~/output.#I-#P' 
+
+      `previous-layout `[-t target-window]
+
+(alias: `prevl`) Move to the previous layout in the session.
+
+`previous-window` [-a] [-t target-session]
+(alias: `prev`) Move to the previous window in the session. With -a, move to the previous window with a bell, activity or content alert.
+
+`rename-window` [-t target-window] new-name
+(alias: `renamew`) Rename the current window, or the window at target-window if specified, to new-name.
+
+`resize-pane` [-DLRU] [-t target-pane] [adjustment]
+(alias: `resizep`) Resize a pane, upward with -U (the default), downward with -D, to the left with -L and to the right with -R. The adjustment is given in lines or cells (the default is 1).
+
+`respawn-pane` [-k] [-t target-pane] [shell-command]
+(alias: `respawnp`) Reactivate a pane in which the command has exited (see the remain-on-exit window option). If shell-command is not given, the command used when the pane was created is executed. The pane must be already inactive, unless -k is given, in which case any existing command is killed.
+
+`respawn-window` [-k] [-t target-window] [shell-command]
+(alias: `respawnw`) Reactivate a window in which the command has exited (see the remain-on-exit window option). If shell-command is not given, the command used when the window was created is executed. The window must be already inactive, unless -k is given, in which case any existing command is killed.
+
+`rotate-window` [-DU] [-t target-window]
+(alias: `rotatew`) Rotate the positions of the panes within a window, either upward (numerically lower) with -U or downward (numerically higher).
+
+`select-layout` [-np] [-t target-window] [layout-name]
+(alias: `selectl`) Choose a specific layout for a window. If layout-name is not given, the last preset layout used (if any) is reapplied. -n and -p are equivalent to the next-layout and previous-layout commands.
+
+`select-pane` [-lDLRU] [-t target-pane]
+(alias: `selectp`) Make pane target-pane the active pane in window target-window. If one of -D, -L, -R, or -U is used, respectively the pane below, to the left, to the right, or above the target pane is used. -l is the same as using the last-pane command.
+
+`select-window` [-lnp] [-t target-window]
+(alias: `selectw`) Select the window at target-window. -l, -n and -p are equivalent to the last-window, next-window and previous-window commands.
+
+`split-window` [-dhvP] [
+-l size | -p percentage] [-t target-pane] [shell-command]
+(alias: `splitw`) Create a new pane by splitting target-pane: -h does a horizontal split and -v a vertical split; if neither is specified, -v is assumed. The -l and -p options specify the size of the new pane in lines (for vertical split) or in cells (for horizontal split), or as a percentage, respectively. All other options have the same meaning as for the new-window command.
+
+`swap-pane` [-dDU] [-s src-pane] [-t dst-pane]
+(alias: `swapp`) Swap two panes. If -U is used and no source pane is specified with -s, dst-pane is swapped with the previous pane (before it numerically); -D swaps with the next pane (after it numerically). -d instructs tmux not to change the active pane.
+
+`swap-window` [-d] [-s src-window] [-t dst-window]
+(alias: `swapw`) This is similar to link-window, except the source and destination windows are swapped. It is an error if no window exists at src-window.
+
+`unlink-window`[-k] [-t target-window]
+(alias: `unlinkw`) Unlink target-window. Unless -k is given, a window may be unlinked only if it is linked to multiple sessions - windows may not be linked to no sessions; if -k is specified and the window is linked to only one session, it is unlinked and destroyed. 
+
+### Useful Programs
+
+#### SysStat (Sar)
+
+[sar examples](https://www.thegeekstuff.com/2011/03/sar-examples/)
+
+
+
+sar collects and displays ALL system activities statistics.
+sadc stands for “system activity data collector”. This is the sar backend tool that does the data collection.
+sa1 stores system activities in binary data file. sa1 depends on sadc for this purpose. sa1 runs from cron.
+sa2 creates daily summary of the collected statistics. sa2 runs from cron.
+sadf can generate sar report in CSV, XML, and various other formats. Use this to integrate sar data with other tools.
+iostat generates CPU, I/O statistics
+mpstat displays CPU statistics.
+pidstat reports statistics based on the process id (PID)
+nfsiostat displays NFS I/O statistics.
+cifsiostat generates CIFS statistics.
+
+## CLI Customization
 
 ### ZSH
 
@@ -2111,4 +3223,3 @@ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe"
 sudo apt-get update
 sudo apt-get install system-config-lvm
 
-## LK

@@ -35,6 +35,10 @@ Write-Warning -Message "Folder ``$(gl).Path`' is not empty as expected."
 [Powershell Docs](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-powershell-1.0/ee176842(v=technet.10))
 [MoreRecentDocs](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-6)
 
+[Powershell Objects to Manage Windows](https://docs.microsoft.com/en-us/powershell/windows/get-started?view=win10-ps)
+
+
+
 Modules
 
 Microsoft.Powershell.
@@ -70,13 +74,21 @@ Microsoft.Powershell.
 
 `Show-Command`
 
+Use the Get-Command item to search, can get pretty detailed.
 
-Module Browser
+```
+# PowerShell script to research parameters
+Get-Command | Where { $_.parameters.keys -Contains "Filter" -And $_.Verb -Match "Get"}
+
+# Research PowerShell Get-Childitem Parameters
+Get-Help Get-Childitem -Full
+
+#Module Browser
 Import-Module PowerShellGet
 
-Install-Module ISEModuleBrowserAddon
+#Install-Module ISEModuleBrowserAddon
 Import-Module ISEModuleBrowserAddon
-
+```
 
 ### Profile
 
@@ -113,6 +125,129 @@ LONG DESCRIPTION
     PSCredential                      WarningAction
 
 See more with : `Get-Help about_WorkflowCommonParameters -online`
+
+
+
+### My Profiles
+```
+#$Profile.CurrentUserAllHosts
+Write-Host -ForegroundColor Black 'Loading $Profile.CurrentUserAllHosts  [Location] C:\Users\andyt\Documents\WindowsPowerShell\profile.ps1'
+
+# Store previous command's output in $__ (Double Underscore)
+$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'
+
+
+Write-Host -ForegroundColor Black 'Setting $WarningPreference = "Inquire"'
+$WarningPreference = "Inquire"
+
+Write-Host -ForegroundColor Black 'Setting $InformationPreference = 'Continue' Default = "SilentlyContinue'
+$InformationPreference = 'Continue'
+
+Write-Host -ForegroundColor Black 'Setting $VerbosePreference = 'Continue' Default = "SilentlyContinue'
+$VerbosePreference = 'Continue'
+
+Write-Host -ForegroundColor Black 'Setting $DebugPreference = 'Continue' Default = "SilentlyContinue'
+$DebugPreference = 'Continue'
+
+#add an alias
+New-Alias -Name WO -Value "Where-Object" -Scope Global
+
+#open other profiles with ISE $profile.CurrentUserAllHosts
+
+#Record all powershell sessions.
+Start-Transcript -OutputDirectory $($env:OneDrive | join-path -ChildPath \Programming\Powershell\Transcipts)
+```
+
+
+```
+# Store previous command's output in $__
+Write-Host -ForegroundColor Black 'Loading $Profile.CurrentUserCurrentHost (Powershell Console) [Location] C:\Users\andyt\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+
+
+Write-Host -ForegroundColor GREEN 'Store previous command''s output in $__'
+$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'
+Import-Module posh-git
+Import-Module oh-my-posh
+set-Theme paradox
+```
+
+```
+#AllUsersCurrentHost
+Write-Host -ForegroundColor Black 'Loading $PROFILE.AllUsersCurrentHost  [Location] C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+
+```
+
+```
+# All Users All Hosts File
+
+Write-Host -ForegroundColor Black 'Loading $Profile.AllUsersAllHosts [Location] C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'
+```
+
+## Automatic Variables 
+
+$$	Contains the last token in the last line received by the session.
+$?	Contains the execution status of the last operation. Equivalent to %errorlevel% in the CMD shell. See also $LastExitCode below.
+It contains TRUE if the last operation succeeded and FALSE if it failed. ReadOnly, AllScope
+$^	Contains the first token in the last line received by the session.
+$_	Contains the current object in the pipeline object. You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
+$Allnodes	This variable is available inside of a DSC configuration document when configuration data has been passed into it by using the -ConfigurationData parameter.
+For more information, see "Separating Configuration and Environment Data"
+$Args	Contains an array of the undeclared parameters and/or parameter values that are passed to a function, script, or script block. When you create a function, you can declare the parameters by using the param keyword or by adding a comma-separated list of parameters in parentheses after the function name.
+$ConsoleFileName	Contains the path of the console file (.psc1) that was most recently used in the session. This variable is populated when you start PowerShell with the PSConsoleFile parameter or when you use the Export-Console cmdlet to export snap-in names to a console file.
+
+When you use the Export-Console cmdlet without parameters, it automatically updates the console file that was most recently used in the session. You can use this automatic variable to determine which file will be updated.
+ReadOnly, AllScope
+
+$Error	Contains an array of error objects that represent the most recent errors. Constant
+The most recent error is the first error object in the array ($Error[0]). Function to unwrap the error array via Idera.
+$Event	Contains a PSEventArgs object that represents the event that is being processed. This variable is populated only within the Action block of an event registration command, such as Register-ObjectEvent. The value of this variable is the same object that the Get-Event cmdlet returns. Therefore, you can use the properties of the $Event variable, such as $Event.TimeGenerated , in an Action script block.
+$EventArgs	Contains an object that represents the first event argument that derives from EventArgs of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceEventArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+$EventSubscriber	Contains a PSEventSubscriber object that represents the event subscriber of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable is the same object that the Get-EventSubscriber cmdlet returns.
+$ExecutionContext	Contains an EngineIntrinsics object that represents the execution context of the Windows PowerShell host. You can use this variable to find the execution objects that are available to cmdlets. Constant, AllScope
+$False	Contains FALSE. You can use this variable to represent FALSE in commands and scripts instead of using the string "false". The string can be interpreted as TRUE if it is converted to a non-empty string or to a non-zero integer. Constant, AllScope
+$ForEach	Contains the enumerator of a ForEach-Object loop. You can use the properties and methods of enumerators on the value of the $ForEach variable. This variable exists only while the For loop is running. It is deleted when the loop is completed.
+$Home	Contains the full path of the user's home directory. ReadOnly, AllScope This variable is the equivalent of the %HomeDrive%%HomePath% environment variables, typically C:\Users\<user>
+$Host	Contains an object that represents the current host application for Windows PowerShell. You can use this variable to represent the current host in commands or to display or change the properties of the host, such as $Host.version or $Host.CurrentCulture, or $host.ui.rawui.setbackgroundcolor("Red"). Constant, AllScope
+$Input	An enumerator that contains the input that is passed to a function. The $Input variable is case-sensitive and is available only in functions and in script blocks. (Script blocks are essentially unnamed functions.) In the Process block of a function, the $Input variable contains the object that is currently in the pipeline. When the Process block is completed, the value of $Input is NULL. If the function does not have a Process block, the value of $Input is available to the End block, and it contains all the input to the function.
+$LastExitCode	Contains the exit code of the last Windows-based program that was run.
+$Matches	The $Matches variable works with the -match and -not match operators. When you submit scalar input to the -match or -notmatch operator, and either one detects a match, they return a Boolean value and populate the $Matches automatic variable with a hash table of any string values that were matched. For more information about the -match operator, see about_comparison_operators.
+$MyInvocation	Contains an object with information about the current command, such as a script, function, or script block. You can use the information in the object, such as the path and file name of the script ($myinvocation.mycommand.path) or the name of a function ($myinvocation.mycommand.name) to identify the current command. See also $PSScriptRoot
+$NestedPromptLevel	Contains the current prompt level. A value of 0 indicates the original prompt level. The value is incremented when you enter a nested level and decremented when you exit it. For example, Windows PowerShell presents a nested command prompt when you use the $Host.EnterNestedPrompt method. Windows PowerShell also presents a nested command prompt when you reach a breakpoint in the Windows PowerShell debugger. When you enter a nested prompt, Windows PowerShell pauses the current command, saves the execution context, and increments the value of the $NestedPromptLevel variable. To create additional nested command prompts (up to 128 levels) or to return to the original command prompt, complete the command, or type "exit". The $NestedPromptLevel variable helps you track the prompt level. You can create an alternative Windows PowerShell command prompt that includes this value so that it is always visible.
+$NULL	Contains a NULL or empty value. A scalar value that contains nothing.
+$OFS	$OFS is a special variable that stores a string that you want to use as an output field separator. Use this variable when you are converting an array to a string. By default, the value of $OFS is " ", but you can change the value of $OFS in your session, by typing $OFS="value". If you are expecting the default value of " " in your script, module, or configuration output, be careful that the $OFS default value has not been changed elsewhere in your code.
+$PID	Contains the process identifier (PID) of the process that is hosting the current Windows PowerShell session. Constant, AllScope
+If you stop this process, you will brute force kill the PowerShell host that is executing the script.
+$Profile	Contains the full path of the Windows PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands. For example, you can use it in a command to determine whether a profile has been created: test-path $profile Or, you can use it in a command to create a profile: new-item -type file -path $pshome -force You can also use it in a command to open the profile in Notepad: notepad $profile
+$PSBoundParameters	Contains a dictionary of the active parameters and their current values. This variable has a value only in a scope where parameters are declared, such as a script or function. You can use it to display or change the current values of parameters or to pass parameter values to another script or function. For example: function test { param($a, $b) # Display the parameters in dictionary format. $psboundparameters # Call the Test1 function with $a and $b. test1 @psboundparameters }
+$PsCmdlet	Contains an object that represents the cmdlet or advanced function that is being run. You can use the properties and methods of the object in your cmdlet or function code to respond to the conditions of use. For example, the ParameterSetName property contains the name of the parameter set that is being used, and the ShouldProcess method adds the WhatIf and Confirm parameters to the cmdlet dynamically. For more information about the $PSCmdlet automatic variable, see about_Functions_Advanced.
+$PSCommandPath	Contains the full path and file name of the script that is being run. This variable is valid in all scripts.
+$PsCulture	Contains the name of the culture currently in use in the operating system. The culture determines the display format of items such as numbers, currrency, and dates. This is the value of the System.Globalization.CultureInfo.CurrentCulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-Culture. ReadOnly, AllScope
+$PSDebugContext	While debugging, this variable contains information about the debugging environment. Otherwise, it contains a NULL value. As a result, you can use it to indicate whether the debugger has control. When populated, it contains a PsDebugContext object that has Breakpoints and InvocationInfo properties. The InvocationInfo property has several useful properties, including the Location property. The Location property indicates the path of the script that is being debugged.
+$PsHome	Contains the full path of the installation directory for Windows PowerShell, Constant, AllScope
+Typically, %windir%\System32\WindowsPowerShell\v1.0
+You can use this variable in the paths of Windows PowerShell files. For example, the following command searches the conceptual Help topics for the word "variable": select-string -pattern variable -path $pshome\*.txt
+$PSitem	Represents the current input object, this is exactly the same as $_ it just provides an alternative name to make your pipeline code easier to read. Available in PowerShell 3.0 and greater.
+$PSScriptRoot	Contains the directory from which the script module is being executed. This variable allows scripts to use the module path to access other resources. In PowerShell 3.0+ this is available everywhere, not just in modules.
+$PSSenderInfo	Contains information about the user who started the PSSession, including the user identity and the time zone of the originating computer. This variable is available only in PSSessions.
+The $PSSenderInfo variable includes a user-configurable property, ApplicationArguments, which, by default, contains only the $PSVersionTable from the originating session. To add data to the ApplicationArguments property, use the ApplicationArguments parameter of the New-PSSessionOption cmdlet.
+$PsUICulture	Contains the name of the user interface (UI) culture that is currently in use in the operating system. The UI culture determines which text strings are used for user interface elements, such as menus and messages. This is the value of the System.Globalization.CultureInfo.CurrentUICulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-UICulture. ReadOnly, AllScope
+$PsVersionTable	Contains a read-only hash table (Constant, AllScope) that displays details about the version of PowerShell that is running in the current session. The table includes the following items:
+  CLRVersion          The version of the common language runtime (CLR)
+  BuildVersion        The build number of the current version
+  PSVersion           The Windows PowerShell version number
+  WSManStackVersion      The version number of the WS-Management stack
+  PSCompatibleVersions   Versions of PowerShell that are compatible with the current version.
+  SerializationVersion   The version of the serialization method
+  PSRemotingProtocolVersion  The version of the PowerShell remote management protocol
+$Pwd	Contains a path object that represents the full path of the current directory.
+$Sender	Contains the object that generated this event. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the Sender property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+$ShellID	Contains the identifier of the current shell. Constant, AllScope
+$SourceArgs	Contains objects that represent the event arguments of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+$SourceEventArgs	Contains an object that represents the first event argument that derives from EventArgs of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+$StackTrace	Contains a stack trace for the most recent error.
+$This	In a script block that defines a script property or script method, the $This variable refers to the object that is being extended.
+$True	Contains TRUE. You can use this variable to represent TRUE in commands and scripts. Constant, AllScope
+
 
 ### Settings
 
@@ -1039,6 +1174,16 @@ Rounding is like this: (note parentheses)
         PS A:\icons\scraping\166> [Int] ((2001) `/` (1000))
         2
 
+You can use the [Math] class to get different rounding behavior.
+
+TABLE 5
+
+```ps1
+[int][Math]::Round(5 / 2,[MidpointRounding]::AwayFromZero)	#3
+[int][Math]::Ceiling(5 / 2)	#3
+[int][Math]::Floor(5 / 2)	#2
+```
+For more information, see the Math.Round method.
 
 Overloaded __add__
 
@@ -1148,6 +1293,12 @@ An object has implicit methods as well.
     - `?` The Where-Object Alias
     - `'` Literal String Marker 
     - ``( ` )``The Escape Character
+
+
+[Ref](https://ss64.com/ps/syntax-operators.html)
+
+
+
 #### Grouping Expression operator `( )`
 
 `( )`
@@ -1361,6 +1512,10 @@ To create a strongly typed array, that is, an array that can contain only values
 
         [int32[]]$intArray = 1500,2230,3350,4000
         [Diagnostics.Process[]]$zz = Get-Process
+
+My own example... should have checked here first.
+
+        [int32[]]$colors = @(0x000000, 0x111111, 0x222222, 0x333333, 0x444444, 0x555555, 0x666666, 0x777777, 0x888888, 0x99999, 0xAAAAAA, 0xBBBBBB, 0xCCCCCC, 0xDDDDDD, 0xEEEEEE, 0xFFFFFF)
 
 You can use the _array operator_ to create an array of zero or one object.
 
@@ -1828,7 +1983,7 @@ $i = 0} {
 
 ###### A Complex Example
 
-The following example, a function which returns the functions that are used in scripts and script modules, demonstrates how to use the MoveNext method (which works similarly to "skip X" on a For loop) and the Current property of the $foreach variable inside of a foreach script block, even if there are unusually- or inconsistently-spaced function definitions that span multiple lines to declare the function name. The example also works if there are comments in the functions used in a script or script module.
+The following example, a function which returns the functions that are used in scripts and script modules, demonstrates how to use the MoveNext method (which works similarly to "skip X" on a For loop) and the Current property of the `$foreach` variable inside of a foreach script block, even if there are unusually- or inconsistently-spaced function definitions that span multiple lines to declare the function name. The example also works if there are comments in the functions used in a script or script module.
 
 ```ps1
 function Get-FunctionPosition {
@@ -2303,7 +2458,7 @@ A similar function with named parameters:
 
 ```powershell
 function Output-SalesTax {
- param( [int]$Price, [int]$Tax )
+ param( [int]$Price, [int]$Tax )|
  $Price + $Tax
 }
 
@@ -2325,12 +2480,102 @@ To list all functions in the current session: `get-command -CommandType function
 
 N.B in a block of code you need to define the function before you call it.
 
-Don't add brackets around the function parameters:
+!!!Attention Attention: Don't add brackets around the function parameters:
 
 ```powershell
 $result = Add-Numbers (5, 10) --Wrong!
 $result = Add-Numbers 5 10    --Right
 ```
+
+### Pass by Reference
+
+Using the `[ref]` flag
+
+[ByRef](https://ss64.com/ps/syntax-ref.html)
+
+
+
+```ps1
+PS C:\> function add5([ref]$num)
+>> {
+>> $num.value = $num.value + 5
+>> }
+
+PS C:> $testing = 2
+PS C:> $testing
+2
+PS C> add5 ([ref]$testing)
+PS C> $testing
+7
+
+# Extending this to modify two variables:
+PS> function add5minus5([ref]$add,[ref]$minus)
+>> {
+>> $add.value = $add.value + 5
+>> $minus.value = $minus.value - 5
+>> }
+```
+### Filter Functions
+
+e.g. stream functions, defined with the word `filter` rather than function.
+
+```ps
+function [scope_type:]name
+ { 
+  [ param(param_list) ]
+   script_block
+ }
+filter [scope_type:]name
+ {
+  [ param(param_list) ]
+  script_block 
+ }
+
+```
+
+Filter can also be implemented with `Where-Object` to create quick un-named filters.  The should return true or false.
+
+The difference between a filter function and a regular function is the way they handle items passed through the pipeline:
+
+With a regular function, pipeline objects are bound to the `$input` automatic variable, and execution is blocked until all input is received. The function then begins processing the data.
+
+With a filter function, data is processes while it is being received, without waiting for all input. A filter receives each object from the pipeline through the `$_` automatic variable, and the script block is processed for each object.
+
+The `param_list` is an optional list of comma separated parameter names, these may also be preceded by their data types in brackets. This makes the function more readable than using `$args` and also gives you the option to supply default values.
+
+
+### Advanced function
+
+An Advanced PowerShell function contains the `[cmdletbinding()]` attribute (or the `Parameter` attribute). This adds several capabilities such as additional parameter checking, and the ability to easily use `Write-Verbose.`
+
+A function with cmdletbinding will throw an error if unhandled parameter values appear on the command line.
+
+Advanced PowerShell functions typically include `Begin..Process..End` blocks for processing the input data, documentation and auto-help, including the parameters.
+
+```
+
+ function Get-ByOwner
+ {
+   Get-ChildItem -recurse C:\ | get-acl | where {$_.Owner -match $args[0]} 
+ }
+
+PS C:\> Get-ByOwner JackFrost
+
+
+ function Get-Help2
+ {
+   param([string]$command)
+   Start-process -filepath "https://ss64.com/ps/$command.html"
+ }
+ ```
+
+### Variable Scope
+
+By default, all variables created in functions are local, they only exist within the function, though they are still visible if you call a second function from within the first one.
+
+To persist a variable, so the function can be called repeatedly and the variable will retain it's last value, prepend `$script:` to the variable name, e.g. `$script:myvar`
+
+To make a variable global prepend `$global:` to the variable name, e.g. `$global:myvar`
 
 ### Splatting
 
@@ -2675,6 +2920,16 @@ You can access an item by forcing PS to re-eval an item with `$` as in `$(<expr>
 
         PS A:\icons\scraping> $(GCI .\100.zip).FullName
         A:\icons\scraping\100.zip
+
+### Get services format as table
+
+ get-service | group-object -property status | format-table -wrap
+
+
+### Formatting methods
+
+Out-GridView
+format-table -wrap
 
 ### Test a path
 
@@ -3537,6 +3792,8 @@ Since most of the .NET Framework core classes are contained in the System namesp
 
 ## WMI Objects
 
+
+
 Cmdlets from `CimCmdlets` module are the most important cmdlets for general system management tasks. _**All critical subsystem settings are exposed through WMI. (Source)[https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-6]**_
 
 !!!Note Note - For the current computer, either use a dot `.` or omit `-ComputerName`.
@@ -3604,7 +3861,79 @@ Get-CimInstance -ClassName Win32_Desktop -ComputerName .
 
 It seems that specifying Computer Name triggers it as a remote operation.
 
+### WMI Objects within Win32_OperatingSystem
 
+`PS R:\Icons> Get-CimInstance -Class Win32_OperatingSystem | Get-Member -MemberType Property | Select -Property "Name"`
+
+VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_OperatingSystem'.
+
+VERBOSE: Operation 'Enumerate CimInstances' complete.
+Name                                     
+----                                     
+BootDevice                               
+BuildNumber                              
+BuildType                                
+Caption                                  
+CodeSet                                  
+CountryCode                              
+CreationClassName                        
+CSCreationClassName                      
+CSDVersion                               
+CSName                                   
+CurrentTimeZone                          
+DataExecutionPrevention_32BitApplications
+DataExecutionPrevention_Available        
+DataExecutionPrevention_Drivers          
+DataExecutionPrevention_SupportPolicy    
+Debug                                    
+Description                              
+Distributed                              
+EncryptionLevel                          
+ForegroundApplicationBoost               
+FreePhysicalMemory                       
+FreeSpaceInPagingFiles                   
+FreeVirtualMemory                        
+InstallDate                              
+LargeSystemCache                         
+LastBootUpTime                           
+LocalDateTime                            
+Locale                                   
+Manufacturer                             
+MaxNumberOfProcesses                     
+MaxProcessMemorySize                     
+MUILanguages                             
+Name                                     
+NumberOfLicensedUsers                    
+NumberOfProcesses                        
+NumberOfUsers                            
+OperatingSystemSKU                       
+Organization                             
+OSArchitecture                           
+OSLanguage                               
+OSProductSuite                           
+OSType                                   
+OtherTypeDescription                     
+PAEEnabled                               
+PlusProductID                            
+PlusVersionNumber                        
+PortableOperatingSystem                  
+Primary                                  
+ProductType                              
+PSComputerName                           
+RegisteredUser                           
+SerialNumber                             
+ServicePackMajorVersion                  
+ServicePackMinorVersion                  
+SizeStoredInPagingFiles                  
+Status                                   
+SuiteMask                                
+SystemDevice                             
+SystemDirectory                          
+SystemDrive                              
+TotalSwapSpaceSize                       
+TotalVirtualMemorySize                   
+TotalVisibleMemorySize                   
+Version             
 
 ### Listing All WMI-Objects
 

@@ -3740,7 +3740,7 @@ src %>% sjtab(fun = c("xtab", "stackfrq"), var.labels=c("Race Breakdown - showin
 
 ### Huxtable
 
-huxtable::huxtable-package		Huxtable: simply create LaTeX and HTML tables
+huxtable::huxtable-package		Huxtable: simply create  and HTML tables
 
 
 ### Datatable
