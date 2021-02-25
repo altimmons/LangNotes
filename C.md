@@ -199,6 +199,54 @@ collect2: error: ld returned 1 exit status
     collect2: error: ld returned 1 exit status
 
 <!--  -->
+
+To create library object files for foo.c and hello.c, simply invoke libtool with the standard compilation command as arguments (see Compile mode):
+
+        >$ libtool --mode=compile gcc -g -O -c foo.c
+            gcc -g -O -c foo.c -o foo.o
+        >$ libtool --mode=compile gcc -g -O -c hello.c
+            gcc -g -O -c hello.c -o hello.o
+        >$
+
+Without libtool, the programmer would invoke the ar command to create a static library:
+
+burger$ ar cru libhello.a hello.o foo.o
+
+`ar` is just an archive program.  Like `tar` is just `tape archive` so this doesnt 'do' anything.
+
+Then `ranlib` adds a file table.
+
+gcc -v conv_to_fahr.o ../../../lib/temp_conv.a ../../../lib/getarg.a -o conv_to_fahr
+
+  -E                       Preprocess only; do not compile, assemble or link.
+  -S                       Compile only; do not assemble or link.
+  -c                       Compile and assemble, but do not link.
+  -o <file>                Place the output into <file>.
+  -pie                     Create a dynamically linked position independent
+                           executable.
+  -shared                  Create a shared library.
+    -Xassembler <arg>        Pass <arg> on to the assembler.
+  -Xpreprocessor <arg>     Pass <arg> on to the preprocessor.
+  -Xlinker <arg>           Pass <arg> on to the linker.
+  -print-search-dirs       Display the directories in the compiler's search path.
+  -print-libgcc-file-name  Display the name of the compiler's companion library.
+  -print-file-name=<lib>   Display the full path to library <lib>.
+  -print-prog-name=<prog>  Display the full path to compiler component <prog>.
+  -print-multiarch         Display the target's normalized GNU triplet, used as
+                           a component in the library path.
+  -print-multi-directory   Display the root directory for versions of libgcc.
+  -print-multi-lib         Display the mapping between command line options and
+                           multiple library search directories.
+  -print-multi-os-directory Display the relative path to OS libraries.
+  -print-sysroot           Display the target libraries directory.
+  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers.
+
+You are overwriting your object file runexp.o by running this command :
+
+ gcc -o runexp.o scd.o data_proc.o -lm -fopenmp
+In fact, the -o is for the output file. You need to run :
+
+gcc -o runexp.out runexp.o scd.o data_proc.o -lm -fopenmp
 ## Basic Struct
 
 ```c

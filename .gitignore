@@ -1,1 +1,6 @@
-Arduino.md
+.history/**
+.out/**
+old/**
+temp/**
+node_modules/**
+npm/**

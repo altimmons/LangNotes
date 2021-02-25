@@ -1,5 +1,4 @@
-# C ++ class
-
+# C ++ Notes
 
 
 
@@ -10,6 +9,14 @@
 [Dr. GUI](https://msdn.microsoft.com/en-us/library/aa302304.aspx)
 [C Language Reference | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/c-language-reference?view=vs-2017)
 [C++ Language Reference | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=vs-2019)
+
+[Good General reference](http://www.cplusplus.com/)
+
+ - [Tutorial](http://www.cplusplus.com/doc/tutorial/)
+ 
+[C++ FAQ](https://isocpp.org/wiki/faq)
+
+
 
 
 ## Archetypical Program
@@ -294,128 +301,153 @@ ___
 ___
 
 - [Language Support
-   - <cstddef>
-   - <cstdlib>
-   - <version>
-   - <limits>
-   - <climits>
-   - <cfloat>
-   - <cstdint>
-   - <new>
-   - <typeinfo>
-   - <source_location>
-   - <exception>
-   - <initializer_list>
-   - <compare>
-   - <coroutine>
-   - <csignal>
-   - <csetjmp>
-   - <cstdarg>
+   - *\<cstddef\>*
+   - *\<cstdlib\>*
+   - *\<version\>*
+   - *\<limits\>*
+   - *\<climits\>*
+   - *\<cfloat\>*
+   - *\<cstdint\>*
+   - *\<new\>*
+   - *\<typeinfo\>*
+   - *\<source_location\>*
+   - *\<exception\>*
+   - *\<initializer_list\>*
+   - *\<compare\>*
+   - *\<coroutine\>*
+   - *\<csignal\>*
+   - *\<csetjmp\>*
+   - *\<cstdarg\>*
 - Concepts
-   - <concepts>
+   - *\<concepts\>*
 - Diagnostics
-   - <stdexcept>
-   - <cassert>
-   - <cerrno>
-   - <system_error>
+   - *\<stdexcept\>*
+   - *\<cassert\>*
+   - *\<cerrno\>*
+   - *\<system_error\>*
 - General utilities
-   - <utility>
-   - <memory>
-   - <memory_resource>
-   - <scoped_allocator>
-   - <bitset>
-   - <tuple>
-   - <optional>
-   - <any>
-   - <variant>
-   - <type_traits>
-   - <ratio>
-   - <chrono>
-   - <typeindex>
-   - <functional>
-   - <stacktrace>
-   - <ctime>
+   - *\<utility\>*
+   - *\<memory\>*
+   - *\<memory_resource\>*
+   - *\<scoped_allocator\>*
+   - *\<bitset\>*
+   - *\<tuple\>*
+   - *\<optional\>*
+   - *\<any\>*
+   - *\<variant\>*
+   - *\<type_traits\>*
+   - *\<ratio\>*
+   - *\<chrono\>*
+   - *\<typeindex\>*
+   - *\<functional\>*
+   - *\<stacktrace\>*
+   - *\<ctime\>*
 - Strings
-   - <string>
-   - <string_view>
-   - <cstring>
-   - <charconv>
-   - <format>
-   - <cctype>
-   - <cwctype>
-   - <cwchar>
-   - <cuchar>
+   - *\<string\>*
+   - *\<string_view\>*
+   - *\<cstring\>*
+   - *\<charconv\>*
+   - *\<format\>*
+   - *\<cctype\>*
+   - *\<cwctype\>*
+   - *\<cwchar\>*
+   - *\<cuchar\>*
 - Localization
-   - <locale>
-   - <codecvt>
-   - <clocale>
+   - *\<locale\>*
+   - *\<codecvt\>*
+   - *\<clocale\>*
 - Containers
-   - <span>
-   - <array>
-   - <vector>
-   - <deque>
-   - <forward_list>
-   - <list>
-   - <map>
-   - <set>
-   - <queue>
-   - <unordered_map>
-   - <unordered_set>
-   - <stack>
+   - *\<span\>*
+   - *\<array\>*
+   - *\<vector\>*
+   - *\<deque\>*
+   - *\<forward_list\>*
+   - *\<list\>*
+   - *\<map\>*
+   - *\<set\>*
+   - *\<queue\>*
+   - *\<unordered_map\>*
+   - *\<unordered_set\>*
+   - *\<stack\>*
 - Iterators
-   - <iterator>
+   - *\<iterator\>*
 - Ranges
-   - <ranges>
+   - *\<ranges\>*
 - Algorithms
-   - <algorithm>
-   - <execution>
+   - *\<algorithm\>*
+   - *\<execution\>*
 - Numerics
-   - <complex>
-   - <random>
-   - <valarray>
-   - <numeric>
-   - <bit>
-   - <numbers>
-   - <cfenv>
-   - <cmath>
+   - *\<complex\>*
+   - *\<random\>*
+   - *\<valarray\>*
+   - *\<numeric\>*
+   - *\<bit\>*
+   - *\<numbers\>*
+   - *\<cfenv\>*
+   - *\<cmath\>*
 - Input/Output
-   - <iosfwd>
-   - <ios>
-   - <iomanip>
-   - <streambuf>
-   - <istream>
-   - <ostream>
-   - <iostream>
-   - <sstream>
-   - <fstream>
-   - <syncstream>
-   - <cstdio>
-   - <cinttypes>
-   - <strstream>
+   - *\<iosfwd\>*
+   - *\<ios\>*
+   - *\<iomanip\>*
+   - *\<streambuf\>*
+   - *\<istream\>*
+   - *\<ostream\>*
+   - *\<iostream\>*
+   - *\<sstream\>*
+   - *\<fstream\>*
+   - *\<syncstream\>*
+   - *\<cstdio\>*
+   - *\<cinttypes\>*
+   - *\<strstream\>*
 - Regular expressions
-   - <regex>
+   - *\<regex\>*
 - Filesystem support
-   - <filesystem>
+   - *\<filesystem\>*
 - Thread support
-   - <thread>
-   - <atomic>
-   - <mutex>
-   - <shared_mutex>
-   - <condition_variable>
-   - <future>
-   - <stop_token>
-   - <semaphore>
-   - <latch>
-   - <barrier>
+   - *\<thread\>*
+   - *\<atomic\>*
+   - *\<mutex\>*
+   - *\<shared_mutex\>*
+   - *\<condition_variable\>*
+   - *\<future\>*
+   - *\<stop_token\>*
+   - *\<semaphore\>*
+   - *\<latch\>*
+   - *\<barrier\>*
 - C compatibility
-   - <ciso646>
-   - <cstdalign>
-   - <cstdbool>
-   - <ccomplex>
-   - <ctgmath>
-   - <stdatomic.h>
+   - *\<ciso646\>*
+   - *\<cstdalign\>*
+   - *\<cstdbool\>*
+   - *\<ccomplex\>*
+   - *\<ctgmath\>*
+   - *\<stdatomic.h\>*
 
 
+**Containers**
+
+- *\<array\>* - **Array header**
+
+- *\<bitset\>* - **Bitset header**
+
+- *\<deque\>* - **Deque header**
+
+- *\<forward_list\>* - **Forward list**
+
+- *\<list\>* - **List header**
+
+- *\<map\>* - **Map header**
+
+- *\<queue\>* - **Queue header**
+
+- *\<set\>* - **Set header**
+
+- *\<stack\>* - **Stack header**
+
+- *\<unordered_map\>* - **Unordered map header**
+
+- *\<unordered_set\>* - **Unordered set header**
+
+- *\<vector\>* - **Vector header**
 
 ## Archetypical Program
 
@@ -451,8 +483,8 @@ int main()
 header files no longer contain *.h
 
 ```cpp
-#include <cstdlib>	// was <stdlib.h>
-#include <cstring>	// was <string.h>
+#include <cstdlib>	// was *\<stdlib.h\>*
+#include <cstring>	// was *\<string.h\>*
                       // char* functions from C
 #include <string>     // C++ string class
 ```
@@ -462,10 +494,6 @@ header files no longer contain *.h
 !!!Warning:  Note: If you are using the Microsoft Visual C++ IDE, you will notice that by default, all source files start as follows:
       `#include "stdafx.h"`
     In a VC++ project, by default, every source file should start with this line, and your own include files must follow this. If you place your own include file before `stdafx.h`, they will appear to have no effect and you will get all kinds of compilation errors. This situation involves the concept of precompiled header files, which is outside the scope of this book. Consult the Microsoft documentation on precompiled header files to learn the details.
-
-## Reserved Keywords
-
-//42
 
 
 
@@ -772,7 +800,105 @@ auto myFunc( float v1, float v2 )
 }
 
 ```
+
+___
+## Symbols, Operators, and Keywords
+___
+
+
+
+
+### Reserved Keywords
+
+//42
+
+
+
+###
+
 ## Pointers
+___
+
+Some good links:
+ 
+- [FAQ Lite](https://isocpp.org/wiki/faq/references#refs-vs-ptrs)
+
+- [When do we pass by ref or pointer](https://www.geeksforgeeks.org/when-do-we-pass-arguments-by-reference-or-pointer/)
+
+- [Pointers vs Ref (src for most of below)](https://www.geeksforgeeks.org/pointers-vs-references-cpp/)
+
+- [See more](https://www.geeksforgeeks.org/pointers-and-references-in-c/?ref=rp)
+
+- [And more- good](https://www.geeksforgeeks.org/pointers-in-c-and-c-set-1-introduction-arithmetic-and-array/)
+
+![Image](https://www.geeksforgeeks.org/wp-content/uploads/How-Pointer-Works-In-C.png)
+
+
+
+
+```cpp
+int i = 3; 
+int *ptr = &i; // A pointer to variable i (or stores addr of i)
+int &ref = i; // A reference (or alias) for i.
+
+int *p = &a;    
+//OR
+int *p;  p = &a;
+
+int &p=a;  //it is correct
+   but
+int &p; p=a;   // it is incorrect as we should declare and initialize references at single step.
+```
+
+4. Reassignment: A pointer can be re-assigned. This property is useful for implementation of data structures like linked list, tree, etc. See the following examples: 
+
+
+```cpp
+int a = 5;
+int b = 6;
+int *p;
+p =  &a;
+p = &b;
+```
+
+But the converse is not true:
+
+
+```cpp
+int a = 5;
+int b = 6;
+int &p = a;
+int &p = b;  //At this line it will show error as "multiple declaration is not allowed".
+//However it is valid statement,
+int &q=p;
+```
+
+6. Memory Address: A **pointer has its own memory address and size on the stack** whereas a **reference shares the same memory address** (with the original variable) but also takes up some space on the stack.
+
+```cpp
+   int &p = a;
+   cout << &p << endl << &a;
+```
+7. NULL value: Pointer can be assigned NULL directly, whereas reference cannot. The constraints associated with references (no NULL, no reassignment) ensure that the underlying operations do not run into exception situation.
+
+8. Indirection: You can have pointers to pointers offering extra levels of indirection. Whereas references only offer one level of indirection.I.e, 
+
+In Pointers, you can have pointers to pointers etc, but references cannot because they are teh same as the object.
+
+```cpp
+int a = 10;
+int *p;
+int **q;  //it is valid.
+p = &a;
+q = &p;
+a & p(*) & q(**) * p(*) * a
+
+Whereas in references,
+
+int &p = a;
+int &&q = p; //it is reference to reference, so it is an error.
+```
+
 
 
 ### Passing Objects
@@ -1219,17 +1345,221 @@ C++ structures can have functions as well as data types as members
 The class type will be discussed later in this course
 
 
-### array
+### Arrays
 
-An  Array name is a special pointer, its a fixed pointer.  You can add to the array.
+[Array Deep Dive (good)](https://stackoverflow.com/questions/4810664/how-do-i-use-arrays-in-c/4810668#4810668)
 
-`
-int[] array = {1...4}
+
+
+Zero indexed.
+
+C++ you must give a size to the array.  This size cannot be a variable, it must be a constant, or a constant expression (*constexpr*)
+
+
+```cpp
+int myArray[3];
+myArray[0]=0;
+myArray[1]=0;
+myArray[2]=0;
+```
+This is declaring by initializer list:
+
+`int[] array = {1,2,3,4}` you can set each val to zero like:
+
+`int array[3] = {0};` further this is equivalent to 
+
+`int array[3]={}` eg. you dont need to state zero. Also, note that, 
+
+`int arr[3] = {2}` does not set each to 2, but sets the first to 2 and the rest to zero.  Also, this 
+
+`int arr[]={2}` creates an array of length = 1 and value arr[0] = 2. (e.g size will be deduced from given values.
+
+
+#### Assignment
+
+For no particular reason, arrays cannot be assigned to one another. Use std::copy instead:
+
+
+```cpp
+#include <algorithm>
+
+// ...
+
+int a[8] = {2, 3, 5, 7, 11, 13, 17, 19};
+int b[8];
+std::copy(a + 0, a + 8, b);
+//(<start>, <end- exclusive>, <dest>)
+```
+
+**passing arrays**
+
+```cpp
+void myFunction(int *param) { ..}
+
+void myFunction(int param[10]) {
+
+void myFunction(int param[], d) {
+
+```
+`int arg[]` is adjusted to be `int* arg` (**Decomposed:** see below) when passed to a function.
+
+
+!!! Caution  Caution: Be careful of the above types: That is a pointer to ints, not an int.
+      `int array[3] = {0};`
+
+A template solution- which at this time I dont undersand
+
+[Here](https://stackoverflow.com/questions/968001/determine-size-of-array-if-passed-to-function)
+
+
+
+
+```cpp
+    template <typename T, int N>
+    void func(T (&a) [N]) {
+        for (int i = 0; i < N; ++i) a[i] = T(); // reset all elements
+    }
+int x[10];
+func(x);
+```
+
+
+**Array-to-pointer decay** The only "connection" between T[n] and T[m] is that both types can implicitly be converted to T*, and the result of this conversion is a pointer to the first element of the array. That is, anywhere a T* is required, you can provide a T[n], and the compiler will silently provide that pointer: This conversion is known as "array-to-pointer decay", and it is a major source of confusion. The size of the array is lost in this process, since it is no longer part of the type (T*).
+
+The compiler will silently generate a pointer to the first element of an array whenever it is deemed useful, that is, whenever an operation would fail on an array but succeed on a pointer
+
+
+**size** -  get the size with
+
+      unsigned int arraySize = std::size(myArray)
+
+This only works in C++ 17++ (and not for me... in 20+...) so you can use the trick:
+
+       unsigned int arraySize = = sizeof(myArray) / sizeof(myArray[0])
+   
+This is a hack that finds the whole size, divided by 1 element, which should equal # elements.
+
+
+
+```cpp
+#include <type_traits>
+
+static_assert(!std::is_same<int[8], float[8]>::value, "distinct element type");
+static_assert(!std::is_same<int[8],   int[9]>::value, "distinct size");
+
+static_assert(!std::is_same<int[8], int*>::value, "an array is not a pointer");
+```
+Note that the size is part of the type, that is, array types of different size are incompatible types that have absolutely nothing to do with each other. sizeof(T[n]) is equivalent to n * sizeof(T).
+
+`static_assert(!std::is_same<int*, int(*)[8]>::value, "distinct element type");`
+
+
+One important context in which an array does not decay into a pointer to its first element is when the `&` operator is applied to it. The `&` operator yields a pointer to the entire array, not just a pointer to its first element. Although in that case the values (the addresses) are the same, a pointer to the first element of an array and a pointer to the entire array are completely distinct types:
+
+The same situation arises in classes and is maybe more obvious. A pointer to an object and a pointer to its first data member have the same value (the same address), yet they are completely distinct types.
+
+If you are unfamiliar with the C declarator syntax, the parenthesis in the type int(*)[8] are essential:
+
+    `int(*)[8]` is a pointer to an array of 8 integers.
+    `int*[8]` is an array of 8 pointers, each element of type int*.
+
+note i tried putting these in C++ and they werenet liked.
+
+Actually the syntax looks like this: (the 2nd item)
+
+
+```cpp
+int array_of_arrays[6][7];
+int (*pointer_to_array)[7] = array_of_arrays;
+
+int* array_of_pointers[6];
+int** pointer_to_pointer = array_of_pointers;
+```
+
+
+
+In adding to an array:
+
+
+Since the syntax `*(x+i)` is a bit clumsy, C++ provides the alternative syntax `x[i]`:
+
+```cpp
+int x[8]={};
+x+3 ; //has no meaning but it decomposes into a pointer, and adds 3 to the pointer. giving the 3rd element.
+
+std::cout << 3[x] << ", " << 7[x] << std::endl; //Due to the fact that addition is commutative, these are the same.
+```
+
+For length of n- an array will let you compute pointers to 0...nth items.  However, the nth item is nonexistant and would throw and error dereferenced.
+
+
+```cpp
+std::sort(x + 0, x + n);
+std::sort(&x[0], &x[0] + n);
+std::sort(&x[0], &x[n]); //error- this is equivalent to &*(x+n), and the sub-expression *(x+n) 
+```
+An Array name is a special pointer, its a fixed pointer.  You can add to the array.
+
 `pos = array + 1;`
 
 However you cannot reassign the array or start of the array.
 
 `array +=1; //error`
+### Arrays of pointers
+
+You can overcome the restriction of fixed width by introducing another level of indirection.
+Named arrays of pointers
+
+Here is a named array of five pointers which are initialized with anonymous arrays of different lengths:
+
+
+```cpp
+int* triangle[5];
+for (int i = 0; i < 5; ++i)
+{
+    triangle[i] = new int[5 - i];
+}
+
+// ...
+
+for (int i = 0; i < 5; ++i)
+{
+    delete[] triangle[i];
+}
+```
+```cpp
+int array[8] = {};
+int(*) ptr_to_array[8] = &array
+```
+
+### Multidimensional arrays
+
+
+Programmers often confuse multidimensional arrays with arrays of pointers.
+
+Most programmers are familiar with named multidimensional arrays, but many are unaware of the fact that multidimensional array can also be created anonymously. Multidimensional arrays are often referred to as **"arrays of arrays"** or **"true multidimensional arrays".**
+
+
+When using named multidimensional arrays, all dimensions must be known at compile time:
+
+
+```cpp
+
+int H = read_int();
+int W = read_int();
+
+int connect_four[6][7];   // okay
+
+int connect_four[H][7];   // ISO C++ forbids variable length array
+int connect_four[6][W];   // ISO C++ forbids variable length array
+int connect_four[H][W];   // ISO C++ forbids variable length array
+```
+
+
+
+
+
+
 
 ### structure
 
@@ -1250,6 +1580,9 @@ You define struct names at the end:
 ### union
 
 ### enumerator
+
+   [See Enumbs section](#Enums)
+
 
 
 47-84, 114-134
@@ -1273,14 +1606,102 @@ mSequence.assign(args);
 
 ## Strings
 
+
+### String Stream
+
+[StringStream](https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder)
+
+
+
+```cpp
+#include <string>
+#include <iosteam.h>
+cout << "HELLO WORLD"
+cin>>readVal
+
+#include <sstream>
+std::stringstream ss;
+ss << "my data " << 42;
+std::string myString( ss.str() );
+//or  return ss.str();
+```
+
+uses `cout` `cin`  and `<<` `>>`
+
+printf and fprintf and scanf are available in **_<cstdio>_** / <stdio.h>
+
+
+
 endl
 
 //38
 //39
 
 
-Using a string manipulator
+### string manipulator
 
+ std::setprecision(2);
+
+- std::fixed
+- std::strcat(str, str2);
+
+- Defined in header *\<ios\>*
+   - `boolalpha`
+   - `noboolalpha`
+      - switches between textual and numeric representation of booleans
+   - `showbase`
+   - `noshowbase`
+      - controls whether prefix is used to indicate numeric base
+   - `showpoint`
+   - `noshowpoint`
+      - controls whether decimal point is always included in floating-point representation
+   - `showpos`
+   - `noshowpos`
+      - controls whether the + sign used with non-negative numbers
+   - `skipws`
+   - `noskipws`
+      - controls whether leading whitespace is skipped on input
+   - `uppercase`
+   - `nouppercase`
+      - controls whether uppercase characters are used with some output formats
+   - `unitbuf`
+   - `nounitbuf`
+   - controls whether output is flushed after each operation
+   - `internal`
+   - `left`
+   - `right`
+      - sets the placement of fill characters
+   - `dec`
+   - `hex`
+   - `oct`
+      - changes the base used for integer I/O
+   - `fixed`
+   - `scientific`
+   - `hexfloat` **(C++11)**
+   - `defaultfloat` **(C++11)**
+      - changes formatting used for floating-point I/O
+- Defined in header *\<istream\>*
+   - `ws` - consumes whitespace
+- Defined in header *\<ostream\>*
+   - `ends`  outputs '\0'
+   - `flush` flushes the output stream
+   - `endl` - outputs '\n' and flushes the output stream
+   - `emit_on_flush` **(C++20)**
+   - `no_emit_on_flush` **(C++20)**
+      - controls whether a stream's basic_syncbuf emits on flush
+   - `flush_emit` **(C++20)** - flushes a stream and emits the content if it is using a basic_syncbuf
+- Defined in header *\<iomanip\>*
+   - `resetiosflags` - clears the specified ios_base flags
+   - `setiosflags`   - sets the specified ios_base flags
+   - `setbase`- changes the base used for integer I/O
+   - `setfill`- changes the fill character
+   - `setprecision`- changes floating-point precision
+   - `setw`- changes the width of the next input/output field
+   - `get_money`- **(C++11)**- parses a monetary value
+   - `put_money`- **(C++11)**- formats and outputs a monetary value
+   - `get_time`- **(C++11)**- parses a date/time value of specified format
+   - `put_time`- **(C++11)**- formats and outputs a date/time value according to the specified format
+   - `quoted` - **(C++14)** - inserts and extracts quoted strings with embedded spaces
 ```cpp
 //40
 // Program to read and display a line of input
@@ -1491,6 +1912,50 @@ class touchButton {
 
    `CircleClass(int x, int y, double radius) : mX(x), mY(y), mRadius(radius){}`
    
+### Instantiation Overview 
+
+[See Below](#Stack instantiation)
+
+```cpp
+SpreadsheetCell myCell
+SpreadsheetCell myCell(); // WRONG, but will compile.
+myCell.setValue(6); //wont fail until <-here
+//it must be like this:
+SpreadsheetCell myCell;
+
+SpreadsheetCell myCell(5), anotherCell (4);
+```
+
+The following are heap initialized.  They are not controlled by scope - eg not deleted when exit method.
+
+```cpp
+//C++11 style
+unique_ptr<SpreadsheetCell> myCellP{make_unique<SpreadsheetCell>()}
+//C++14 style
+auto myCellp = make_unique<SpreadsheetCell>();
+// Equivalent to:
+unique_ptr<SpreadsheetCell> myCellp(new SpreadsheetCell());
+//<C++11 requires raw pointers.
+// Or with raw pointers, without smart pointers (not recommended)
+SpreadsheeCell* myCellp = new SpreadsheetCell();
+SpreadsheetCell* myCellp = new SpreadsheetCell(5);
+SpreadsheetCell* anotherCellp = nullptr;  //if not used immed. make `nullptr`
+anotherCellp = new SpreadsheetCell(4);
+
+delete myCellp;
+myCellp = nullptr;
+```
+
+generally: 
+
+for C++ 14+
+`auto [varName] = make_unique<[Class]> ( [ctor params] );`
+
+for C++11+
+`unique_ptr< [Class] > [varName] (new [Class]( [ctor params] ));`
+
+for < C++ 11
+`[Class]* [varName] = new [Class]( [ctor params] )`
 
 ### Uniform Initialization
 ---
@@ -1662,12 +2127,13 @@ Explicitly declare or remove the copy constructor (e.g. you dont want an object 
 SpreadsheetCell(const SpreadsheetCell& src) = default;
 SpreadsheetCell(const SpreadsheetCell& src) = delete;1
 ```
+___
 
 #### Copy assignment 
 
 Works by setting one, existing object to entirely match the other.
 
-```
+```cpp
 Object o(params);
 Object oo(params);
 oo=o;
@@ -1697,7 +2163,9 @@ class SpreadsheetCell
 };
 ```
 
-This returns a `reference` (unlike the copy constructor) so that it can be chained: `o1 = o2 = o3`
+This returns a `reference` (unlike the copy constructor) so that it can be chained: `o1 = o2 = o3`.
+
+Specifically, it has `    return *this;`.
 
 
 
@@ -1829,10 +2297,10 @@ void SpreadsheetCell::setValue(double value)
                cout << *this << endl;
 
 ---
-### instantiation
+### Instantiation
 
 ---
-#### Stack instantiation:
+#### Stack Instantiation
 ---
 
 
@@ -1854,7 +2322,7 @@ On the stack, assuming a constructor that takes an int:: `SpreadsheetCell::Sprea
 
 !!!Warning You cannot explicitly call the Constructor, also when creating an object on the stack, omit parentheses for the default constructor.
       ```cpp
-      SpreadsheetCell myCell.SpreadsheetCell(5)
+      SpreadsheetCell myCell.SpreadsheetCell(5); //wrong
       ```
 
       or call it later:
@@ -1912,11 +2380,20 @@ Must call `delete` on these (and not required but good practice to set that poin
 unique_ptr<SpreadsheetCell> myCellP{make_unique<SpreadsheetCell>()}
 //C++14 style
 auto myCellp = make_unique<SpreadsheetCell>();
-//<C++11 requires raw pointers.
-SpreadsheeCell* myCellp = new SpreadsheetCell();
-
 // Equivalent to:
-// unique_ptr<SpreadsheetCell> myCellp(new SpreadsheetCell());
+unique_ptr<SpreadsheetCell> myCellp(new SpreadsheetCell());
+//<C++11 requires raw pointers.
+// Or with raw pointers, without smart pointers (not recommended)
+SpreadsheeCell* myCellp = new SpreadsheetCell();
+SpreadsheetCell* myCellp = new SpreadsheetCell(5);
+SpreadsheetCell* anotherCellp = nullptr;  //if not used immed. make `nullptr`
+anotherCellp = new SpreadsheetCell(4);
+
+
+
+delete myCellp;
+myCellp = nullptr;
+
 myCellp->setValue(3.7);
 cout << "cell 1: " << myCellp->getValue() <<
 " " << myCellp->getString() << endl;
@@ -2001,12 +2478,23 @@ cout << e.what() << endl;
 
 ## IO Operations
 
-```cpp
+![IO](http://www.cplusplus.com/img/iostream.gif)
 
+[StringStream](https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder)
+
+
+
+```cpp
+#include <string>
 #include <iosteam.h>
 cout << "HELLO WORLD"
 cin>>readVal
 
+#include <sstream>
+std::stringstream ss;
+ss << "my data " << 42;
+std::string myString( ss.str() );
+//or  return ss.str();
 ```
 
 
