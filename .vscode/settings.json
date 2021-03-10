@@ -288,11 +288,7 @@
       "panel.dropBackground": "#ee00ff",
       "panelInput.border": "#00ffa6"
     },
-    "tab.unfocusedActiveBorder": "#fff0",
-    "titleBar.inactiveBackground": "#0a8b60",
-    "titleBar.inactiveForeground": "#222",
-    "titleBar.border": "#000",
-    "sideBar.border": "#1C1E26"
+    "tab.unfocusedActiveBorder": "#fff0"
   },
   "workbench.colorTheme": "Default Dark+",
   "editor.autoClosingQuotes": "beforeWhitespace",

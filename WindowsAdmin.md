@@ -5841,7 +5841,15 @@ This is the source of two separate packages:
 - [Remove-Windows10-Bloat.bat](https://gist.githubusercontent.com/matthewjberger/2f4295887d6cb5738fa34e597f457b7f/raw/b23fa065febed8a2d7c2f030fba6da381f640997/Remove-Windows10-Bloat.bat)
 
 
-## VS Code RegExp
+# VS Code Regular Expressions
+
+
+[Balancing Exp](https://www.regular-expressions.info/balancing.html)
+
+
+[Tutorials](https://www.regular-expressions.info/tutorialcnt.html)
+
+
 
 [Reference 1](https://stackoverflow.com/questions/42179046/what-flavor-of-regex-does-visual-studio-code-use/42184299#42184299)
 
@@ -5875,6 +5883,7 @@ exe64=x64\\(.*?)(
 - Anchors
   - `^` - anchor to front
   - `\r?$` -anchor to rear.  Old character was just `$`
+    - this just says match a carriage return or not if it exists.  This has gotten me on linux once.
 - Parens and brackets
   - [...] - give characters to match.
     - [\], [c] - match a single char
@@ -5989,6 +5998,7 @@ Group Referencing (Reusing a previously used group)
 - `(?<=exp)` - Zero-width positive lookbehind
 - `(?<!exp)` - Zero-width negative lookbehind
 - `(?>exp)` - Non-backtracking (greedy)
+-  `?!` = NOT , `real(?!ity)` matched real and really but not reality.
 
 Use To substitute
 - `$n` - Substring matched by group number n
@@ -6109,6 +6119,21 @@ Defines a balancing group definition. For more information, see the "Balancing G
 #### My Examples
 
 
+    ([{]+)(?<in>.*?)([}]+)(\k<in>)
+
+This code had tis weird duplication inside braces.  But not all, some were just in braces.
+
+So I final all the things bracketed by a brack that immedietly match the same thing after.   Like `{ABC}ABC`  It is written such that everything must match,
+
+    {A\cup B=B\cup A}
+    {A\cap B=B\cap A}
+    Associative property:
+    {(A\cup B)\cup C=A\cup (B\cup C)}
+    {(A\cap B)\cap C=A\cap (B\cap C)}
+    Distributive property:
+    {A\cup (B\cap C)=(A\cup B)\cap (A\cup C)}A\cup (B\cap C)=(A\cup B)\cap (A\cup C)
+    {A\cap (B\cup C)=(A\cap B)\cup (A\cap C)}
+
 (^[a-zA-Z]*?) Standard
 
 Finding a table
@@ -6128,6 +6153,9 @@ Finding a table
 !!!note Bold betweem the parentheses (xxx) -> **(xxx)**
             ([(])(.*?)([)])
             **$1$2$3**
+
+
+
 
 
 !!!note   A series of entries like this:

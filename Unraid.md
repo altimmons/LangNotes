@@ -257,9 +257,9 @@ as opposed to THIS example
 
 ```bash
   GNU nano 4.6                                                  exports                                                             
-# See exports(5) for a description.
-# This file contains a list of all directories exported to other computers.
-# It is used by rpc.nfsd and rpc.mountd.
+		#> See exports(5) for a description.
+		#> This file contains a list of all directories exported to other computers.
+		#> It is used by rpc.nfsd and rpc.mountd.
 
 
 "/mnt/user/rA" -async,no_subtree_check,fsid=100 DESKTOP 169.254.0.0/255.255.255.248 192.168.1.0/24
@@ -371,9 +371,9 @@ Nov 3 17:30:03 Unraid rpc.mountd[6459]: refused mount request from 169.254.0.1 f
 Reviewing `/etc/exports`
 
 ```sh
-# See exports(5) for a description.
-# This file contains a list of all directories exported to other computers.
-# It is used by rpc.nfsd and rpc.mountd.
+		#> See exports(5) for a description.
+		#> This file contains a list of all directories exported to other computers.
+		#> It is used by rpc.nfsd and rpc.mountd.
 
 "/mnt/user/rA" -async,no_subtree_check,fsid=100 DESKTOP 
 
@@ -1856,3 +1856,162 @@ but pybtop can be installed with pip install bpytop
 sensors-detect - looks for sensors
 
 sensors - lists data
+
+
+## Arch Details
+
+### Using PACMAN
+[Pacman Main article](https://wiki.archlinux.org/index.php/Pacman)
+
+[Pacman Tips and Tricks](https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks)
+
+
+
+[Info on arch](https://wiki.archlinux.org/index.php/Mirrors)
+
+
+`pacman -Syyuu` to sync (I thought this was sync package lists, but it instead installed 400 mb of stuff...)  Maybe like apt-get upgrade?
+
+Installing specific packages
+
+To install a single package or list of packages, including dependencies, issue the following command:
+
+            # pacman -S package_name1 package_name2 ...
+
+To install a list of packages with regex (see this forum thread):
+
+            # pacman -S $(pacman -Ssq package_regex)
+
+Sometimes there are multiple versions of a package in different repositories (e.g. extra and testing). To install the version from the extra repository in this example, the repository needs to be defined in front of the package name:
+
+            # pacman -S extra/package_name
+
+To install a number of packages sharing similar patterns in their names one can use curly brace expansion. For example:
+
+            # pacman -S plasma-{desktop,mediacenter,nm}
+
+This can be expanded to however many levels needed:
+
+            # pacman -S plasma-{workspace{,-wallpapers},pa}
+
+#### Removing
+
+Removing packages
+
+To remove a single package, leaving all of its dependencies installed:
+
+		#> pacman -R package_name
+
+To remove a package and its dependencies which are not required by any other installed package:
+
+		#> pacman -Rs package_name
+
+The above may sometimes refuse to run when removing a group which contains otherwise needed packages. In this case try:
+
+		#> pacman -Rsu package_name
+
+To remove a package, its dependencies and all the packages that depend on the target package:
+Warning: This operation is recursive, and must be used with care since it can remove many potentially needed packages.
+
+		#> pacman -Rsc package_name
+
+To remove a package, which is required by another package, without removing the dependent package:
+Warning: The following operation can break a system and should be avoided. See System maintenance		#>Avoid certain pacman commands.
+
+		#> pacman -Rdd package_name
+
+Pacman saves important configuration files when removing certain applications and names them with the extension: .pacsave. To prevent the creation of these backup files use the -n option:
+
+		#> pacman -Rn package_name
+
+Note: Pacman will not remove configurations that the application itself creates (for example "dotfiles" in the home folder).
+
+#### Querying package databases
+
+Pacman queries the **local package database** with the `-Q` flag, **the sync database** with the `-S` flag and **the files database** with the `-F` flag. See `pacman -Q --help`, `pacman -S --help` and `pacman -F --help` for the respective suboptions of each flag.
+
+Pacman can search for packages in the database, searching both in packages' names and descriptions:
+
+		$> pacman -Ss string1 string2 ...
+
+Sometimes, -s's builtin ERE (Extended Regular Expressions) can cause a lot of unwanted results, so it has to be limited to match the package name only; not the description nor any other field:
+
+		$> pacman -Ss '^vim-'
+
+To search for already installed packages:
+
+		$> pacman -Qs string1 string2 ...
+
+To search for package file names in remote packages:
+
+		$> pacman -F string1 string2 ...
+
+To display extensive information about a given package:
+
+		$> pacman -Si package_name
+
+For locally installed packages:
+
+		$> pacman -Qi package_name
+
+Passing two -i flags will also display the list of backup files and their modification states:
+
+		$> pacman -Qii package_name
+
+To retrieve a list of the files installed by a package:
+
+		$> pacman -Ql package_name
+
+To retrieve a list of the files installed by a remote package:
+
+		$> pacman -Fl package_name
+
+To verify the presence of the files installed by a package:
+
+		$> pacman -Qk package_name
+
+Passing the k flag twice will perform a more thorough check.
+
+To query the database to know which package a file in the file system belongs to:
+
+		$> pacman -Qo /path/to/file_name
+
+To query the database to know which remote package a file belongs to:
+
+		$> pacman -F /path/to/file_name
+
+To list all packages no longer required as dependencies (orphans):
+
+		$> pacman -Qdt
+
+Additional commands
+
+Download a package without installing it:
+
+		#> pacman -Sw package_name
+
+Install a 'local' package that is not from a remote repository (e.g. the package is from the AUR):
+
+		#> pacman -U /path/to/package/package_name-version.pkg.tar.zst
+
+To keep a copy of the local package in pacman's cache, use:
+
+		#> pacman -U file:///path/to/package/package_name-version.pkg.tar.zst
+
+Install a 'remote' package (not from a repository stated in pacman's configuration files):
+
+		#> pacman -U http://www.example.com/repo/example.pkg.tar.zst
+
+To inhibit the -S, -U and -R actions, -p can be used.
+
+Pacman always lists packages to be installed or removed a
+
+Search for a package that contains a specific file
+
+Sync the files database:
+
+# pacman -Fy
+
+Search for a package containing a file, e.g.:
+
+$ pacman -F pacman

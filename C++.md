@@ -2452,6 +2452,385 @@ for < C++ 11
 `[Class]* [varName] = new [Class]( [ctor params] )`
 
 
+
+### Inheritence
+
+from a single parent class --- this is called simple inheritance or single inheritance
+
+inherits from more than one direct parent class it is called multiple inheritance.
+ 
+
+
+
+**Syntax**
+
+```cpp
+class derived_class_name : [access] base_class_name
+{
+	… class member declarations & definitions …
+};
+```
+
+
+#### Multiple Inheritance
+
+ MULTIPLE INHERITANCE is one way of building new objects from libraries of existing objects without reinventing the wheel
+ 
+ Multiple inheritance involves defining a derived class that directly inherits members from more than one base class
+The syntax for defining a class using multiple inheritance is:
+
+```cpp
+class derived_class_name : access1 base_class1 , ... ,  accessN base_classN 
+{
+... Class Members ...
+}
+```
+
+Keywords
+
+`derived`-  over-rides
+`final` prevents over-riding.
+
+
+```cpp
+// With C++11 “final” can be used to prevent inheritance
+class MyClass final
+{
+	…
+} ;
+// This will generate a compilation error
+class Derived : public MyClass
+{
+	…
+};
+
+```
+
+```cpp
+#include	<iostream>
+using namespace std;
+
+class base1
+{
+	protected:  	int d1;
+	public: 		void show_base1() { cout << "base1 data is " << d1 << " \n"; }
+};
+
+class base2
+{
+	protected:	int d2;
+	public:		void show_base2() { cout << "base2 data is " << d2 << "\n"; }
+};
+
+class derived_class : public base1 , public base2
+{
+	private:	int d_data;
+	public:
+			void set_derived() { d_data = d1 + d2; }
+			void set_base( int I, int j ) { d1 = I; d2 = j; }
+			void display_derived() { cout << "d_data is " << d_data << endl; }
+};
+
+// PROGRAM OUTPUT:	d_data is 50
+
+#include	"classes.h"
+
+int main()
+{
+	derived_class myobj;
+
+	myobj.set_base( 20,30 );
+	myobj.set_derived();
+	myobj.display_derived();
+
+	return 0;
+}
+
+```
+
+
+
+#### Inheritence vs Aggregation
+
+**Inheritance** should be used when a class is needed that does everything an existing class does, but has some special features---in the Unified Modeling Language this is called *generalization/specialization*
+
+   **Inheritance** models an “`is a`” relationship --- a child class object is a parent class object with some additional specialized characteristics;  The "is a" test is a reliable one/
+
+**Aggregation** is used when you want to build classes that contain other classes as components.  Containment is a synonym for Aggregation.
+
+
+
+
+The access status of the inherited members (public, private, or protected) is determined by the ‘access’ specified … if ‘access’ is not specified the default is private
+
+`Public` - everything is the same from the Derived class to the Base class.  Public is public and Protected=protected and Private is Private, which means that the Private Values are private to the base class
+ 
+| Base:  ->     | *Public*      | *Private*   | *Protected*   |
+| ------------- | ------------- | ----------- | ------------- |
+| Access        | Derived       | Derived     | Derived       |
+| ------------- | ------------- | -------     | ---------     |
+| **Public**    | **Public**    | **Private** | **Protected** |
+| **Private**   | **Private**   | **Private** | **Private**   |
+| **Protected** | **Protected** | **Private** | **Protected** |
+
+!!!Caution Private inheritance is really rarely a good choice.  The better choice is containment over this.
+
+•	Prefer using the strict encapsulation principle when implementing inheritance
+•	Prefer using private data members vs. protected data members to preserve strict encapsulation
+•	Make data members private & use protected member functions to allow derived classes access to base class data members
+
+
+
+
+#include	<iostream>
+using namespace std;
+class base
+{
+	private:		int x;
+	protected:	getX() { return x; }
+	public:		base() { x = 99; }
+			void display() { cout << "x is " << x << endl;}
+} ;
+class derived : public base
+{
+	private:	int y;
+	public:	derived () { y = 88 + getX() ; } 
+		…
+};
+
+
+```cpp
+#include	<iostream>
+using namespace std;
+
+class base_class
+{
+	private:	int x;
+			int y;
+
+	public:	base_class() { x = 0; y = 0; }
+			void set_base_data( int , int );
+			void display_base();
+};
+
+class derived_class : public base_class		// Specify inheritance
+{
+	private:	int d_data;
+	public:	derived_class() { d_data = 0; }
+			void set_derived_data( int );
+			void display_derived();
+};
+
+// PROGRAM OUTPUT:	x is 22 : y is 33
+//					d_data is 10
+
+int main()
+{
+	derived_class myobj;				// Declare a derived class object
+	myobj.set_base_data( 22 , 33 );	// Access base class private data via 
+									// public function
+	myobj.display_base();				// Display base class data
+	myobj.set_derived_data( 10 );		// Access derived class private data
+	myobj.display_derived();			// Display derived class private data
+	return 0;
+}
+
+```
+
+
+```cpp
+// This program defines a derived class that does nothing but use the 
+// inherited respond() function.
+
+#include	<iostream>
+using namespace std;
+
+class robot
+{
+	public: void respond( char *s ) { cout << s << endl; }
+};
+
+class defiant_robot : public robot
+{
+	public:
+};
+// This program defines a derived class that does nothing but use the 
+// inherited respond() function.
+//
+// PROGRAM OUTPUT:		Hello
+//						Whut!!
+
+
+#include	"robots.h"
+
+int main()
+{
+	robot r2d2;
+	r2d2.respond("Hello");
+	defiant_robot Butch;
+	Butch.respond("Whut!!");		// subclass inherits respond()
+
+	return 0;
+}
+// Program illustrating derived class overriding an inherited function
+//
+// The defiant_robot class overrides inherited respond() function by
+// defining its own respond() function with identical signature
+```
+
+Derived Classes Override or Shadow the Inherited Members.
+
+```cpp
+#include	<iostream>
+using namespace std;
+
+class robot
+{
+	public: void respond( char * s ) { cout << s << “\n”; }
+};
+
+class defiant_robot : public robot
+{
+	public: void respond( char * s ) { cout << “I Refuse \n”; }
+};
+
+```
+
+____
+
+### Base Class Pointers
+
+
+____
+
+
+### Interfaces
+
+
+
+
+___
+
+## Data structures
+
+### Lists
+
+(using vectors)
+
+C++ vectors are very similar to Python lists, i.e. they provide containers for a list/array of values that can be accessed by their index. The big difference between Python lists and C++ vectors is that C++ vectors can only hold values of a single type, which must be specified when you create the vector. For example, create the source file vector.cpp and copy in the below code;
+
+[chryswoods.com | Lists and Dictionaries](https://chryswoods.com/beginning_c++/lists.html)
+
+
+### Vectors
+
+
+
+### Dictionaries
+
+(Using Map)
+
+[chryswoods.com | Lists and Dictionaries](https://chryswoods.com/beginning_c++/lists.html)
+
+Like Python, C++ has a great dictionary type, which in C++ is called a map. This is a container that stores values that are indexed by a key. C++ maps are less versatile than Python dictionaries as all of the keys have to be the same type, and all of the values have to be the same type. For example, copy the following into the source file map.cpp;
+
+
+### Map
+
+```C++ 
+#include <iostream>
+#include <map>
+#include <string>
+
+int main()
+{
+    //create a map that stores strings indexed by strings
+    std::map<std::string, std::string> m;
+
+    //add some items to the map
+    m["cat"] = "mieow";
+    m["dog"] = "woof";
+    m["horse"] = "neigh";
+    m["fish"] = "bubble";
+
+    //now loop through all of the key-value pairs
+    //in the map and print them out
+    for ( auto item : m )
+    {
+        //item.first is the key
+        std::cout << item.first << " goes ";
+
+        //item.second is the value
+        std::cout << item.second << std::endl;
+    }
+
+    //finally, look up the sound of a cat
+    std::cout << "What is the sound of a cat? " << m["cat"] 
+              << std::endl;
+
+    return 0;
+}
+```
+
+
+- You need to include the <map> header file as std::map<> is part of the C++ standard library.
+- You must specify the type of the key and the type of the value, between the angle brackets, e.g. std::map<int,double> would be a map that uses integer keys to look up double values.
+- Like Python, you look up items in the map using square brackets, e.g. m["cat"] looks up the value for "cat".
+- Like Python, if the item doesn’t exist, then it is created and assigned, e.g. m["cat"] = "mieow" sets the value associated with the key cat to mieow.
+- Unlike Python, there is no .insert() function. You can only add items using lookup.
+- Unlike Python, there is no .keys() or .values() function. You have to write these yourself…
+- When you loop through the values in a map, the iterated item is a key-value pair. In for ( auto item : m ), the type of item is a key-value pair. The key is the first item in the pair item.first, while the value is the second item item.second.
+- All keys in a map have to have the same type, and all values in a map have to have the same type, buy keys and values don’t have to have the same type. For example, std::map<float,std::string> creates a map in which all keys are floats, and all values are strings.
+
+```C++ 
+    #include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+int main()
+{
+    //declare the map that uses a person's name as a key, and looks
+    //up a map that stores the person's weight and height
+    std::map< std::string, std::map<std::string,float> > database;
+
+    //let's first put the data in three vectors
+    std::vector<std::string> names = { "James", "Jane", "Janet", "John" };
+    std::vector<float> heights = { 1.7, 1.8, 1.5, 1.4 };
+    std::vector<float> weights = { 75.4, 76.5, 56.8, 52.0 };
+
+    //now put all of the data into the database
+    for (int i=0; i<names.size(); ++i)
+    {
+        std::map<std::string,float> data;
+
+        data["height"] = heights[i];
+        data["weight"] = weights[i];
+
+        database[names[i]] = data;
+    }
+
+    //now print out the entire database
+    for ( auto item : database )
+    {
+        //print out the name
+        std::cout << item.first << " : ";
+
+        //now print out all of the data about the person
+        for ( auto data : item.second )
+        {
+            std::cout << data.first << "=" << data.second << " ";
+        }
+
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+```
+
+
+
 ## Error Handling 
 
 

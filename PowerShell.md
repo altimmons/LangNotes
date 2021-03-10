@@ -3680,6 +3680,45 @@ Class SoundNames : System.Management.Automation.IValidateSetValuesGenerator {
 }
 ```
 
+### Modules (Writing)
+
+#### Storing and Installing a Module
+
+Once you have created a **script,** **binary,** or **manifest** module, you can save your work in a location that others may access it. For example, your module can be stored in the system folder where Windows PowerShell is installed, or it can be stored in a user folder.
+
+Generally speaking, you can determine where you should install your module by using one of the paths stored in the **$ENV:PSModulePath** variable. Using one of these paths means that PowerShell can automatically find and load your module when a user makes a call to it in their code. If you store your module somewhere else, you can explicitly let PowerShell know by passing in the location of your module as a parameter when you call Install-Module.
+
+Regardless, the path of the folder is referred to as the base of the module (ModuleBase), and the name of the script, binary, or manifest module file should be the same as the module folder name, with the following exceptions:
+
+[Defining Modules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.1)
+
+
+[How to write](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/writing-a-windows-powershell-module?view=powershell-7.1)
+
+[Understanding Modules](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/understanding-a-windows-powershell-module?view=powershell-7.1)
+
+[Write A Script Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module?view=powershell-7.1)
+
+[Write a Binary Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-binary-module?view=powershell-7.1)
+
+[Write a Manifest Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest?view=powershell-7.1)
+
+#### Module Manifests
+
+A module manifest is a .psd1 file that contains a hash table. The keys and values in the hash table do the following things:
+
+- Describe the contents and attributes of the module.
+- Define the prerequisites.
+- Determine how the components are processed.
+
+Manifests are **not required** for a module. Modules can reference script files (.ps1), script module files (.psm1), manifest files (.psd1), formatting and type files (.ps1xml), cmdlet and provider assemblies (.dll), resource files, Help files, localization files, or any other type of file or resource that is bundled as part of the module. For an internationalized script, the module folder also contains a set of message catalog files. If you add a manifest file to the module folder, you can reference the multiple files as a single unit by referencing the manifest.
+
+- The manifest itself describes the following categories of information:
+- Metadata about the module, such as the module version number, the author, and the description.
+- Prerequisites needed to import the module, such as the Windows PowerShell version, the common language runtime (CLR) version, and the required modules.
+- Processing directives, such as the scripts, formats, and types to process.
+- Restrictions on the members of the module to export, such as the aliases, functions, variables, and cmdlets to export.
+
 
 ## COM Objects
 

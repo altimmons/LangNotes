@@ -34,7 +34,399 @@ Good-
 
 [Recipes « ActiveState Code](https://code.activestate.com/recipes/)
 
+[Module Reference](https://docs.python.org/3/py-modindex.html)
 
+
+
+
+## Doc Overview Links
+
+
+Python 3.9.2 documentation
+= ===============================
+
+Welcome! This is the documentation for Python 3.9.2.
+
+[What's new in Python 3.9?](https://docs.python.org/3/whatsnew/3.9.html)\
+or [all "What's new" documents](https://docs.python.org/3/whatsnew/index.html) since 2.0
+
+[Tutorial](https://docs.python.org/3/tutorial/index.html)
+
+[Library Reference](https://docs.python.org/3/library/index.html)
+
+[Language Reference](https://docs.python.org/3/reference/index.html)
+
+[Python Setup and Usage](https://docs.python.org/3/using/index.html)
+
+[Python HOWTOs](https://docs.python.org/3/howto/index.html)
+
+[Installing Python Modules](https://docs.python.org/3/installing/index.html)
+
+[Distributing Python Modules](https://docs.python.org/3/distributing/index.html)
+
+[Extending and Embedding](https://docs.python.org/3/extending/index.html)
+tutorial for C/C++ programmers
+
+[Python/C API](https://docs.python.org/3/c-api/index.html)\
+reference for C/C++ programmers
+
+[FAQs](https://docs.python.org/3/faq/index.html)\
+frequently asked questions (with answers!)
+
+**Indices and tables:**
+
+[Global Module Index](https://docs.python.org/3/py-modindex.html)\
+quick access to all modules
+
+[General Index](https://docs.python.org/3/genindex.html)\
+all functions, classes, terms
+
+[Glossary](https://docs.python.org/3/glossary.html)\
+the most important terms explained
+
+[Search page](https://docs.python.org/3/search.html)\
+search this documentation
+
+[Complete Table of Contents](https://docs.python.org/3/contents.html)\
+lists all sections and subsections
+
+**Meta information:**
+
+[Reporting bugs](https://docs.python.org/3/bugs.html)
+
+[Contributing to Docs](https://devguide.python.org/docquality/#helping-with-documentation)
+
+[About the documentation](https://docs.python.org/3/about.html)
+
+[History and License of Python](https://docs.python.org/3/license.html)
+
+[Copyright](https://docs.python.org/3/copyright.html)
+
+## Python Standard Library
+
+With links to official [Documentation](https://docs.python.org/3/library/index.html)
+
+
+
+
+-   [Built-in Functions](https://docs.python.org/3/library/functions.html)
+-   [Built-in Constants](https://docs.python.org/3/library/constants.html)
+    -   [Constants added by the `site` module](https://docs.python.org/3/library/constants.html#constants-added-by-the-site-module)
+-   [Built-in Types](https://docs.python.org/3/library/stdtypes.html)
+    -   [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth-value-testing)
+    -   [Boolean Operations --- `and`, `or`, `not`](https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not)
+    -   [Comparisons](https://docs.python.org/3/library/stdtypes.html#comparisons)
+    -   [Numeric Types --- `int`, `float`, `complex`](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex)
+    -   [Iterator Types](https://docs.python.org/3/library/stdtypes.html#iterator-types)
+    -   [Sequence Types --- `list`, `tuple`, `range`](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range)
+    -   [Text Sequence Type --- `str`](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
+    -   [Binary Sequence Types --- `bytes`, `bytearray`, `memoryview`](https://docs.python.org/3/library/stdtypes.html#binary-sequence-types-bytes-bytearray-memoryview)
+    -   [Set Types --- `set`, `frozenset`](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+    -   [Mapping Types --- `dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)
+    -   [Context Manager Types](https://docs.python.org/3/library/stdtypes.html#context-manager-types)
+    -   [Generic Alias Type](https://docs.python.org/3/library/stdtypes.html#generic-alias-type)
+    -   [Other Built-in Types](https://docs.python.org/3/library/stdtypes.html#other-built-in-types)
+    -   [Special Attributes](https://docs.python.org/3/library/stdtypes.html#special-attributes)
+-   [Built-in Exceptions](https://docs.python.org/3/library/exceptions.html)
+    -   [Base classes](https://docs.python.org/3/library/exceptions.html#base-classes)
+    -   [Concrete exceptions](https://docs.python.org/3/library/exceptions.html#concrete-exceptions)
+    -   [Warnings](https://docs.python.org/3/library/exceptions.html#warnings)
+    -   [Exception hierarchy](https://docs.python.org/3/library/exceptions.html#exception-hierarchy)
+-   [Text Processing Services](https://docs.python.org/3/library/text.html)
+    -   [`string` --- Common string operations](https://docs.python.org/3/library/string.html)
+    -   [`re` --- Regular expression operations](https://docs.python.org/3/library/re.html)
+    -   [`difflib` --- Helpers for computing deltas](https://docs.python.org/3/library/difflib.html)
+    -   [`textwrap` --- Text wrapping and filling](https://docs.python.org/3/library/textwrap.html)
+    -   [`unicodedata` --- Unicode Database](https://docs.python.org/3/library/unicodedata.html)
+    -   [`stringprep` --- Internet String Preparation](https://docs.python.org/3/library/stringprep.html)
+    -   [`readline` --- GNU readline interface](https://docs.python.org/3/library/readline.html)
+    -   [`rlcompleter` --- Completion function for GNU readline](https://docs.python.org/3/library/rlcompleter.html)
+-   [Binary Data Services](https://docs.python.org/3/library/binary.html)
+    -   [`struct` --- Interpret bytes as packed binary data](https://docs.python.org/3/library/struct.html)
+    -   [`codecs` --- Codec registry and base classes](https://docs.python.org/3/library/codecs.html)
+-   [Data Types](https://docs.python.org/3/library/datatypes.html)
+    -   [`datetime` --- Basic date and time types](https://docs.python.org/3/library/datetime.html)
+    -   [`zoneinfo` --- IANA time zone support](https://docs.python.org/3/library/zoneinfo.html)
+    -   [`calendar` --- General calendar-related functions](https://docs.python.org/3/library/calendar.html)
+    -   [`collections` --- Container datatypes](https://docs.python.org/3/library/collections.html)
+    -   [`collections.abc` --- Abstract Base Classes for Containers](https://docs.python.org/3/library/collections.abc.html)
+    -   [`heapq` --- Heap queue algorithm](https://docs.python.org/3/library/heapq.html)
+    -   [`bisect` --- Array bisection algorithm](https://docs.python.org/3/library/bisect.html)
+    -   [`array` --- Efficient arrays of numeric values](https://docs.python.org/3/library/array.html)
+    -   [`weakref` --- Weak references](https://docs.python.org/3/library/weakref.html)
+    -   [`types` --- Dynamic type creation and names for built-in types](https://docs.python.org/3/library/types.html)
+    -   [`copy` --- Shallow and deep copy operations](https://docs.python.org/3/library/copy.html)
+    -   [`pprint` --- Data pretty printer](https://docs.python.org/3/library/pprint.html)
+    -   [`reprlib` --- Alternate `repr()` implementation](https://docs.python.org/3/library/reprlib.html)
+    -   [`enum` --- Support for enumerations](https://docs.python.org/3/library/enum.html)
+    -   [`graphlib` --- Functionality to operate with graph-like structures](https://docs.python.org/3/library/graphlib.html)
+-   [Numeric and Mathematical Modules](https://docs.python.org/3/library/numeric.html)
+    -   [`numbers` --- Numeric abstract base classes](https://docs.python.org/3/library/numbers.html)
+    -   [`math` --- Mathematical functions](https://docs.python.org/3/library/math.html)
+    -   [`cmath` --- Mathematical functions for complex numbers](https://docs.python.org/3/library/cmath.html)
+    -   [`decimal` --- Decimal fixed point and floating point arithmetic](https://docs.python.org/3/library/decimal.html)
+    -   [`fractions` --- Rational numbers](https://docs.python.org/3/library/fractions.html)
+    -   [`random` --- Generate pseudo-random numbers](https://docs.python.org/3/library/random.html)
+    -   [`statistics` --- Mathematical statistics functions](https://docs.python.org/3/library/statistics.html)
+-   [Functional Programming Modules](https://docs.python.org/3/library/functional.html)
+    -   [`itertools` --- Functions creating iterators for efficient looping](https://docs.python.org/3/library/itertools.html)
+    -   [`functools` --- Higher-order functions and operations on callable objects](https://docs.python.org/3/library/functools.html)
+    -   [`operator` --- Standard operators as functions](https://docs.python.org/3/library/operator.html)
+-   [File and Directory Access](https://docs.python.org/3/library/filesys.html)
+    -   [`pathlib` --- Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
+    -   [`os.path` --- Common pathname manipulations](https://docs.python.org/3/library/os.path.html)
+    -   [`fileinput` --- Iterate over lines from multiple input streams](https://docs.python.org/3/library/fileinput.html)
+    -   [`stat` --- Interpreting `stat()` results](https://docs.python.org/3/library/stat.html)
+    -   [`filecmp` --- File and Directory Comparisons](https://docs.python.org/3/library/filecmp.html)
+    -   [`tempfile` --- Generate temporary files and directories](https://docs.python.org/3/library/tempfile.html)
+    -   [`glob` --- Unix style pathname pattern expansion](https://docs.python.org/3/library/glob.html)
+    -   [`fnmatch` --- Unix filename pattern matching](https://docs.python.org/3/library/fnmatch.html)
+    -   [`linecache` --- Random access to text lines](https://docs.python.org/3/library/linecache.html)
+    -   [`shutil` --- High-level file operations](https://docs.python.org/3/library/shutil.html)
+-   [Data Persistence](https://docs.python.org/3/library/persistence.html)
+    -   [`pickle` --- Python object serialization](https://docs.python.org/3/library/pickle.html)
+    -   [`copyreg` --- Register `pickle` support functions](https://docs.python.org/3/library/copyreg.html)
+    -   [`shelve` --- Python object persistence](https://docs.python.org/3/library/shelve.html)
+    -   [`marshal` --- Internal Python object serialization](https://docs.python.org/3/library/marshal.html)
+    -   [`dbm` --- Interfaces to Unix "databases"](https://docs.python.org/3/library/dbm.html)
+    -   [`sqlite3` --- DB-API 2.0 interface for SQLite databases](https://docs.python.org/3/library/sqlite3.html)
+-   [Data Compression and Archiving](https://docs.python.org/3/library/archiving.html)
+    -   [`zlib` --- Compression compatible with **gzip**](https://docs.python.org/3/library/zlib.html)
+    -   [`gzip` --- Support for **gzip** files](https://docs.python.org/3/library/gzip.html)
+    -   [`bz2` --- Support for **bzip2** compression](https://docs.python.org/3/library/bz2.html)
+    -   [`lzma` --- Compression using the LZMA algorithm](https://docs.python.org/3/library/lzma.html)
+    -   [`zipfile` --- Work with ZIP archives](https://docs.python.org/3/library/zipfile.html)
+    -   [`tarfile` --- Read and write tar archive files](https://docs.python.org/3/library/tarfile.html)
+-   [File Formats](https://docs.python.org/3/library/fileformats.html)
+    -   [`csv` --- CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
+    -   [`configparser` --- Configuration file parser](https://docs.python.org/3/library/configparser.html)
+    -   [`netrc` --- netrc file processing](https://docs.python.org/3/library/netrc.html)
+    -   [`xdrlib` --- Encode and decode XDR data](https://docs.python.org/3/library/xdrlib.html)
+    -   [`plistlib` --- Generate and parse Apple `.plist` files](https://docs.python.org/3/library/plistlib.html)
+-   [Cryptographic Services](https://docs.python.org/3/library/crypto.html)
+    -   [`hashlib` --- Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html)
+    -   [`hmac` --- Keyed-Hashing for Message Authentication](https://docs.python.org/3/library/hmac.html)
+    -   [`secrets` --- Generate secure random numbers for managing secrets](https://docs.python.org/3/library/secrets.html)
+-   [Generic Operating System Services](https://docs.python.org/3/library/allos.html)
+    -   [`os` --- Miscellaneous operating system interfaces](https://docs.python.org/3/library/os.html)
+    -   [`io` --- Core tools for working with streams](https://docs.python.org/3/library/io.html)
+    -   [`time` --- Time access and conversions](https://docs.python.org/3/library/time.html)
+    -   [`argparse` --- Parser for command-line options, arguments and sub-commands](https://docs.python.org/3/library/argparse.html)
+    -   [`getopt` --- C-style parser for command line options](https://docs.python.org/3/library/getopt.html)
+    -   [`logging` --- Logging facility for Python](https://docs.python.org/3/library/logging.html)
+    -   [`logging.config` --- Logging configuration](https://docs.python.org/3/library/logging.config.html)
+    -   [`logging.handlers` --- Logging handlers](https://docs.python.org/3/library/logging.handlers.html)
+    -   [`getpass` --- Portable password input](https://docs.python.org/3/library/getpass.html)
+    -   [`curses` --- Terminal handling for character-cell displays](https://docs.python.org/3/library/curses.html)
+    -   [`curses.textpad` --- Text input widget for curses programs](https://docs.python.org/3/library/curses.html#module-curses.textpad)
+    -   [`curses.ascii` --- Utilities for ASCII characters](https://docs.python.org/3/library/curses.ascii.html)
+    -   [`curses.panel` --- A panel stack extension for curses](https://docs.python.org/3/library/curses.panel.html)
+    -   [`platform` --- Access to underlying platform's identifying data](https://docs.python.org/3/library/platform.html)
+    -   [`errno` --- Standard errno system symbols](https://docs.python.org/3/library/errno.html)
+    -   [`ctypes` --- A foreign function library for Python](https://docs.python.org/3/library/ctypes.html)
+-   [Concurrent Execution](https://docs.python.org/3/library/concurrency.html)
+    -   [`threading` --- Thread-based parallelism](https://docs.python.org/3/library/threading.html)
+    -   [`multiprocessing` --- Process-based parallelism](https://docs.python.org/3/library/multiprocessing.html)
+    -   [`multiprocessing.shared_memory` --- Provides shared memory for direct access across processes](https://docs.python.org/3/library/multiprocessing.shared_memory.html)
+    -   [The `concurrent` package](https://docs.python.org/3/library/concurrent.html)
+    -   [`concurrent.futures` --- Launching parallel tasks](https://docs.python.org/3/library/concurrent.futures.html)
+    -   [`subprocess` --- Subprocess management](https://docs.python.org/3/library/subprocess.html)
+    -   [`sched` --- Event scheduler](https://docs.python.org/3/library/sched.html)
+    -   [`queue` --- A synchronized queue class](https://docs.python.org/3/library/queue.html)
+    -   [`_thread` --- Low-level threading API](https://docs.python.org/3/library/_thread.html)
+-   [`contextvars` --- Context Variables](https://docs.python.org/3/library/contextvars.html)
+    -   [Context Variables](https://docs.python.org/3/library/contextvars.html#context-variables)
+    -   [Manual Context Management](https://docs.python.org/3/library/contextvars.html#manual-context-management)
+    -   [asyncio support](https://docs.python.org/3/library/contextvars.html#asyncio-support)
+-   [Networking and Interprocess Communication](https://docs.python.org/3/library/ipc.html)
+    -   [`asyncio` --- Asynchronous I/O](https://docs.python.org/3/library/asyncio.html)
+    -   [`socket` --- Low-level networking interface](https://docs.python.org/3/library/socket.html)
+    -   [`ssl` --- TLS/SSL wrapper for socket objects](https://docs.python.org/3/library/ssl.html)
+    -   [`select` --- Waiting for I/O completion](https://docs.python.org/3/library/select.html)
+    -   [`selectors` --- High-level I/O multiplexing](https://docs.python.org/3/library/selectors.html)
+    -   [`asyncore` --- Asynchronous socket handler](https://docs.python.org/3/library/asyncore.html)
+    -   [`asynchat` --- Asynchronous socket command/response handler](https://docs.python.org/3/library/asynchat.html)
+    -   [`signal` --- Set handlers for asynchronous events](https://docs.python.org/3/library/signal.html)
+    -   [`mmap` --- Memory-mapped file support](https://docs.python.org/3/library/mmap.html)
+-   [Internet Data Handling](https://docs.python.org/3/library/netdata.html)
+    -   [`email` --- An email and MIME handling package](https://docs.python.org/3/library/email.html)
+    -   [`json` --- JSON encoder and decoder](https://docs.python.org/3/library/json.html)
+    -   [`mailcap` --- Mailcap file handling](https://docs.python.org/3/library/mailcap.html)
+    -   [`mailbox` --- Manipulate mailboxes in various formats](https://docs.python.org/3/library/mailbox.html)
+    -   [`mimetypes` --- Map filenames to MIME types](https://docs.python.org/3/library/mimetypes.html)
+    -   [`base64` --- Base16, Base32, Base64, Base85 Data Encodings](https://docs.python.org/3/library/base64.html)
+    -   [`binhex` --- Encode and decode binhex4 files](https://docs.python.org/3/library/binhex.html)
+    -   [`binascii` --- Convert between binary and ASCII](https://docs.python.org/3/library/binascii.html)
+    -   [`quopri` --- Encode and decode MIME quoted-printable data](https://docs.python.org/3/library/quopri.html)
+    -   [`uu` --- Encode and decode uuencode files](https://docs.python.org/3/library/uu.html)
+-   [Structured Markup Processing Tools](https://docs.python.org/3/library/markup.html)
+    -   [`html` --- HyperText Markup Language support](https://docs.python.org/3/library/html.html)
+    -   [`html.parser` --- Simple HTML and XHTML parser](https://docs.python.org/3/library/html.parser.html)
+    -   [`html.entities` --- Definitions of HTML general entities](https://docs.python.org/3/library/html.entities.html)
+    -   [XML Processing Modules](https://docs.python.org/3/library/xml.html)
+    -   [`xml.etree.ElementTree` --- The ElementTree XML API](https://docs.python.org/3/library/xml.etree.elementtree.html)
+    -   [`xml.dom` --- The Document Object Model API](https://docs.python.org/3/library/xml.dom.html)
+    -   [`xml.dom.minidom` --- Minimal DOM implementation](https://docs.python.org/3/library/xml.dom.minidom.html)
+    -   [`xml.dom.pulldom` --- Support for building partial DOM trees](https://docs.python.org/3/library/xml.dom.pulldom.html)
+    -   [`xml.sax` --- Support for SAX2 parsers](https://docs.python.org/3/library/xml.sax.html)
+    -   [`xml.sax.handler` --- Base classes for SAX handlers](https://docs.python.org/3/library/xml.sax.handler.html)
+    -   [`xml.sax.saxutils` --- SAX Utilities](https://docs.python.org/3/library/xml.sax.utils.html)
+    -   [`xml.sax.xmlreader` --- Interface for XML parsers](https://docs.python.org/3/library/xml.sax.reader.html)
+    -   [`xml.parsers.expat` --- Fast XML parsing using Expat](https://docs.python.org/3/library/pyexpat.html)
+-   [Internet Protocols and Support](https://docs.python.org/3/library/internet.html)
+    -   [`webbrowser` --- Convenient Web-browser controller](https://docs.python.org/3/library/webbrowser.html)
+    -   [`cgi` --- Common Gateway Interface support](https://docs.python.org/3/library/cgi.html)
+    -   [`cgitb` --- Traceback manager for CGI scripts](https://docs.python.org/3/library/cgitb.html)
+    -   [`wsgiref` --- WSGI Utilities and Reference Implementation](https://docs.python.org/3/library/wsgiref.html)
+    -   [`urllib` --- URL handling modules](https://docs.python.org/3/library/urllib.html)
+    -   [`urllib.request` --- Extensible library for opening URLs](https://docs.python.org/3/library/urllib.request.html)
+    -   [`urllib.response` --- Response classes used by urllib](https://docs.python.org/3/library/urllib.request.html#module-urllib.response)
+    -   [`urllib.parse` --- Parse URLs into components](https://docs.python.org/3/library/urllib.parse.html)
+    -   [`urllib.error` --- Exception classes raised by urllib.request](https://docs.python.org/3/library/urllib.error.html)
+    -   [`urllib.robotparser` --- Parser for robots.txt](https://docs.python.org/3/library/urllib.robotparser.html)
+    -   [`http` --- HTTP modules](https://docs.python.org/3/library/http.html)
+    -   [`http.client` --- HTTP protocol client](https://docs.python.org/3/library/http.client.html)
+    -   [`ftplib` --- FTP protocol client](https://docs.python.org/3/library/ftplib.html)
+    -   [`poplib` --- POP3 protocol client](https://docs.python.org/3/library/poplib.html)
+    -   [`imaplib` --- IMAP4 protocol client](https://docs.python.org/3/library/imaplib.html)
+    -   [`nntplib` --- NNTP protocol client](https://docs.python.org/3/library/nntplib.html)
+    -   [`smtplib` --- SMTP protocol client](https://docs.python.org/3/library/smtplib.html)
+    -   [`smtpd` --- SMTP Server](https://docs.python.org/3/library/smtpd.html)
+    -   [`telnetlib` --- Telnet client](https://docs.python.org/3/library/telnetlib.html)
+    -   [`uuid` --- UUID objects according to **RFC 4122**](https://docs.python.org/3/library/uuid.html)
+    -   [`socketserver` --- A framework for network servers](https://docs.python.org/3/library/socketserver.html)
+    -   [`http.server` --- HTTP servers](https://docs.python.org/3/library/http.server.html)
+    -   [`http.cookies` --- HTTP state management](https://docs.python.org/3/library/http.cookies.html)
+    -   [`http.cookiejar` --- Cookie handling for HTTP clients](https://docs.python.org/3/library/http.cookiejar.html)
+    -   [`xmlrpc` --- XMLRPC server and client modules](https://docs.python.org/3/library/xmlrpc.html)
+    -   [`xmlrpc.client` --- XML-RPC client access](https://docs.python.org/3/library/xmlrpc.client.html)
+    -   [`xmlrpc.server` --- Basic XML-RPC servers](https://docs.python.org/3/library/xmlrpc.server.html)
+    -   [`ipaddress` --- IPv4/IPv6 manipulation library](https://docs.python.org/3/library/ipaddress.html)
+-   [Multimedia Services](https://docs.python.org/3/library/mm.html)
+    -   [`audioop` --- Manipulate raw audio data](https://docs.python.org/3/library/audioop.html)
+    -   [`aifc` --- Read and write AIFF and AIFC files](https://docs.python.org/3/library/aifc.html)
+    -   [`sunau` --- Read and write Sun AU files](https://docs.python.org/3/library/sunau.html)
+    -   [`wave` --- Read and write WAV files](https://docs.python.org/3/library/wave.html)
+    -   [`chunk` --- Read IFF chunked data](https://docs.python.org/3/library/chunk.html)
+    -   [`colorsys` --- Conversions between color systems](https://docs.python.org/3/library/colorsys.html)
+    -   [`imghdr` --- Determine the type of an image](https://docs.python.org/3/library/imghdr.html)
+    -   [`sndhdr` --- Determine type of sound file](https://docs.python.org/3/library/sndhdr.html)
+    -   [`ossaudiodev` --- Access to OSS-compatible audio devices](https://docs.python.org/3/library/ossaudiodev.html)
+-   [Internationalization](https://docs.python.org/3/library/i18n.html)
+    -   [`gettext` --- Multilingual internationalization services](https://docs.python.org/3/library/gettext.html)
+    -   [`locale` --- Internationalization services](https://docs.python.org/3/library/locale.html)
+-   [Program Frameworks](https://docs.python.org/3/library/frameworks.html)
+    -   [`turtle` --- Turtle graphics](https://docs.python.org/3/library/turtle.html)
+    -   [`cmd` --- Support for line-oriented command interpreters](https://docs.python.org/3/library/cmd.html)
+    -   [`shlex` --- Simple lexical analysis](https://docs.python.org/3/library/shlex.html)
+-   [Graphical User Interfaces with Tk](https://docs.python.org/3/library/tk.html)
+    -   [`tkinter` --- Python interface to Tcl/Tk](https://docs.python.org/3/library/tkinter.html)
+    -   [`tkinter.colorchooser` --- Color choosing dialog](https://docs.python.org/3/library/tkinter.colorchooser.html)
+    -   [`tkinter.font` --- Tkinter font wrapper](https://docs.python.org/3/library/tkinter.font.html)
+    -   [Tkinter Dialogs](https://docs.python.org/3/library/dialog.html)
+    -   [`tkinter.messagebox` --- Tkinter message prompts](https://docs.python.org/3/library/tkinter.messagebox.html)
+    -   [`tkinter.scrolledtext` --- Scrolled Text Widget](https://docs.python.org/3/library/tkinter.scrolledtext.html)
+    -   [`tkinter.dnd` --- Drag and drop support](https://docs.python.org/3/library/tkinter.dnd.html)
+    -   [`tkinter.ttk` --- Tk themed widgets](https://docs.python.org/3/library/tkinter.ttk.html)
+    -   [`tkinter.tix` --- Extension widgets for Tk](https://docs.python.org/3/library/tkinter.tix.html)
+    -   [IDLE](https://docs.python.org/3/library/idle.html)
+    -   [Other Graphical User Interface Packages](https://docs.python.org/3/library/othergui.html)
+-   [Development Tools](https://docs.python.org/3/library/development.html)
+    -   [`typing` --- Support for type hints](https://docs.python.org/3/library/typing.html)
+    -   [`pydoc` --- Documentation generator and online help system](https://docs.python.org/3/library/pydoc.html)
+    -   [Python Development Mode](https://docs.python.org/3/library/devmode.html)
+    -   [Effects of the Python Development Mode](https://docs.python.org/3/library/devmode.html#effects-of-the-python-development-mode)
+    -   [ResourceWarning Example](https://docs.python.org/3/library/devmode.html#resourcewarning-example)
+    -   [Bad file descriptor error example](https://docs.python.org/3/library/devmode.html#bad-file-descriptor-error-example)
+    -   [`doctest` --- Test interactive Python examples](https://docs.python.org/3/library/doctest.html)
+    -   [`unittest` --- Unit testing framework](https://docs.python.org/3/library/unittest.html)
+    -   [`unittest.mock` --- mock object library](https://docs.python.org/3/library/unittest.mock.html)
+    -   [`unittest.mock` --- getting started](https://docs.python.org/3/library/unittest.mock-examples.html)
+    -   [2to3 - Automated Python 2 to 3 code translation](https://docs.python.org/3/library/2to3.html)
+    -   [`test` --- Regression tests package for Python](https://docs.python.org/3/library/test.html)
+    -   [`test.support` --- Utilities for the Python test suite](https://docs.python.org/3/library/test.html#module-test.support)
+    -   [`test.support.socket_helper` --- Utilities for socket tests](https://docs.python.org/3/library/test.html#module-test.support.socket_helper)
+    -   [`test.support.script_helper` --- Utilities for the Python execution tests](https://docs.python.org/3/library/test.html#module-test.support.script_helper)
+    -   [`test.support.bytecode_helper` --- Support tools for testing correct bytecode generation](https://docs.python.org/3/library/test.html#module-test.support.bytecode_helper)
+-   [Debugging and Profiling](https://docs.python.org/3/library/debug.html)
+    -   [Audit events table](https://docs.python.org/3/library/audit_events.html)
+    -   [`bdb` --- Debugger framework](https://docs.python.org/3/library/bdb.html)
+    -   [`faulthandler` --- Dump the Python traceback](https://docs.python.org/3/library/faulthandler.html)
+    -   [`pdb` --- The Python Debugger](https://docs.python.org/3/library/pdb.html)
+    -   [The Python Profilers](https://docs.python.org/3/library/profile.html)
+    -   [`timeit` --- Measure execution time of small code snippets](https://docs.python.org/3/library/timeit.html)
+    -   [`trace` --- Trace or track Python statement execution](https://docs.python.org/3/library/trace.html)
+    -   [`tracemalloc` --- Trace memory allocations](https://docs.python.org/3/library/tracemalloc.html)
+-   [Software Packaging and Distribution](https://docs.python.org/3/library/distribution.html)
+    -   [`distutils` --- Building and installing Python modules](https://docs.python.org/3/library/distutils.html)
+    -   [`ensurepip` --- Bootstrapping the `pip` installer](https://docs.python.org/3/library/ensurepip.html)
+    -   [`venv` --- Creation of virtual environments](https://docs.python.org/3/library/venv.html)
+    -   [`zipapp` --- Manage executable Python zip archives](https://docs.python.org/3/library/zipapp.html)
+-   [Python Runtime Services](https://docs.python.org/3/library/python.html)
+    -   [`sys` --- System-specific parameters and functions](https://docs.python.org/3/library/sys.html)
+    -   [`sysconfig` --- Provide access to Python's configuration information](https://docs.python.org/3/library/sysconfig.html)
+    -   [`builtins` --- Built-in objects](https://docs.python.org/3/library/builtins.html)
+    -   [`__main__` --- Top-level script environment](https://docs.python.org/3/library/__main__.html)
+    -   [`warnings` --- Warning control](https://docs.python.org/3/library/warnings.html)
+    -   [`dataclasses` --- Data Classes](https://docs.python.org/3/library/dataclasses.html)
+    -   [`contextlib` --- Utilities for `with`-statement contexts](https://docs.python.org/3/library/contextlib.html)
+    -   [`abc` --- Abstract Base Classes](https://docs.python.org/3/library/abc.html)
+    -   [`atexit` --- Exit handlers](https://docs.python.org/3/library/atexit.html)
+    -   [`traceback` --- Print or retrieve a stack traceback](https://docs.python.org/3/library/traceback.html)
+    -   [`__future__` --- Future statement definitions](https://docs.python.org/3/library/__future__.html)
+    -   [`gc` --- Garbage Collector interface](https://docs.python.org/3/library/gc.html)
+    -   [`inspect` --- Inspect live objects](https://docs.python.org/3/library/inspect.html)
+    -   [`site` --- Site-specific configuration hook](https://docs.python.org/3/library/site.html)
+-   [Custom Python Interpreters](https://docs.python.org/3/library/custominterp.html)
+    -   [`code` --- Interpreter base classes](https://docs.python.org/3/library/code.html)
+    -   [`codeop` --- Compile Python code](https://docs.python.org/3/library/codeop.html)
+-   [Importing Modules](https://docs.python.org/3/library/modules.html)
+    -   [`zipimport` --- Import modules from Zip archives](https://docs.python.org/3/library/zipimport.html)
+    -   [`pkgutil` --- Package extension utility](https://docs.python.org/3/library/pkgutil.html)
+    -   [`modulefinder` --- Find modules used by a script](https://docs.python.org/3/library/modulefinder.html)
+    -   [`runpy` --- Locating and executing Python modules](https://docs.python.org/3/library/runpy.html)
+    -   [`importlib` --- The implementation of `import`](https://docs.python.org/3/library/importlib.html)
+    -   [Using `importlib.metadata`](https://docs.python.org/3/library/importlib.metadata.html)
+-   [Python Language Services](https://docs.python.org/3/library/language.html)
+    -   [`parser` --- Access Python parse trees](https://docs.python.org/3/library/parser.html)
+    -   [`ast` --- Abstract Syntax Trees](https://docs.python.org/3/library/ast.html)
+    -   [`symtable` --- Access to the compiler's symbol tables](https://docs.python.org/3/library/symtable.html)
+    -   [`symbol` --- Constants used with Python parse trees](https://docs.python.org/3/library/symbol.html)
+    -   [`token` --- Constants used with Python parse trees](https://docs.python.org/3/library/token.html)
+    -   [`keyword` --- Testing for Python keywords](https://docs.python.org/3/library/keyword.html)
+    -   [`tokenize` --- Tokenizer for Python source](https://docs.python.org/3/library/tokenize.html)
+    -   [`tabnanny` --- Detection of ambiguous indentation](https://docs.python.org/3/library/tabnanny.html)
+    -   [`pyclbr` --- Python module browser support](https://docs.python.org/3/library/pyclbr.html)
+    -   [`py_compile` --- Compile Python source files](https://docs.python.org/3/library/py_compile.html)
+    -   [`compileall` --- Byte-compile Python libraries](https://docs.python.org/3/library/compileall.html)
+    -   [`dis` --- Disassembler for Python bytecode](https://docs.python.org/3/library/dis.html)
+    -   [`pickletools` --- Tools for pickle developers](https://docs.python.org/3/library/pickletools.html)
+-   [Miscellaneous Services](https://docs.python.org/3/library/misc.html)
+    -   [`formatter` --- Generic output formatting](https://docs.python.org/3/library/formatter.html)
+-   [MS Windows Specific Services](https://docs.python.org/3/library/windows.html)
+    -   [`msilib` --- Read and write Microsoft Installer files](https://docs.python.org/3/library/msilib.html)
+    -   [`msvcrt` --- Useful routines from the MS VC++ runtime](https://docs.python.org/3/library/msvcrt.html)
+    -   [`winreg` --- Windows registry access](https://docs.python.org/3/library/winreg.html)
+    -   [`winsound` --- Sound-playing interface for Windows](https://docs.python.org/3/library/winsound.html)
+-   [Unix Specific Services](https://docs.python.org/3/library/unix.html)
+    -   [`posix` --- The most common POSIX system calls](https://docs.python.org/3/library/posix.html)
+    -   [`pwd` --- The password database](https://docs.python.org/3/library/pwd.html)
+    -   [`spwd` --- The shadow password database](https://docs.python.org/3/library/spwd.html)
+    -   [`grp` --- The group database](https://docs.python.org/3/library/grp.html)
+    -   [`crypt` --- Function to check Unix passwords](https://docs.python.org/3/library/crypt.html)
+    -   [`termios` --- POSIX style tty control](https://docs.python.org/3/library/termios.html)
+    -   [`tty` --- Terminal control functions](https://docs.python.org/3/library/tty.html)
+    -   [`pty` --- Pseudo-terminal utilities](https://docs.python.org/3/library/pty.html)
+    -   [`fcntl` --- The `fcntl` and `ioctl` system calls](https://docs.python.org/3/library/fcntl.html)
+    -   [`pipes` --- Interface to shell pipelines](https://docs.python.org/3/library/pipes.html)
+    -   [`resource` --- Resource usage information](https://docs.python.org/3/library/resource.html)
+    -   [`nis` --- Interface to Sun's NIS (Yellow Pages)](https://docs.python.org/3/library/nis.html)
+    -   [`syslog` --- Unix syslog library routines](https://docs.python.org/3/library/syslog.html)
+-   [Superseded Modules](https://docs.python.org/3/library/superseded.html)
+    -   [`optparse` --- Parser for command line options](https://docs.python.org/3/library/optparse.html)
+    -   [`imp` --- Access the import internals](https://docs.python.org/3/library/imp.html)
+-   [Undocumented Modules](https://docs.python.org/3/library/undoc.html)
+    -   [Platform specific modules](https://docs.python.org/3/library/undoc.html#platform-specific-modules)
 ## Troubleshooting
 
  fixed once I fixed register variable HKEY_CLASSES_ROOT\Applications\python.exe\shell\open\command to proper location of Python interpreter e.g "C:\Python36\python.exe" "%1" %*
@@ -95,6 +487,9 @@ Uninstall Options
 the show command lists the directory.
 
 Allegedly things are saved in %APPDATA%\pip or something. But not for mine.con
+
+
+
 ## Environments
 
 ### Virtualenv
@@ -184,9 +579,114 @@ Python 3 installs 3 versions of PIP, for example, python 3.6 installs:
 
 Sp, using `RapidEnivronmentEditor` RapidEE, add to path `D:\Visual Studio\Shared\Python36_64\Scripts` so that you can then call pip3.exe
 
+## Default Python
+
+To see if the conda installation of Python is in your PATH variable:
+- On Windows, open an Anaconda Prompt and run---echo %PATH%.
+- On macOS and Linux, open the terminal and run---echo $PATH.
+
+To see which Python installation is currently set as the default:
+
+- On Windows, open an Anaconda Prompt and run---where python.
+- On macOS and Linux, open the terminal and run---which python.
 ## Anaconda and Jupyter
 
+## Anaconda
+
+You dont have to get the full thing
+
+There is _Conda_ which is just the interface, 
+_miniConda_ which is the minumum of packages for Python and a Python install
+_Anaconda_  The above +150 packages preinstalled
+
+- Getting Started
+    - Verify Conda is installed, check version number
+        - `conda info`
+    - Update Conda to the current version 
+        - `conda update anaconda`
+    - Update all packages to the latest version of Anaconda. Will install stable and compatible versions, not necessarily the very latest.
+        - `conda update -n base conda`
+- Working with Environments
+    - Create a new environment named ENVNAME with specific version of Python and packages installed.
+        - `conda create --name ENVNAME python=3.6 "PKG1>7.6" PKG2`
+    - Activate a named Conda environment
+        - `conda activate ENVNAME`
+    - Activate a Conda environment at a particular location on disk
+        - `conda activate /path/to/environment-dir`
+    - Deactivate current environment
+        - `conda deactivate`
+    - List all packages and versions in the active environment
+        - `conda list`
+    - List all packages and versions in a named environment
+        - `conda list --name ENVNAME`
+    - List all revisions made within the active environment
+        - `conda list --revisions`
+    - List all revisions made in a specified environment
+        - `conda list --name ENVNAME --revisions`
+    - Restore an environment to a previous revision
+        - `conda install --name ENVNAME --revision REV_NUMBER`
+    - Delete an entire environment
+        - `conda remove --name ENVNAME --all`
+- Sharing Environments
+    - Make an exact copy of an environment
+        - `conda create --clone ENVNAME --name NEWENV`
+    - Export an environment to a YAML file that can be read on Windows, macOS, and Linux
+        - `conda env export --name ENVNAME > envname.yml`
+    - Create an environment from YAML file
+        - `conda env create --file envname.yml`
+    - Create an environment from the file named environment.yml in the current directory
+        - `conda env create`
+    - Export an environment with exact package versions for one OS
+        - `conda list --explicit > pkgs.txt`
+    - Create an environment based on exact package versions
+        - `conda create --name NEWENV --file pkgs.txt`
+- Using Packages and Channels
+    - Search for a package in currently configured channels with version range >=3.1.0, <3.2"
+        - `conda search PKGNAME=3.1 "PKGNAME [version='>=3.1.0,<3.2']"`
+    - Find a package on all channels using the Anaconda Client 
+        - `anaconda search FUZZYNAME`
+    - Install package from a specific channel
+        - `conda install conda-forge::PKGNAME`
+    - Install a package by exact version number (3.1.4)
+        - `conda install PKGNAME==3.1.4`
+    - Install one of the listed versions (OR)
+        - `conda install "PKGNAME[version='3.1.2|3.1.4']"`
+    - Install following several constraints (AND)
+        - `conda install "PKGNAME>2.5,<3.2"`
+    - Add a channel to your Conda configuration
+        - `conda config --add channels CHANNELNAME`
+- Additional Useful Hints
+    - Detailed information about package versions
+        - `conda search PKGNAME --info`
+    - Remove unused cached files including unused packages
+        - `conda clean --all`
+    - Remove a package from an environment
+        - `conda uninstall PKGNAME --name ENVNAME`
+    - Update all packages within an environment
+        - `conda update --all --name ENVNAME`
+    - Run most commands without requiring a user prompt. Useful for scripts.
+        - `conda install --yes PKG1 PKG2`
+    - Examine Conda configuration and configuration services
+        - `conda config --show-sources`
+        - `conda config --show `
+
+cp .\.jupyter C:\Users\andyt\JupyterNotebooks\.config\.jupyter
+____
+
+![](https://miro.medium.com/max/3600/1*G_9c9ttl-09eSKoSazPnNQ.png)
+
+
+
 ### Jupyter
+
+[Documentation](https://jupyter.readthedocs.io/en/latest/projects/content-projects.html#content-projects)
+
+[Running](https://jupyter.readthedocs.io/en/latest/running.html)
+
+Config files are stored by default in the ~/.jupyter directory.
+
+`JUPYTER_CONFIG_DIR`
+Set this environment variable to use a particular directory, other than the default, for Jupyter config files.
 
 #### Installing Kernals
 
@@ -207,19 +707,25 @@ conda install -c conda-forge ipywidgets beakerx
 Installation with Conda
 We recommend conda to install Jupyter and BeakerX, and to manage your Python environments. BeakerX works with Python 3.4 and above. Conda forge hosts the lastest version.
 
+```sh
 conda create -y -n beakerx 'python>=3'
 source activate beakerx
 conda config --env --add pinned_packages 'openjdk>8.0.121'
 conda install -y -c conda-forge ipywidgets beakerx
+```
+
 Installation for Jupyter Lab
 You can try it as follows. Note that installing Lab extensions requires npm.
 
+```
 conda create -y -n labx 'python>=3'
 source activate labx
 conda config --env --add pinned_packages 'openjdk>8.0.121'
 conda install -y -c conda-forge jupyterlab beakerx
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install beakerx-jupyterlab
+```
+
 Upgrading
 If you have an environment with a previous version of BeakerX, to upgrade to the latest version use:
 
@@ -709,6 +1215,9 @@ import \*:
 
 Hello world is just one line of code
 
+
+
+
 ### print()
 
 see (Strings- Print)[#### Print]
@@ -815,7 +1324,7 @@ See the [Section on String Formatting](#STRING-FORMATTING)  section for more on 
 
 `global` can be used to call a variable global in scope
 
-```py3
+```py
 x = "global"
 
 def foo():
@@ -830,7 +1339,7 @@ foo()
 
 `nonlocal` is similar, but goes to an outer function
 
-```py3
+```py
 def outer():
     x = "local"
 
@@ -878,55 +1387,7 @@ After global assignment: nonlocal spam
 In global scope: global spam
 
 
-### lambda
 
-[Examples and Explination](https://realpython.com/python-lambda/)
-
-[Python Lambda](https://www.w3schools.com/python/python_lambda.asp)
-
-Program to show the use of lambda functions
-
-```py
-double = lambda x: x * 2
-print(double(5))
- @Output: 10
-```
-
-
- [Lambda Calculus as used in lists](#Lambda-Calculus)
-
- `sp = lambda i: str(i)` 
- 
- this is the same as
-
- ```py
-def sp(i): return str(i)
-
-# you can declare and use lambdas at the same time
-
-(lambda x : x + 1)(5) 
-#this creates a trivial lambda and adds one to it, then you pass that 5- gives 6;
-
-mys = "This is a test of python stringy thingys"
-(lambda s : str(s))(mys)
-
-
-(lambda s : (s, s[:21])[len(s) > 20]) #this truncates things, but it needs s to be a string
-
-(lambda s : (s, s[:21])[len(s) > 20])(mys) #truncates as exptected
-
-#so this is a lambda passing to a lamda and declaring a function, in one line
-
-truncate = (lambda s : (s, s[:21])[len(s) > 20])((lambda x : str(x))(mys)
-
-#the same as 
-def truncate(s): return (str(s), str(s)[:20])[len(str(s)) > 20]
-
-
-#final form
-
-truncate: Callable[[Any], str] = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 20])((lambda _s: str(_s))(_s))
- ```
 
 ### Built-in Functions
 
@@ -936,8 +1397,8 @@ Python has a few built in functions:
 
 - [`__import__()`](#import)
 - abs() - absolute
-- all()
-- any()
+- [all()](#any() & all())
+- [any()](#any() & all())
 - * ascii()
 - basestring()
 - bin()
@@ -957,23 +1418,23 @@ Python has a few built in functions:
 - [dict()](#{DICTIONARY})
 - dir() - get all the methods related to an object
 - divmod()
-- enumerate()
+- [enumerate()](#enumerate(x))
 - eval()
 - execfile()
 - issubclass()
 - [print()](#print())
 - * exec()
-- * exit()
+- * [exit()](#Exit() vs Quit())
 - file()
-- filter()
+- [filter()](#filter())
 - float()
 - format()
-- frozenset()
+- [frozenset()](#Frozensets)
 - getattr()
 - globals()
 - hasattr()
 - hash()
-- help() - get documentation on a command
+- [help()](#help()) - get documentation on a command
 - hex()
 - id()
 - input()
@@ -999,10 +1460,10 @@ Python has a few built in functions:
 - pow()
 - [print()](#print())
 - property()
-- * quit()
+- * [quit()](#Exit() vs Quit())
 - [range()](#RANGES)
 - raw_input()
-- reduce()
+- [reduce()](#reduce())
 - reload()
 - repr()
 - reversed()
@@ -1171,12 +1632,41 @@ False
 True
 ```
 
+## Functional Methods
+
+ 
+
+Functional programming typically uses lists, arrays, and other iterables to represent the data along with a set of functions that operate on that data and transform it. When it comes to processing data with a functional style, there are at least three commonly used techniques:
+
+**Mapping** consists of applying a transformation function to an iterable to produce a new iterable. Items in the new iterable are produced by calling the transformation function on each item in the original iterable.
+
+**Filtering** consists of applying a predicate or Boolean-valued function to an iterable to generate a new iterable. Items in the new iterable are produced by filtering out any items in the original iterable that make the predicate function return false.
+
+**Reducing** consists of applying a reduction function to an iterable to produce a single cumulative value.
+
+Also includded - **Anonymous functions**
+
+[From](https://realpython.com/python-map-function/)
+
 
 ### map()
+
+[Doc](https://docs.python.org/3/library/functions.html#map)
+
+
+
+        map(function, iterable[, iterable1, iterable2,..., iterableN])
 
 The `map()` function in Python takes in a function and a list.
 
 The function is called with all the items in the list and a new list is returned which contains items returned by that function for each item.
+
+
+Note: The first argument to `map()` is a **function object,** which means that you need to pass a function without calling it. That is, without using a pair of parentheses.
+
+This first argument to `map()` is a **transformation function.** In other words, it’s the function that transforms each original item into a new (transformed) item. Even though the Python documentation calls this argument function, *it can be any Python callable.* This includes *built-in functions, classes, methods, lambda functions, and user-defined functions.*
+
+!!!note Note: In Python 2.x, map() returns a list. This behavior changed in Python 3.x. Now, map() returns a map object, which is an iterator that yields items on demand. That’s why you need to call list() to create the desired list object.
 
 Here is an example use of `map()` function to double all the items in a list.
 
@@ -1200,10 +1690,204 @@ Output: [2, 10, 8, 12, 16, 22, 6, 24]
 ['SENTENCE', 'FRAGMENT']
 >>> [upper(s) for s in ['sentence', 'fragment']]
 ['SENTENCE', 'FRAGMENT']
+
+>>> numbers = [-2, -1, 0, 1, 2]
+
+>>> abs_values = list(map(abs, numbers))
+>>> abs_values
+[2, 1, 0, 1, 2]
+
+>>> list(map(float, numbers))
+[-2.0, -1.0, 0.0, 1.0, 2.0]
+
+>>> words = ["Welcome", "to", "Real", "Python"]
+
+>>> list(map(len, words))
+[7, 2, 4, 6]
 ```
 
 You can of course achieve the same effect with a list comprehension.
 
+#### Processing Multiple Input Iterables With map()
+If you supply multiple iterables to map(), then the transformation function must take as many arguments as iterables you pass in. Each iteration of map() will pass one value from each iterable as an argument to function. The iteration stops at the end of the shortest iterable.
+
+Consider the following example that uses pow():
+
+```py
+>>> first_it = [1, 2, 3]
+>>> second_it = [4, 5, 6, 7]
+
+>>> list(map(pow, first_it, second_it))
+[1, 32, 729]
+```
+
+
+#### Transforming Iterables of Strings With Python’s map()
+
+When you’re working with iterables of string objects, you might be interested in transforming all the objects using some kind of transformation function. Python’s map() can be your ally in these situations. The following sections will walk you through some examples of how to use map() to transform iterables of string objects.
+
+```py
+>>> string_it = ["processing", "strings", "with", "map"]
+>>> list(map(str.capitalize, string_it))
+['Processing', 'Strings', 'With', 'Map']
+
+>>> list(map(str.upper, string_it))
+['PROCESSING', 'STRINGS', 'WITH', 'MAP']
+
+>>> list(map(str.lower, string_it))
+['processing', 'strings', 'with', 'map']
+
+```
+
+If you need to supply arguments rather than rely on the default value, then you can use a lambda function.
+
+Here’s an example that uses str.strip() to remove dots rather than the default whitespace:
+
+```py
+>>> with_dots = ["processing..", "...strings", "with....", "..map.."]
+
+>>> list(map(lambda s: s.strip("."), with_dots))
+['processing', 'strings', 'with', 'map']
+```
+
+The lambda function calls .strip() on the string object s and removes all the leading and trailing dots.
+
+
+Example:
+
+```py
+l1 = [n for n in range(1, 11)]
+l2 = [n for n in range(1, 11)]
+
+
+_n2 = 2
+
+# list(map(lambda _l1 : _l1 * _n2, l1))
+list(map(lambda _n2 : list(map(lambda _l1 : _l1 * _n2, l1)),  l2))
+```
+        [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+        [3, 6, 9, 12, 15, 18, 21, 24, 27, 30],
+        [4, 8, 12, 16, 20, 24, 28, 32, 36, 40],
+        [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+        [6, 12, 18, 24, 30, 36, 42, 48, 54, 60],
+        [7, 14, 21, 28, 35, 42, 49, 56, 63, 70],
+        [8, 16, 24, 32, 40, 48, 56, 64, 72, 80],
+        [9, 18, 27, 36, 45, 54, 63, 72, 81, 90],
+        [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]]
+
+
+#### Combining `map()` With Other Functional Tools
+
+So far, you’ve covered how to use `map()` to accomplish different tasks involving iterables. However, if you use `map()` along with other functional tools like `filter()` and `reduce()`, then you can perform more complex transformations on your iterables. That’s what you’re going to cover in the following two sections.
+
+`map()` and `filter()`
+
+Sometimes you need to process an input iterable and return another iterable that results from filtering out unwanted values in the input iterable. In that case, Python’s `filter()` can be a good option for you. `filter()` is a built-in function that takes two positional arguments:
+
+*function* will be a predicate or Boolean-valued function, a function that returns True or False according to the input data.
+
+*iterable* will be any Python iterable.
+
+
+### filter()
+
+To illustrate how you can use map() along with filter(), say you need to calculate the square root of all the values in a list. Since your list can contain negative values, you’ll get an error because the square root isn’t defined for negative numbers:
+
+```py
+>>> import math
+
+>>> math.sqrt(-16)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+    math.sqrt(-16)
+ValueError: math domain error
+
+>>> import math
+
+>>> def is_positive(num):
+...     return num >= 0
+...
+
+>>> def sanitized_sqrt(numbers):
+...     cleaned_iter = map(math.sqrt, filter(is_positive, numbers))
+...     return list(cleaned_iter)
+...
+
+>>> sanitized_sqrt([25, 9, 81, -16, 0])
+[5.0, 3.0, 9.0, 0.0]
+
+```
+
+### reduce()
+
+Python’s `reduce()`  is a function that lives in a module called functools in the Python standard library. `reduce()`  is another core functional tool in Python that is useful when you need to apply a function to an iterable and reduce it to a single cumulative value. This kind of operation is commonly known as reduction or folding. `reduce()`  takes two required arguments:
+
+function can be any Python callable that accepts two arguments and returns a value.
+iterable can be any Python iterable.
+`reduce()`  will apply function to all the items in iterable and cumulatively compute a final value.
+
+Here’s an example that combines map() and `reduce()`  to calculate the total size of all the files that live in your home directory cumulatively:
+
+>>> import functools
+>>> import operator
+>>> import os
+>>> import os.path
+
+>>> files = os.listdir(os.path.expanduser("~"))
+
+>>> functools.reduce(operator.add, map(os.path.getsize, files))
+4377381
+
+### lambda
+
+[Examples and Explination](https://realpython.com/python-lambda/)
+
+[Python Lambda](https://www.w3schools.com/python/python_lambda.asp)
+
+Program to show the use of lambda functions
+
+```py
+double = lambda x: x * 2
+print(double(5))
+ @Output: 10
+```
+
+
+ [Lambda Calculus as used in lists](#Lambda-Calculus)
+
+ `sp = lambda i: str(i)` 
+ 
+ this is the same as
+
+ ```py
+def sp(i): return str(i)
+
+# you can declare and use lambdas at the same time
+
+(lambda x : x + 1)(5) 
+#this creates a trivial lambda and adds one to it, then you pass that 5- gives 6;
+
+mys = "This is a test of python stringy thingys"
+(lambda s : str(s))(mys)
+
+
+(lambda s : (s, s[:21])[len(s) > 20]) #this truncates things, but it needs s to be a string
+
+(lambda s : (s, s[:21])[len(s) > 20])(mys) #truncates as exptected
+
+#so this is a lambda passing to a lamda and declaring a function, in one line
+
+truncate = (lambda s : (s, s[:21])[len(s) > 20])((lambda x : str(x))(mys)
+
+#the same as 
+def truncate(s): return (str(s), str(s)[:20])[len(str(s)) > 20]
+
+
+#final form
+
+truncate: Callable[[Any], str] = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 20])((lambda _s: str(_s))(_s))
+ ```
 ## Basics and Useful bits
 
 
@@ -1216,7 +1900,100 @@ You can of course achieve the same effect with a list comprehension.
 - String - character array -a string of characters
 - Lists `[ ]`- Mutable, heterogenous, 0 indexed.
 - Tuples `( )` - Immutable, 0 indexed, heterogeneous
-- Dictionaries -
+- Dictionaries - `{ }`
+- Sets 
+There are no real limit to how large an int can be in python, it supposedly will be handled.
+
+all of these can be called with the relevant constructor function-
+
+[list()](#[LISTS])
+[set()](#SETS SET(()) or {})
+[tuple()](#(TUPLES))
+[dict()](#{DICTIONARY})
+[str()](#Other string Functions)
+
+
+### int()
+
+has a slew of dunder methods, but the named methods are as follows:
+
+- `as_integer_ratio` - 
+- `bit_length` - 
+- `conjugate` - 
+- `denominator` - 
+- `from_bytes` - 
+- `imag` - 
+- `numerator` - 
+- `real` - 
+- `to_bytes` - 
+
+See Type Conversion -> from binary  in this section for some usages of int.
+
+### float() 
+
+- `as_integer_ratio` - 
+- `conjugate` - 
+- `fromhex` - 
+- `hex` - 
+- `imag` - 
+- `is_integer` - 
+- `real` - 
+
+### bool()
+
+'as_integer_ratio', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes',
+
+
+### Type conversion
+
+#### from binary
+
+`int('001001',2)` > 9
+ `print( int('00100001', 2))` > 33
+
+Converts an int of base 2, so from binary to integer.
+
+Can do other bases.  Maybe hex (see below)
+
+```py
+int('FFFFFF', 16)
+n = 0x100001
+# though from binary to int or hex or octal to int is easy since under the hood theyre the same and default display is int
+
+n = 0b1001010
+print(n)
+n = 0o665
+print(n)
+print( int('665', 8))
+n = 0xFFFFFF
+print(n)
+print(int('FFFFFF', 16))
+n = 0d1234567890 #error
+```
+back the other way is tougher:
+
+```py
+"{0:b}".format(37)
+'100101'
+#str.format() just to format one value is overkill. Go straight to the format() function: format(n, 'b')
+format(n, b)
+#Add the number of digits with a leading 0 to the formatting string:  formats to 16 digits with leading zeros.
+format(10, '016b')
+
+f"{37:b}" # in Python3.7 or later.
+
+#also
+bin(10)
+hex(10)
+oct(10)
+#Note also that it's faster to do  (0.369s for 1000000ops) than "{0:b}".format(i)\
+str(bin(i))[2:]
+```
+
+If two's complement is required, then the following line can be used:
+
+` '{0:{fill}{width}b}'.format((x + 2**n) % 2**n, fill='0', width=n) `
+
 
 ### Type() commmand
 
@@ -1372,6 +2149,90 @@ print("(1 + 2 - 3) * 2 =", (1 + 2 - 3) * 2)
 - `round(x[, n])`
 - `math.trunc(x)` - truncate x to Integral
 
+### Bitwise  Operators
+
+- `x << y` shift left 
+
+    Returns x with the bits shifted to the left by y places (and new bits on the right-hand-side are zeros). This is the same as multiplying x by 2**y.
+
+- `x >> y` - shift right
+    
+    Returns x with the bits shifted to the right by y places. This is the same as //'ing x by 2**y.
+
+- `x & y`
+
+    Does a "bitwise and". Each bit of the output is 1 if the corresponding bit of x AND of y is 1, otherwise it's 0.
+
+- `x | y`
+
+    Does a "bitwise or". Each bit of the output is 0 if the corresponding bit of x AND of y is 0, otherwise it's 1.
+
+`~ x`
+    
+    Returns the complement of x - the number you get by switching each 1 for a 0 and each 0 for a 1. This is the same as -x - 1.
+
+- `x ^ y`
+
+    Does a "bitwise exclusive or". Each bit of the output is the same as the corresponding bit in x if that bit in y is 0, and it's the complement of the bit in x if that bit in y is 1.
+
+
+    https://wiki.python.org/moin/BitManipulation
+
+    relevant libraries include:
+
+-   [ctypes --- A foreign function library for Python --- Python v2.7.3 documentation](http://docs.python.org/library/ctypes.html) - part of the standard library
+
+-   [bitarray - efficient arrays of booleans -- C extension](http://pypi.python.org/pypi/bitarray/)
+
+-   [python-bitstring - A Python module to help you manage your bits. - Google Project Hosting](https://code.google.com/p/python-bitstring/)
+
+-   [bitstruct - This module performs conversions between Python values and C bit field structs represented as Python bytearrays.](https://pypi.python.org/pypi/bitstruct/)
+
+
+See more in conversions, especially some more recent ones.
+
+Strings to Integers:
+
+    "1011101101": int(str, 2)
+
+    "m": ord(str)
+
+    "0xdecafbad": int(str, 16) (known to work in Python 2.4)
+
+    "decafbad": int(str, 16) (known to work in Python 2.4)
+
+Integers to Strings:
+
+"1011101101": built-in to Python 3 (see below)
+
+    "m": chr(str)
+
+    "0xdecafbad": hex(val)
+
+    "decafbad": "%x" % val
+
+    We are still left without a technique for producing binary strings, and decyphering hex strings.
+
+
+```py
+def bitLen(int_type):
+    length = 0
+    while (int_type):
+        int_type >>= 1
+        length += 1
+    return(length)
+
+for i in range(17):
+     print(bitLen(i))
+
+```
+```
+unsigned int v;          // count the number of bits set in v
+unsigned int c;          // c accumulates the total bits set in v
+for (c = 0; v; c++)
+{   v &= v - 1;  }       //clear the least significant bit set
+```
+
 ### Complex Operations
 
 module `cmath` - always available.
@@ -1390,7 +2251,35 @@ module `cmath` - always available.
 
 *New in version 3.6.
 
-### STRINGS
+
+
+### Boolean
+
+```py
+True
+False
+true
+false
+```
+
+True and False must be capitalized.
+
+In the context of Boolean operations, and also when expressions are used by control flow statements, the following values are interpreted as false: `False`, `None`, **numeric zero of all types,** and **empty strings and containers** (including **strings,** **tuples,** **lists,** **dictionaries,** **sets** and **frozensets).** All other values are interpreted as true. (See the **nonzero**() special method for a way to change this.)
+
+### A note on comparison
+
+Mutable objects will be un-equal unless they are the same object, because comparisons are based upon a hash.
+
+Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
+
+
+
+
+### Strings - see following
+
+## STRINGS
+
+Strings are so important they get their own section
 
 Strings are an ordered collection of characters. It is a series of characters surrounded by ' or "
 
@@ -1417,7 +2306,27 @@ print(long_string[:-5])  #Everything up to the last 5 characters
 print(long_string[:4] + " be there")  #Concatenate part of a string to another
 ```
 
-#### PRINT()
+### String Constants:
+
+- `string.ascii_letters` - The concatenation of the ascii_lowercase and ascii_uppercase constants described below. This value is not locale-dependent.
+
+- `string.ascii_lowercase` - The lowercase letters 'abcdefghijklmnopqrstuvwxyz'. This value is not locale-dependent and will not change.
+
+- `string.ascii_uppercase` - The uppercase letters 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'. This value is not locale-dependent and will not change.
+
+- `string.digits` - The string '0123456789'.
+
+- `string.hexdigits` - The string '0123456789abcdefABCDEF'.
+
+- `string.octdigits` - The string '01234567'.
+
+- `string.punctuation` - String of ASCII characters which are considered punctuation characters in the C locale: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~.
+
+- `string.printable` - String of ASCII characters which are considered printable. This is a combination of digits, ascii_letters, punctuation, and whitespace.
+
+- `string.whitespace` - A string containing all ASCII characters that are considered whitespace. This includes the characters space, tab, linefeed, return, formfeed, and vertical tab.
+
+### PRINT()
 
 print() outputs data to the screen
 
@@ -1463,7 +2372,52 @@ the equal sign to signify it'''
 print(quote + multi_line_quote)
 ```
 
-#### Substring
+
+### PPrint
+
+[PPrint Doc](https://docs.python.org/3/library/pprint.html)
+
+
+
+new in version 3.9, Pretty Printer
+
+The pprint module provides a capability to “pretty-print” arbitrary Python data structures in a form which can be used as input to the interpreter. If the formatted structures include objects which are not fundamental Python types, the representation may not be loadable. This may be the case if objects such as files, sockets or classes are included, as well as many other objects which are not representable as Python literals.
+
+
+`.pformat(object)`
+Return the formatted representation of object. This takes into account the options passed to the PrettyPrinter constructor.
+
+`.pprint(object)`
+Print the formatted representation of object on the configured stream, followed by a newline.
+
+The following methods provide the implementations for the corresponding functions of the same names. Using these methods on an instance is slightly more efficient since new PrettyPrinter objects don’t need to be created.
+
+`.isreadable(object)`
+Determine if the formatted representation of the object is “readable,” or can be used to reconstruct the value using eval(). Note that this returns False for recursive objects. If the depth parameter of the PrettyPrinter is set and the object is deeper than allowed, this returns False.
+
+`.isrecursive(object)`
+Determine if the object requires a recursive representation.
+
+This method is provided as a hook to allow subclasses to modify the way objects are converted to strings. The default implementation uses the internals of the saferepr() implementation.
+
+`.format(object, context, maxlevels, level)`
+
+Returns three values: 
+
+-   the formatted version of object as a string, 
+- a flag indicating whether the result is readable, and 
+- a flag indicating whether recursion was detected. 
+    - if an object needs to be presented which is already represented in context, the third return value should be True. 
+
+- `object` The first argument is the object to be presented. 
+
+- `context` The second is a dictionary which contains the id() of objects that are part of the current presentation context (direct and indirect containers for object that are affecting the presentation) as the keys;
+
+- `maxlevels` The third argument, maxlevels, gives the requested limit to recursion; this will be 0 if there is no requested limit. This argument should be passed unmodified to recursive calls. 
+    - Recursive calls to the format() method should add additional entries for containers to this dictionary. 
+
+- The fourth argument, level, gives the current level; recursive calls should be passed a value less than that of the current call.
+### Substring
 
 Squarebrackets after the string or variable subset. 0 indexed and non-inclusive.
 
@@ -1504,7 +2458,7 @@ print("abc".endswith("c", 1))
 ```
 
 
-#### Split
+### Split
 
 Use split to split at a particular character. Returns a tuple.
 
@@ -1517,16 +2471,68 @@ Use split to split at a particular character. Returns a tuple.
 'gmail.com'
 ```
 
-#### Other string Functions
+### Other string Functions
+
+!!!Note Note: All string methods returns new values. They do not change the original string. 
+    This contrasts with List and perhaps the other object types.
 
 - **str**.`capitalize()` - Capitalizes the first letter
 - **str**.`find('`_[search string]_`')` -Returns the index of the start of the string (case sensitive)
 - **str**.`isalpha()` - Returns true if all characters are letters ' isn't a letter
 - **str**.`isalnum()` - Returns true if all characters are numbers
 - `len(`**str**`)` - Returns the string length
-- **str**.`replace('`_[search string]_`', '`_[replace string]_`')` - Replace the first word with the second (Add a number to replace more)
-- **str**.`strip()` - Remove white space from front and end
-- **str**.`split('`_[split string]_`')` - Split a string into a list based on the delimiter you provide
+
+- `capitalize()` - Converts the first character to upper case
+- `casefold()` - Converts string into lower case
+- `center()` - Returns a centered string
+- `count()` - Returns the number of times a specified value occurs in a string
+- `encode()` - Returns an encoded version of the string
+- `endswith()` - Returns true if the string ends with the specified value
+- `expandtabs()` - Sets the tab size of the string
+- `find()` - Searches the string for a specified value and returns the position of where it was found
+- `format()` - Formats specified values in a string
+- `format_map()` - Formats specified values in a string
+- `index()` - Searches the string for a specified value and returns the position of where it was found
+- `isalnum()` - Returns True if all characters in the string are alphanumeric
+- `isalpha()` - Returns True if all characters in the string are in the alphabet
+- `isascii()` - 
+- `isdecimal()` - Returns True if all characters in the string are decimals
+- `isdigit()` - Returns True if all characters in the string are digits
+- `isidentifier()` - Returns True if the string is an identifier
+- `islower()` - Returns True if all characters in the string are lower case
+- `isnumeric()` - Returns True if all characters in the string are numeric
+- `isprintable()` - Returns True if all characters in the string are printable
+- `isspace()` - Returns True if all characters in the string are whitespaces
+- `istitle()` - Returns True if the string follows the rules of a title
+- `isupper()` - Returns True if all characters in the string are upper case
+- `join()` - Joins the elements of an iterable to the end of the string
+- `ljust()` - Returns a left justified version of the string
+- `lower()` - Converts a string into lower case
+- `lstrip()` - Returns a left trim version of the string
+- `maketrans()` - Returns a translation table to be used in translations
+- `partition()` - Returns a tuple where the string is parted into three parts
+- `replace()` - Returns a string where a specified value is replaced with a specified value
+- `rfind()` - Searches the string for a specified value and returns the last position of where it was found
+- `rindex()` - Searches the string for a specified value and returns the last position of where it was found
+- `rjust()` - Returns a right justified version of the string
+- `rpartition()` - Returns a tuple where the string is parted into three parts
+- `rsplit()` - Splits the string at the specified separator, and returns a list
+- `rstrip()` - Returns a right trim version of the string
+- `split()` - Splits the string at the specified separator, and returns a list
+- `splitlines()` - Splits the string at line breaks and returns a list
+- `startswith()` - Returns true if the string starts with the specified value
+- `strip()` - Returns a trimmed version of the string
+- `swapcase()` - Swaps cases, lower case becomes upper case and vice versa
+- `title()` - Converts the first character of each word to upper case
+- `translate()` - Returns a translated string
+- `upper()` - Converts a string into upper case
+- `zfill()` - Fills the string with a specified number of 0 values at the beginning
+
+New methods:
+
+- `isascii()` 
+- `removeprefix`
+- `removesuffix`
 
 Other String Methods:
 - `__add__`
@@ -1562,44 +2568,7 @@ Other String Methods:
 - `__subclasshook__`
 - `_formatter_field_name_split`
 - `_formatter_parser`
-- **`capitalize`**
-- `center`
-- `count`
-- `decode`
-- `encode`
-- `endswith`
-- `expandtabs`
-- **`find`**
-- `format`
-- `index`
-- `isalnum`
-- `isalpha`
-- `isdigit`
-- `islower`
-- `isspace`
-- `istitle`
-- `isupper`
-- `join`
-- `ljust`
-- `lower`
-- `lstrip`
-- `partition`
-- `replace`
-- `rfind`
-- `rindex`
-- `rjust`
-- `rpartition`
-- `rsplit`
-- `rstrip`
-- `split`
-- `splitlines`
-- `startswith`
-- `strip`
-- `swapcase`
-- `title`
-- `translate`
-- `upper`
-- `zfill`
+
 
 
 ```py
@@ -1631,7 +2600,18 @@ for c in str(1952):
 print(sumDigits)
 ```
 
-#### STRING FORMATTING
+### STRING FORMATTING
+
+```
+"First, thou shalt count to {0}"  # References first positional argument
+"Bring me a {}"                   # Implicitly references the first positional argument
+"From {} to {}"                   # Same as "From {0} to {1}"
+"My quest is {name}"              # References keyword argument 'name'
+"Weight in tons {0.weight}"       # 'weight' attribute of first positional arg
+"Units destroyed: {players[0]}"   # First element of keyword argument 'players'.
+```
+
+[String Library](https://docs.python.org/3/library/string.html)
 
 
 [Official Doc](https://docs.python.org/3/library/string.html#string.Formatter.vformat)
@@ -1721,7 +2701,7 @@ print "%s + %i = %i" % ('3',x, x+x)
 [Reference for formatted Printing](https://www.python-course.eu/python3_formatted_output.php)
 See more in the [Basics-Literals Section](# ### Literals)
 
-#### Print integer with commas (1,000,000)
+### Print integer with commas (1,000,000)
 
 This has a simple format:
 
@@ -1970,7 +2950,7 @@ Accessing arguments by position:
    10     A    12  1010
    11     B    13  1011
 ```
-#### My Examples
+### My Examples
 
 
 ```py
@@ -1981,6 +2961,8 @@ url_start = 1
 ```
 
 ### f Strings
+
+In python 3.8+
 
 f strings are a format of printf().  They have the specific format `f'text text {value to show} text text {another value}'`
 
@@ -2001,24 +2983,2896 @@ See the Advanced Specification above for more- but briefly
 
             Three conversion flags are currently supported: '!s' which calls str() on the value, '!r' which calls repr() and '!a' which calls ascii().
 
-### Boolean
+### Templates
+
+[Template Class](https://docs.python.org/3/library/string.html#string.Template)
+
+
+From : [String Doc](https://docs.python.org/3/library/string.html)
+
+
+Template strings provide simpler string substitutions as described in PEP 292. A primary use case for template strings is for internationalization (i18n) since in that context, the simpler syntax and functionality makes it easier to translate than other built-in string formatting facilities in Python. As an example of a library built on template strings for i18n, see the flufl.i18n package.
+
+Template strings support $-based substitutions, using the following rules:
+
+$$ is an escape; it is replaced with a single $.
+
+$identifier names a substitution placeholder matching a mapping key of "identifier". By default, "identifier" is restricted to any case-insensitive ASCII alphanumeric string (including underscores) that starts with an underscore or ASCII letter. The first non-identifier character after the $ character terminates this placeholder specification.
+
+${identifier} is equivalent to $identifier. It is required when valid identifier characters follow the placeholder but are not part of the placeholder, such as "${noun}ification".
+Here is an example of how to use a Template:
+
+        >>>
+        >>> from string import Template
+        >>> s = Template('$who likes $what')
+        >>> s.substitute(who='tim', what='kung pao')
+        'tim likes kung pao'
+        >>> d = dict(who='tim')
+        >>> Template('Give $who $100').substitute(d)
+        Traceback (most recent call last):
+        ...
+        ValueError: Invalid placeholder in string: line 1, col 11
+        >>> Template('$who likes $what').substitute(d)
+        Traceback (most recent call last):
+        ...
+        KeyError: 'what'
+        >>> Template('$who likes $what').safe_substitute(d)
+        'tim likes $what'
+
+
+### Regular Expressions
+
+[RE class](https://docs.python.org/3/library/re.html#module-re)
+
+['A gentler intro'](https://docs.python.org/3/howto/regex.html#regex-howto)
+
+\d
+Matches any decimal digit; this is equivalent to the class [0-9].
+
+\D
+Matches any non-digit character; this is equivalent to the class [^0-9].
+
+\s
+Matches any whitespace character; this is equivalent to the class [ \t\n\r\f\v].
+
+\S
+Matches any non-whitespace character; this is equivalent to the class [^ \t\n\r\f\v].
+
+\w
+Matches any alphanumeric character; this is equivalent to the class [a-zA-Z0-9_].
+
+\W
+Matches any non-alphanumeric character; this is equivalent to the class [^a-zA-Z0-9_].
+
+todo
+
+Method/Attribute
+
+Purpose
+
+- `match()` - Determine if the RE matches at the beginning of the string.
+
+- `search()` - Scan through a string, looking for any location where this RE matches.
+
+- `findall()` - Find all substrings where the RE matches, and returns them as a list.
+
+- `finditer()` - Find all substrings where the RE matches, and returns them as an iterator.
+
+Method/Attribute
+
+Purpose
+
+- `group()` - Return the string matched by the RE
+
+- `start()` - Return the starting position of the match
+
+- `end()` - Return the ending position of the match
+
+- `span()` - Return a tuple containing the (start, end) positions of the match
+
+- `split()` - Split the string into a list, splitting it wherever the RE matches
+
+- `sub()` - Find all substrings where the RE matches, and replace them with a different string
+
+- `subn()` - Does the same thing as sub(), but returns the new string and the number of replacements
+
+escape(pattern)
+Escape special characters in pattern. This is useful if you want to match an arbitrary literal string that may have regular expression metacharacters in it. For example:
+
+
+.purge()
+Clear the regular expression cache.
+
+fullmatch(pattern, string, flags=0)
+If the whole string matches the regular expression pattern, return a corresponding match object. Return None if the string does not match the pattern; note that this is different from a zero-length match.
+
+compile(pattern, flags=0)
+Compile a regular expression pattern into a regular expression object, which can be used for matching using its match(), search() and other methods, described below.
+
+
+ groupdict() Additionally, you can retrieve named groups as a dictionary with
+
+exception re.`error(msg, pattern=None, pos=None)` Exception raised when a string passed to one of the functions here is not a valid regular expression (for example, it might contain unmatched parentheses) or when some other error occurs during compilation or matching. It is never an error if a string contains no match for a pattern. The error instance has the following additional attributes:
+
+compile',
+ 'copyreg',
+ 'enum',
+ 'error',
+ 'escape',
+ 'findall',
+ 'finditer',
+ 'fullmatch',
+ 'functools',
+ 'match',
+ 'purge',
+ 'search',
+ 'split',
+ 'sre_compile',
+ 'sre_parse',
+ 'sub',
+ 'subn',
+ 'template'
+
+
+Flag
+
+Meaning
+
+ASCII, A
+
+Makes several escapes like \w, \b, \s and \d match only on ASCII characters with the respective property.
+
+DOTALL, S
+
+Make . match any character, including newlines.
+
+IGNORECASE, I
+
+Do case-insensitive matches.
+
+LOCALE, L
+
+Do a locale-aware match.
+
+MULTILINE, M
+
+Multi-line matching, affecting ^ and $.
+
+VERBOSE, X (for ‘extended’)
+
+Enable verbose REs, which can be organized more cleanly and understandably.
+
+
+
+Lookahead Assertions
+Another zero-width assertion is the lookahead assertion. Lookahead assertions are available in both positive and negative form, and look like this:
+
+(?=...)
+Positive lookahead assertion. This succeeds if the contained regular expression, represented here by ..., successfully matches at the current location, and fails otherwise. But, once the contained expression has been tried, the matching engine doesn’t advance at all; the rest of the pattern is tried right where the assertion started.
+
+(?!...)
+Negative lookahead assertion. This is the opposite of the positive assertion; it succeeds if the contained expression doesn’t match at the current position in the string.
+___
+___
+
+## LISTS, TUPLES and DICTIONARIES
+
+___
+
+| `LISTS`           | **TUPLES**         | _DICTIONARES_             |                                                                                              |
+| ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
+| dunder            | methods            |                           |                                                                                              |
+| list methods      | tuple equivalent   | works in dictionaries     | descriptions                                                                                 |
+| x is a List       |                    |                           |                                                                                              |
+| x+**L**           | yes                | no                        | y=list (0)                                                                                   |
+| x[i]=**L**        | no                 | yes, where y is a key     | set item                                                                                     |
+| x[i:j]=**L**      | no                 | no                        | set items (1)                                                                                |
+| y in x            | yes                | Yes, only searches keys   | x must be an item in a list. not another list(2)                                             |
+| del x[y]          | no                 | yes, where y is a key     | remove y (int)                                                                               |
+| del x[i:j]        | no                 | no                        | remove i through j (ints) (1)                                                                |
+| cmp(x,y)          | yes                | yes                       | compares                                                                                     |
+| ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
+| ==,>=,<=,>,<,!=   | yes                | yes                       | unsure, comparing two lists does equal true in some cases. Length?                           |
+| x[y]              | yes                | yes, where y is a key     | lookup 0 indexed value                                                                       |
+| x[i:j]            | yes                | no                        | as above a slice (1)                                                                         |
+| len(x)            | yes                | yes                       | returns the length of list.                                                                  |
+| x+=**L**          | yes,               | no                        | x+=y perform action and set. y must be list. basically append. (3)                           |
+| x\*=**L**         | yes                | no                        | multiplies the list by copying itself (4)                                                    |
+| repr(x)           | yes                | yes                       | returns a string representation                                                              |
+| iter(x)           | yes                | yes                       | uses in iteration                                                                            |
+| x\*n              | yes                | no                        | returns the list or tuple that many times in one list or tuple                               |
+| explicit          | methods            |                           | definition                                                                                   |
+| append(...)       | no                 | no                        | L.append(object) -- append object to end                                                     |
+| count(...)        | yes                | no                        | L.count(value) -> integer -- return number of occurrences of value                           |
+| extend(...)       | no                 | no                        | L.extend(iterable) -- extend list by appending elements from the iterable                    |
+| index(...)        | yes                | no                        | L.index(value, [start, [stop]]) -> integer -- return first index of value. (5)               |
+| insert(...)       | no                 | no                        | L.insert(index, object) -- insert object before index                                        |
+| pop(...)          | no                 | yes                       | L.pop([index]) -> item -- remove and return item at index (default last).                    |
+|                   |                    |                           | similar to L[i]; del L[i](6)                                                                 |
+| remove(...)       | no                 | no                        | L.remove(value) -- remove first occurrence of value. (5)                                     |
+| reverse(...)      | reversed(l)        | no                        | L.reverse() -- reverse _IN PLACE_                                                            |
+| sort(...)         | sorted(t)          | no                        | L.sort(cmp=None, key=None, reverse=False) -- stable sort _IN PLACE_; cmp(x, y) -> -1, 0, 1   |
+
+---
+
+1. appends the List with another
+2. Use of negative indices is not supported.
+3. For dict to search values, use 'str' in dict_name.values()
+4. this works because of rassignment
+5. L \* (int) = L + L + L+…(int)
+6. Raises ValueError if the value is not present.
+7. Raises IndexError if list is empty or index is out of range.
+
+See the [Dictionary](### DICTIONARY or MAP { } - Mutable, heterogeneous)
+
+___
+
+### [LISTS]
+
+___
+
+list()
+
+
+ Lists `[ ]` - Mutable
+
+- A list allows you to create a list of values and manipulate them
+- Each value has an index with the first one starting at 0
+  **- mutable** and indexed by integers (zero indexed). Shown by **square brackets**.
+- Zeroed indexed
+
+Lists can have **named values**  -- see:
 
 ```py
-True
-False
-true
-false
+###actually no I dont think so.
+>>> import sys
+>>> sys.version_info
+sys.version_info(major=2, minor=7, micro=17, releaselevel='final', serial=0)
 ```
 
-True and False must be capitalized.
+Methods demonstrated-
 
-In the context of Boolean operations, and also when expressions are used by control flow statements, the following values are interpreted as false: `False`, `None`, **numeric zero of all types,** and **empty strings and containers** (including **strings,** **tuples,** **lists,** **dictionaries,** **sets** and **frozensets).** All other values are interpreted as true. (See the **nonzero**() special method for a way to change this.)
+- `L.reverse()` - reverses the order of the list
+- `L.sort()` - sorts the order of the lists.
+- `sorted(L)` -|changes the list order and returns it without changing L. while `L.sort()` changes L to be ther result.
+- `del L[i:j]`- removes a slice
+- `repr(L)`|-returns L as a string
+- `L.__add__(y)` - dunder method refers to L + y , y must be another List, appends the lists- as L + (list
+  - `L + L2` - concatenate two lists.
+- (L.)`append()` - Adds an element at the end of the list 
+- (L.)`clear()` - Removes all the elements from the list 
+- (L.)`copy()` - Returns a copy of the list 
+- (L.)`count()` - Returns the number of elements with the specified value 
+- (L.)`extend()` - Add the elements of a list (or any iterable), to the end of the current list 
+- (L.)`index()` - Returns the index of the first element with the specified value 
+- (L.)`insert()` - Adds an element at the specified position 
+- (L.)`pop()` - Removes the element at the specified position 
+- (L.)`remove()` - Removes the first item with the specified value 
+- (L.)`reverse()` - Reverses the order of the list 
+- (L.)`sort()` - Sorts the list 
 
-### A note on comparison
+!!!warning Warning: watch this syntax:
+        A = A.sort() # error
+        A.sort() # affects A in place...
+    This seems somewhat different than one would expect.
+        `sorted(L)` will return an unchanged list and allow assignment.
 
-Mutable objects will be un-equal unless they are the same object, because comparisons are based upon a hash.
+, 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort'
 
-Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
+!!!warning Warning- Assignment of Lists is a Shallow copy
+    ```py
+        L=[1,2,3]
+        L2 = L
+        L[0] = 2
+        print(L2) #the same as L, also edited (only a reference) 
+        #use L.copy()
+        L2=L.copy()
+    ```
+
+```python
+L = [1,2,3]
+L=["abc", 123,  0, variable, ["another", "list"] ]
+
+grocery_list = ['Juice', 'Tomatoes', 'Potatoes', 'Bananas']
+print('The first item is', grocery_list[1])
+
+#You can change the value stored in a list box
+grocery_list[0] = "Green Juice"
+print(grocery_list)
+
+#indexing a list position that doesnt exist throws an error.
+List= [1, 'a string', A_Variable]
+List[3] = -15 #indexing the 4th position, a position that doesnt exist, attempts to redirect the binding of the 4th item and throws an error.
+
+#You can get a subset of the list with [min:up to but not including max]
+
+print(grocery_list[1:3])
+
+#You can put any data type in a a list including a list
+other_events = ['Wash Car', 'Pick up Kids', 'Cash Check']
+to_do_list = [other_events, grocery_list]
+
+print(to_do_list)
+
+#Get the second item in the second list (Boxes inside of boxes)
+print(to_do_list[1][1])
+
+#You add values using append
+grocery_list.append('onions')
+print(to_do_list)
+
+#Insert item at given index
+grocery_list.insert(1, "Pickle")
+
+#Remove item from list
+grocery_list.remove("Pickle")
+
+#Sorts items in list
+grocery_list.sort()
+
+#Reverse sort items in list
+grocery_list.reverse()
+
+#del deletes an item at specified index
+del grocery_list[4]
+print(to_do_list)
+
+#We can combine lists with a +
+to_do_list = other_events + grocery_list
+print(to_do_list)
+
+#Get length of list
+print(len(to_do_list))
+
+#Get the max item in list
+print(max(to_do_list))
+
+#Get the minimum item in list
+print(min(to_do_list))
+```
+
+#### List store with step
+
+```py
+l = [1, 2, 3, 4]
+l[0:4:2] = [5, 6]  #so even if its out of range, - 4 is here
+print(l)
+>>>[5, 2, 6, 4] 
+```
+
+This was confusing. But it is still **[<start>:<stop>:<step>]** with the implied defaults if left blank of **[ 0 : len(L) : 1]**
+
+List slice-store 
+
+```py
+l = [10, 20]
+l[0:1] = range(4)
+print(l)
+>>>[0, 1, 2, 3, 20]
+```
+
+#### List vs. Tuples - MIT Class Example
+
+```py
+Ivies = ['Harvard', 'Yale', 'Brown']
+Techs = ['MIT', 'CalTech']
+Univs = []
+Univs.append(Techs)
+print Univs #>> [['MIT', 'CalTech']]
+Univs.append(Ivies)
+print Univs
+#>> [['MIT', 'CalTech'], ['Harvard', 'Yale', 'Brown']]
+
+
+for e in Univs:     #Will return Lists
+    print e         #Prints the Lists
+    for c in e:     #Nested loop to iterate through sublist
+        print c     #Prints each University
+
+```
+
+Because when you appended the list, you didnt append the elements of the list, you appended the lists to the lists. A list can have any data type
+
+#### Flattening or Concatenating a List
+
+You can also concatenate or _flatten the list_
+
+```py
+Univs = Techs + Ivies  #Concatenation
+#> ['MIT', 'CalTech', 'Harvard', 'Yale', 'Brown']
+```
+
+Remove from a list
+
+```py
+Univs.remove('Harvard')
+```
+
+#### Mutation
+
+Changing the list cause mutation- eg. the change of the variable in place rather than the creation of an entirely new variable (a la Tuples).
+
+This means that `Ivies[1]=-15` mutates the List of Objects Ivies, rather than re-binding the variable to a new object as in something that is immutable.
+
+```py
+myList1 = [1, 2, 3, 4]
+myList2 = List1  #This assignment creates a binding - 2 separate paths to the same object.
+print myList2
+#>>> [1, 2, 3, 4]
+myList1[0] = 4
+print myList1
+#>>> [4, 2, 3, 4]
+print myList2
+#>>> [4, 2, 3, 4]
+
+A = 1
+B = A
+A = 2
+print B
+#>>> 1
+```
+
+This is because L2 was bound to the same object as L1. This doesnt occur in the lower object because its not a mutable object. It reassigns A to another object. In the first case its a list, that then refers to n objects, its the lists reference to the nth object that is replaced.
+[n1, n2, n3, ...] -> its n1 that is replaced the reference, not the references myList1 and myList2 still refer to the same list.
+
+#### List Comprehension
+
+List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
+
+For example, assume we want to create a list of squares, like:
+
+```py
+>>> squares = []
+>>> for x in range(10):
+...     squares.append(x**2)
+...
+>>> squares
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+
+Note that this creates (or overwrites) a variable named x that still exists after the loop completes. We can calculate the list of squares without any side effects using:
+
+```py
+squares = list(map(lambda x: x**2, range(10)))
+#or, equivalently:
+squares = [x**2 for x in range(10)]
+```
+
+which is more concise and readable and is a **List Comprehension** or **ListComp**.
+
+A list comprehension *consists of brackets containing an expression followed by a for clause, then zero or more for or if clauses.* The result will be a new list resulting from evaluating the expression in the context of the for and if clauses which follow it. For example, this **listcomp** combines the elements of two lists if they are not equal:
+
+```py
+>>> [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+```
+
+and it’s equivalent to:
+
+```py
+>>> combs = []
+>>> for x in [1,2,3]:
+...     for y in [3,1,4]:
+...         if x != y:
+...             combs.append((x, y))
+...
+>>> combs
+[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+```
+
+More Examples:  `vec = [-4, -2, 0, 2, 4]`
+
+Create a new list with the values doubled
+`[x*2 for x in vec]` => [-8, -4, 0, 4, 8]
+
+Filter the list to exclude negative numbers
+`[x for x in vec if x >= 0]` => [0, 2, 4]
+
+Apply a function to all the elements
+`[abs(x) for x in vec]` => [4, 2, 0, 2, 4]
+
+Call a method on each element
+`freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']`
+`[weapon.strip() for weapon in freshfruit]` => ['banana', 'loganberry', 'passion fruit']
+
+Create a list of 2-tuples like (number, square)
+
+```py
+>>> [(x, x**2) for x in range(6)]
+[(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+
+>>> #the tuple must be parenthesized, otherwise an error is raised
+>>> [x, x**2 for x in range(6)]
+  File "<stdin>", line 1, in <module>
+    [x, x**2 for x in range(6)]
+               ^
+SyntaxError: invalid syntax
+```
+
+Flatten a list using a listcomp with two 'for'
+```py
+>>> vec = [[1,2,3], [4,5,6], [7,8,9]]
+>>> [num for elem in vec for num in elem]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+List comprehensions can contain complex expressions and nested functions:
+
+```py
+>>> from math import pi
+>>> [str(round(pi, i)) for i in range(1, 6)]
+['3.1', '3.14', '3.142', '3.1416', '3.14159']
+```
+```py
+line_list = ['  line 1\n', 'line 2  \n', ...]
+
+#Generator expression -- returns iterator
+stripped_iter = (line.strip() for line in line_list)
+
+#List comprehension -- returns list
+stripped_list = [line.strip() for line in line_list]
+You can select only certain elements by adding an "if" condition:
+
+stripped_list = [line.strip() for line in line_list
+                 if line != ""]
+```
+
+##### Nested Comprehension
+
+The initial expression in a list comprehension can be any arbitrary expression, including another list comprehension.
+
+Consider the following example of a 3x4 matrix implemented as a list of 3 lists of length 4.  The following list comprehension will transpose rows and columns:
+
+```py
+>>> matrix = [
+...     [1, 2, 3, 4],
+...     [5, 6, 7, 8],
+...     [9, 10, 11, 12],
+... ]
+>>>
+>>> [[row[i] for row in matrix] for i in range(4)]
+[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+```
+
+This example takes some unpacking, As we saw in the previous section, the nested listcomp is evaluated in the context of the for that follows it, so this example is equivalent to:
+
+```py
+>>> transposed = []
+>>> for i in range(4):
+...     transposed.append([row[i] for row in matrix])
+...
+>>> transposed
+[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+```
+
+which, in turn, is the same as:
+
+```py
+>>> transposed = []
+>>> for i in range(4):
+...     # the following 3 lines implement the nested listcomp
+...     transposed_row = []
+...     for row in matrix:
+...         transposed_row.append(row[i])
+...     transposed.append(transposed_row)
+...
+>>> transposed
+[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+```
+
+In the real world, you should prefer built-in functions to complex flow statements. The zip() function would do a great job for this use case:
+
+```py
+>>> list(zip(*matrix))
+[(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
+```
+
+
+
+#### zip()
+
+
+zip() takes a set of iterables, and iterates through them pairing them up until one list ends.
+
+```py
+>>> matrix = [
+...     [1, 2, 3, 4],
+...     [5, 6, 7, 8],
+...     [9, 10, 11, 12],
+... ]
+>>>
+>>> list(zip(*matrix))
+[(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
+```
+
+#### del
+
+There is a way to remove an item from a list given its index instead of its value: the del statement. This differs from the pop() method which returns a value. The del statement can also be used to remove slices from a list or clear the entire list (which we did earlier by assignment of an empty list to the slice). For example:
+
+```py
+>>> a = [-1, 1, 66.25, 333, 333, 1234.5]
+>>> del a[0]
+>>> a
+[1, 66.25, 333, 333, 1234.5]
+>>> del a[2:4]
+>>> a
+[1, 66.25, 1234.5]
+>>> del a[:]
+>>> a
+[]
+```
+
+del can also be used to delete entire variables: `del a`. Referencing the name `a` hereafter is an error (at least until another value is assigned to it). We’ll find other uses for del later.
+
+___
+
+### (TUPLES)
+
+___
+
+TUPLES `( )` Immutable
+
+Briefly - _Immutable, parentheses, Ref w/ [], negative from other end, and slice with [start:end], both optional._
+
+You still reference it with square brackets `[ ]` - like everything in python. They are just defined in parentheses `( )`
+
+`pi_tuple = (3, 1, 4, 1, 5, 9)`
+
+Only two methods for tuples:
+
+- (T.)`count()` - Returns the number of times a specified value occurs in a tuple 
+- (T.)`index()` - Searches the tuple for a specified value and returns the position of where it was found 
+
+In fact, the parentheses, *on input*, are optional:
+
+```py
+>>> t = 12345, 54321, 'hello!'
+>>> t[0]
+12345
+>>> t
+(12345, 54321, 'hello!')
+```
+
+Tuples may be nested:
+
+```py
+... u = t, (1, 2, 3, 4, 5)
+>>> u
+((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+```
+
+Values in a `tuple` can't change like `lists`, they are **Immutable**. Note the **Parentheses**. THis is the important indicator.
+
+You can index them and reference them, 'selection', using **[#]** square brackets. Zero indexed.
+
+Giving a negative index starts from the other end. You can also 'slice' with the colon.
+
+Importantly, slicing goes _up to but not including the value_. tuple = (1,2,3,4,5) slice[0:2] >> 1,2, but does not include tuple[2](>3).
+
+```python
+my_tuple = (1, 2, 3, 4, 5) #Changed example from pi to better show in/exclusion
+my_tuple[0] #>1
+my_tuple[2] #>3
+my_tuple[-1] #>5
+my_tuple[-2] #>4
+my_tuple[:3] #>(1,2,3)
+my_tuple[1:3] #>(2,3)
+my_tuple[2:] #>(3,4,5)
+mylist = [x for x in range(5)]
+mylist[0:4:2] # says take this tuple from 0-4(3 actually, and give every other.)
+#list[start, end(+1), step]
+#[0, 1, 2, 3, 4]  using [0:4:2] = [0, 2], 
+#because we only do to the 3rd element not the 5th element
+
+#so we can slice my list like
+mylist = [x for x in range(5)]
+mylist[0:4:2] = [9,8] #replace 0 and 2 
+mylist[0:5:2] #gets all and using a step of 2, we now need 3 values.
+```
+
+#### Tuples of 0 or 1 length
+
+!!!Important Important- it is not sufficient to enclose a single value in parentheses, to make a tuple of lenth=1.
+
+A special problem is the construction of tuples containing 0 or 1 items: the syntax has some extra quirks to accommodate these.
+
+0-  **Empty tuples are constructed by an empty pair of parentheses;**
+
+1- **a tuple with one item is constructed by following a value with a comma.**
+
+```py
+>>> empty = ()
+>>> singleton = 'hello',    # <-- note trailing comma
+>>>#this is equivalent to singleton = ('hello',) the paren is optional on input.
+>>> len(empty)
+0
+>>> len(singleton)
+1
+>>> singleton
+('hello',)
+
+#### Convert tuple into a list
+
+`new_list = list(my_tuple)`
+
+#### Convert a list into a tuple
+
+`new_tuple = tuple(grocery_list)`
+
+#### Other Methods
+
+```py
+len(tuple)
+min(tuple)
+max(tuple)
+
+x = 100
+divisors = () #Empty Tuple
+for i in range(1, x):
+    if x%i == 0:
+        divisors = divisors + (i)
+```
+
+Functions can return a tuple. Functions that return a tuple need a variable for each, or it will assign a tuple
+
+```py
+def func()
+    return (1, 2)
+
+var1, var2 = func() #var1 = 1 , var2 = 2
+
+type(var1)
+type(var2)
+#<type 'int'>
+var=func()
+type(var)
+<type 'tuple'>
+```
+
+#### Tuple Packing and Unpacking
+
+The statement` '` is an example of tuple `packing`: the values 12345, 54321 and 'hello!' are packed together in a tuple. The reverse operation is also possible:
+
+```py
+>[1]
+t = 12345, 54321, 'hello!
+t
+$>(12345, 54321, 'hello!')
+>[2]
+x, y, z = t
+x
+$>x = 12345
+z
+$>z = 'hello!'
+```
+
+This is called, appropriately enough, `sequence unpacking` and works for any sequence on the right-hand side.
+
+Sequence unpacking requires that there are as many variables on the left side of the equals sign as there are elements in the sequence. Note that multiple assignment is really just a combination of tuple packing and sequence unpacking.
+
+#### Gathering and Scattering
+
+Variable Length Inputs and Outputs
+
+This is very similar to the tuple `packing` and `unpacking` above, though the usecase is a bit different.
+
+Functions can take a variable number of arguments. A parameter name that begins with \* gathers arguments into a tuple. For example, printall takes any number of arguments and prints them:
+
+```py
+def printall(*args):
+    print args
+The gather parameter can have any name you like, but args is conventional. Here’s how the function works:
+
+>>> printall(1, 2.0, '3')
+(1, 2.0, '3')
+```
+
+The complement of gather is scatter. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the \* operator. For example, divmod takes exactly two arguments; it doesn’t work with a tuple:
+
+```py
+>>> t = (7, 3)
+>>> divmod(t)
+TypeError: divmod expected 2 arguments, got 1
+```
+
+But if you scatter the tuple, it works:
+
+```py
+>>> divmod(*t)
+(2, 1)
+```
+
+#### Sequence Type
+
+As a [sequence](####Sequential Operations) (sequential?) data type, there are some specific operations available
+
+[Main Article](#Sequence-Specific-Operations)
+
+
+#### Swap
+
+Tuples can be used to quickly swap two variables via tuple assignment:
+
+`a,b = b,a`
+
+#### Assignment
+
+A series of variables and expressions as tubles will be assigned to each other as long as their numbers match:
+
+```py
+>>> (a,b,c,d) = (1,2,3,4)
+>>> a
+1
+>>> b
+2
+>>> c,d
+(3, 4)
+>>> type(a)
+<type 'int'>
+
+>>> addr = 'a.l.timmons@gmail.com'
+>>> user, domain = addr.split('@')
+>>> user
+'a.l.timmons'
+>>> domain
+'gmail.com'
+```
+
+#### zip()
+
+-works similarly to assignment style above taking two sequences and combining them. Taking one from each, until it hits whatever ends first. This may be more tolerant of inequal lengths?
+
+```py
+>>> t = range(5)
+>>> s= 'andrew'
+>>> u = 'Timmons'
+>>> zip(s,t,u)
+[('a', 0, 'T'), ('n', 1, 'i'), ('d', 2, 'm'), ('r', 3, 'm'), ('e', 4, 'o')]
+>>> type(zip(s,t,u))
+<type 'list'>
+>>> for pair in zip(s,t,u):
+        print pair
+
+
+('a', 0, 'T')
+('n', 1, 'i')
+('d', 2, 'm')
+('r', 3, 'm')
+('e', 4, 'o')
+```
+
+**Book says this creates a zip object, that then has to be turned into a list with `list(zip(*args))`, however, I get a list at the outset.** This may be a difference with python 2 and 3.
+
+#### Create a Dict from Tuples
+
+You can quickly create a dictionary using `dict()` and `zip()- D = dict(zip(range(4), 'abcd'))`
+
+You can also map multiple pairs using a tuple. **This won't work with lists because they are mutable.** An example given is a phonebook: which has last name and first name pairs refer to a number.
+
+```py
+directory[last,first] = number
+#where (last,first) is the tuple object that forms a key.
+for last, first in directory:
+    print(first, last, directory[last,first]) #to print the phonebook.
+```
+
+___
+
+### {DICTIONARY}
+
+___
+
+Dictionaries or MAPS- marked by `{ }` - Mutable, heterogeneous
+
+Dictionaries, like lists, are mutable, heterogeneous.
+
+But unlike lists, they are unordered, and we have generalized the indexing.
+
+Dictionaries are fast. Values are returned in constant time as opposed to linear time as in Lists.
+They have keys and values. Keys can be any data type, strings, objects, integers, etc.
+
+Any Hashable object can be used as a dictionary key. To be hashable, the object has to be immutable- it can't change during its lifetime.
+
+Made up of values with a unique key for each value
+Similar to lists, but you can't join dicts with a +
+
+
+As of 3.7 dictionaries have a stable order, as opposed to a random order in prior versions.
+
+
+- `clear()` - Removes all the elements from the dictionary
+- `copy()` - Returns a copy of the dictionary
+- `fromkeys()` - Returns a dictionary with the specified keys and value
+- `get()` - Returns the value of the specified key
+- `items()` - Returns a list containing a tuple for each key value pair
+- `keys()` - Returns a list containing the dictionary's keys
+- `pop()` - Removes the element with the specified key
+- `popitem()` - Removes the last inserted key-value pair
+- `setdefault()` - Returns the value of the specified key. If the key does not exist: insert the key, with the specified value
+- `update()` - Updates the dictionary with the specified key-value pairs
+- `values()` - Returns a list of all the values in the dictionary
+
+
+Accessing the dictionary and setting: Like
+
+```py
+F={}
+def fibm(n):
+    if n<2:
+        return n
+    elif n not in F:
+        F[n] = fibm(n-1) + fibm(n-2)
+    return F[n]
+
+#this calculates the 
+
+```
+
+Dictionary Additional Methods
+
+| Dictionary        | Additional Methods                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------ |
+| **init**          |                                                                                                              |
+| dict()            | new empty dictionary                                                                                         |
+| dict(mapping)     | new dictionary initialized from a mapping object's (key, value) pairs                                        |
+| dict(iterable)    | new dictionary initialized as if via: d = {}                                                                 |
+|                   | for k, v in iterable:                                                                                        |
+|                   | d[k] = v                                                                                                     |
+| dict()            | dict(**kwargs) -> new dictionary initialized with the name=value pairs in the keyword argument list. **1\*\* |
+| **implicit**      |                                                                                                              |
+| D.**contains**(k) | **contains**(...) -> True if D has a key k, else False **2**                                                 |
+| k in D            |                                                                                                              |
+| x[i]=y            | set item                                                                                                     |
+| x[y]              | get item, lookup                                                                                             |
+| del x[y]          | delete item                                                                                                  |
+| ==,>=,<=,>,<,!=   | comparison, unknown (to me) how this works.                                                                  |
+| **explicit**      |                                                                                                              |
+| iter(x)           | uses in iteration                                                                                            |
+| len(x)            | returns the length of Length                                                                                 |
+| repr(x)           | returns the value as a string                                                                                |
+| clear(...)        | D.clear() -> None. Remove all items from D.                                                                  |
+| copy(...)         | D.copy() -> a shallow copy of D                                                                              |
+| fromkeys(...)     | dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v. **3**                               |
+| get(...)          | D.get(k[,d]) -> D[k] if k in D, else d. d defaults to None. **4**                                            |
+| has_key(...)      | D.has_key(k) -> True if D has a key k, else False                                                            |
+| items(...)        | D.items() -> list of D's (key, value) pairs, as 2-tuples- spits the Dict out as a list of tuples.            |
+| iteritems(...)    | D.iteritems() -> an iterator over the (key, value) items of D                                                |
+| iterkeys(...)     | D.iterkeys() -> an iterator over the keys of D                                                               |
+| itervalues(...)   | D.itervalues() -> an iterator over the values of D                                                           |
+| keys(...)         | D.keys() -> list of D's keys                                                                                 |
+| pop(...)          | D.pop(k[,d]) -> v, remove specified key and return the corresponding value. **5**                            |
+| popitem(...)      | D.popitem() -> (k, v), remove and return some (key, value) pair as a 2-tuple; **6**                          |
+| setdefault(...)   | D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D                                             |
+| update(...)       | D.update([E, ]**F) -> None. Update D from dict/iterable E and F. **7a-c\*\*\*                                |
+| values(...)       | D.values() -> list of D's values                                                                             |
+| viewitems(...)    | D.viewitems() -> a set-like object providing a view on D's items                                             |
+| viewkeys(...)     | D.viewkeys() -> a set-like object providing a view on D's keys                                               |
+| viewvalues(...)   | D.viewvalues() -> an object providing a view on D's values                                                   |
+
+1. For example: dict(one=1, two=2)
+2. 'Barkingtreefrog'in bw_grams
+3. v defaults to None.
+4. printbw_grams.get('Barkingtreefrog','Notfound')
+5. If key is not found, d is returned if given, otherwise KeyError is raised
+6. raise KeyError if D is empty.
+7. If E present and:
+
+- has a .keys() method, does: for k in E: D[k] = E[k]
+- lacks .keys() method, does: for (k, v) in E: D[k] = v
+- In either case, this is followed by: for k in F: D[k] = F[k]
+
+
+#### Nesting dictionaries
+
+```py
+import collections
+def makehash():
+    return collections.defaultdict(makehash)
+```
+
+See this great SO discussion [here](https://stackoverflow.com/questions/651794/whats-the-best-way-to-initialize-a-dict-of-dicts-in-python)
+
+
+If the amount of nesting you need is fixed, collections.defaultdict is wonderful.
+
+```py
+
+myhash = collections.defaultdict(dict)
+myhash[1][2] = 3
+myhash[1][3] = 13
+myhash[2][4] = 9
+
+#If you want to go another level of nesting, you'll need to do something like:
+
+myhash = collections.defaultdict(lambda : collections.defaultdict(dict))
+myhash[1][2][3] = 4
+myhash[1][3][3] = 5
+myhash[1][2]['test'] = 6
+
+#edit: MizardX points out that we can get full genericity with a simple function:
+
+import collections
+def makehash():
+    return collections.defaultdict(makehash)
+
+#Now we can do:
+
+myhash = makehash()
+myhash[1][2] = 4
+myhash[1][3] = 8
+myhash[2][5][8] = 17
+# etc
+
+#the selected answer for autovivification in perl
+
+class AutoVivification(dict):
+    """Implementation of perl's autovivification feature."""
+    def __getitem__(self, item):
+        try:
+            return dict.__getitem__(self, item)
+        except KeyError:
+            value = self[item] = type(self)()
+            return value
+#Testing:
+
+a = AutoVivification()
+
+a[1][2][3] = 4
+a[1][3][3] = 5
+a[1][2]['test'] = 6
+
+print a
+```
+
+More advanced implementation [here](https://stackoverflow.com/questions/635483/what-is-the-best-way-to-implement-nested-dictionaries)
+
+
+
+```py
+
+class Vividict(dict):
+    def __missing__(self, key):
+        value = self[key] = type(self)() # retain local pointer to value
+        return value                     # faster to return than dict lookup
+#(Note self[key] is on the left-hand side of assignment, so there's no recursion here.)
+
+#and say you have some data:
+
+data = {('new jersey', 'mercer county', 'plumbers'): 3,
+        ('new jersey', 'mercer county', 'programmers'): 81,
+        ('new jersey', 'middlesex county', 'programmers'): 81,
+        ('new jersey', 'middlesex county', 'salesmen'): 62,
+        ('new york', 'queens county', 'plumbers'): 9,
+        ('new york', 'queens county', 'salesmen'): 36}
+
+#Here's our usage code:
+
+vividict = Vividict()
+for (state, county, occupation), number in data.items():
+    vividict[state][county][occupation] = number
+
+#And now:
+
+>>> import pprint
+>>> pprint.pprint(vividict, width=40)
+{'new jersey': {'mercer county': {'plumbers': 3,
+                                  'programmers': 81},
+                'middlesex county': {'programmers': 81,
+                                     'salesmen': 62}},
+ 'new york': {'queens county': {'plumbers': 9,
+                                'salesmen': 36}}}
+#A criticism of this type of container is that if the user misspells a key, our code could fail silently:
+
+>>> vividict['new york']['queens counyt']
+{}
+And additionally now we'd have a misspelled county in our data:
+
+>>> pprint.pprint(vividict, width=40)
+{'new jersey': {'mercer county': {'plumbers': 3,
+                                  'programmers': 81},
+                'middlesex county': {'programmers': 81,
+                                     'salesmen': 62}},
+ 'new york': {'queens county': {'plumbers': 9,
+                                'salesmen': 36},
+              'queens counyt': {}}}
+```
+
+#### Iterate Through a dictionary
+
+Use the following:
+
+```py
+for k in d:
+    print(k)
+```
+Where k is the keys that are returned, and d is the name of a dictionary.
+
+See also the following section
+
+#### d.items()
+
+returns a list of tuples for the dictionary.
+
+```py
+d = {1: 'blue', 2: 'blue', 3: 'brown', 4:'brown'}
+d_items = d.items()
+d_items
+
+# dict_items([(1, 'blue'), (2, 'blue'), (3, 'brown'), (4, 'brown')])
+
+l = [(1, 'blue'), (2, 'blue'), (3, 'brown'), (4, 'brown')]
+d2 = dict(l)
+d2
+{1: 'blue', 2: 'blue', 3: 'brown', 4: 'brown'}
+```
+
+#### Reverse Lookup
+
+Reverse lookup is difficult. Can use some code:
+
+```python
+def reverse_lookup(d, v):
+        for k in d:
+                if d[k] == v;
+                        return k
+        raise LookupError()
+|
+Raise error('details') #Throws error, there is something not correct about this...
+```
+
+Raise Statement sends an error, returning a trace along with the quote., Allthough the above code doesn't work in ver 2.7 anyway
+
+Dictionary inversion snippit:
+
+```python
+def invert_dict(d):
+        inverse = dict()
+        for key in d:
+                val = d[key]
+                if val not in inverse:
+                        inverse[val] = [key]
+                else:
+                        inverse[val].append(key)
+        return inverse
+```
+
+```python
+super_villains = {'Fiddler' : 'Isaac Bowin',
+                  'Captain Cold' : 'Leonard Snart',
+                  'Weather Wizard' : 'Mark Mardon',
+                  'Mirror Master' : 'Sam Scudder',
+                  'Pied Piper' : 'Thomas Peterson'}
+
+print(super_villains['Captain Cold'])
+```
+
+#### Delete an entry
+
+```python
+del super_villains['Fiddler']
+print(super_villains)
+```
+
+#### Replace a value
+
+```python
+super_villains['Pied Piper'] = 'Hartley Rathaway'
+```
+
+#### `in` and `not in`
+
+`x in d` returns true or false respectively
+
+```py
+>>> 'Fiddler' in super_villains
+True
+>>> 'Batman' in super_villains
+False
+>>> 'Batman' not in super_villains
+True
+```
+
+#### Print the number of items in the dictionary
+
+```python
+print(len(super_villains))
+```
+
+#### Get the value for the passed key
+
+```python
+print(super_villains.get("Pied Piper"))
+```
+
+#### Get a list of dictionary keys
+
+```python
+print(super_villains.keys())
+
+#or
+list(iter(super_villains))
+```
+
+#### Get a list of dictionary values
+
+```python
+print(super_villains.values())
+```
+
+#### List the Key Value pairs
+
+```py
+for i in d:
+    print i, d[i]
+```
+
+You can also get an iterator that contains both keys and values. In Python 2, d.items() returns a list of (key, value) tuples, while d.iteritems() returns an iterator that provides the same:
+
+```py
+for k, v in d.iteritems():
+    print k, v
+```
+
+In Python 3, d.items() returns the iterator; to get a list, you need to pass the iterator to list() yourself.
+
+```py
+for k, v in d.items():
+    print(k, v)
+```
+
+#### Return a Default Value if not present
+
+```py
+d={'a':'apple','b':'ball'}
+
+d.get('c', 'Cat')
+
+#'Cat'
+```
+
+#### Sort a Dictionary
+
+If you want to sort the output by dict key you can use the collection package.
+
+```py
+import collections
+for k, v in collections.OrderedDict(sorted(d.items())).items():
+    print(k, v)
+```
+
+As of 3.7 dictionaries have a stable order, as opposed to a random order in prior versions.
+
+___
+
+### SETS SET(()) or {}
+
+[Sets Doc](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+
+
+{} - sort of.  see below.
+
+Unordered, Unchangeable (Immutable), though you can *add* new items. No Duplicates.
+
+A set is a collection which is both unordered and unindexed.
+
+Sets are written with curly brackets.
+
+An empty set cannot be constructed with `{}`; this literal constructs an empty dictionary.
+
+[Set Syntax](https://docs.python.org/3/reference/expressions.html#atom-identifiers)
+
+
+A set display is denoted by curly braces and distinguishable from dictionary displays by the lack of colons separating keys and values: `Set= {'item1', 'item2', 'item3'}`
+
+        thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
+    
+Above see this example.  
+
+        thisset = (("apple", "banana", "cherry"))
+        type(thisset)
+
+returns tuple.  I think the prev. example is declaring a tuple and making it a set.
+
+
+A set object is an unordered collection of distinct hashable objects. Common uses include membership testing, removing duplicates from a sequence, and computing mathematical operations such as intersection, union, difference, and symmetric difference.
+
+
+A set display yields a new mutable set object, the contents being specified by either a sequence of expressions or a comprehension. When a comma-separated list of expressions is supplied, its elements are evaluated from left to right and added to the set object. When a comprehension is supplied, the set is constructed from the elements resulting from the comprehension.
+
+Set methods:  (`dir(set())`)
+
+- (S.)`add()` - Adds an element to the set 
+- (S.)`clear()` - Removes all the elements from the set 
+- (S.)`copy()` - Returns a copy of the set 
+- (S.)`difference()` - Returns a set containing the difference between two or more sets 
+- (S.)`difference_update()` - Removes the items in this set that are also included in another, specified set 
+- (S.)`discard()` - Remove the specified item 
+- (S.)`intersection()` - Returns a set, that is the intersection of two other sets 
+- (S.)`intersection_update()` - Removes the items in this set that are not present in other, specified set(s) 
+- (S.)`isdisjoint()` - Returns whether two sets have a intersection or not 
+- (S.)`issubset()` - Returns whether another set contains this set or not 
+- (S.)`issuperset()` - Returns whether this set contains another set or not 
+- (S.)`pop()` - Removes an element from the set 
+- (S.)`remove()` - Removes the specified element 
+- (S.)`symmetric_difference()` - Returns a set with the symmetric differences of two sets 
+- (S.)`symmetric_difference_update()` - inserts the symmetric differences from this set and another 
+- (S.)`union()` - Return a set containing the union of sets 
+- (S.)`update()` - Update the set with the union of this set and others 
+
+
+```py
+myset = {"apple", "banana", "cherry"}
+set1 = {"abc", 34, True, 40, "male"}
+print(type(myset))
+<class 'set'>
+
+thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
+```
+#### Frozensets
+
+Dont know what these are yet
+
+### RANGES
+
+See the section on Ranges in [Iterables](#Iterables).
+
+But, `range` together with `tuples` and `lists`, make up the `Sequence Data Types`.
+
+
+
+#### Sequence Specific Operations
+
+[Doc on Sequence Types](https://docs.python.org/3/library/stdtypes.html#typesseq)
+
+
+### Collections
+
+import collections.abc
+
+* namedtuple   factory function for creating tuple subclasses with named fields
+* deque        list-like container with fast appends and pops on either end
+* ChainMap     dict-like class for creating a single view of multiple mappings
+* Counter      dict subclass for counting hashable objects
+* OrderedDict  dict subclass that remembers the order entries were added
+* defaultdict  dict subclass that calls a factory function to supply missing values
+* UserDict     wrapper around dictionary objects for easier dict subclassing
+* UserList     wrapper around list objects for easier list subclassing
+* UserString   wrapper around string objects for easier string subclassing
+
+## CONDITIONALS
+
+The `if`, `else` and `elif` statements are used to perform different actions based off of conditions Comparison Operators `: ==, !=, >, <, >=, <=`
+
+- The `if` statement will execute code if a condition is met
+- White space is used to group blocks of code in Python
+- Use the same number of proceeding spaces for blocks of code
+- The **colon** indicates the block follows. Returning to the previous indention level indicates that you have completed the block.
+
+conditional
+
+- if
+  - or
+  - and
+  - not
+- elif
+- else
+
+The operator not yields True if its argument is false, False otherwise.
+
+Lazy interpretation- The expression x and y first evaluates x; if x is false, its value is returned; otherwise, y is evaluated and the resulting value is returned.
+
+In the context of Boolean operations, and also when expressions are used by control flow statements, the following values are interpreted as false: False, None, numeric zero of all types, and empty strings and containers (including strings, tuples, lists, dictionaries, sets and frozensets). All other values are interpreted as true. (See the **nonzero**() special method for a way to change this.)
+
+```py
+if value %2-==1:
+    print 'odd'
+elif value%2 ==0:
+    print 'even'
+else:
+    print 'neither'
+```
+
+_there is no 'end' statement, code is determined by whitespace (indents)_
+
+_common indented code is part of the same subroutine._
+
+```python
+age = 30
+if age > 16 :
+    print('You are old enough to drive')
+else :
+    print('just nope')
+#Do something else
+```
+
+Use an `if` statement if you want to execute different code regardless of whether the condition ws met or not
+
+If you want to check for multiple conditions use elif
+
+If the first matches it won't check other conditions that follow
+
+```python
+if age > 16 :
+    print('You are old enough to drive')
+else :
+    print('You are not old enough to drive')
+
+#---------------------
+
+if age >= 21 :
+    print('You are old enough to drive a tractor trailer')
+elif age >= 16:
+    print('You are old enough to drive a car')
+else :
+    print('You are not old enough to drive')
+```
+
+You can combine conditions with logical operators
+Logical Operators : `and`, `or`, `not`
+
+```python
+if ((age >= 1) and (age <= 18)):
+    print("You get a birthday party")
+elif q (age == 21) or (age >= 65):
+    print("You get a birthday party")
+elif not(age == 30):
+    print("You don't get a birthday party")
+else:
+    print("You get a birthday party yeah")
+```
+
+## ITERABLES
+
+The general thought process for iteration
+
+- Choose a variable that "counts"
+- Initialize this variable **outside** the loop.
+- Set up an End test
+- Construct the block
+- The variable must change
+- Decide what to do when Done.
+
+Built in method `iter()` will attempt to return an iterator.  An iterator supports the `__next__()` method, that takes no arguments ands returns the next element of the stream.  Raises the `StopIteration` exception when complete.  `TypeError` exception if not iteratable.
+
+```py
+>>> L = [1, 2, 3]
+>>> it = iter(L)
+>>> it  #doctest: +ELLIPSIS
+<...iterator object at ...>
+>>> it.__next__()  # same as next(it)
+1
+>>> next(it)
+2
+>>> next(it)
+3
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>>
+```
+
+iterables, tuples and lists are all related
+
+```py
+>>> L = [1, 2, 3]
+>>> iterator = iter(L)
+>>> t = tuple(iterator)
+>>> t
+(1, 2, 3)
+```
+
+### FOR LOOPS
+
+object of type iterative
+
+most container objects can be looped over using a for statement:
+
+```py
+for element in [1, 2, 3]:
+    print(element)
+for element in (1, 2, 3):
+    print(element)
+for key in {'one':1, 'two':2}:
+    print(key)
+for char in "123":
+    print(char)
+for line in open("myfile.txt"):
+    print(line, end='')
+```
+
+`for` **-FOR** _variable_ **IN** _iterable_ or _collection:_
+
+In the statement for X in Y, Y must be an iterator or some object for which iter() can create an iterator. These two statements are equivalent:
+
+```py
+for i in iter(obj):
+    print(i)
+
+for i in obj:
+    print(i)
+```
+
+```py
+for print in [0,1,2,3,4,5,6,7]:
+    print value
+    if value %2-==1:
+        print 'odd'
+    else value%2 ==0:
+        print 'even'
+
+#Other Examples
+for key in x:
+for v in [0,1,2,3,4,5,6,7]:
+for v in range(0,8):
+for key, value in enumerate(x):
+
+Lists  = [2,4,6,8,10]
+Tuple = (1,2,3,4,5)
+Dictionary = {1:'a', 2:'b', 3:'c', 4:'d'}
+```
+
+- Allows you to perform an action a set number of times
+- Range performs the action 10 times 0 - 9
+
+```python
+for x in range(0, 10):
+    print(x , ' ', end="")
+
+print('\n')
+
+#You can use for loops to cycle through a list
+grocery_list = ['Juice', 'Tomatoes', 'Potatoes', 'Bananas']
+
+for y in grocery_list:
+    print(y)
+
+#You can also define a list of numbers to cycle through
+for x in [2,4,6,8,10]:
+    print(x)
+
+#You can double up for loops to cycle through lists
+num_list =[[1,2,3],[10,20,30],[100,200,300]];
+
+for x in range(0,3):
+    for y in range(0,3):
+        print(num_list[x][y])
+```
+
+
+#### comprehensions
+
+See the longer section under lists.
+
+```py
+line_list = ['  line 1\n', 'line 2  \n', ...]
+
+#Generator expression -- returns iterator
+stripped_iter = (line.strip() for line in line_list)
+
+#List comprehension -- returns list
+stripped_list = [line.strip() for line in line_list]
+#You can select only certain elements by adding an "if" condition:
+
+stripped_list = [line.strip() for line in line_list
+                 if line != ""]
+```
+
+#### Generators
+
+Any function containing a `yield` keyword is a generator function;
+
+simplest example of a generator function:
+
+```py
+>>> def generate_ints(N):
+    for i in range(N):
+    yield i
+
+#Usage:
+>>> gen = generate_ints(3)
+>>> gen  #doctest: +ELLIPSIS
+<generator object generate_ints at ...>
+>>> next(gen)
+0
+>>> next(gen)
+1
+>>> next(gen)
+2
+>>> next(gen)
+Traceback (most recent call last):
+  File "stdin", line 1, in <module>
+  File "stdin", line 2, in generate_ints
+StopIteration
+```
+The test suite included with Python’s library, [Lib/test/test_generators.py](https://github.com/python/cpython/tree/3.7/Lib/test/test_generators.py), contains a number of more interesting examples.
+
+A recursive generator that generates Tree leaves in in-order.
+
+```py
+def inorder(t):
+    if t:
+        for x in inorder(t.left):
+            yield x
+
+        yield t.label
+
+        for x in inorder(t.right):
+            yield x
+```
+
+Here’s a simple counter that increments by 1 and allows changing the value of the internal counter.
+```py
+def counter(maximum):
+    i = 0
+    while i < maximum:
+        val = (yield i)
+        # If value provided, change counter
+        if val is not None:
+            i = val
+        else:
+            i += 1
+#And here’s an example of changing the counter:
+
+>>> it = counter(10)  #doctest: +SKIP
+>>> next(it)  #doctest: +SKIP
+0
+>>> next(it)  #doctest: +SKIP
+1
+>>> it.send(8)  #doctest: +SKIP
+8
+>>> next(it)  #doctest: +SKIP
+9
+>>> next(it)  #doctest: +SKIP
+Traceback (most recent call last):
+  File "t.py", line 15, in <module>
+    it.next()
+StopIteration
+```
+
+Because yield will often be returning None, you should always check for this case. Don’t just use its value in expressions unless you’re sure that the send() method will be the only method used to resume your generator function.
+
+In addition to send(), there are two other methods on generators:
+
+- throw(type, value=None, traceback=None) is used to raise an exception inside the generator; the exception is raised by the yield expression where the generator’s execution is paused.
+- close() raises a GeneratorExit exception inside the generator to terminate the iteration. On receiving this exception, the generator’s code must either raise GeneratorExit or StopIteration; catching the exception and doing anything else is illegal and will trigger a RuntimeError. close() will also be called by Python’s garbage collector when the generator is garbage-collected.
+
+If you need to run cleanup code when a GeneratorExit occurs, I suggest using a try: ... finally: suite instead of catching GeneratorExit.
+
+[Source](https://www.youtube.com/watch?v=cKPlPJyQrt4&t=4606s)
+
+```py
+#Top-level syntax, function -> underscore method
+#x()
+
+```
+
+
+### WHILE Loops
+
+- While loops are used when you don't know ahead of time how many times you'll have to loop
+
+```python
+random_num = random.randrange(0,100)
+
+while (random_num != 15):
+    print(random_num)
+    random_num = random.randrange(0,100)
+
+y = 0  #MIT Class Example
+x = 3
+itersLeft  = x
+while(itersLeft>0):
+    y = y + x
+    itersLeft = itersLeft - 1
+    print('y =', y, ', itersLeft=', itersLeft)
+```
+
+Note **An iterator for a while loop is defined before the loop**
+
+```python
+i = 0
+while (i <= 20):
+    if(i%2 == 0):
+        print(i)
+    elif(i == 9):
+        #Forces the loop to end all together
+        break
+    else:
+        #Shorthand for i = i + 1
+        i += 1
+        #Skips to the next iteration of the loop
+        continue
+
+    i += 1
+```
+
+### Do While (equivalents)
+
+A do-While list does not exist in python,
+
+One possible equivalent:
+
+```py
+while True:
+    answer = raw_input("Start typing...")
+    if answer == "quit":
+        break
+    print "Your answer was", answer
+    #implied: else: continue
+```
+
+[More](https://stackoverflow.com/questions/743164/emulate-a-do-while-loop-in-python)
+
+### Case / Switch Statement
+
+A Case statement, as implemented in Java (below), this doesn't explicitly exist in Python.
+
+```java
+    public static void switch_demo(String[] args){
+        int month = 8;
+        String monthString;
+        switch (month){
+            case 1:
+                monthString = "Jan";
+                break;  //break statement is critical
+            case 2:  //a few alternative styles:
+                monthString = "Feb";
+                break
+            case 3:  monthString = "March"; //another
+                     break;
+            case 4: {   //finally-
+                       monthString = "April";
+                       break;
+                    }
+            case 5: { monthString = "May";
+                     break; }
+            case 6:
+            {
+                monthString = "June";
+                break;
+            }
+            case 7:  {
+                monthString = "July";
+                break;
+            }
+            case 8:  monthString = "August";
+                     break;
+            case 9:  monthString = "September";
+                     break;
+            case 10: monthString = "October";
+                     break;
+            case 11: monthString = "November";
+                     break;
+            case 12: monthString = "December";
+                     break;
+            default: monthString = "Invalid month";
+                     break;
+        }
+        System.out.println(monthString);
+    }
+```
+
+One possible implementation is this:
+
+```py
+def switch_demo(argument):
+    switcher = {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December"
+    }
+    print switcher.get(argument, "Invalid month")
+```
+
+Another example:
+
+```py
+def one():
+    return "January"
+
+def two():
+    return "February"
+
+def three():
+    return "March"
+
+def four():
+    return "April"
+
+def five():
+    return "May"
+
+def six():
+    return "June"
+
+def seven():
+    return "July"
+
+def eight():
+    return "August"
+
+def nine():
+    return "September"
+
+def ten():
+    return "October"
+
+def eleven():
+    return "November"
+
+def twelve():
+    return "December"
+
+
+def numbers_to_months(argument):
+    switcher = {
+        1: one,
+        2: two,
+        3: three,
+        4: four,
+        5: five,
+        6: six,
+        7: seven,
+        8: eight,
+        9: nine,
+        10: ten,
+        11: eleven,
+        12: twelve
+    }
+    #Get the function from switcher dictionary
+    func = switcher.get(argument, lambda: "Invalid month")
+    #Execute the function
+    print func()
+```
+
+In fact, if you’re calling methods on objects, you can even use a dispatch method to dynamically determine which function needs to be called during runtime.
+
+```py
+class Switcher(object):
+    def numbers_to_months(self, argument):
+        """Dispatch method"""
+        method_name = 'month_' + str(argument)
+        #Get the method from 'self'. Default to a lambda.
+        method = getattr(self, method_name, lambda: "Invalid month")
+        #Call the method as we return it
+        return method()
+
+    def month_1(self):
+        return "January"
+
+    def month_2(self):
+        return "February"
+
+    def month_3(self):
+        return "March"
+
+    #...
+
+    #To call /utilize the method
+    #Based on the passed argument, the in-built getattr() function will retrieve object methods with the particular name.
+    a=Switcher()
+    a.numbers_to_months(1)
+
+#Returns:
+#>>> January
+```
+
+Since you can alter Python dictionaries during runtime (add, remove or update key-value pairs), you can easily change your very switch statement on the fly. Here’s an example,
+
+```py
+def zero():
+    return "zero"
+
+def one():
+    return "one"
+
+def two():
+    return "two"
+
+switcher = {
+        0: zero,
+        1: one,
+        2: two
+    }
+
+def numbers_to_strings(argument):
+    #Get the function from switcher dictionary
+    func = switcher.get(argument, "nothing")
+    #Execute the function
+    return func()
+
+numbers_to_strings(1)
+#>>> One
+
+switcher[1]=two #changing the switch case
+numbers_to_strings(1)
+#>>> Two
+```
+
+### Range, Break, Continue, Pass, Enumerate, and Iter, and others
+
+- range([start], stop, [step])
+- `break` break out of a loop, typically with an internal conditional statement
+- `continue` -continue the loop -just stop the current iteration
+- `pass` - handle the condition without the loop being impacted in any way;
+- `enumerate(x)` - create a for loop that iterates over the keys and the values
+
+#### RANGE
+
+`range(int, int, int)`
+
+- (stop)
+- (start, stop)
+- (start, stop, step)
+
+
+!!!warn: Float values don't work in the range command.
+    [Link for float ranges](http://code.activestate.com/recipes/579000/)
+
+    also this works fine:
+    
+        >>> for i in range(0,100,5):
+            t = i/100
+            print(t)
+ 
+
+
+##### Methods for Float Range
+
+[frange recipe](https://code.activestate.com/recipes/577068/)
+
+[Float Range](https://perso.limsi.fr/pointal/python:floatrange)
+
+[Module on PyPI](https://pypi.python.org/pypi/floatrange/)
+
+[Floating point range « Python recipes « ActiveState Code](https://code.activestate.com/recipes/577068/)
+
+[Equally-spaced numbers (linspace) « Python recipes « ActiveState Code](https://code.activestate.com/recipes/579000/)
+
+**Reversed Example** `range( len(data) -1, -1, -1):`
+
+```py
+>>> start = 1
+>>> stop = 8
+>>> step = 2
+>>> range(stop)
+[0, 1, 2, 3, 4, 5, 6, 7]
+>>> range(start, stop)
+[1, 2, 3, 4, 5, 6, 7]
+>>> range(start, stop, step)
+[1, 3, 5, 7]
+>>> step = -1
+>>> range(stop, start)
+[]
+>>> range(stop, start, step)
+[8, 7, 6, 5, 4, 3, 2]
+>>> range(start, stop, step)
+[]
+>>> range(1.01, 2.004)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: range() integer end argument expected, got float.
+```
+
+The step by default is +1. Python will not handle ranges that don't make sense. It just returns an empty list. So if Start > stop (and no step given) then there is no series of +1 to get to 1. And it only takes integers.
+
+Importantly, this method allows you to change the values within the range. (Not sure what I meant by this in retrospect...)
+
+```py
+for value in range(0,8):
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
+
+[0,1,2,3,4,5,6,7]
+range(5)
+[0,1,2,3,4,5]
+#exclusive of end
+>>> range(5,0,-1)
+[5, 4, 3, 2, 1]
+```
+
+#### BREAK
+
+`break` break out of a loop, typically with an internal conditional statement
+
+```py
+number = 0
+for number in range(10):
+    number = number + 1
+    if number == 5:
+         break    #break here
+     print('Number is ' + str(number))
+print('Out of loop')
+
+Number is 1
+Number is 2
+Number is 3
+Number is 4
+Out of loop
+ #gets to 5 and then stops
+```
+
+#### CONTINUE
+
+`continue` -continue the loop -just stop the current iteration
+
+```py
+number = 0
+for number in range(7):
+    number = number + 1
+
+    if number == 5:
+         continue    #continue here
+
+     print('Number is ' + str(number))
+
+print('Out of loop')
+
+Number is 1
+Number is 2
+Number is 3
+Number is 4
+Number is 6    # 5 is skipped
+Number is 7
+Number is 8
+Number is 9
+Number is 10
+Out of loop
+```
+
+#### PASS
+
+`pass` - handle the condition without the loop being impacted in any way;
+
+e.g. `pass` statement- in this program, we notice that the program runs exactly as it would if there were no conditional statement in the program. The pass statement tells the program to disregard that condition and continue to run the program as usual.
+
+```py
+number = 0
+
+for number in range(10):
+   number = number + 1
+
+   if number == 5:
+        pass    #pass here
+   print('Number is ' + str(number))
+
+print('Out of loop')
+
+Number is 1
+Number is 2
+Number is 3
+Number is 4
+Number is 5  #Nothing Happens
+Number is 6
+Number is 7
+Number is 8
+Number is 9
+Number is 10
+Out of loop
+```
+
+From docs: `pass` is a null operation — when it is executed, nothing happens. It is useful as a placeholder when a statement is required syntactically, but no code needs to be executed, for example:
+
+```py
+def f(arg): pass    #a function that does nothing (yet)
+
+class C: pass       #a class with no methods (yet)
+```
+
+#### enumerate(x)
+
+`enumerate(x)` - create a for loop that iterates over the keys and the values
+
+```py
+x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dict
+for key, value in enumerate(x):
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
+#reduces code by one line vs:
+
+x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dictionary
+ for key in x:  #dict x
+    value = x[key]
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
+```
+
+#### Other iterable Functions
+
+Some example things that turn collections into iterable items
+
+- d.items()
+- enumerate(\*)
+- d.iter()
+- d.iteritems()
+
+You can make things iterable with some commands. A dictionay, for instance has no order.
+
+In Python 2, `d.items()` returns a list of (key, value) tuples, while `d.iteritems()` returns an iterator that provides the same:
+
+```py
+zero = 'zero'
+d = {1:'a',2:'b', 'c':3, '4':4, 0:zero}
+
+for i in d:
+    print i, d[i]
+
+for k, v in d.iteritems():
+    print k, v
+```
+
+In Python 3, `d.items()` returns the iterator; to get a list, you need to pass the iterator to list() yourself. SO, `list(d.items())= d.iteritems()` in python 3.
+
+```py
+for k, v in d.items():
+    print(k, v)
+list(d.items())
+```
+
+
+```py
+class yrange:
+    def __init__(self, n):
+        self.i = 0
+        self.n = n
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.i < self.n:
+            i = self.i
+            self.i += 1
+            return i
+        else:
+            raise StopIteration()
+```
+
+My Stack() class as a generator:
+
+
+### Generators
+
+[Generator Info](https://wiki.python.org/moin/Generators)
+
+ The following implements generator as an iterable object.
+
+The following implements generator as an iterable object.
+
+``py`
+>#Using the generator pattern (an iterable)
+class firstn(object):
+    def __init__(self, n):
+        self.n = n
+        self.num, self.nums = 0, []
+
+    def __iter__(self):
+        return self
+
+    # Python 3 compatibility
+    def __next__(self):
+        return self.next()
+
+    def next(self):
+        if self.num < self.n:
+            cur, self.num = self.num, self.num+1
+            return cur
+        else:
+            raise StopIteration()
+
+sum_of_first_n = sum(firstn(1000000))
+```
+
+
+```py
+def zeros():
+    while True:
+        yield 0
+
+def ones():
+    while True:
+        yield 1
+```
+
+#### Empty Generator
+
+```py
+    def __iter__(self):
+        return iter(())
+
+    def __iter__(self):
+        return
+        yield
+```
+
+
+## FUNCTIONS
+
+Purposes of a function:
+
+- Functions allow you to reuse and write readable code
+- Type `def` (define), function name and parameters it receives
+- return is used to return something to the caller of the function
+- **return is optional.**
+- I think there needs to be a blank line and a return of tab after the end of a function.
+- Provide Decomposition and Abstraction.
+  - Decomposition is a way to break the code up into modules that are reusable.
+  - Abstraction allows the supressions of details. It allows the creation of a black box.
+
+naming convention is lowercase_and_underscores, with a verb. Arguments should indicate a data type.
+
+Doc string `'''doc goes here'''`
+
+Arguments - of two types
+-required
+-optional- An optional or default argument has an = sign.
+
+```python
+def addNumbers(fNum, sNum):
+    sumNum = fNum + sNum
+    return sumNum
+
+print(addNumbers(1, 4))
+print(sumNum) #>>>Error
+```
+
+Can't get the value of sumNum because it was created in a function. It is said to be out of scope.
+
+```py
+#If you define a variable outside of the function it works every place
+newNum = 0;
+def subNumbers(fNum, sNum):
+    newNum = fNum - sNum
+    return newNum
+
+print(subNumbers(1, 4))
+```
+
+```py
+def sqrt(x)
+    '''returns the square root of x, if x is a perfect sqare.  Prints an error message and returns None otherwise'''
+    ans = 0
+    if x >= 0:
+        while ans * ans < x: ans = ans + 1
+        if ans * ans != x:
+            print x, 'is not a perfect square' #py3 =>  print( x, 'is not a perfect square')
+            return None
+        else: ans
+    else:
+        print x, ' is a negative number' #py3 =>  print(x, ' is a negative number')
+        return None
+```
+
+**Syntax** - as follows
+
+- `def` (Define)
+- Keyword (a name),
+- parentheses- formal parentheses ( ) _Required_
+- return - when you get to this point return control from the function and return the value.
+  - None - a special value, but has a special value - no value.
+  - Should be a return on every branch of the code.
+- the `''' description '''` just after def will display as a tooltip when someone starts the function.
+
+- Invocation
+
+!!!Note `Print(f(x)->None)` does not print
+
+!!!Example A farmer has chickens and cows. He sees 20 heads and 50 legs.
+
+```py
+#MIT Class Example:
+
+def solve(numLegs, numHeads):
+    for numChicks in range(0, numHeads + 1):
+        numPigs = numHeads - numChicks
+        totLegs = 4 * numPigs + 2 * numChicks
+        if totLegs == numLegs:
+            return (numPigs, numChicks)  #Note the return of a Tuple
+    return (None, None)  #Tuple of None
+
+def barnYard():
+    heads = int(raw input('Enter Number of heads: '))
+    legs = int(raw input('Enter Number of Legs: ' ))
+    pigs, chickens = solve(legs, heads)
+    if pigs == None:
+        print 'There is no solution'
+    else
+        print 'Number of Pigs', pigs
+        print 'Number of Chickes', chickens
+
+def solve1(numLegs, numHeads):
+    for numSpiders in range(0, numHeads + 1):
+        for numChicks in range(0, numHeads  - numSpiders + 1):
+            numPigs = numHeads - numChicks - numSpiders
+            totLegs = 4 * numPigs + 2 * numChicks + 8 * numSpiders
+            if totLegs == numLegs:
+                return (numPigs, numChicks, numSpiders)  #a Tuple
+    return (None, None, None)  #Tuple of None
+
+def barnYard1()
+    heads = int(raw input('Enter Number of heads: '))
+    legs = int(raw input('Enter Number of Legs: ' ))
+    pigs, chickens, spiders = solve1(legs, heads)
+    if pigs == None:
+        print 'There is no solution'
+    else
+        print 'Number of Pigs', pigs
+        print 'Number of Chickes', chickens
+        print 'Number of Spiders', spiders
+
+#However now there is likely more than one solution.  Ideally wed keep going once a solution is found.
+
+def solve2(numLegs, numHeads):
+    solutionFound = False
+    for numSpiders in range(0, numHeads + 1):
+        for numChicks in range(0, numHeads  - numSpiders + 1):
+            numPigs = numHeads - numChicks - numSpiders
+            totLegs = 4 * numPigs + 2 * numChicks + 8 * numSpiders
+            if totLegs == numLegs:
+                print 'Number of Pigs', pigs
+                print 'Number of Chickes', chickens
+                print 'Number of Spiders', spiders
+                solutionFound = True
+                #return (numPigs, numChicks, numSpiders)  #a Tuple
+    if not solutionFound: print 'There is no solution'
+    #return (None, None, None)  #Tuple of None
+
+def barnYard2()
+    heads = int(raw input('Enter Number of heads: '))
+    legs = int(raw input('Enter Number of Legs: ' ))
+    solve2(legs, heads)
+```
+
+### Recursion
+
+A problem is broken into a
+
+- base case
+- inductive step
+
+For Example: Palindrome. If str.len()=0 or str.len()=1 then Palindrome = True.
+Inductive step- start at one end, if the other end is the same letter, if all the letters inside are palindromic then its a palindrome.
+
+```py
+def isPalindrome(str):
+    '''Returns True if str is a Palindrome and False otherwise'''
+    if len(str) <= 1: return True
+    else: return str[0] == str[1] and isPalindrome(str[1:-1])
+
+ def isPalindrome1(str, indent):
+    if len(str) <= 1: return True
+    else: return str[0] == str[1] and isPalindrome(str[1:-1])
+```
+
+### Gathering and Scattering
+
+#### Gathering
+
+Variable Length Arguments using Tuples:
+
+Some functions take arguments as a tuple. They take any number of inputs and zip them up into a single tuple. The command for this is an asterisk (*), where it looks like: `def func(*args):`
+
+example:
+
+```py
+def func(*args):
+    #some code
+    return
+
+
+def printAll(*args)
+    print(args)
+    return
+
+>>> printAll('A', 123, 'hello world', 75.4)
+('A', 123, 'hello world', 75.4)
+```
+
+This is called **gathering** the arguments.
+
+```py
+##OOPS Divmod is built in afterall.
+def divmod(n, d):
+    ''' Input is (int, int), returns as a tuple of length 2 the divisor and the modulus'''
+    #first multiline quote after def will pop up as help
+    div = n / d
+    rem = n % d
+    return (div, rem)
+
+a=divmod(5, 2)
+>>> a
+(2, 1)
+
+#Automatically scatter the tuple
+>>> a,b = divmod(5,2)
+>>> a
+2
+>>> b
+1
+>>> t=(5,2)
+>>> divmod(t)
+#ERROR need to scatter
+>>> divmod(t*)
+#ERROR Wrong Way
+>>> divmod(*t) #Works
+(2, 1)
+```
+
+#### Scattering
+
+The opposite is **scattering,** also done with an _. Using divmod(n,o) from above. var_
+
+This is wrong 'So it appears in gathering, the asterisk comes first _args, and in scattering it comes second- args_' it seems like its always first.
+
+```py
+>>> t= 7,3
+>>> divmod(t)
+
+Traceback (most recent call last):
+  File "<pyshell#24>", line 1, in <module>
+    divmod(t)
+TypeError: divmod expected 2 arguments, got 1
+
+>>> divmod(t*)
+SyntaxError: invalid syntax
+>>> divmod(*t)
+(2, 1)
+```
+
+### Lambda Calculus
+
+Lambda calculus is an abstract "throwaway" function, designed to relate a value to another.
+
+List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
+
+For example, assume we want to create a list of squares, like:
+```py
+>>> squares = []
+>>> for x in range(10):
+...     squares.append(x**2)
+...
+>>> squares
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+
+Note that this creates (or overwrites) a variable named x that still exists after the loop completes. We can calculate the list of squares without any side effects using:
+
+```py
+squares = list(map(lambda x: x**2, range(10)))
+#or, equivalently:
+squares = [x**2 for x in range(10)]
+```
+
+The above is an example of a lambda function. Running just the lambda shows that its a throwaway function:
+
+```py
+>>> lambda x : x**2, range(10)
+(<function <lambda> at 0x00000000034D9198>, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+>>> map(lambda x: x**2, range(10))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> list(map(lambda x: x**2, range(10)))
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+## USER INPUT
+
+print('What is your name?')
+
+Stores everything typed up until ENTER
+name = sys.stdin.readline() - this wasnt working for me
+
+print('Hello', name)
+
+input() - input is used to read integers
+
+```py
+age = input("What is your age? ")
+print "Your age is: ", age
+type(age)
+```
+
+raw_input() - raw_input is used to read text (strings) from the user:
+
+```py
+name = raw_input("What is your name? ")
+type(name)
+```
+
+## FILE I/O
+
+-   [`pathlib` --- Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
+-   [`os.path` --- Common pathname manipulations](https://docs.python.org/3/library/os.path.html)
+-   [`fileinput` --- Iterate over lines from multiple input streams](https://docs.python.org/3/library/fileinput.html)
+-   [`stat` --- Interpreting `stat()` results](https://docs.python.org/3/library/stat.html)
+-   [`filecmp` --- File and Directory Comparisons](https://docs.python.org/3/library/filecmp.html)
+    -   [The `dircmp` class](https://docs.python.org/3/library/filecmp.html#the-dircmp-class)
+-   [`tempfile` --- Generate temporary files and directories](https://docs.python.org/3/library/tempfile.html)
+
+-   [`glob` --- Unix style pathname pattern expansion](https://docs.python.org/3/library/glob.html)
+-   [`fnmatch` --- Unix filename pattern matching](https://docs.python.org/3/library/fnmatch.html)
+-   [`linecache` --- Random access to text lines](https://docs.python.org/3/library/linecache.html)
+-   [`shutil` --- High-level file operations](https://docs.python.org/3/library/shutil.html)
+    -   [Directory and files operations](https://docs.python.org/3/library/shutil.html#directory-and-files-operations)
+        -   [Platform-dependent efficient copy operations](https://docs.python.org/3/library/shutil.html#platform-dependent-efficient-copy-operations)
+        -   [copytree example](https://docs.python.org/3/library/shutil.html#copytree-example)
+        -   [rmtree example](https://docs.python.org/3/library/shutil.html#rmtree-example)
+    -   [Archiving operations](https://docs.python.org/3/library/shutil.html#archiving-operations)
+        -   [Archiving example](https://docs.python.org/3/library/shutil.html#archiving-example)
+        -   [Archiving example with *base_dir*](https://docs.python.org/3/library/shutil.html#archiving-example-with-base-dir)
+    -   [Querying the size of the output terminal](https://docs.python.org/3/library/shutil.html#querying-the-size-of-the-output-terminal)
+
+Class IO
+
+- io
+  - _IOBase_
+    - fileno
+    - seek
+    - truncate
+    - **methods**
+      - close, flush
+      - closed, seekable, writable, readable
+      - __enter__, __exit__
+      - __iter__, __next__
+      - isatty, tell
+      - readlines, wrielines
+  - _RAWIOBase(IOBase)_
+    - readinto
+    - write
+    - **methods**: read, readall
+  - _BufferedIOBase(IOBase)_
+    - detach
+    - read, write
+    - readline
+    - **methods** - readinto, readinto1
+  - _TextIOBase(IOBase)_
+    - detach
+    - read, write
+    - readline
+    - **methods** encoding, errors, newlines
+    - _TextIOWrapper(IOBase)_
+    - _StringIO(IOBase)_
+
+
+
+```
+from os import path
+
+here = path.abspath(path.dirname(__file__))
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+```
+
+
+
+End of line characters can be Unix/Linux, Windows, or Mac style.
+
+```py
+file = open("myFileName.txt") creates a pointer
+for line in file:
+    print line
+        for cell in line.split(','): #csv file reading
+            print cell
+            print cell.strip()      #strip
+file.close()
+
+#Overwrite or create a file for writing
+test_file = open("test.txt", "wb")  #not sure what wb is specifically.
+
+#or to write or append
+test_file = open("test.txt", "w")
+test_file = open("test.txt", "a")
+#read is the default so the below two commands are equivalent
+test_file = open("test.txt", "r")
+test_file = open("test.txt")
+#Opens a file for reading and writing
+test_file = open("test.txt", "r+")
+#Opens a file for reading and writing
+test_file = open("test.txt", "x") # create
+```
+
+[Open Docs](https://docs.python.org/3/library/functions.html#open)
+
+| Character | Meaning                                                         |
+| --------- | --------------------------------------------------------------- |
+| 'r'       | open for reading (default)                                      |
+| 'w'       | open for writing, truncating the file first                     |
+| 'x'       | open for exclusive creation, failing if the file already exists |
+| 'a'       | open for writing, appending to the end of the file if it exists |
+| 'b'       | binary mode                                                     |
+| 't'       | text mode (default)                                             |
+| '+'       | open a disk file for updating (reading and writing)             |
+
+
+mode is an optional string that specifies the mode in which the file is opened. It defaults to 'r' which means open for reading in text mode. Other common values are 'w' for writing (truncating the file if it already exists), 'x' for exclusive creation and 'a' for appending (which on some Unix systems, means that all writes append to the end of the file regardless of the current seek position). In text mode, if encoding is not specified the encoding used is platform dependent: locale.getpreferredencoding(False) is called to get the current locale encoding. (For reading and writing raw bytes use binary mode and leave encoding unspecified.) The available modes are:
+
+```py
+#Get the file mode used
+print(test_file.mode)
+
+#Get the files name
+print(test_file.name)
+
+#Write text to a file with a newline
+test_file.write(bytes("Write me to the file\n", 'UTF-8'))
+
+#Close the file
+test_file.close()
+
+
+
+#Read text from the file
+text_in_file = test_file.read()
+
+print(text_in_file)
+
+#Delete the file
+os.remove("test.txt")
+```
+file error handling
+
+```py
+try:
+    with open(argv[1]) as f:
+        s = f.read()
+        print 'read', len(s), 'bytes.'
+except IOError as x:
+    if x.errno == errno.ENOENT:
+        print argv[1], '- does not exist'
+    elif x.errno == errno.EACCES:
+        print argv[1], '- cannot be read'
+    else:
+        print argv[1], '- some other error'
+```
+
+### Using Paths
+
+Cant use relative paths outright.  Use `Os` to manipulate filesystem
+
+```py
+subpath = '/Python/Web-STS/'
+filename = 'payload.txt'
+fullpath = os.getcwd() + subpath + filename
+```
+
+#### Check if a file exists
+
+`Pathlib` is good and `fileinput`
+
+```py
+from pathlib import Path
+>>> filepath = 'D:\ASUSsync\VS Code\Python\Web-STS\STS.py'
+>>> p = Path(filepath)
+>>> p.exists()
+```
+
+A better method is this:
+
+```py
+from os.paths import exists
+from os import getcwd
+
+subpath = '/Python/Web-STS/'
+fullpath = getcwd() = subpath
+hfile = fullpath + 'headers'
+exists(hfile)
+$True
+```
+
+```
+try:
+    fp = open("myfile")
+except PermissionError:
+    return "some Default message"
+else:
+    with fp:
+        return fp.read()
+```
+Typing the exact path in didnt work at all.  Despite a mix of all kinds of slashes.  A path of the form `C:\dir1\dir2\dir3\dir4\` just didnt work, even replacing `/` with `\` and `\\`.
+
+```py
+import os
+from pathlib import Path
+from pathlib import WindowsPath as WP
+from pathlib import PureWindowsPath as PWP
+
+#Tried with and without the terminal `/`
+path = 'C:\\ASUSsync\\VS Code\\Python\\Data Structures\\TOHfinal\\etc\\Box'
+wp = 'C:/ASUSsync/VS Code/Python/Data Structures/TOHfinal/etc/Box'
+sub = '/DataStructures/TOHfinal/etc/Box'
+subw = '\\DataStructures\\TOHfinal\\etc\\Box'
+
+p = Path(path)
+print(p.exists())
+q = WP(wp)
+print(q.exists())
+p = Path(wp)
+print(p.exists())
+q = WP(path)
+print(q.exists())
+p = Path(sub)
+print(p.exists())
+q = WP(sub)
+print(q.exists())
+$ False
+$ False
+$ False
+$ False
+$ False
+$ False
+```
+
+I cannot figure out why this is. Yet this works.  And the docs show a very similar example.
+
+```py
+import os
+from pathlib import Path
+p = Path(os.getcwd())
+r = p / 'DataStructures' / 'TOHfinal' / 'etc' / 'Box'
+print(str(r), type(r), r.exists())
+
+#using this you can get to the '/=' operator to traverse
+>>> p /= 'file.txt'
+>>> str(p)
+'C:\\ASUSsync\\VS Code\\Python\\file.txt'
+```
+
+
+PATH.`parts` returns a tuple of all the file parts.
+
+!!!note it is not PATH`.parts()`, because its not a method, just an attribute? Or something.
+
+```py
+>>> p.parts #split the path to get each loc
+('C:\\', 'ASUSsync', 'VS Code', 'Python', 'file.txt')
+>>> p.parts[-1] #get the file name
+'file.txt'
+#could check x.is_dir() before grabbing the last bit.
+>>> p.is_dir()
+False
+>>> p.parts[-1].split('.')
+['file', 'txt']
+>>> p.parts[-1].split('.')[0]
+'file'
+```
+
+
+### Tarfile
+
+see also Zipfile library and also shutils library in 3.8+
+
+some of my Examples
+
+
+```C++ 
+with tarfile.open(tar_name, "w:gz") as tar_handle:
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            tar_handle.add(os.path.join(root, file))
+tardir('./my_folder', 'sample.tar.gz')
+tar.close()
+```
+
+```C++ 
+      try:
+        tf = tarfile.open(name=_fn, mode='w')
+        for _f in os.listdir('.'):
+            tf.add(_f, recursive=True)
+        tf.close()
+        dbg('closing: ' + _fn + " and exiting")
+        print("done. " + _fn + " created.")
+        return()
+    except IOError:
+        if confirm("FATAL: file already exists. Overwrite?"):
+            os.remove(_fn)
+            do_binary()  # rerun
+    exit(-1)
+```
+
+```C 
+       try:
+        tf = tarfile.open(name=_fn, mode='w')
+        for __f in [f for f in os.listdir('.') if os.path.isfile(f)]:
+            tf.add(__f)
+            dbg('adding: ' + __f)
+        tf.add('./bin', 'bin', recursive=True)
+        _s = "./bin->"
+        for __s in (os.listdir('./bin')):
+            _s += __s
+        dbg('adding: ' + _s)
+        tf.close()
+        dbg('closing: ' + _fn + " and exiting")
+        print("done. " + _fn + " created.")
+        return()
+    except IOError:
+        if confirm("FATAL: file already exists. Overwrite?"):
+```
+
+
+
+
+
+
+### Resource Managers
+
+The better way to open files.  Has something to do with minimizing resources.
+
+```py
+with open('test.txt', 'r') as file:
+        file_contents = f.read()
+
+words = file_contents.split(' ')
+word_count = len(words)
+print(word_count)
+```
+
+### JSON
+
+Using the json library, opens a json file as a dictionary.
+
+loads a dictionary, with keys that are dictionary keys.  Arrays become lists.  And so on.
+
+```py
+import json
+dd = json.loads(datadict)
+
+datadict = '''
+ {
+        "intro" : "TODO- provide and intro",
+        "args" : [
+            {
+                "name" : "output",
+                "short" : "-o",
+                "long" : "--output",
+                "positional" : true,
+                "nargs" : 2,
+                "type" : "str",
+                "optional" : false,
+                "action" : "store_true"
+                "default" : "TOH-Output.txt",
+                "help"  : "The location to save the file output."
+            },
+            {
+                "name" : "print",
+                "positional" : true,
+                "optional" : false,
+                "short" : "-p",
+                "long" : "--print",
+                "nargs" : "",
+                "type" : "",
+                "action" : "store_true"
+                "help"  : "Print output to the terminal (in addition to the file output."
+            }
+        ]
+'''
+
+```
+
+
+### Create a tempfile
+
+tempfile library
+
 
 ## ERROR Handling
 
@@ -2611,2350 +6465,6 @@ This last example demonstrates the final few formatting functions:
 ['IndexError: tuple index out of range\n']
 
 ```
-## LISTS, TUPLES and DICTIONARIES
-
-| `LISTS`           | **TUPLES**         | _DICTIONARES_             |                                                                                              |
-| ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
-| dunder            | methods            |                           |                                                                                              |
-| list methods      | tuple equivalent   | works in dictionaries     | descriptions                                                                                 |
-| x is a List       |                    |                           |                                                                                              |
-| x+**L**           | yes                | no                        | y=list (0)                                                                                   |
-| x[i]=**L**        | no                 | yes, where y is a key     | set item                                                                                     |
-| x[i:j]=**L**      | no                 | no                        | set items (1)                                                                                |
-| y in x            | yes                | Yes, only searches keys   | x must be an item in a list. not another list(2)                                             |
-| del x[y]          | no                 | yes, where y is a key     | remove y (int)                                                                               |
-| del x[i:j]        | no                 | no                        | remove i through j (ints) (1)                                                                |
-| cmp(x,y)          | yes                | yes                       | compares                                                                                     |
-| ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
-| ==,>=,<=,>,<,!=   | yes                | yes                       | unsure, comparing two lists does equal true in some cases. Length?                           |
-| x[y]              | yes                | yes, where y is a key     | lookup 0 indexed value                                                                       |
-| x[i:j]            | yes                | no                        | as above a slice (1)                                                                         |
-| len(x)            | yes                | yes                       | returns the length of list.                                                                  |
-| x+=**L**          | yes,               | no                        | x+=y perform action and set. y must be list. basically append. (3)                           |
-| x\*=**L**         | yes                | no                        | multiplies the list by copying itself (4)                                                    |
-| repr(x)           | yes                | yes                       | returns a string representation                                                              |
-| iter(x)           | yes                | yes                       | uses in iteration                                                                            |
-| x\*n              | yes                | no                        | returns the list or tuple that many times in one list or tuple                               |
-| explicit          | methods            |                           | definition                                                                                   |
-| append(...)       | no                 | no                        | L.append(object) -- append object to end                                                     |
-| count(...)        | yes                | no                        | L.count(value) -> integer -- return number of occurrences of value                           |
-| extend(...)       | no                 | no                        | L.extend(iterable) -- extend list by appending elements from the iterable                    |
-| index(...)        | yes                | no                        | L.index(value, [start, [stop]]) -> integer -- return first index of value. (5)               |
-| insert(...)       | no                 | no                        | L.insert(index, object) -- insert object before index                                        |
-| pop(...)          | no                 | yes                       | L.pop([index]) -> item -- remove and return item at index (default last).                    |
-|                   |                    |                           | similar to L[i]; del L[i](6)                                                                 |
-| remove(...)       | no                 | no                        | L.remove(value) -- remove first occurrence of value. (5)                                     |
-| reverse(...)      | reversed(l)        | no                        | L.reverse() -- reverse _IN PLACE_                                                            |
-| sort(...)         | sorted(t)          | no                        | L.sort(cmp=None, key=None, reverse=False) -- stable sort _IN PLACE_; cmp(x, y) -> -1, 0, 1   |
-
----
-
-1. appends the List with another
-2. Use of negative indices is not supported.
-3. For dict to search values, use 'str' in dict_name.values()
-4. this works because of rassignment
-5. L \* (int) = L + L + L+…(int)
-6. Raises ValueError if the value is not present.
-7. Raises IndexError if list is empty or index is out of range.
-
-See the [Dictionary](### DICTIONARY or MAP { } - Mutable, heterogeneous)
-
-### [LISTS]
-
- Lists `[ ]` - Mutable
-
-- A list allows you to create a list of values and manipulate them
-- Each value has an index with the first one starting at 0
-  **- mutable** and indexed by integers (zero indexed). Shown by **square brackets**.
-- Zeroed indexed
-
-Methods demonstrated-
-
-- `L.reverse()` - reverses the order of the list
-- `L.sort()` - sorts the order of the lists.
-- `sorted(L)` -|changes the list order and returns it without changing L. while `L.sort()` changes L to be ther result.
-- `del L[i:j]`- removes a slice
-- `repr(L)`|-returns L as a string
-- `L.__add__(y)` - dunder method refers to L + y , y must be another List, appends the lists- as L + (list
-  - `L + L2` - concatenate two lists.
-- `L.append(Obj)` - appends a list
-- `L.remove('Str')` - removes the first instance of what it finds
-
-
-!!!warning Warning- Assignment of Lists is a Shallow copy
-    ```py
-        L=[1,2,3]
-        L2 = L
-        L[0] = 2
-        print(L2) #the same as L, also edited (only a reference) 
-        #use L.copy()
-        L2=L.copy()
-    ```
-
-```python
-L = [1,2,3]
-L=["abc", 123,  0, variable, ["another", "list"] ]
-
-grocery_list = ['Juice', 'Tomatoes', 'Potatoes', 'Bananas']
-print('The first item is', grocery_list[1])
-
-#You can change the value stored in a list box
-grocery_list[0] = "Green Juice"
-print(grocery_list)
-
-#indexing a list position that doesnt exist throws an error.
-List= [1, 'a string', A_Variable]
-List[3] = -15 #indexing the 4th position, a position that doesnt exist, attempts to redirect the binding of the 4th item and throws an error.
-
-#You can get a subset of the list with [min:up to but not including max]
-
-print(grocery_list[1:3])
-
-#You can put any data type in a a list including a list
-other_events = ['Wash Car', 'Pick up Kids', 'Cash Check']
-to_do_list = [other_events, grocery_list]
-
-print(to_do_list)
-
-#Get the second item in the second list (Boxes inside of boxes)
-print(to_do_list[1][1])
-
-#You add values using append
-grocery_list.append('onions')
-print(to_do_list)
-
-#Insert item at given index
-grocery_list.insert(1, "Pickle")
-
-#Remove item from list
-grocery_list.remove("Pickle")
-
-#Sorts items in list
-grocery_list.sort()
-
-#Reverse sort items in list
-grocery_list.reverse()
-
-#del deletes an item at specified index
-del grocery_list[4]
-print(to_do_list)
-
-#We can combine lists with a +
-to_do_list = other_events + grocery_list
-print(to_do_list)
-
-#Get length of list
-print(len(to_do_list))
-
-#Get the max item in list
-print(max(to_do_list))
-
-#Get the minimum item in list
-print(min(to_do_list))
-```
-
-#### List store with step
-
-```py
-l = [1, 2, 3, 4]
-l[0:4:2] = [5, 6]  #so even if its out of range, - 4 is here
-print(l)
->>>[5, 2, 6, 4] 
-```
-
-This was confusing. But it is still **[<start>:<stop>:<step>]** with the implied defaults if left blank of **[ 0 : len(L) : 1]**
-
-List slice-store 
-
-```py
-l = [10, 20]
-l[0:1] = range(4)
-print(l)
->>>[0, 1, 2, 3, 20]
-```
-
-#### List vs. Tuples - MIT Class Example
-
-```py
-Ivies = ['Harvard', 'Yale', 'Brown']
-Techs = ['MIT', 'CalTech']
-Univs = []
-Univs.append(Techs)
-print Univs #>> [['MIT', 'CalTech']]
-Univs.append(Ivies)
-print Univs
-#>> [['MIT', 'CalTech'], ['Harvard', 'Yale', 'Brown']]
-
-
-for e in Univs:     #Will return Lists
-    print e         #Prints the Lists
-    for c in e:     #Nested loop to iterate through sublist
-        print c     #Prints each University
-
-```
-
-Because when you appended the list, you didnt append the elements of the list, you appended the lists to the lists. A list can have any data type
-
-#### Flattening or Concatenating a List
-
-You can also concatenate or _flatten the list_
-
-```py3
-Univs = Techs + Ivies  #Concatenation
-#> ['MIT', 'CalTech', 'Harvard', 'Yale', 'Brown']
-```
-
-Remove from a list
-
-```py
-Univs.remove('Harvard')
-```
-
-#### Mutation
-
-Changing the list cause mutation- eg. the change of the variable in place rather than the creation of an entirely new variable (a la Tuples).
-
-This means that `Ivies[1]=-15` mutates the List of Objects Ivies, rather than re-binding the variable to a new object as in something that is immutable.
-
-```py
-myList1 = [1, 2, 3, 4]
-myList2 = List1  #This assignment creates a binding - 2 separate paths to the same object.
-print myList2
-#>>> [1, 2, 3, 4]
-myList1[0] = 4
-print myList1
-#>>> [4, 2, 3, 4]
-print myList2
-#>>> [4, 2, 3, 4]
-
-A = 1
-B = A
-A = 2
-print B
-#>>> 1
-```
-
-This is because L2 was bound to the same object as L1. This doesnt occur in the lower object because its not a mutable object. It reassigns A to another object. In the first case its a list, that then refers to n objects, its the lists reference to the nth object that is replaced.
-[n1, n2, n3, ...] -> its n1 that is replaced the reference, not the references myList1 and myList2 still refer to the same list.
-
-#### List Comprehension
-
-List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
-
-For example, assume we want to create a list of squares, like:
-
-```py3
->>> squares = []
->>> for x in range(10):
-...     squares.append(x**2)
-...
->>> squares
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-```
-
-Note that this creates (or overwrites) a variable named x that still exists after the loop completes. We can calculate the list of squares without any side effects using:
-
-```py3
-squares = list(map(lambda x: x**2, range(10)))
-#or, equivalently:
-squares = [x**2 for x in range(10)]
-```
-
-which is more concise and readable and is a **List Comprehension** or **ListComp**.
-
-A list comprehension *consists of brackets containing an expression followed by a for clause, then zero or more for or if clauses.* The result will be a new list resulting from evaluating the expression in the context of the for and if clauses which follow it. For example, this **listcomp** combines the elements of two lists if they are not equal:
-
-```py3
->>> [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
-[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
-```
-
-and it’s equivalent to:
-
-```py3
->>> combs = []
->>> for x in [1,2,3]:
-...     for y in [3,1,4]:
-...         if x != y:
-...             combs.append((x, y))
-...
->>> combs
-[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
-```
-
-More Examples:  `vec = [-4, -2, 0, 2, 4]`
-
-Create a new list with the values doubled
-`[x*2 for x in vec]` => [-8, -4, 0, 4, 8]
-
-Filter the list to exclude negative numbers
-`[x for x in vec if x >= 0]` => [0, 2, 4]
-
-Apply a function to all the elements
-`[abs(x) for x in vec]` => [4, 2, 0, 2, 4]
-
-Call a method on each element
-`freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']`
-`[weapon.strip() for weapon in freshfruit]` => ['banana', 'loganberry', 'passion fruit']
-
-Create a list of 2-tuples like (number, square)
-
-```py3
->>> [(x, x**2) for x in range(6)]
-[(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
-
->>> #the tuple must be parenthesized, otherwise an error is raised
->>> [x, x**2 for x in range(6)]
-  File "<stdin>", line 1, in <module>
-    [x, x**2 for x in range(6)]
-               ^
-SyntaxError: invalid syntax
-```
-
-Flatten a list using a listcomp with two 'for'
-```py3
->>> vec = [[1,2,3], [4,5,6], [7,8,9]]
->>> [num for elem in vec for num in elem]
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
-```
-
-List comprehensions can contain complex expressions and nested functions:
-
-```py3
->>> from math import pi
->>> [str(round(pi, i)) for i in range(1, 6)]
-['3.1', '3.14', '3.142', '3.1416', '3.14159']
-```
-```py
-line_list = ['  line 1\n', 'line 2  \n', ...]
-
-#Generator expression -- returns iterator
-stripped_iter = (line.strip() for line in line_list)
-
-#List comprehension -- returns list
-stripped_list = [line.strip() for line in line_list]
-You can select only certain elements by adding an "if" condition:
-
-stripped_list = [line.strip() for line in line_list
-                 if line != ""]
-```
-
-##### Nested Comprehension
-
-The initial expression in a list comprehension can be any arbitrary expression, including another list comprehension.
-
-Consider the following example of a 3x4 matrix implemented as a list of 3 lists of length 4.  The following list comprehension will transpose rows and columns:
-
-```py3
->>> matrix = [
-...     [1, 2, 3, 4],
-...     [5, 6, 7, 8],
-...     [9, 10, 11, 12],
-... ]
->>>
->>> [[row[i] for row in matrix] for i in range(4)]
-[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
-```
-
-This example takes some unpacking, As we saw in the previous section, the nested listcomp is evaluated in the context of the for that follows it, so this example is equivalent to:
-
-```py3
->>> transposed = []
->>> for i in range(4):
-...     transposed.append([row[i] for row in matrix])
-...
->>> transposed
-[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
-```
-
-which, in turn, is the same as:
-
-```py3
->>> transposed = []
->>> for i in range(4):
-...     # the following 3 lines implement the nested listcomp
-...     transposed_row = []
-...     for row in matrix:
-...         transposed_row.append(row[i])
-...     transposed.append(transposed_row)
-...
->>> transposed
-[[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
-```
-
-In the real world, you should prefer built-in functions to complex flow statements. The zip() function would do a great job for this use case:
-
-```py3
->>> list(zip(*matrix))
-[(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
-```
-
-
-
-#### zip()
-
-
-zip() takes a set of iterables, and iterates through them pairing them up until one list ends.
-
-```py3
->>> matrix = [
-...     [1, 2, 3, 4],
-...     [5, 6, 7, 8],
-...     [9, 10, 11, 12],
-... ]
->>>
->>> list(zip(*matrix))
-[(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
-```
-
-#### del
-
-There is a way to remove an item from a list given its index instead of its value: the del statement. This differs from the pop() method which returns a value. The del statement can also be used to remove slices from a list or clear the entire list (which we did earlier by assignment of an empty list to the slice). For example:
-
-```py
->>> a = [-1, 1, 66.25, 333, 333, 1234.5]
->>> del a[0]
->>> a
-[1, 66.25, 333, 333, 1234.5]
->>> del a[2:4]
->>> a
-[1, 66.25, 1234.5]
->>> del a[:]
->>> a
-[]
-```
-
-del can also be used to delete entire variables: `del a`. Referencing the name `a` hereafter is an error (at least until another value is assigned to it). We’ll find other uses for del later.
-
-### (TUPLES)
-
-TUPLES `( )` Immutable
-
-Briefly - _Immutable, parentheses, Ref w/ [], negative from other end, and slice with [start:end], both optional._
-
-You still reference it with square brackets `[ ]` - like everything in python. They are just defined in parentheses `( )`
-
-`pi_tuple = (3, 1, 4, 1, 5, 9)`
-
-In fact, the parentheses, *on input*, are optional:
-
-```py
->>> t = 12345, 54321, 'hello!'
->>> t[0]
-12345
->>> t
-(12345, 54321, 'hello!')
-```
-
-Tuples may be nested:
-
-```py3
-... u = t, (1, 2, 3, 4, 5)
->>> u
-((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
-```
-
-Values in a `tuple` can't change like `lists`, they are **Immutable**. Note the **Parentheses**. THis is the important indicator.
-
-You can index them and reference them, 'selection', using **[#]** square brackets. Zero indexed.
-
-Giving a negative index starts from the other end. You can also 'slice' with the colon.
-
-Importantly, slicing goes _up to but not including the value_. tuple = (1,2,3,4,5) slice[0:2] >> 1,2, but does not include tuple[2](>3).
-
-```python
-my_tuple = (1, 2, 3, 4, 5) #Changed example from pi to better show in/exclusion
-my_tuple[0] #>1
-my_tuple[2] #>3
-my_tuple[-1] #>5
-my_tuple[-2] #>4
-my_tuple[:3] #>(1,2,3)
-my_tuple[1:3] #>(2,3)
-my_tuple[2:] #>(3,4,5)
-mylist = [x for x in range(5)]
-mylist[0:4:2] # says take this tuple from 0-4(3 actually, and give every other.)
-#list[start, end(+1), step]
-#[0, 1, 2, 3, 4]  using [0:4:2] = [0, 2], 
-#because we only do to the 3rd element not the 5th element
-
-#so we can slice my list like
-mylist = [x for x in range(5)]
-mylist[0:4:2] = [9,8] #replace 0 and 2 
-mylist[0:5:2] #gets all and using a step of 2, we now need 3 values.
-```
-
-#### Tuples of 0 or 1 length
-
-!!!Important Important- it is not sufficient to enclose a single value in parentheses, to make a tuple of lenth=1.
-
-A special problem is the construction of tuples containing 0 or 1 items: the syntax has some extra quirks to accommodate these.
-
-0-  **Empty tuples are constructed by an empty pair of parentheses;**
-
-1- **a tuple with one item is constructed by following a value with a comma.**
-
-```py
->>> empty = ()
->>> singleton = 'hello',    # <-- note trailing comma
->>>#this is equivalent to singleton = ('hello',) the paren is optional on input.
->>> len(empty)
-0
->>> len(singleton)
-1
->>> singleton
-('hello',)
-
-#### Convert tuple into a list
-
-`new_list = list(my_tuple)`
-
-#### Convert a list into a tuple
-
-`new_tuple = tuple(grocery_list)`
-
-#### Other Methods
-
-```py
-len(tuple)
-min(tuple)
-max(tuple)
-
-x = 100
-divisors = () #Empty Tuple
-for i in range(1, x):
-    if x%i == 0:
-        divisors = divisors + (i)
-```
-
-Functions can return a tuple. Functions that return a tuple need a variable for each, or it will assign a tuple
-
-```py
-def func()
-    return (1, 2)
-
-var1, var2 = func() #var1 = 1 , var2 = 2
-
-type(var1)
-type(var2)
-#<type 'int'>
-var=func()
-type(var)
-<type 'tuple'>
-```
-
-#### Tuple Packing and Unpacking
-
-The statement` '` is an example of tuple `packing`: the values 12345, 54321 and 'hello!' are packed together in a tuple. The reverse operation is also possible:
-
-```py
->[1]
-t = 12345, 54321, 'hello!
-t
-$>(12345, 54321, 'hello!')
->[2]
-x, y, z = t
-x
-$>x = 12345
-z
-$>z = 'hello!'
-```
-
-This is called, appropriately enough, `sequence unpacking` and works for any sequence on the right-hand side.
-
-Sequence unpacking requires that there are as many variables on the left side of the equals sign as there are elements in the sequence. Note that multiple assignment is really just a combination of tuple packing and sequence unpacking.
-
-#### Gathering and Scattering
-
-Variable Length Inputs and Outputs
-
-This is very similar to the tuple `packing` and `unpacking` above, though the usecase is a bit different.
-
-Functions can take a variable number of arguments. A parameter name that begins with \* gathers arguments into a tuple. For example, printall takes any number of arguments and prints them:
-
-```py
-def printall(*args):
-    print args
-The gather parameter can have any name you like, but args is conventional. Here’s how the function works:
-
->>> printall(1, 2.0, '3')
-(1, 2.0, '3')
-```
-
-The complement of gather is scatter. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the \* operator. For example, divmod takes exactly two arguments; it doesn’t work with a tuple:
-
-```py
->>> t = (7, 3)
->>> divmod(t)
-TypeError: divmod expected 2 arguments, got 1
-```
-
-But if you scatter the tuple, it works:
-
-```py
->>> divmod(*t)
-(2, 1)
-```
-
-#### Sequence Type
-
-As a [sequence](####Sequential Operations) (sequential?) data type, there are some specific operations available
-
-[Main Article](#Sequence-Specific-Operations)
-
-
-#### Swap
-
-Tuples can be used to quickly swap two variables via tuple assignment:
-
-`a,b = b,a`
-
-#### Assignment
-
-A series of variables and expressions as tubles will be assigned to each other as long as their numbers match:
-
-```py
->>> (a,b,c,d) = (1,2,3,4)
->>> a
-1
->>> b
-2
->>> c,d
-(3, 4)
->>> type(a)
-<type 'int'>
-
->>> addr = 'a.l.timmons@gmail.com'
->>> user, domain = addr.split('@')
->>> user
-'a.l.timmons'
->>> domain
-'gmail.com'
-```
-
-#### zip()
-
--works similarly to assignment style above taking two sequences and combining them. Taking one from each, until it hits whatever ends first. This may be more tolerant of inequal lengths?
-
-```py
->>> t = range(5)
->>> s= 'andrew'
->>> u = 'Timmons'
->>> zip(s,t,u)
-[('a', 0, 'T'), ('n', 1, 'i'), ('d', 2, 'm'), ('r', 3, 'm'), ('e', 4, 'o')]
->>> type(zip(s,t,u))
-<type 'list'>
->>> for pair in zip(s,t,u):
-        print pair
-
-
-('a', 0, 'T')
-('n', 1, 'i')
-('d', 2, 'm')
-('r', 3, 'm')
-('e', 4, 'o')
-```
-
-**Book says this creates a zip object, that then has to be turned into a list with `list(zip(*args))`, however, I get a list at the outset.** This may be a difference with python 2 and 3.
-
-#### Create a Dict from Tuples
-
-You can quickly create a dictionary using `dict()` and `zip()- D = dict(zip(range(4), 'abcd'))`
-
-You can also map multiple pairs using a tuple. **This won't work with lists because they are mutable.** An example given is a phonebook: which has last name and first name pairs refer to a number.
-
-```py
-directory[last,first] = number
-#where (last,first) is the tuple object that forms a key.
-for last, first in directory:
-    print(first, last, directory[last,first]) #to print the phonebook.
-```
-
-### {DICTIONARY}
-
-Dictionaries or MAPS- marked by `{ }` - Mutable, heterogeneous
-
-Dictionaries, like lists, are mutable, heterogeneous.
-But unlike lists, they are unordered, and we have generalized the indexing.
-Dictionaries are fast. Values are returned in constant time as opposed to linear time as in Lists.
-They have keys and values. Keys can be any data type, strings, objects, integers, etc.
-
-Any Hashable object can be used as a dictionary key. To be hashable, the object has to be immutable- it can't change during its lifetime.
-
-Made up of values with a unique key for each value
-Similar to lists, but you can't join dicts with a +
-
-Dictionary Additional Methods
-
-| Dictionary        | Additional Methods                                                                                           |
-| ----------------- | ------------------------------------------------------------------------------------------------------------ |
-| **init**          |                                                                                                              |
-| dict()            | new empty dictionary                                                                                         |
-| dict(mapping)     | new dictionary initialized from a mapping object's (key, value) pairs                                        |
-| dict(iterable)    | new dictionary initialized as if via: d = {}                                                                 |
-|                   | for k, v in iterable:                                                                                        |
-|                   | d[k] = v                                                                                                     |
-| dict()            | dict(**kwargs) -> new dictionary initialized with the name=value pairs in the keyword argument list. **1\*\* |
-| **implicit**      |                                                                                                              |
-| D.**contains**(k) | **contains**(...) -> True if D has a key k, else False **2**                                                 |
-| k in D            |                                                                                                              |
-| x[i]=y            | set item                                                                                                     |
-| x[y]              | get item, lookup                                                                                             |
-| del x[y]          | delete item                                                                                                  |
-| ==,>=,<=,>,<,!=   | comparison, unknown (to me) how this works.                                                                  |
-| **explicit**      |                                                                                                              |
-| iter(x)           | uses in iteration                                                                                            |
-| len(x)            | returns the length of Length                                                                                 |
-| repr(x)           | returns the value as a string                                                                                |
-| clear(...)        | D.clear() -> None. Remove all items from D.                                                                  |
-| copy(...)         | D.copy() -> a shallow copy of D                                                                              |
-| fromkeys(...)     | dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v. **3**                               |
-| get(...)          | D.get(k[,d]) -> D[k] if k in D, else d. d defaults to None. **4**                                            |
-| has_key(...)      | D.has_key(k) -> True if D has a key k, else False                                                            |
-| items(...)        | D.items() -> list of D's (key, value) pairs, as 2-tuples- spits the Dict out as a list of tuples.            |
-| iteritems(...)    | D.iteritems() -> an iterator over the (key, value) items of D                                                |
-| iterkeys(...)     | D.iterkeys() -> an iterator over the keys of D                                                               |
-| itervalues(...)   | D.itervalues() -> an iterator over the values of D                                                           |
-| keys(...)         | D.keys() -> list of D's keys                                                                                 |
-| pop(...)          | D.pop(k[,d]) -> v, remove specified key and return the corresponding value. **5**                            |
-| popitem(...)      | D.popitem() -> (k, v), remove and return some (key, value) pair as a 2-tuple; **6**                          |
-| setdefault(...)   | D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D                                             |
-| update(...)       | D.update([E, ]**F) -> None. Update D from dict/iterable E and F. **7a-c\*\*\*                                |
-| values(...)       | D.values() -> list of D's values                                                                             |
-| viewitems(...)    | D.viewitems() -> a set-like object providing a view on D's items                                             |
-| viewkeys(...)     | D.viewkeys() -> a set-like object providing a view on D's keys                                               |
-| viewvalues(...)   | D.viewvalues() -> an object providing a view on D's values                                                   |
-
-1. For example: dict(one=1, two=2)
-2. 'Barkingtreefrog'in bw_grams
-3. v defaults to None.
-4. printbw_grams.get('Barkingtreefrog','Notfound')
-5. If key is not found, d is returned if given, otherwise KeyError is raised
-6. raise KeyError if D is empty.
-7. If E present and:
-
-- has a .keys() method, does: for k in E: D[k] = E[k]
-- lacks .keys() method, does: for (k, v) in E: D[k] = v
-- In either case, this is followed by: for k in F: D[k] = F[k]
-
-#### Reverse Lookup
-
-Reverse lookup is difficult. Can use some code:
-
-```python
-def reverse_lookup(d, v):
-        for k in d:
-                if d[k] == v;
-                        return k
-        raise LookupError()
-|
-Raise error('details') #Throws error, there is something not correct about this...
-```
-
-Raise Statement sends an error, returning a trace along with the quote., Allthough the above code doesn't work in ver 2.7 anyway
-
-Dictionary inversion snippit:
-
-```python
-def invert_dict(d):
-        inverse = dict()
-        for key in d:
-                val = d[key]
-                if val not in inverse:
-                        inverse[val] = [key]
-                else:
-                        inverse[val].append(key)
-        return inverse
-```
-
-```python
-super_villains = {'Fiddler' : 'Isaac Bowin',
-                  'Captain Cold' : 'Leonard Snart',
-                  'Weather Wizard' : 'Mark Mardon',
-                  'Mirror Master' : 'Sam Scudder',
-                  'Pied Piper' : 'Thomas Peterson'}
-
-print(super_villains['Captain Cold'])
-```
-
-#### Delete an entry
-
-```python
-del super_villains['Fiddler']
-print(super_villains)
-```
-
-#### Replace a value
-
-```python
-super_villains['Pied Piper'] = 'Hartley Rathaway'
-```
-
-#### `in` and `not in`
-
-`x in d` returns true or false respectively
-
-```py
->>> 'Fiddler' in super_villains
-True
->>> 'Batman' in super_villains
-False
->>> 'Batman' not in super_villains
-True
-```
-
-#### Print the number of items in the dictionary
-
-```python
-print(len(super_villains))
-```
-
-#### Get the value for the passed key
-
-```python
-print(super_villains.get("Pied Piper"))
-```
-
-#### Get a list of dictionary keys
-
-```python
-print(super_villains.keys())
-
-#or
-list(iter(super_villains))
-```
-
-#### Get a list of dictionary values
-
-```python
-print(super_villains.values())
-```
-
-#### List the Key Value pairs
-
-```py
-for i in d:
-    print i, d[i]
-```
-
-You can also get an iterator that contains both keys and values. In Python 2, d.items() returns a list of (key, value) tuples, while d.iteritems() returns an iterator that provides the same:
-
-```py
-for k, v in d.iteritems():
-    print k, v
-```
-
-In Python 3, d.items() returns the iterator; to get a list, you need to pass the iterator to list() yourself.
-
-```py3
-for k, v in d.items():
-    print(k, v)
-```
-
-#### Return a Default Value if not present
-
-```py
-d={'a':'apple','b':'ball'}
-
-d.get('c', 'Cat')
-
-#'Cat'
-```
-
-#### Sort a Dictionary
-
-If you want to sort the output by dict key you can use the collection package.
-
-```py
-import collections
-for k, v in collections.OrderedDict(sorted(d.items())).items():
-    print(k, v)
-```
-
-### RANGES
-
-See the section on Ranges in [Iterables](#Iterables).
-
-But, `range` together with `tuples` and `lists`, make up the `Sequence Data Types`.
-
-
-
-#### Sequence Specific Operations
-
-[Doc on Sequence Types](https://docs.python.org/3/library/stdtypes.html#typesseq)
-
-### Sets
-
-A set object is an unordered collection of distinct hashable objects. Common uses include membership testing, removing duplicates from a sequence, and computing mathematical operations such as intersection, union, difference, and symmetric difference.
-
-A set display is denoted by curly braces and distinguishable from dictionary displays by the lack of colons separating keys and values: `Set= {'item1', 'item2', 'item3'}`
-
-A set display yields a new mutable set object, the contents being specified by either a sequence of expressions or a comprehension. When a comma-separated list of expressions is supplied, its elements are evaluated from left to right and added to the set object. When a comprehension is supplied, the set is constructed from the elements resulting from the comprehension.
-
-An empty set cannot be constructed with `{}`; this literal constructs an empty dictionary.
-
-[Set Syntax](https://docs.python.org/3/reference/expressions.html#atom-identifiers)
-
-
-
-#### Frozensets
-
-Dont know what these are yet
-
-## CONDITIONALS
-
-The `if`, `else` and `elif` statements are used to perform different actions based off of conditions Comparison Operators `: ==, !=, >, <, >=, <=`
-
-- The `if` statement will execute code if a condition is met
-- White space is used to group blocks of code in Python
-- Use the same number of proceeding spaces for blocks of code
-- The **colon** indicates the block follows. Returning to the previous indention level indicates that you have completed the block.
-
-conditional
-
-- if
-  - or
-  - and
-  - not
-- elif
-- else
-
-The operator not yields True if its argument is false, False otherwise.
-
-Lazy interpretation- The expression x and y first evaluates x; if x is false, its value is returned; otherwise, y is evaluated and the resulting value is returned.
-
-In the context of Boolean operations, and also when expressions are used by control flow statements, the following values are interpreted as false: False, None, numeric zero of all types, and empty strings and containers (including strings, tuples, lists, dictionaries, sets and frozensets). All other values are interpreted as true. (See the **nonzero**() special method for a way to change this.)
-
-```py
-if value %2-==1:
-    print 'odd'
-elif value%2 ==0:
-    print 'even'
-else:
-    print 'neither'
-```
-
-_there is no 'end' statement, code is determined by whitespace (indents)_
-
-_common indented code is part of the same subroutine._
-
-```python
-age = 30
-if age > 16 :
-    print('You are old enough to drive')
-else :
-    print('just nope')
-#Do something else
-```
-
-Use an `if` statement if you want to execute different code regardless of whether the condition ws met or not
-
-If you want to check for multiple conditions use elif
-
-If the first matches it won't check other conditions that follow
-
-```python
-if age > 16 :
-    print('You are old enough to drive')
-else :
-    print('You are not old enough to drive')
-
-#---------------------
-
-if age >= 21 :
-    print('You are old enough to drive a tractor trailer')
-elif age >= 16:
-    print('You are old enough to drive a car')
-else :
-    print('You are not old enough to drive')
-```
-
-You can combine conditions with logical operators
-Logical Operators : `and`, `or`, `not`
-
-```python
-if ((age >= 1) and (age <= 18)):
-    print("You get a birthday party")
-elif q (age == 21) or (age >= 65):
-    print("You get a birthday party")
-elif not(age == 30):
-    print("You don't get a birthday party")
-else:
-    print("You get a birthday party yeah")
-```
-
-## ITERABLES
-
-The general thought process for iteration
-
-- Choose a variable that "counts"
-- Initialize this variable **outside** the loop.
-- Set up an End test
-- Construct the block
-- The variable must change
-- Decide what to do when Done.
-
-Built in method `iter()` will attempt to return an iterator.  An iterator supports the `__next__()` method, that takes no arguments ands returns the next element of the stream.  Raises the `StopIteration` exception when complete.  `TypeError` exception if not iteratable.
-
-```py
->>> L = [1, 2, 3]
->>> it = iter(L)
->>> it  #doctest: +ELLIPSIS
-<...iterator object at ...>
->>> it.__next__()  # same as next(it)
-1
->>> next(it)
-2
->>> next(it)
-3
->>> next(it)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-StopIteration
->>>
-```
-
-iterables, tuples and lists are all related
-
-```py
->>> L = [1, 2, 3]
->>> iterator = iter(L)
->>> t = tuple(iterator)
->>> t
-(1, 2, 3)
-```
-
-### FOR LOOPS
-
-object of type iterative
-
-most container objects can be looped over using a for statement:
-
-```py
-for element in [1, 2, 3]:
-    print(element)
-for element in (1, 2, 3):
-    print(element)
-for key in {'one':1, 'two':2}:
-    print(key)
-for char in "123":
-    print(char)
-for line in open("myfile.txt"):
-    print(line, end='')
-```
-
-`for` **-FOR** _variable_ **IN** _iterable_ or _collection:_
-
-In the statement for X in Y, Y must be an iterator or some object for which iter() can create an iterator. These two statements are equivalent:
-
-```py
-for i in iter(obj):
-    print(i)
-
-for i in obj:
-    print(i)
-```
-
-```py
-for print in [0,1,2,3,4,5,6,7]:
-    print value
-    if value %2-==1:
-        print 'odd'
-    else value%2 ==0:
-        print 'even'
-
-#Other Examples
-for key in x:
-for v in [0,1,2,3,4,5,6,7]:
-for v in range(0,8):
-for key, value in enumerate(x):
-
-Lists  = [2,4,6,8,10]
-Tuple = (1,2,3,4,5)
-Dictionary = {1:'a', 2:'b', 3:'c', 4:'d'}
-```
-
-- Allows you to perform an action a set number of times
-- Range performs the action 10 times 0 - 9
-
-```python
-for x in range(0, 10):
-    print(x , ' ', end="")
-
-print('\n')
-
-#You can use for loops to cycle through a list
-grocery_list = ['Juice', 'Tomatoes', 'Potatoes', 'Bananas']
-
-for y in grocery_list:
-    print(y)
-
-#You can also define a list of numbers to cycle through
-for x in [2,4,6,8,10]:
-    print(x)
-
-#You can double up for loops to cycle through lists
-num_list =[[1,2,3],[10,20,30],[100,200,300]];
-
-for x in range(0,3):
-    for y in range(0,3):
-        print(num_list[x][y])
-```
-
-
-#### comprehensions
-
-See the longer section under lists.
-
-```py
-line_list = ['  line 1\n', 'line 2  \n', ...]
-
-#Generator expression -- returns iterator
-stripped_iter = (line.strip() for line in line_list)
-
-#List comprehension -- returns list
-stripped_list = [line.strip() for line in line_list]
-#You can select only certain elements by adding an "if" condition:
-
-stripped_list = [line.strip() for line in line_list
-                 if line != ""]
-```
-
-#### Generators
-
-Any function containing a `yield` keyword is a generator function;
-
-simplest example of a generator function:
-
-```py
->>> def generate_ints(N):
-    for i in range(N):
-    yield i
-
-#Usage:
->>> gen = generate_ints(3)
->>> gen  #doctest: +ELLIPSIS
-<generator object generate_ints at ...>
->>> next(gen)
-0
->>> next(gen)
-1
->>> next(gen)
-2
->>> next(gen)
-Traceback (most recent call last):
-  File "stdin", line 1, in <module>
-  File "stdin", line 2, in generate_ints
-StopIteration
-```
-The test suite included with Python’s library, [Lib/test/test_generators.py](https://github.com/python/cpython/tree/3.7/Lib/test/test_generators.py), contains a number of more interesting examples.
-
-A recursive generator that generates Tree leaves in in-order.
-
-```py
-def inorder(t):
-    if t:
-        for x in inorder(t.left):
-            yield x
-
-        yield t.label
-
-        for x in inorder(t.right):
-            yield x
-```
-
-Here’s a simple counter that increments by 1 and allows changing the value of the internal counter.
-```py
-def counter(maximum):
-    i = 0
-    while i < maximum:
-        val = (yield i)
-        # If value provided, change counter
-        if val is not None:
-            i = val
-        else:
-            i += 1
-#And here’s an example of changing the counter:
-
->>> it = counter(10)  #doctest: +SKIP
->>> next(it)  #doctest: +SKIP
-0
->>> next(it)  #doctest: +SKIP
-1
->>> it.send(8)  #doctest: +SKIP
-8
->>> next(it)  #doctest: +SKIP
-9
->>> next(it)  #doctest: +SKIP
-Traceback (most recent call last):
-  File "t.py", line 15, in <module>
-    it.next()
-StopIteration
-```
-
-Because yield will often be returning None, you should always check for this case. Don’t just use its value in expressions unless you’re sure that the send() method will be the only method used to resume your generator function.
-
-In addition to send(), there are two other methods on generators:
-
-- throw(type, value=None, traceback=None) is used to raise an exception inside the generator; the exception is raised by the yield expression where the generator’s execution is paused.
-- close() raises a GeneratorExit exception inside the generator to terminate the iteration. On receiving this exception, the generator’s code must either raise GeneratorExit or StopIteration; catching the exception and doing anything else is illegal and will trigger a RuntimeError. close() will also be called by Python’s garbage collector when the generator is garbage-collected.
-
-If you need to run cleanup code when a GeneratorExit occurs, I suggest using a try: ... finally: suite instead of catching GeneratorExit.
-
-[Source](https://www.youtube.com/watch?v=cKPlPJyQrt4&t=4606s)
-
-```py
-#Top-level syntax, function -> underscore method
-#x()
-
-```
-
-
-### WHILE Loops
-
-- While loops are used when you don't know ahead of time how many times you'll have to loop
-
-```python
-random_num = random.randrange(0,100)
-
-while (random_num != 15):
-    print(random_num)
-    random_num = random.randrange(0,100)
-
-y = 0  #MIT Class Example
-x = 3
-itersLeft  = x
-while(itersLeft>0):
-    y = y + x
-    itersLeft = itersLeft - 1
-    print('y =', y, ', itersLeft=', itersLeft)
-```
-
-Note **An iterator for a while loop is defined before the loop**
-
-```python
-i = 0
-while (i <= 20):
-    if(i%2 == 0):
-        print(i)
-    elif(i == 9):
-        #Forces the loop to end all together
-        break
-    else:
-        #Shorthand for i = i + 1
-        i += 1
-        #Skips to the next iteration of the loop
-        continue
-
-    i += 1
-```
-
-### Do While (equivalents)
-
-A do-While list does not exist in python,
-
-One possible equivalent:
-
-```py3
-while True:
-    answer = raw_input("Start typing...")
-    if answer == "quit":
-        break
-    print "Your answer was", answer
-    #implied: else: continue
-```
-
-[More](https://stackoverflow.com/questions/743164/emulate-a-do-while-loop-in-python)
-
-### Case / Switch Statement
-
-A Case statement, as implemented in Java (below), this doesn't explicitly exist in Python.
-
-```java
-    public static void switch_demo(String[] args){
-        int month = 8;
-        String monthString;
-        switch (month){
-            case 1:
-                monthString = "Jan";
-                break;  //break statement is critical
-            case 2:  //a few alternative styles:
-                monthString = "Feb";
-                break
-            case 3:  monthString = "March"; //another
-                     break;
-            case 4: {   //finally-
-                       monthString = "April";
-                       break;
-                    }
-            case 5: { monthString = "May";
-                     break; }
-            case 6:
-            {
-                monthString = "June";
-                break;
-            }
-            case 7:  {
-                monthString = "July";
-                break;
-            }
-            case 8:  monthString = "August";
-                     break;
-            case 9:  monthString = "September";
-                     break;
-            case 10: monthString = "October";
-                     break;
-            case 11: monthString = "November";
-                     break;
-            case 12: monthString = "December";
-                     break;
-            default: monthString = "Invalid month";
-                     break;
-        }
-        System.out.println(monthString);
-    }
-```
-
-One possible implementation is this:
-
-```py3
-def switch_demo(argument):
-    switcher = {
-        1: "January",
-        2: "February",
-        3: "March",
-        4: "April",
-        5: "May",
-        6: "June",
-        7: "July",
-        8: "August",
-        9: "September",
-        10: "October",
-        11: "November",
-        12: "December"
-    }
-    print switcher.get(argument, "Invalid month")
-```
-
-Another example:
-
-```py3
-def one():
-    return "January"
-
-def two():
-    return "February"
-
-def three():
-    return "March"
-
-def four():
-    return "April"
-
-def five():
-    return "May"
-
-def six():
-    return "June"
-
-def seven():
-    return "July"
-
-def eight():
-    return "August"
-
-def nine():
-    return "September"
-
-def ten():
-    return "October"
-
-def eleven():
-    return "November"
-
-def twelve():
-    return "December"
-
-
-def numbers_to_months(argument):
-    switcher = {
-        1: one,
-        2: two,
-        3: three,
-        4: four,
-        5: five,
-        6: six,
-        7: seven,
-        8: eight,
-        9: nine,
-        10: ten,
-        11: eleven,
-        12: twelve
-    }
-    #Get the function from switcher dictionary
-    func = switcher.get(argument, lambda: "Invalid month")
-    #Execute the function
-    print func()
-```
-
-In fact, if you’re calling methods on objects, you can even use a dispatch method to dynamically determine which function needs to be called during runtime.
-
-```py3
-class Switcher(object):
-    def numbers_to_months(self, argument):
-        """Dispatch method"""
-        method_name = 'month_' + str(argument)
-        #Get the method from 'self'. Default to a lambda.
-        method = getattr(self, method_name, lambda: "Invalid month")
-        #Call the method as we return it
-        return method()
-
-    def month_1(self):
-        return "January"
-
-    def month_2(self):
-        return "February"
-
-    def month_3(self):
-        return "March"
-
-    #...
-
-    #To call /utilize the method
-    #Based on the passed argument, the in-built getattr() function will retrieve object methods with the particular name.
-    a=Switcher()
-    a.numbers_to_months(1)
-
-#Returns:
-#>>> January
-```
-
-Since you can alter Python dictionaries during runtime (add, remove or update key-value pairs), you can easily change your very switch statement on the fly. Here’s an example,
-
-```py3
-def zero():
-    return "zero"
-
-def one():
-    return "one"
-
-def two():
-    return "two"
-
-switcher = {
-        0: zero,
-        1: one,
-        2: two
-    }
-
-def numbers_to_strings(argument):
-    #Get the function from switcher dictionary
-    func = switcher.get(argument, "nothing")
-    #Execute the function
-    return func()
-
-numbers_to_strings(1)
-#>>> One
-
-switcher[1]=two #changing the switch case
-numbers_to_strings(1)
-#>>> Two
-```
-
-### Range, Break, Continue, Pass, Enumerate, and Iter, and others
-
-- range([start], stop, [step])
-- `break` break out of a loop, typically with an internal conditional statement
-- `continue` -continue the loop -just stop the current iteration
-- `pass` - handle the condition without the loop being impacted in any way;
-- `enumerate(x)` - create a for loop that iterates over the keys and the values
-
-#### RANGE
-
-`range(int, int, int)`
-
-- (stop)
-- (start, stop)
-- (start, stop, step)
-
-
-!!!warn: Float values don't work in the range command.
-    [Link for float ranges](http://code.activestate.com/recipes/579000/)
-
-    also this works fine:
-    
-        >>> for i in range(0,100,5):
-            t = i/100
-            print(t)
- 
-
-
-##### Methods for Float Range
-
-[frange recipe](https://code.activestate.com/recipes/577068/)
-
-[Float Range](https://perso.limsi.fr/pointal/python:floatrange)
-
-[Module on PyPI](https://pypi.python.org/pypi/floatrange/)
-
-[Floating point range « Python recipes « ActiveState Code](https://code.activestate.com/recipes/577068/)
-
-[Equally-spaced numbers (linspace) « Python recipes « ActiveState Code](https://code.activestate.com/recipes/579000/)
-
-**Reversed Example** `range( len(data) -1, -1, -1):`
-
-```py
->>> start = 1
->>> stop = 8
->>> step = 2
->>> range(stop)
-[0, 1, 2, 3, 4, 5, 6, 7]
->>> range(start, stop)
-[1, 2, 3, 4, 5, 6, 7]
->>> range(start, stop, step)
-[1, 3, 5, 7]
->>> step = -1
->>> range(stop, start)
-[]
->>> range(stop, start, step)
-[8, 7, 6, 5, 4, 3, 2]
->>> range(start, stop, step)
-[]
->>> range(1.01, 2.004)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: range() integer end argument expected, got float.
-```
-
-The step by default is +1. Python will not handle ranges that don't make sense. It just returns an empty list. So if Start > stop (and no step given) then there is no series of +1 to get to 1. And it only takes integers.
-
-Importantly, this method allows you to change the values within the range. (Not sure what I meant by this in retrospect...)
-
-```py
-for value in range(0,8):
-    print value
-    if value %2-==1:
-        print 'odd'
-    elif value%2 ==0:
-        print 'even'
-    else:
-
-[0,1,2,3,4,5,6,7]
-range(5)
-[0,1,2,3,4,5]
-#exclusive of end
->>> range(5,0,-1)
-[5, 4, 3, 2, 1]
-```
-
-#### BREAK
-
-`break` break out of a loop, typically with an internal conditional statement
-
-```py
-number = 0
-for number in range(10):
-    number = number + 1
-    if number == 5:
-         break    #break here
-     print('Number is ' + str(number))
-print('Out of loop')
-
-Number is 1
-Number is 2
-Number is 3
-Number is 4
-Out of loop
- #gets to 5 and then stops
-```
-
-#### CONTINUE
-
-`continue` -continue the loop -just stop the current iteration
-
-```py
-number = 0
-for number in range(7):
-    number = number + 1
-
-    if number == 5:
-         continue    #continue here
-
-     print('Number is ' + str(number))
-
-print('Out of loop')
-
-Number is 1
-Number is 2
-Number is 3
-Number is 4
-Number is 6    # 5 is skipped
-Number is 7
-Number is 8
-Number is 9
-Number is 10
-Out of loop
-```
-
-#### PASS
-
-`pass` - handle the condition without the loop being impacted in any way;
-
-e.g. `pass` statement- in this program, we notice that the program runs exactly as it would if there were no conditional statement in the program. The pass statement tells the program to disregard that condition and continue to run the program as usual.
-
-```py
-number = 0
-
-for number in range(10):
-   number = number + 1
-
-   if number == 5:
-        pass    #pass here
-   print('Number is ' + str(number))
-
-print('Out of loop')
-
-Number is 1
-Number is 2
-Number is 3
-Number is 4
-Number is 5  #Nothing Happens
-Number is 6
-Number is 7
-Number is 8
-Number is 9
-Number is 10
-Out of loop
-```
-
-From docs: `pass` is a null operation — when it is executed, nothing happens. It is useful as a placeholder when a statement is required syntactically, but no code needs to be executed, for example:
-
-```py
-def f(arg): pass    #a function that does nothing (yet)
-
-class C: pass       #a class with no methods (yet)
-```
-
-#### enumerate(x)
-
-`enumerate(x)` - create a for loop that iterates over the keys and the values
-
-```py
-x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dict
-for key, value in enumerate(x):
-    print value
-    if value %2-==1:
-        print 'odd'
-    elif value%2 ==0:
-        print 'even'
-    else:
-#reduces code by one line vs:
-
-x= {1:'a', 2:'b', 3:'c', 4:'d'}  #dictionary
- for key in x:  #dict x
-    value = x[key]
-    print value
-    if value %2-==1:
-        print 'odd'
-    elif value%2 ==0:
-        print 'even'
-    else:
-```
-
-#### Other iterable Functions
-
-Some example things that turn collections into iterable items
-
-- d.items()
-- enumerate(\*)
-- d.iter()
-- d.iteritems()
-
-You can make things iterable with some commands. A dictionay, for instance has no order.
-
-In Python 2, `d.items()` returns a list of (key, value) tuples, while `d.iteritems()` returns an iterator that provides the same:
-
-```py
-zero = 'zero'
-d = {1:'a',2:'b', 'c':3, '4':4, 0:zero}
-
-for i in d:
-    print i, d[i]
-
-for k, v in d.iteritems():
-    print k, v
-```
-
-In Python 3, `d.items()` returns the iterator; to get a list, you need to pass the iterator to list() yourself. SO, `list(d.items())= d.iteritems()` in python 3.
-
-```py3
-for k, v in d.items():
-    print(k, v)
-list(d.items())
-```
-
-
-```py
-class yrange:
-    def __init__(self, n):
-        self.i = 0
-        self.n = n
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        if self.i < self.n:
-            i = self.i
-            self.i += 1
-            return i
-        else:
-            raise StopIteration()
-```
-
-My Stack() class as a generator:
-
-
-### Generators
-
-[Generator Info](https://wiki.python.org/moin/Generators)
-
- The following implements generator as an iterable object.
-
-The following implements generator as an iterable object.
-
-``py`
->#Using the generator pattern (an iterable)
-class firstn(object):
-    def __init__(self, n):
-        self.n = n
-        self.num, self.nums = 0, []
-
-    def __iter__(self):
-        return self
-
-    # Python 3 compatibility
-    def __next__(self):
-        return self.next()
-
-    def next(self):
-        if self.num < self.n:
-            cur, self.num = self.num, self.num+1
-            return cur
-        else:
-            raise StopIteration()
-
-sum_of_first_n = sum(firstn(1000000))
-```
-
-
-```py
-def zeros():
-    while True:
-        yield 0
-
-def ones():
-    while True:
-        yield 1
-```
-
-#### Empty Generator
-
-```py
-    def __iter__(self):
-        return iter(())
-
-    def __iter__(self):
-        return
-        yield
-```
-
-
-## FUNCTIONS
-
-Purposes of a function:
-
-- Functions allow you to reuse and write readable code
-- Type `def` (define), function name and parameters it receives
-- return is used to return something to the caller of the function
-- **return is optional.**
-- I think there needs to be a blank line and a return of tab after the end of a function.
-- Provide Decomposition and Abstraction.
-  - Decomposition is a way to break the code up into modules that are reusable.
-  - Abstraction allows the supressions of details. It allows the creation of a black box.
-
-naming convention is lowercase_and_underscores, with a verb. Arguments should indicate a data type.
-
-Doc string `'''doc goes here'''`
-
-Arguments - of two types
--required
--optional- An optional or default argument has an = sign.
-
-```python
-def addNumbers(fNum, sNum):
-    sumNum = fNum + sNum
-    return sumNum
-
-print(addNumbers(1, 4))
-print(sumNum) #>>>Error
-```
-
-Can't get the value of sumNum because it was created in a function. It is said to be out of scope.
-
-```py
-#If you define a variable outside of the function it works every place
-newNum = 0;
-def subNumbers(fNum, sNum):
-    newNum = fNum - sNum
-    return newNum
-
-print(subNumbers(1, 4))
-```
-
-```py
-def sqrt(x)
-    '''returns the square root of x, if x is a perfect sqare.  Prints an error message and returns None otherwise'''
-    ans = 0
-    if x >= 0:
-        while ans * ans < x: ans = ans + 1
-        if ans * ans != x:
-            print x, 'is not a perfect square' #py3 =>  print( x, 'is not a perfect square')
-            return None
-        else: ans
-    else:
-        print x, ' is a negative number' #py3 =>  print(x, ' is a negative number')
-        return None
-```
-
-**Syntax** - as follows
-
-- `def` (Define)
-- Keyword (a name),
-- parentheses- formal parentheses ( ) _Required_
-- return - when you get to this point return control from the function and return the value.
-  - None - a special value, but has a special value - no value.
-  - Should be a return on every branch of the code.
-- the `''' description '''` just after def will display as a tooltip when someone starts the function.
-
-- Invocation
-
-!!!Note `Print(f(x)->None)` does not print
-
-!!!Example A farmer has chickens and cows. He sees 20 heads and 50 legs.
-
-```py
-#MIT Class Example:
-
-def solve(numLegs, numHeads):
-    for numChicks in range(0, numHeads + 1):
-        numPigs = numHeads - numChicks
-        totLegs = 4 * numPigs + 2 * numChicks
-        if totLegs == numLegs:
-            return (numPigs, numChicks)  #Note the return of a Tuple
-    return (None, None)  #Tuple of None
-
-def barnYard():
-    heads = int(raw input('Enter Number of heads: '))
-    legs = int(raw input('Enter Number of Legs: ' ))
-    pigs, chickens = solve(legs, heads)
-    if pigs == None:
-        print 'There is no solution'
-    else
-        print 'Number of Pigs', pigs
-        print 'Number of Chickes', chickens
-
-def solve1(numLegs, numHeads):
-    for numSpiders in range(0, numHeads + 1):
-        for numChicks in range(0, numHeads  - numSpiders + 1):
-            numPigs = numHeads - numChicks - numSpiders
-            totLegs = 4 * numPigs + 2 * numChicks + 8 * numSpiders
-            if totLegs == numLegs:
-                return (numPigs, numChicks, numSpiders)  #a Tuple
-    return (None, None, None)  #Tuple of None
-
-def barnYard1()
-    heads = int(raw input('Enter Number of heads: '))
-    legs = int(raw input('Enter Number of Legs: ' ))
-    pigs, chickens, spiders = solve1(legs, heads)
-    if pigs == None:
-        print 'There is no solution'
-    else
-        print 'Number of Pigs', pigs
-        print 'Number of Chickes', chickens
-        print 'Number of Spiders', spiders
-
-#However now there is likely more than one solution.  Ideally wed keep going once a solution is found.
-
-def solve2(numLegs, numHeads):
-    solutionFound = False
-    for numSpiders in range(0, numHeads + 1):
-        for numChicks in range(0, numHeads  - numSpiders + 1):
-            numPigs = numHeads - numChicks - numSpiders
-            totLegs = 4 * numPigs + 2 * numChicks + 8 * numSpiders
-            if totLegs == numLegs:
-                print 'Number of Pigs', pigs
-                print 'Number of Chickes', chickens
-                print 'Number of Spiders', spiders
-                solutionFound = True
-                #return (numPigs, numChicks, numSpiders)  #a Tuple
-    if not solutionFound: print 'There is no solution'
-    #return (None, None, None)  #Tuple of None
-
-def barnYard2()
-    heads = int(raw input('Enter Number of heads: '))
-    legs = int(raw input('Enter Number of Legs: ' ))
-    solve2(legs, heads)
-```
-
-### Recursion
-
-A problem is broken into a
-
-- base case
-- inductive step
-
-For Example: Palindrome. If str.len()=0 or str.len()=1 then Palindrome = True.
-Inductive step- start at one end, if the other end is the same letter, if all the letters inside are palindromic then its a palindrome.
-
-```py
-def isPalindrome(str):
-    '''Returns True if str is a Palindrome and False otherwise'''
-    if len(str) <= 1: return True
-    else: return str[0] == str[1] and isPalindrome(str[1:-1])
-
- def isPalindrome1(str, indent):
-    if len(str) <= 1: return True
-    else: return str[0] == str[1] and isPalindrome(str[1:-1])
-```
-
-### Gathering and Scattering
-
-#### Gathering
-
-Variable Length Arguments using Tuples:
-
-Some functions take arguments as a tuple. They take any number of inputs and zip them up into a single tuple. The command for this is an asterisk (*), where it looks like: `def func(*args):`
-
-example:
-
-```py
-def func(*args):
-    #some code
-    return
-
-
-def printAll(*args)
-    print(args)
-    return
-
->>> printAll('A', 123, 'hello world', 75.4)
-('A', 123, 'hello world', 75.4)
-```
-
-This is called **gathering** the arguments.
-
-```py
-##OOPS Divmod is built in afterall.
-def divmod(n, d):
-    ''' Input is (int, int), returns as a tuple of length 2 the divisor and the modulus'''
-    #first multiline quote after def will pop up as help
-    div = n / d
-    rem = n % d
-    return (div, rem)
-
-a=divmod(5, 2)
->>> a
-(2, 1)
-
-#Automatically scatter the tuple
->>> a,b = divmod(5,2)
->>> a
-2
->>> b
-1
->>> t=(5,2)
->>> divmod(t)
-#ERROR need to scatter
->>> divmod(t*)
-#ERROR Wrong Way
->>> divmod(*t) #Works
-(2, 1)
-```
-
-#### Scattering
-
-The opposite is **scattering,** also done with an _. Using divmod(n,o) from above. var_
-
-This is wrong 'So it appears in gathering, the asterisk comes first _args, and in scattering it comes second- args_' it seems like its always first.
-
-```py
->>> t= 7,3
->>> divmod(t)
-
-Traceback (most recent call last):
-  File "<pyshell#24>", line 1, in <module>
-    divmod(t)
-TypeError: divmod expected 2 arguments, got 1
-
->>> divmod(t*)
-SyntaxError: invalid syntax
->>> divmod(*t)
-(2, 1)
-```
-
-### Lambda Calculus
-
-Lambda calculus is an abstract "throwaway" function, designed to relate a value to another.
-
-List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
-
-For example, assume we want to create a list of squares, like:
-```py
->>> squares = []
->>> for x in range(10):
-...     squares.append(x**2)
-...
->>> squares
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-```
-
-Note that this creates (or overwrites) a variable named x that still exists after the loop completes. We can calculate the list of squares without any side effects using:
-
-```py
-squares = list(map(lambda x: x**2, range(10)))
-#or, equivalently:
-squares = [x**2 for x in range(10)]
-```
-
-The above is an example of a lambda function. Running just the lambda shows that its a throwaway function:
-
-```py
->>> lambda x : x**2, range(10)
-(<function <lambda> at 0x00000000034D9198>, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
->>> map(lambda x: x**2, range(10))
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
->>> list(map(lambda x: x**2, range(10)))
-[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-```
-## USER INPUT
-
-print('What is your name?')
-
-Stores everything typed up until ENTER
-name = sys.stdin.readline() - this wasnt working for me
-
-print('Hello', name)
-
-input() - input is used to read integers
-
-```py
-age = input("What is your age? ")
-print "Your age is: ", age
-type(age)
-```
-
-raw_input() - raw_input is used to read text (strings) from the user:
-
-```py
-name = raw_input("What is your name? ")
-type(name)
-```
-
-## FILE I/O
-
-Class IO
-
-- io
-  - _IOBase_
-    - fileno
-    - seek
-    - truncate
-    - **methods**
-      - close, flush
-      - closed, seekable, writable, readable
-      - __enter__, __exit__
-      - __iter__, __next__
-      - isatty, tell
-      - readlines, wrielines
-  - _RAWIOBase(IOBase)_
-    - readinto
-    - write
-    - **methods**: read, readall
-  - _BufferedIOBase(IOBase)_
-    - detach
-    - read, write
-    - readline
-    - **methods** - readinto, readinto1
-  - _TextIOBase(IOBase)_
-    - detach
-    - read, write
-    - readline
-    - **methods** encoding, errors, newlines
-    - _TextIOWrapper(IOBase)_
-    - _StringIO(IOBase)_
-
-
-
-```
-from os import path
-
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-```
-
-
-
-End of line characters can be Unix/Linux, Windows, or Mac style.
-
-```py
-file = open("myFileName.txt") creates a pointer
-for line in file:
-    print line
-        for cell in line.split(','): #csv file reading
-            print cell
-            print cell.strip()      #strip
-file.close()
-
-#Overwrite or create a file for writing
-test_file = open("test.txt", "wb")  #not sure what wb is specifically.
-
-#or to write or append
-test_file = open("test.txt", "w")
-test_file = open("test.txt", "a")
-#read is the default so the below two commands are equivalent
-test_file = open("test.txt", "r")
-test_file = open("test.txt")
-#Opens a file for reading and writing
-test_file = open("test.txt", "r+")
-#Opens a file for reading and writing
-test_file = open("test.txt", "x") # create
-```
-
-[Open Docs](https://docs.python.org/3/library/functions.html#open)
-
-| Character | Meaning                                                         |
-| --------- | --------------------------------------------------------------- |
-| 'r'       | open for reading (default)                                      |
-| 'w'       | open for writing, truncating the file first                     |
-| 'x'       | open for exclusive creation, failing if the file already exists |
-| 'a'       | open for writing, appending to the end of the file if it exists |
-| 'b'       | binary mode                                                     |
-| 't'       | text mode (default)                                             |
-| '+'       | open a disk file for updating (reading and writing)             |
-
-
-mode is an optional string that specifies the mode in which the file is opened. It defaults to 'r' which means open for reading in text mode. Other common values are 'w' for writing (truncating the file if it already exists), 'x' for exclusive creation and 'a' for appending (which on some Unix systems, means that all writes append to the end of the file regardless of the current seek position). In text mode, if encoding is not specified the encoding used is platform dependent: locale.getpreferredencoding(False) is called to get the current locale encoding. (For reading and writing raw bytes use binary mode and leave encoding unspecified.) The available modes are:
-
-```py
-#Get the file mode used
-print(test_file.mode)
-
-#Get the files name
-print(test_file.name)
-
-#Write text to a file with a newline
-test_file.write(bytes("Write me to the file\n", 'UTF-8'))
-
-#Close the file
-test_file.close()
-
-
-
-#Read text from the file
-text_in_file = test_file.read()
-
-print(text_in_file)
-
-#Delete the file
-os.remove("test.txt")
-```
-file error handling
-
-```py
-try:
-    with open(argv[1]) as f:
-        s = f.read()
-        print 'read', len(s), 'bytes.'
-except IOError as x:
-    if x.errno == errno.ENOENT:
-        print argv[1], '- does not exist'
-    elif x.errno == errno.EACCES:
-        print argv[1], '- cannot be read'
-    else:
-        print argv[1], '- some other error'
-```
-
-### Using Paths
-
-Cant use relative paths outright.  Use `Os` to manipulate filesystem
-
-```py
-subpath = '/Python/Web-STS/'
-filename = 'payload.txt'
-fullpath = os.getcwd() + subpath + filename
-```
-
-#### Check if a file exists
-
-`Pathlib` is good and `fileinput`
-
-```py
-from pathlib import Path
->>> filepath = 'D:\ASUSsync\VS Code\Python\Web-STS\STS.py'
->>> p = Path(filepath)
->>> p.exists()
-```
-
-A better method is this:
-
-```py
-from os.paths import exists
-from os import getcwd
-
-subpath = '/Python/Web-STS/'
-fullpath = getcwd() = subpath
-hfile = fullpath + 'headers'
-exists(hfile)
-$True
-```
-
-```
-try:
-    fp = open("myfile")
-except PermissionError:
-    return "some Default message"
-else:
-    with fp:
-        return fp.read()
-```
-Typing the exact path in didnt work at all.  Despite a mix of all kinds of slashes.  A path of the form `C:\dir1\dir2\dir3\dir4\` just didnt work, even replacing `/` with `\` and `\\`.
-
-```py
-import os
-from pathlib import Path
-from pathlib import WindowsPath as WP
-from pathlib import PureWindowsPath as PWP
-
-#Tried with and without the terminal `/`
-path = 'C:\\ASUSsync\\VS Code\\Python\\Data Structures\\TOHfinal\\etc\\Box'
-wp = 'C:/ASUSsync/VS Code/Python/Data Structures/TOHfinal/etc/Box'
-sub = '/DataStructures/TOHfinal/etc/Box'
-subw = '\\DataStructures\\TOHfinal\\etc\\Box'
-
-p = Path(path)
-print(p.exists())
-q = WP(wp)
-print(q.exists())
-p = Path(wp)
-print(p.exists())
-q = WP(path)
-print(q.exists())
-p = Path(sub)
-print(p.exists())
-q = WP(sub)
-print(q.exists())
-$ False
-$ False
-$ False
-$ False
-$ False
-$ False
-```
-
-I cannot figure out why this is. Yet this works.  And the docs show a very similar example.
-
-```py
-import os
-from pathlib import Path
-p = Path(os.getcwd())
-r = p / 'DataStructures' / 'TOHfinal' / 'etc' / 'Box'
-print(str(r), type(r), r.exists())
-
-#using this you can get to the '/=' operator to traverse
->>> p /= 'file.txt'
->>> str(p)
-'C:\\ASUSsync\\VS Code\\Python\\file.txt'
-```
-
-
-PATH.`parts` returns a tuple of all the file parts.
-
-!!!note it is not PATH`.parts()`, because its not a method, just an attribute? Or something.
-
-```py
->>> p.parts #split the path to get each loc
-('C:\\', 'ASUSsync', 'VS Code', 'Python', 'file.txt')
->>> p.parts[-1] #get the file name
-'file.txt'
-#could check x.is_dir() before grabbing the last bit.
->>> p.is_dir()
-False
->>> p.parts[-1].split('.')
-['file', 'txt']
->>> p.parts[-1].split('.')[0]
-'file'
-```
-
-### Resource Managers
-
-The better way to open files.  Has something to do with minimizing resources.
-
-```py
-with open('test.txt', 'r') as file:
-        file_contents = f.read()
-
-words = file_contents.split(' ')
-word_count = len(words)
-print(word_count)
-```
-
-### JSON
-
-Using the json library, opens a json file as a dictionary.
-
-loads a dictionary, with keys that are dictionary keys.  Arrays become lists.  And so on.
-
-```py
-import json
-dd = json.loads(datadict)
-
-datadict = '''
- {
-        "intro" : "TODO- provide and intro",
-        "args" : [
-            {
-                "name" : "output",
-                "short" : "-o",
-                "long" : "--output",
-                "positional" : true,
-                "nargs" : 2,
-                "type" : "str",
-                "optional" : false,
-                "action" : "store_true"
-                "default" : "TOH-Output.txt",
-                "help"  : "The location to save the file output."
-            },
-            {
-                "name" : "print",
-                "positional" : true,
-                "optional" : false,
-                "short" : "-p",
-                "long" : "--print",
-                "nargs" : "",
-                "type" : "",
-                "action" : "store_true"
-                "help"  : "Print output to the terminal (in addition to the file output."
-            }
-        ]
-'''
-
-```
-
-
-### Create a tempfile
-
-tempfile library
 
 
 ## Web Operationas
@@ -4963,7 +6473,7 @@ In py3, urllib has been broken into 3 sub-modules `urllib.request`, `urllib.pars
 
 the Requests library opens a higher level interface. `httplib` (`http.client` in py3) calls `urllib` and is also higher level.
 
-```py3
+```py
 import urllib
 file = urllib.urlopen('http://example.iana.org/', ,"https://proxy.swmed.edu:3128")
 for line in file:
@@ -5081,7 +6591,7 @@ meaning objects are somewhat fluid as to what can be an attribute.  It seems the
 
 
 
-```py3
+```py
 class Animal:
     #None signifies the lack of a value
     #You can make a variable private by starting it with __
@@ -5131,7 +6641,7 @@ class Animal:
 
 How to create a Animal object
 
-```py3
+```py
 cat = Animal('Whiskers', 33, 10, 'Meow')
 
 print(cat.toString())
@@ -5193,7 +6703,7 @@ You can inherit all of the variables and methods from another class
 
 note the syntax `class NewClass(BaseClass):`  you can even extend objects in another module- `class NewClass(module.BaseClass):` or multiple: `class DerivedClassName(Base1, Base2, Base3):`
 
-```py3
+```py
 class Dog(Animal):
     __owner = None
 
@@ -5243,7 +6753,7 @@ Use `issubclass()` to check class inheritance: `issubclass(bool, int)` is `True`
 
 Polymorphism allows use to refer to objects as their super class and the correct functions are called automatically
 
-```py3
+```py
 class AnimalTesting:
     def get_type(self, animal):
         animal.get_type()
@@ -5387,7 +6897,7 @@ constructor always starts with the self keyword `def __init__(self, ...)`.  Then
 class_keyword class_name (base_object) overridden_method
     class_field class_self-reference new_subclass_method
 
-```py3
+```py
 class Rabbit(object):
 #class definition class keyword class, Name Rabbit, object is the BASE CLASS
 
@@ -5933,8 +7443,177 @@ Checks that a function named `add_2` is a function `self.assert_(isinstance(add_
 
  `self.assertEquals(add_2(4), 6)`
 
+
+## Type safety
+
+
+### Python Native Typing
+
+[Typing Doc](https://docs.python.org/3/library/typing.html)
+
+[Typing Source](https://github.com/python/cpython/blob/3.9/Lib/typing.py)
+
+[Important doc](https://www.python.org/dev/peps/pep-0484/#type-definition-syntax)
+
+
+
+
+examples of typed lambdas:
+
+```py
+from typing import Any, Callable
+    truncate: Callable[[Any], str] = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 20])((lambda _s: str(_s))(_s))
+    # truncate = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 20])((lambda _s: str(_s))(_s))
+```
+
+
+```py
+from typing import Any, Callable
+    concat = lambda a,b: a+b
+
+    #becomes:
+
+concat: Callable[[str, str], str] = lambda a, b: a + b
+
+    # makelist = lambda _n2: list(map(lambda _l1: concat(_l1, _n2), l1))
+
+makelist: Callable[[str], list] = lambda _n2: list(map(lambda _l1: concat(_l1, _n2), l1))
+
+
+#This is the native method, but throws an error in the case below:
+def makelist(_n2: Any) ->list: return lambda _n2: list(map(lambda _l1: concat(_l1, _n2), l1))
+```
+
+classes in the typing library:
+
+- _ABCMeta_ - 
+- _AbstractSet_ - 
+- _Annotated_ - 
+- _Any_ - 
+- _AnyStr_ - 
+- _AsyncContextManager_ - 
+- _AsyncGenerator_ - 
+- _AsyncIterable_ - 
+- _AsyncIterator_ - 
+- _Awaitable_ - 
+- _BinaryIO_ - 
+- _ByteString_ - 
+- _CT_co_ - 
+- _Callable_ - 
+- _ChainMap_ - 
+- _ClassVar_ - 
+- _Collection_ - 
+- _Container_ - 
+- _ContextManager_ - 
+- _Coroutine_ - 
+- _Counter_ - 
+- _DefaultDict_ - 
+- _Deque_ - 
+- _Dict_ - 
+- _EXCLUDED_ATTRIBUTES_ - 
+- _Final_ - 
+- _ForwardRef_ - 
+- _FrozenSet_ - 
+- _Generator_ - 
+- _Generic_ - 
+- _GenericAlias_ - 
+- _Hashable_ - 
+- _IO_ - 
+- _ItemsView_ - 
+- _Iterable_ - 
+- _Iterator_ - 
+- _KT_ - 
+- _KeysView_ - 
+- _List_ - 
+- _Literal_ - 
+- _Mapping_ - 
+- _MappingView_ - 
+- _Match_ - 
+- _MethodDescriptorType_ - 
+- _MethodWrapperType_ - 
+- _MutableMapping_ - 
+- _MutableSequence_ - 
+- _MutableSet_ - 
+- _NamedTuple_ - 
+- _NamedTupleMeta_ - 
+- _NewType_ - 
+- _NoReturn_ - 
+- _Optional_ - 
+- _OrderedDict_ - 
+- _Pattern_ - 
+- _Protocol_ - 
+- _Reversible_ - 
+- _Sequence_ - 
+- _Set_ - 
+- _Sized_ - 
+- _SupportsAbs_ - 
+- _SupportsBytes_ - 
+- _SupportsComplex_ - 
+- _SupportsFloat_ - 
+- _SupportsIndex_ - 
+- _SupportsInt_ - 
+- _SupportsRound_ - 
+- _T_ - 
+- _TYPE_CHECKING_ - 
+- _T_co_ - 
+- _T_contra_ - 
+- _Text_ - 
+- _TextIO_ - 
+- _Tuple_ - 
+- _Type_ - 
+- _TypeVar_ - 
+- _TypedDict_ - 
+- _Union_ - 
+- _VT_ - 
+- _VT_co_ - 
+- _V_co_ - 
+- _ValuesView_ - 
+- _WrapperDescriptorType_ - 
+
+### MyPy
+
+[Doc](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
+
+
+
+## Other Development Libraries
+
+/todo
+
+[Development Tools](https://docs.python.org/3/library/development.html)
+
+-   [`typing` --- Support for type hints](https://docs.python.org/3/library/typing.html)
+-   [`pydoc` --- Documentation generator and online help system](https://docs.python.org/3/library/pydoc.html)
+-   [Python Development Mode](https://docs.python.org/3/library/devmode.html)
+-   [Effects of the Python Development Mode](https://docs.python.org/3/library/devmode.html#effects-of-the-python-development-mode)
+-   [ResourceWarning Example](https://docs.python.org/3/library/devmode.html#resourcewarning-example)
+-   [Bad file descriptor error example](https://docs.python.org/3/library/devmode.html#bad-file-descriptor-error-example)
+-   [`doctest` --- Test interactive Python examples](https://docs.python.org/3/library/doctest.html)
+-   [`unittest` --- Unit testing framework](https://docs.python.org/3/library/unittest.html)
+-   [`unittest.mock` --- mock object library](https://docs.python.org/3/library/unittest.mock.html)
+-   [`unittest.mock` --- getting started](https://docs.python.org/3/library/unittest.mock-examples.html)
+-   [2to3 - Automated Python 2 to 3 code translation](https://docs.python.org/3/library/2to3.html)
+-   [`test` --- Regression tests package for Python](https://docs.python.org/3/library/test.html)
+-   [`test.support` --- Utilities for the Python test suite](https://docs.python.org/3/library/test.html#module-test.support)
+-   [`test.support.socket_helper` --- Utilities for socket tests](https://docs.python.org/3/library/test.html#module-test.support.socket_helper)
+-   [`test.support.script_helper` --- Utilities for the Python execution tests](https://docs.python.org/3/library/test.html#module-test.support.script_helper)
+-   [`test.support.bytecode_helper` --- Support tools for testing correct bytecode generation](https://docs.python.org/3/library/test.html#module-test.support.bytecode_helper)
+
 ## GUIs
 
+
+-   [Graphical User Interfaces with Tk](https://docs.python.org/3/library/tk.html)
+    -   [`tkinter` --- Python interface to Tcl/Tk](https://docs.python.org/3/library/tkinter.html)
+    -   [`tkinter.colorchooser` --- Color choosing dialog](https://docs.python.org/3/library/tkinter.colorchooser.html)
+    -   [`tkinter.font` --- Tkinter font wrapper](https://docs.python.org/3/library/tkinter.font.html)
+    -   [Tkinter Dialogs](https://docs.python.org/3/library/dialog.html)
+    -   [`tkinter.messagebox` --- Tkinter message prompts](https://docs.python.org/3/library/tkinter.messagebox.html)
+    -   [`tkinter.scrolledtext` --- Scrolled Text Widget](https://docs.python.org/3/library/tkinter.scrolledtext.html)
+    -   [`tkinter.dnd` --- Drag and drop support](https://docs.python.org/3/library/tkinter.dnd.html)
+    -   [`tkinter.ttk` --- Tk themed widgets](https://docs.python.org/3/library/tkinter.ttk.html)
+    -   [`tkinter.tix` --- Extension widgets for Tk](https://docs.python.org/3/library/tkinter.tix.html)
+    -   [IDLE](https://docs.python.org/3/library/idle.html)
+    -   [Other Graphical User Interface Packages](https://docs.python.org/3/library/othergui.html)
 ### Curses
 
 !!!warn Warn: The Windows version of Python doesn’t include the curses module. A ported version called UniCurses is available. You could also try the Console module written by Fredrik Lundh, which doesn’t use the same API as curses but provides cursor-addressable text output and full support for mouse and keyboard input.
@@ -5990,7 +7669,7 @@ Tkinter is a python wrapper for Tcl/Tk
 
 [Link to Tutorial](https://pythonprogramming.net/tkinter-depth-tutorial-making-actual-program/)
 
-```py3
+```py
 import tkinter as tk #Python 2 use 'Tkinter'
 
 LARGE_FONT = ("Verdana", 12) #Constant font type Verdana and size 12
@@ -6060,7 +7739,7 @@ The above is a baseline for tkinter code.
 
 #### Adding Buttons
 
-```py3
+```py
 #Reuse the code from above above this line.
 #--------this is the base code for adding pages/windows
 def someQuickFunction()
@@ -6091,7 +7770,7 @@ app.mainloop()
 
 #### Adding Pages
 
-```py3
+```py
 #Reuse the code from above above this line.
 #--------this is the base code for adding pages/windows
 def someQuickFunction()
@@ -6187,7 +7866,7 @@ pip3 install PyQt5-sip
 
 Basic Framework
 
-```py3
+```py
 import sys
 from PyQt import QtGui
 
@@ -6212,7 +7891,7 @@ QtSVG
 
 #### Basic App With Icons
 
-```py3
+```py
 
 import sys
 from PyQt4 import QtGui
@@ -6235,7 +7914,7 @@ sys.exit(app.exec_())
 
 #### Adding a button
 
-```py3
+```py
 import sys
 from PyQt4 import QtGui
 
@@ -6274,7 +7953,7 @@ run()
 
 Custom Event Handling
 
-```py3
+```py
 import sys
 from PyQt4 import QtGui
 
@@ -6317,7 +7996,7 @@ run()
 
 #### Adding a main menu
 
-```py3
+```py
 import sys
 from PyQt4 import QtGui
 
@@ -6379,7 +8058,7 @@ run()
 
 The toolbar module creates a toolbar that can be dragged around the window, or even dragged off the screen to a stand alone method.
 
-```py3
+```py
 import sys
 from PyQt4 import QtGui
 
@@ -6451,7 +8130,7 @@ run()
 
 #### Popup Windows
 
-```py3
+```py
 
         choice=QtGui.QMessageBox.question(
             self, 'Extact!', "Get into the Chopper?", QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
@@ -6548,7 +8227,7 @@ Create a new ArgumentParser object. All parameters should be passed as keyword a
 - `add_help` - Add a -h/--help option to the parser (default: True)
 - `allow_abbrev` - Allows long options to be abbreviated if the abbreviation is unambiguous. (default: True)
 
-```py3
+```py
 
 ```
 The `add_argument()` method must know whether an optional argument, like -f or --foo, or a positional argument, like a list of filenames, is expected. The first arguments passed to `add_argument()` must therefore be either a series of flags, or a simple argument name.
@@ -6921,4 +8600,66 @@ toga-mfc
 win-devices
 win-nic
 aiowintest
+
+^(\S*?) : (.*?)$((?:\n    )(.*?$))*
+?=(\n    )(.*?$\3)*
+## Specific Packages
+
+### NetworkX
+
+#### Attributes
+
+Parameters
+----------
+- `G` : **graph** - A networkx graph
+
+- `pos` : **dictionary, optional** - A dictionary with nodes as keys and positions as values. If not specified a spring layout positioning will be computed. See :py:mod:`networkx.drawing.layout` for functions that compute node positions.
+
+- `arrows` : **bool, optional (default=True)** - For directed graphs, if True draw arrowheads. Note: Arrows will be the same color as edges.
+
+- `arrowstyle` : **str, optional (default='-|>')** - For directed graphs, choose the style of the arrowsheads. See :py:class: `matplotlib.patches.ArrowStyle` for more options.
+
+- `arrowsize` : **int, optional (default=10)** - For directed graphs, choose the size of the arrow head head's length and width. See :py:class: `matplotlib.patches.FancyArrowPatch` for attribute `mutation_scale` for more info.
+
+- `with_labels` : ** bool, optional (default=True)** - Set to True to draw labels on the nodes.
+
+- `ax` : **Matplotlib Axes object, optional** - Draw the graph in the specified Matplotlib axes.
+
+- `nodelist` : **list, optional (default G.nodes())** - Draw only specified nodes
+
+- `edgelist` : **list, optional (default=G.edges())** - Draw only specified edges
+
+- `node_size` : **scalar or array, optional (default=300)** - Size of nodes.  If an array is specified it must be the same length as nodelist.
+
+- `node_color` : **color or array of colors (default='#1f78b4')** - Node color. Can be a single color or a sequence of colors with the same length as nodelist. Color can be string, or rgb (or rgba) tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the cmap and vmin,vmax parameters. See matplotlib.scatter for more details.
+
+- `node_shape` : ** string, optional (default='o')** - The shape of the node.  Specification is as matplotlib.scatter marker, one of 'so^>v<dph8'.
+
+- `alpha` : **float, optional (default=None)** - The node and edge transparency
+
+- `cmap` : **Matplotlib colormap, optional (default=None)** - Colormap for mapping intensities of nodes
+
+- `vmin,vmax` : **float, optional (default=None)** - Minimum and maximum for node colormap scaling
+
+- `linewidths` : **[None | scalar | sequence]** - Line width of symbol border (default =1.0)
+
+- `width` : **float, optional (default=1.0)** - Line width of edges
+
+- `edge_color` : **color or array of colors (default='k')** - Edge color. Can be a single color or a sequence of colors with the same length as edgelist. Color can be string, or rgb (or rgba) tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the edge_cmap and edge_vmin,edge_vmax parameters.
+
+- `edge_cmap` : **Matplotlib colormap, optional (default=None)** - Colormap for mapping intensities of edges
+
+- `edge_vmin,edge_vmax` : **floats, optional (default=None)** - Minimum and maximum for edge colormap scaling
+
+- `style` : **string, optional (default='solid')** - Edge line style (solid|dashed|dotted,dashdot)
+
+- `labels` : **dictionary, optional (default=None)** - Node labels in a dictionary keyed by node of text labels
+
+- `font_size` : **int, optional (default=12)** - Font size for text labels
+
+- `font_color` : **string, optional (default='k' black)** - Font color string
+
+- `font_weight` : **string, optional (default='normal')** - Font weight
+
+- `font_family` : **string, optional (default='sans-serif')** - Font family
 

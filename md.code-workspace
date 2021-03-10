@@ -5,7 +5,16 @@
 		}
 	],
 	"settings": {
+		"workbench.colorTheme": "Pop Dark"
 		"workbench.colorCustomizations": {
+			"[Pop Dark]": {
+				"editor.background": "#4d4747",
+				"panel.background": "#453e3b",
+			}
+		},
+		// "synthwave84.brightness": 0.75,
+		// "synthwave84.disableGlow": false,
+		/* 		"workbench.colorCustomizations": {
 			"[SynthWave '84]": {
 				"titleBar.border": "#dc078e",
 				"titleBar.activeForeground": "#a3ffe4",
@@ -37,7 +46,7 @@
 				"titleBar.inactiveBackground": "#0098fd15",
 				"scrollbarSlider.background": "#4d078f",
 				"scrollbarSlider.hoverBackground": "#ff00f2",
-				"scrollbarSlider.activeBackground": "#c1bdff", 
+				"scrollbarSlider.activeBackground": "#c1bdff",
 				"minimap.findMatchHighlight": "#5cf5e869",
 				"notificationCenterHeader.background": "#f8ce1198",
 				"notifications.background": "#f57812a1",
@@ -214,29 +223,8 @@
 				"panelTitle.activeForeground": "#00c8ff",
 				"panel.dropBackground": "#ee00ff",
 				"panelInput.border": "#00ffa6"
-				//    "activityBarBadge.background": "#2979FF",
-				// "list.activeSelectionForeground": "#2979FF",
-				// "list.inactiveSelectionForeground": "#2979FF",
-				// "list.highlightForeground": "#2979FF",
-				// "scrollbarSlider.activeBackground": "#2979FF50",
-				// "editorSuggestWidget.highlightForeground": "#2979FF",
-				// "textLink.foreground": "#2979FF",
-				// "progressBar.background": "#2979FF",
-				// "pickerGroup.foreground": "#2979FF",
-				// "notificationLink.foreground": "#2979FF",
-				// "editorWidget.resizeBorder": "#2979FF",
-				// "editorWidget.border": "#2979FF",
-				// "settings.modifiedItemIndicator": "#2979FF",
-				// "settings.headerForeground": "#2979FF",
-				// "panelTitle.activeBorder": "#2979FF",
-				// "breadcrumb.activeSelectionForeground": "#2979FF",
-				// "menu.selectionForeground": "#2979FF",
-				// "menubar.selectionForeground": "#2979FF",
-				// "editor.findMatchBorder": "#2979FF",
-				// "selection.background": "#2979FF40",
-				// "tab.unfocusedActiveBorder": "#fff0"
-			},
-		},
+			}
+		}, */
 		"files.autoSave": "onFocusChange",
 		"editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
 		"terminal.integrated.fontFamily": "monospace",
@@ -271,7 +259,80 @@ Markdown Setting
 		"markdown-preview-showdown.puppeteerWaitForTimeout": 10,
 		"markdown-preview-showdown.maxContentSize": 32768,
 		"activityBar.activeBackground": "#8e552d",
-		"tab.unfocusedActiveBorder": "#fff0"
+		"tab.unfocusedActiveBorder": "#fff0",
+		"markdown-header-coloring.colormapConfig": {
+			"colormap": "hsv",
+			"nshades": 20
+		},
+		// "markdown-header-coloring.userDefinedHeaderColor": {
+		// 	"enabled": true,
+		// 	"Header_1": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #9cecfb;background: -webkit-linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.8em;background: -webkit-linear-gradient(0deg, #FFFFFF, #6DD5FA, #2980B9);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	},
+		// 	"Header_2": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #83a4d4;background: -webkit-linear-gradient(to right, #83a4d4, #b6fbff);background: linear-gradient(to right, #83a4d4, #b6fbff);opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.6em;background: -webkit-linear-gradient(0deg, #83a4d4, #83a4d4, #b6fbff);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	},
+		// 	"Header_3": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #2bc0e4;background: -webkit-linear-gradient(to right, #2bc0e4, #eaecc6);background: linear-gradient(to right, #2bc0e4, #eaecc6);;opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.4em;background: -webkit-linear-gradient(0deg, #1FA2FF, #12D8FA, #A6FFCB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	},
+		// 	"Header_4": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #1fa2ff;background: -webkit-linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.4em;background: -webkit-linear-gradient(0deg, #77A1D3, #79CBCA, #A6FFCB);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	},
+		// 	"Header_5": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #ff6e7f; background: -webkit-linear-gradient(to right, #bfe9ff, #ff6e7f); background: linear-gradient(to right, #bfe9ff, #ff6e7f);opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.2em;background: -webkit-linear-gradient(0deg, #ff6e7f, #bfe9ff);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	},
+		// 	"Header_6": {
+		// 		"color": "",
+		// 		"backgroundColor": "background: #9796f0; background: -webkit-linear-gradient(to right, #9796f0, #fbc7d4); background: linear-gradient(to right, #9796f0, #fbc7d4);opacity: 0.5",
+		// 		"textDecoration": "font-weight: 600; font-size: 1.1em;background: -webkit-linear-gradient(0deg, #9796f0, #fbc7d4);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"
+		// 	}
+		// },
 	},
-}
+	"snippets": {
+		// Place your md workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+		// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+		// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+		// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+		// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+		// Placeholders with the same ids are connected.
+		// Example:
+		// "Print to console": {
+		// 	"scope": "javascript,typescript",
+		// 	"prefix": "log",
+		// 	"body": [
+		// 		"console.log('$1');",
+		// 		"$2"
+		// 	],
+		// 	"description": "Log output to console"
+		// }
+		"Print to console": {
+			"scope": "javascript,typescript",
+			"prefix": "log",
+			"body": [
+				"console.log('$1');",
+				"$2"
+			],
+			"description": "Log output to console"
+		}
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": []
+	},
+	"launch": {
+		"configurations": [],
+		"compounds": []
+	},
+	"extensions": {},
+	"keybindings": []
 }

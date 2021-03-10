@@ -30,6 +30,56 @@ Links from [SS64](https://ss64.com/links/bash.html)
 - [JustLinux](http://forums.justlinux.com/) - Forum.
 - [System76](https://system76.com/desktops) - OSHWA certified open source hardware
 
+
+
+-   [Unix / Linux - Home](https://www.tutorialspoint.com/unix/index.htm)
+-   [Unix / Linux - Getting Started](https://www.tutorialspoint.com/unix/unix-getting-started.htm)
+-   [Unix / Linux - File Management](https://www.tutorialspoint.com/unix/unix-file-management.htm)
+-   [Unix / Linux - Directories](https://www.tutorialspoint.com/unix/unix-directories.htm)
+-   [Unix / Linux - File Permission](https://www.tutorialspoint.com/unix/unix-file-permission.htm)
+-   [Unix / Linux - Environment](https://www.tutorialspoint.com/unix/unix-environment.htm)
+-   [Unix / Linux - Basic Utilities](https://www.tutorialspoint.com/unix/unix-basic-utilities.htm)
+-   [Unix / Linux - Pipes & Filters](https://www.tutorialspoint.com/unix/unix-pipes-filters.htm)
+-   [Unix / Linux - Processes](https://www.tutorialspoint.com/unix/unix-processes.htm)
+-   [Unix / Linux - Communication](https://www.tutorialspoint.com/unix/unix-communication.htm)
+-   [Unix / Linux - The vi Editor](https://www.tutorialspoint.com/unix/unix-vi-editor.htm)
+
+-   Unix / Linux Shell Programming
+-   [Unix / Linux - Shell Scripting](https://www.tutorialspoint.com/unix/shell_scripting.htm)
+-   [Unix / Linux - What is Shell?](https://www.tutorialspoint.com/unix/unix-what-is-shell.htm)
+-   [Unix / Linux - Using Variables](https://www.tutorialspoint.com/unix/unix-using-variables.htm)
+-   [Unix / Linux - Special Variables](https://www.tutorialspoint.com/unix/unix-special-variables.htm)
+-   [Unix / Linux - Using Arrays](https://www.tutorialspoint.com/unix/unix-using-arrays.htm)
+-   [Unix / Linux - Basic Operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm)
+-   [Unix / Linux - Decision Making](https://www.tutorialspoint.com/unix/unix-decision-making.htm)
+-   [Unix / Linux - Shell Loops](https://www.tutorialspoint.com/unix/unix-shell-loops.htm)
+-   [Unix / Linux - Loop Control](https://www.tutorialspoint.com/unix/unix-loop-control.htm)
+-   [Unix / Linux - Shell Substitutions](https://www.tutorialspoint.com/unix/unix-shell-substitutions.htm)
+-   [Unix / Linux - Quoting Mechanisms](https://www.tutorialspoint.com/unix/unix-quoting-mechanisms.htm)
+-   [Unix / Linux - IO Redirections](https://www.tutorialspoint.com/unix/unix-io-redirections.htm)
+-   [Unix / Linux - Shell Functions](https://www.tutorialspoint.com/unix/unix-shell-functions.htm)
+-   [Unix / Linux - Manpage Help](https://www.tutorialspoint.com/unix/unix-manpage-help.htm)
+
+-   Advanced Unix / Linux
+-   [Unix / Linux - Regular Expressions](https://www.tutorialspoint.com/unix/unix-regular-expressions.htm)
+-   [Unix / Linux - File System Basics](https://www.tutorialspoint.com/unix/unix-file-system.htm)
+-   [Unix / Linux - User Administration](https://www.tutorialspoint.com/unix/unix-user-administration.htm)
+-   [Unix / Linux - System Performance](https://www.tutorialspoint.com/unix/unix-system-performance.htm)
+-   [Unix / Linux - System Logging](https://www.tutorialspoint.com/unix/unix-system-logging.htm)
+-   [Unix / Linux - Signals and Traps](https://www.tutorialspoint.com/unix/unix-signals-traps.htm)
+
+-   Unix / Linux Useful Resources
+-   [Unix / Linux - Questions & Answers](https://www.tutorialspoint.com/unix/unix_questions_answers.htm)
+-   [Unix / Linux - Useful Commands](https://www.tutorialspoint.com/unix/unix-useful-commands.htm)
+-   [Unix / Linux - Quick Guide](https://www.tutorialspoint.com/unix/unix-quick-guide.htm)
+-   [Unix / Linux - Builtin Functions](https://www.tutorialspoint.com/unix/unix-builtin-functions.htm)
+-   [Unix / Linux - System Calls](https://www.tutorialspoint.com/unix_system_calls/index.htm)
+-   [Unix / Linux - Commands List](https://www.tutorialspoint.com/unix_commands/index.htm)
+-   [Unix / Linux - Useful Resources](https://www.tutorialspoint.com/unix/unix-useful-resources.htm)
+-   [Unix / Linux - Discussion](https://www.tutorialspoint.com/unix/unix-discussion.htm)
+
+-   Selected Reading
+
 ### Bash
 
 - Greg Wooledge [Bash Guide](https://mywiki.wooledge.org/BashGuide) and [FAQ](https://mywiki.wooledge.org/BashFAQ)
@@ -151,9 +201,18 @@ At least for Ubuntu
 
 
 #Adding
+#one site says explicitly uninstall then install
+sudo apt remove openssh-server
 sudo apt install openssh-server
+sudo nano /etc/ssh/sshd_config
+- change port
+- change PasswordAuthentication yes
+- add AllowUsers andy
 sudo systemctl status ssh
+sudo service ssh --full-restart
 sudo ufw allow ssh
+sudo nano /etc/hosts.allow
+sshd : 192.168.0.
 
 #stop
 #start
@@ -161,6 +220,41 @@ sudo ufw allow ssh
 sudo systemctl {stop, start, disable, enable} ssh
 sudo systenctl start ssh
 sudo systenctl stop ssh
+
+### UFW Firewall
+
+Usage: ufw COMMAND
+
+sudo ufw allow ssh
+sudo ufw app list
+
+Commands:
+ enable                          enables the firewall
+ disable                         disables the firewall
+ default ARG                     set default policy
+ logging LEVEL                   set logging to LEVEL
+ allow ARGS                      add allow rule
+ deny ARGS                       add deny rule
+ reject ARGS                     add reject rule
+ limit ARGS                      add limit rule
+ delete RULE|NUM                 delete RULE
+ insert NUM RULE                 insert RULE at NUM
+ route RULE                      add route RULE
+ route delete RULE|NUM           delete route RULE
+ route insert NUM RULE           insert route RULE at NUM
+ reload                          reload firewall
+ reset                           reset firewall
+ status                          show firewall status
+ status numbered                 show firewall status as numbered list of RULES
+ status verbose                  show verbose firewall status
+ show ARG                        show firewall report
+ version                         display version information
+
+Application profile commands:
+ app list                        list application profiles
+ app info PROFILE                show information on PROFILE
+ app update PROFILE              update PROFILE
+ app default ARG                 set default application policy
 
 
 ### Work Computer
@@ -3223,3 +3317,143 @@ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu xenial universe"
 sudo apt-get update
 sudo apt-get install system-config-lvm
 
+
+## Enhanced HyperV Session
+
+[Source](https://francescotonini.medium.com/how-to-install-ubuntu-20-04-on-hyper-v-with-enhanced-session-b20a269a5fa7)
+
+[Author is here, though deprecated.](https://github.com/Microsoft/linux-vm-tools?WT.mc_id=-blog-scottha)
+
+
+Running through windows quick connect has an image with it built in.  
+
+Last official release was 18.03, unofficial with 20.04?
+
+
+
+
+Setup enhanced session
+On Ubuntu, open a terminal, download and run the setup script.
+wget https://raw.githubusercontent.com/Microsoft/linux-vm-tools/master/ubuntu/18.04/install.sh
+sudo chmod +x install.sh
+sudo ./install.sh
+If you receive an error at the end of the install script, there is one more thing to do. Using your favorite editor, open /etc/xrdp/xrdp.ini (sudo required) and add or edit the following lines:
+port=vsock://-1:3389
+use_vsock=false
+Save the file and shutdown the VM. From Windows, open a PowerShell prompt with admin privileges and type:
+Set-VM -VMName <your_vm_name>  -EnhancedSessionTransportType HvSocket
+where <your_vm_name> is, well, the name of the VM (the one chosen at the start of the creation wizard).
+There you go! Now start the VM and in a matter of seconds you will be redirected to the XRDP login page.
+
+
+```sh
+
+#!/bin/bash
+
+#.
+#This script is for Ubuntu 18.04 Bionic Beaver to download and install XRDP+XORGXRDP via
+#source.
+#.
+#Major thanks to: http://c-nergy.be/blog/?p=11336 for the tips.
+#.
+
+###############################################################################.
+#Use HWE kernel packages
+#.
+HWE=""
+#HWE="-hwe-18.04"
+
+###############################################################################.
+#Update our machine to the latest code if we need to.
+#.
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo 'This script must be run with root privileges' >&2
+    exit 1
+fi
+
+apt update && apt upgrade -y
+
+if [ -f /var/run/reboot-required ]; then
+    echo "A reboot is required in order to proceed with the install." >&2
+    echo "Please reboot and re-run this script to finish the install." >&2
+    exit 1
+fi
+
+###############################################################################.
+#XRDP
+#.
+
+#Install hv_kvp utils
+apt install -y linux-tools-virtual${HWE}
+apt install -y linux-cloud-tools-virtual${HWE}
+
+#Install the xrdp service so we have the auto start behavior
+apt install -y xrdp
+
+systemctl stop xrdp
+systemctl stop xrdp-sesman
+
+#Configure the installed XRDP ini files.
+#use vsock transport.
+sed -i_orig -e 's/use_vsock=false/use_vsock=true/g' /etc/xrdp/xrdp.ini
+#use rdp security.
+sed -i_orig -e 's/security_layer=negotiate/security_layer=rdp/g' /etc/xrdp/xrdp.ini
+#remove encryption validation.
+sed -i_orig -e 's/crypt_level=high/crypt_level=none/g' /etc/xrdp/xrdp.ini
+#disable bitmap compression since its local its much faster
+sed -i_orig -e 's/bitmap_compression=true/bitmap_compression=false/g' /etc/xrdp/xrdp.ini
+
+#Add script to setup the ubuntu session properly
+if [ ! -e /etc/xrdp/startubuntu.sh ]; then
+cat >> /etc/xrdp/startubuntu.sh << EOF
+#!/bin/sh
+export GNOME_SHELL_SESSION_MODE=ubuntu
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+exec /etc/xrdp/startwm.sh
+EOF
+chmod a+x /etc/xrdp/startubuntu.sh
+fi
+
+#use the script to setup the ubuntu session
+sed -i_orig -e 's/startwm/startubuntu/g' /etc/xrdp/sesman.ini
+
+#rename the redirected drives to 'shared-drives'
+sed -i -e 's/FuseMountName=thinclient_drives/FuseMountName=shared-drives/g' /etc/xrdp/sesman.ini
+
+#Changed the allowed_users
+sed -i_orig -e 's/allowed_users=console/allowed_users=anybody/g' /etc/X11/Xwrapper.config
+
+#Blacklist the vmw module
+if [ ! -e /etc/modprobe.d/blacklist_vmw_vsock_vmci_transport.conf ]; then
+cat >> /etc/modprobe.d/blacklist_vmw_vsock_vmci_transport.conf <<EOF
+blacklist vmw_vsock_vmci_transport
+EOF
+fi
+
+#Ensure hv_sock gets loaded
+if [ ! -e /etc/modules-load.d/hv_sock.conf ]; then
+echo "hv_sock" > /etc/modules-load.d/hv_sock.conf
+fi
+
+#Configure the policy xrdp session
+cat > /etc/polkit-1/localauthority/50-local.d/45-allow-colord.pkla <<EOF
+[Allow Colord all Users]
+Identity=unix-user:*
+Action=org.freedesktop.color-manager.create-device;org.freedesktop.color-manager.create-profile;org.freedesktop.color-manager.delete-device;org.freedesktop.color-manager.delete-profile;org.freedesktop.color-manager.modify-device;org.freedesktop.color-manager.modify-profile
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+EOF
+
+#reconfigure the service
+systemctl daemon-reload
+systemctl start xrdp
+
+#.
+#End XRDP
+###############################################################################.
+
+echo "Install is complete."
+echo "Reboot your machine to begin using XRDP."
+```
