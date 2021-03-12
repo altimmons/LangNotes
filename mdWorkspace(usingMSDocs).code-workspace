@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".."
 		}
 	],
 	"settings": {
+		"editor.fontFamily": "Cascadia Code",
+		// "editor.fontFamily": "",
+		// "editor.fontFamily": "'Hurmit Nerd Font', 'Hurmit NF', 'Hurmit Nerd Font'",
 		"window.title": "${dirty}${rootName}${separator}${activeEditorShort}",
 		"workbench.colorCustomizations": {
 			"[SynthWave '84]": {
@@ -218,7 +221,7 @@
 			},
 			"tab.unfocusedActiveBorder": "#fff0"
 		},
-		"workbench.colorTheme": "Default Dark+",
+		"workbench.colorTheme": "Panda Syntax",
 		"editor.tokenColorCustomizations": {
 			"textMateRules": [
 				{
@@ -317,17 +320,14 @@
 				}
 			]
 		},
-		"markdown-preview-enhanced.enableCriticMarkupSyntax": true,
-		"markdown-preview-enhanced.enableExtendedTableSyntax": true,
-		"markdown-preview-enhanced.enableHTML5Embed": true,
-		"markdown-preview-enhanced.enableTypographer": true,
-		"markdown-preview-enhanced.frontMatterRenderingOption": "code block",
-		"markdown-preview-enhanced.mermaidTheme": "dark",
-		"markdown-preview-enhanced.printBackground": true,
-		"markdown-preview-enhanced.previewTheme": "vue.css",
-		"markdown-preview-enhanced.enableScriptExecution": true,
-		"markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
-		"markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
-		"markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true
+	},
+	"extensions": {},
+	"launch": {
+		"configurations": [],
+		"compounds": []
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": []
 	}
 }

@@ -1,6 +1,6 @@
 # C ++ Notes
 
-
+!!!Note this is a note
 
 ## Links
 
@@ -16,13 +16,13 @@
  
 [C++ FAQ](https://isocpp.org/wiki/faq)
 
-
+[C++ Data Types - Tutorialspoint](https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm)
 
 
 ## Archetypical Program
 
 
-```cpp
+```c++
 // this is a format
 #include <iostream>
 
@@ -48,7 +48,7 @@ header files no longer contain *.h
 
 ### Initial Prototype
 
-```cpp
+```c++
 //#main.cpp
 
 #include <iostream.h>
@@ -74,7 +74,7 @@ To separate files:
 
 #### header
 
-```cpp
+```c++
 //#greet.h
 #ifndef GREET_H
 #define GREET_H
@@ -103,7 +103,7 @@ do not `#include` a *.cpp, only `#include *.h`
 
 #### Implementation
 
-```cpp
+```c++
 //#greet.cpp
 #include "greet.h" //use quotes for files found in cur dir
 
@@ -120,7 +120,7 @@ void greetings(){ //program function definition
 
 #### Main Revised
 
-```cpp
+```c++
 //#main.cpp
 
 #include <iostream.h>
@@ -422,6 +422,80 @@ ___
    - *\<ctgmath\>*
    - *\<stdatomic.h\>*
 
+s
+Atomics and threading library
+
+<atomic>
+    Atomic (header)
+
+<condition_variable>
+    Condition variable (header)
+
+<future>
+    Future (header)
+
+<mutex>
+    Mutex (header)
+
+<thread>
+    Thread (header)
+
+ 
+
+### C Library
+The elements of the C language library are also included as a subset of the C++ Standard library. These cover many aspects, from general utility functions and macros to input/output functions and dynamic memory management functions:
+
+- *\<cassert\>*- **(assert.h)** - *C Diagnostics Library (header)*
+- *\<cctype\>*- **(ctype.h)** - *Character handling functions (header)*
+- *\<cerrno\>*- **(errno.h)** - *C Errors (header)*
+- *\<cfenv\>*- **(fenv.h)** - *Floating-point environment (header)*
+- *\<cfloat\>*- **(float.h)** - *Characteristics of floating-point types (header)*
+- *\<cinttypes\>*- **(inttypes.h)** - *C integer types (header)*
+- *\<ciso646\>*- **(iso646.h)** - *ISO 646 Alternative operator spellings (header)*
+- *\<climits\>*- **(limits.h)** - *Sizes of integral types (header)*
+- *\<clocale\>*- **(locale.h)** - *C localization library (header)*
+- *\<cmath\>*- **(math.h)** - *C numerics library (header)*
+- *\<csetjmp\>*- **(setjmp.h)** - *Non local jumps (header)*
+- *\<csignal\>*- **(signal.h)** - *C library to handle signals (header)*
+- *\<cstdarg\>*- **(stdarg.h)** - *Variable arguments handling (header)*
+- *\<cstdbool\>*- **(stdbool.h)** - *Boolean type (header)*
+- *\<cstddef\>*- **(stddef.h)** - *C Standard definitions (header)*
+- *\<cstdint\>*- **(stdint.h)** - *Integer types (header)*
+- *\<cstdio\>*- **(stdio.h)** - *C library to perform Input/Output operations (header)*
+- *\<cstdlib\>*- **(stdlib.h)** - *C Standard General Utilities Library (header)*
+- *\<cstring\>*- **(string.h)** - *C Strings (header)*
+- *\<ctgmath\>*- **(tgmath.h)** - *Type-generic math (header)*
+- *\<ctime\>*- **(time.h)** - *C Time Library (header)*
+- *\<cuchar\>*- **(uchar.h)** - *Unicode characters (header)*
+- *\<cwchar\>*- **(wchar.h)** - *Wide characters (header)*
+- *\<cwctype\>*- **(wctype.h)** - *Wide character type (header)*
+
+
+- *\<algorithm\>*- Standard Template Library: Algorithms (library )
+- *\<chrono\>*- Time library (header)
+- *\<codecvt\>*- Unicode conversion facets (header)
+- *\<complex\>*- Complex numbers library (header)
+- *\<exception\>*- Standard exceptions (header)
+- *\<functional\>*- Function objects (header)
+- *\<initializer_list\>*- Initializer list (header)
+- *\<iterator\>*- Iterator definitions (header)
+- *\<limits\>*- Numeric limits (header)
+- *\<locale\>*- Localization library (header)
+- *\<memory\>*- Memory elements (header)
+- *\<new\>*- Dynamic memory (header)
+- *\<numeric\>*- Generalized numeric operations (header)
+- *\<random\>*- Random (header)
+- *\<ratio\>*- Ratio header (header)
+- *\<regex\>*- Regular Expressions (header)
+- *\<stdexcept\>*- Exception classes (header)
+- *\<string\>*- Strings (header)
+- *\<system_error\>*- System errors (header)
+- *\<tuple\>*- Tuple library (header)
+- *\<typeindex\>*- Type index (header)
+- *\<typeinfo\>*- Type information (header)
+- *\<type_traits\>*- type_traits (header)
+- *\<utility\>*- Utility components (header)
+- *\<valarray\>*- Library for arrays of numeric values (header)
 
 **Containers**
 
@@ -452,7 +526,7 @@ ___
 ## Archetypical Program
 
 
-```cpp
+```c++
 // this is a format
 #include <iostream>
 
@@ -468,23 +542,23 @@ int main(){
 
 int main()
 {
-	int x;		// This is a C++ style comment
+    int x;        // This is a C++ style comment
 
-	// Each comment line is preceded by slashes
-	// This is another comment line
+    // Each comment line is preceded by slashes
+    // This is another comment line
 
-	/* C++ also supports C-Style comments */
+    /* C++ also supports C-Style comments */
 
-	return 0;
+    return 0;
 }
 
 ```
 
 header files no longer contain *.h
 
-```cpp
-#include <cstdlib>	// was *\<stdlib.h\>*
-#include <cstring>	// was *\<string.h\>*
+```c++
+#include <cstdlib>    // was *\<stdlib.h\>*
+#include <cstring>    // was *\<string.h\>*
                       // char* functions from C
 #include <string>     // C++ string class
 ```
@@ -520,34 +594,197 @@ You can also just use keywords instead of chars to make more readable program
 | ^=          | xor_eq           | bitwise exclusive OR assignment |
 
 
-```cpp
+```c++
 // Program to demonstrate "and" operator keyword
 //
 // Some compilers require inclusion of special header files
 
-#include	<iostream>
-#include	<iso646.h>		// Required for Visual C++ 6.0
+#include    <iostream>
+#include    <iso646.h>        // Required for Visual C++ 6.0
 using namespace std;
 
 int main()
 {
-	int x = 8;
-	int y;
+    int x = 8;
+    int y;
 
-	cout << "Enter an integer: ";
-	cin >> y;
+    cout << "Enter an integer: ";
+    cin >> y;
 
-	if ( (x > 0) && (y > 0) )   cout << "Both greater than 0 \n";
+    if ( (x > 0) && (y > 0) )   cout << "Both greater than 0 \n";
 
-	if ( (x > 0) and (y > 0 ) ) cout << "Same thing \n";
+    if ( (x > 0) and (y > 0 ) ) cout << "Same thing \n";
 
-	return 0;
+    return 0;
 }
 ```
+
+### ISO 646 Alternative operator spellings
+
+<ciso646> (iso646.h)
+
+This header defines eleven macro constants with alternative spellings for those C++ operators not supported by the ISO646 standard character set:
+
+- **macro** :  - `operator`
+- **and** :  - `&&`
+- **and_eq** :  - `&=`
+- **bitand** :  - `&`
+- **bitor** :  - `|`
+- **compl** :  - `~`
+- **not** :  - `!`
+- **not_eq** :  - `!=`
+- **or** :  - `||`
+- **or_eq** :  - `|=`
+- **xor** :  - `^`
+- **xor_eq** :  - `^=`
+
+In C++, reserved words exist with the same names as these macros and are treated as aliases of their respective operator. Therefore the inclusion of this header has no effect in C++, and is not necessary in order to use the alternative names.
+
 
 ### Operator Precedence
 
 [Operator Pref](http://en.cppreference.com/w/cpp/language/operator_precedence)
+
+
+### C numerics library
+
+[<cmath> (math.h) - C++ Reference](https://www.cplusplus.com/reference/cmath/)
+
+<cmath> (math.h)
+Header <cmath> declares a set of functions to compute common mathematical operations and transformations:
+
+Functions
+
+Trigonometric functions
+
+- `cos` - Compute cosine (function )
+- `sin` - Compute sine (function )
+- `tan` - Compute tangent (function )
+- `acos` - Compute arc cosine (function )
+- `asin` - Compute arc sine (function )
+- `atan` - Compute arc tangent (function )
+- `atan2` - Compute arc tangent with two parameters (function )
+
+Hyperbolic functions
+
+- `cosh` - Compute hyperbolic cosine (function )
+- `sinh` - Compute hyperbolic sine (function )
+- `tanh` - Compute hyperbolic tangent (function )
+- `acosh` - Compute area hyperbolic cosine (function )
+- `asinh` - Compute area hyperbolic sine (function )
+- `atanh` - Compute area hyperbolic tangent (function )
+
+Exponential and logarithmic functions
+
+- `exp` - Compute exponential function (function )
+- `frexp` - Get significand and exponent (function )
+- `ldexp` - Generate value from significand and exponent (function )
+- `log` - Compute natural logarithm (function )
+- `log10` - Compute common logarithm (function )
+- `modf` - Break into fractional and integral parts (function )
+- `exp2` - Compute binary exponential function (function )
+- `expm1` - Compute exponential minus one (function )
+- `ilogb` - Integer binary logarithm (function )
+- `log1p` - Compute logarithm plus one (function )
+- `log2` - Compute binary logarithm (function )
+- `logb` - Compute floating-point base logarithm (function )
+- `scalbn` - Scale significand using floating-point base exponent (function )
+- `scalbln` - Scale significand using floating-point base exponent (long) (function )
+
+Power functions
+
+- `pow` - Raise to power (function )
+- `sqrt` - Compute square root (function )
+- `cbrt` - Compute cubic root (function )
+- `hypot` - Compute hypotenuse (function )
+
+Error and gamma functions
+
+- `erf` - Compute error function (function )
+- `erfc` - Compute complementary error function (function )
+- `tgamma` - Compute gamma function (function )
+- `lgamma` - Compute log-gamma function (function )
+
+Rounding and remainder functions
+
+- `ceil` - Round up value (function )
+- `floor` - Round down value (function )
+- `fmod` - Compute remainder of division (function )
+- `trunc` - Truncate value (function )
+- `round` - Round to nearest (function )
+- `lround` - Round to nearest and cast to long integer (function )
+- `llround` - Round to nearest and cast to long long integer (function )
+- `rint` - Round to integral value (function )
+- `lrint` - Round and cast to long integer (function )
+- `llrint` - Round and cast to long long integer (function )
+- `nearbyint` - Round to nearby integral value (function )
+- `remainder` - Compute remainder (IEC 60559) (function )
+- `remquo` - Compute remainder and quotient (function )
+
+Floating-point manipulation functions
+
+- `copysign` - Copy sign (function )
+- `nan` - Generate quiet NaN (function )
+- `nextafter` - Next representable value (function )
+- `nexttoward` - Next representable value toward precise value (function )
+
+Minimum, maximum, difference functions
+
+- `fdim` - Positive difference (function )
+- `fmax` - Maximum value (function )
+- `fmin` - Minimum value (function )
+
+Other functions
+
+- `fabs` - Compute absolute value (function )
+- `abs` - Compute absolute value (function )
+- `fma` - Multiply-add (function )
+
+Macros / Functions
+These are implemented as macros in C and as functions in C++:
+Classification macro / functions
+
+- `fpclassify` - Classify floating-point value (macro/function )
+- `isfinite` - Is finite value (macro )
+- `isinf` - Is infinity (macro/function )
+- `isnan` - Is Not-A-Number (macro/function )
+- `isnormal` - Is normal (macro/function )
+- `signbit` - Sign bit (macro/function )
+
+Comparison macro / functions
+
+- `isgreater` - Is greater (macro )
+- `isgreaterequal` - Is greater or equal (macro )
+- `isless` - Is less (macro )
+- `islessequal` - Is less or equal (macro )
+- `islessgreater` - Is less or greater (macro )
+- `isunordered` - Is unordered (macro )
+
+Macro constants
+
+- `math_errhandling` - Error handling (macro )
+- `INFINITY` - Infinity (constant )
+- `NAN` - Not-A-Number (constant )
+- `HUGE_VAL` - Huge value (constant )
+- `HUGE_VALF` - Huge float value
+- `HUGE_VALL` - Huge long double value (constant )
+
+This header also defines the following macro constants (since C99/C++11):
+macro	type	description
+`MATH_ERRNO`
+`MATH_ERREXCEPT`	int	Bitmask value with the possible values math_errhandling can take.
+`FP_FAST_FMA`
+`FP_FAST_FMAF`: **int** - Each, if defined, identifies for which type fma is at least as efficient as x*y+z.
+`FP_INFINITE`
+`FP_NAN`
+`FP_NORMAL`
+`FP_SUBNORMAL`: **int** - The possible values returned by fpclassify.
+`FP_ILOGB0`: **int** - Special values the ilogb function may return.
+
+Types
+
+- `double_t` - Floating-point type (type )
+- `float_t` - Floating-point type (type )
 
 
 ## Stdin and Std Out
@@ -565,50 +802,50 @@ C++ uses the standard input stream cin and the standard output stream cout
 
 An example of stdin and out vs. C.
 
-```cpp
-#include	<iostream>	// Header file defining standard C++ I/O 
-#include	<stdio.h>		// Old C language header now deprecated
+```c++
+#include    <iostream>    // Header file defining standard C++ I/O 
+#include    <stdio.h>        // Old C language header now deprecated
 using namespace std;
 int main()
 {
-	int x = 0;
+    int x = 0;
 
-	/* The old C way */
+    /* The old C way */
 
-	printf( “Please enter an integer: “ );
-	scanf( “%d”, &x );
-	printf( “You entered %d \n”, x );
+    printf( "Please enter an integer: " );
+    scanf( "%d", &x );
+    printf( "You entered %d \n", x );
 
-	// The C++ way
+    // The C++ way
 
-	cout << “Please enter an integer: “;
-	cin >> x;
-	cout << “You entered “ << x << endl;
-	cout << “x plus 2 is “;
-	cout << x + 2 << endl;
-	
-	return 0;
+    cout << "Please enter an integer: ";
+    cin >> x;
+    cout << "You entered " << x << endl;
+    cout << "x plus 2 is ";
+    cout << x + 2 << endl;
+    
+    return 0;
 }
 ```
 
-```cpp
-// Program Input:	10	20
-//		30
+```c++
+// Program Input:    10    20
+//        30
 //
-// Program Output:	You entered: 10 20 30
+// Program Output:    You entered: 10 20 30
 
-#include	<iostream>
+#include    <iostream>
 using namespace std;
 int main()
 {
-	int x, y, z;
+    int x, y, z;
 
-	cout << "enter 3 integers: ";
-	cin >> x >> y >> z;		// whitespace delimits numeric input objects
+    cout << "enter 3 integers: ";
+    cin >> x >> y >> z;        // whitespace delimits numeric input objects
 
-	cout << "You entered: " << x << " " << y << " " << z << endl;
+    cout << "You entered: " << x << " " << y << " " << z << endl;
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -628,78 +865,142 @@ scientific
 fixed
 
 
-```cpp
-#include	<iostream>
-#include	<iomanip>		// Required for parameterized manipulators
-#define	dbln	"\n\n”	// Symbolic constant prints 2 newlines
+```c++
+#include    <iostream>
+#include    <iomanip>        // Required for parameterized manipulators
+#define    dbln    "\n\n"    // Symbolic constant prints 2 newlines
 
-using	namespace	std;
+using    namespace    std;
 
 int main()
 {
-	float v = 2.19512567f;
-	float c = 4.f;
-	
-	cout << v << endl;
-	cout << c << dbln;
+    float v = 2.19512567f;
+    float c = 4.f;
+    
+    cout << v << endl;
+    cout << c << dbln;
 
-	cout << showpoint << v << endl;	// showpoint forces dec & 0’s
-	cout << c << dbln;
+    cout << showpoint << v << endl;    // showpoint forces dec & 0's
+    cout << c << dbln;
 
-	cout << noshowpoint << c << dbln;	// reinstate default
+    cout << noshowpoint << c << dbln;    // reinstate default
 
-	cout << setw(10) << v << endl;	// set field width to 10
-	cout << c << dbln;
+    cout << setw(10) << v << endl;    // set field width to 10
+    cout << c << dbln;
 
-	return 0;
+    return 0;
 }
 
 // Program to illustrate stream manipulators
 //
-// Program Output:	2.19513
-//		4
+// Program Output:    2.19513
+//        4
 //
-//		2.19513
-//		4.00000
+//        2.19513
+//        4.00000
 //
-//		4
+//        4
 //
-//		   2.19513
-//		4
+//           2.19513
+//        4
 
 
 
-#include	<iostream>
-#include	<iomanip>
-#define	dbln	"\n\n"
-using	namespace	std;
+#include    <iostream>
+#include    <iomanip>
+#define    dbln    "\n\n"
+using    namespace    std;
 
 int main()
 {
-	bool	b = true;
-	float	f = 3.14159f;
+    bool    b = true;
+    float    f = 3.14159f;
 
-	cout << b << endl;
-	cout << boolalpha << b << dbln;
+    cout << b << endl;
+    cout << boolalpha << b << dbln;
 
-	cout << f << endl;
-	cout << scientific << setprecision(3) << f << endl;
-	cout << fixed << f << dbln;
+    cout << f << endl;
+    cout << scientific << setprecision(3) << f << endl;
+    cout << fixed << f << dbln;
 
-	return 0;
+    return 0;
 }
 
 // Program to demonstrate stream manipulators
 //
-// Program Output:	1
-//		true
+// Program Output:    1
+//        true
 //
-//		3.14159
-//		3.142e+000
-//		3.142
+//        3.14159
+//        3.142e+000
+//        3.142
 ```
 
 ## Types
+
+### C Standard definitions
+
+<cstddef> (stddef.h)
+This header defines several types implicitly generated or used by certain language expressions.
+
+Types
+
+ptrdiff_t
+    Result of pointer subtraction (type )
+
+size_t
+    Unsigned integral type (type )
+
+max_align_t
+    Type with widest scalar alignment (type )
+
+nullptr_t
+    Null pointer type (C++) (type )
+
+
+In C, this header also includes the declaration of the wchar_t type (wide character type), which in C++ is a language keyword that identifies a distinct fundamental type (no header inclusion required in C++).
+
+Macro functions
+
+offsetof
+    Return member offset (macro )
+
+
+Macro constants
+
+NULL
+    Null pointer (macro )
+
+
+
+### Variable arguments handling
+
+<cstdarg> (stdarg.h)
+
+This header defines macros to access the individual arguments of a list of unnamed arguments whose number and types are not known to the called function.
+
+A function may accept a varying number of additional arguments without corresponding parameter declarations by including a comma and three dots (,...) after its regular named parameters:
+
+return_type function_name ( parameter_declarations , ... );
+To access these additional arguments the macros va_start, va_arg and va_end, declared in this header, can be used:
+
+    First, va_start initializes the list of variable arguments as a va_list.
+    Subsequent executions of va_arg yield the values of the additional arguments in the same order as passed to the function.
+    Finally, va_end shall be executed before the function returns.
+
+
+Types
+
+- `va_list`- Type to hold information about variable arguments (type )
+
+
+Macro functions
+
+- `va_start`- Initialize a variable argument list (macro )
+- `va_arg`- Retrieve next argument (macro )
+- `va_end`- End using variable argument list (macro )
+- `va_copy`- Copy variable argument list (macro )
+
 
 short - 2bytes -32,000-32000
 unsigned short - 64000
@@ -712,7 +1013,125 @@ chars `' '` (Single quotes)
 string `" "` (Double quotes)
 bool 
 
+[<cstdint> (stdint.h) - C++ Reference](https://www.cplusplus.com/reference/cstdint/)
 
+/todo edit
+```
+signed type	unsigned type	description
+intmax_t	uintmax_t	Integer type with the maximum width supported.
+int8_t	uint8_t	Integer type with a width of exactly 8, 16, 32, or 64 bits.
+For signed types, negative values are represented using 2's complement.
+No padding bits.
+Optional: These typedefs are not defined if no types with such characteristics exist.*
+int16_t	uint16_t
+int32_t	uint32_t
+int64_t	uint64_t
+int_least8_t	uint_least8_t	Integer type with a minimum of 8, 16, 32, or 64 bits.
+No other integer type exists with lesser size and at least the specified width.
+int_least16_t	uint_least16_t
+int_least32_t	uint_least32_t
+int_least64_t	uint_least64_t
+int_fast8_t	uint_fast8_t	Integer type with a minimum of 8, 16, 32, or 64 bits.
+At least as fast as any other integer type with at least the specified width.
+int_fast16_t	uint_fast16_t
+int_fast32_t	uint_fast32_t
+int_fast64_t	uint_fast64_t
+intptr_t	uintptr_t	Integer type capable of holding a value converted from a void pointer and then be converted back to that type with a value that compares equal to the original pointer.
+Optional: These typedefs may not be defined in some library implementations.*
+
+
+header
+<cstdint> (stdint.h)
+Integer types
+This header defines a set of integral type aliases with specific width requirements, along with macros specifying their limits and macro functions to create values of these types.
+
+Types
+The following are typedefs of fundamental integral types or extended integral types.
+
+signed type	unsigned type	description
+intmax_t	uintmax_t	Integer type with the maximum width supported.
+int8_t	uint8_t	Integer type with a width of exactly 8, 16, 32, or 64 bits.
+For signed types, negative values are represented using 2's complement.
+No padding bits.
+Optional: These typedefs are not defined if no types with such characteristics exist.*
+int16_t	uint16_t
+int32_t	uint32_t
+int64_t	uint64_t
+int_least8_t	uint_least8_t	Integer type with a minimum of 8, 16, 32, or 64 bits.
+No other integer type exists with lesser size and at least the specified width.
+int_least16_t	uint_least16_t
+int_least32_t	uint_least32_t
+int_least64_t	uint_least64_t
+int_fast8_t	uint_fast8_t	Integer type with a minimum of 8, 16, 32, or 64 bits.
+At least as fast as any other integer type with at least the specified width.
+int_fast16_t	uint_fast16_t
+int_fast32_t	uint_fast32_t
+int_fast64_t	uint_fast64_t
+intptr_t	uintptr_t	Integer type capable of holding a value converted from a void pointer and then be converted back to that type with a value that compares equal to the original pointer.
+Optional: These typedefs may not be defined in some library implementations.*
+
+Some of these typedefs may denote the same types. Therefore, function overloads should not rely on these being different.
+
+* Notice that some types are optional (and thus, with no portability guarantees). A particular library implementation may also define additional types with other widths supported by its system. In any case, if either the signed or the unsigned version is defined, both the signed and unsigned versions are defined.
+
+Macros
+
+Limits of cstdint types
+Macro	description	defined as
+INTMAX_MIN	Minimum value of intmax_t	-(263-1), or lower
+INTMAX_MAX	Maximum value of intmax_t	263-1, or higher
+UINTMAX_MAX	Maximum value of uintmax_t	264-1, or higher
+INTN_MIN	Minimum value of exact-width signed type	Exactly -2(N-1)
+INTN_MAX	Maximum value of exact-width signed type	Exactly 2(N-1)-1
+UINTN_MAX	Maximum value of exact-width unsigned type	Exactly 2N-1
+INT_LEASTN_MIN	Minimum value of minimum-width signed type	-(2(N-1)-1), or lower
+INT_LEASTN_MAX	Maximum value of minimum-width signed type	2(N-1)-1, or higher
+UINT_LEASTN_MAX	Maximum value of minimum-width unsigned type	2N-1, or higher
+INT_FASTN_MIN	Minimum value of fastest minimum-width signed type	-(2(N-1)-1), or lower
+INT_FASTN_MAX	Maximum value of fastest minimum-width signed type	2(N-1)-1, or higher
+UINT_FASTN_MAX	Maximum value of fastest minimum-width unsigned type	2N-1, or higher
+INTPTR_MIN	Minimum value of intptr_t	-(215-1), or lower
+INTPTR_MAX	Maximum value of intptr_t	215-1, or higher
+UINTPTR_MAX	Maximum value of uintptr_t	216-1, or higher
+Where N is one in 8, 16, 32, 64, or any other type width supported by the library.
+
+Only the macros corresponding to types supported by the library are defined.
+
+Limits of other types
+Limits of other standard integral types:
+Macro	description	defined as
+SIZE_MAX	Maximum value of size_t	264-1, or higher
+PTRDIFF_MIN	Minimum value of ptrdiff_t	-(216-1), or lower
+PTRDIFF_MAX	Maximum value of ptrdiff_t	216-1, or higher
+SIG_ATOMIC_MIN	Minimum value of sig_atomic_t	if sig_atomic_t is signed: -127, or lower
+if sig_atomic_t is unsigned: 0
+SIG_ATOMIC_MAX	Maximum value of sig_atomic_t	if sig_atomic_t is signed: 127, or higher
+if sig_atomic_t is unsigned: 255, or higher
+WCHAR_MIN	Minimum value of wchar_t	if wchar_t is signed: -127, or lower
+if wchar_t is unsigned: 0
+WCHAR_MAX	Maximum value of wchar_t	if wchar_t is signed: 127, or higher
+if wchar_t is unsigned: 255, or higher
+WINT_MIN	Minimum value of wint_t	if wint_t is signed: -32767, or lower
+if wint_t is unsigned: 0
+WINT_MAX	Maximum value of wint_t	if wint_t is signed: 32767, or higher
+if wint_t is unsigned: 65535, or higher
+
+Function-like macros
+These function-like macros expand to integer constants suitable to initialize objects of the types above:
+Macro	description
+INTMAX_C	expands to a value of type intmax_t
+UINTMAX_C	expands to a value of type uintmax_t
+INTN_C	expands to a value of type int_leastN_t
+UINTN_C	expands to a value of type uint_leastN_t
+
+For example:
+
+ 
+
+	
+
+INTMAX_C(2012)  // expands to 2012LL or similar 
+```
 
 **character** - `char` - Used to hold a single character of information.  Always requires a single byte of storage.
 
@@ -764,6 +1183,60 @@ The default value of a bool type is false
 
 `std::string_view` - C++17 - you can replace `std::string_view` with `const std::string&`. String_view is just a wrapper for a pointer and a length.
 
+**Class templates**
+
+- `basic_string` - Generic string class (class template )
+
+- `char_traits` - Character traits (class template )
+
+
+Class instantiations
+
+- `string` - String class (class )
+
+- `u16string` - String of 16-bit characters (class )
+
+- `u32string` - String of 32-bit characters (class )
+
+- `wstring` - Wide string (class )
+
+
+Functions
+Convert from strings
+
+- `stoi` - Convert string to integer (function template )
+
+- `stol` - Convert string to long int (function template )
+
+- `stoul` - Convert string to unsigned integer (function template )
+
+- `stoll` - Convert string to long long (function template )
+
+- `stoull` - Convert string to unsigned long long (function template )
+
+- `stof` - Convert string to float (function template )
+
+- `stod` - Convert string to double (function template )
+
+- `stold` - Convert string to long double (function template )
+
+
+Convert to strings
+
+- `to_string` - Convert numerical value to string (function )
+
+- `to_wstring` - Convert numerical value to wide string (function )
+
+
+Range access
+
+- `begin` - Iterator to beginning (function template )
+
+- `end` - Iterator to end (function template )
+
+
+
+
 ### Type Inference & Alternative Function Syntax 
 
 C++ 11
@@ -772,8 +1245,8 @@ Compiler deduces type at compile time
 
 `auto` keyword.
 
-```cpp
-auto x = 99; 		
+```c++
+auto x = 99;         
 
 auto value = myFunc();
 
@@ -787,7 +1260,7 @@ auto value = myFunc();
 //is this a lambda
 auto myFunc( int x ) -> int
 {
-	return 2*x;
+    return 2*x;
 }
 
 
@@ -796,7 +1269,7 @@ auto myFunc( int x ) -> int
 
 auto myFunc( float v1, float v2 )
 {
-	return v1 * v2;
+    return v1 * v2;
 }
 
 ```
@@ -836,7 +1309,7 @@ Some good links:
 
 
 
-```cpp
+```c++
 int i = 3; 
 int *ptr = &i; // A pointer to variable i (or stores addr of i)
 int &ref = i; // A reference (or alias) for i.
@@ -853,7 +1326,7 @@ int &p; p=a;   // it is incorrect as we should declare and initialize references
 4. Reassignment: A pointer can be re-assigned. This property is useful for implementation of data structures like linked list, tree, etc. See the following examples: 
 
 
-```cpp
+```c++
 int a = 5;
 int b = 6;
 int *p;
@@ -864,7 +1337,7 @@ p = &b;
 But the converse is not true:
 
 
-```cpp
+```c++
 int a = 5;
 int b = 6;
 int &p = a;
@@ -875,7 +1348,7 @@ int &q=p;
 
 6. Memory Address: A **pointer has its own memory address and size on the stack** whereas a **reference shares the same memory address** (with the original variable) but also takes up some space on the stack.
 
-```cpp
+```c++
    int &p = a;
    cout << &p << endl << &a;
 ```
@@ -885,7 +1358,7 @@ int &q=p;
 
 In Pointers, you can have pointers to pointers etc, but references cannot because they are teh same as the object.
 
-```cpp
+```c++
 int a = 10;
 int *p;
 int **q;  //it is valid.
@@ -905,7 +1378,7 @@ int &&q = p; //it is reference to reference, so it is an error.
 
 The best way is to provide the myGLCD object as a parameter to the constructor:
 
-```cpp
+```c++
 touchButton::touchButton(UTFT &glcddev, int x, int y, int xs, int ys, char myuse) {
   x1 = x;
   y1 = y;
@@ -917,7 +1390,7 @@ touchButton::touchButton(UTFT &glcddev, int x, int y, int xs, int ys, char myuse
 ```
 
 Then in your header you provide a:
-```cpp
+```c++
 private: 
   UTFT *glcd;
 Your library code then uses the glcd pointer to the object:
@@ -931,7 +1404,7 @@ Note the use of `->` since glcd is a pointer to the object (as created by the & 
 
 ## Enums
 
-```cpp
+```c++
 enum PieceType(PieceTypeKing, PieceTypeQueen, PieceTypeRook);
 ```
 
@@ -939,7 +1412,7 @@ Creates an enum, just carries the numerical int value of position.
 You can also specify values-
 
 
-```cpp
+```c++
 enum PieceType(PieceTypeKing = 2, PieceTypeQueen, PieceTypeRook=10, PieceTypeKnight);
 ```
 
@@ -954,7 +1427,7 @@ To prevent that- use strongly typed ones.
 this is the type safe version.
 
 
-```cpp
+```c++
 enum class PieceType
 {
    King=1,
@@ -974,7 +1447,7 @@ These do not have underlying integer values, assigning numbers like above is an 
 `if(PieceType::Queen==1){} //error`
 
 
-```cpp
+```c++
 enum class PieceType : unsigned long
 {
    King = 1,
@@ -993,7 +1466,7 @@ enum class PieceType : unsigned long
 
 Iterable Enums
 
-```cpp
+```c++
 num Foo {
   One,
   Two,
@@ -1008,7 +1481,7 @@ for ( int fooInt = One; fooInt != Last; fooInt++ )
 }
 ``` 
 
-```cpp
+```c++
 #include <iostream>
 #include <algorithm>
 
@@ -1051,7 +1524,7 @@ int main()
 
 Binds types into a new type.  Structs are the same as classes, but all items are public.
 
-```cpp
+```c++
 struct Car{
 
    int year;
@@ -1108,23 +1581,23 @@ Using `typedef` on a `struct` defines it for external linkage.
 - All characters in a variable name are significant
 - Must be declared, can be anywhere.
 
-```cpp
-#include	<iostream>
+```c++
+#include    <iostream>
 using namespace std;
 int main()
 {
-	int a;		// value of a is undefined
-	int b = 10;
-	cout << b << endl;
-	int z = 99;	// can’t do this in C language, but OK in C++
-	cout << z << endl;
+    int a;        // value of a is undefined
+    int b = 10;
+    cout << b << endl;
+    int z = 99;    // can't do this in C language, but OK in C++
+    cout << z << endl;
 
-	for( int j = 0; j < 3; j++ )		// scope of j is for loop
-	{
-		cout << “j is “ << j << endl;
-	}
+    for( int j = 0; j < 3; j++ )        // scope of j is for loop
+    {
+        cout << "j is " << j << endl;
+    }
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -1143,16 +1616,16 @@ Using bracket assignment- it will warn about truncation.
 
 eg `int x = 3.14` - x = 3
 
-```cpp
-int hamburgers = {16};	// set hamburgers to 16
-int hotdogs {3};		// set hotdogs to 3
-int mustard {};		// set mustard to 0
-int relish = {};		// set relish to 0
-int ketchup(1);		// set ketchup to 1
+```c++
+int hamburgers = {16};    // set hamburgers to 16
+int hotdogs {3};        // set hotdogs to 3
+int mustard {};        // set mustard to 0
+int relish = {};        // set relish to 0
+int ketchup(1);        // set ketchup to 1
 
 long double x = 3.14159;
-int a{x}, b = {x};		// truncation error
-int c(x), d = x;		// ok – but will truncate.  Using these assingment methods wont have checking.
+int a{x}, b = {x};        // truncation error
+int c(x), d = x;        // ok – but will truncate.  Using these assingment methods wont have checking.
 int a =3;
 int b{3};
 int c = {3};
@@ -1163,7 +1636,7 @@ Uniform initialization (using `{}`) calls the default initializer for each item.
 
 It prevents narrowing.
 
-```cpp
+```c++
 void func(int i){/* */}
 
 int x = 3.14 //auto narrows to 3.
@@ -1184,7 +1657,7 @@ There is a difference with Copy `=` and Direct Initilization in C++17
 
 `T obj {arg1, arg2, ...}`
 
-```cpp
+```c++
 auto a {11}; //int
 
 auto b {11, 22}; //Error - no list one element allowed
@@ -1194,7 +1667,7 @@ auto b {11, 22}; //Error - no list one element allowed
 
 `T obj = {arg1, arg2, ...}`
 
-```cpp
+```c++
 auto a = {11}; //initilizer list<int>
 
 auto b = {11, 22}; //initilizer list<int>
@@ -1233,7 +1706,7 @@ to force a cast to lower precision (e.g. double assigned to int)
 
 
 
-```cpp
+```c++
 int intVal;
 double dbVal1, dbVal2;
 intVal = dbVal1 + dbVal2; //Causes error
@@ -1258,65 +1731,65 @@ Only int % int is allowed.
 
 ## Constants
 
-- Literal constants are values that appear in a program (e.g. 33, 12.99, ‘A’, “Hello”)
-- Literal constants are not addressable - Can’t directly address memory where value is stored
+- Literal constants are values that appear in a program (e.g. 33, 12.99, 'A', "Hello")
+- Literal constants are not addressable - Can't directly address memory where value is stored
 - Every literal constant has an associated type
 
 Literal integer constants are treated as signed values of type int
 
 
-      34		// decimal notation
-      036		// octal
-      0x14		// hexadecimal
-      128L		// long (could also use l )
-      128U		// unsigned (could also use u )
-      14UL		// long unsigned
-      14LL		// long long*
-      128ULL		// unsigned long long*
-      3.14159F	// float (could also use f )
-      0.0		// double (default type)
-      7.435L		// extended precision
-      4e2		// scientific notation 
-      2.35E-2	// scientific notation
+      34        // decimal notation
+      036        // octal
+      0x14        // hexadecimal
+      128L        // long (could also use l )
+      128U        // unsigned (could also use u )
+      14UL        // long unsigned
+      14LL        // long long*
+      128ULL        // unsigned long long*
+      3.14159F    // float (could also use f )
+      0.0        // double (default type)
+      7.435L        // extended precision
+      4e2        // scientific notation 
+      2.35E-2    // scientific notation
 
 f = F = float.
 
 Printable literal character constants written with character inside single quotes
 
 
-      ‘G’		// letter G
-      ‘,’		// literal comma
-      ‘ ‘		// literal blank
-      ‘5’		// literal 5
+      'G'        // letter G
+      ','        // literal comma
+      ' '        // literal blank
+      '5'        // literal 5
 
 Nonprintable characters, the single & double quote marks, and the backslash are represented using escape sequences
 
-      \n		// newline
-      \b	// backspace
-      \t		// horizontal tab		
-      \v	// vertical tab
-      \r		// carriage return	
-      \f	// formfeed
-      \a		// alert (bell)		
-      \\	// backslash
-      \’		// single quote		
-      \”	// double quote
+      \n        // newline
+      \b    // backspace
+      \t        // horizontal tab        
+      \v    // vertical tab
+      \r        // carriage return    
+      \f    // formfeed
+      \a        // alert (bell)        
+      \\    // backslash
+      \'        // single quote        
+      \"    // double quote
 
 Can also use \xxx where xxx is a sequence of up to 3 octal digits
 
-		\0	// null			
-      \7	// bell
-		\14	// newline		
-      \062	// ‘2’
+        \0    // null            
+      \7    // bell
+        \14    // newline        
+      \062    // '2'
 
 
 Can be used to transform a variable into an addressable constant
 Must be initialized in its declaration
 
 
-const float pi = 3.14159;	// pi is a constant
-const int c;		// ERROR!! must be initialized in declaration
-pi = 22.3;		// ERROR!! can’t change value
+const float pi = 3.14159;    // pi is a constant
+const int c;        // ERROR!! must be initialized in declaration
+pi = 22.3;        // ERROR!! can't change value
 
 
 ### String Literals
@@ -1324,13 +1797,13 @@ pi = 22.3;		// ERROR!! can’t change value
 String literals consist of zero or more characters enclosed in double quotes. Compiler adds terminating null character
 Treated as an array of constant (const) characters
 Nonprintable characters are represented by their escape sequences
-		“”			// null string
-		“A”			// not same as char literal ‘A’
-		“Hello”		// String literal
-		“Hello \t World”	// Embedded escape sequence
-		“Multiple line \	// Can extend for several lines
-		literal”		// using a backslash as the 
-					// last character on a line
+        ""            // null string
+        "A"            // not same as char literal 'A'
+        "Hello"        // String literal
+        "Hello \t World"    // Embedded escape sequence
+        "Multiple line \    // Can extend for several lines
+        literal"        // using a backslash as the 
+                    // last character on a line
 
 ### Boolean literals
 
@@ -1356,7 +1829,7 @@ Zero indexed.
 C++ you must give a size to the array.  This size cannot be a variable, it must be a constant, or a constant expression (*constexpr*)
 
 
-```cpp
+```c++
 int myArray[3];
 myArray[0]=0;
 myArray[1]=0;
@@ -1380,7 +1853,7 @@ This is declaring by initializer list:
 For no particular reason, arrays cannot be assigned to one another. Use std::copy instead:
 
 
-```cpp
+```c++
 #include <algorithm>
 
 // ...
@@ -1393,7 +1866,7 @@ std::copy(a + 0, a + 8, b);
 
 **passing arrays**
 
-```cpp
+```c++
 void myFunction(int *param) { ..}
 
 void myFunction(int param[10]) {
@@ -1414,7 +1887,7 @@ A template solution- which at this time I dont undersand
 
 
 
-```cpp
+```c++
     template <typename T, int N>
     void func(T (&a) [N]) {
         for (int i = 0; i < N; ++i) a[i] = T(); // reset all elements
@@ -1441,7 +1914,7 @@ This is a hack that finds the whole size, divided by 1 element, which should equ
 
 
 
-```cpp
+```c++
 #include <type_traits>
 
 static_assert(!std::is_same<int[8], float[8]>::value, "distinct element type");
@@ -1468,7 +1941,7 @@ note i tried putting these in C++ and they werenet liked.
 Actually the syntax looks like this: (the 2nd item)
 
 
-```cpp
+```c++
 int array_of_arrays[6][7];
 int (*pointer_to_array)[7] = array_of_arrays;
 
@@ -1483,7 +1956,7 @@ In adding to an array:
 
 Since the syntax `*(x+i)` is a bit clumsy, C++ provides the alternative syntax `x[i]`:
 
-```cpp
+```c++
 int x[8]={};
 x+3 ; //has no meaning but it decomposes into a pointer, and adds 3 to the pointer. giving the 3rd element.
 
@@ -1493,7 +1966,7 @@ std::cout << 3[x] << ", " << 7[x] << std::endl; //Due to the fact that addition 
 For length of n- an array will let you compute pointers to 0...nth items.  However, the nth item is nonexistant and would throw and error dereferenced.
 
 
-```cpp
+```c++
 std::sort(x + 0, x + n);
 std::sort(&x[0], &x[0] + n);
 std::sort(&x[0], &x[n]); //error- this is equivalent to &*(x+n), and the sub-expression *(x+n) 
@@ -1513,7 +1986,7 @@ Named arrays of pointers
 Here is a named array of five pointers which are initialized with anonymous arrays of different lengths:
 
 
-```cpp
+```c++
 int* triangle[5];
 for (int i = 0; i < 5; ++i)
 {
@@ -1527,7 +2000,7 @@ for (int i = 0; i < 5; ++i)
     delete[] triangle[i];
 }
 ```
-```cpp
+```c++
 int array[8] = {};
 int(*) ptr_to_array[8] = &array
 ```
@@ -1543,7 +2016,7 @@ Most programmers are familiar with named multidimensional arrays, but many are u
 When using named multidimensional arrays, all dimensions must be known at compile time:
 
 
-```cpp
+```c++
 
 int H = read_int();
 int W = read_int();
@@ -1565,7 +2038,7 @@ int connect_four[H][W];   // ISO C++ forbids variable length array
 
 You define struct names at the end:
 
-```cpp
+```c++
    #include <string>
 
     typedef struct {
@@ -1592,7 +2065,7 @@ You define struct names at the end:
 [See Initializer Lists for examples](#Initializer Lists)
 
 
-```cpp
+```c++
 vector<double> mSequence;
 std::vector<std::string> myVec = {"String 1", "String 2", "String 3"};
 std::vector<std::string> myVec;
@@ -1613,7 +2086,7 @@ mSequence.assign(args);
 
 
 
-```cpp
+```c++
 #include <string>
 #include <iosteam.h>
 cout << "HELLO WORLD"
@@ -1702,33 +2175,33 @@ endl
    - `get_time`- **(C++11)**- parses a date/time value of specified format
    - `put_time`- **(C++11)**- formats and outputs a date/time value according to the specified format
    - `quoted` - **(C++14)** - inserts and extracts quoted strings with embedded spaces
-```cpp
+```c++
 //40
 // Program to read and display a line of input
 //
-// Program Input:	That’s better
+// Program Input:    That's better
 //
-// Program Output:	You entered: That’s better
+// Program Output:    You entered: That's better
 
-#include	<iostream>
+#include    <iostream>
 using namespace std;
 int main()
 {
-	char line[81];
-	char c;
-	int i = 0;
+    char line[81];
+    char c;
+    int i = 0;
 
-	cin >> noskipws;		// use manipulator to recognize whitespace
+    cin >> noskipws;        // use manipulator to recognize whitespace
 
-	cout << "Please enter a line of text: ";
+    cout << "Please enter a line of text: ";
 
-	while ( ( cin >> c ) && ( c != '\n' ) )
-		line[i++] = c;
+    while ( ( cin >> c ) && ( c != '\n' ) )
+        line[i++] = c;
 
-	line[i] = '\0';
+    line[i] = '\0';
 
-	cout << "\n\nYou entered: " << line << endl;
-	return 0;
+    cout << "\n\nYou entered: " << line << endl;
+    return 0;
 }
 ```
 
@@ -1749,68 +2222,68 @@ int main()
 
 Functions need to appear before they are used, so a protoype has to occur.
 
-```cpp
-#include	<iostream>
+```c++
+#include    <iostream>
 using namespace std;
 
 
 //function prototypes
-void print_message();		// A function prototype
+void print_message();        // A function prototype
 float product( int , float ); // Another prototype
 
-			void main()
-			{
-				float k = 13.54f;
-				float num = 43.77f;
+            void main()
+            {
+                float k = 13.54f;
+                float num = 43.77f;
 
-				print_message();		// Invoking functions
-				cout << product( k , num );
-			}
+                print_message();        // Invoking functions
+                cout << product( k , num );
+            }
 
-			// Function definitions
+            // Function definitions
 
 void print_message()
-			{
-				cout << "Where's the Beef?" << " \n";
-			}
+            {
+                cout << "Where's the Beef?" << " \n";
+            }
 
-			float product ( int c , float f )
-			{
-				return ( c * f );
-			}
+            float product ( int c , float f )
+            {
+                return ( c * f );
+            }
 ```
 
-Typically placed at top of source file or “included” via a pre-processor directive
+Typically placed at top of source file or "included" via a pre-processor directive
 
 When placed outside of a function scope is from point of placement to end of source file
 
 When placed inside a function scope is from point of placement to end of function
 
-```cpp
+```c++
 
-#include	<iostream>
+#include    <iostream>
 using namespace std;
 
-void myfunc();		// Scope is source file
+void myfunc();        // Scope is source file
 void message();
 
 void main()
 {
-	message();
-	myfunc();
+    message();
+    myfunc();
 }
 
 void myfunc()
 {
-	int afunc();	// Scope is myfunc()
+    int afunc();    // Scope is myfunc()
 
-	message();
-	cout << afunc();
+    message();
+    cout << afunc();
 }
 
 int afunc() { return 99; }
 
-void message() { cout << “HELLO \n”; }
+void message() { cout << "HELLO \n"; }
 
 ```
 
@@ -1827,13 +2300,13 @@ If a value passed as a function argument should not be altered in the function, 
 The C++ compiler will not allow const arguments to be modified by a function
 
 
-```cpp
+```c++
 // Function taking const argument
 
 void myfunc( int arg1, const int arg2 )
 {
-	arg1 = 2*arg1;		// OK
-	arg2 += arg1;		// ERROR --- can’t change arg2
+    arg1 = 2*arg1;        // OK
+    arg2 += arg1;        // ERROR --- can't change arg2
 }
 ```
 
@@ -1842,7 +2315,7 @@ ___
 ---
 
 
-```cpp
+```c++
 class SpreadsheetCell
 {
 // Remainder of the class definition omitted for brevity
@@ -1865,7 +2338,7 @@ double SpreadsheetCell::getValue() const  //use const when values arent changing
 }
 ```
 
-```cpp
+```c++
 // in header file
 class touchButton {
   public:
@@ -1882,7 +2355,7 @@ class touchButton {
 ```
 
 
-```cpp
+```c++
 //in body
   touchButton::touchButton(int x, int y, int xs, int ys, char myuse) {
     x1 = x;
@@ -1916,7 +2389,7 @@ class touchButton {
 
 [See Below](#Stack instantiation)
 
-```cpp
+```c++
 SpreadsheetCell myCell
 SpreadsheetCell myCell(); // WRONG, but will compile.
 myCell.setValue(6); //wont fail until <-here
@@ -1928,7 +2401,7 @@ SpreadsheetCell myCell(5), anotherCell (4);
 
 The following are heap initialized.  They are not controlled by scope - eg not deleted when exit method.
 
-```cpp
+```c++
 //C++11 style
 unique_ptr<SpreadsheetCell> myCellP{make_unique<SpreadsheetCell>()}
 //C++14 style
@@ -1962,7 +2435,7 @@ for < C++ 11
 
 Structs and classes can be initiated similarly
 
-```cpp
+```c++
 
 stuct CircleStruct{
    int x,y ;
@@ -1979,7 +2452,6 @@ CircleClass myCircle2{10, 10, 2.5};
 CircleClass myCircle3 = {10, 10, 2.5};
 ```
 
-Objects are created at the point you declare them (if they’re on the stack) or when you explicitly allocate space for them with `new`, `new[]`, or a *smart pointer*.
 
 ---
 ### Constructors
@@ -1990,7 +2462,7 @@ Objects are created at the point you declare them (if they’re on the stack) or
 You cannot declare a constructor in terms of another:
 
 
-```cpp
+```c++
 SpreadsheetCell::SpreadsheetCell(string_view initialValue)
 {
       SpreadsheetCell(stringToDouble(initialValue));
@@ -2003,14 +2475,14 @@ The code will compile, link, and run, but will not do what you expect. It create
 Default constructors are needed - a constructor with 0 params- especially **if the object may be used in an array**.  A default constructor is also required for classes that you want to store in Standard Library containers, such as `std::vector`.
 
 
-```cpp
+```c++
 SpreadsheetCell cells[3]; // FAILS compilation without default constructor
 SpreadsheetCell* myCellp = new SpreadsheetCell[10]; // Also FAILS
 ```
 
 You can circumvent this restriction for stack-based arrays by using initializers like these:
 
-```cpp
+```c++
 SpreadsheetCell cells[3] = {SpreadsheetCell(0), SpreadsheetCell(23),
 **SpreadsheetCell(41)};**
 ```
@@ -2018,7 +2490,7 @@ SpreadsheetCell cells[3] = {SpreadsheetCell(0), SpreadsheetCell(23),
 There is an *implicit* default constructor, unless an explicit constructor is defined.  Then you need to explicitly declare the default if you want it available.  If you explicitly don't want a default constructor, and have no others, you need to explicitly delete it.
 
 
-```cpp
+```c++
 class MyClass
 {
 public:
@@ -2036,8 +2508,7 @@ public:
 #### Constructor Initializers
 ---
 
-
-```cpp
+```c++
 SpreadsheetCell::SpreadsheetCell(double initialValue): mValue(initialValue){}
 ```
 
@@ -2047,7 +2518,7 @@ The initializer list is of format `:` then a comma separated list.
 
 
 
-```cpp
+```c++
 class SpreadsheetCell
 {
    public:
@@ -2086,7 +2557,7 @@ This is ok if the class only has primitive types as members or if the class does
 
 
 
-```cpp
+```c++
 SpreadsheetCell(const SpreadsheetCell& src);
 SpreadsheetCell(const SpreadsheetCell src); //doing this causes infinitate recursion- because it calls copy constructor here- to copy input to src...
 // used like this in implementation
@@ -2103,7 +2574,7 @@ If **either** the `Copy` or `Copy Assignment` constructor or destructor is decla
 To add it back:
 
 
-```cpp
+```c++
 MyClass(const MyClass& src) = default;
 
 MyClass& operator=(const MyClass& rhs) = default;
@@ -2114,7 +2585,7 @@ MyClass& operator=(const MyClass& rhs) = default;
 
 Utilizing the copy constructor:
 
-```cpp
+```c++
 MyClass myClass(params);
 MyClass copyClass(myClass);
 ```
@@ -2123,7 +2594,7 @@ where possible, pass by `const reference`.  Returning by Reference can be risky.
 
 Explicitly declare or remove the copy constructor (e.g. you dont want an object copied.) This can be used to disallow passing the object by value,
 
-```cpp
+```c++
 SpreadsheetCell(const SpreadsheetCell& src) = default;
 SpreadsheetCell(const SpreadsheetCell& src) = delete;1
 ```
@@ -2133,7 +2604,7 @@ ___
 
 Works by setting one, existing object to entirely match the other.
 
-```cpp
+```c++
 Object o(params);
 Object oo(params);
 oo=o;
@@ -2146,7 +2617,7 @@ This constructor is indicated by `operator=` because its an overloading of the `
 The copy assignment constructor is *not* called in the following example.
 
 
-```cpp
+```c++
 Object new_obj = old_obj;
 ```
 
@@ -2154,7 +2625,7 @@ This is because its a declaration, and those are sent to the copy constructor. H
 
 
 
-```cpp
+```c++
 class SpreadsheetCell
 {
    public:
@@ -2169,7 +2640,7 @@ Specifically, it has `    return *this;`.
 
 
 
-```cpp
+```c++
 myCell = anotherCell = aThirdCell;
 //has the true form of 
 myCell.operator=(anotherCell.operator=(aThirdCell));
@@ -2188,7 +2659,7 @@ This works because `this` is actually a pointer to the object.  Likewise, `&rhs`
 
 Explicit declaration or deletion is of the form below.
 
-```cpp
+```c++
 SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = default;
 // or
 SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = delete;
@@ -2217,7 +2688,7 @@ header.
 
 The below example shows several things.  Throwing errors.  Vectors. and initializer lists.
 
-```cpp
+```c++
 #inclue <initializer_list>
 #inclue <vector>
 #...
@@ -2262,7 +2733,7 @@ class EvenSequence
 ### this keyword
 ---
 
-```cpp
+```c++
 void SpreadsheetCell::setValue(double value)
 {
 this->value = value;
@@ -2272,7 +2743,7 @@ this->value = value;
 a pointer to the object `this` is always passed to the method called.  `this` can be passed elsewhere, or used to disambiguate `value` above- which is both a data member and a function param.
 
 
-```cpp
+```c++
 
 //declared as a stand alone function:
 void printCell(const SpreadsheetCell& cell)
@@ -2306,7 +2777,7 @@ void SpreadsheetCell::setValue(double value)
 
 Space is reserved as soon as declared.  e.g. line 1.  Stack objects are destroyed as soon as they go out of scope (`{ }`).  This is why they don't need to be deleted.
 
-```cpp
+```c++
 SpreadsheetCell myCell, anotherCell;
 myCell.setValue(6);
 anotherCell.setString("3.2");
@@ -2321,13 +2792,13 @@ On the stack, assuming a constructor that takes an int:: `SpreadsheetCell::Sprea
 
 
 !!!Warning You cannot explicitly call the Constructor, also when creating an object on the stack, omit parentheses for the default constructor.
-      ```cpp
+      ```c++
       SpreadsheetCell myCell.SpreadsheetCell(5); //wrong
       ```
 
       or call it later:
 
-      ```cpp
+      ```c++
       SpreadsheetCell myCell;
       myCell.SpreadsheetCell(5);
 
@@ -2335,7 +2806,7 @@ On the stack, assuming a constructor that takes an int:: `SpreadsheetCell::Sprea
 
       Also, for default constructors, this looks right:
 
-      ```cpp
+      ```c++
       SpreadsheetCell myCell(); // WRONG, but will compile.
       myCell.setValue(6); //wont fail until <-here
       //it must be like this:
@@ -2359,7 +2830,7 @@ Heap objects are not destroyed when they go out of scope.  If the pointer to it 
 
 Below space is not reserved until `new` or `make_unique` is called.  e.g. if you split the declaration and assignment below- you would have an indeterminate pointer which is bad, but also no space reserved.
 
-```cpp
+```c++
 SpreadsheetCell* myCellp = new SpreadsheetCell();
 myCellp->setValue(3.7);
 cout << "cell 1: " << myCellp->getValue() <<
@@ -2375,7 +2846,7 @@ You can use this other way instead like this `(*myCellp).getValue()` for `myCell
 Must call `delete` on these (and not required but good practice to set that pointer to nullptr- as delete follows the pointer to the object.  Once its gone, the pointer still points there.), or use smart pointers:
 
 
-```cpp
+```c++
 //C++11 style
 unique_ptr<SpreadsheetCell> myCellP{make_unique<SpreadsheetCell>()}
 //C++14 style
@@ -2401,7 +2872,7 @@ cout << "cell 1: " << myCellp->getValue() <<
 
 These all are similar
 
-```cpp
+```c++
 //preC++11
 SpreadsheetCell* myCellp = new SpreadsheetCell();
 //AND
@@ -2416,7 +2887,7 @@ unique_ptr<SpreadsheetCell> myCellp(new SpreadsheetCell());
 
 Using Heap constructors:
 
-```cpp
+```c++
 //C++14+
 auto smartCellp = make_unique<SpreadsheetCell>(4);
 
@@ -2464,10 +2935,10 @@ inherits from more than one direct parent class it is called multiple inheritanc
 
 **Syntax**
 
-```cpp
+```c++
 class derived_class_name : [access] base_class_name
 {
-	… class member declarations & definitions …
+    … class member declarations & definitions …
 };
 ```
 
@@ -2479,7 +2950,7 @@ class derived_class_name : [access] base_class_name
  Multiple inheritance involves defining a derived class that directly inherits members from more than one base class
 The syntax for defining a class using multiple inheritance is:
 
-```cpp
+```c++
 class derived_class_name : access1 base_class1 , ... ,  accessN base_classN 
 {
 ... Class Members ...
@@ -2492,58 +2963,58 @@ Keywords
 `final` prevents over-riding.
 
 
-```cpp
-// With C++11 “final” can be used to prevent inheritance
+```c++
+// With C++11 "final" can be used to prevent inheritance
 class MyClass final
 {
-	…
+    …
 } ;
 // This will generate a compilation error
 class Derived : public MyClass
 {
-	…
+    …
 };
 
 ```
 
-```cpp
-#include	<iostream>
+```c++
+#include    <iostream>
 using namespace std;
 
 class base1
 {
-	protected:  	int d1;
-	public: 		void show_base1() { cout << "base1 data is " << d1 << " \n"; }
+    protected:      int d1;
+    public:         void show_base1() { cout << "base1 data is " << d1 << " \n"; }
 };
 
 class base2
 {
-	protected:	int d2;
-	public:		void show_base2() { cout << "base2 data is " << d2 << "\n"; }
+    protected:    int d2;
+    public:        void show_base2() { cout << "base2 data is " << d2 << "\n"; }
 };
 
 class derived_class : public base1 , public base2
 {
-	private:	int d_data;
-	public:
-			void set_derived() { d_data = d1 + d2; }
-			void set_base( int I, int j ) { d1 = I; d2 = j; }
-			void display_derived() { cout << "d_data is " << d_data << endl; }
+    private:    int d_data;
+    public:
+            void set_derived() { d_data = d1 + d2; }
+            void set_base( int I, int j ) { d1 = I; d2 = j; }
+            void display_derived() { cout << "d_data is " << d_data << endl; }
 };
 
-// PROGRAM OUTPUT:	d_data is 50
+// PROGRAM OUTPUT:    d_data is 50
 
-#include	"classes.h"
+#include    "classes.h"
 
 int main()
 {
-	derived_class myobj;
+    derived_class myobj;
 
-	myobj.set_base( 20,30 );
-	myobj.set_derived();
-	myobj.display_derived();
+    myobj.set_base( 20,30 );
+    myobj.set_derived();
+    myobj.display_derived();
 
-	return 0;
+    return 0;
 }
 
 ```
@@ -2554,14 +3025,14 @@ int main()
 
 **Inheritance** should be used when a class is needed that does everything an existing class does, but has some special features---in the Unified Modeling Language this is called *generalization/specialization*
 
-   **Inheritance** models an “`is a`” relationship --- a child class object is a parent class object with some additional specialized characteristics;  The "is a" test is a reliable one/
+   **Inheritance** models an "`is a`" relationship --- a child class object is a parent class object with some additional specialized characteristics;  The "is a" test is a reliable one/
 
 **Aggregation** is used when you want to build classes that contain other classes as components.  Containment is a synonym for Aggregation.
 
 
 
 
-The access status of the inherited members (public, private, or protected) is determined by the ‘access’ specified … if ‘access’ is not specified the default is private
+The access status of the inherited members (public, private, or protected) is determined by the 'access' specified … if 'access' is not specified the default is private
 
 `Public` - everything is the same from the Derived class to the Base class.  Public is public and Protected=protected and Private is Private, which means that the Private Values are private to the base class
  
@@ -2575,102 +3046,102 @@ The access status of the inherited members (public, private, or protected) is de
 
 !!!Caution Private inheritance is really rarely a good choice.  The better choice is containment over this.
 
-•	Prefer using the strict encapsulation principle when implementing inheritance
-•	Prefer using private data members vs. protected data members to preserve strict encapsulation
-•	Make data members private & use protected member functions to allow derived classes access to base class data members
+*    Prefer using the strict encapsulation principle when implementing inheritance
+*    Prefer using private data members vs. protected data members to preserve strict encapsulation
+*    Make data members private & use protected member functions to allow derived classes access to base class data members
 
 
 
 
-#include	<iostream>
+#include    <iostream>
 using namespace std;
 class base
 {
-	private:		int x;
-	protected:	getX() { return x; }
-	public:		base() { x = 99; }
-			void display() { cout << "x is " << x << endl;}
+    private:        int x;
+    protected:    getX() { return x; }
+    public:        base() { x = 99; }
+            void display() { cout << "x is " << x << endl;}
 } ;
 class derived : public base
 {
-	private:	int y;
-	public:	derived () { y = 88 + getX() ; } 
-		…
+    private:    int y;
+    public:    derived () { y = 88 + getX() ; } 
+        …
 };
 
 
-```cpp
-#include	<iostream>
+```c++
+#include    <iostream>
 using namespace std;
 
 class base_class
 {
-	private:	int x;
-			int y;
+    private:    int x;
+            int y;
 
-	public:	base_class() { x = 0; y = 0; }
-			void set_base_data( int , int );
-			void display_base();
+    public:    base_class() { x = 0; y = 0; }
+            void set_base_data( int , int );
+            void display_base();
 };
 
-class derived_class : public base_class		// Specify inheritance
+class derived_class : public base_class        // Specify inheritance
 {
-	private:	int d_data;
-	public:	derived_class() { d_data = 0; }
-			void set_derived_data( int );
-			void display_derived();
+    private:    int d_data;
+    public:    derived_class() { d_data = 0; }
+            void set_derived_data( int );
+            void display_derived();
 };
 
-// PROGRAM OUTPUT:	x is 22 : y is 33
-//					d_data is 10
+// PROGRAM OUTPUT:    x is 22 : y is 33
+//                    d_data is 10
 
 int main()
 {
-	derived_class myobj;				// Declare a derived class object
-	myobj.set_base_data( 22 , 33 );	// Access base class private data via 
-									// public function
-	myobj.display_base();				// Display base class data
-	myobj.set_derived_data( 10 );		// Access derived class private data
-	myobj.display_derived();			// Display derived class private data
-	return 0;
+    derived_class myobj;                // Declare a derived class object
+    myobj.set_base_data( 22 , 33 );    // Access base class private data via 
+                                    // public function
+    myobj.display_base();                // Display base class data
+    myobj.set_derived_data( 10 );        // Access derived class private data
+    myobj.display_derived();            // Display derived class private data
+    return 0;
 }
 
 ```
 
 
-```cpp
+```c++
 // This program defines a derived class that does nothing but use the 
 // inherited respond() function.
 
-#include	<iostream>
+#include    <iostream>
 using namespace std;
 
 class robot
 {
-	public: void respond( char *s ) { cout << s << endl; }
+    public: void respond( char *s ) { cout << s << endl; }
 };
 
 class defiant_robot : public robot
 {
-	public:
+    public:
 };
 // This program defines a derived class that does nothing but use the 
 // inherited respond() function.
 //
-// PROGRAM OUTPUT:		Hello
-//						Whut!!
+// PROGRAM OUTPUT:        Hello
+//                        Whut!!
 
 
-#include	"robots.h"
+#include    "robots.h"
 
 int main()
 {
-	robot r2d2;
-	r2d2.respond("Hello");
-	defiant_robot Butch;
-	Butch.respond("Whut!!");		// subclass inherits respond()
+    robot r2d2;
+    r2d2.respond("Hello");
+    defiant_robot Butch;
+    Butch.respond("Whut!!");        // subclass inherits respond()
 
-	return 0;
+    return 0;
 }
 // Program illustrating derived class overriding an inherited function
 //
@@ -2680,18 +3151,18 @@ int main()
 
 Derived Classes Override or Shadow the Inherited Members.
 
-```cpp
-#include	<iostream>
+```c++
+#include    <iostream>
 using namespace std;
 
 class robot
 {
-	public: void respond( char * s ) { cout << s << “\n”; }
+    public: void respond( char * s ) { cout << s << "\n"; }
 };
 
 class defiant_robot : public robot
 {
-	public: void respond( char * s ) { cout << “I Refuse \n”; }
+    public: void respond( char * s ) { cout << "I Refuse \n"; }
 };
 
 ```
@@ -2776,11 +3247,11 @@ int main()
 - You need to include the <map> header file as std::map<> is part of the C++ standard library.
 - You must specify the type of the key and the type of the value, between the angle brackets, e.g. std::map<int,double> would be a map that uses integer keys to look up double values.
 - Like Python, you look up items in the map using square brackets, e.g. m["cat"] looks up the value for "cat".
-- Like Python, if the item doesn’t exist, then it is created and assigned, e.g. m["cat"] = "mieow" sets the value associated with the key cat to mieow.
+- Like Python, if the item doesn't exist, then it is created and assigned, e.g. m["cat"] = "mieow" sets the value associated with the key cat to mieow.
 - Unlike Python, there is no .insert() function. You can only add items using lookup.
 - Unlike Python, there is no .keys() or .values() function. You have to write these yourself…
 - When you loop through the values in a map, the iterated item is a key-value pair. In for ( auto item : m ), the type of item is a key-value pair. The key is the first item in the pair item.first, while the value is the second item item.second.
-- All keys in a map have to have the same type, and all values in a map have to have the same type, buy keys and values don’t have to have the same type. For example, std::map<float,std::string> creates a map in which all keys are floats, and all values are strings.
+- All keys in a map have to have the same type, and all values in a map have to have the same type, buy keys and values don't have to have the same type. For example, std::map<float,std::string> creates a map in which all keys are floats, and all values are strings.
 
 ```C++ 
     #include <iostream>
@@ -2834,7 +3305,9 @@ int main()
 ## Error Handling 
 
 
-```cpp
+
+
+```c++
 EvenSequence(initializer_list<double> args)
 {
 if (args.size() % 2 != 0) {
@@ -2853,6 +3326,80 @@ cout << e.what() << endl;
 }
 ```
 
+This is an example of a stack trace.
+
+For Linux and I believe Mac OS X, if you're using gcc, or any compiler that uses glibc, you can use the `backtrace()` functions in _execinfo.h_ to print a stacktrace and exit gracefully when you get a segmentation fault. Documentation can be found in the libc manua
+
+Here is a high level discussion on stacktraces: 
+
+[c++ - How to automatically generate a stacktrace when my program crashes - Stack Overflow](https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes)
+
+
+```C++ 
+#include <stdio.h>
+#include <execinfo.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+
+void handler(int sig) {
+  void *array[10];
+  size_t size;
+
+  // get void*'s for all entries on the stack
+  size = backtrace(array, 10);
+
+  // print out all the frames to stderr
+  fprintf(stderr, "Error: signal %d:\n", sig);
+  backtrace_symbols_fd(array, size, STDERR_FILENO);
+  exit(1);
+}
+
+void baz() {
+ int *foo = (int*)-1; // make a bad pointer
+  printf("%d\n", *foo);       // causes segfault
+}
+
+void bar() { baz(); }
+void foo() { bar(); }
+
+
+int main(int argc, char **argv) {
+  signal(SIGSEGV, handler);   // install our handler
+  foo(); // this will call foo, bar, and baz.  baz segfaults.
+}
+```
+
+
+
+### C library to handle signals
+
+`<csignal>` `(signal.h)`
+
+
+Functions
+
+- `signal` - Set function to handle signal (function )
+- `raise` - Generates a signal (function )
+
+Types
+
+- `sig_atomic_t` - Integral type (type )
+
+Macro constants
+
+- int (signals)
+    - `SIGABRT` : **(Signal Abort)** - Abnormal termination, such as is initiated by the abort function.
+    - `SIGFPE` : **(Signal Floating-Point Exception)** - Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).
+    - `SIGILL` : **(Signal Illegal Instruction)** - Invalid function image, such as an illegal instruction. This is generally due to a corruption in the code or to an attempt to execute data.
+    - `SIGINT` : **(Signal Interrupt)** - Interactive attention signal. Generally generated by the application user.
+    - `SIGSEGV` : **(Signal Segmentation Violation)** - Invalid access to storage: When a program tries to read or write outside the memory it has allocated.
+    - `SIGTERM` : **(Signal Terminate)** - Termination request sent to program.
+functions (handlers)
+    - `SIG_DFL` :  - Default handling: The signal is handled by the default action for that particular signal.
+    - `SIG_IGN` :  - Ignore Signal: The signal is ignored.
+    - `SIG_ERR` :  - Special return value indicating failure.
 
 
 ## IO Operations
@@ -2863,7 +3410,7 @@ cout << e.what() << endl;
 
 
 
-```cpp
+```c++
 #include <string>
 #include <iosteam.h>
 cout << "HELLO WORLD"
@@ -2913,27 +3460,27 @@ ___
 ### Snippets
 
 ```json
-	"Debug NoLevel": {
-		"prefix": "dbg",
-		"body": "if (DEBUG_EN) Serial.println(\"$1\");\n$0",
-		"description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
-	},
-	"Debug": {
-		"prefix": "dbglvl",
-		"body": [
-			"if (DEBUG_EN >= ${1: 1 , 2 , 3 , 4 } ) Serial.println(\"$2\");",
-			"$0"
-		],
-		"description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
-	},
-	"Debug2": {
-		"prefix": "dbgdet",
-		"body": [
-			"if (DEBUG_EN) Serial.println(\"${1:$TM_CURRENT_WORD}, $TM_LINE_NUMBER:$TM_FILENAME = \" + $1);",
-			"$0"
-		],
-		"description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
-	}
+    "Debug NoLevel": {
+        "prefix": "dbg",
+        "body": "if (DEBUG_EN) Serial.println(\"$1\");\n$0",
+        "description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
+    },
+    "Debug": {
+        "prefix": "dbglvl",
+        "body": [
+            "if (DEBUG_EN >= ${1: 1 , 2 , 3 , 4 } ) Serial.println(\"$2\");",
+            "$0"
+        ],
+        "description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
+    },
+    "Debug2": {
+        "prefix": "dbgdet",
+        "body": [
+            "if (DEBUG_EN) Serial.println(\"${1:$TM_CURRENT_WORD}, $TM_LINE_NUMBER:$TM_FILENAME = \" + $1);",
+            "$0"
+        ],
+        "description": "Enter a statement to print to the console.  Expects DEBUG_EN define, with 0 disabled"
+    }
 }
 ```
 
@@ -2942,3 +3489,589 @@ ___
 ```json
 
 ```
+
+
+### Todo place me:
+
+
+Functions
+Operations on files:
+
+- `remove` - Remove file (function )
+
+- `rename` - Rename file (function )
+
+- `tmpfile` - Open a temporary file (function )
+
+- `tmpnam` - Generate temporary filename (function )
+
+
+File access:
+
+- `fclose` - Close file (function )
+
+- `fflush` - Flush stream (function )
+
+- `fopen` - Open file (function )
+
+- `freopen` - Reopen stream with different file or mode (function )
+
+- `setbuf` - Set stream buffer (function )
+
+- `setvbuf` - Change stream buffering (function )
+
+
+Formatted input/output:
+
+- `fprintf` - Write formatted data to stream (function )
+
+- `fscanf` - Read formatted data from stream (function )
+
+- `printf` - Print formatted data to stdout (function )
+
+- `scanf` - Read formatted data from stdin (function )
+
+- `snprintf` - Write formatted output to sized buffer (function )
+
+```C++ 
+    /* snprintf example */
+#include <stdio.h>
+
+int main ()
+{
+  char buffer [100];
+  int cx;
+
+  cx = snprintf ( buffer, 100, "The half of %d is %d", 60, 60/2 );
+
+  if (cx>=0 && cx<100)      // check returned value
+
+    snprintf ( buffer+cx, 100-cx, ", and the half of that is %d.", 60/2/2 );
+
+  puts (buffer);
+
+  return 0;
+}
+```
+
+
+
+- `sprintf` - Write formatted data to string (function )
+
+```C++ 
+    /* sprintf example */
+#include <stdio.h>
+
+int main ()
+{
+  char buffer [50];
+  int n, a=5, b=3;
+  n=sprintf (buffer, "%d plus %d is %d", a, b, a+b);
+  printf ("[%s] is a string %d chars long\n",buffer,n);
+  return 0;
+}
+```
+
+
+
+- `sscanf` - Read formatted data from string (function )
+
+- `vfprintf` - Write formatted data from variable argument list to stream (function )
+
+- `vfscanf` - Read formatted data from stream into variable argument list (function )
+
+- `vprintf` - Print formatted data from variable argument list to stdout (function )
+
+- `vscanf` - Read formatted data into variable argument list (function )
+
+- `vsnprintf` - Write formatted data from variable argument list to sized buffer (function )
+
+- `vsprintf` - Write formatted data from variable argument list to string (function )
+
+- `vsscanf` - Read formatted data from string into variable argument list (function )
+
+
+Character input/output:
+
+- `fgetc` - Get character from stream (function )
+
+- `fgets` - Get string from stream (function )
+
+- `fputc` - Write character to stream (function )
+
+- `fputs` - Write string to stream (function )
+
+- `getc` - Get character from stream (function )
+
+- `getchar` - Get character from stdin (function )
+
+- `gets` - Get string from stdin (function )
+
+- `putc` - Write character to stream (function )
+
+- `putchar` - Write character to stdout (function )
+
+- `puts` - Write string to stdout (function )
+
+- `ungetc` - Unget character from stream (function )
+
+
+Direct input/output:
+
+- `fread` - Read block of data from stream (function )
+
+- `fwrite` - Write block of data to stream (function )
+
+
+File positioning:
+
+- `fgetpos` - Get current position in stream (function )
+
+- `fseek` - Reposition stream position indicator (function )
+
+- `fsetpos` - Set position indicator of stream (function )
+
+- `ftell` - Get current position in stream (function )
+
+- `rewind` - Set position of stream to the beginning (function )
+
+
+Error-handling:
+
+- `clearerr` - Clear error indicators (function )
+
+- `feof` - Check end-of-file indicator (function )
+
+- `ferror` - Check error indicator (function )
+
+- `perror` - Print error message (function )
+
+
+Macros
+
+- `BUFSIZ` - Buffer size (constant )
+
+- `EOF` - End-of-File (constant )
+
+- `FILENAME_MAX` - Maximum length of file names (constant )
+
+- `FOPEN_MAX` - Potential limit of simultaneous open streams (constant )
+
+- `L_tmpnam` - Minimum length for temporary file name (constant )
+
+- `NULL` - Null pointer (macro )
+
+- `TMP_MAX` - Number of temporary files (constant )
+
+Additionally: _IOFBF, _IOLBF, _IONBF (used with setvbuf)
+and SEEK_CUR, SEEK_END and SEEK_SET (used with fseek).
+
+Types
+
+- `FILE` - Object containing information to control a stream (type )
+
+- `fpos_t` - Object containing information to specify a position within a file (type )
+
+- `size_t` - Unsigned integral type (type )
+
+
+### c
+
+/* strcat example */
+#include <stdio.h>
+#include <string.h>
+
+int main ()
+{
+  char str[80];
+  strcpy (str,"these ");
+  strcat (str,"strings ");
+  strcat (str,"are ");
+  strcat (str,"concatenated.");
+  puts (str);
+  return 0;
+}
+
+
+### <cstring> (string.h)
+
+C Strings
+This header file defines several functions to manipulate C strings and arrays.
+
+Functions
+Copying:
+
+- `memcpy`- Copy block of memory (function )
+- `memmove`- Move block of memory (function )
+- `strcpy`- Copy string (function )
+- `strncpy`- Copy characters from string (function )
+
+Concatenation:
+
+- `strcat`- Concatenate strings (function )
+- `strncat`- Append characters from string (function )
+
+Comparison:
+
+- `memcmp`- Compare two blocks of memory (function )
+- `strcmp`- Compare two strings (function )
+- `strcoll`- Compare two strings using locale (function )
+- `strncmp`- Compare characters of two strings (function )
+- `strxfrm`- Transform string using locale (function )
+
+Searching:
+
+- `memchr`- Locate character in block of memory (function )
+- `strchr`- Locate first occurrence of character in string (function )
+- `strcspn`- Get span until character in string (function )
+- `strpbrk`- Locate characters in string (function )
+- `strrchr`- Locate last occurrence of character in string (function )
+- `strspn`- Get span of character set in string (function )
+- `strstr`- Locate substring (function )
+- `strtok`- Split string into tokens (function )
+
+Other:
+
+- `memset`- Fill block of memory (function )
+- `strerror`- Get pointer to error message string (function )
+- `strlen`- Get string length (function )
+
+Macros
+
+- `NULL`- Null pointer (macro )
+
+Types
+
+- `size_t`- Unsigned integral type (type )
+
+<ctime> (time.h)
+C Time Library
+This header file contains definitions of functions to get and manipulate date and time information.
+
+Functions
+Time manipulation
+
+- `clock`- Clock program (function )
+- `difftime`- Return difference between two times (function )
+- `mktime`- Convert tm structure to time_t (function )
+- `time`- Get current time (function )
+
+Conversion
+
+- `asctime`- Convert tm structure to string (function )
+- `ctime`- Convert time_t value to string (function )
+- `gmtime`- Convert time_t to tm as UTC time (function )
+- `localtime`- Convert time_t to tm as local time (function )
+- `strftime`- Format time as string (function )
+
+Macro constants
+
+- `CLOCKS_PER_SEC`- Clock ticks per second (macro )
+- `NULL`- Null pointer (macro )
+
+types
+
+- `clock_t`- Clock type (type )
+- `size_t`- Unsigned integral type (type )
+- `time_t`- Time type (type )
+- `struct tm`- Time structure (type )
+
+
+header
+<cctype> (ctype.h)
+Character handling functions
+
+[<cctype> (ctype.h) - C++ Reference](https://www.cplusplus.com/reference/cctype/)
+
+- `isalnum`- Check if character is alphanumeric (function )
+- `isalpha`- Check if character is alphabetic (function )
+- `isblank`- Check if character is blank (function )
+- `iscntrl`- Check if character is a control character (function )
+- `isdigit`- Check if character is decimal digit (function )
+- `isgraph`- Check if character has graphical representation (function )
+- `islower`- Check if character is lowercase letter (function )
+- `isprint`- Check if character is printable (function )
+- `ispunct`- Check if character is a punctuation character (function )
+- `isspace`- Check if character is a white-space (function )
+- `isupper`- Check if character is uppercase letter (function )
+- `isxdigit`- Check if character is hexadecimal digit (function )
+    
+Character conversion functions
+Two functions that convert between letter cases:
+
+- `tolower`- Convert uppercase letter to lowercase (function )
+toupper
+    Convert lowercase letter to uppercase (function )
+
+
+    <cstdlib> (stdlib.h)
+C Standard General Utilities Library
+This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+
+Functions
+String conversion
+
+atof
+    Convert string to double (function )
+
+atoi
+    Convert string to integer (function )
+
+atol
+    Convert string to long integer (function )
+
+atoll
+    Convert string to long long integer (function )
+
+strtod
+    Convert string to double (function )
+
+strtof
+    Convert string to float (function )
+
+strtol
+    Convert string to long integer (function )
+
+strtold
+    Convert string to long double (function )
+
+strtoll
+    Convert string to long long integer (function )
+
+strtoul
+    Convert string to unsigned long integer (function )
+
+strtoull
+    Convert string to unsigned long long integer (function )
+
+
+Pseudo-random sequence generation
+
+rand
+    Generate random number (function )
+
+srand
+    Initialize random number generator (function )
+
+
+Dynamic memory management
+
+calloc
+    Allocate and zero-initialize array (function )
+
+free
+    Deallocate memory block (function )
+
+malloc
+    Allocate memory block (function )
+
+realloc
+    Reallocate memory block (function )
+
+
+Environment
+
+abort
+    Abort current process (function )
+
+atexit
+    Set function to be executed on exit (function )
+
+at_quick_exit
+    Set function to be executed on quick exit (function )
+
+exit
+    Terminate calling process (function )
+
+getenv
+    Get environment string (function )
+
+quick_exit
+    Terminate calling process quick (function )
+
+system
+    Execute system command (function )
+
+_Exit
+    Terminate calling process (function )
+
+
+Searching and sorting
+
+bsearch
+    Binary search in array (function )
+
+qsort
+    Sort elements of array (function )
+
+
+Integer arithmetics
+
+abs
+    Absolute value (function )
+
+div
+    Integral division (function )
+
+labs
+    Absolute value (function )
+
+ldiv
+    Integral division (function )
+
+llabs
+    Absolute value (function )
+
+lldiv
+    Integral division (function )
+
+
+Multibyte characters
+
+mblen
+    Get length of multibyte character (function )
+
+mbtowc
+    Convert multibyte sequence to wide character (function )
+
+wctomb
+    Convert wide character to multibyte sequence (function )
+
+
+Multibyte strings
+
+mbstowcs
+    Convert multibyte string to wide-character string (function )
+
+wcstombs
+    Convert wide-character string to multibyte string (function )
+
+
+Macro constants
+
+EXIT_FAILURE
+    Failure termination code (macro )
+
+EXIT_SUCCESS
+    Success termination code (macro )
+
+MB_CUR_MAX
+    Maximum size of multibyte characters (macro )
+
+NULL
+    Null pointer (macro )
+
+RAND_MAX
+    Maximum value returned by rand (macro )
+
+
+Types
+
+div_t
+    Structure returned by div (type )
+
+ldiv_t
+    Structure returned by ldiv (type )
+
+lldiv_t
+    Structure returned by lldiv (type )
+
+size_t
+    Unsigned integral type (type )
+
+<cstring> (string.h)
+C Strings
+This header file defines several functions to manipulate C strings and arrays.
+
+Functions
+Copying:
+
+memcpy
+    Copy block of memory (function )
+
+memmove
+    Move block of memory (function )
+
+strcpy
+    Copy string (function )
+
+strncpy
+    Copy characters from string (function )
+
+
+Concatenation:
+
+strcat
+    Concatenate strings (function )
+
+strncat
+    Append characters from string (function )
+
+
+Comparison:
+
+memcmp
+    Compare two blocks of memory (function )
+
+strcmp
+    Compare two strings (function )
+
+strcoll
+    Compare two strings using locale (function )
+
+strncmp
+    Compare characters of two strings (function )
+
+strxfrm
+    Transform string using locale (function )
+
+
+Searching:
+
+memchr
+    Locate character in block of memory (function )
+
+strchr
+    Locate first occurrence of character in string (function )
+
+strcspn
+    Get span until character in string (function )
+
+strpbrk
+    Locate characters in string (function )
+
+strrchr
+    Locate last occurrence of character in string (function )
+
+strspn
+    Get span of character set in string (function )
+
+strstr
+    Locate substring (function )
+
+strtok
+    Split string into tokens (function )
+
+
+Other:
+
+memset
+    Fill block of memory (function )
+
+strerror
+    Get pointer to error message string (function )
+
+strlen
+    Get string length (function )
+
+
+Macros
+
+NULL
+    Null pointer (macro )
+
+
+Types
+
+size_t
+    Unsigned integral type (typ
