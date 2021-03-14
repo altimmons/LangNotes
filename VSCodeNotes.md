@@ -86,11 +86,22 @@
 
 [](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
   
+[Your First Extension | Visual Studio Code Extension API](https://code.visualstudio.com/api/get-started/your-first-extension)
 
-  
+Every custom area.
+
+[Theme Color | Visual Studio Code Extension API](https://code.visualstudio.com/api/references/theme-color)
+
+  Themes Links
+
+  * [Visual Studio Code Themes](https://code.visualstudio.com/docs/getstarted/themes)
+* [Color Theme | Visual Studio Code Extension API](https://code.visualstudio.com/api/extension-guides/color-theme)
+* [Syntax Highlight Guide | Visual Studio Code Extension API](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
+* [Get Started with C++ and Windows Subsystem for Linux in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-wsl)
+* [Syntax Highlight Guide | Visual Studio Code Extension API](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#extension-capabilities-articles)
 
 
-
+https://code.visualstudio.com/api/language-extensions/snippet-guide
 
 ## New Settings to update
 

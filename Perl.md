@@ -574,3 +574,98 @@ getopts("brt:"); #b, r, t are expected options.
 #If -b is input then $opt_b will be defined.
 printf "Option b is $opt_b is b defined %d and Option R is $opt_r\n",defined $opt_b;
 ```
+
+
+## Example Code
+
+```perl
+#!/usr/bin/perl
+
+#This test case needs to be provided a file that contains a set of words.
+#the code will read each word and add it to the hash (if necessary) and will
+#increment a counter.  The end result will be a hash that contains a count of
+#the number of times a word was used. 
+#The basis for this example is on page 159.
+
+%hast_test;	#The hash we are going to use.
+
+while (<>) #PERL < > Operator page 73
+{
+	foreach(split) #split the words (page 138)
+	{
+		#DEBUG print words read- printf "$_\n";
+		$hash_test{$_} = $hash_test{$_}+1; #This adds to an existing or new hash
+		$total++; #total words counted 
+	}
+}#end while
+
+while(($key, $value) = each %hash_test)  #Iterate over the entire hash
+{
+	printf "$key => $value \n";
+}
+
+printf "Total number of words in file:  $total\n";
+#NOTE Use keys to tell how many elements are in the hash.
+	
+#---------------------------------------------------------------------
+
+#!/usr/bin/perl
+# 605.414 System Development in the Unix Environment
+# Test of Hash code.
+
+#Initialize the hash with these key value pairs.
+#This demonstrates undefined vs. 0 as initialization.
+#Input words using ARGV to this Perl script.
+
+%this_hash = (
+	"this" , 0,
+	"that" , undef,
+	"the" , undef,
+	"other" , 0,
+	);
+
+&print_hash();
+
+#Assign the has to a list 
+@hash_list = %this_hash;
+
+#determine the number of elements in the hash.
+my $num_elements = keys %this_hash;
+
+printf "Hash List: \"@hash_list\"";
+printf "How many items?\n";
+printf "Using the keys function: $num_elements\n";  
+
+printf "Arguements:  @ARGV \n";
+&parse_input();
+&print_hash();
+
+#
+#-------------Read Through the ARGV List------------------------
+#
+sub parse_input()
+{
+	my $scaler;
+
+	$scaler = shift @ARGV;
+ 
+	while($scaler)
+	{
+		$this_hash{$scaler} += 1;	
+		printf "My Scaler is $scaler\n";
+		$scaler = shift @ARGV;
+	}
+} 
+
+#
+#--------------Print of Hash Key and Value Pairs----------------- 
+#
+sub print_hash()
+{
+	while ( ($key, $value) = each %this_hash ) 
+	{
+		print "$key => $value\n";
+	}
+} 
+-
+```

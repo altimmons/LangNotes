@@ -101,9 +101,7 @@ $@ The file name of the target of the rule. If the target is an archive member, 
 `$^` The names of all the prerequisites, with spaces between them
 
 `$*`
-
-    The stem with which an implicit rule matches
-
+- `` - The stem with which an implicit rule matches
 `$+`
 This is like `$^`, but prerequisites listed more than once are duplicated in the order they were listed in the makefile. 
 `$|`
@@ -569,13 +567,9 @@ strftime ctime
 size_t strftime (char* ptr, size_t maxsize, const char* format,
                  const struct tm* timeptr );
 
-ptr
-    Pointer to the destination array where the resulting C string is copied.
-maxsize
+- `ptr` - Pointer to the destination array where the resulting C string is copied.maxsize
     Maximum number of characters to be copied to ptr, including the terminating null-character.
-format
-    C string containing any combination of regular characters and special format specifiers. These format specifiers are replaced by the function to the corresponding values to represent the time specified in timeptr. They all begin with a percentage (%) sign, and are:
-
+- `format` - C string containing any combination of regular characters and special format specifiers. These format specifiers are replaced by the function to the corresponding values to represent the time specified in timeptr. They all begin with a percentage (%) sign, and are:
 - `%a` - (**Thu**) - Abbreviated weekday name *
 - `%A` - (**Thursday**) - Full weekday name * 
 - `%b` - (**Aug**) - Abbreviated month name *
@@ -615,9 +609,7 @@ format
 - `%%` - (**%**) - A % sign
 
 
-
-        struct tm {
-        int tm_sec;         /* seconds,  range 0 to 59          */
+- `` -     struct tm {        int tm_sec;         /* seconds,  range 0 to 59          */
         int tm_min;         /* minutes, range 0 to 59           */
         int tm_hour;        /* hours, range 0 to 23             */
         int tm_mday;        /* day of the month, range 1 to 31  */
@@ -1125,24 +1117,14 @@ To access these additional arguments the macros va_start, va_arg and va_end, dec
     Subsequent executions of va_arg yield the values of the additional arguments in the same order as passed to the function.
     Finally, va_end shall be executed before the function returns.
 
-va_list
-    Type to hold information about variable arguments (type )
-
+- `va_list` - Type to hold information about variable arguments (type )
 
 Macro functions
 
-va_start
-    Initialize a variable argument list (macro )
-
-va_arg
-    Retrieve next argument (macro )
-
-va_end
-    End using variable argument list (macro )
-
-va_copy
-    Copy variable argument list (macro 
-
+- `va_start` - Initialize a variable argument list (macro )
+- `va_arg` - Retrieve next argument (macro )
+- `va_end` - End using variable argument list (macro )
+- `va_copy` - Copy variable argument list (macro 
 
 ```C
     /* vsprintf example */
@@ -1221,16 +1203,10 @@ Appends the first num characters of source to destination, plus a terminating nu
 If the length of the C string in source is less than num, only the content up to the terminating null-character is copied.
 
 
-destination
-    Pointer to the destination array, which should contain a C string, and be large enough to contain the concatenated resulting string, including the additional null-character.
-source
+- `destination` - Pointer to the destination array, which should contain a C string, and be large enough to contain the concatenated resulting string, including the additional null-character.source
     C string to be appended.
-num
-    Maximum number of characters to be appended.
-    size_t is an unsigned integral type. 
-
-    Example
-
+- `num` - Maximum number of characters to be appended.    size_t is an unsigned integral type. 
+- `` - Example
 
 
 	
@@ -1258,197 +1234,186 @@ int main ()
 Functions
 Operations on files:
 
-remove
-    Remove file (function )
-
-rename
-    Rename file (function )
-
-tmpfile
-    Open a temporary file (function )
-
-tmpnam
-    Generate temporary filename (function )
-
+- `remove` - Remove file (function )
+- `rename` - Rename file (function )
+- `tmpfile` - Open a temporary file (function )
+- `tmpnam` - Generate temporary filename (function )
 
 File access:
 
-fclose
-    Close file (function )
-
-fflush
-    Flush stream (function )
-
-fopen
-    Open file (function )
-
-freopen
-    Reopen stream with different file or mode (function )
-
-setbuf
-    Set stream buffer (function )
-
-setvbuf
-    Change stream buffering (function )
-
+- `fclose` - Close file (function )
+- `fflush` - Flush stream (function )
+- `fopen` - Open file (function )
+- `freopen` - Reopen stream with different file or mode (function )
+- `setbuf` - Set stream buffer (function )
+- `setvbuf` - Change stream buffering (function )
 
 Formatted input/output:
 
-fprintf
-    Write formatted data to stream (function )
-
-fscanf
-    Read formatted data from stream (function )
-
-printf
-    Print formatted data to stdout (function )
-
-scanf
-    Read formatted data from stdin (function )
-
-snprintf
-    Write formatted output to sized buffer (function )
-
-sprintf
-    Write formatted data to string (function )
-
-sscanf
-    Read formatted data from string (function )
-
-vfprintf
-    Write formatted data from variable argument list to stream (function )
-
-vfscanf
-    Read formatted data from stream into variable argument list (function )
-
-vprintf
-    Print formatted data from variable argument list to stdout (function )
-
-vscanf
-    Read formatted data into variable argument list (function )
-
-vsnprintf
-    Write formatted data from variable argument list to sized buffer (function )
-
-vsprintf
-    Write formatted data from variable argument list to string (function )
-
-vsscanf
-    Read formatted data from string into variable argument list (function )
-
+- `fprintf` - Write formatted data to stream (function )
+- `fscanf` - Read formatted data from stream (function )
+- `printf` - Print formatted data to stdout (function )
+- `scanf` - Read formatted data from stdin (function )
+- `snprintf` - Write formatted output to sized buffer (function )
+- `sprintf` - Write formatted data to string (function )
+- `sscanf` - Read formatted data from string (function )
+- `vfprintf` - Write formatted data from variable argument list to stream (function )
+- `vfscanf` - Read formatted data from stream into variable argument list (function )
+- `vprintf` - Print formatted data from variable argument list to stdout (function )
+- `vscanf` - Read formatted data into variable argument list (function )
+- `vsnprintf` - Write formatted data from variable argument list to sized buffer (function )
+- `vsprintf` - Write formatted data from variable argument list to string (function )
+- `vsscanf` - Read formatted data from string into variable argument list (function )
 
 Character input/output:
 
-fgetc
-    Get character from stream (function )
-
-fgets
-    Get string from stream (function )
-
-fputc
-    Write character to stream (function )
-
-fputs
-    Write string to stream (function )
-
-getc
-    Get character from stream (function )
-
-getchar
-    Get character from stdin (function )
-
-gets
-    Get string from stdin (function )
-
-putc
-    Write character to stream (function )
-
-putchar
-    Write character to stdout (function )
-
-puts
-    Write string to stdout (function )
-
-ungetc
-    Unget character from stream (function )
-
+- `fgetc` - Get character from stream (function )
+- `fgets` - Get string from stream (function )
+- `fputc` - Write character to stream (function )
+- `fputs` - Write string to stream (function )
+- `getc` - Get character from stream (function )
+- `getchar` - Get character from stdin (function )
+- `gets` - Get string from stdin (function )
+- `putc` - Write character to stream (function )
+- `putchar` - Write character to stdout (function )
+- `puts` - Write string to stdout (function )
+- `ungetc` - Unget character from stream (function )
 
 Direct input/output:
 
-fread
-    Read block of data from stream (function )
-
-fwrite
-    Write block of data to stream (function )
-
+- `fread` - Read block of data from stream (function )
+- `fwrite` - Write block of data to stream (function )
 
 File positioning:
 
-fgetpos
-    Get current position in stream (function )
-
-fseek
-    Reposition stream position indicator (function )
-
-fsetpos
-    Set position indicator of stream (function )
-
-ftell
-    Get current position in stream (function )
-
-rewind
-    Set position of stream to the beginning (function )
-
+- `fgetpos` - Get current position in stream (function )
+- `fseek` - Reposition stream position indicator (function )
+- `fsetpos` - Set position indicator of stream (function )
+- `ftell` - Get current position in stream (function )
+- `rewind` - Set position of stream to the beginning (function )
 
 Error-handling:
 
-clearerr
-    Clear error indicators (function )
-
-feof
-    Check end-of-file indicator (function )
-
-ferror
-    Check error indicator (function )
-
-perror
-    Print error message (function )
-
+- `clearerr` - Clear error indicators (function )
+- `feof` - Check end-of-file indicator (function )
+- `ferror` - Check error indicator (function )
+- `perror` - Print error message (function )
 
 Macros
 
-BUFSIZ
-    Buffer size (constant )
-
-EOF
-    End-of-File (constant )
-
-FILENAME_MAX
-    Maximum length of file names (constant )
-
-FOPEN_MAX
-    Potential limit of simultaneous open streams (constant )
-
-L_tmpnam
-    Minimum length for temporary file name (constant )
-
-NULL
-    Null pointer (macro )
-
-TMP_MAX
-    Number of temporary files (constant )
-
+- `BUFSIZ` - Buffer size (constant )
+- `EOF` - End-of-File (constant )
+- `FILENAME_MAX` - Maximum length of file names (constant )
+- `FOPEN_MAX` - Potential limit of simultaneous open streams (constant )
+- `L_tmpnam` - Minimum length for temporary file name (constant )
+- `NULL` - Null pointer (macro )
+- `TMP_MAX` - Number of temporary files (constant )
 Additionally: _IOFBF, _IOLBF, _IONBF (used with setvbuf)
 and SEEK_CUR, SEEK_END and SEEK_SET (used with fseek).
 
 Types
 
-FILE
-    Object containing information to control a stream (type )
+- `FILE` - Object containing information to control a stream (type )
+- `fpos_t` - Object containing information to specify a position within a file (type )
+- `size_t` - Unsigned integral type (type )
 
-fpos_t
-    Object containing information to specify a position within a file (type )
 
-size_t
-    Unsigned integral type (type )
 
+[Wide characters](http://www.cplusplus.com/reference/cwchar/)
+
+
+
+<cwchar> (wchar.h)
+This header file defines several functions to work with C wide strings.
+
+Functions
+Input/Output: (mostly wide versions of <cstdio> functions)
+
+- `fgetwc` - Get wide character from stream (function )
+- `fgetws` - Get wide string from stream (function )
+- `fputwc` - Write wide character to stream (function )
+- `fputws` - Write wide string to stream (function )
+- `fwide` - Stream orientation (function )
+- `fwprintf` - Write formatted data to stream (function )
+- `fwscanf` - Read formatted data from stream (function )
+- `getwc` - Get wide character from stream (function )
+- `getwchar` - Get wide character from stdin (function )
+- `putwc` - Write wide character to stream (function )
+- `putwchar` - Write wide character to stdout (function )
+- `swprintf` - Write formatted data to wide string (function )
+- `swscanf` - Read formatted data from string (function )
+- `ungetwc` - Unget wide character from stream (function )
+- `vfwprintf` - Write formatted data from variable argument list to stream (function )
+- `vfwscanf` - Read formatted data from stream into variable argument list (function )
+- `vswprintf` - Write formatted data from variable argument list to sized buffer (function )
+- `vswscanf` - Read formatted data from wide string into variable argument list (function )
+- `vwprintf` - Print formatted data from variable argument list to stdout (function )
+- `vwscanf` - Read formatted data into variable argument list (function )
+- `wprintf` - Print formatted data to stdout (function )
+- `wscanf` - Read formatted data from stdin (function )
+
+General utilities: (wide versions of <cstdlib> functions)
+
+- `wcstod` - Convert wide string to double (function )
+- `wcstof` - Convert wide string to float (function )
+- `wcstol` - Convert wide string to long integer (function )
+- `wcstold` - Convert wide string to long double (function )
+- `wcstoll` - Convert wide string to long long integer (function )
+- `wcstoul` - Convert wide string to unsigned long integer (function )
+- `wcstoull` - Convert wide string to unsigned long long integer (function )
+
+Character/string conversion: (mostly extended versions of <cstdlib> functions)
+
+- `btowc` - Convert single byte character to wide character (function )
+- `mbrlen` - Get length of multibyte character (function )
+- `mbrtowc` - Convert multibyte sequence to wide character (function )
+- `mbsinit` - Check if initial conversion state (function )
+- `mbsrtowcs` - Convert multibyte string to wide-character string (function )
+- `wcrtomb` - Convert wide character to multibyte sequence (function )
+- `wctob` - Convert wide character to single byte (function )
+- `wcsrtombs` - Convert wide-character string to multibyte string (function )
+
+Strings: (wide versions of <cstring> functions)
+
+- `wcscat` - Concatenate wide strings (function )
+- `wcschr` - Locate first occurrence of character in wide string (function )
+- `wcscmp` - Compare two strings (function )
+- `wcscoll` - Compare two wide strings using locale (function )
+- `wcscpy` - Copy wide string (function )
+- `wcscspn` - Get span until character in wide string (function )
+- `wcslen` - Get wide string length (function )
+- `wcsncat` - Append characters from wide string (function )
+- `wcsncmp` - Compare characters of two wide strings (function )
+- `wcsncpy` - Copy characters from wide string (function )
+- `wcspbrk` - Locate characters in wide string (function )
+- `wcsrchr` - Locate last occurrence of character in wide string (function )
+- `wcsspn` - Get span of character set in wide string (function )
+- `wcsstr` - Locate substring of wide string (function )
+- `wcstok` - Split wide string into tokens (function )
+- `wcsxfrm` - Transform wide string using locale (function )
+- `wmemchr` - Locate character in block of wide characters (function )
+- `wmemcmp` - Compare two blocks of wide characters (function )
+- `wmemcpy` - Copy block of wide characters (function )
+- `wmemmove` - Move block of wide characters (function )
+- `wmemset` - Fill array of wide characters (function )
+
+Time: (a wide version of a <ctime> function)
+
+- `wcsftime` - Format time as wide string (function )
+
+Types
+
+- `mbstate_t` - Multibyte conversion state (type )
+- `size_t` - Unsigned integral type (type )
+struct tm
+    Time structure (type )
+
+- `wchar_t` - Wide character (type )
+- `wint_t` - Wide int type (type )
+
+Macro constants
+
+- `NULL` - Null pointer (macro )
+- `WCHAR_MAX` - Maximum value of wchar_t (constant )
+- `WCHAR_MIN` - Minimum value of wchar_t (constant )
+- `WEOF` - Wide end-of-file (constant )

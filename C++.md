@@ -18,7 +18,18 @@
 
 [C++ Data Types - Tutorialspoint](https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm)
 
+## Books and Documents
 
+
+
+
+
+[Online Version](https://opdhsblobprod01.blob.core.windows.net/contents/8ee155eb21834b65814ae67f4da97bf3/8a2d83eae325cb9ced5cf9b5440121d2?sv=2018-03-28&sr=b&si=ReadPolicy&sig=ncjVyNMLSFw6EZOSxzVH5ilP%2FJoMlR0v3KQBwhAoF%2Fo%3D&st=2021-03-12T19%3A32%3A54Z&se=2021-03-13T19%3A42%3A54Z)
+
+
+[Download PDF](https://docs.microsoft.com/en-us/cpp/opbuildpdf/78c042cb37288b66b693d2509bf4a82d/cpp/toc.pdf?branch=live&view=msvc-160)
+
+[A Dump of all the microsoft Documentation]("file:///O:/OneDrive/Textbooks/Comput~1/C++/C++ Language Ref- MS Doc Dump.pdf")
 ## Archetypical Program
 
 
@@ -564,14 +575,211 @@ header files no longer contain *.h
 ```
 
 
+
+### Header Files
+
+[Header files (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/header-files-cpp?view=msvc-160)
+
+
+Because a header file might potentially be included by multiple files, it cannot contain definitions that might produce multiple definitions of the same name. The following are not allowed, or are considered very bad practice:
+
+- built-in type definitions at namespace or global scope
+- non-inline function definitions
+- non-const variable definitions
+- aggregate definitions
+- unnamed namespaces
+- using directives
+#### Include Guards
+
+Typically, header files have an include guard or a #pragma once directive to ensure that they are not inserted multiple times into a single .cpp file.
+
+
+```C++ 
+    // my_class.h
+#ifndef MY_CLASS_H // include guard
+#define MY_CLASS_H
+
+namespace N
+{
+    class my_class
+    {
+    public:
+        void do_something();
+    };
+}
+
+#endif /* MY_CLASS_H */
+```
+
+
 ## include
 !!!Warning:  Note: If you are using the Microsoft Visual C++ IDE, you will notice that by default, all source files start as follows:
       `#include "stdafx.h"`
     In a VC++ project, by default, every source file should start with this line, and your own include files must follow this. If you place your own include file before `stdafx.h`, they will appear to have no effect and you will get all kinds of compilation errors. This situation involves the concept of precompiled header files, which is outside the scope of this book. Consult the Microsoft documentation on precompiled header files to learn the details.
 
 
+### Modules 
 
-## C++ Operators
+
+In C++20, modules are introduced as an improved alternative to header files.
+
+[Modules Link](https://docs.microsoft.com/en-us/cpp/cpp/modules-cpp?view=msvc-160)
+
+
+
+## Namespaces
+
+
+A **namespace** is a declarative region that provides a scope to the identifiers (the names of types, functions, variables, etc) inside it. 
+
+Namespaces are used to organize code into logical groups and to prevent name collisions that can occur especially when your code base includes multiple libraries. All identifiers at namespace scope are visible to one another without qualification. 
+
+This is similar to Java Packages, though less clearly defined.
+
+
+Accessing other namespaces:
+
+1) fully qualified name for each identifier,
+
+    std::vector<std::string> vec;,
+
+2)  With a [Using Declaration](https://docs.microsoft.com/en-us/cpp/cpp/using-declaration?view=msvc-160)
+
+
+
+
+```c++
+
+// using_declaration1.cpp
+#include <stdio.h>
+class B {
+public:
+   void f(char) {      printf_s("In B::f()\n");   }
+   void g(char) {      printf_s("In B::g()\n");   }
+};
+
+class D : B {
+public:
+   using B::f;    // B::f(char) is now visible as D::f(char)
+   using B::g;    // B::g(char) is now visible as D::g(char)
+   void f(int) {      printf_s("In D::f()\n");      f('c'); }
+        // Invokes B::f(char) instead of recursing
+
+   void g(int) {
+      printf_s("In D::g()\n");
+g('c');     // Invokes B::g(char) instead of recursing
+   }
+};
+
+int main() {
+   D myD;
+   myD.f(1);
+   myD.g('a');
+}
+
+```
+
+## Attributes: 
+
+[[noreturn]] Specifies that a function never returns; in other words it always throws an exception. The compiler can adjust its compilation rules for [[noreturn]] entities.
+
+[[carries_dependency]] Specifies that the function propagates data dependency ordering with respect to thread synchronization. The attribute can be applied to one or more parameters, to specify that the passed-in argument carries a dependency into the function body. The attribute can be applied to the function itself, to specify that the return value carries a dependency out of the function. The compiler can use this information to generate more efficient code.
+
+[[deprecated]] Visual Studio 2015 and later: Specifies that a function is not intended to be used, and might not exist in future versions of a library interface. The compiler can use this to generate an informational message when client code attempts to call the function. Can be applied to declaration of a class, a typedef-name, a variable, a non-static data member, a function, a namespace, an enumeration, an enumerator, or a template specialization.
+
+[[fallthrough]] Visual Studio 2017 and later: (available with /std:c++17) The [[fallthrough]] attribute can be used in the context of switch statements as a hint to the compiler (or anyone reading the code) that the fallthrough behavior is intended. The Microsoft C++ compiler currently does not warn on fallthrough behavior, so this attribute has no effect compiler behavior.
+
+[[nodiscard]] Visual Studio 2017 version 15.3 and later: (available with /std:c++17) Specifies that a function's return value is not intended to be discarded. Raises warning C4834, as shown in this example:
+
+```C++ 
+    [[nodiscard]]
+int foo(int i) { return i * i; }
+
+int main()
+{
+    foo(42); //warning C4834: discarding return value of function with 'nodiscard' attribute
+    return 0;
+}
+```
+
+
+
+[[maybe_unused]] Visual Studio 2017 version 15.3 and later: (available with /std:c++17) Specifies that a variable, function, class, typedef, non-static data member, enum, or template specialization may intentionally not be used. The compiler does not warn when an entity marked [[maybe_unused]] is not used. An entity that is declared without the attribute can later be redeclared with the attribute and vice versa. An entity is considered marked after its first declaration that is marked is analyzed, and for the remainder of translation of the current translation unit.## C++ Operators
+
+[C++ built-in operators, precedence, and associativity | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/cpp-built-in-operators-precedence-and-associativity?view=msvc-160)
+
+- Group 1 precedence, no associativity 		
+    - `::` - Scope resolution  -
+- Group 2 precedence, left to right associativity 		
+    - `. or ->` - Member selection (object or pointer)  -
+    - `[]` - Array subscript  -
+    - `()` - Function call  -
+    - `++` - Postfix increment  -
+    - `--` - Postfix decrement  -
+    - `typeid` - Type name  -
+    - `const_cast` - Constant type conversion  -
+    - `dynamic_cast` - Dynamic type conversion  -
+    - `reinterpret_cast` - Reinterpreted type conversion  -
+    - `static_cast` - Static type conversion  -
+- Group 3 precedence, right to left associativity 		
+    - `sizeof` - Size of object or type  -
+    - `++` - Prefix increment  -
+    - `--` - Prefix decrement  -
+    - `~` -[l] - One's complement  -
+    - `!` -[t] - Logical not  -
+    - `-` - Unary negation  -
+    - `+` - Unary plus  -
+    - `&` - Address-of  -
+    - `*` - Indirection  -
+    - `new` - Create object  -
+    - `delete` - Destroy object  -
+    - `()` - Cast  -
+- Group 4 precedence, left to right associativity 		
+    - `.* or ->*` - Pointer-to-member (objects or pointers)  -
+- Group 5 precedence, left to right associativity 		
+    - `*` - Multiplication  -
+    - `/` - Division  -
+    - `%` - Modulus  -
+- Group 6 precedence, left to right associativity 		
+    - `+` - Addition  -
+    - `-` - Subtraction  -
+- Group 7 precedence, left to right associativity 		
+    - `<<` - Left shift  -
+    - `>>` - Right shift  -
+- Group 8 precedence, left to right associativity 		
+    - `<` - Less than  -
+    - `>` - Greater than  -
+    - `<=` - Less than or equal to  -
+    - `>=` - Greater than or equal to  -
+- Group 9 precedence, left to right associativity 		
+    - `==` - Equality  -
+    - `!=` -[q] - Inequality  -
+- Group 10 precedence left to right associativity 		
+    - `&` -[d] - Bitwise AND  -
+- Group 11 precedence, left to right associativity 		
+    - `^` -[r] - Bitwise exclusive OR  -
+- Group 12 precedence, left to right associativity 		
+    - `|` -[r] - Bitwise inclusive OR  -
+- Group 13 precedence, left to right associativity 		
+    - `&&` -[d] - Logical AND  -
+- Group 14 precedence, left to right associativity 		
+    - `||` -[r] - Logical OR  -
+- Group 15 precedence, right to left associativity 		
+    - `? :` - Conditional  -
+    - `=` - Assignment  -
+    - `*=` - Multiplication assignment  -
+    - `/=` - Division assignment  -
+    - `%=` - Modulus assignment  -
+    - `+=` - Addition assignment  -
+    - `-=` - Subtraction assignment  -
+    - `<<=` - Left-shift assignment  -
+    - `>>=` - Right-shift assignment  -
+    - `&=` -[q] - Bitwise AND assignment  -
+    - `|=` -[q] - Bitwise inclusive OR assignment  -
+    - `^=` -[q] - Bitwise exclusive OR assignment  -
+    - `throw` - throw expression  -
+- Group 16 precedence, left to right associativity 		
+    - `,` - Comma  -
 
 You can also just use keywords instead of chars to make more readable program
 
@@ -938,6 +1146,22 @@ int main()
 
 ## Types
 
+<!-- ToDo- need to understand this better -->
+
+### LValues and Rvalues
+
+[Value Categories: Lvalues and Rvalues (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-160)
+
+> -   A _glvalue_ is an expression whose evaluation determines the identity of an object, bit-field, or function.
+> -   A _prvalue_ is an expression whose evaluation initializes an object or a bit-field, or computes the value of the operand of an operator, as specified by the context in which it appears.
+> -   An _xvalue_ is a glvalue that denotes an object or bit-field whose resources can be reused (usually because it is near the end of its lifetime). Example: Certain kinds of expressions involving rvalue references (8.3.2) yield xvalues, such as a call to a function whose return type is an rvalue reference or a cast to an rvalue reference type.
+> -   An _lvalue_ is a glvalue that is not an xvalue.
+> -   An _rvalue_ is a prvalue or an xvalue.
+
+[Value Categories: Lvalues and Rvalues (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-160)
+
+![](https://docs.microsoft.com/en-us/cpp/cpp/media/value_categories.png?view=msvc-160)
+
 ### C Standard definitions
 
 <cstddef> (stddef.h)
@@ -1001,6 +1225,13 @@ Macro functions
 - `va_end`- End using variable argument list (macro )
 - `va_copy`- Copy variable argument list (macro )
 
+
+
+![](https://docs.microsoft.com/en-us/cpp/cpp/media/built-intypesizes.png?view=msvc-160)
+
+[Built-in types (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/fundamental-types-cpp?view=msvc-160)
+
+[Data Type Ranges | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=msvc-160)
 
 short - 2bytes -32,000-32000
 unsigned short - 64000
@@ -1178,65 +1409,62 @@ bool variables can be assigned the literal values true and false
 The default value of a bool type is false
 
 
-### Strings
 
 
-`std::string_view` - C++17 - you can replace `std::string_view` with `const std::string&`. String_view is just a wrapper for a pointer and a length.
+### Typedefs
 
-**Class templates**
+[Typedef Doc](https://docs.microsoft.com/en-us/cpp/cpp/aliases-and-typedefs-cpp?view=msvc-160)
 
-- `basic_string` - Generic string class (class template )
+A typedef declaration introduces a name that, within its scope, becomes a synonym for the type given by the type-declaration portion of the declaration.
 
-- `char_traits` - Character traits (class template )
+You can use typedef declarations to construct shorter or more meaningful names for types already defined by the language or for types that you have declared. Typedef names allow you to encapsulate implementation details that may change.
 
+___
+### Type Aliases 
 
-Class instantiations
+You can use an alias declaration to declare a name to use as a synonym for a previously declared type.    An alias does not introduce a new type and cannot change the meaning of an existing type name.
 
-- `string` - String class (class )
+[See here](https://docs.microsoft.com/en-us/cpp/cpp/aliases-and-typedefs-cpp?view=msvc-160)
 
-- `u16string` - String of 16-bit characters (class )
+        using identifier = type;
 
-- `u32string` - String of 32-bit characters (class )
+Very sumilar to TypeDef:
 
-- `wstring` - Wide string (class )
+```c++
+// C++11
+using counter = long;
 
+// C++03 equivalent:
+// typedef long counter;
 
-Functions
-Convert from strings
+//Something more useful would be a type alias like this one for std::ios_base::fmtflags:
+```
 
-- `stoi` - Convert string to integer (function template )
+Aliases also work with function pointers, but are much more readable than the equivalent typedef:
 
-- `stol` - Convert string to long int (function template )
+```C++
 
-- `stoul` - Convert string to unsigned integer (function template )
+// C++11
+using func = void(*)(int);
 
-- `stoll` - Convert string to long long (function template )
+// C++03 equivalent:
+// typedef void (*func)(int);
 
-- `stoull` - Convert string to unsigned long long (function template )
+// func can be assigned to a function pointer value
+void actual_function(int arg) { /* some code */ }
+func fptr = &actual_function;
+```
 
-- `stof` - Convert string to float (function template )
+A limitation of the typedef mechanism is that it doesn't work with templates. However, the type alias syntax in C++11 enables the creation of alias templates:
 
-- `stod` - Convert string to double (function template )
+```C++
 
-- `stold` - Convert string to long double (function template )
+template<typename T> using ptr = T*;
 
-
-Convert to strings
-
-- `to_string` - Convert numerical value to string (function )
-
-- `to_wstring` - Convert numerical value to wide string (function )
-
-
-Range access
-
-- `begin` - Iterator to beginning (function template )
-
-- `end` - Iterator to end (function template )
-
-
-
-
+// the name 'ptr<T>' is now an alias for pointer to T
+ptr<int> ptr_int;
+```
+___
 ### Type Inference & Alternative Function Syntax 
 
 C++ 11
@@ -1273,6 +1501,24 @@ auto myFunc( float v1, float v2 )
 }
 
 ```
+___
+### Conversion
+
+<!-- Todo  -->
+[Standard conversions | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/standard-conversions?view=msvc-160)
+#### Casting
+
+
+Two ways I have seen:
+
+`reinterpret_cast<const char *> `
+
+and
+
+```c++
+char c = 'x';
+int i = (int) c
+```
 
 ___
 ## Symbols, Operators, and Keywords
@@ -1282,9 +1528,100 @@ ___
 
 
 ### Reserved Keywords
+[Keywords (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/keywords-cpp?view=msvc-160)
 
-//42
-
+- alignas
+- alignof
+- and b
+- and_eq b
+- asm a
+- auto
+- bitand b
+- bitor b
+- bool
+- break
+- case
+- catch
+- char
+- char8_t c
+- char16_t
+- char32_t
+- class
+- compl b
+- concept c
+- const
+- const_cast
+- consteval c
+- constexpr
+- constinit c
+- continue
+- co_await c
+- co_return c
+- co_yield c
+- decltype
+- default
+- delete
+- do
+- double
+- dynamic_cast
+- else
+- enum
+- explicit
+- export c
+- extern
+- false
+- float
+- for
+- friend
+- goto
+- if
+- inline
+- int
+- long
+- mutable
+- namespace
+- new
+- noexcept
+- not b
+- not_eq b
+- nullptr
+- operator
+- or b
+- or_eq b
+- private
+- protected
+- public
+- register reinterpret_cast
+- requires c
+- return
+- short
+- signed
+- sizeof
+- static
+- static_assert
+- static_cast
+- struct
+- switch
+- template
+- this
+- thread_local
+- throw
+- true
+- try
+- typedef
+- typeid
+- typename
+- union
+- unsigned
+- using declaration
+- using directive
+- virtual
+- void
+- volatile
+- wchar_t
+- while
+- xor b
+- xor_eq b
 
 
 ###
@@ -1401,7 +1738,24 @@ Your library code then uses the glcd pointer to the object:
 Note the use of `->` since glcd is a pointer to the object (as created by the & operator when it was assigned in the constructor).
 
 
+### Function Pointers
 
+<!-- To Do- Mentioned in the Microsoft  Doc on Type aliases -->
+
+```C++
+// C++11
+using func = void(*)(int);
+
+
+// C++03 equivalent:
+// typedef void (*func)(int);
+
+// func can be assigned to a function pointer value
+void actual_function(int arg) { /* some code */ }
+func fptr = &actual_function;
+```
+
+___
 ## Enums
 
 ```c++
@@ -1481,6 +1835,9 @@ for ( int fooInt = One; fooInt != Last; fooInt++ )
 }
 ``` 
 
+This relies on the underlying int type of loosely typed enums
+
+
 ```c++
 #include <iostream>
 #include <algorithm>
@@ -1540,8 +1897,50 @@ struct SpreadsheetCell
    private: //can have methods and private members
       double mValue;
 };
+
+
+
+// Has a constructor
+struct TempData2
+{
+    TempData2(double minimum, double maximum, double cur, int id, time_t t) :
+       stationId{id}, timeSet{t}, current{cur}, maxTemp{maximum}, minTemp{minimum} {}
+    int stationId;
+    time_t timeSet;
+    double current;
+    double maxTemp;
+    double minTemp;
+};
+
+
+//initialize nested values.
+struct example {
+    struct addr_t {
+       uint32_t port;
+    } addr;
+    union {
+       uint8_t a8[4];
+       uint16_t a16[2];
+    } in_u;
+};
+struct example ex = { // start of initializer list for struct example
+                     { // start of initializer list for ex.addr
+                        80 // initialized struct's only member
+                     }, // end of initializer list for ex.addr
+                     { // start of initializer-list for ex.in_u
+                        {127,0,0,1} // initializes first element of the union
+                     } };
 ```
 
+If the nested initializer does not begin with an opening brace, only enough initializers from the list are taken to account for the elements or members of the member array, struct or union; any remaining initializers are left to initialize the next struct member:
+
+```c++
+struct example ex = {80, 127, 0, 0, 1}; // 80 initializes ex.addr.port
+                                        // 127 initializes ex.in_u.a8[0]
+                                        // 0 initializes ex.in_u.a8[1]
+                                        // 0 initializes ex.in_u.a8[2]
+                                        // 1 initializes ex.in_u.a8[3]
+```
 You declare a car by just defining it: `Car car;`
 
 Then access each value with the `.` operator.
@@ -1550,8 +1949,36 @@ Then access each value with the `.` operator.
 
 Using `typedef` on a `struct` defines it for external linkage.
 
-
+ 
 `typedef struct { /* ... */ } S;`
+
+### Templates
+
+
+[Templates (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/templates-cpp?view=msvc-160)
+
+Templates are actually a type of struct.
+
+
+
+#### Useful Structures:
+
+!!!Example Snippet: Get the index of an enum.  Basically casting an enum class back to int
+
+    ```C++ 
+    template <typename Enumeration>
+	 static auto indexof(Enumeration const value)
+	-> typename std::underlying_type<Enumeration>::type
+	{
+		return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+	}
+
+    ```
+    
+!!!Example 
+    
+    
+
 
 ---
 ---
@@ -1601,8 +2028,117 @@ int main()
 }
 ```
 
+
+### Specifications and Modifications
+
+These are the broad class of keywords that go before a type. 
+
+e.g. `<something> int c = 0;`
+
+Such as `const int c` and `volatile int c`.
+
+Briefly these classes are:
+
+- Storage Class
+    - extern
+    - static
+    - thread_local
+- Linkage Class
+    - static
+
+___
+#### Storage Class
+
+These are declarations that refer to the ' lifetime, linkage, and memory location of objects'
+
+One of `extern`, `static`, `thread_local`
+
+ Automatic objects and variables have no linkage; they are not visible to code outside the block. Memory is allocated for them automatically when execution enters the block and de-allocated when the block is exited.
+
+___
+
+#### extern 
+
+Objects and variables declared as extern declare an object that is defined in another translation unit or in an enclosing scope as having external linkage. For more information, 
+
+[Storage classes (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/storage-classes-cpp?view=msvc-160#static)
+
+> see [`extern`](https://docs.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-160) and [Translation units and linkage](https://docs.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-160).
+____
+#### static
+
+[Storage classes (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/storage-classes-cpp?view=msvc-160#static)
+
+The static keyword can be used to declare variables and functions at global scope, namespace scope, and class scope. Static variables can also be declared at local scope.
+
+Static duration means the object is created at start, and remains until end.
+
+ [External linkage](#static) means that the name of the variable is visible from outside the file in which the variable is declared.
+
+ By default, an object or variable that is *defined in the global namespace has _static_ duration and external linkage.* 
+
+     Conversely, internal linkage means that the name is not visible outside the file in which the variable is declared. 
+ 
+ The static keyword can be used in the following situations.
+
+
+[Storage classes (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/storage-classes-cpp?view=msvc-160#static)
+
+> -   When you declare a variable or function at file scope (global and/or namespace scope), the **`static`** keyword specifies that the variable or function has internal linkage. When you declare a variable, the variable has static duration and the compiler initializes it to 0 unless you specify another value.
+>       !Note- Contradictory?
+>     
+> -   When you declare a **variable in a function,** the **`static`** keyword specifies that the variable _retains its state between calls to that function._
+>     
+> -   When you declare a **data member** in a class declaration, the **`static`** keyword specifies that _one copy of the member is shared by all instances_ of the class. A static data member must be defined at file scope. An integral data member that you declare as **`const static`** can have an initializer.
+>     
+> -   When you declare a **member function** in a class declaration, the **`static`** keyword specifies that the function is shared by all instances of the class. A static member function cannot access an instance member because the function does not have an implicit **`this`** pointer. 
+>       
+>       - To access an instance member, declare the function with a parameter that is an instance pointer or reference.
+>     
+> -   You cannot declare the members of a union as static. However, a globally declared anonymous union must be explicitly declared **`static`**.
+
+____
+
+#### thread_local
+
+A variable declared with the thread_local specifier is accessible only on the thread on which it is created. The variable is created when the thread is created, and destroyed when the thread is destroyed. Each thread has its own copy of the variable. On Windows, thread_local is functionally equivalent to the Microsoft-specific `__declspec( thread )` attribute.
+
+the `thread_local` specifier may be combined with `static` or `extern`.
+
+___
+
+### Linkage Class
+
+A free *function* is a _function_ that is defined at global or namespace scope. **Non-const global variables and free functions by default have external linkage;** they are visible from any translation unit in the program. Therefore, no other global object can have that name.
+
+The *following* objects have internal linkage by default:
+
+    const objects
+    constexpr objects
+    typedefs
+    static objects in namespace scope
+
+
+#### static
+
+[See Here](https://docs.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp?view=msvc-160)
+
+
+
+You can force a global name to have internal linkage by explicitly declaring it as static. This limits its visibility to the same translation unit in which it is declared. In this context, static means something different than when applied to local variables.
+
+#### extern
+
+To give a const object external linkage, declare it as extern and assign it a value:
+
+
+        extern const int value = 42;
+
+___
 ### Initialization
 
+
+[Initializers | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-160)
 
 int valueX; // this could be anything, whatever happens to be in the reused memory function
 Copy Initialization: `int valueX = 0; `
@@ -1648,6 +2184,65 @@ int x = {3.14} //error
 func{(3.14)} //error
 
 ```
+___
+### Type Qualifierrs
+
+Type qualifiers give one of two properties to an identifier. The const type qualifier declares an object to be nonmodifiable. The volatile type qualifier declares an item whose value can legitimately be changed by something beyond the control of the program in which it appears, such as a concurrently executing thread.
+
+Const - wont change
+Volatile - could change from outside the prog. control
+Restrict
+___
+
+#### const
+
+The following are legal const and volatile declarations:
+
+
+```C
+//note this is C code.
+int const *p_ci;      // Pointer to constant int
+int const (*p_ci);   // Pointer to constant int
+int *const cp_i;     // Constant pointer to int
+int (*const cp_i);   // Constant pointer to int
+int volatile vint;     // Volatile integer
+```
+
+
+
+    The const keyword can be used to modify any fundamental or aggregate type, or a pointer to an object of any type, or a typedef. If an item is declared with only the const type qualifier, its type is taken to be const int. A const variable can be initialized or can be placed in a read-only region of storage. The const keyword is useful for declaring pointers to const since this requires the function not to change the pointer in any way.
+
+    The compiler assumes that, at any point in the program, a volatile variable can be accessed by an unknown process that uses or modifies its value. Regardless of the optimizations specified on the command line, the code for each assignment to or reference of a volatile variable must be generated even if it appears to have no effect.
+
+### constexpr
+
+
+[constexpr (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/constexpr-cpp?view=msvc-160)
+
+
+### volitile
+
+[volatile (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/volatile-cpp?view=msvc-160)
+
+interprets the volatile keyword differently depending on the target architecture. 
+
+You can use the volatile qualifier to provide access to memory locations that are used by asynchronous processes such as interrupt handlers.
+
+When volatile is used on a variable that also has the __restrict keyword, volatile takes precedence.
+
+### restrict __restrict
+
+!!!Warning This may be microsoft specific
+
+[`__restrict` | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/extension-restrict?view=msvc-160)
+
+Says **that no other pointer in the current scope refers to the same memory location.** That is, only the pointer or a value derived from it (such as pointer + 1) is used to access the object during the lifetime of the pointer. This helps the compiler produce more optimized code.
+
+Like the __declspec ( restrict ) modifier, the __restrict keyword (two leading underscores '_') indicates that a symbol isn't aliased in the current scope. The __restrict keyword differs from the __declspec (restrict) modifier in the following ways:
+
+    The __restrict keyword is valid only on variables, and __declspec (restrict) is only valid on function declarations and definitions.
+
+    __restrict is similar to restrict for C starting in C99, but __restrict can be used in both C++ and C programs.
 
 ### List Initialization
 
@@ -1727,6 +2322,82 @@ float % int = error
 int % float = error **
 
 Only int % int is allowed.
+
+
+### auto 
+
+The auto initialization expression can take several forms:
+
+- Universal initialization syntax, such as auto a { 42 };.
+- Assignment syntax, such as auto b = 0;.
+- Universal assignment syntax, which combines the two previous forms, such as auto c = { 3.14156 };.
+- Direct initialization, or constructor-style syntax, such as auto d( 1.41421f );.
+
+[auto (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/auto-cpp?view=msvc-160)
+
+The auto keyword directs the compiler to use the initialization expression of a declared variable, or lambda expression parameter, to deduce its type.
+
+We recommend that you use the auto keyword for most situations—unless you really want a conversion—because it provides these benefits:
+
+    Robustness: If the expression’s type is changed—this includes when a function return type is changed—it just works.
+
+    Performance: You’re guaranteed that there will be no conversion.
+
+    Usability: You don't have to worry about type name spelling difficulties and typos.
+
+    Efficiency: Your coding can be more efficient.
+
+
+```C++ 
+    int j = 0;  // Variable j is explicitly type int.
+auto k = 0; // Variable k is implicitly type int because 0 is an integer.
+
+```
+
+    The following declarations are equivalent, but the second declaration is simpler than the first. One of the most compelling reasons to use the auto keyword is simplicity.
+
+```C++ 
+map<int,list<string>>::iterator i = m.begin();
+auto i = m.begin();
+```
+The following code fragment declares the type of variables iter and elem when the for and range for loops start.
+
+```C++
+
+// cl /EHsc /nologo /W4
+#include <deque>
+using namespace std;
+
+int main()
+{
+    deque<double> dqDoubleData(10, 0.1);
+
+    for (auto iter = dqDoubleData.begin(); iter != dqDoubleData.end(); ++iter)
+    { /* ... */ }
+
+    // prefer range-for loops with the following information in mind
+    // (this applies to any range-for with auto, not just deque)
+
+    for (auto elem : dqDoubleData) // COPIES elements, not much better than the previous examples
+    { /* ... */ }
+
+    for (auto& elem : dqDoubleData) // observes and/or modifies elements IN-PLACE
+    { /* ... */ }
+
+    for (const auto& elem : dqDoubleData) // observes elements IN-PLACE
+    { /* ... */ }
+}
+```
+
+
+
+
+### deceltype
+
+
+Trailing Return Types
+
+You can use `auto`, together with the `decltype` type specifier, to help write template libraries. Use `auto` and `decltype` to declare a template function whose return type depends on the types of its template arguments. Or, use auto and `decltype` to declare a template function that wraps a call to another function, and then returns whatever is the return type of that other function. For more information, see [`decltype`.](https://docs.microsoft.com/en-us/cpp/cpp/decltype-cpp?view=msvc-160)
 
 
 ## Constants
@@ -2079,7 +2750,110 @@ mSequence.assign(args);
 
 ## Strings
 
+[Wide characters](http://www.cplusplus.com/reference/cwchar/)
 
+
+____
+### String class
+
+
+`std::string_view` - C++17 - you can replace `std::string_view` with `const std::string&`. String_view is just a wrapper for a pointer and a length.
+
+**Class templates**
+
+- `basic_string` - Generic string class (class template )
+
+- `char_traits` - Character traits (class template )
+
+
+Class instantiations
+
+- `string` - String class (class )
+
+- `u16string` - String of 16-bit characters (class )
+
+- `u32string` - String of 32-bit characters (class )
+
+- `wstring` - Wide string (class )
+
+
+Functions
+Convert from strings
+
+- `stoi` - Convert string to integer (function template )
+
+- `stol` - Convert string to long int (function template )
+
+- `stoul` - Convert string to unsigned integer (function template )
+
+- `stoll` - Convert string to long long (function template )
+
+- `stoull` - Convert string to unsigned long long (function template )
+
+- `stof` - Convert string to float (function template )
+
+- `stod` - Convert string to double (function template )
+
+- `stold` - Convert string to long double (function template )
+
+
+Convert to strings
+
+- `to_string` - Convert numerical value to string (function )
+
+- `to_wstring` - Convert numerical value to wide string (function )
+
+
+Range access
+
+- `begin` - Iterator to beginning (function template )
+
+- `end` - Iterator to end (function template )
+
+___
+
+#### Class toString() method
+
+[c++ - Is there a standard way to convert a class to a string - Stack Overflow](https://stackoverflow.com/questions/33357480/is-there-a-standard-way-to-convert-a-class-to-a-string)
+
+```C++ 
+    template <typename T>
+std::string to_string( const T& value )
+{
+  std::ostringstream ss;
+  ss << value;
+  return ss.str();
+}
+ 
+ ```
+ 
+ 
+or operator overloading
+ 
+```C++ 
+template <typename T>
+std::ostream& operator << ( std::ostream& outs, const point <T> & p )
+{
+  return outs << "(" << p.x << "," << p.y << ")";
+}
+ 
+//another
+ 
+template <typename T>
+std::string to_string(const T& value) {
+  std::ostringstream os;
+  os << value;
+  return os.str();
+}
+ 
+int main()
+{
+  point p (2,-7);
+  std::cout << "I have a point at " << p << ".\n";
+  my_fn_which_takes_a_string( to_string(p) );
+```
+
+____
 ### String Stream
 
 [StringStream](https://stackoverflow.com/questions/2462951/c-equivalent-of-stringbuffer-stringbuilder)
@@ -2211,6 +2985,54 @@ int main()
 
 ## Functions
 
+
+Abstract Methods are methods for which
+code definitions are not provided:
+• Serve as building blocks for common behavior and
+programmer interfaces
+• Implemented as pure virtual functions in C++
+
+• A pure virtual function is a virtual function with
+no definition in the base class
+• Pure virtual functions are commonly used in the
+definition of abstract classes
+• The syntax for declaring a pure virtual function is:
+virtual return_type func_name( … parms … ) = 0;
+
+The use of virtual functions allows programmers to
+override inherited functions and to access the overridden
+functions using base class pointers
+• Virtual functions are declared by preceding the function
+declaration with the keyword virtual
+• The virtual keyword is only needed in the base class
+declaration…it can be repeated in derived classes, but this
+is not necessary
+• If a derived class does not override a virtual function
+definition, then the definitionin the most immediate base
+class will be used
+
+
+Virtual functions must be class member
+functions---they cannot be friend functions
+• Constructor functions cannot be virtual
+• Destructor functions can be virtual
+• The prototype for a virtual function must
+match the base class prototype exactly, or it
+will be considered as an overloaded
+function by the compiler
+
+Virtual functions may be accessed using the
+‘.’ operator, just like any other member
+function
+• Virtual functions may also be accessed by
+using base class pointers…the overridden
+version of a function will be called in this
+case (assuming that it exists)
+8
+• Concrete Methods are methods for which
+code definitions are supplied
+5
+
 - Two basic types of functions
    - Ordinary functions --- like in C
    - Class member functions --- used in O-O programs
@@ -2293,12 +3115,22 @@ void message() { cout << "HELLO \n"; }
 
 //50
 
+
+https://en.wikibooks.org/wiki/C%2B%2B_Programming/Classes/Member_Functions
 ### Using const With Function Arguments
 
 If a value passed as a function argument should not be altered in the function, the argument should be declared as `const`
 
 The C++ compiler will not allow const arguments to be modified by a function
 
+
+Syntax for declaring pointer to a constant is:
+        onst type* pointer_name;
+• What’s pointed to can’t change, but the
+pointer can point to something else
+• The pointer can point to a constant or nonconstant
+object, but cannot change the value
+stored in the address pointed to
 
 ```c++
 // Function taking const argument
@@ -2310,10 +3142,86 @@ void myfunc( int arg1, const int arg2 )
 }
 ```
 
+
+contrast with : 
+Constant Pointers
+• Constant pointers are declared with the
+following syntax
+type* const pointer_name = &variable;
+• A constant pointer must be initialized in its
+declaration & the initial address cannot be
+changed, but the value in the address can
+• A constant pointer cannot point to a
+constant object
+
+
+### Factory Methods 
+
+p1002 in book
+
+The implementation approach used in this example is called an abstract factory because the type
+of object created depends on which concrete derived class of the factory class is being used. A similar
+pattern can be implemented in a single class instead of a class hierarchy. In that case, a single
+create() method takes a type or string parameter from which it decides which object to create. For
+example, a CarFactory class could provide a requestCar() method that takes a string representing
+the type of car to build, and constructs the appropriate car.
 ___
 ## Classes 
 ---
+https://www.learncpp.com/cpp-tutorial/const-class-objects-and-member-functions/
 
+Abstract Classes are classes that are never
+instantiated
+• Don’t contain enough properties and/or behavior to be useful
+on their own
+• Used as building blocks for more useful classes---one way of
+reusing code
+• Compilers enforce prevention of instantiation
+
+
+Concrete Classes are classes that are
+instantiated
+
+
+Const classes:
+
+
+Const classes
+
+Similarly, instantiated class objects can also be made const by using the const keyword. Initialization is done via class constructors:
+
+1
+2
+3
+const Date date1; // initialize using default constructor
+const Date date2(2020, 10, 16); // initialize using parameterized constructor
+const Date date3 { 2020, 10, 16 }; // initialize using parameterized constructor (C++11)
+Once a const class object has been initialized via constructor, any attempt to modify the member variables of the object is disallowed, as it would violate the const-ness of the object. This includes both changing member variables directly (if they are public), or calling member functions that set the value of member variables. Consider the following class:
+
+```C++ 
+    class Something
+{
+public:
+    int m_value;
+ 
+    Something(): m_value{0} { }
+ 
+    void setValue(int value) { m_value = value; }
+    int getValue() { return m_value ; }
+};
+ 
+int main()
+{
+    const Something something{}; // calls default constructor
+ 
+    something.m_value = 5; // compiler error: violates const
+    something.setValue(5); // compiler error: violates const
+ 
+    return 0;
+}
+```
+
+---
 
 ```c++
 class SpreadsheetCell
@@ -2540,8 +3448,10 @@ SomeClass::SomeClass() : mCell(1.0) { } //now works/
 
 !!!Warning ctor-initializers initialize data members in the order that they appear in the class definition, not their order in the ctor-initializer.
 
+___
 
 #### Copy Constructors
+___
 
 Will be created by default, unless you explicitly delete or declare a new one.  But the general form is here:
 
@@ -2575,9 +3485,9 @@ To add it back:
 
 
 ```c++
-MyClass(const MyClass& src) = default;
+MyClass(const MyClass& src) = default; //copy constructor
 
-MyClass& operator=(const MyClass& rhs) = default;
+MyClass& operator=(const MyClass& rhs) = default; //copy *assignment* constructor
 ```
 
 
@@ -2587,20 +3497,21 @@ Utilizing the copy constructor:
 
 ```c++
 MyClass myClass(params);
-MyClass copyClass(myClass);
+MyClass copyClass(myClass); //creates 'copy class' from myclass
 ```
 
-where possible, pass by `const reference`.  Returning by Reference can be risky.  E.g. if you create a string in a method, and then return it by reference to avoid copying, the address  will be returned, but the underlying string will be dumped.
+!!!Note where possible, pass by `const reference`.  Returning by Reference can be risky.  E.g. if you create a string in a method, and then return it by reference to avoid copying, the address  will be returned, but the underlying string will be dumped.
 
 Explicitly declare or remove the copy constructor (e.g. you dont want an object copied.) This can be used to disallow passing the object by value,
 
 ```c++
 SpreadsheetCell(const SpreadsheetCell& src) = default;
-SpreadsheetCell(const SpreadsheetCell& src) = delete;1
+SpreadsheetCell(const SpreadsheetCell& src) = delete;
 ```
 ___
 
 #### Copy assignment 
+___
 
 Works by setting one, existing object to entirely match the other.
 
@@ -2674,12 +3585,44 @@ Returning an object, e.g. string, calls the copy constructor and passes an un-na
 This calls the copy constructor for an un-named string, then calls the copy constructor for s1.  Not the assignment operator. A move constructor can also be used here and is more efficient.
 
 
-
+constexpr, which indicates that the return value of the function is a constant value can be computed at compile time.constexpr, which indicates that the return value of the function is a constant value can be computed at compile **time.**
 #### Move Constructors
 ----
+##### Move Assignment
+
+##### Move Construction
+
+[C++ classes as value types | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/value-types-modern-cpp?view=msvc-160#value-types-and-move-efficiency)
+
+
+```c++
+#include <memory>
+#include <stdexcept>
+using namespace std;
+// ...
+class my_class {
+    unique_ptr<BigHugeData> data;
+public:
+    my_class( my_class&& other )   // move construction
+        : data( move( other.data ) ) { }
+    my_class& operator=( my_class&& other )   // move assignment
+    { data = move( other.data ); return *this; }
+    // ...
+    void method() {   // check (if appropriate)
+        if( !data )
+            throw std::runtime_error("RUNTIME ERROR: Insufficient resources!");
+    }
+};
+```
+
+
 
 #### Initializer Lists
 ___
+
+[Brace initialization for classes, structs, and unions | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/initializing-classes-and-structs-without-constructors-cpp?view=msvc-160#initializer_list-constructors)
+
+[initializer_list Class](https://docs.microsoft.com/en-us/cpp/standard-library/initializer-list-class?view=msvc-160)
 
 initializer-list constructor is a constructor with an `std::initializer_list<T>` as first parameter,
 without any additional parameters or with additional parameters having default values. Before
@@ -2725,6 +3668,10 @@ class EvenSequence
       vector<double> mSequence; //define vector.
 };
 ```
+
+### Destructors 
+
+[Destructors](https://www.learncpp.com/cpp-tutorial/destructors/)
 
 
 
@@ -3167,20 +4114,83 @@ class defiant_robot : public robot
 
 ```
 
+### ToString Methods 
+
+Strings#Class toString() methods)
+
+
 ____
 
 ### Base Class Pointers
 
-
+<!-- To Do  -->
 ____
 
 
 ### Interfaces
 
+<!-- ToDO -->
+
+
+### Functions and Methods
+
+
+`Abstract Methods` are methods for which
+code definitions are not provided:
+    • Serve as building blocks for common behavior and
+    programmer interfaces
+    • Implemented as pure **virtual** functions in C++
+   
+    - A *pure virtual function* is a virtual function with no definition in the base class
+        • Pure virtual functions are commonly used in the definition of abstract classes
+
+•   The syntax for declaring a pure virtual function is:
+            
+            virtual return_type func_name( … parms … ) = 0;
+
+It is possible to provide a definition for a pure virtual function in the base class
+• This allows code that you may want derived is classes to share to be defined while still requiring
+the base class to be an abstract class 
+ Derived classes must explicitly implement code in order to be considered concrete classes
+
+
+
+
+• `Concrete Methods` are methods for which
+code definitions are supplied
+
+Optional parts of a function declaration are:
+
+`constexpr`,  which indicates that the return value of the function is a constant value *can be computed at compile time.*
+    
+    
+```C++ 
+    constexpr float exp(float x, int n)
+{
+    return n == 0 ? 1 :
+        n % 2 == 0 ? exp(x * x, n / 2) :
+        exp(x * x, (n - 1) / 2) * x;
+};
+```
+
+Its **linkage specification,** `extern` or `static`.
+
+
+`inline`, which instructs the compiler to replace every call to the function with the function code itself. inlining can help performance in scenarios where a function executes quickly and is invoked repeatedly in a performance-critical section of code.
+
+
+A `noexcept` expression, which specifies whether or not the function can throw an exception. In the following example, the function does not throw an exception if the is_pod expression evaluates to true.
+
+\cpp
+
+
+
 
 
 
 ___
+
+
 
 ## Data structures
 
@@ -3321,8 +4331,8 @@ EvenSequence p1 = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
 p1.dump();
 try {
 EvenSequence p2 = {1.0, 2.0, 3.0};
-} catch (const invalid_argument& e) {
-cout << e.what() << endl;
+// } catch (const invalid_argument& e) {
+// cout << e.what() << endl;
 }
 ```
 
@@ -3370,8 +4380,6 @@ int main(int argc, char **argv) {
   foo(); // this will call foo, bar, and baz.  baz segfaults.
 }
 ```
-
-
 
 ### C library to handle signals
 
@@ -3800,9 +4808,7 @@ Character conversion functions
 Two functions that convert between letter cases:
 
 - `tolower`- Convert uppercase letter to lowercase (function )
-toupper
-    Convert lowercase letter to uppercase (function )
-
+- `toupper` - Convert lowercase letter to uppercase (function )
 
     <cstdlib> (stdlib.h)
 C Standard General Utilities Library
@@ -3811,174 +4817,80 @@ This header defines several general purpose functions, including dynamic memory 
 Functions
 String conversion
 
-atof
-    Convert string to double (function )
-
-atoi
-    Convert string to integer (function )
-
-atol
-    Convert string to long integer (function )
-
-atoll
-    Convert string to long long integer (function )
-
-strtod
-    Convert string to double (function )
-
-strtof
-    Convert string to float (function )
-
-strtol
-    Convert string to long integer (function )
-
-strtold
-    Convert string to long double (function )
-
-strtoll
-    Convert string to long long integer (function )
-
-strtoul
-    Convert string to unsigned long integer (function )
-
-strtoull
-    Convert string to unsigned long long integer (function )
-
+- `atof` - Convert string to double (function )
+- `atoi` - Convert string to integer (function )
+- `atol` - Convert string to long integer (function )
+- `atoll` - Convert string to long long integer (function )
+- `strtod` - Convert string to double (function )
+- `strtof` - Convert string to float (function )
+- `strtol` - Convert string to long integer (function )
+- `strtold` - Convert string to long double (function )
+- `strtoll` - Convert string to long long integer (function )
+- `strtoul` - Convert string to unsigned long integer (function )
+- `strtoull` - Convert string to unsigned long long integer (function )
 
 Pseudo-random sequence generation
 
-rand
-    Generate random number (function )
-
-srand
-    Initialize random number generator (function )
-
+- `rand` - Generate random number (function )
+- `srand` - Initialize random number generator (function )
 
 Dynamic memory management
 
-calloc
-    Allocate and zero-initialize array (function )
-
-free
-    Deallocate memory block (function )
-
-malloc
-    Allocate memory block (function )
-
-realloc
-    Reallocate memory block (function )
-
+- `calloc` - Allocate and zero-initialize array (function )
+- `free` - Deallocate memory block (function )
+- `malloc` - Allocate memory block (function )
+- `realloc` - Reallocate memory block (function )
 
 Environment
 
-abort
-    Abort current process (function )
-
-atexit
-    Set function to be executed on exit (function )
-
-at_quick_exit
-    Set function to be executed on quick exit (function )
-
-exit
-    Terminate calling process (function )
-
-getenv
-    Get environment string (function )
-
-quick_exit
-    Terminate calling process quick (function )
-
-system
-    Execute system command (function )
-
-_Exit
-    Terminate calling process (function )
-
+- `abort` - Abort current process (function )
+- `atexit` - Set function to be executed on exit (function )
+- `at_quick_exit` - Set function to be executed on quick exit (function )
+- `exit` - Terminate calling process (function )
+- `getenv` - Get environment string (function )
+- `quick_exit` - Terminate calling process quick (function )
+- `system` - Execute system command (function )
+- `_Exit` - Terminate calling process (function )
 
 Searching and sorting
 
-bsearch
-    Binary search in array (function )
-
-qsort
-    Sort elements of array (function )
-
+- `bsearch` - Binary search in array (function )
+- `qsort` - Sort elements of array (function )
 
 Integer arithmetics
 
-abs
-    Absolute value (function )
-
-div
-    Integral division (function )
-
-labs
-    Absolute value (function )
-
-ldiv
-    Integral division (function )
-
-llabs
-    Absolute value (function )
-
-lldiv
-    Integral division (function )
-
+- `abs` - Absolute value (function )
+- `div` - Integral division (function )
+- `labs` - Absolute value (function )
+- `ldiv` - Integral division (function )
+- `llabs` - Absolute value (function )
+- `lldiv` - Integral division (function )
 
 Multibyte characters
 
-mblen
-    Get length of multibyte character (function )
-
-mbtowc
-    Convert multibyte sequence to wide character (function )
-
-wctomb
-    Convert wide character to multibyte sequence (function )
-
+- `mblen` - Get length of multibyte character (function )
+- `mbtowc` - Convert multibyte sequence to wide character (function )
+- `wctomb` - Convert wide character to multibyte sequence (function )
 
 Multibyte strings
 
-mbstowcs
-    Convert multibyte string to wide-character string (function )
-
-wcstombs
-    Convert wide-character string to multibyte string (function )
-
+- `mbstowcs` - Convert multibyte string to wide-character string (function )
+- `wcstombs` - Convert wide-character string to multibyte string (function )
 
 Macro constants
 
-EXIT_FAILURE
-    Failure termination code (macro )
-
-EXIT_SUCCESS
-    Success termination code (macro )
-
-MB_CUR_MAX
-    Maximum size of multibyte characters (macro )
-
-NULL
-    Null pointer (macro )
-
-RAND_MAX
-    Maximum value returned by rand (macro )
-
+- `EXIT_FAILURE` - Failure termination code (macro )
+- `EXIT_SUCCESS` - Success termination code (macro )
+- `MB_CUR_MAX` - Maximum size of multibyte characters (macro )
+- `NULL` - Null pointer (macro )
+- `RAND_MAX` - Maximum value returned by rand (macro )
 
 Types
 
-div_t
-    Structure returned by div (type )
-
-ldiv_t
-    Structure returned by ldiv (type )
-
-lldiv_t
-    Structure returned by lldiv (type )
-
-size_t
-    Unsigned integral type (type )
-
+- `div_t` - Structure returned by div (type )
+- `ldiv_t` - Structure returned by ldiv (type )
+- `lldiv_t` - Structure returned by lldiv (type )
+- `size_t` - Unsigned integral type (type )
 <cstring> (string.h)
 C Strings
 This header file defines several functions to manipulate C strings and arrays.
@@ -3986,92 +4898,54 @@ This header file defines several functions to manipulate C strings and arrays.
 Functions
 Copying:
 
-memcpy
-    Copy block of memory (function )
-
-memmove
-    Move block of memory (function )
-
-strcpy
-    Copy string (function )
-
-strncpy
-    Copy characters from string (function )
-
+- `memcpy` - Copy block of memory (function )
+- `memmove` - Move block of memory (function )
+- `strcpy` - Copy string (function )
+- `strncpy` - Copy characters from string (function )
 
 Concatenation:
 
-strcat
-    Concatenate strings (function )
-
-strncat
-    Append characters from string (function )
-
+- `strcat` - Concatenate strings (function )
+- `strncat` - Append characters from string (function )
 
 Comparison:
 
-memcmp
-    Compare two blocks of memory (function )
-
-strcmp
-    Compare two strings (function )
-
-strcoll
-    Compare two strings using locale (function )
-
-strncmp
-    Compare characters of two strings (function )
-
-strxfrm
-    Transform string using locale (function )
-
+- `memcmp` - Compare two blocks of memory (function )
+- `strcmp` - Compare two strings (function )
+- `strcoll` - Compare two strings using locale (function )
+- `strncmp` - Compare characters of two strings (function )
+- `strxfrm` - Transform string using locale (function )
 
 Searching:
 
-memchr
-    Locate character in block of memory (function )
-
-strchr
-    Locate first occurrence of character in string (function )
-
-strcspn
-    Get span until character in string (function )
-
-strpbrk
-    Locate characters in string (function )
-
-strrchr
-    Locate last occurrence of character in string (function )
-
-strspn
-    Get span of character set in string (function )
-
-strstr
-    Locate substring (function )
-
-strtok
-    Split string into tokens (function )
-
+- `memchr` - Locate character in block of memory (function )
+- `strchr` - Locate first occurrence of character in string (function )
+- `strcspn` - Get span until character in string (function )
+- `strpbrk` - Locate characters in string (function )
+- `strrchr` - Locate last occurrence of character in string (function )
+- `strspn` - Get span of character set in string (function )
+- `strstr` - Locate substring (function )
+- `strtok` - Split string into tokens (function )
 
 Other:
 
-memset
-    Fill block of memory (function )
-
-strerror
-    Get pointer to error message string (function )
-
-strlen
-    Get string length (function )
-
+- `memset` - Fill block of memory (function )
+- `strerror` - Get pointer to error message string (function )
+- `strlen` - Get string length (function )
 
 Macros
 
-NULL
-    Null pointer (macro )
-
+- `NULL` - Null pointer (macro )
 
 Types
 
-size_t
-    Unsigned integral type (typ
+- `size_t` - Unsigned integral type (typ
+
+
+    Next week we will be talking about threads. In some sense, why could a signal handling function can be considered a thread within a process? Can you outline, perhaps at a high level, how you might implement threads inside a process using signals and signal handlers? (Hint: you might want to look at signal stacks.) Are there any limitations in implementing threads in this way?
+
+I was actually looking at this recently- though quite by accident.  I was trying to see if I could figure out how to print a nice and neat stack trace line in Python or even Java, and I was casting around on the internet.  ﻿﻿﻿﻿﻿﻿﻿﻿﻿
+
+I came across this post: [c++ - How to automatically generate a stacktrace when my program crashes - Stack Overflow](https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes)
+
+which gives the following example
