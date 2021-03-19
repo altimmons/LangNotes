@@ -1417,3 +1417,9 @@ Macro constants
 - `WCHAR_MAX` - Maximum value of wchar_t (constant )
 - `WCHAR_MIN` - Minimum value of wchar_t (constant )
 - `WEOF` - Wide end-of-file (constant )
+
+
+
+## Thread and other functions
+
+pthread_create2;

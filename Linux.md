@@ -124,7 +124,8 @@ nload - console graphical net monitor
 - micro -  a nicer nano - CURL https://getmic.ro | bash
 - xclip 
 - xsel - needed for clipboard in terminal
-
+- aptitude
+- mc
 
 ## Alias list
 
@@ -2393,6 +2394,204 @@ Words of the form $'string' are treated specially. The word expands to string, w
 - `\UHHHHHHHH` - the Unicode (ISO/IEC 10646) character whose value is the hexadecimal value HHHHHHHH (one to eight hex digits)
 - `\cx` - a control-x character
 
+___
+## Terminal Color Output
+
+!!! Warning ZSH Specific-
+  On even more testing, its revieled from `type print` that its a shell built-in.  Running the same command on bash- doesnt work.
+
+  This is onbe of the ZSH Built in features.  
+  
+  
+[ZSH Features](http://zsh.sourceforge.net/Doc/Release/zsh_toc.html#SEC_Contents)
+
+
+
+[There are others](http://zsh.sourceforge.net/Doc/Release/Shell-Builtin-Commands.html)
+
+
+
+This will print out the terminals colors:
+
+```sh
+for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+```
+
+I picked this appart, and the critical bits are  the `-P` flag, and the `%` flags.  A capital seems to set it
+
+- %K{value} sets the BACKGROUND color
+- %k - unsets it
+  - %k{value}  just prints {value} (its entirely ignored.)
+- %F{value} sets the foreground color.
+- %f unsets it.
+
+
+### Getting Help:
+
+type - Display information about command type
+which - Locate a command
+help - Display reference page for shell builtin
+man - Display an on-line command reference
+
+type- is especially useful in determining what runs when its called[
+
+
+
+### Bash Syntax
+
+#### Arguments
+
+**Shell parameters** can be a name, a number, or one of the special characters listed below. For the shell's purposes, a variable is a parameter denoted by a name.
+
+A parameter is set if it has been assigned a value. The null string is a valid value. Once a variable is set, it can be unset only by using the `unset` builtin command.
+
+A variable can be assigned to by a statement of the form `name=[value]`
+
+If value is not given, the variable is assigned the null string (_declaration_). All values undergo _tilde expansion, parameter and variable expansion, command substitution, arithmetic expansion, and quote removal_ (detailed below). If the variable has its _integer attribute_ set, then value is subject to arithmetic expansion even if the `$((...))` expansion is not used. Word splitting is not performed, with the exception of `"$@"` as explained below. Filename expansion is not performed.
+
+**Positional Parameters**
+A positional parameter is a parameter denoted by one or more digits, other than the single digit 0. Positional parameters are assigned from the shell's arguments when it is invoked, and can be reassigned using the `set` builtin command. Positional parameter **N** can be referenced as `${N}`, or as `$N`(when N consists of a single When a positional parameter consisting of more than a single digit is expanded, it must be enclosed in braces.
+
+Positional parameters can not be assigned to with assignment statements. The `set` and `shift` builtins are used to set and unset them. The positional parameters are temporarily replaced when a shell function is executed.
+
+**Special Parameters**
+The shell treats several parameters specially. These parameters can only be referenced; assignment to them is not allowed.
+
+- `*` Expands to the positional parameters, starting from one. When the expansion occurs within double quotes, it expands to a single word with the value of each parameter separated by the first character of the **IFS** special variable. That is, `"$*"` is equivalent to `"$1c$2c..."`, where `c` is the first character of the value of the **IFS** variable. If **IFS** is unset, the parameters are separated by spaces. If **IFS** is null, the parameters are joined without intervening separators.
+
+- `@` Expands to the positional parameters, starting from one. When the expansion occurs within double quotes, each parameter expands to a separate word. That is, `"$@"` is equivalent to `"$1" "$2" ...`. When there are no positional parameters, `"$@"` and `$@` expand to nothing (i.e., they are removed).
+
+- `#` Expands to the **number of positional parameters** in decimal.
+
+- `?` Expands to the exit status of the most recently executed foreground pipeline.
+
+- **`-`(A hyphen.)** Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the `-i' option).
+
+- `$` Expands to the **process ID of the shell.** In a () subshell, it expands to the process ID of the invoking shell, not the subshell.
+
+- `!` Expands to the **process ID of the job most recently placed into the background,** whether executed as an asynchronous command or using bg
+
+- `0` Expands to the **name of the shell or shell script.** This is set at shell initialization. If Bash is invoked with a file of commands, $0 is set to the name of that file. If Bash is started with the `-c' option, then$0 is set to the first argument after the string to be executed, if one is present. Otherwise, it is set to the filename used to invoke Bash, as given by argument zero.
+
+- `_` **(An underscore.)** At shell startup, set to the **absolute filename of the shell or shell script being executed** as passed in the argument list. Subsequently, expands to the last argument to the previous command, after expansion. Also set to the full pathname of each command executed and placed in the environment exported to that command. When checking mail, this parameter holds the name of the mail file.
+
+#### Arrays
+
+Bash provides one-dimensional array variables. Any variable can be used as an array; the declare builtin will explicitly declare an array. There is no maximum limit on the size of an array, nor any requirement that members be indexed or assigned contiguously. Arrays are zero-based.
+
+An array is created automatically if any variable is assigned to using the syntax
+
+`name[subscript]=value`
+The subscript is treated as an arithmetic expression that must evaluate to a number greater than or equal to zero. To explicitly declare an array, use
+
+`declare -a name`
+
+**The syntax**
+
+`declare -a name[subscript]` is also accepted; the subscript is ignored. Attributes can be specified for an array variable using the declare and readonly builtins. Each attribute applies to all members of an array.
+
+Arrays are assigned to using compound assignments of the form: `name=(value1 ... valuen)`, where each value is of the form `[[subscript]=]string`. If the optional subscript is supplied, that index is assigned to; otherwise the index of the element assigned is the last index assigned to by the statement plus one. Indexing starts at zero.
+
+This syntax is also accepted by the declare builtin. Individual array elements can be assigned to using the `name[subscript]=value` syntax introduced above.
+
+Any element of an array can be referenced using `\${name[subscript]}`.
+
+The braces are required to avoid conflicts with the shell's filename expansion operators.
+
+If the subscript is `@` or `_`, the word expands to all members of the array name. These subscripts differ only when the word appears within double quotes. If the word is double-quoted, \${name[_]} expands to a single word with the value of each array member separated by the first character of the IFS variable, and ${name[@]} expands each element of name to a separate word.
+When there are no array members, `${name[@]}` expands to nothing. This is analogous to the expansion of the special parameters `@` and`_`. `${#name[subscript]}` expands to the length of${name[subscript]}. If subscript is `@' or`_', the expansion is the number of elements in the array.
+
+Referencing an array variable without a subscript is equivalent to referencing element zero.
+
+The `unset` builtin is used to destroy arrays. unset `name[subscript]` destroys the array element at index subscript.
+
+`unset name`, where `name` is an array, removes the entire array. A subscript of `*` or `@` also removes the entire array.
+
+The `declare`, `local`, and `readonly` builtins each accept a `-a` option to specify an array.
+
+The contents of the directory stack are also visible as the value of the `DIRSTACK` shell variable.
+
+
+### Bash Snippets
+
+#### Generate a menu
+
+```sh
+select fname in *;
+do
+	echo you picked $fname \($REPLY\)
+	break;
+done
+```
+
+I think there needs to be a semi-colon after line 3- otherwise it keeps looping?
+
+#### Rename a file
+
+There is no rename command...?  rename is a program in Apt that is vastly more complicated.
+
+`mv file1.ext file2.ext`
+
+#### Alias syntax
+
+`alias mycommand !:1 !:2`
+
+Then `!:1` references the arguments from the input.  Add to profile any aliases.
+
+#### yes
+
+[Source of Yes Info](https://linuxhint.com/bash_yes_command/)
+
+Typing `yes` causes 'y' to be printed over and over.
+
+This is intentional.  Any word after `yes` is repeated infinite time.  `yes test` prints "test" over and over.
+
+You can use `yes` command to prevent from overwriting the existing file or forcefully overwrite the existing file. In the following commands, the first command is used to prevent the overwrite and the second command is used to overwrite the file without any permission.
+
+```bash
+cat hello.txt
+cat sample.txt
+cp -i sample.txt hello.txt
+yes n | cp -i sample.txt hello.txt #prevent overwiting by saying no to each
+yes | cp -i sample.txt hello.txt #force overwrite by saying yes to each.
+```
+
+You can use `yes` command to run any script multiple times in the command line. In this example, `yes` command is used to run while loop repeatedly ten times. Here, `yes` command will continuously send the numeric value from 1 to 10 to the loop and the loop will print the values in regular interval of one second.
+
+
+```Bash
+$ yes "$(seq 1 10)" | while read n; do  echo $n; sleep 1; done
+```
+
+```Bash
+#Example 5
+#!/bin/bash
+#Read the value passed from yes command
+read string
+
+#check the string value is empty or not
+if [ "$string" == "" ]; then
+
+echo "Empty value is passed by yes command"
+else
+newstr="The value passed by yes command is $string"
+echo $newstr
+fi
+
+#Which is read and run by:
+$ yes "" | bash yes_script.sh
+>>>Empty value is passed by yes command
+#or
+$yes testing | bash yes_script.sh
+>>>The value passed by yes is testing
+```
+Or write a string over and over into a file, for "testing" or something:
+
+`yes 'Add this line for testing' | head -50 > testfile`
+
+
+
+
 ### Bash Commands
 
 #### **a**
@@ -2736,158 +2935,515 @@ Words of the form $'string' are treated specially. The word expands to string, w
 - `!!` Run the last command again
 - `###` Comment / Remark
 
-### Bash Syntax
 
-#### Arguments
+## ZSH 
 
-**Shell parameters** can be a name, a number, or one of the special characters listed below. For the shell's purposes, a variable is a parameter denoted by a name.
+Need to determine from the above which are Unix /Linux and which are ZSH.
 
-A parameter is set if it has been assigned a value. The null string is a valid value. Once a variable is set, it can be unset only by using the `unset` builtin command.
+## Terminal Color Output
 
-A variable can be assigned to by a statement of the form `name=[value]`
+!!! Warning ZSH Specific-
+  On even more testing, its revieled from `type print` that its a shell built-in.  Running the same command on bash- doesnt work.
 
-If value is not given, the variable is assigned the null string (_declaration_). All values undergo _tilde expansion, parameter and variable expansion, command substitution, arithmetic expansion, and quote removal_ (detailed below). If the variable has its _integer attribute_ set, then value is subject to arithmetic expansion even if the `$((...))` expansion is not used. Word splitting is not performed, with the exception of `"$@"` as explained below. Filename expansion is not performed.
-
-**Positional Parameters**
-A positional parameter is a parameter denoted by one or more digits, other than the single digit 0. Positional parameters are assigned from the shell's arguments when it is invoked, and can be reassigned using the `set` builtin command. Positional parameter **N** can be referenced as `${N}`, or as `$N`(when N consists of a single When a positional parameter consisting of more than a single digit is expanded, it must be enclosed in braces.
-
-Positional parameters can not be assigned to with assignment statements. The `set` and `shift` builtins are used to set and unset them. The positional parameters are temporarily replaced when a shell function is executed.
-
-**Special Parameters**
-The shell treats several parameters specially. These parameters can only be referenced; assignment to them is not allowed.
-
-- `*` Expands to the positional parameters, starting from one. When the expansion occurs within double quotes, it expands to a single word with the value of each parameter separated by the first character of the **IFS** special variable. That is, `"$*"` is equivalent to `"$1c$2c..."`, where `c` is the first character of the value of the **IFS** variable. If **IFS** is unset, the parameters are separated by spaces. If **IFS** is null, the parameters are joined without intervening separators.
-
-- `@` Expands to the positional parameters, starting from one. When the expansion occurs within double quotes, each parameter expands to a separate word. That is, `"$@"` is equivalent to `"$1" "$2" ...`. When there are no positional parameters, `"$@"` and `$@` expand to nothing (i.e., they are removed).
-
-- `#` Expands to the **number of positional parameters** in decimal.
-
-- `?` Expands to the exit status of the most recently executed foreground pipeline.
-
-- **`-`(A hyphen.)** Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the `-i' option).
-
-- `$` Expands to the **process ID of the shell.** In a () subshell, it expands to the process ID of the invoking shell, not the subshell.
-
-- `!` Expands to the **process ID of the job most recently placed into the background,** whether executed as an asynchronous command or using bg
-
-- `0` Expands to the **name of the shell or shell script.** This is set at shell initialization. If Bash is invoked with a file of commands, $0 is set to the name of that file. If Bash is started with the `-c' option, then$0 is set to the first argument after the string to be executed, if one is present. Otherwise, it is set to the filename used to invoke Bash, as given by argument zero.
-
-- `_` **(An underscore.)** At shell startup, set to the **absolute filename of the shell or shell script being executed** as passed in the argument list. Subsequently, expands to the last argument to the previous command, after expansion. Also set to the full pathname of each command executed and placed in the environment exported to that command. When checking mail, this parameter holds the name of the mail file.
-
-#### Arrays
-
-Bash provides one-dimensional array variables. Any variable can be used as an array; the declare builtin will explicitly declare an array. There is no maximum limit on the size of an array, nor any requirement that members be indexed or assigned contiguously. Arrays are zero-based.
-
-An array is created automatically if any variable is assigned to using the syntax
-
-`name[subscript]=value`
-The subscript is treated as an arithmetic expression that must evaluate to a number greater than or equal to zero. To explicitly declare an array, use
-
-`declare -a name`
-
-**The syntax**
-
-`declare -a name[subscript]` is also accepted; the subscript is ignored. Attributes can be specified for an array variable using the declare and readonly builtins. Each attribute applies to all members of an array.
-
-Arrays are assigned to using compound assignments of the form: `name=(value1 ... valuen)`, where each value is of the form `[[subscript]=]string`. If the optional subscript is supplied, that index is assigned to; otherwise the index of the element assigned is the last index assigned to by the statement plus one. Indexing starts at zero.
-
-This syntax is also accepted by the declare builtin. Individual array elements can be assigned to using the `name[subscript]=value` syntax introduced above.
-
-Any element of an array can be referenced using `\${name[subscript]}`.
-
-The braces are required to avoid conflicts with the shell's filename expansion operators.
-
-If the subscript is `@` or `_`, the word expands to all members of the array name. These subscripts differ only when the word appears within double quotes. If the word is double-quoted, \${name[_]} expands to a single word with the value of each array member separated by the first character of the IFS variable, and ${name[@]} expands each element of name to a separate word.
-When there are no array members, `${name[@]}` expands to nothing. This is analogous to the expansion of the special parameters `@` and`_`. `${#name[subscript]}` expands to the length of${name[subscript]}. If subscript is `@' or`_', the expansion is the number of elements in the array.
-
-Referencing an array variable without a subscript is equivalent to referencing element zero.
-
-The `unset` builtin is used to destroy arrays. unset `name[subscript]` destroys the array element at index subscript.
-
-`unset name`, where `name` is an array, removes the entire array. A subscript of `*` or `@` also removes the entire array.
-
-The `declare`, `local`, and `readonly` builtins each accept a `-a` option to specify an array.
-
-The contents of the directory stack are also visible as the value of the `DIRSTACK` shell variable.
+  This is onbe of the ZSH Built in features.  
+  
+  
+[ZSH Features](http://zsh.sourceforge.net/Doc/Release/zsh_toc.html#SEC_Contents)
 
 
-### Bash Snippets
 
-#### Generate a menu
+[There are others](http://zsh.sourceforge.net/Doc/Release/Shell-Builtin-Commands.html)
+
+
+
+This will print out the terminals colors:
 
 ```sh
-select fname in *;
-do
-	echo you picked $fname \($REPLY\)
-	break;
-done
+for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 ```
 
-I think there needs to be a semi-colon after line 3- otherwise it keeps looping?
+I picked this appart, and the critical bits are  the `-P` flag, and the `%` flags.  A capital seems to set it
 
-#### Rename a file
-
-There is no rename command...?  rename is a program in Apt that is vastly more complicated.
-
-`mv file1.ext file2.ext`
-
-#### Alias syntax
-
-`alias mycommand !:1 !:2`
-
-Then `!:1` references the arguments from the input.  Add to profile any aliases.
-
-#### yes
-
-[Source of Yes Info](https://linuxhint.com/bash_yes_command/)
-
-Typing `yes` causes 'y' to be printed over and over.
-
-This is intentional.  Any word after `yes` is repeated infinite time.  `yes test` prints "test" over and over.
-
-You can use `yes` command to prevent from overwriting the existing file or forcefully overwrite the existing file. In the following commands, the first command is used to prevent the overwrite and the second command is used to overwrite the file without any permission.
-
-```bash
-cat hello.txt
-cat sample.txt
-cp -i sample.txt hello.txt
-yes n | cp -i sample.txt hello.txt #prevent overwiting by saying no to each
-yes | cp -i sample.txt hello.txt #force overwrite by saying yes to each.
-```
-
-You can use `yes` command to run any script multiple times in the command line. In this example, `yes` command is used to run while loop repeatedly ten times. Here, `yes` command will continuously send the numeric value from 1 to 10 to the loop and the loop will print the values in regular interval of one second.
+- %K{value} sets the BACKGROUND color
+- %k - unsets it
+  - %k{value}  just prints {value} (its entirely ignored.)
+- %F{value} sets the foreground color.
+- %f unsets it.
 
 
-```Bash
-$ yes "$(seq 1 10)" | while read n; do  echo $n; sleep 1; done
-```
 
-```Bash
-#Example 5
-#!/bin/bash
-#Read the value passed from yes command
-read string
 
-#check the string value is empty or not
-if [ "$string" == "" ]; then
+alias [ {+|-}gmrsL ] [ name[=value] ... ]
+For each name with a corresponding value, define an alias with that value.  [More](http://zsh.sourceforge.net/Doc/Release/Shell-Grammar.html#Aliasing)
 
-echo "Empty value is passed by yes command"
-else
-newstr="The value passed by yes command is $string"
-echo $newstr
-fi
 
-#Which is read and run by:
-$ yes "" | bash yes_script.sh
->>>Empty value is passed by yes command
-#or
-$yes testing | bash yes_script.sh
->>>The value passed by yes is testing
-```
-Or write a string over and over into a file, for "testing" or something:
 
-`yes 'Add this line for testing' | head -50 > testfile`
+autoload [ {+|-}RTUXdkmrtWz ] [ -w ] [ name ... ]
+See the section ‘Autoloading Functions’ in [Functions](http://zsh.sourceforge.net/Doc/Release/Functions.html#Functions)for full details. The fpath parameter will be searched to find the function definition when the function is first referenced.
 
+`bg [ job ... ] job ... &` - Put each specified job in the background, or the current job if none is specified.
+
+bindkey  - see [ZLE](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins)
+
+
+
+`break [ n ]` - Exit from an enclosing for, while, until, select or repeat loop. If an arithmetic expression n is specified, then break n levels instead of just one.
+
+`builtin name [ args ... ]` Executes the builtin name, with the given args.
+
+`bye` - Same as exit.
+
+`cap` - See The [zsh/cap Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcap-Module)
+
+. - The zsh/cap module is used for manipulating POSIX.1e (POSIX.6) capability sets. If the operating system does not support this interface, the builtins defined by this module will do nothing. The builtins in this module are:
+
+  - `cap [ capabilities ]` - Change the shell’s process capability sets to the specified capabilities, otherwise display the shell’s current capabilities.
+
+  - `getcap filename ...` - This is a built-in implementation of the POSIX standard utility. It displays the capability sets on each specified filename.
+
+  - `setcap capabilities filename ...` This is a built-in implementation of the POSIX standard utility. It sets the capability sets on each specified filename to the specified capabilities.
+
+    cd [ -qsLP ] [ arg ]
+    cd [ -qsLP ] old new
+    cd [ -qsLP ] {+|-}n
+
+Change the current directory. In the first form, change the current directory to arg, or to the value of $HOME if arg is not specified. If arg is ‘-’, change to the previous directory.
+
+`chdir`
+
+Same as `cd`.
+
+`clone`
+
+See [The zsh/clone Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fclone-Module).
+
+`command` [ `-pvV` ] *simple command*
+
+The simple command argument is taken as an external command instead of a function or builtin and is executed. If the `POSIX_BUILTINS` option is set, builtins will also be executed but certain special properties of them are suppressed. The `-p` flag causes a default path to be searched instead of that in `$path`. With the `-v` flag, `command` is similar to `whence` and with `-V`, it is equivalent to `whence -v`.
+
+See also [Precommand Modifiers](http://zsh.sourceforge.net/Doc/Release/Shell-Grammar.html#Precommand-Modifiers).
+
+`comparguments`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`compcall`
+
+See [The zsh/compctl Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcompctl-Module).
+
+`compctl`
+
+See [The zsh/compctl Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcompctl-Module).
+
+`compdescribe`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`compfiles`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`compgroups`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`compquote`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`comptags`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`comptry`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`compvalues`
+
+See [The zsh/computil Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fcomputil-Module).
+
+`continue` [ *n* ]
+
+Resume the next iteration of the enclosing `for`, `while`, `until`, `select` or `repeat` loop. If an arithmetic expression *n* is specified, break out of *n*-1 loops and resume at the *n*th enclosing loop.
+
+`declare`
+
+Same as `typeset`.
+
+`dirs` [ `-c` ] [ *arg* ... ]
+
+`dirs` [ `-lpv` ] - With no arguments, print the contents of the directory stack. Directories are added to this stack with the `pushd` command, and removed with the `cd` or `popd` commands. If arguments are specified, load them onto the directory stack, replacing anything that was there, and push the current directory onto the stack.
+    - `-c` clear the directory stack.
+    - `-l`-  print directory names in full instead of using of using `~` expressions ([Filename Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Expansion)).
+    - `-p` - print directory entries one per line.
+    - `-v` - number the directories in the stack when printing.
+
+`disable` [ `-afmprs` ] *name* ...
+
+Temporarily disable the *name*d hash table elements or patterns. The default is to disable builtin commands.
+
+  - see this page for more-  There are many options.
+
+- 
+  `disown` [ *job* ... ]
+  *job* ... `&|`
+  *job* ... `&!`
+
+  Remove the specified *job*s from the job table; the shell will no longer report their status, and will not complain if you try to exit an interactive shell with them running or stopped. If no *job* is specified, disown the current job.
+
+`echo` [ `-neE` ] [ *arg* ... ] -  Write each *arg* on the standard output, with a space separating each one. If the `-n` flag is not present, print a newline at the end. `echo` recognizes the following escape sequences:
+
+   -  `\a` - bell character
+
+  -  `\b` - backspace
+
+  -  `\c` - suppress subsequent characters and final newline
+
+  -  `\e` - escape
+
+  -  `\f` - form feed
+
+  -  `\n` - linefeed (newline)
+
+  -  `\r` - carriage return
+
+  -  `\t` - horizontal tab
+
+  -  `\v` - vertical tab
+
+  -  `\\` - backslash
+
+  -  `\0`*NNN* - character code in octal
+
+  -  `\x`*NN* - character code in hexadecimal
+
+  -  `\u`*NNNN* - unicode character code in hexadecimal
+
+  -  `\U`*NNNNNNNN* - unicode character code in hexadecimal
+
+The `-E` flag, or the `BSD_ECHO` option, can be used to disable these escape sequences. In the latter case, `-e` flag can be used to enable them.
+
+  -  `echotc` - See [The zsh/termcap Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002ftermcap-Module).
+
+  -  `echoti` - See [The zsh/terminfo Module](http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fterminfo-Module).
+
+  -  `emulate` [ `-lLR` ] [ {`zsh`|`sh`|`ksh`|`csh`} [ *flags* ... ] ] 
+    - Without any argument print current emulation mode.
+    - With single argument set up zsh options to emulate the specified shell as much as possible. *csh* will never be fully emulated
+
+`g` [ *job* ... ]
+*job* ...
+
+  Bring each specified *job* in turn to the foreground. If no *job* is specified, resume the current job.
+
+`float` [ {`+`|`-`}`Hghlprtux` ] [ {`+`|`-`}`EFLRZ` [ *n* ] ] [ *name*[`=`*value*] ... ]
+
+Equivalent to `typeset -E`, except that options irrelevant to floating point numbers are not permitted.
+
+`getln` [ `-AclneE` ] *name* ...
+
+Read the top value from the buffer stack and put it in the shell parameter *name*. Equivalent to `read -zr`.
+
+`getopts` *optstring* *name* [ *arg* ... ]
+
+Checks the *arg*s for legal options. If the *arg*s are omitted, use the positional parameters. A valid option argument begins with a '`+`' or a '`-`'. An argument not beginning with a '`+`' or a '`-`', or the argument '`-``-`', ends the options. Note that a single '`-`' is not considered a valid option argument. *optstring* contains the letters that `getopts` recognizes. If a letter is followed by a '`:`', that option requires an argument. The options can be separated from the argument by blanks.
+
+`hash` [ `-Ldfmrv` ] [ *name*[`=`*value*] ] ...
+
+`hash` can be used to directly modify the contents of the command hash table, and the named directory hash table. Normally one would modify these tables by modifying one's `PATH` (for the command hash table) or by creating appropriate shell parameters (for the named directory hash table).
+
+`jobs` [ `-dlprs` ] [ *job* ... ]
+
+`jobs -Z` *string*
+
+Lists information about each given job, or all jobs if *job* is omitted. The `-l` flag lists process IDs, and the `-p` flag lists process groups. If the `-r` flag is specified only running jobs will be listed and if the `-s` flag is given only stopped jobs are shown. If the `-d` flag is given, the directory from which the job was started (which may not be the current directory of the job) will also be shown.
+
+
+`kill` [ `-s` *signal_name* | `-n` *signal_number* | `-`*sig* ] *job* ...
+
+`kill` `-l` [ *sig* ... ]
+
+Sends either `SIGTERM` or the specified signal to the given jobs or processes. Signals are given by number or by names, with or without the '`SIG`' prefix. If the signal being sent is not '`KILL`' or '`CONT`', then the job will be sent a '`CONT`' signal if it is stopped. The argument *job* can be the process ID of a job not in the job list. In the second form, `kill -l`, if *sig* is not specified the signal names are listed.
+`let` *arg* ...
+
+Evaluate each *arg* as an arithmetic expression. See [Arithmetic Evaluation](http://zsh.sourceforge.net/Doc/Release/Arithmetic-Evaluation.html#Arithmetic-Evaluation) for a description of arithmetic expressions. The exit status is 0 if the value of the last expression is nonzero, 1 if it is zero, and 2 if an error occurred.
+
+`limit` [ `-hs` ] [ *resource* [ *limit* ] ] ...
+
+Set or display resource limits. Unless the `-s` flag is given, the limit applies only the children of the shell. If `-s` is given w
+
+!!!Note Too many of these, will leave it here
+
+After including Print:
+
+### Print
+
+`print `[ `-abcDilmnNoOpPrsSz` ] [ `-u` *n* ] [ `-f` *format* ] [ `-C` *cols* ]
+
+[ `-v` *name* ] [ `-xX` *tabstop* ] [ `-R` [ `-en` ]] [ *arg* ... ]
+
+With the '`-f`' option the arguments are printed as described by `printf`. With no flags or with the flag '`-`', the arguments are printed on the standard output as described by `echo`, with the following differences: the escape sequence '`\M-`*x*' (or '`\M`*x*') metafies the character *x* (sets the highest bit), '`\C-`*x*' (or '`\C`*x*') produces a control character ('`\C-@`' and '`\C-?`' give the characters NULL and delete), a character code in octal is represented by '`\`*NNN*' (instead of '`\0`*NNN*'), and '`\E`' is a synonym for '`\e`'. Finally, if not in an escape sequence, '`\`' escapes the following character and is not printed.
+
+  -  `-a` - Print arguments with the column incrementing first. Only useful with the `-c` and `-C` options.
+
+  -  `-b` - Recognize all the escape sequences defined for the `bindkey` command, see [Zle Builtins](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins).
+
+  -  `-c` - Print the arguments in columns. Unless `-a` is also given, arguments are printed with the row incrementing first.
+
+  -  `-C` *cols* - Print the arguments in *cols* columns. Unless `-a` is also given, arguments are printed with the row incrementing first.
+
+  -  `-D` - Treat the arguments as paths, replacing directory prefixes with `~` expressions corresponding to directory names, as appropriate.
+
+  -  `-i` - If given together with `-o` or `-O`, sorting is performed case-independently.
+
+  -  `-l` - Print the arguments separated by newlines instead of spaces. Note: if the list of arguments is empty, `print -l` will still output one empty line. To print a possibly-empty list of arguments one per line, use `print -C1`, as in '`print -rC1 -- "$list[@]"`'.
+
+  -  `-m` - Take the first argument as a pattern (should be quoted), and remove it from the argument list together with subsequent arguments that do not match this pattern.
+
+  -  `-n` - Do not add a newline to the output.
+
+  -  `-N` - Print the arguments separated and terminated by nulls. Again, `print -rNC1 -- "$list[@]"` is a canonical way to print an arbitrary list as null-delimited records.
+
+  -  `-o` - Print the arguments sorted in ascending order.
+
+  -  `-O` - Print the arguments sorted in descending order.
+
+  -  `-p` - Print the arguments to the input of the coprocess.
+
+  -  `-P` - Perform prompt expansion (see [Prompt Expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion)). In combination with '`-f`', prompt escape sequences are parsed only within interpolated arguments, not within the format string.
+
+  -  `-r` - Ignore the escape conventions of `echo`.
+
+  -  `-R` - Emulate the BSD `echo` command, which does not process escape sequences unless the `-e` flag is given. The `-n` flag suppresses the trailing newline. Only the `-e` and `-n` flags are recognized after `-R`; all other arguments and options are printed.
+
+  -  `-s` - Place the results in the history list instead of on the standard output. Each argument to the `print` command is treated as a single word in the history, regardless of its content.
+
+  -  `-S` - Place the results in the history list instead of on the standard output. In this case only a single argument is allowed; it will be split into words as if it were a full shell command line. The effect is similar to reading the line from a history file with the `HIST_LEX_WORDS` option active.
+
+  -  `-u` *n* - Print the arguments to file descriptor *n*.
+
+  -  `-v` *name* - Store the printed arguments as the value of the parameter *name*.
+
+  -  `-x` *tab-stop* - Expand leading tabs on each line of output in the printed string assuming a tab stop every *tab-stop* characters. This is appropriate for formatting code that may be indented with tabs. Note that leading tabs of any argument to print, not just the first, are expanded, even if `print` is using spaces to separate arguments (the column count is maintained across arguments but may be incorrect on output owing to previous unexpanded tabs).
+
+The start of the output of each print command is assumed to be aligned with a tab stop. Widths of multibyte characters are handled if the option `MULTIBYTE` is in effect. This option is ignored if other formatting options are in effect, namely column alignment or `printf` style, or if output is to a special location such as shell history or the command line editor.
+
+  -  `-X` *tab-stop* - This is similar to `-x`, except that all tabs in the printed string are expanded. This is appropriate if tabs in the arguments are being used to produce a table format.
+
+  -  `-z` - Push the arguments onto the editing buffer stack, separated by spaces.
+
+If any of '`-m`', '`-o`' or '`-O`' are used in combination with '`-f`' and there are no arguments (after the removal process in the case of '`-m`') then nothing is printed.
+
+`printf` [ `-v` *name* ] *format* [ *arg* ... ]
+
+Print the arguments according to the format specification. Formatting rules are the same as used in C. The same escape sequences as for `echo` are recognised in the format. All C conversion specifications ending in one of `csdiouxXeEfgGn` are handled. In addition to this, '`%b`' can be used instead of '`%s`' to cause escape sequences in the argument to be recognised and '`%q`' can be used to quote the argument in such a way that allows it to be reused as shell input. With the numeric format specifiers, if the corresponding argument starts with a quote character, the numeric value of the following character is used as the number to print; otherwise the argument is evaluated as an arithmetic expression. See [Arithmetic Evaluation](http://zsh.sourceforge.net/Doc/Release/Arithmetic-Evaluation.html#Arithmetic-Evaluation) for a description of arithmetic expressions. With '`%n`', the corresponding argument is taken as an identifier which is created as an integer parameter.
+
+Normally, conversion specifications are applied to each argument in order but they can explicitly specify the *n*th argument is to be used by replacing '`%`' by '`%`*n*`$`' and '`*`' by '`*`*n*`$`'. It is recommended that you do not mix references of this explicit style with the normal style and the handling of such mixed styles may be subject to future change.
+
+If arguments remain unused after formatting, the format string is reused until all arguments have been consumed. With the `print` builtin, this can be suppressed by using the `-r` option. If more arguments are required by the format than have been specified, the behaviour is as if zero or an empty string had been specified as the argument.
+
+The `-v` option causes the output to be stored as the value of the parameter *name*, instead of printed. If *name* is an array and the format string is reused when consuming arguments then one array element will be used for each use of the format string.
+
+
+### 'Prompt` expansion
+
+[Source- Verbatim](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion)
+
+
+* * * * *
+#### 13.1 Expansion of Prompt Sequences
+* * * * *
+
+Prompt sequences undergo a special form of expansion. This type of expansion is also available using the `-P` option to the `print` builtin.
+
+If the `PROMPT_SUBST` option is set, the prompt string is first subjected to *parameter expansion*, *command substitution* and *arithmetic expansion*. See [Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Expansion).
+
+Certain escape sequences may be recognised in the prompt string.
+
+If the `PROMPT_BANG` option is set, a '`!`' in the prompt is replaced by the current history event number. A literal '`!`' may then be represented as '`!!`'.
+
+If the `PROMPT_PERCENT` option is set, certain escape sequences that start with '`%`' are expanded. Many escapes are followed by a single character, although some of these take an optional integer argument that should appear between the '`%`' and the next character of the sequence. More complicated escape sequences are available to provide conditional expansion.
+
+* * * * *
+
+#### 13.2 Simple Prompt Escapes
+
+* * * * *
+
+##### 13.2.1 Special characters
+
+`%%` -> An '`%`'.
+
+`%)` -> A '`)`'.
+
+* * * * *
+
+##### 13.2.2 Login information
+
+  -  `%l` - The line (tty) the user is logged in on, without '`/dev/`' prefix. If the name starts with '`/dev/tty`', that prefix is stripped.
+
+  -  `%M` - The full machine hostname.
+
+  -  `%m` - The hostname up to the first '`.`'. An integer may follow the '`%`' to specify how many components of the hostname are desired. With a negative integer, trailing components of the hostname are shown.
+
+  -  `%n` - `$USERNAME`.
+
+  -  `%y` - The line (tty) the user is logged in on, without '`/dev/`' prefix. This does not treat '`/dev/tty`' names specially.
+
+* * * * *
+##### 13.2.3 Shell state
+
+  -  `%#` - A '`#`' if the shell is running with privileges, a '`%`' if not. Equivalent to '`%(!.#.%%)`'. The definition of 'privileged', for these purposes, is that either the effective user ID is zero, or, if POSIX.1e capabilities are supported, that at least one capability is raised in either the Effective or Inheritable capability vectors.
+
+  -  `%?` - The return status of the last command executed just before the prompt.
+
+  -  `%_` - The status of the parser, i.e. the shell constructs (like '`if`' and '`for`') that have been started on the command line. If given an integer number that many strings will be printed; zero or negative or no integer means print as many as there are. This is most useful in prompts `PS2` for continuation lines and `PS4` for debugging with the `XTRACE` option; in the latter case it will also work non-interactively.
+
+  -  `%^` - The status of the parser in reverse. This is the same as '`%_`' other than the order of strings. It is often used in `RPS2`.
+
+  -  `%d` or `%/` - Current working directory. If an integer follows the '`%`', it specifies a number of trailing components of the current working directory to show; zero means the whole path. A negative integer specifies leading components, i.e. `%-1d` specifies the first component.
+
+        ❯ print -P %d
+          /mnt/o/OneDrive/Programming/C++/CLionProj/OOPCPP/MiniProj1.3/lib/TermOx
+      ❯ print -P %3d
+          MiniProj1.3/lib/TermOx
+      ❯ print -P %-3d
+          /mnt/o/OneDrive
+
+  -  `%~` - As `%d` and `%/`, but if the current working directory starts with `$HOME`, that part is replaced by a '`~`'. Furthermore, if it has a named directory as its prefix, that part is replaced by a '`~`' followed by the name of the directory, but only if the result is shorter than the full path; [Filename Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Expansion).
+
+  -  `%e` - Evaluation depth of the current sourced file, shell function, or `eval`. This is incremented or decremented every time the value of `%N` is set or reverted to a previous value, respectively. This is most useful for debugging as part of `$PS4`.
+
+  -  `%h` or `%!` - Current history event number.
+
+  -  `%i` - The line number currently being executed in the script, sourced file, or shell function given by `%N`. This is most useful for debugging as part of `$PS4`.
+
+  -  `%I` - The line number currently being executed in the file `%x`. This is similar to `%i`, but the line number is always a line number in the file where the code was defined, even if the code is a shell function.
+
+  -  `%j` - The number of jobs.
+
+  -  `%L` - The current value of `$SHLVL`.
+
+  -  `%N` - The name of the script, sourced file, or shell function that zsh is currently executing, whichever was started most recently. If there is none, this is equivalent to the parameter `$0`. An integer may follow the '`%`' to specify a number of trailing path components to show; zero means the full path. A negative integer specifies leading components.
+
+  -  `%x` - The name of the file containing the source code currently being executed. This behaves as `%N` except that function and eval command names are not shown, instead the file where they were defined.
+
+`%c` |  `%.`  |  `%C`  - Trailing component of the current working directory. An integer may follow the '`%`' to get more than one component. Unless '`%C`' is used, tilde contraction is performed first. These are deprecated as `%c` and `%C` are equivalent to `%1~` and `%1/`, respectively, while explicit positive integers have the same effect as for the latter two sequences.
+
+* * * * *
+##### 13.2.4 Date and time
+
+  -  `%D` - The date in *yy*`-`*mm*`-`*dd* format.
+
+  -  `%T` - Current time of day, in 24-hour format.
+
+  -  `%t` | `%@` - Current time of day, in 12-hour, am/pm format.
+
+  -  `%*` - Current time of day in 24-hour format, with seconds.
+
+  -  `%w` - The date in *day*`-`*dd* format.
+
+  -  `%W` - The date in *mm*`/`*dd*`/`*yy* format.
+
+  -  `%D{`*string*`}` - *string* is formatted using the `strftime` function. See man page strftime(3) for more details. Various zsh extensions provide numbers with no leading zero or space if the number is a single digit:
+
+  -  `%f` - a day of the month
+
+  -  `%K` - the hour of the day on the 24-hour clock
+
+  -  `%L` - the hour of the day on the 12-hour clock
+
+In addition, if the system supports the POSIX `gettimeofday` system call, `%.` provides decimal fractions of a second since the epoch with leading zeroes. By default three decimal places are provided, but a number of digits up to 9 may be given following the `%`; hence `%6.` outputs microseconds, and `%9.` outputs nanoseconds. (The latter requires a nanosecond-precision `clock_gettime`; systems lacking this will return a value multiplied by the appropriate power of 10.) A typical example of this is the format '`%D{%H:%M:%S.%.}`'.
+
+The GNU extension `%N` is handled as a synonym for `%9.`.
+
+Additionally, the GNU extension that a '`-`' between the `%` and the format character causes a leading zero or space to be stripped is handled directly by the shell for the format characters `d`, `f`, `H`, `k`, `l`, `m`, `M`, `S` and `y`; any other format characters are provided to the system's strftime(3) with any leading '`-`' present, so the handling is system dependent. Further GNU (or other) extensions are also passed to strftime(3) and may work if the system supports them.
+
+* * * * *
+
+##### 13.2.5 Visual effects
+
+  -  `%B` (`%b`) - Start (stop) boldface mode.
+
+  -  `%E` - Clear to end of line.
+
+  -  `%U` (`%u`) - Start (stop) underline mode.
+
+  -  `%S` (`%s`) - Start (stop) standout mode.
+
+  -  `%F` (`%f`) - Start (stop) using a different foreground colour, if supported by the terminal. The colour may be specified two ways: either as a numeric argument, as normal, or by a sequence in braces following the `%F`, for example `%F{red}`. In the latter case the values allowed are as described for the `fg` `zle_highlight` attribute; [Character Highlighting](http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting). This means that numeric colours are allowed in the second format also.
+
+  -  `%K` (`%k`) - Start (stop) using a different bacKground colour. The syntax is identical to that for `%F` and `%f`.
+
+  -  `%{`...`%}` - Include a string as a literal escape sequence. The string within the braces should not change the cursor position. Brace pairs can nest.
+
+    - A positive numeric argument between the `%` and the `{` is treated as described for `%G` below.
+
+  -  `%G` - Within a `%{`...`%}` sequence, include a 'glitch': that is, assume that a single character width will be output. This is useful when outputting characters that otherwise cannot be correctly handled by the shell, such as the alternate character set on some terminals. The characters in question can be included within a `%{`...`%}` sequence together with the appropriate number of `%G` sequences to indicate the correct width. An integer between the '`%`' and '`G`' indicates a character width other than one. Hence `%{`*seq*`%2G%}` outputs *seq* and assumes it takes up the width of two standard characters.
+    - Multiple uses of `%G` accumulate in the obvious fashion; the position of the `%G` is unimportant. Negative integers are not handled.
+    - Note that when prompt truncation is in use it is advisable to divide up output into single characters within each `%{`...`%}` group so that the correct truncation point can be found.
+
+* * * * *
+#### 13.3 Conditional Substrings in Prompts
+--------------------------------------
+
+-  `%v` - The value of the first element of the `psvar` array parameter. Following the '`%`' with an integer gives that element of the array. Negative integers count from the end of the array.
+
+-  `%(`*x*`.`*true-text*`.`*false-text*`)` - Specifies a ternary expression. The character following the *x* is arbitrary; the same character is used to separate the text for the 'true' result from that for the 'false' result. This separator may not appear in the *true-text*, except as part of a %-escape sequence. A '`)`' may appear in the *false-text* as '`%)`'. *true-text* and *false-text* may both contain arbitrarily-nested escape sequences, including further ternary expressions.
+
+    - The left parenthesis may be preceded or followed by a positive integer *n*, which defaults to zero. A negative integer will be multiplied by -1, except as noted below for '`l`'. The test character *x* may be any of the following:
+
+  -  `!` - True if the shell is running with privileges.
+
+  -  `#` - True if the effective uid of the current process is *n*.
+
+  -  `?` - True if the exit status of the last command was *n*.
+
+  -  `_` - True if at least *n* shell constructs were started.
+- `C` |  `/` - True if the current absolute path has at least *n* elements relative to the root directory, hence `/` is counted as 0 elements.
+- `c`  | `.`  |   `~` - True if the current path, with prefix replacement, has at least *n* elements relative to the root directory, hence `/` is counted as 0 elements.
+- `D` - True if the month is equal to *n* (January = 0).
+
+
+
+-  `d` - True if the day of the month is equal to *n*.
+
+-  `e` - True if the evaluation depth is at least *n*.
+
+-  `g` - True if the effective gid of the current process is *n*.
+
+-  `j` - True if the number of jobs is at least *n*.
+
+-  `L` - True if the `SHLVL` parameter is at least *n*.
+
+-  `l` - True if at least *n* characters have already been printed on the current line. When *n* is negative, true if at least `abs``(`*n*`)` characters remain before the opposite margin (thus the left margin for `RPROMPT`).
+
+-  `S` - True if the `SECONDS` parameter is at least *n*.
+
+-  `T` - True if the time in hours is equal to *n*.
+
+-  `t` - True if the time in minutes is equal to *n*.
+
+-  `v` - True if the array `psvar` has at least *n* elements.
+
+-  `V` - True if element *n* of the array `psvar` is set and non-empty.
+
+-  `w` - True if the day of the week is equal to *n* (Sunday = 0).
+
+-  `%<`*string*`<`  |  `%>`*string*`>` | `%[`*xstring*`]` - Specifies truncation behaviour for the remainder of the prompt string. The third, deprecated, form is equivalent to '`%`*xstringx*', i.e. *x* may be '`<`' or '`>`'. The *string* will be displayed in place of the truncated portion of any string; note this does not undergo prompt expansion.
+
+The numeric argument, which in the third form may appear immediately after the '`[`', specifies the maximum permitted length of the various strings that can be displayed in the prompt. In the first two forms, this numeric argument may be negative, in which case the truncation length is determined by subtracting the absolute value of the numeric argument from the number of character positions remaining on the current prompt line. If this results in a zero or negative length, a length of 1 is used. In other words, a negative argument arranges that after truncation at least *n* characters remain before the right margin (left margin for `RPROMPT`).
+
+The forms with '`<`' truncate at the left of the string, and the forms with '`>`' truncate at the right of the string. For example, if the current directory is '`/home/pike`', the prompt '`%8<..<%/`' will expand to '`..e/pike`'. In this string, the terminating character ('`<`', '`>`' or '`]`'), or in fact any character, may be quoted by a preceding '`\`'; note when using `print -P`, however, that this must be doubled as the string is also subject to standard `print` processing, in addition to any backslashes removed by a double quoted string: the worst case is therefore '`print -P "%<\\\\<<..."`'.
+
+If the *string* is longer than the specified truncation length, it will appear in full, completely replacing the truncated string.
+
+The part of the prompt string to be truncated runs to the end of the string, or to the end of the next enclosing group of the '`%(`' construct, or to the next truncation encountered at the same grouping level (i.e. truncations inside a '`%(`' are separate), which ever comes first. In particular, a truncation with argument zero (e.g., '`%<<`') marks the end of the range of the string to be truncated while turning off truncation from there on. For example, the prompt '`%10<...<%~%<<%# `' will print a truncated representation of the current directory, followed by a '`%`' or '`#`', followed by a space. Without the '`%<<`', those two characters would be included in the string to be truncated. Note that '`%-0<<`' is not equivalent to '`%<<`' but specifies that the prompt is truncated at the right margin.
+
+Truncation applies only within each individual line of the prompt, as delimited by embedded newlines (if any). If the total length of any line of the prompt after truncation is greater than the terminal width, or if the part to be truncated contains embedded newlines, truncation behavior is undefined and may change in a future version of the shell. Use '`%-`*n*`(l.`*true-text*`.`*false-text*`)`' to remove parts of the prompt when the available space is less than *n*.
+
+___
 ## Pi Notes
 
 `sudo raspi-config`

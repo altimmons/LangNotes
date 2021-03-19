@@ -36,7 +36,7 @@
 							"foreground": "",
 							"fontStyle": "Bold"
 						}
-					}
+					},
 					{
 						"name": "H3",
 						"scope": "Heading.3.markdown",
@@ -323,7 +323,8 @@
 			}
 		}, */
 		"files.autoSave": "onFocusChange",
-		"editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
+		// "editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
+		// "editor.fontFamily": "'Rec Mono Duotone', 'Fira Code Retina', RobotoMono. monospace",
 		"editor.suggest.showKeywords": false,
 		"editor.suggest.showWords": false,
 		"editor.codeLens": false,
