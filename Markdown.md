@@ -422,9 +422,79 @@ The style.less file will open, and you can override existing style like this:
 .md-sidebar-toc.md-sidebar-toc {
   // sidebar TOC style
 }
-
 ```
 
+### Configuration Settings
+
+```json
+    //-------- Code Spell Checker Configuration --------
+    // The Language local to use when spell checking. "en" and "en-GB" are currently supported.
+    "cSpell.language": "en",
+
+    // Controls the maximum number of spelling errors per document.
+    "cSpell.maxNumberOfProblems": 100,
+
+    // Controls the number of suggestions shown.
+    "cSpell.numSuggestions": 8,
+
+    // The minimum length of a word before checking it against a dictionary.
+    "cSpell.minWordLength": 4,
+
+    // Specify file types to spell check.
+    "cSpell.enabledLanguageIds": [
+        "csharp",
+        "go",
+        "javascript",
+        "javascriptreact",
+        "markdown",
+        "php",
+        "plaintext",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ],
+
+    // Enable / Disable the spell checker.
+    "cSpell.enabled": true,
+
+    // Display the spell checker status on the status bar.
+    "cSpell.showStatus": true,
+
+    // Words to add to dictionary for a workspace.
+    "cSpell.words": [],
+
+    // Enable / Disable compound words like 'errormessage'
+    "cSpell.allowCompoundWords": false,
+
+    // Words to be ignored and not suggested.
+    "cSpell.ignoreWords": ["behaviour"],
+
+    // User words to add to dictionary.  Should only be in the user settings.
+    "cSpell.userWords": [],
+
+    // Specify paths/files to ignore.
+    "cSpell.ignorePaths": [
+        "node_modules",        // this will ignore anything the node_modules directory
+        "**/node_modules",     // the same for this one
+        "**/node_modules/**",  // the same for this one
+        "node_modules/**",     // Doesn't currently work due to how the current working directory is determined.
+        "vscode-extension",    //
+        ".git",                // Ignore the .git directory
+        "*.dll",               // Ignore all .dll files.
+        "**/*.dll"             // Ignore all .dll files
+    ],
+
+    // flagWords - list of words to be always considered incorrect
+    // This is useful for offensive words and common spelling errors.
+    // For example "hte" should be "the"`
+    "cSpell.flagWords": ["hte"],
+
+    // Set the delay before spell checking the document. Default is 50.
+    "cSpell.spellCheckDelayMs": 50,
+```
+
+### Dictionaries
 
 ### Import external files
 
@@ -460,6 +530,27 @@ It could be useful if you want to clear image cache.
 - markdown file will be parsed and embedded directly.
 - All other files will be rendered as code block.
 
+```json
+{
+"cSpell.languageSettings": [
+    { "languageId": '*',      "local": 'en',               "dictionaries": ['wordsEn'] },
+    { "languageId": '*',      "local": 'en-US',            "dictionaries": ['wordsEn'] },
+    { "languageId": '*',      "local": 'en-GB',            "dictionaries": ['wordsEnGb'] },
+    { "languageId": '*',                                   "dictionaries": ['companies', 'softwareTerms', 'misc'] },
+    { "languageId": "python", "allowCompoundWords": true,  "dictionaries": ["python"]},
+    { "languageId": "go",     "allowCompoundWords": true,  "dictionaries": ["go"] },
+    { "languageId": "javascript",                          "dictionaries": ["typescript", "node"] },
+    { "languageId": "javascriptreact",                     "dictionaries": ["typescript", "node"] },
+    { "languageId": "typescript",                          "dictionaries": ["typescript", "node"] },
+    { "languageId": "typescriptreact",                     "dictionaries": ["typescript", "node"] },
+    { "languageId": "html",                                "dictionaries": ["html", "fonts", "typescript", "css"] },
+    { "languageId": "php",                                 "dictionaries": ["php", "html", "fonts", "css", "typescript"] },
+    { "languageId": "css",                                 "dictionaries": ["fonts", "css"] },
+    { "languageId": "less",                                "dictionaries": ["fonts", "css"] },
+    { "languageId": "scss",                                "dictionaries": ["fonts", "css"] },
+];
+}
+```
 
 #### Configure images
 
@@ -517,6 +608,46 @@ Alt + C - Check/Uncheck task list item
 Ctrl + Shift + V - Toggle preview
 Ctrl + K V - Toggle preview to side
 
+```json
+// A List of Dictionary Definitions.
+"cSpell.dictionaryDefinitions": [
+    { "name": "medicalTerms", "path": "/Users/guest/projects/cSpell-WordLists/dictionaries/medicalterms-en.txt"}
+],
+// List of dictionaries to use when checking files.
+"cSpell.dictionaries": [
+    "medicalTerms"
+]
+```
+
+**Explained:** In this example, we have told the spell checker where to find the word list file. Since it is in the user settings, we have to use absolute paths.
+
+Once the dictionary is defined. We need to tell the spell checker when to use it. Adding it to cSpell.dictionaries advises the spell checker to always include the medical terms when spell checking.
+
+Note: Adding large dictionary files to be always used will slow down the generation of suggestions.
+
+#### Project / Workspace Dictionary
+
+To add a dictionary at the project level, it needs to be in the cSpell.json file. This file can be either at the project root or in the .vscode directory.
+
+Example adding medical terms, where the terms are checked into the project and we only want to use it for .md files.
+
+```json
+{
+    "dictionaryDefinitions": [
+        { "name": "medicalTerms", "path": "./dictionaries/medicalterms-en.txt"},
+        { "name": "cities", "path": "./dictionaries/cities.txt"}
+    ],
+    "dictionaries": [
+        "cities"
+    ],
+    "languageSettings": [
+        { "languageId": "markdown", "dictionaries": ["medicalTerms"] },
+        { "languageId": "plaintext", "dictionaries": ["medicalTerms"] }
+    ]
+}
+```
+
+**Explained:** In this example, two dictionaries were defined: cities and medicalTerms. The paths are relative to the location of the cSpell.json file. This allows for dictionaries to be checked into the project.
 
 ## Markdown Extended
 

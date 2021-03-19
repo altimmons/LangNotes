@@ -1,0 +1,41 @@
+"replacerules.rules": {
+        "Code-ws-definition": {
+            "find": "(^)(\\S*?)(\\s+?)(.*$)",
+            "replace": "- `$2` - $4",
+            "languages": [
+                "markdown"
+            ],
+            "flags": "m"
+        },
+        "Highlight flags -": {
+            "find": "(-{1,2})(.+?)(,| {2,}|\\t)",
+            "replace": "`$1$2`$3",
+            "languages": [
+                "markdown"
+            ],
+        },
+        "Replace tabs and large spaces with -": {
+            "find": "(\\t| {3,})",
+            "replace": " - "
+        },
+        "Create List": {
+            "find": "(^\\s*)(`.*)",
+            "replace": "$1- $2"
+        },
+        "Remove Extra Lines": {
+            "find": "(\n.){2,}",
+            "replace": "\n",
+            "flags": "m"
+        }
+    },
+
+    "replacerules.rulesets": {
+        "Function Params to list" {
+            "rules": [
+                "Highlight flags -",
+                "Replace tabs and large spaces with -",
+                "Create List",
+                "Remove Extra Lines"
+            ]
+        }
+    }
