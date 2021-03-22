@@ -6,10 +6,25 @@ Linux needs
 
 sudo apt-get install linux-libc-dev gcc-multilib cmake cmake-doc gcc clang
 
+build-essential 
+
+needed to get the new cmake a few times.
+
+### VS Code Setup
+
+sourceFileMap#
+
+This allows mapping of the compile-time paths for source to local source locations. It is an object of key/value pairs and will resolve the first string-matched path. (example: "sourceFileMap": { "/mnt/c": "c:\\" } will map any path returned by the debugger that begins with /mnt/c and convert it to c:\\. You can have multiple mappings in the object but they will be handled in the order provided.)
+
+
+
+
 
 Variables defined with `=` are recursively expanded variables. Variables defined with `:=` or `::=` are simply expanded variables; these definitions can contain variable references which will be expanded before the definition is made. See The Two Flavors of Variables.
 
 The shell assignment operator `!=` can be used to execute a shell script and set a variable to its output. This operator first evaluates the right-hand side, then passes that result to the shell for execution. If the result of the execution ends in a newline, that one newline is removed; all other newlines are replaced by spaces. The resulting string is then placed into the named recursively-expanded variable. 
+
+
 
 
 ## Make
