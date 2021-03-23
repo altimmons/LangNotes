@@ -1,5 +1,14 @@
 # C programming
 
+
+## Links
+
+[C docs - get started, tutorials, reference. | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/?view=msvc-160)
+
+[C Language Reference | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/c-language-reference?view=msvc-160)
+
+[C Tutorial - Tutorialspoint](https://www.tutorialspoint.com/cprogramming/index.htm)
+
 ## Setup
 
 Linux needs 
@@ -10,13 +19,46 @@ build-essential
 
 needed to get the new cmake a few times.
 
+
+
 ### VS Code Setup
 
-sourceFileMap#
+[sourceFileMap]([Debug C++ in Visual Studio Code](https://code.visualstudio.com/docs/cpp/cpp-debug))
 
-This allows mapping of the compile-time paths for source to local source locations. It is an object of key/value pairs and will resolve the first string-matched path. (example: "sourceFileMap": { "/mnt/c": "c:\\" } will map any path returned by the debugger that begins with /mnt/c and convert it to c:\\. You can have multiple mappings in the object but they will be handled in the order provided.)
+[Debugging C++](https://code.visualstudio.com/docs/cpp/cpp-debug)
 
 
+[Icon Ref](https://code.visualstudio.com/api/references/icons-in-labels)
+
+[C++ MinGW Config (Win)](https://code.visualstudio.com/docs/cpp/config-mingw)
+[C++ MSVSC Config (Win-Native)](tps://code.visualstudio.com/docs/cpp/config-msvc)
+[C++ and WSL Config (Win)](https://code.visualstudio.com/docs/cpp/config-wsl)
+
+
+[Debugging](https://code.visualstudio.com/docs/cpp/cpp-debug)
+
+[GCC on Linux](https://code.visualstudio.com/docs/cpp/config-linux)
+
+
+
+[Icon Names are here](https://code.visualstudio.com/api/references/icons-in-labels)
+	
+[Variable names here:](https://code.visualstudio.com/docs/editor/variables-reference)
+    
+    
+
+ https://code.visualstudio.com/docs/editor/multi-root-workspaces
+
+/https://code.visualstudio.com/docs/cpp/launch-json-reference#_args
+This allows mapping of the compile-time paths for source to local source locations. 
+
+It is an object of key/value pairs and will resolve the first string-matched path. (example: 
+        
+        "sourceFileMap": { "/mnt/c": "c:\\" } 
+        
+  will map any path returned by the debugger that begins with `/mnt/c` and convert it to `c:\\`. You can have multiple mappings in the object but they will be handled in the order provided.)
+
+Unclear where to put it though...
 
 
 
@@ -24,7 +66,101 @@ Variables defined with `=` are recursively expanded variables. Variables defined
 
 The shell assignment operator `!=` can be used to execute a shell script and set a variable to its output. This operator first evaluates the right-hand side, then passes that result to the shell for execution. If the result of the execution ends in a newline, that one newline is removed; all other newlines are replaced by spaces. The resulting string is then placed into the named recursively-expanded variable. 
 
+Must be `cppvsdbg` when using the Visual Studio Windows debugger, and `cppdbg` when using GDB or LLDB. This is automatically set to the correct value when the launch.json file is created
 
+## GCC, G++
+
+[GCC Compiler Docs](https://gcc.gnu.org/onlinedocs/)
+
+[GCC Compiler Options](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/gcc/Option-Summary.html#Option-Summary)
+
+Some Common Ones- [ From here- Which are mostly Warning Options](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/gcc/Warning-Options.html#Warning-Options)
+
+
+-Wpedantic - Issue all the warnings demanded by strict ISO C and ISO C++; reject all programs that use forbidden extensions, and some other programs that do not follow ISO C and ISO C++. For ISO C, follows the version of the ISO C standard specified by any -std option used.
+
+
+`-Wall`
+This enables all the warnings about constructions that some users consider questionable, and that are easy to avoid (or modify to prevent the warning), even in conjunction with macros. This also enables some language-specific warnings described in C++ Dialect Options and Objective-C and Objective-C++ Dialect Options.
+
+
+-Wall turns on the following warning flags:
+
+      -Waddress   
+      -Warray-bounds=1 (only with -O2)  
+      -Wbool-compare  
+      -Wbool-operation  
+      -Wc++11-compat  -Wc++14-compat  
+      -Wchar-subscripts  
+      -Wcomment  
+      -Wduplicate-decl-specifier (C and Objective-C only) 
+      -Wenum-compare (in C/ObjC; this is on by default in C++) 
+      -Wformat   
+      -Wint-in-bool-context  
+      -Wimplicit (C and Objective-C only) 
+      -Wimplicit-int (C and Objective-C only) 
+      -Wimplicit-function-declaration (C and Objective-C only) 
+      -Winit-self (only for C++) 
+      -Wlogical-not-parentheses 
+      -Wmain (only for C/ObjC and unless -ffreestanding)  
+      -Wmaybe-uninitialized 
+      -Wmemset-elt-size 
+      -Wmemset-transposed-args 
+      -Wmisleading-indentation (only for C/C++) 
+      -Wmissing-braces (only for C/ObjC) 
+      -Wnarrowing (only for C++)  
+      -Wnonnull  
+      -Wnonnull-compare  
+      -Wopenmp-simd 
+      -Wparentheses  
+      -Wpointer-sign  
+      -Wreorder   
+      -Wreturn-type  
+      -Wsequence-point  
+      -Wsign-compare (only in C++)  
+      -Wsizeof-pointer-memaccess 
+      -Wstrict-aliasing  
+      -Wstrict-overflow=1  
+      -Wswitch  
+      -Wtautological-compare  
+      -Wtrigraphs  
+      -Wuninitialized  
+      -Wunknown-pragmas  
+      -Wunused-function  
+      -Wunused-label     
+      -Wunused-value     
+      -Wunused-variable  
+      -Wvolatile-register-var 
+
+
+`-Wextra`
+This enables some extra warning flags that are not enabled by -Wall. (This option used to be called -W. The older name is still supported, but the newer name is more descriptive.)
+
+    -Wclobbered  
+    -Wempty-body  
+    -Wignored-qualifiers 
+    -Wimplicit-fallthrough=3 
+    -Wmissing-field-initializers  
+    -Wmissing-parameter-type (C only)  
+    -Wold-style-declaration (C only)  
+    -Woverride-init  
+    -Wsign-compare (C only) 
+    -Wtype-limits  
+    -Wuninitialized  
+    -Wshift-negative-value (in C++03 and in C99 and newer)  
+    -Wunused-parameter (only with -Wunused or -Wall) 
+    -Wunused-but-set-parameter (only with -Wunused or -Wall)  
+
+
+Can be suppressed with effort- 
+
+C++17 provides a standard way to suppress the -Wimplicit-fallthrough warning using [[fallthrough]];
+
+Since there are occasions where a switch case fall through is desirable, GCC provides an attribute, __attribute__ ((fallthrough)), that is to be used along with a null statement to suppress this warning that would normally occur:
+
+## Compiler and Ignoring Errors
+
+[Supressing Warnings in GCC](https://nelkinda.com/blog/suppress-warnings-in-gcc-and-clang/)
 
 
 ## Make
@@ -451,6 +587,88 @@ In fact, the -o is for the output file. You need to run :
 gcc -o runexp.out runexp.o scd.o data_proc.o -lm -fopenmp
 ## Basic Struct
 
+
+### C Keywords
+
+
+
+auto
+break
+case
+char
+const
+continue
+default
+do
+double
+else
+enum
+
+extern
+float
+for
+goto
+if
+inline 1, a
+int
+long
+register
+restrict 1, a
+return
+
+short
+signed
+sizeof
+static
+struct
+switch
+typedef
+union
+unsigned
+void
+volatile
+
+while
+_Alignas 2, a
+_Alignof 2, a
+_Atomic 2, b
+_Bool 1, a
+_Complex 1, b
+_Generic 2, a
+_Imaginary 1, b
+_Noreturn 2, a
+_Static_assert 2, a
+_Thread_local 2, b
+
+1 Keywords introduced in ISO C99.
+
+2 Keywords introduced in ISO C11.
+
+a Starting in Visual Studio 2019 version 16.8, these keywords are supported in code compiled as C when the /std:c11 or /std:c17 compiler options are specified.
+
+b Starting in Visual Studio 2019 version 16.8, these keywords are recognized but not supported by the compiler in code compiled as C when the /std:c11 or /std:c17 compiler options are specified.
+
+
+### Reserved Characters
+
+
+punctuator: one of ( ) [ ] { } * , : = ; ... #
+
+These characters have special meanings in C. Their uses are described throughout this book. The pound sign (#) can occur only in preprocessing directives.
+## Naming
+
+Do not select names for identifiers that begin with two underscores or with an underscore followed by an uppercase letter. 
+
+Identifiers with file-level scope should also not be named with an underscore and a lowercase letter as the first two letters.
+
+ By convention, Microsoft uses an underscore and an uppercase letter to begin macro names 
+ 
+ and double underscores for Microsoft-specific keyword names.
+ 
+  To avoid any naming conflicts, always select identifier names that do not begin with one or two underscores, or names that begin with an underscore followed by an uppercase letter.
+
+## Basic Program arrangment
+
 ```c
 #include <stdio.h>
 
@@ -463,6 +681,333 @@ int main(int argc, char *argv[]){
 
 `int main(int argc, char **argv){` This also works
 
+_____
+## Types
+
+The C data types fall into general categories. 
+
+
+The _integral types_ include `int`, `char`, `short`, `long`, and `long long`. 
+
+These types can be qualified with `signed` or `unsigned,` and *"unsigned"* by itself can be used as shorthand for `unsigned int`. 
+
+**Enumeration types** (`enum`) are also treated as *integral types* for most purposes. 
+
+The _floating types_ include `float`, `double`, and `long double`. The arithmetic types include all floating and integral types.
+
+| Type                             | Storage |
+| --------------------------------- | ------- |
+| char, unsigned char, signed char | 1 byte  |
+| short, unsigned short            | 2 bytes |
+| int, unsigned int                | 4 bytes |
+| long, unsigned long              | 4 bytes |
+| long long, unsigned long long    | 8 bytes |
+| float                            | 4 bytes |
+| double                           | 8 bytes |
+| long double                      | 8 bytes |
+
+
+### Char 
+
+Character values of type unsigned char have a range from 0 to 0xFF hexadecimal. A signed char has range 0x80 to 0x7F. These ranges translate to 0 to 255 decimal, and -128 to +127 decimal, respectively. The /J compiler option changes the default from signed to unsigned.
+
+char    schar =  'x';   /* A character constant          */
+wchar_t wchar = L'x';   /* A wide-character constant for
+                            the same character           */
+
+#### Char escapes
+
+Escape Sequence 	Represents
+\a 	Bell (alert)
+\b 	Backspace
+\f 	Form feed
+\n 	New line
+\r 	Carriage return
+\t 	Horizontal tab
+\v 	Vertical tab
+\' 	Single quotation mark
+\" 	Double quotation mark
+\\ 	Backslash
+\? 	Literal question mark
+\ ooo 	ASCII character in octal notation
+\x hh 	ASCII character in hexadecimal notation
+\x hhhh 	Unicode character in hexadecimal notation if this escape sequence is used in a wide-character constant or a Unicode string literal.
+
+For example,` WCHAR f = L'\x4e00'` or `WCHAR b[] = L"The Chinese character for one is \x4e00".`
+
+
+[Multibyte and Wide Characters](https://docs.microsoft.com/en-us/cpp/c-language/multibyte-and-wide-characters?view=msvc-160)
+
+### String Literal Concatenation
+
+    "Long strings can be bro\
+    ken into two or more pieces."
+
+is identical to the string
+
+    Long strings can be broken into two or more pieces."
+
+        
+    printf_s ( "This is the first half of the string, "
+              "this is the second half ") ;
+
+              "This is the first half of the string, this is the second half"
+
+
+  A string pointer, initialized as two distinct string literals separated only by white space, is stored as a single string (pointers are discussed in Pointer Declarations). When properly referenced, as in the following example, the result is identical to the previous example:
+
+          char *string = "This is the first half of the string, "
+                        "this is the second half";
+
+          printf_s( "%s" , string ) ;
+###  Ints
+
+The size of a **signed int** or **unsigned int** item is the standard size of an integer **on a particular machine.** 
+
+For example, in 16-bit operating systems, the int type is usually 16 bits, or 2 bytes. In 32-bit operating systems, the int type is usually 32 bits, or 4 bytes. Thus, the int type is equivalent to either the short int or the long int type, and the unsigned int type is equivalent to either the unsigned short or the unsigned long type, depending on the target environment. The int types all represent signed values unless specified otherwise.
+
+The type specifiers int and unsigned int (or simply unsigned) define certain features of the C language (for instance, the enum type). In these cases, the definitions of int and unsigned int for a particular implementation determine the actual storage.
+
+#### Specific Sizes
+
+You can declare 8-, 16-, 32-, or 64-bit integer variables by using the __intN type specifier, where N is the size, in bits, of the integer variable. The value of n can be 8, 16, 32, or 64. The following example declares one variable of each of the four types of sized integers:
+
+__int8  nSmall;     // Declares 8-bit integer  == Char
+__int16 nMedium;    // Declares 16-bit integer == short
+__int32 nLarge;     // Declares 32-bit integer == int
+__int64 nHuge;      // Declares 64-bit integer == long long
+
+int and long seem equivalent
+
+
+#### Int Constants
+
+If an integer constant begins with 0x or 0X, it is hexadecimal. If it begins with the digit 0, it is octal. Otherwise, it is assumed to be decimal.
+
+    28
+    0x1C   /* = Hexadecimal representation for decimal 28 */
+    034    /* = Octal representation for decimal 28 */
+     /* Decimal Constants */
+    int                 dec_int    = 28;
+    unsigned            dec_uint   = 4000000024u;
+    long                dec_long   = 2000000022l;
+    unsigned long       dec_ulong  = 4000000000ul;
+    long long           dec_llong  = 9000000000LL;
+    unsigned long long  dec_ullong = 900000000001ull;
+    __int64             dec_i64    = 9000000000002I64;
+    unsigned __int64    dec_ui64   = 90000000000004ui64;
+
+    /* Octal Constants */
+    int                 oct_int    = 024;
+    unsigned            oct_uint   = 04000000024u;
+    long                oct_long   = 02000000022l;
+    unsigned long       oct_ulong  = 04000000000UL;
+    long long           oct_llong  = 044000000000000ll;
+    unsigned long long  oct_ullong = 044400000000000001Ull;
+    __int64             oct_i64    = 04444000000000000002i64;
+    unsigned __int64    oct_ui64   = 04444000000000000004uI64;
+
+    /* Hexadecimal Constants */
+    int                 hex_int    = 0x2a;
+    unsigned            hex_uint   = 0XA0000024u;
+    long                hex_long   = 0x20000022l;
+    unsigned long       hex_ulong  = 0XA0000021uL;
+    long long           hex_llong  = 0x8a000000000000ll;
+    unsigned long long  hex_ullong = 0x8A40000000000010uLL;
+    __int64             hex_i64    = 0x4a44000000000020I64;
+    unsigned __int64    hex_ui64   = 0x8a44000000000040Ui64;
+
+    /* Long decimal constants */
+      10L
+      79L
+
+      /* Long octal constants */
+      012L
+      0115L
+
+      /* Long hexadecimal constants */
+      0xaL or 0xAL
+      0X4fL or 0x4FL
+
+      /* Unsigned long decimal constant */
+      776745UL
+      778866LU
+
+ 
+
+The type for a decimal constant without a suffix is either **int,** **long int,** or **unsigned long int.** The first of these three types in which the constant's value can be represented is the type assigned to the constant.
+
+The type assigned to **octal** and **hexadecimal** constants without suffixes is **int,** **unsigned int,** **long int,** or **unsigned long int depending** on the size of the constant.
+
+The type assigned to constants with a `u` or `U` suffix is **unsigned int** or **unsigned long int** depending on their size.
+
+The type assigned to constants with an `l` or` L` suffix is **long int** or **unsigned long int** depending on their size.
+
+The type assigned to constants with a `u` or `U` and an `l` or` L `suffix is **unsigned long int.**
+
+_____
+
+Limits on Integer Constants
+
+- `CHAR_BIT` - [8] - Number of bits in the smallest variable that is not a bit field.
+- `SCHAR_MIN` - [-128] - Minimum value for a variable of type signed char.
+- `SCHAR_MAX` - [127] - Maximum value for a variable of type signed char.
+- `UCHAR_MAX` - [255] **(0xff)** - Maximum value for a variable of type unsigned char.
+- `CHAR_MIN` - [-128]; [0] *if `/J` option used* - Minimum value for a variable of type char.
+- `CHAR_MAX` - [127]; [255] *if `/J` option used* - Maximum value for a variable of type char.
+- `MB_LEN_MAX` - [5] - Maximum number of bytes in a multicharacter constant.
+- `SHRT_MIN` - [-32768] - Minimum value for a variable of type short.
+- `SHRT_MAX` - [32767] - Maximum value for a variable of type short.
+- `USHRT_MAX` - [65535] **(0xffff)** - Maximum value for a variable of type unsigned short.
+- `INT_MIN` - [-2147483647] **- 1]**- Minimum value for a variable of type int.
+- `INT_MAX` - [2147483647] - Maximum value for a variable of type int.
+- `UINT_MAX` - [4294967295] **(0xffffffff)** - Maximum value for a variable of type unsigned int.
+- `LONG_MIN` - [-2147483647] **- 1]**- Minimum value for a variable of type long.
+- `LONG_MAX` - [2147483647] - Maximum value for a variable of type long.
+- `ULONG_MAX` - [4294967295] **(0xffffffff)**- Maximum value for a variable of type unsigned long.
+- `LLONG_MIN` - [-9,223,372,036,854,775,807] **-1** - Minimum value for a variable of type long long.
+- `LLONG_MAX` - [9,223,372,036,854,775,807] - Maximum value for a variable of type long long.
+- `ULLONG_MAX` - [18,446,744,073,709,551,615] **(0xffffffffffffffff)** - Maximum value for a variable of type unsigned long long.
+
+
+### Float
+
+
+| Type   | Minimum value              | Maximum value              |
+| ------- | --------------------------- | -------------------------- |
+| float  | 1.175494351 E - 38         | 3.402823466 E + 38         |
+| double | 2.2250738585072014 E - 308 | 1.7976931348623158 E + 308 |
+
+### Constants
+
+Syntax
+
+constant:
+ floating-point-constant
+ integer-constant
+ enumeration-constant
+ character-constant
+
+
+#### Float Constant
+
+[C Floating-Point Constants | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/c-floating-point-constants?view=msvc-160)
+
+end in f, F, l, L or nothing
+
+A floating-point constant without an f, F, l, or L suffix has type **double.** If the letter `f` or` F` is the suffix, the constant has type **float.** If suffixed by the letter `l` or `L`, it has type **long double**
+
+### void * type
+
+A pointer to 'anything'
+
+
+[c - What does void* mean and how to use it? - Stack Overflow](https://stackoverflow.com/questions/11626786/what-does-void-mean-and-how-to-use-it)
+
+A pointer to void is a "generic" pointer type. A `void *` can be converted to any other pointer type without an explicit cast. _You cannot dereference a `void *` or do pointer arithmetic with it; you_ must convert it to a pointer to a complete data type first.
+
+void * is often used in places where you need to be able to work with different pointer types in the same code. One commonly cited example is the library function qsort:
+
+void qsort(void *base, size_t nmemb, size_t size, 
+           int (*compar)(const void *, const void *));
+
+base is the address of an array, nmemb is the number of elements in the array, size is the size of each element, and compar is a pointer to a function that compares two elements of the array. It gets called like so:
+
+```c++
+int iArr[10];
+double dArr[30];
+long lArr[50];
+...
+qsort(iArr, sizeof iArr/sizeof iArr[0], sizeof iArr[0], compareInt);
+qsort(dArr, sizeof dArr/sizeof dArr[0], sizeof dArr[0], compareDouble);
+qsort(lArr, sizeof lArr/sizeof lArr[0], sizeof lArr[0], compareLong);
+```
+The array expressions iArr, dArr, and lArr are implicitly converted from array types to pointer types in the function call, and each is implicitly converted from "pointer to int/double/long" to "pointer to void".
+
+The comparison functions would look something like:
+
+
+```C++
+int compareInt(const void *lhs, const void *rhs)
+{
+  const int *x = lhs;  // convert void * to int * by assignment
+  const int *y = rhs;
+
+  if (*x > *y) return 1;
+  if (*x == *y) return 0;
+  return -1;
+}
+
+```
+
+
+By accepting void *, qsort can work with arrays of any type.
+
+The disadvantage of using `void *` is that you throw type safety out the window and into oncoming traffic. There's nothing to protect you from using the wrong comparison routine:
+
+`qsort(dArr, sizeof dArr/sizeof dArr[0], sizeof dArr[0], compareInt);`
+
+compareInt is expecting its arguments to be pointing to ints, but is actually working with doubles. There's no way to catch this problem at compile time; you'll just wind up with a missorted array. 
+
+, in socket functions, you have
+
+send(void * pData, int nLength)
+
+this means you can call it in many ways, for example
+
+```c
+char * data = "blah";
+send(data, strlen(data));
+
+POINT p;
+p.x = 1;
+p.y = 2;
+send(&p, sizeof(POINT));
+```
+
+Also as a pointer to a function:
+
+```C
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{ 
+    // fun_ptr is a pointer to function fun()  
+    void (*fun_ptr)(int) = &fun; 
+  
+    /* The above line is equivalent of following two 
+       void (*fun_ptr)(int); 
+       fun_ptr = &fun;  
+    */
+  
+    // Invoking fun() using fun_ptr 
+    (*fun_ptr)(10); 
+  
+    return 0; 
+} 
+```
+
+`void (*fun_ptr)(int) = &fun;`
+`void (*fun_ptr)(int); `
+` fun_ptr = &fun;` 
+
+
+### Strings
+
+char arrays in C
+
+
+Wide char - string literals (e.g. Unicode)
+
+Given by L"string"
+
+The wide-character-string literal L"hello" becomes an array of six integers of type **wchar_t.**
 
 ## printing
 
@@ -476,6 +1021,31 @@ int main(int argc, char **argv){
     puts(intro);
 
     return 0;
+}
+```
+
+Unlike normal pointers, we do not allocate de-allocate memory using function pointers.
+
+ 
+A function’s name can also be used to get functions’ address. For example, in the below program, we have removed address operator ‘&’ in assignment. We have also changed function call by removing *, the program still works.
+
+
+```C++
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{  
+    void (*fun_ptr)(int) = fun;  // & removed 
+  
+    fun_ptr(10);  // * removed 
+  
+    return 0; 
 }
 ```
 
@@ -531,6 +1101,149 @@ Some common primitive system data types
 - `uid_t` - numeric user IDs
 - `wchar_t` - can represent all distinct character codes
 Figure 2.21 ]
+
+
+### storage-class-specifier:
+
+- local:    
+  - `auto`
+  - `register`
+- global
+  - `static`
+  - `extern`
+
+- `typedef`
+- `__declspec` *( extended-decl-modifier-seq )* **Microsoft-specific*
+
+
+Except for `__declspec`, you can use only one storage-class-specifier in the declaration-specifier in a declaration. If no storage-class specification is made, declarations within a block create automatic objects.
+
+Items declared with the `auto` or `register` specifier have local lifetimes. Items declared with the `static` or `extern` specifier have global lifetimes.
+
+
+#### static
+
+[Storage-Class Specifiers for External-Level Declarations | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/storage-class-specifiers-for-external-level-declarations?view=msvc-160)
+
+> Variables declared outside all blocks without the **`static`** keyword always **retain their values throughout the program.** To restrict their access to a particular translation unit, you must use the **`static`** keyword. This gives them _internal linkage_.
+
+>  To make them global to an entire program, omit the explicit storage class or use the keyword **`extern`** (see the rules in the next list). This gives them _external linkage_.
+
+
+> -   The **`static`** storage-class specifier can apply to functions as well. If you declare a function **`static`**, _its name is invisible outside of the file in which it's declared._
+>  
+
+
+ function declared to be static is visible only within the source file in which it is defined. Functions in the same source file can call the static function, but functions in other source files cannot access it directly by name. You can declare another static function with the same name in a different source file without conflict.
+
+Functions declared as extern are visible throughout all source files in the program (unless you later redeclare such a function as static). Any function can call an extern function.
+
+Function declarations that omit the storage-class specifier are extern by default.
+
+
+#### extern 
+
+[Storage-Class Specifiers for External-Level Declarations | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/c-language/storage-class-specifiers-for-external-level-declarations?view=msvc-160)
+
+> The rules for using **`extern`** are:
+> 
+> -   The **`extern`** storage-class specifier _declares a reference to a variable defined elsewhere._ You can use an **`extern`** declaration to make a definition in another source file visible,
+> or *to make a variable visible before its definition in the same source file. Once* you've declared a reference to the variable at the external level, the variable is visible throughout the remainder of the translation unit in which the declared reference occurs.
+>     
+> -   For an **`extern`** reference to be valid, the variable it refers to must be defined once, and only once, at the external level. This definition (without the *`extern`* storage class) can be in any of the translation units that make up the program.
+
+
+From the [C++ article ](https://docs.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-160)
+
+
+The extern keyword has four meanings depending on the context:
+
+    In a non-const global variable declaration, extern specifies that the variable or function is defined in another translation unit. The extern must be applied in all files except the one where the variable is defined.
+
+    In a const variable declaration, it specifies that the variable has external linkage. The extern must be applied to all declarations in all files. (Global const variables have internal linkage by default.)
+
+    extern "C" specifies that the function is defined elsewhere and uses the C-language calling convention. The extern "C" modifier may also be applied to multiple function declarations in a block.
+
+    In a template declaration, extern specifies that the template has already been instantiated elsewhere. extern tells the compiler it can reuse the other instantiation, rather than create a new one at the current location. For more information about this use of extern, see Explicit instantiation.
+#### auto 
+
+!!! warning unsure if this auto is the same as C++ auto 
+
+Yes see this :
+
+
+
+!!!Note From the [C++ page](https://docs.microsoft.com/en-us/cpp/cpp/auto-cpp?view=msvc-160)
+  The C++ standard defines an original and a revised meaning for this keyword. Before Visual Studio 2010, the auto keyword declares a variable in the automatic storage class; that is, a variable that has a local lifetime. Starting with Visual Studio 2010, the auto keyword declares a variable whose type is deduced from the initialization expression in its declaration. The /Zc:auto[-] compiler option controls the meaning of the auto keyword.
+
+
+
+The auto storage-class specifier declares an automatic variable, a variable with a local lifetime. An auto variable is visible only in the block in which it is declared. Declarations of auto variables can include initializers, as discussed in Initialization. Since variables with auto storage class are not initialized automatically, you should either explicitly initialize them when you declare them, or assign them initial values in statements within the block. The values of uninitialized auto variables are undefined. (A local variable of auto or register storage class is initialized each time it comes in scope if an initializer is given.)
+
+
+### Type qualifiers
+
+Type qualifiers give one of two properties to an identifier. The const type qualifier declares an object to be nonmodifiable. The volatile type qualifier declares an item whose value can legitimately be changed by something beyond the control of the program in which it appears, such as a concurrently executing thread.
+
+The type qualifiers, const, restrict, and volatile, can appear only once in a declaration. Type qualifiers can appear with any type specifier; however, they can't appear after the first comma in a multiple item declaration. For example, the following declarations are legal:
+
+The following are legal const and volatile declarations:
+C
+
+      int const *p_ci;      // Pointer to constant int
+      int const (*p_ci);   // Pointer to constant int
+      int *const cp_i;     // Constant pointer to int
+      int (*const cp_i);   // Constant pointer to int
+      int volatile vint;     // Volatile integer
+
+
+#### Const
+
+The const keyword can be used to modify any fundamental or aggregate type, or a pointer to an object of any type, or a typedef. If an item is declared with only the const type qualifier, its type is taken to be const int. A const variable can be initialized or can be placed in a read-only region of storage. The const keyword is useful for declaring pointers to const since this requires the function not to change the pointer in any way.
+
+
+
+#### volitile
+
+    The compiler assumes that, at any point in the program, a volatile variable can be accessed by an unknown process that uses or modifies its value. Regardless of the optimizations specified on the command line, the code for each assignment to or reference of a volatile variable must be generated even if it appears to have no effect.
+
+If volatile is used alone, int is assumed. The volatile type specifier can be used to provide reliable access to special memory locations. Use volatile with data objects that may be accessed or altered by signal handlers, by concurrently executing programs, or by special hardware such as memory-mapped I/O control registers. You can declare a variable as volatile for its lifetime, or you can cast a single reference to be volatile.
+
+    An item can be both const and volatile, in which case the item couldn't be legitimately modified by its own program, but could be modified by some asynchronous process.
+
+#### restrict
+
+restrict is an optimization hint to the compiler that no other pointer in the current scope refers to the same memory location. That is, only the pointer or a value derived from it (such as pointer + 1) is used to access the object during the lifetime of the pointer. This helps the compiler produce more optimized code. C++ has an equivalent mechanism, __restrict
+
+Keep in mind that restrict is a contract between you and the compiler. If you do alias a pointer marked with restrict, the result is undefined.
+
+```C
+    void test(int* restrict first, int* restrict second, int* val)
+{
+    *first += *val;
+    *second += *val;
+}
+
+int main()
+{
+    int i = 1, j = 2, k = 3;
+    test(&i, &j, &k);
+
+    return 0;
+}
+
+// Marking union members restrict tells the compiler that
+// only z.x or z.y will be accessed in any scope, which allows
+// the compiler to optimize access to the members.
+union z 
+{
+    int* restrict x;
+    double* restrict y;
+};
+```
+
+
+### The Time class
 
 
 
@@ -698,6 +1411,79 @@ int main(void) {
 }
 
 ```
+### Structs 
+
+```C
+struct employee   /* Defines a structure variable named temp */
+{
+    char name[20];
+    int id;
+    long class;
+} temp;
+```
+
+
+The *employee* structure has three members: **name,** **id,** and **class.** The **name** member is a 20-element array, and **id** and **class** are simple members with *int* and *long* type, respectively. The identifier _employee_ is the structure identifier.
+
+Its a variable named `temp`
+
+e.g. `[struct] employee temp`
+
+
+
+```C
+struct employee student, faculty, staff;
+```
+
+This example defines three structure variables: **student,** **faculty,** and **staff.** Each structure has the same list of three members. The members are declared to have the _structure type **employee,_** defined in the previous example.
+
+```C
+struct           /* Defines an anonymous struct and a */
+{                /* structure variable named complex  */
+    float x, y;
+} complex;
+```
+
+The complex structure has two members with float type, x and y. The structure type has no tag and is therefore unnamed or anonymous.
+
+```C
+struct sample   /* Defines a structure named x */
+{
+    char c;
+    float *pf;
+    struct sample *next;
+} x;
+```
+
+The first two members of the structure are a char variable and a pointer to a float value. The third member, next, is declared as a pointer to the structure type being defined (sample).
+
+Anonymous structures can be useful when the tag named is not needed. This is the case when one declaration defines all structure instances. For example:
+```C
+struct
+{
+    int x;
+    int y;
+} mystruct;
+```
+
+Embedded structures are often anonymous.
+
+```C
+struct somestruct
+{
+    struct    /* Anonymous structure */
+    {
+        int x, y;
+    } point;
+    int type;
+} w;
+
+```
+
+!!! Warning : This my be microsoft Specific
+  Unsized arrays can appear only as the last member of a structure. Structures containing unsized array declarations can be nested within other structures as long as no further members are declared in any enclosing structures. Arrays of such structures are not allowed. The sizeof operator, when applied to a variable of this type or to the type itself, assumes 0 for the size of the array.
+
+
 
 
 |

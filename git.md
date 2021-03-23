@@ -133,3 +133,10 @@ Inside a git repository, and with no arguments, `gh` will automatically create a
 ✓ Added remote https://github.com/user/my-project.git
 ~/Projects/my-project$
 
+
+## GH Commandline
+
+❯ cat makefile | gh gist create -f "LibraryMakefile" -d "A mostly dynamic makefile to build libraries"
+
+https://gist.github.com/31e0dd028c898f50386df8216dbb9210
+

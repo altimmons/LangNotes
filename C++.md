@@ -3050,10 +3050,175 @@ for(int i=0; i<3; i++)
 
 ```
 
+### void * type
+
+A pointer to 'anything'
+
+
+[c - What does void* mean and how to use it? - Stack Overflow](https://stackoverflow.com/questions/11626786/what-does-void-mean-and-how-to-use-it)
+
+A pointer to void is a "generic" pointer type. A `void *` can be converted to any other pointer type without an explicit cast. _You cannot dereference a `void *` or do pointer arithmetic with it; you_ must convert it to a pointer to a complete data type first.
+
+void * is often used in places where you need to be able to work with different pointer types in the same code. One commonly cited example is the library function qsort:
+
+void qsort(void *base, size_t nmemb, size_t size, 
+           int (*compar)(const void *, const void *));
+
+base is the address of an array, nmemb is the number of elements in the array, size is the size of each element, and compar is a pointer to a function that compares two elements of the array. It gets called like so:
+
+```c++
+int iArr[10];
+double dArr[30];
+long lArr[50];
+...
+qsort(iArr, sizeof iArr/sizeof iArr[0], sizeof iArr[0], compareInt);
+qsort(dArr, sizeof dArr/sizeof dArr[0], sizeof dArr[0], compareDouble);
+qsort(lArr, sizeof lArr/sizeof lArr[0], sizeof lArr[0], compareLong);
+```
+The array expressions iArr, dArr, and lArr are implicitly converted from array types to pointer types in the function call, and each is implicitly converted from "pointer to int/double/long" to "pointer to void".
+
+The comparison functions would look something like:
+
+
+```C++
+int compareInt(const void *lhs, const void *rhs)
+{
+  const int *x = lhs;  // convert void * to int * by assignment
+  const int *y = rhs;
+
+  if (*x > *y) return 1;
+  if (*x == *y) return 0;
+  return -1;
+}
+
+```
+
+
+By accepting void *, qsort can work with arrays of any type.
+
+The disadvantage of using `void *` is that you throw type safety out the window and into oncoming traffic. There's nothing to protect you from using the wrong comparison routine:
+
+`qsort(dArr, sizeof dArr/sizeof dArr[0], sizeof dArr[0], compareInt);`
+
+compareInt is expecting its arguments to be pointing to ints, but is actually working with doubles. There's no way to catch this problem at compile time; you'll just wind up with a missorted array. 
+
+, in socket functions, you have
+
+send(void * pData, int nLength)
+
+this means you can call it in many ways, for example
+
+```c
+char * data = "blah";
+send(data, strlen(data));
+
+POINT p;
+p.x = 1;
+p.y = 2;
+send(&p, sizeof(POINT));
+```
+
+Also as a pointer to a function:
+
+```C
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{ 
+    // fun_ptr is a pointer to function fun()  
+    void (*fun_ptr)(int) = &fun; 
+  
+    /* The above line is equivalent of following two 
+       void (*fun_ptr)(int); 
+       fun_ptr = &fun;  
+    */
+  
+    // Invoking fun() using fun_ptr 
+    (*fun_ptr)(10); 
+  
+    return 0; 
+} 
+```
+
+`void (*fun_ptr)(int) = &fun;`
+`void (*fun_ptr)(int); `
+` fun_ptr = &fun;` 
+
+
+### Strings
+
+char arrays in C
+
+
+Wide char - string literals (e.g. Unicode)
+
+Given by L"string"
+
+The wide-character-string literal L"hello" becomes an array of six integers of type **wchar_t.**
+
+## printing
+
+`puts()` = print.
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv){
+    static char *intro = "Please enter your value?";
+    puts(intro);
+
+    return 0;
+}
+```
+
+Unlike normal pointers, we do not allocate de-allocate memory using function pointers.
+
+ 
+A function’s name can also be used to get functions’ address. For example, in the below program, we have removed address operator ‘&’ in assignment. We have also changed function call by removing *, the program still works.
+
+
+```C++
+#include <stdio.h> 
+// A normal function with an int parameter 
+// and void return type 
+void fun(int a) 
+{ 
+    printf("Value of a is %d\n", a); 
+} 
+  
+int main() 
+{  
+    void (*fun_ptr)(int) = fun;  // & removed 
+  
+    fun_ptr(10);  // * removed 
+  
+    return 0; 
+}
+```
+
+
 ## Strings
+
+
+### String Literals 
+
+Wide char - string literals (e.g. Unicode)
+
+Given by L"string"
+
+The wide-character-string literal L"hello" becomes an array of six integers of type **wchar_t.**
+
+### Wide Chars
 
 [Wide characters](http://www.cplusplus.com/reference/cwchar/)
 
+The run-time library routines for translating between multibyte and wide characters include **mbstowcs,** **mbtowc,** **wcstombs,** and **wctomb.**
 
 ____
 ### String class

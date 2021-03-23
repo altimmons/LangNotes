@@ -4499,6 +4499,8 @@ iterables, tuples and lists are all related
 (1, 2, 3)
 ```
 
+____
+
 ### FOR LOOPS
 
 object of type iterative
@@ -4575,6 +4577,23 @@ for x in range(0,3):
     for y in range(0,3):
         print(num_list[x][y])
 ```
+
+For loops and while loops, oddly can accept an `else` clause
+
+
+        for l in L:
+            pass
+        else:
+            pass
+
+and while loops as well.  This initally seems pointless- as the code after a loop would execute with or without else.  But the thing it adds is that in only executes if the flow statement executes normally.
+
+        while i > 0:
+            if i == 10:
+                break # will not execute else.
+            pass
+        else:
+            pass
 
 
 #### comprehensions
