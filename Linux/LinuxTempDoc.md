@@ -152,7 +152,7 @@ aun
 - htop - interactive process viewer
 - iotop - IO monitor
 - irqtop - observe IRQ and SoftIRQ in top like fashion
-- itop - interrupt load monitor
+- itop - interrupt load monitor 
 - jnettop - view hosts/ports taking up network traffic
 - kernaltop - Linux kernal function usage
 - ntopng - Webtraffic analysis and Flow Collection tools

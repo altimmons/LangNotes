@@ -2808,9 +2808,47 @@ int connect_four[H][W];   // ISO C++ forbids variable length array
 
 
 
+#### Designated Initializer:
+
+ This initializer is used when we want to initialize a range with the same value. This is used only with GCC compilers.
+
+[ first . . . last ] = value;
+
+    int num[5]={ [0 . . . 4 ] = 3 };               // num = { 3, 3, 3, 3, 3}
+
+We may also ignore the size of array:
+
+            int num[  ]={ [0 . . . 4 ] = 3 };               // num = { 3, 3, 3, 3, 3}
 
 
+#### Macro Initializers
 
+Macros: For initializing a huge array with the same value we can use macros.
+
+```C
+#include<stdio.h>
+
+#define x1 1
+#define x2 x1, x1
+#define x4 x2, x2
+#define x8 x4, x4
+#define x16 x8, x8
+#define x32 x16, x16
+
+int main(void)
+{
+// array declaration
+int num[] = { x32, x8, x4, x1};
+int size = sizeof(num)/ sizeof(int);    // 32+8+4+1= 45
+
+printf("The size of the array is %d\n", size);
+printf("The value of element in the array at index 5 is %d ", 
+                                    num[4]);
+
+return 0;
+
+}
+```
 ### structure
 
 [See the main article on Structs](#Structs)
@@ -3149,6 +3187,68 @@ int main()
 `void (*fun_ptr)(int) = &fun;`
 `void (*fun_ptr)(int); `
 ` fun_ptr = &fun;` 
+
+
+### C builtin Types
+
+
+- `cc_t` - Type used for terminal special characters.
+- `clock_t` - Integer or real-floating type used for processor times, 
+  - as defined in the ISO C standard.
+- `clockid_t` - Used for clock ID type in some timer functions.
+- `dev_t` - Integer type used for device numbers.
+- `DIR` - Type representing a directory stream.
+- `div_t` - Structure type returned by the div() function.
+- `FILE` - Structure containing information about a file.
+- `glob_t` - Structure type used in pathname pattern matching.
+- `fpos_t` - Type containing all information needed to specify uniquely every file position 
+- `gid_t` - Integer type used for group IDs.
+- `iconv_t` - Type used for conversion descriptors.
+- `id_t` - Integer type used as a general identifier;
+  -  can be used to contain at least the largest of a pid_t, uid_t, or gid_t.
+- `ino_t` - Unsigned integer type used for file serial numbers.
+- `key_t` - Arithmetic type used for XSI interprocess communication.
+- `ldiv_t` - Structure type returned by the ldiv() function.
+- `mode_t` - Integer type used for file attributes.
+- `mqd_t` - Used for message queue descriptors.
+- `nfds_t` - Integer type used for the number of file descriptors.
+- `nlink_t` - Integer type used for link counts.
+- `off_t` - Signed integer type used for file sizes.
+- `pid_t` - Signed integer type used for process and process group IDs.
+- `pthread_attr_t` - Used to identify a thread attribute object.
+- `pthread_cond_t` - Used for condition variables.
+- `pthread_condattr_t` - Used to identify a condition attribute object.
+- `pthread_key_t` - Used for thread-specific data keys.
+- `pthread_mutex_t` - Used for mutexes.
+- `pthread_mutexattr_t` - Used to identify a mutex attribute object.
+- `pthread_once_t` - Used for dynamic package initialization.
+- `pthread_rwlock_t` - Used for read-write locks.
+- `pthread_rwlockattr_t` - Used for read-write lock attributes.
+- `pthread_t` - Used to identify a thread.
+- `ptrdiff_t` - Signed integer type of the result of subtracting two pointers.
+- `regex_t` - Structure type used in regular expression matching.
+- `regmatch_t` - Structure type used in regular expression matching.
+- `rlim_t` - Unsigned integer type used for limit values, 
+  - which objects of type int and off_t can be cast without loss of value.
+- `sem_t` - Type used in performing semaphore operations.
+- `sig_atomic_t` - Possibly volatile-qualified integer type of an object 
+  - can be accessed as an atomic entity, even in the presence of asynchronous interrupts.
+- `sigset_t` - Integer or structure type of an object used to represent sets of signals.
+- `size_t` - Unsigned integer type used for size of objects.
+- `speed_t` - Type used for terminal baud rates.
+- `ssize_t` - Signed integer type used for a count of bytes or an error indication.
+- `suseconds_t` - Signed integer type used for time in microseconds.
+- `tcflag_t` - Type used for terminal modes.
+- `time_t` - Integer type used for time in seconds, as defined in the ISO C standard.
+- `timer_t` - Used for timer ID returned by the timer_create() function.
+- `uid_t` - Integer type used for user IDs.
+- `va_list` - Type used for traversing variable argument lists.
+- `wchar_t` - Integer type for largest extended character set 
+  - specified by the supported locales.
+  - range of values can represent distinct codes for all members of char set
+- `wctype_t` - Scalar type which represents a character class descriptor.
+- `wint_t` - Integer type capable of storing any valid value of wchar_t or WEOF.
+- `wordexp_t` - Structure type used in word expansion.
 
 
 ### Strings
@@ -4135,6 +4235,10 @@ class EvenSequence
       vector<double> mSequence; //define vector.
 };
 ```
+
+
+
+
 
 ### Destructors 
 

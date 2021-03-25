@@ -178,7 +178,7 @@ Since there are occasions where a switch case fall through is desirable, GCC pro
 - `AS` - Program for compiling assembly files; default `as`.
 - `CC` - Program for compiling C programs; default `cc`.
 - `CXX` - Program for compiling C++ programs; default `g++`.
-- `CPP` - Program for running the C preprocessor, with results to standard output; default ‘$(CC) -E’.
+- `CPP` - Program for running the C preprocessor, with results to standard output; default '$(CC) -E'.
 - `FC` - Program for compiling or preprocessing Fortran and Ratfor programs; default `f77`.
 - `M2C` - Program to use to compile Modula-2 source code; default `m2c`.
 - `PC` - Program for compiling Pascal programs; default `pc`.
@@ -194,7 +194,7 @@ Since there are occasions where a switch case fall through is desirable, GCC pro
 - `CWEAVE` - Program to translate C Web into TeX; default `cweave`.
 - `TANGLE` - Program to translate Web into Pascal; default `tangle`.
 - `CTANGLE` - Program to translate C Web into C; default `ctangle`.
-- `RM` - Command to remove a file; default ‘rm -f’. 
+- `RM` - Command to remove a file; default 'rm -f'. 
 
 Here is a table of variables whose values are additional arguments for the programs above. The default values for all of these is the empty string, unless otherwise noted.
 
@@ -214,6 +214,82 @@ Here is a table of variables whose values are additional arguments for the progr
 - `RFLAGS` - Extra flags to give to the Fortran compiler for Ratfor programs.
 - `LINTFLAGS` - Extra flags to give to lint. 
 
+
+## Important Vars
+
+
+LDLIBS            = $(LIB)  Library flags or names given to compilers when they are supposed to invoke the linker,  e.g. 'get-arg' '-lget_thread' 
+
+LDFLAGS          = -L$(LIB_D)  Most significanly accepts the -L flag a linker Library Directory.
+
+
+CPP (C Preprocessor) - CC/GCC/G++/C++ -> Linker (AR)
+
+In addition to the options listed here,  there are a number of options to control searchpaths for include files documented inSection 3.15 [Directory Options], page 188.  Optionsto control preprocessor diagnostics are listed inSection 3.8 [Warning Options], page 59.
+
+-Dname  Predefinenameas a macro, with definition  1 (e.g. true I tink)
+
+`-pthread`  Define  additional  macros  required  for  using  the  POSIX  threads  library.   Youshould  use  this  option  consistently  for  both  compilation  and  linking.   Thisoption is supported on GNU/Linux targets, most other Unix derivatives, andalso on x86 Cygwin and MinGW targets
+
+-HPrint the name of each header file used, in addition to other normal activities.Each name is indented to show how deep in the '#include' stack it is.  Precom-piled header files are also printed, even if they are found to be invalid; an invalidprecompiled header file is printed with '...x' and a valid one with '...!' .
+
+
+- Linker Settings
+
+-fuse-ld=bfdUse thebfdlinker instead of the default linker.
+
+-fuse-ld=goldUse thegoldlinker instead of the default linker
+
+!!! Note : The only difference between using an '-l' option and specifying a filename  is  that  '-l'  surroundslibrarywith  'lib'  and  '.a'  and  searches  severaldirectories.
+
+
+Directories  specified  with  '-iquote'  apply  only  to  the  quote  form  of  thedirective,#include "file".Directories  specified  with  '-I',   '-isystem',or   '-idirafter'   apply   to   lookup   for   both   the#include "file"and#include <file>directives.You can specify any number or combination of these options on the commandline  to  search  for  header  files  in  several  directories.   The  lookup  order  is  asfollows:1.  For the quote form of the include directive, the directory of the current fileis searched first.2.  For  the  quote  form  of  the  include  directive,  the  directories  specified  by'-iquote' options are searched in left-to-right order, as they appear on thecommand line.3.  Directories specified with '-I' options are scanned in left-to-right order.4.  Directories  specified  with  '-isystem'  options  are  scanned  in  left-to-rightorder.5.  Standard system directories are scanned.6.  Directories specified with '-idirafter' options are scanned in left-to-rightorder.
+Chapter 3:  GCC Command Options189You can use '-I' to override a system header file, substituting your own ver-sion, since these directories are searched before the standard system header filedirectories.   However,  you  should  not  use  this  option  to  add  directories  thatcontain vendor-supplied system header files; use '-isystem' for that.The '-isystem' and '-idirafter' options also mark the directory as a systemdirectory,  so  that  it  gets  the  same  special  treatment  that  is  applied  to  thestandard system directories.If a standard system include directory, or a directory specified with '-isystem',is  also  specified  with  '-I',  the  '-I'  option  is  ignored.   The  directory  is  stillsearched but as a system directory at its normal position in the system includechain.  This is to ensure that GCC's procedure to fix buggy system headers andthe  ordering  for  the#include_nextdirective  are  not  inadvertently  changed.If  you  really  need  to  change  the  search  order  for  system  directories,  use  the'-nostdinc' and/or '-isystem' options.-I-Split the include path.  This option has been deprecated.  Please use '-iquote'instead for '-I' directories before the '-I-' and remove th
+
+Any  directories  specified  with  '-I'  options  before  '-I-'  are  searched  onlyfor  headers  requested  with#include "file";   they  are  not  searched  for#include <file>.  If additional directories are specified with '-I' options afterthe '-I-', those directories are searched for all '#include' directives
+
+
+The available standards.  Please see notes.  I deleted the details- this is just to give a sense, but many say deprecated, or dont use etc/.
+**'c99'**
+'c9x' 
+'iso9899:1999' 
+'iso9899:199x' 
+'c9x' 
+'iso9899:199x' 
+**'c11'**
+'c1x' 
+'iso9899:2011' 
+'c1x' 
+'gnu90' 
+'gnu89' 
+'gnu99' 
+'gnu9x' 
+'gnu9x' 
+'gnu11' 
+'gnu1x' 
+'gnu1x' 
+**'c++98'** 
+**'c++03'** 
+'-ansi' 
+'gnu++98' 
+'gnu++03' 
+**'-std=c++98'**
+**'c++11'**
+'c++0x' 
+'c++0x' 
+'gnu++11' 
+'gnu++0x' 
+**'-std=c++11'**
+'gnu++0x' 
+**'c++14'** 
+'c++1y' 
+'c++1y' 
+'gnu++14' 
+'gnu++1y' 
+**'-std=c++14'**
+'gnu++1y' 
+'c++1z'The  next  revision  of  the  ISO  C++standard,  tentatively  plannedfor 2017.  Support is highly experimental, and will almost certainlychange in incompatible ways in future releases.
+
 #### Synttax
 
         targets : prerequisites
@@ -230,33 +306,33 @@ TARGET: REQUIREMENTS
 
 ### Automatic Variables
 
-`$@` is the name of whichever target caused the rule’s recipe to be run.  It is the TARGET
+
 
 $? all prerequisites newer than target The names of all the prerequisites that are newer than the target, with spaces between them. If the target does not exist, all prerequisites will be included. 
+`$?` -The names of all the prerequisites that are newer than the target
+
+`$^` The names of all the prerequisites, with spaces between them
 
 $^ all prerequisites.The names of all the prerequisites, with spaces between them. For prerequisites which are archive members, only the named member is used (see Archives). 
 
 `$<` is the automatic variable that holds the name of the FIRST prerequisite and 
 
+`$<` The name of the first prerequisite. 
+
+`$@` is the name of whichever target caused the rule's recipe to be run.  It is the TARGET
+
 `$@` is the automatic variable that holds the name of the target;
 
-$@ The file name of the target of the rule. If the target is an archive member, then `$@` is the name of the archive file. In a pattern rule that has multiple targets (see Introduction to Pattern Rules), `$@` is the name of whichever target caused the rule’s recipe to be run. 
+$@ The file name of the target of the rule. If the target is an archive member, then `$@` is the name of the archive file. In a pattern rule that has multiple targets (see Introduction to Pattern Rules), `$@` is the name of whichever target caused the rule's recipe to be run. 
 
 `$%`
     The target member name, when the target is an archive member. 
 
-`$<` The name of the first prerequisite. 
 
-`$?` -The names of all the prerequisites that are newer than the target
 
-`$^` The names of all the prerequisites, with spaces between them
-
-`$*`
-- `` - The stem with which an implicit rule matches
-`$+`
-This is like `$^`, but prerequisites listed more than once are duplicated in the order they were listed in the makefile. 
-`$|`
-The names of all the order-only prerequisites, with spaces between them.
+`$*`- `` - The stem with which an implicit rule matches
+`$+`This is like `$^`, but prerequisites listed more than once are duplicated in the order they were listed in the makefile. 
+`$|`The names of all the order-only prerequisites, with spaces between them.
 
 
 `$*`
@@ -266,7 +342,7 @@ The names of all the order-only prerequisites, with spaces between them.
 
 
 ``$(@D)``   The directory part of the file name of the target, with the trailing slash removed. If the value of `$@` is dir/foo.o then `$(@D)` is dir. This value is . if `$@` does not contain a slash.
-``$(@F)` `    The file-within-directory part of the file name of the target. If the value of `$@` is dir/foo.o then `$(@F)` is foo.o. `$(@F)` is equivalent to ‘$(notdir $@)’.
+``$(@F)` `    The file-within-directory part of the file name of the target. If the value of `$@` is dir/foo.o then `$(@F)` is foo.o. `$(@F)` is equivalent to '$(notdir $@)'.
 ``$(*D)``$(*F)`` The directory part and the file-within-directory part of the stem; dir and foo in this example.
 ``$(%D)``$(%F)`` The directory part and the file-within-directory part of the target archive member name. This makes sense only for archive member targets of the form archive(member) and is useful only when member may contain a directory name. (See Archive Members as Targets.)
 ``$(<D)``$(<F)`` The directory part and the file-within-directory part of the first prerequisite.
@@ -275,6 +351,18 @@ The names of all the order-only prerequisites, with spaces between them.
 ``$(?D)` `$(?F)`` - Lists of the directory parts and the file-within-directory parts of all prerequisites that are newer than the target. 
 
 In an explicit rule, there is no stem; so `$*` cannot be determined in that way. Instead, if the target name ends with a recognized suffix (see Old-Fashioned Suffix Rules), `$*` is set to the target name minus the suffix.
+
+
+-fno-gnu-keywordsDo not recognizetypeofas a keyword, so that code can use this word as anidentifier.  You can use the keyword__typeof__instead.  This option is impliedby the strict ISO C++dialects:  ‘-ansi’, ‘-std=c++98’, ‘-std=c++11’, etc.
+
+
+
+-fdiagnostics-generate-patch
+
+
+-fno-show-column
+
+[Directory Search](https://www.gnu.org/software/make/manual/make.html#Directory-Search)
 
 ### Make Functions:
 
@@ -365,7 +453,7 @@ sets contents to the contents of the file foo, with a space (rather than a newli
 
 - **all** - Make all the top-level targets the makefile knows about.
 - **clean** - Delete all files that are normally created by running make.
-- **mostlyclean**, **distclean**, **realclean** - Like `clean`, but may refrain from deleting a few files that people normally don’t want to recompile. For example, the `mostlyclean` target for GCC does not delete libgcc.a, because recompiling it is rarely necessary and takes a lot of time.
+- **mostlyclean**, **distclean**, **realclean** - Like `clean`, but may refrain from deleting a few files that people normally don't want to recompile. For example, the `mostlyclean` target for GCC does not delete libgcc.a, because recompiling it is rarely necessary and takes a lot of time.
 - **clobber** - Any of these targets might be defined to delete more files than `clean` does. For example, this would delete configuration files or links that you would normally create as preparation for compilation, even if the makefile itself cannot create these files.
 - **install** - Copy the executable file into a directory that users typically search for commands; copy any auxiliary files that the executable uses into the directories where it will look for them.
 - **print** - Print listings of the source files that have changed.
@@ -415,7 +503,7 @@ The makefile tells make how to tell whether a target is up to date, and how to u
 
 `-C` [dir]`--directory=[dir]`
 
-`-f [file]’, `--file=[file]`,  `--makefile=[file]` - specify another file to use.
+`-f [file]', `--file=[file]`,  `--makefile=[file]` - specify another file to use.
 
 `-s` - run silently.
 
@@ -441,7 +529,7 @@ The makefile tells make how to tell whether a target is up to date, and how to u
 
 `-O[type]` `--output-sync[=type]` -    Ensure that the complete output from each recipe is printed in one uninterrupted sequence. 
 
-`-o` [file]’ `--old-file=[file]` `--assume-old=[file]`     Do not remake the file file even if it is older than its prerequisites, and do not remake anything on account of changes in file. Essentially the file is treated as very old and its rules are ignored. See Avoiding Recompilation of Some Files.
+`-o` [file]' `--old-file=[file]` `--assume-old=[file]`     Do not remake the file file even if it is older than its prerequisites, and do not remake anything on account of changes in file. Essentially the file is treated as very old and its rules are ignored. See Avoiding Recompilation of Some Files.
 
 `-p` `--print-data-base` Print the data base (rules and variable values) that results from reading the makefiles; then execute as usual or as otherwise specified. This also prints the version information given by the `-v` switch (see below). 
 
@@ -461,7 +549,7 @@ The makefile tells make how to tell whether a target is up to date, and how to u
 
 `--no-print-directory` Disable printing of the working directory under -w. This option is useful when -w is turned on automatically, but you do not want to see the extra messages. 
 
-`-W` [file] `--what-if`=[file] “What if”. `--assume-new=[file]`,`--new-file=[file]` Each `-W` flag is followed by a file name. The given files’ modification times are recorded by make as being the present time, although the actual modification times remain the same. 
+`-W` [file] `--what-if`=[file] “What if”. `--assume-new=[file]`,`--new-file=[file]` Each `-W` flag is followed by a file name. The given files' modification times are recorded by make as being the present time, although the actual modification times remain the same. 
 
 `--warn-undefined-variables`    Issue a warning message whenever make sees a reference to an undefined variable. This can be helpful when you are trying to debug makefiles which use variables in complex ways. 
 
@@ -507,6 +595,18 @@ for i in a list of subs.  do {
 # 	cc $(SRC:.c=.o) -o $(SRC:.c=)
 # 	$(ROOT)$(SRC:.c=)
 ```
+
+
+
+
+SUBDIRS = foo bar baz
+
+subdirs:
+        for dir in $(SUBDIRS); do \
+          $(MAKE) -C $$dir; \
+        done
+
+There are problems with this method, however. First, any error detected in a sub-make is ignored by this rule, so it will continue to build the rest of the directories even when one fails. This can be overcome by adding shell commands to note the error and exit, but then it will do so even if make is invoked with the -k option, which is unfortunate. 
 
 
 If
@@ -998,6 +1098,66 @@ int main()
 ` fun_ptr = &fun;` 
 
 
+### builtin Types
+
+- `cc_t` - Type used for terminal special characters.
+- `clock_t` - Integer or real-floating type used for processor times, 
+  - as defined in the ISO C standard.
+- `clockid_t` - Used for clock ID type in some timer functions.
+- `dev_t` - Integer type used for device numbers.
+- `DIR` - Type representing a directory stream.
+- `div_t` - Structure type returned by the div() function.
+- `FILE` - Structure containing information about a file.
+- `glob_t` - Structure type used in pathname pattern matching.
+- `fpos_t` - Type containing all information needed to specify uniquely every file position 
+- `gid_t` - Integer type used for group IDs.
+- `iconv_t` - Type used for conversion descriptors.
+- `id_t` - Integer type used as a general identifier;
+  -  can be used to contain at least the largest of a pid_t, uid_t, or gid_t.
+- `ino_t` - Unsigned integer type used for file serial numbers.
+- `key_t` - Arithmetic type used for XSI interprocess communication.
+- `ldiv_t` - Structure type returned by the ldiv() function.
+- `mode_t` - Integer type used for file attributes.
+- `mqd_t` - Used for message queue descriptors.
+- `nfds_t` - Integer type used for the number of file descriptors.
+- `nlink_t` - Integer type used for link counts.
+- `off_t` - Signed integer type used for file sizes.
+- `pid_t` - Signed integer type used for process and process group IDs.
+- `pthread_attr_t` - Used to identify a thread attribute object.
+- `pthread_cond_t` - Used for condition variables.
+- `pthread_condattr_t` - Used to identify a condition attribute object.
+- `pthread_key_t` - Used for thread-specific data keys.
+- `pthread_mutex_t` - Used for mutexes.
+- `pthread_mutexattr_t` - Used to identify a mutex attribute object.
+- `pthread_once_t` - Used for dynamic package initialization.
+- `pthread_rwlock_t` - Used for read-write locks.
+- `pthread_rwlockattr_t` - Used for read-write lock attributes.
+- `pthread_t` - Used to identify a thread.
+- `ptrdiff_t` - Signed integer type of the result of subtracting two pointers.
+- `regex_t` - Structure type used in regular expression matching.
+- `regmatch_t` - Structure type used in regular expression matching.
+- `rlim_t` - Unsigned integer type used for limit values, 
+  - which objects of type int and off_t can be cast without loss of value.
+- `sem_t` - Type used in performing semaphore operations.
+- `sig_atomic_t` - Possibly volatile-qualified integer type of an object 
+  - can be accessed as an atomic entity, even in the presence of asynchronous interrupts.
+- `sigset_t` - Integer or structure type of an object used to represent sets of signals.
+- `size_t` - Unsigned integer type used for size of objects.
+- `speed_t` - Type used for terminal baud rates.
+- `ssize_t` - Signed integer type used for a count of bytes or an error indication.
+- `suseconds_t` - Signed integer type used for time in microseconds.
+- `tcflag_t` - Type used for terminal modes.
+- `time_t` - Integer type used for time in seconds, as defined in the ISO C standard.
+- `timer_t` - Used for timer ID returned by the timer_create() function.
+- `uid_t` - Integer type used for user IDs.
+- `va_list` - Type used for traversing variable argument lists.
+- `wchar_t` - Integer type for largest extended character set 
+  - specified by the supported locales.
+  - range of values can represent distinct codes for all members of char set
+- `wctype_t` - Scalar type which represents a character class descriptor.
+- `wint_t` - Integer type capable of storing any valid value of wchar_t or WEOF.
+- `wordexp_t` - Structure type used in word expansion.
+
 ### Strings
 
 char arrays in C
@@ -1027,7 +1187,7 @@ int main(int argc, char **argv){
 Unlike normal pointers, we do not allocate de-allocate memory using function pointers.
 
  
-A function’s name can also be used to get functions’ address. For example, in the below program, we have removed address operator ‘&’ in assignment. We have also changed function call by removing *, the program still works.
+A function's name can also be used to get functions' address. For example, in the below program, we have removed address operator '&' in assignment. We have also changed function call by removing *, the program still works.
 
 
 ```C++
@@ -1052,7 +1212,7 @@ int main()
 
 ## Errors:
 
-        warning: implicit declaration of function ‘atof’ [-Wimplicit-function-declaration]
+        warning: implicit declaration of function 'atof' [-Wimplicit-function-declaration]
    20 |     cent = atof(buf);
 
 
@@ -1363,7 +1523,7 @@ xxxxx myName() {
 
 he tricky thing is defining the return value type.
 
-Strings in C are arrays of char elements, so we can’t really return a string - we must return a pointer to the first element of the string.
+Strings in C are arrays of char elements, so we can't really return a string - we must return a pointer to the first element of the string.
 
 This is why we need to use const char*:
 
@@ -1387,7 +1547,7 @@ This works
         }
 
 
-Note the use of const, because from the function I’m returning a string literal, a string defined in double quotes, which is a constant.
+Note the use of const, because from the function I'm returning a string literal, a string defined in double quotes, which is a constant.
 
 
 ```c
