@@ -64,7 +64,13 @@ Install ruby:
  
  sudo gem install colorls -- --use-system-libraries
  
+sudo apt install ruby-dev
+
 gem install colorls
+
+
+
+Disregard below-  needs ruby-dev.
 
  https://github.com/athityakumar/colorls/issues/310
 
@@ -245,7 +251,22 @@ The following packages will be REMOVED:
 After this operation, 122 MB disk space will be freed.
 ##### snipped
 
+
+
 ```
+
+This has the best info- still not working though [Pull 106](https://github.com/microsoft/linux-vm-tools/pull/106)
+Set-VM -VMName <your_vm_name> -EnhancedSessionTransportType HvSocket
+and
+
+sudo apt install git
+git clone https://github.com/microsoft/linux-vm-tools.git
+cd linux-vm-tools
+git fetch --all
+git pull origin pull/106/head:pull_106
+git checkout pull_106
+cd ubuntu/20.04/
+sudo bash ./install.sh
 
 
 gnome-characters

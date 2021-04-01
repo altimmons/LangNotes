@@ -2426,6 +2426,45 @@ I picked this appart, and the critical bits are  the `-P` flag, and the `%` flag
 - %f unsets it.
 
 
+This is the relevant seciton
+
+
+http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion
+
+13.2.5 Visual effects
+
+%B (%b)
+
+    Start (stop) boldface mode.
+%E
+
+    Clear to end of line.
+%U (%u)
+
+    Start (stop) underline mode.
+%S (%s)
+
+    Start (stop) standout mode.
+%F (%f)
+
+    Start (stop) using a different foreground colour, if supported by the terminal. The colour may be specified two ways: either as a numeric argument, as normal, or by a sequence in braces following the %F, for example %F{red}. In the latter case the values allowed are as described for the fg zle_highlight attribute; Character Highlighting. This means that numeric colours are allowed in the second format also.
+%K (%k)
+
+    Start (stop) using a different bacKground colour. The syntax is identical to that for %F and %f.
+%{...%}
+
+    Include a string as a literal escape sequence. The string within the braces should not change the cursor position. Brace pairs can nest.
+
+    A positive numeric argument between the % and the { is treated as described for %G below.
+%G
+
+    Within a %{...%} sequence, include a ‘glitch’: that is, assume that a single character width will be output. This is useful when outputting characters that otherwise cannot be correctly handled by the shell, such as the alternate character set on some terminals. The characters in question can be included within a %{...%} sequence together with the appropriate number of %G sequences to indicate the correct width. An integer between the ‘%’ and ‘G’ indicates a character width other than one. Hence %{seq%2G%} outputs seq and assumes it takes up the width of two standard characters.
+
+    Multiple uses of %G accumulate in the obvious fashion; the position of the %G is unimportant. Negative integers are not handled.
+
+    Note that when prompt truncation is in use it is advisable to divide up output into single characters within each %{...%} group so that the correct truncation point can be found.
+
+
 ### Getting Help:
 
 type - Display information about command type
@@ -3442,6 +3481,25 @@ If the *string* is longer than the specified truncation length, it will appear
 The part of the prompt string to be truncated runs to the end of the string, or to the end of the next enclosing group of the '`%(`' construct, or to the next truncation encountered at the same grouping level (i.e. truncations inside a '`%(`' are separate), which ever comes first. In particular, a truncation with argument zero (e.g., '`%<<`') marks the end of the range of the string to be truncated while turning off truncation from there on. For example, the prompt '`%10<...<%~%<<%# `' will print a truncated representation of the current directory, followed by a '`%`' or '`#`', followed by a space. Without the '`%<<`', those two characters would be included in the string to be truncated. Note that '`%-0<<`' is not equivalent to '`%<<`' but specifies that the prompt is truncated at the right margin.
 
 Truncation applies only within each individual line of the prompt, as delimited by embedded newlines (if any). If the total length of any line of the prompt after truncation is greater than the terminal width, or if the part to be truncated contains embedded newlines, truncation behavior is undefined and may change in a future version of the shell. Use '`%-`*n*`(l.`*true-text*`.`*false-text*`)`' to remove parts of the prompt when the available space is less than *n*.
+
+
+## fonts
+
+
+go in /usr/share/fonts
+
+or in ~/.local/share/fonts
+
+
+copy into the right dir
+
+then run fc-cache -f -v
+
+
+*journalctl -xe* lists the following locations 
+`usr/share/fonts/x11/misc`
+`usr/share/fonts/x11/Type1`
+
 
 ___
 ## Pi Notes

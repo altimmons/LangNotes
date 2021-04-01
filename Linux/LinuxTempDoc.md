@@ -87,8 +87,16 @@ aun
       - `/etc/sgml` - Configuration files, such as catalogs, for software that processes SGML.
       - `/etc/X11` - Configuration files for the X Window System, version 11.
       - `/etc/xml` - Configuration files, such as catalogs, for software that processes XML.
+      - `/etc/profile.d`  -  The expectation is that when a shell is initiated all scripts in /etc/profile.d are executed. Holds the shell start up scripts.  Config is usually in ~
+
 - `/home` - Users' home directories, containing saved files, personal settings, etc.
       - `/home/.config` - Users' home  personal settings, .  
+      - `/home/<user>` the current user home dir.
+            - `/home/<user>/.local`
+                  - `/home/<user>/.local/bin` - seems equivalent to /usr/bin? though even more local.  Some programs make use of this but its not always added to path.
+                        - `export PATH="${PATH}:/home/andyt/.local/bin"` needed to be added.
+                  - `/home/<user>/.local/share`
+                        Fonts, for one are here.
 - `/lib` - Libraries essential for the binaries in /bin and /sbin.
       - **/lib  <qual>**- Alternative format essential libraries. Such directories are optional, but if they exist, they have some requirements- e.g. `/lib32`, or `/lib64`.
             - In Debian - is a link to -> `/usr/lib[x]`
@@ -173,7 +181,7 @@ aun
 - xsysinfo - display some  Linux kernal params in Graphical form
 
 
-- dasher - graphical predictive text input tool
+~~- dasher - graphical predictive text input tool~~ - not what it sounds like.  Think paralyed/Hawkins
 - dconf-cli, dconf-editor, dconf-service, *-cli, -gsettings-backend,  - config storage system
 - design-desktop, -* (animation, graphics, strict, web) - debian desktop setups
 - desklaunch - utility for desktop icons
@@ -275,8 +283,9 @@ settings stored in `[?/etc/apt] /apt.conf`
 
 There is a users guide in _/usr/share/doc/apt-doc/
 
+!!! Note  The apt tool merges functionalities of apt-get and apt-cache.  Apt is actually newer. 
 
-apt 
+apt   
 - list
 - search
 - show

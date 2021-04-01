@@ -1,64 +1,69 @@
- $## Apt get
+# Random Linux Stuff
+
+## Apt Commands.
+
+##  $## Apt get
+
  To list all the available packages,
-$ apt-cache pkgnames
+		$ apt-cache pkgnames
 
 To find out the package name and with it description before installing, use the ‘search‘ flag. Using “search” with apt-cache will display a list of matched packages with short description. Let’s say you would like to find out description of package ‘vsftpd‘, then command would be.
 
-$ apt-cache search vsftpd
+		$ apt-cache search vsftpd
 
 To find and list down all the packages starting with ‘vsftpd‘, you could use the following command.
 
-$ apt-cache pkgnames vsftpd
+		$ apt-cache pkgnames vsftpd
 vsttpd
 
 3. How Do I Check Package Information?
 For example, if you would like to check information of package along with it short description say (version number, check sums, size, installed size, category etc). Use ‘show‘ sub command as shown below.
 
-$ apt-cache show netcat
+		$ apt-cache show netcat
 
 4. How Do I Check Dependencies for Specific Packages?
 Use the ‘showpkg‘ sub command to check the dependencies for particular software packages. whether those dependencies packages are installed or not. For example, use the ‘showpkg‘ command along with package-name.
 
-$ apt-cache showpkg vsftpd
+		$ apt-cache showpkg vsftpd
 Package: vsftpd
 
 5. How Do I Check statistics of Cache
 The ‘stats‘ sub command will display overall statistics about the cache. For example, the following command will display Total package names is the number of packages have found in the cache.
 
-$ apt-cache stats
+		$ apt-cache stats
 
 6. How to Update System Packages
 The ‘update‘ command is used to resynchronize the package index files from the their sources specified in /etc/apt/sources.list file. The update command fetched the packages from their locations and update the packages to newer version.
 
-$ sudo apt-get update
+		$ sudo apt-get update
 
 7. How to Upgrade Software Packages
 The ‘upgrade‘ command is used to upgrade all the currently installed software packages on the system. Under any circumstances currently installed packages are not removed or packages which are not already installed neither retrieved and installed to satisfy upgrade dependencies.
 
-$ sudo apt-get upgrade
+		$ sudo apt-get upgrade
 
 However, if you want to upgrade, unconcerned of whether software packages will be added or removed to fulfill dependencies, use the ‘dist-upgrade‘ sub command.
-$ sudo apt-get dist-upgrade
+		$ sudo apt-get dist-upgrade
 
 8. How Do I Install or Upgrade Specific Packages?
 The ‘install‘ sub command is tracked by one or more packages wish for installation or upgrading.
 
-$ sudo apt-get install netcat
+		$ sudo apt-get install netcat
 
 9. How I can Install Multiple Packages?
 You can add more than one package name along with the command in order to install multiple packages at the same time. For example, the following command will install packages ‘nethogs‘ and ‘goaccess‘.
 
-$ sudo apt-get install nethogs goaccess
+		$ sudo apt-get install nethogs goaccess
 
 10. How to Install Several Packages using Wildcard
 With the help of regular expression you can add several packages with one string. For example, we use * wildcard to install several packages that contains the ‘*name*‘ string, name would be ‘package-name’.
 
-$ sudo apt-get install '*name*'
+		$ sudo apt-get install '*name*'
 
 11. How to install Packages without Upgrading
 Using sub ‘–no-upgrade‘ command will prevent already installed packages from upgrading.
 
-$ sudo apt-get install packageName --no-upgrade
+		$ sudo apt-get install packageName --no-upgrade
 
 12. How to Upgrade Only Specific Packages
 The ‘–only-upgrade‘ command do not install new packages but it only upgrade the already installed packages and disables new installation of packages.
@@ -66,75 +71,75 @@ The ‘–only-upgrade‘ command do not install new packages but it only upgrad
 13. How Do I Install Specific Package Version?
 Let’s say you wish to install only specific version of packages, simply use the ‘=‘ with the package-name and append desired version.
 
-$ sudo apt-get install vsftpd=2.3.5-3ubuntu1
+		$ sudo apt-get install vsftpd=2.3.5-3ubuntu1
 
 To un-install software packages without removing their configuration files (for later re-use the same configuration). Use the ‘remove‘ command as shown.
 
-$ sudo apt-get remove vsftpd
+		$ sudo apt-get remove vsftpd
 15. How Do I Completely Remove Packages
 To remove software packages including their configuration files, use the ‘purge‘ sub command as shown below.
 
-$ sudo apt-get purge vsftpd
+		$ sudo apt-get purge vsftpd
 
 Alternatively, you can combine both the commands together as shown below.
 
-$ sudo apt-get remove --purge vsftpd
+		$ sudo apt-get remove --purge vsftpd
 
 16. How I Can Clean Up Disk Space
 The ‘clean‘ command is used to free up the disk space by cleaning retrieved (downloaded) .deb files (packages) from the local repository.
 
-$ sudo apt-get clean
+		$ sudo apt-get clean
 
 17. How Do I Download Only Source Code of Package
 To download only source code of particular package, use the option ‘–download-only source‘ with ‘package-name’ as shown.
 
-$ sudo apt-get --download-only source vsftpd
+		$ sudo apt-get --download-only source vsftpd
 
 18. How Can I Download and Unpack a Package
 To download and unpack source code of a package to a specific directory, type the following command.
 
-$ sudo apt-get source vsftpd
+		$ sudo apt-get source vsftpd
 
 19. How Can I Download, Unpack and Compile a Package
 You can also download, unpack and compile the source code at the same time, using option ‘–compile‘ as shown below.
 
-$ sudo apt-get --compile source goaccess
+		$ sudo apt-get --compile source goaccess
 
 20. How Do I Download a Package Without Installing
 Using ‘download‘ option, you can download any given package without installing it. For example, the following command will only download ‘nethogs‘ package to current working directory.
 
-$ sudo apt-get download nethogs
+		$ sudo apt-get download nethogs
 
 21. How Do I Check Change Log of Package?
 The ‘changelog‘ flag downloads a package change-log and shows the package version that is installed.
 
-$ sudo apt-get changelog vsftpd
+		$ sudo apt-get changelog vsftpd
 
 22. How Do I Check Broken Dependencies?
 The ‘check‘ command is a diagnostic tool. It used to update package cache and checks for broken dependencies.
 
-$ sudo apt-get check
+		$ sudo apt-get check
 
 23. How Do I Search and Build Dependencies?
 This ‘build-dep‘ command searches the local repositories in the system and install the build dependencies for package. If the package does not exists in the local repository it will return an error code.
 
-$ sudo apt-get build-dep netcat
+		$ sudo apt-get build-dep netcat
 
 24. How I Can Auto clean Apt-Get Cache?
 The ‘autoclean‘ command deletes all .deb files from /var/cache/apt/archives to free-up significant volume of disk space.
 
-$ sudo apt-get autoclean
+		$ sudo apt-get autoclean
 
 25. How I Can Auto remove Installed Packages?
 The ‘autoremove‘ sub command is used to auto remove packages that were certainly installed to satisfy dependencies for other packages and but they were now no longer required. For example, the following command will remove an installed package with its dependencies.
 
-$ sudo apt-get autoremove vsftpd
+		$ sudo apt-get autoremove vsftpd
 
 I’ve covered most of the available options with apt-get and apt-cache commands, but still there are more options available, you can check them out using ‘man apt-get‘ or ‘man apt-cache‘ from the terminal. I hope you enjoyed reading this article, If I’ve missed anything and you would like me to add to the list. Please feel free to mention in the comment below.
 
 This following command will download all installed packages to directory /var/cache/apt/archives.
 
-$ sudo dpkg -l | grep "^ii"| awk ' {print $2} ' | xargs sudo apt-get -y install --reinstall --download-only
+		$ sudo dpkg -l | grep "^ii"| awk ' {print $2} ' | xargs sudo apt-get -y install --reinstall --download-only
 
 ## fd command
 
@@ -156,56 +161,56 @@ How to Install fd in Linux
 
 For Ubuntu and Debian based distros, you will need to download the latest fd version from the release page and install it using following commands.
 
-$ wget https://github.com/sharkdp/fd/releases/download/v7.3.0/fd-musl_7.3.0_amd64.deb
-$ sudo dpkg -i fd-musl_7.3.0_amd64.deb
+		$ wget https://github.com/sharkdp/fd/releases/download/v7.3.0/fd-musl_7.3.0_amd64.deb
+		$ sudo dpkg -i fd-musl_7.3.0_amd64.deb
 
 On Other Linux distributions, you can install fd from the default repository using package manager as shown.
 
-$# dnf install fd-find  [On Fedora]
-$# pacman -S fd         [On Arch Linux]
-$# emerge -av fd        [On Gentoo]
-$# zypper in fd         [On OpenSuse]
+		$# dnf install fd-find  [On Fedora]
+		$# pacman -S fd         [On Arch Linux]
+		$# emerge -av fd        [On Gentoo]
+		$# zypper in fd         [On OpenSuse]
 
 How to Use fd in Linux
 Similar to find command, fd has many uses cases, but let’s start at checking the available options:
 
-$# fd -h
+		$# fd -h
 OR
-$# fd --help
+		$# fd --help
 
 You can run fd without any arguments, the output is very similar to ls -R command.
 
-$# fd
+		$# fd
 In the next fd examples, I will use a default WordPress installation located in /var/www/html/ to search for different files and folders.
 
 In the example below, I have taken only the first 10 results for shorter output of the command.
 
-$# fd | head
+		$# fd | head
 
 Let’s say we want to find all jpg files. We can use the “-e” flag to filter by file extension:
 
-$# fd -e jpg
+		$# fd -e jpg
 
 The “-e” flag can be used in combination with a pattern like this:
 
-$# fd -e php index
+		$# fd -e php index
 The above command will look for files with extension php and have the string “index” in them: "*index*.php"
 
 
 If you want to exclude some results, you can use the “-E” flag like this:
 
-$# fd -e php index -E wp-content
+		$# fd -e php index -E wp-content
 This command will look for all files with php extension, containing the string “index” and will exclude results from the “wp-content” directory.
 
 If you want to specify a search directory, you simply need to give it as argument:
 
-$# fd <pattern> <directory>
+		$# fd <pattern> <directory>
 
 Just as find, you can use -x or --exec arguments to perform parallel command execution with the search results.
 
 Here is an example where we will use chmod to change permissions of the image files
 
-$# fd -e jpg -x chmod 644 {}
+		$# fd -e jpg -x chmod 644 {}
 The above will find all files with extension jpg and will run chmod 644 <path-to-file>.
 
 Here is some useful explanation and usage of the brackets:
@@ -221,36 +226,36 @@ Here is some useful explanation and usage of the brackets:
 
 Find all the files whose name is tecmint.txt in a current working directory.
 
-$# find . -name tecmint.txt
+		$# find . -name tecmint.txt
 
 Find all the files under /home directory with name tecmint.txt.
 
-$# find /home -name tecmint.txt
+		$# find /home -name tecmint.txt
 
 /home/tecmint.txt
 
 Find all the files whose name is tecmint.txt and contains both capital and small letters in /home directory.
 
-$# find /home -iname tecmint.txt
+		$# find /home -iname tecmint.txt
 
 ./tecmint.txt
 ./Tecmint.txt
 
 4. Find Directories Using Name is Tecmint in / directory.
 
-$# find / -type d -name Tecmint
+		$# find / -type d -name Tecmint
 
 /Tecmint
 
 5. Find PHP Files Using Name is tecmint.php in a current working directory.
 
-$# find . -type f -name tecmint.php
+		$# find . -type f -name tecmint.php
 
 ./tecmint.php
 
 Find all php files in a directory.
 
-$# find . -type f -name "*.php"
+		$# find . -type f -name "*.php"
 
 ./tecmint.php
 ./login.php
@@ -260,139 +265,156 @@ $# find . -type f -name "*.php"
 Part II – Find Files Based on their Permissions
 7. Find Files With 777 Permissions
 
-$# find . -type f -perm 0777 -print
+		$# find . -type f -perm 0777 -print
 
 8. Find Files Without 777 Permissions
 
-$# find / -type f ! -perm 777
+		$# find / -type f ! -perm 777
 
 9. Find all the SGID bit files whose permissions set to 644.
 
-$# find / -perm 2644
+		$# find / -perm 2644
 
 10. Find all the Sticky Bit set files whose permission are 551.
 
-$# find / -perm 1551
+		$# find / -perm 1551
 
 11. Find SUID Files
 
-$# find / -perm /u=s
+		$# find / -perm /u=s
 
 12. Find SGID Files
 
-$# find / -perm /g=s
+		$# find / -perm /g=s
 
 13. Find Read Only Files
 
-$# find / -perm /u=r
+		$# find / -perm /u=r
 
 14. Find Executable Files
 
-$# find / -perm /a=x
+		$# find / -perm /a=x
 
 15. Find all 777 permission files and use chmod command to set permissions to 644.
 
-$# find / -type f -perm 0777 -print -exec chmod 644 {} \;
+		$# find / -type f -perm 0777 -print -exec chmod 644 {} \;
 
 16. Find all 777 permission directories and use chmod command to set permissions to 755.
 
-$# find / -type d -perm 777 -print -exec chmod 755 {} \;
+		$# find / -type d -perm 777 -print -exec chmod 755 {} \;
 
 17. To find a single file called tecmint.txt and remove it.
 
-$# find . -type f -name "tecmint.txt" -exec rm -f {} \;
+		$# find . -type f -name "tecmint.txt" -exec rm -f {} \;
 
 18. To find and remove multiple files such as .mp3 or .txt, then use.
 
-$# find . -type f -name "*.txt" -exec rm -f {} \;
+		$# find . -type f -name "*.txt" -exec rm -f {} \;
 
 OR
 
-$# find . -type f -name "*.mp3" -exec rm -f {} \;
+		$# find . -type f -name "*.mp3" -exec rm -f {} \;
 
 19. To find all empty files under certain path.
 
-$# find /tmp -type f -empty
+		$# find /tmp -type f -empty
 
 20. To file all empty directories under certain path.
 
-$# find /tmp -type d -empty
+		$# find /tmp -type d -empty
 
 
 21. To find all hidden files, use below command.
 
-$# find /tmp -type f -name ".*"
+		$# find /tmp -type f -name ".*"
 
 
 Part III – Search Files Based On Owners and Groups
 22. To find all or single file called tecmint.txt under / root directory of owner root.
 
-$# find / -user root -name tecmint.txt
+		$# find / -user root -name tecmint.txt
 
 23. To find all files that belongs to user Tecmint under /home directory.
 
-$# find /home -user tecmint
+		$# find /home -user tecmint
 
 24. To find all files that belongs to group Developer under /home directory.
-$# find /home -group developer
+		$# find /home -group developer
 
 25. To find all .txt files of user Tecmint under /home directory.
-$# find /home -user tecmint -iname "*.txt"
+		$# find /home -user tecmint -iname "*.txt"
 Part IV – Find Files and Directories Based on Date and Time
 
 26. To find all the files which are modified 50 days back.
-$# find / -mtime 50
+		$# find / -mtime 50
 
 27. To find all the files which are accessed 50 days back.
-$# find / -atime 50
+		$# find / -atime 50
 
 28. To find all the files which are modified more than 50 days back and less than 100 days.
-$# find / -mtime +50 –mtime -100
+		$# find / -mtime +50 –mtime -100
 
 29. To find all the files which are changed in last 1 hour.
-$# find / -cmin -60
+		$# find / -cmin -60
 
 30. To find all the files which are modified in last 1 hour.
-$# find / -mmin -60
+		$# find / -mmin -60
 
 31. To find all the files which are accessed in last 1 hour.
-$# find / -amin -60
+		$# find / -amin -60
 Part V – Find Files and Directories Based on Size
 
 32. To find all 50MB files, use.
-$# find / -size 50M
+		$# find / -size 50M
 
 33. To find all the files which are greater than 50MB and less than 100MB.
-$# find / -size +50M -size -100M
+		$# find / -size +50M -size -100M
 
 34. To find all 100MB files and delete them using one single command.
-$# find / -size +100M -exec rm -rf {} \;
+		$# find / -size +100M -exec rm -rf {} \;
 
 35. Find all .mp3 files with more than 10MB and delete them using one single command.
-$# find / -type f -name *.mp3 -size +10M -exec rm {} \;
+		$# find / -type f -name *.mp3 -size +10M -exec rm {} \;
 
-##Fun - nms no more secrets
+## Fun 
+
+### Hollywood
+
+sudo apt install hollywood
+
+
+![](https://media.giphy.com/avatars/default3.gif){ width=20% }
+
+![](https://i.giphy.com/media/wmROp19pebs9W/200w.webp){width=50%}
+
+If the above command doesn’t work in your Ubuntu or other Ubuntu based Linux distributions such as Linux Mint, elementary OS, Zorin OS, Linux Lite etc, you may use the below PPA:
+
+sudo apt-add-repository ppa:hollywood/ppa
+sudo apt-get update
+sudo apt-get install byobu hollywood
+
+### nms no more secrets
+
 https://github.com/bartobri/no-more-secrets
 
 Install:
-$ git clone https://github.com/bartobri/no-more-secrets.git
-$ cd ./no-more-secrets
-$ make nms
-$ make sneakers             ## Optional
-$ sudo make install
+		$ git clone https://github.com/bartobri/no-more-secrets.git
+		$ cd ./no-more-secrets
+		$ make nms
+		$ make sneakers             ## Optional
+		$ sudo make install
 Uninstall:
-$ sudo make uninstall
-
+		$ sudo make uninstall
 
 
 Install with Ncurses Support
 If your terminal does not support ANSI/VT100 escape sequences, the effect may not render properly. This project provides a ncurses implementation for such cases. You will need the ncurses library installed. Install this library from your package manager. Next, follow these instructions:
 
-$ git clone https://github.com/bartobri/no-more-secrets.git
-$ cd ./no-more-secrets
-$ make nms-ncurses
-$ make sneakers-ncurses     ## Optional
-$ sudo make install
+		$ git clone https://github.com/bartobri/no-more-secrets.git
+		$ cd ./no-more-secrets
+		$ make nms-ncurses
+		$ make sneakers-ncurses     ## Optional
+		$ sudo make install
 
 
 Building and installing cmatrix
@@ -408,9 +430,9 @@ Here we also show an out-of-source build in the sub directory "build".
 
 mkdir -p build
 cd build
-$# to install to "/usr/local"
+		$# to install to "/usr/local"
 cmake ..
-$# or to install to "/usr"
+		$# or to install to "/usr"
 #cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 make install
@@ -563,7 +585,7 @@ bash: fg: %blow: no such job
 root@tecmint:~# make love
 
 make: *** No rule to make target `love'.  Stop.
-$ [ whereis my brain?
+		$ [ whereis my brain?
 sh: 2: [: missing ]
 % man: why did you get a divorce?
 man:: Too many arguments.
@@ -633,15 +655,15 @@ This article was highly appreciated by our readers, which contains simple yet ve
 
 If mtr not installed, you can install it on your respective Linux distributions using your default package manager as shown.
 
-$ sudo apt install mtr
-$ sudo yum install mtr
-$ sudo dnf install mtr
+		$ sudo apt install mtr
+		$ sudo yum install mtr
+		$ sudo dnf install mtr
 10 MTR Network Diagnostics Tool Usage Examples
 1. The simplest example of using mtr is to provide the domain name or IP address of the remote machine as an argument, for example google.com or 216.58.223.78. This command will show you a traceroute report updated in real-time, until you exit the program (by pressing q or Ctrl + C).
 
-$ mtr google.com
+		$ mtr google.com
 OR
-$ mtr 216.58.223.78
+		$ mtr 216.58.223.78
 
 Start: Thu Jun 28 12:10:13 2018
 HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
@@ -654,7 +676,7 @@ HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
   7.|-- bom05s12-in-f14.1e100.net  0.0%     5    2.1   2.4   2.0   3.8   0.5
 2. You can force mtr to display numeric IP addresses instead of host names (typically FQDNs – Fully Qualified Domain Names), using the -n flag as shown.
 
-$ mtr -n google.com
+		$ mtr -n google.com
 
 Start: Thu Jun 28 12:12:58 2018
 HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
@@ -667,7 +689,7 @@ HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
   7.|-- 172.217.160.174            0.0%     5    3.7   3.6   2.0   5.3   1.4
 3. If you would like mtr to display both host names as well as numeric IP numbers use the -b flag as shown.
 
-$ mtr -b google.com
+		$ mtr -b google.com
 
 Start: Thu Jun 28 12:14:36 2018
 HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
@@ -680,40 +702,40 @@ HOST: TecMint                     Loss%   Snt   Last   Avg  Best  Wrst StDev
   7.|-- bom07s15-in-f14.1e100.net  0.0%     5    3.7   2.2   1.7   3.7   0.9
 4. To limit the number of pings to a specific value and exit mtr after those pings, use the -c flag. If you observe from the Snt column, once the specified number of pings is reached, the live update stops and the program exits.
 
-$ mtr -c5 google.com
+		$ mtr -c5 google.com
 5. You can set it into report mode using the -r flag, a useful option for producing statistics concerning network quality. You can use this option together with the -c option to specify the number of pings. Since the statistics are printed to std output, you can redirect them to a file for later analysis.
 
-$ mtr -r -c 5 google.com >mtr-report
+		$ mtr -r -c 5 google.com >mtr-report
 
 The -w flag enables wide report mode for a clearer output.
 
-$ mtr -rw -c 5 google.com >mtr-report
+		$ mtr -rw -c 5 google.com >mtr-report
 
 6. You can also re-arrange the output fields the way you wish, this is made possible by the -o flag as shown (see the mtr man page for meaning of field labels).
 
-$ mtr -o "LSDR NBAW JMXI" 216.58.223.78
+		$ mtr -o "LSDR NBAW JMXI" 216.58.223.78
 
 7. The default interval between ICMP ECHO requests is one second, you can specify interval between ICMP ECHO requests by changing the value using the -i flag as shown.
 
-$ mtr -i 2 google.com
+		$ mtr -i 2 google.com
 
 8. You can use TCP SYN packets or UDP datagrams instead of the default ICMP ECHO requests as shown.
 
-$ mtr --tcp test.com
+		$ mtr --tcp test.com
 OR
-$ mtr --udp test.com
+		$ mtr --udp test.com
 
 9. To specify the maximum number of hops (default is 30) to be probed between the local system and the remote machine, use the -m flag.
 
-$ mtr -m 35 216.58.223.78
+		$ mtr -m 35 216.58.223.78
 
 10. While probing network quality, you can set the packet size used in bytes using the -s flag like so.
 
-$ mtr -r -s PACKETSIZE -c 5 google.com >mtr-report
+		$ mtr -r -s PACKETSIZE -c 5 google.com >mtr-report
 
 With these examples, you should be good to go with using mtr, see man page for more usage options.
 
-$ man mtr
+		$ man mtr
 
 
 1. ifconfig
@@ -745,23 +767,23 @@ Network interface only received packets belongs to that particular NIC. If you p
 1. PING Command
 PING (Packet INternet Groper) command is the best way to test connectivity between two nodes. Whether it is Local Area Network (LAN) or Wide Area Network (WAN). Ping use ICMP (Internet Control Message Protocol) to communicate to other devices. You can ping host name of ip address using below command.
 
-$# ping 4.2.2.2
+		$# ping 4.2.2.2
 
 OR
 
-$# ping www.tecmint.com
+		$# ping www.tecmint.com
 
-$# ping -c 5 www.tecmint.com
+		$# ping -c 5 www.tecmint.com
 
 1. TRACEROUTE Command
 traceroute is a network troubleshooting utility which shows number of hops taken to reach destination also determine packets traveling path. Below we are tracing route to global DNS server IP Address and able to reach destination also shows path of that packet is traveling.
 
-$# traceroute 4.2.2.2
+		$# traceroute 4.2.2.2
 
 4. NETSTAT Command
 Netstat (Network Statistic) command display connection info, routing table information etc. To displays routing table information use option as -r.
 
-$# netstat -r
+		$# netstat -r
 
 1. Listing all the LISTENING Ports of TCP and UDP connections
 Listing all ports (both TCP and UDP) using netstat -a option.
@@ -856,7 +878,7 @@ Find out how many listening programs running on a port.
 5. DIG Command
 Dig (domain information groper) query DNS related information like A Record, CNAME, MX Record etc. This command mainly use to troubleshoot DNS related query.
 
-$# dig www.tecmint.com; <<>> DiG 9.8.2rc1-RedHat-9.8.2-0.10.rc1.el6 <<>> www.tecmint.com
+		$# dig www.tecmint.com; <<>> DiG 9.8.2rc1-RedHat-9.8.2-0.10.rc1.el6 <<>> www.tecmint.com
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER<
@@ -865,14 +887,14 @@ For more examples of Dig Command, please read the article on 10 Linux Dig Comman
 6. NSLOOKUP Command
 nslookup command also use to find out DNS related query. The following examples shows A Record (IP Address) of tecmint.com.
 
-$# nslookup www.tecmint.com
+		$# nslookup www.tecmint.com
 Server:         4.2.2.2
 Address:        4.2.2.2$#53
 
 7. ROUTE Command
 route command also shows and manipulate ip routing table. To see default routing table in Linux, type the following command.
 
-$# route
+		$# route
 
 
 Adding, deleting routes and default Gateway with following commands.
@@ -921,7 +943,7 @@ tecmint.com
 13. GUI tool system-config-network
 Type system-config-network in command prompt to configure network setting and you will get nice Graphical User Interface (GUI) which may also use to configure IP Address, Gateway, DNS etc. as shown below image.
 
-$# system-config-network
+		$# system-config-network
 
 ## Bash
 
@@ -929,43 +951,43 @@ $# system-config-network
 How to Install Bash-it in Linux
 To install Bash-it, first you need to clone the following repository to a location of your choice, for example:
 
-$ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+		$ git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 Then run the following command to install Bash-it (it automatically backup your ~/.bash_profile or ~/.bashrc, depending on your OS). You will be asked “Would you like to keep your .bashrc and append bash-it templates at the end? [y/N]”, answer according to your preference.
 
-$ ~/.bash_it/install.sh
+		$ ~/.bash_it/install.sh
 
 After installation, you can use ls command to verify the bash-it installation files and directories as shown.
 
-$ ls .bash_it/
+		$ ls .bash_it/
 Verify Bash-It Installation
 Verify Bash-It Installation
 
 To start using Bash-it, open a new tab or run:
 
-$ source $HOME/.bashrc
+		$ source $HOME/.bashrc
 How to Customize Bash-it in Linux
 To customize Bash-it, you need to edit your modified ~/.bashrc shell startup file. To list all installed and available aliases, completions, and plugins run the following commands, which should also shows you how to enable or disable them:
 
 
-$ bash-it show aliases
-$ bash-it show completions
-$ bash-it show plugins
+		$ bash-it show aliases
+		$ bash-it show completions
+		$ bash-it show plugins
 Next, we will demonstrate how to enable aliases, but before that, first list the current aliases with the following command.
 
-$ alias
+		$ alias
 View Current Aliases in Linux
 View Current Aliases in Linux
 
 All the aliases are located in the $HOME/.bash_it/aliases/ directory. Now let’s enable the apt aliases as shown.
 
-$ bash-it enable alias apt
+		$ bash-it enable alias apt
 Enable Alias in Linux
 Enable Alias in Linux
 
 Then reload bash-it configs and check the current aliases once more.
 
-$ bash-it reload
-$ alias
+		$ bash-it reload
+		$ alias
 From the output of the alias command, the apt aliases are now enabled.
 
 Check Current Aliases in Linux
@@ -973,8 +995,8 @@ Check Current Aliases in Linux
 
 You can disable newly enabled alias with the following commands.
 
-$ bash-it disable alias apt
-$ bash-it reload
+		$ bash-it disable alias apt
+		$ bash-it reload
 Disable Aliases in Linux
 Disable Aliases in Linux
 
@@ -989,25 +1011,25 @@ Check Bash-it Theme
 
 You can find over 50+ Bash-it themes in the $BASH_IT/themes directory.
 
-$ ls $BASH_IT/themes
+		$ ls $BASH_IT/themes
 View Bash-It Themes
 View Bash-It Themes
 
 To preview all the themes in your shell before using any, run the following command.
 
-$ BASH_PREVIEW=true bash-it reload
+		$ BASH_PREVIEW=true bash-it reload
 Preview All Bash-It Themes
 Preview All Bash-It Themes
 
 Once you have identified a theme to use, open your .bashrc file and find the following line in it and change it value to the name of the theme you want, for example:
 
-$ export BASH_IT_THEME='essential'
+		$ export BASH_IT_THEME='essential'
 Change Bash-It Theme
 Change Bash-It Theme
 
 Save the file and close, and source it as shown before.
 
-$ source $HOME/.bashrc
+		$ source $HOME/.bashrc
 Note: In case you have built a your own custom themes outside of $BASH_IT/themes directory, point the BASH_IT_THEME variable directly to the theme file:
 
 export BASH_IT_THEME='/path/to/your/custom/theme/'
@@ -1021,16 +1043,16 @@ The trick is simple: just search for multiple terms related to some of the comma
 
 
 
-$ bash-it search python pip pip3 pipenv
-$ bash-it search git
+		$ bash-it search python pip pip3 pipenv
+		$ bash-it search git
 Search in Bash-It
 Search in Bash-It
 
 To view help messages for the aliases, completions and plugins, run:
 
-$ bash-it help aliases
-$ bash-it help completions
-$ bash-it help plugins
+		$ bash-it help aliases
+		$ bash-it help completions
+		$ bash-it help plugins
 
 
 You can create you own custom scripts, and aliases, in the following files in the respective directories:
@@ -1043,20 +1065,20 @@ custom/themes//<custom theme name>.theme.bash
 Updating and Uninstalling Bash-It
 To update Bash-it to the latest version, simply run:
 
-$ bash-it update
+		$ bash-it update
 If you don’t like Bash-it anymore, you can uninstall it by running the following commands.
 
-$ cd $BASH_IT
-$ ./uninstall.sh
+		$ cd $BASH_IT
+		$ ./uninstall.sh
 The uninstall.sh script will restore your previous Bash startup file. Once it has completed the operation, you need to remove the Bash-it directory from your machine by running.
 
-$ rm -rf $BASH_IT
+		$ rm -rf $BASH_IT
 And remember to start a new shell for the recent changes to work or source it again as shown.
 
-$ source $HOME/.bashrc
+		$ source $HOME/.bashrc
 You can see all usage options by running:
 
-$ bash-it help
+		$ bash-it help
 Finally, Bash-it comes with a number of cool features related to Git.
 
 For more information, see the Bash-it Github repository: https://github.com/Bash-it/bash-it.
@@ -1128,7 +1150,7 @@ In the final part of this article, we will explain some useful ! (bang) operatio
 !*:p – displays the last word that !* would substitute.
 For more information, see the bash man page:
 
-$ man bash
+		$ man bash
 That’s all for now! In this article, we shared some common and useful Bash command-line shortcuts and operations. Use the comment form below to make any additions or ask questions.
 
 
@@ -1146,9 +1168,9 @@ i3 – Tiling Window Manager for Linux
 
 The package i3 is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install i3    [On CentOS/RHEL]
-$ sudo dnf install i3    [On Fedora]
-$ sudo apt install i3    [On Debian/Ubuntu]
+		$ sudo yum install i3    [On CentOS/RHEL]
+		$ sudo dnf install i3    [On Fedora]
+		$ sudo apt install i3    [On Debian/Ubuntu]
 
 
 11 Best Tiling Window Managers for Linux
@@ -1175,9 +1197,9 @@ i3 – Tiling Window Manager for Linux
 
 The package i3 is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install i3    [On CentOS/RHEL]
-$ sudo dnf install i3    [On Fedora]
-$ sudo apt install i3    [On Debian/Ubuntu]
+		$ sudo yum install i3    [On CentOS/RHEL]
+		$ sudo dnf install i3    [On Fedora]
+		$ sudo apt install i3    [On Debian/Ubuntu]
 2. bspwm
 bspwm is a free, lightweight, and open source Linux tiling manager known for adhering to the Linux philosophy by concentrating on doing one thing and getting it done properly.
 
@@ -1190,9 +1212,9 @@ bspwm – Tiling Window Manager for Linux
 
 The package bspwm is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install bspwm    [On CentOS/RHEL]
-$ sudo dnf install bspwm    [On Fedora]
-$ sudo apt install bspwm    [On Debian/Ubuntu]
+		$ sudo yum install bspwm    [On CentOS/RHEL]
+		$ sudo dnf install bspwm    [On Fedora]
+		$ sudo apt install bspwm    [On Debian/Ubuntu]
 3. herbstluftwm
 herbstluftwm is a free and open source configurable manual tiling window manager for x11 using Glib and Xlib. Basically, it works using a layout based on splitting frames into sub-frames which can be further split and filled with windows.
 
@@ -1203,9 +1225,9 @@ herbstluftwm – Tiling Window Manager for Linux
 
 The package herbstluftwm is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install herbstluftwm    [On CentOS/RHEL]
-$ sudo dnf install herbstluftwm    [On Fedora]
-$ sudo apt install herbstluftwm    [On Debian/Ubuntu]
+		$ sudo yum install herbstluftwm    [On CentOS/RHEL]
+		$ sudo dnf install herbstluftwm    [On Fedora]
+		$ sudo apt install herbstluftwm    [On Debian/Ubuntu]
 
 
 Read Also: 10 Best File and Disk Encryption Tools for Linux
@@ -1220,9 +1242,9 @@ awesome – Framework Window Manager for Linux
 
 The package awesome is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install awesome    [On CentOS/RHEL]
-$ sudo dnf install awesome    [On Fedora]
-$ sudo apt install awesome    [On Debian/Ubuntu]
+		$ sudo yum install awesome    [On CentOS/RHEL]
+		$ sudo dnf install awesome    [On Fedora]
+		$ sudo apt install awesome    [On Debian/Ubuntu]
 5. Tilix
 Tilix is an advanced GTK3 tiling terminal emulator and manager that uses the Gnome Human Interface Guidelines. It enables users to organize app windows horizontally and vertically using drag and drop.
 
@@ -1233,9 +1255,9 @@ Tilix – GTK3 Tiling Terminal Emulator for Linux
 
 The package Tilix is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install tilix    [On CentOS/RHEL]
-$ sudo dnf install tilix    [On Fedora]
-$ sudo apt install tilix    [On Debian/Ubuntu]
+		$ sudo yum install tilix    [On CentOS/RHEL]
+		$ sudo dnf install tilix    [On Fedora]
+		$ sudo apt install tilix    [On Debian/Ubuntu]
 6. XMonad
 XMonad is a free and open source dynamic tiling X11 window manager that exists to automate windows searching and alignment. It is extensible using its very own extension library which gives it options for status bars and window decorations. It is also minimal, stable, and easy to configure.
 
@@ -1244,9 +1266,9 @@ xmonad – Tiling Window Manager for Linux
 
 The package xmonad is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install xmonad    [On CentOS/RHEL]
-$ sudo dnf install xmonad    [On Fedora]
-$ sudo apt install xmonad    [On Debian/Ubuntu]
+		$ sudo yum install xmonad    [On CentOS/RHEL]
+		$ sudo dnf install xmonad    [On Fedora]
+		$ sudo apt install xmonad    [On Debian/Ubuntu]
 7. Sway
 Sway is a free, open source, and lightweight tiling Wayland i3-compatible window manager that automatically arranges app windows to logically maximize desktop space. It arranges windows into a grid by default and supports almost all the commands included in i3.
 
@@ -1267,9 +1289,9 @@ Tmux Manage Multiple Linux Terminals Inside Single Console
 
 The package tmux is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install tmux    [On CentOS/RHEL]
-$ sudo dnf install tmux    [On Fedora]
-$ sudo apt install tmux    [On Debian/Ubuntu]
+		$ sudo yum install tmux    [On CentOS/RHEL]
+		$ sudo dnf install tmux    [On Fedora]
+		$ sudo apt install tmux    [On Debian/Ubuntu]
 Read Also: 8 Best Linux Console File Managers
 
 9. spectrwm
@@ -1282,9 +1304,9 @@ spectrwm – Tiling Window Manager for Linux
 
 The package spectrwm is provided by the distribution you are using, just use the package manager to install it as shown.
 
-$ sudo yum install spectrwm    [On CentOS/RHEL]
-$ sudo dnf install spectrwm    [On Fedora]
-$ sudo apt install spectrwm    [On Debian/Ubuntu]
+		$ sudo yum install spectrwm    [On CentOS/RHEL]
+		$ sudo dnf install spectrwm    [On Fedora]
+		$ sudo apt install spectrwm    [On Debian/Ubuntu]
 10. JWM
 JWM (Joe’s Window Manager) is an open source C-based lightweight window manager for the X11 Window System optimized to work smoothly on older, less powerful computer systems. It requires only the Xlib library to run but is capable of working with a host of other libraries including libXext for shape extension, Cairo and libRSVG for icons and backgrounds, libjpeg and libpng for JPEG and PNG backgrounds and icons respectively, etc.
 
@@ -1293,9 +1315,9 @@ JWM – Window Manager for Linux
 
 JWM is included in a couple of Linux distros e.g. Damn Small Linux and Puppy Linux and has found most of its use on portable PCs like the Raspberry Pi.
 
-$ sudo yum install jwm    [On CentOS/RHEL]
-$ sudo dnf install jwm    [On Fedora]
-$ sudo apt install jwm    [On Debian/Ubuntu]
+		$ sudo yum install jwm    [On CentOS/RHEL]
+		$ sudo dnf install jwm    [On Fedora]
+		$ sudo apt install jwm    [On Debian/Ubuntu]
 11. Qtile
 Qtile is a small but full-featured and completely configurable open source tiling window manager developed in Python. It is designed with a focus on simplicity, extensibility using extensions, and customization.
 
