@@ -1436,7 +1436,7 @@ Python has a few built in functions:
 - hash()
 - [help()](#help()) - get documentation on a command
 - hex()
-- id()
+- [id()](#id)
 - input()
 - int()
 - isinstance()
@@ -1890,6 +1890,75 @@ truncate: Callable[[Any], str] = lambda _s: (lambda _s: (_s, _s[:21])[len(_s) > 
  ```
 ## Basics and Useful bits
 
+### Assignment Expressions 
+
+New in Python 3.8, using the `:=` 'Walrus Operator'.  [Discussion](https://realpython.com/python38-new-features/#the-walrus-in-the-room-assignment-expressions)
+
+[Official Intro](https://docs.python.org/3.8/whatsnew/3.8.html#assignment-expressions)
+
+In this example, the assignment expression helps avoid calling len() twice:
+
+```py
+if (n := len(a)) > 10:
+    print(f"List is too long ({n} elements, expected <= 10)")
+```
+
+
+Assignment expressions allow you to assign and return a value in the same expression. For example, if you want to assign to a variable and print its value, then you typically do something like [[1]] while in  Python 3.8, you’re allowed to combine these two statements into one, using the walrus operator: [[2]]
+
+
+
+
+
+```
+>>> walrus = False
+>>> print(walrus)
+False
+
+
+>>> print(walrus := True)
+True
+
+```
+
+### By Reference or By Value
+
+
+[Ref](https://realpython.com/python-pass-by-reference/)
+
+
+Python neither passes by reference or by value, but rather 'by assignment' (Though in truth, this acts much more like pass by value, and is perhaps another attempt of python to be different.)
+
+### id
+
+The `id()` function, is similar to the `&` operator in C++ aa it returns an address.
+
+
+This example from the link above
+
+
+```py
+def main():
+    n = 9001
+    print(f"Initial address of n: {id(n)}")
+    increment(n)
+    print(f"  Final address of n: {id(n)}")
+
+def increment(x):
+    print(f"Initial address of x: {id(x)}")
+    x += 1
+    print(f"  Final address of x: {id(x)}")
+
+main()
+```
+
+            >>> main()
+                Initial address of n: 140562586057840
+                Initial address of x: 140562586057840
+                Final address of x: 140562586057968
+                Final address of n: 140562586057840
+
+In the above example, note that the address of x initially matches that of n  as it is passed to `increment()` but changes after reassignment, while the address of n never changes.  If it was passed by value, then it should have a new address, as it was returned from increment(n).  Of note, it should also have the form of `n=increment(n)`
 
 ## Values
 
@@ -3912,6 +3981,25 @@ Any Hashable object can be used as a dictionary key. To be hashable, the object 
 
 Made up of values with a unique key for each value
 Similar to lists, but you can't join dicts with a +
+
+
+
+declaration format: 
+
+returns a list of tuples for the dictionary.
+
+```py
+d = {1: 'blue', 2: 'blue', 3: 'brown', 4:'brown'}
+d_items = d.items()
+d_items
+
+# dict_items([(1, 'blue'), (2, 'blue'), (3, 'brown'), (4, 'brown')])
+
+l = [(1, 'blue'), (2, 'blue'), (3, 'brown'), (4, 'brown')]
+d2 = dict(l)
+d2
+{1: 'blue', 2: 'blue', 3: 'brown', 4: 'brown'}
+```
 
 
 As of 3.7 dictionaries have a stable order, as opposed to a random order in prior versions.
