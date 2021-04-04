@@ -31,6 +31,7 @@ curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zi
 - micro -  a nicer nano - CURL https://getmic.ro | bash
 - xclip 
 - xsel - needed for clipboard in terminal
+fzf - fuzzy line finder
 
 sagi xclip xsel
 
@@ -288,3 +289,4 @@ gnome-mmousetrap? -head tracking mouse ctrl
 ## DIalog boxes from shell scripts
 
 Zenity
+y..

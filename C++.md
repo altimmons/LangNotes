@@ -487,34 +487,87 @@ Atomics and threading library
     Thread (header)
 
  
+____
+### C++ Library
+
+> ### Miscellaneous headers
+
+> - _*[\<algorithm\>](http://www.cplusplus.com/reference/algorithm/)*_ - Standard Template Library: Algorithms (library )
+> - _*[\<chrono\>](http://www.cplusplus.com/reference/chrono/)*_ - Time library (header)
+> - _*[\<codecvt\>](http://www.cplusplus.com/reference/codecvt/)*_ - Unicode conversion facets (header)
+> - _*[\<complex\>](http://www.cplusplus.com/reference/complex/)*_ - Complex numbers library (header)
+> - _*[\<exception\>](http://www.cplusplus.com/reference/exception/)*_ - Standard exceptions (header)
+> - _*[\<functional\>](http://www.cplusplus.com/reference/functional/)*_ - Function objects (header)
+> - _*[\<initializer_list\>](http://www.cplusplus.com/reference/initializer_list/)*_ - Initializer list (header)
+> - _*[\<iterator\>](http://www.cplusplus.com/reference/iterator/)*_ - Iterator definitions (header)
+> - _*[\<limits\>](http://www.cplusplus.com/reference/limits/)*_ - Numeric limits (header)
+> - _*[\<locale\>](http://www.cplusplus.com/reference/locale/)*_ - Localization library (header)
+> - _*[\<memory\>](http://www.cplusplus.com/reference/memory/)*_ - Memory elements (header)
+> - _*[\<new\>](http://www.cplusplus.com/reference/new/)*_ - Dynamic memory (header)
+> - _*[\<numeric\>](http://www.cplusplus.com/reference/numeric/)*_ - Generalized numeric operations (header)
+> - _*[\<random\>](http://www.cplusplus.com/reference/random/)*_ - Random (header)
+> - _*[\<ratio\>](http://www.cplusplus.com/reference/ratio/)*_ - Ratio header (header)
+> - _*[\<regex\>](http://www.cplusplus.com/reference/regex/)*_ - Regular Expressions (header)
+> - _*[\<stdexcept\>](http://www.cplusplus.com/reference/stdexcept/)*_ - Exception classes (header)
+> - _*[\<string\>](http://www.cplusplus.com/reference/string/)*_ - Strings (header)
+> - _*[\<system_error\>](http://www.cplusplus.com/reference/system_error/)*_ - System errors (header)
+> - _*[\<tuple\>](http://www.cplusplus.com/reference/tuple/)*_ - Tuple library (header)
+> - _*[\<typeindex\>](http://www.cplusplus.com/reference/typeindex/)*_ - Type index (header)
+> - _*[\<typeinfo\>](http://www.cplusplus.com/reference/typeinfo/)*_ - Type information (header)
+> - _*[\<type_traits\>](http://www.cplusplus.com/reference/type_traits/)*_ - type_traits (header)
+> - _*[\<utility\>](http://www.cplusplus.com/reference/utility/)*_ - Utility components (header)
+> - _*[\<valarray\>](http://www.cplusplus.com/reference/valarray/)*_ - Library for arrays of numeric values (header)
+> ### Atomics and threading library
+> 
+> - _*[\<atomic\>](http://www.cplusplus.com/reference/atomic/)*_ - Atomic (header)
+> - _*[\<condition_variable\>](http://www.cplusplus.com/reference/condition_variable/)*_ - Condition variable (header)
+> - _*[\<future\>](http://www.cplusplus.com/reference/future/)*_ - Future (header)
+> - _*[\<mutex\>](http://www.cplusplus.com/reference/mutex/)*_ - Mutex (header)
+> - _*[\<thread\>](http://www.cplusplus.com/reference/thread/)*_ - Thread (header)
+> ### Containers
+> 
+> - _*[\<array\>](http://www.cplusplus.com/reference/array/)*_ - Array header (header)
+> - _*[\<bitset\>](http://www.cplusplus.com/reference/bitset/)*_ - Bitset header (header)
+> - _*[\<deque\>](http://www.cplusplus.com/reference/deque/)*_ - Deque header (header)
+> - _*[\<forward_list\>](http://www.cplusplus.com/reference/forward_list/)*_ - Forward list (header)
+> - _*[\<list\>](http://www.cplusplus.com/reference/list/)*_ - List header (header)
+> - _*[\<map\>](http://www.cplusplus.com/reference/map/)*_ - Map header (header)
+> - _*[\<queue\>](http://www.cplusplus.com/reference/queue/)*_ - Queue header (header)
+> - _*[\<set\>](http://www.cplusplus.com/reference/set/)*_ - Set header (header)
+> - _*[\<stack\>](http://www.cplusplus.com/reference/stack/)*_ - Stack header (header)
+> - _*[\<unordered_map\>](http://www.cplusplus.com/reference/unordered_map/)*_ - Unordered map header (header)
+> - _*[\<unordered_set\>](http://www.cplusplus.com/reference/unordered_set/)*_ - Unordered set header (header)
+> 
+
 
 ### C Library
+The C library is updated in C++ under the following names.  (Usually dropping the `.h` and prepending with `c`.)
 The elements of the C language library are also included as a subset of the C++ Standard library. These cover many aspects, from general utility functions and macros to input/output functions and dynamic memory management functions:
-
-- *\<cassert\>*- **(assert.h)** - *C Diagnostics Library (header)*
-- *\<cctype\>*- **(ctype.h)** - *Character handling functions (header)*
-- *\<cerrno\>*- **(errno.h)** - *C Errors (header)*
-- *\<cfenv\>*- **(fenv.h)** - *Floating-point environment (header)*
-- *\<cfloat\>*- **(float.h)** - *Characteristics of floating-point types (header)*
-- *\<cinttypes\>*- **(inttypes.h)** - *C integer types (header)*
-- *\<ciso646\>*- **(iso646.h)** - *ISO 646 Alternative operator spellings (header)*
-- *\<climits\>*- **(limits.h)** - *Sizes of integral types (header)*
-- *\<clocale\>*- **(locale.h)** - *C localization library (header)*
-- *\<cmath\>*- **(math.h)** - *C numerics library (header)*
-- *\<csetjmp\>*- **(setjmp.h)** - *Non local jumps (header)*
-- *\<csignal\>*- **(signal.h)** - *C library to handle signals (header)*
-- *\<cstdarg\>*- **(stdarg.h)** - *Variable arguments handling (header)*
-- *\<cstdbool\>*- **(stdbool.h)** - *Boolean type (header)*
-- *\<cstddef\>*- **(stddef.h)** - *C Standard definitions (header)*
-- *\<cstdint\>*- **(stdint.h)** - *Integer types (header)*
-- *\<cstdio\>*- **(stdio.h)** - *C library to perform Input/Output operations (header)*
-- *\<cstdlib\>*- **(stdlib.h)** - *C Standard General Utilities Library (header)*
-- *\<cstring\>*- **(string.h)** - *C Strings (header)*
-- *\<ctgmath\>*- **(tgmath.h)** - *Type-generic math (header)*
-- *\<ctime\>*- **(time.h)** - *C Time Library (header)*
-- *\<cuchar\>*- **(uchar.h)** - *Unicode characters (header)*
-- *\<cwchar\>*- **(wchar.h)** - *Wide characters (header)*
-- *\<cwctype\>*- **(wctype.h)** - *Wide character type (header)*
+> 
+> - *\<cassert\>*- **(assert.h)** - *C Diagnostics Library (header)*
+> - *\<cctype\>*- **(ctype.h)** - *Character handling functions (header)*
+> - *\<cerrno\>*- **(errno.h)** - *C Errors (header)*
+> - *\<cfenv\>*- **(fenv.h)** - *Floating-point environment (header)*
+> - *\<cfloat\>*- **(float.h)** - *Characteristics of floating-point types (header)*
+> - *\<cinttypes\>*- **(inttypes.h)** - *C integer types (header)*
+> - *\<ciso646\>*- **(iso646.h)** - *ISO 646 Alternative operator spellings (header)*
+> - *\<climits\>*- **(limits.h)** - *Sizes of integral types (header)*
+> - *\<clocale\>*- **(locale.h)** - *C localization library (header)*
+> - *\<cmath\>*- **(math.h)** - *C numerics library (header)*
+> - *\<csetjmp\>*- **(setjmp.h)** - *Non local jumps (header)*
+> - *\<csignal\>*- **(signal.h)** - *C library to handle signals (header)*
+> - *\<cstdarg\>*- **(stdarg.h)** - *Variable arguments handling (header)*
+> - *\<cstdbool\>*- **(stdbool.h)** - *Boolean type (header)*
+> - *\<cstddef\>*- **(stddef.h)** - *C Standard definitions (header)*
+> - *\<cstdint\>*- **(stdint.h)** - *Integer types (header)*
+> - *\<cstdio\>*- **(stdio.h)** - *C library to perform Input/Output operations (header)*
+> - *\<cstdlib\>*- **(stdlib.h)** - *C Standard General Utilities Library (header)*
+> - *\<cstring\>*- **(string.h)** - *C Strings (header)*
+> - *\<ctgmath\>*- **(tgmath.h)** - *Type-generic math (header)*
+> - *\<ctime\>*- **(time.h)** - *C Time Library (header)*
+> - *\<cuchar\>*- **(uchar.h)** - *Unicode characters (header)*
+> - *\<cwchar\>*- **(wchar.h)** - *Wide characters (header)*
+> - *\<cwctype\>*- **(wctype.h)** - *Wide character type (header)*
 
 
 - *\<algorithm\>*- Standard Template Library: Algorithms (library )
@@ -544,30 +597,19 @@ The elements of the C language library are also included as a subset of the C++ 
 - *\<valarray\>*- Library for arrays of numeric values (header)
 
 **Containers**
-
-- *\<array\>* - **Array header**
-
-- *\<bitset\>* - **Bitset header**
-
-- *\<deque\>* - **Deque header**
-
-- *\<forward_list\>* - **Forward list**
-
-- *\<list\>* - **List header**
-
-- *\<map\>* - **Map header**
-
-- *\<queue\>* - **Queue header**
-
-- *\<set\>* - **Set header**
-
-- *\<stack\>* - **Stack header**
-
-- *\<unordered_map\>* - **Unordered map header**
-
-- *\<unordered_set\>* - **Unordered set header**
-
-- *\<vector\>* - **Vector header**
+> 
+> - *\<array\>* - **Array header**
+> - *\<bitset\>* - **Bitset header**
+> - *\<deque\>* - **Deque header**
+> - *\<forward_list\>* - **Forward list**
+> - *\<list\>* - **List header**
+> - *\<map\>* - **Map header**
+> - *\<queue\>* - **Queue header**
+> - *\<set\>* - **Set header**
+> - *\<stack\>* - **Stack header**
+> - *\<unordered_map\>* - **Unordered map header**
+> - *\<unordered_set\>* - **Unordered set header**
+> - *\<vector\>* - **Vector header**
 
 ## Archetypical Program
 
@@ -1573,14 +1615,222 @@ auto myFunc( float v1, float v2 )
 }
 
 ```
+?{6,:{CLIPBOARD}}
+
+### typeid()
+
+
+[typeid Operator | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/typeid-operator?view=msvc-160)
+
+> The **`typeid`** operator allows the type of an object to be determined at run time.
+> 
+> The result of **`typeid`** is a `const type_info&`. The value is a reference to a `type_info` object that represents either the _type-id_ or the type of the _expression_, depending on which form of **`typeid`** is used. For more information, see [type\_info Class](https://docs.microsoft.com/en-us/cpp/cpp/type-info-class?view=msvc-160).
 ___
 ### Conversion
 
 <!-- Todo  -->
 [Standard conversions | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/standard-conversions?view=msvc-160)
-#### Casting
 
 
+#### Cast Operator 
+
+[Cast Operator: () | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/cast-operator-parens?view=msvc-160)
+
+> Cast Operator: ()
+
+unary-expression ( type-name ) cast-expression
+
+A type cast provides a method for explicit conversion of the type of an object in a specific situation.
+
+
+Any unary expression is considered a cast expression.
+
+The compiler treats cast-expression as type type-name after a type cast has been made. Casts can be used to convert objects of any scalar type to or from any other scalar type. Explicit type casts are constrained by the same rules that determine the effects of implicit conversions. Additional restraints on casts may result from the actual sizes or representation of specific types.
+
+
+
+```cpp
+// expre_CastOperator.cpp
+// compile with: /EHsc
+// Demonstrate cast operator
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    double x = 3.1;
+    int i;
+    cout << "x = " << x << endl;
+    i = (int)x;   // assign i the integer part of x
+    cout << "i = " << i << endl;
+}
+```
+
+
+
+#### User Defined Casts
+
+
+```cpp
+int main()
+{
+    const char *kStr = "Excitinggg";
+    CountedAnsiString myStr(kStr, 8);
+
+    const char *pRaw = myStr.GetRawBytes();
+    printf_s("RawBytes truncated to 10 chars:   %.10s\n", pRaw);
+
+    const char *pCast = myStr; // or (const char *)myStr;
+    printf_s("Casted Bytes:   %s\n", pCast);
+
+    puts("Note that the cast changed the raw internal string");
+    printf_s("Raw Bytes after cast:   %s\n", pRaw);
+}
+```
+
+
+
+### [Casting Operators | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/casting-operators?view=msvc-160)
+
+
+
+> There are several casting operators specific to the C++ language. These operators are intended to remove some of the ambiguity and danger inherent in old style C language casts. These operators are:
+> 
+> -   [dynamic\_cast](https://docs.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator?view=msvc-160) Used for conversion of polymorphic types.
+>     
+> -   [static\_cast](https://docs.microsoft.com/en-us/cpp/cpp/static-cast-operator?view=msvc-160) Used for conversion of nonpolymorphic types.
+>     
+> -   [const\_cast](https://docs.microsoft.com/en-us/cpp/cpp/const-cast-operator?view=msvc-160) Used to remove the **`const`**, **`volatile`**, and **`__unaligned`** attributes.
+>     
+> -   [reinterpret\_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) Used for simple reinterpretation of bits.
+>     
+> -   [safe\_cast](https://docs.microsoft.com/en-us/cpp/extensions/safe-cast-cpp-component-extensions?view=msvc-160) Used in C++/CLI to produce verifiable MSIL.
+>     
+> 
+> Use **`const_cast`** and **`reinterpret_cast`** as a last resort, since these operators present the same dangers as old style casts. However, they are still necessary in order to completely replace old style casts.
+
+#### Static Casting vs. Dynamic Casting
+
+
+[Source: static_cast Operator | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/static-cast-operator?view=msvc-160)
+
+>The **`static_cast`** operator can be used for operations such as converting a pointer to a base class to a pointer to a derived class. Such conversions are not always safe.
+> 
+> In general you use **`static_cast`** when you want to convert numeric data types such as enums to ints or ints to floats, and you are certain of the data types involved in the conversion. 
+
+>**`static_cast`** conversions are not as safe as **`dynamic_cast`** conversions, because **`static_cast`** does no run-time type check, while **`dynamic_cast`** does.
+
+> A **`dynamic_cast`** to an ambiguous pointer will fail, while a **`static_cast`** returns as if nothing were wrong; this can be dangerous.
+
+ Although **`dynamic_cast`** conversions are safer, **`dynamic_cast`** only works on _pointers or references,_ and the run-time type check is an overhead. For more information, see [dynamic\_cast Operator](https://docs.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator?view=msvc-160).
+> 
+> In the example that follows, the line `D* pd2 = static_cast<D*>(pb);` is not safe because `D` can have fields and methods that are not in `B`. However, the line `B* pb2 = static_cast<B*>(pd);` is a safe conversion because `D` always contains all of `B`.
+
+
+
+```cpp
+// static_cast_Operator.cpp
+// compile with: /LD
+class B {};
+
+class D : public B {};
+
+void f(B* pb, D* pd) {
+   D* pd2 = static_cast<D*>(pb);   // Not safe, D can have fields
+                                   // and methods that are not in B.
+
+   B* pb2 = static_cast<B*>(pd);   // Safe conversion, D always
+                                   // contains all of B.
+}
+```
+
+[static_cast Operator | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/static-cast-operator?view=msvc-160)
+
+> The **`dynamic_cast`** and **`static_cast`** operators move a pointer throughout a class hierarchy. However, **`static_cast`** relies exclusively on the information provided in the cast statement and can therefore be unsafe. For example:
+
+
+
+```cpp
+// static_cast_Operator_2.cpp
+// compile with: /LD /GR
+class B {
+public:
+   virtual void Test(){}
+};
+class D : public B {};
+
+void f(B* pb) {
+   D* pd1 = dynamic_cast<D*>(pb);
+   D* pd2 = static_cast<D*>(pb);    
+}
+```
+If pb really points to an object of type D, then pd1 and pd2 will get the same value. They will also get the same value if pb == 0.
+
+If pb points to an object of type B and not to the complete D class, then dynamic_cast will know enough to return zero. However, static_cast relies on the programmer's assertion that pb points to an object of type D and simply returns a pointer to that supposed D object.
+
+#### Static Casts
+
+[static_cast Operator | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/static-cast-operator?view=msvc-160)
+
+
+The static_cast operator can also be used to perform any implicit conversion, including **standard conversions** and **user-defined conversions.** For example:
+
+> The **`static_cast`** operator can explicitly convert an integral value to an enumeration type. If the value of the integral type does not fall within the range of enumeration values, the resulting enumeration value is undefined.
+> 
+> The **`static_cast`** operator converts a null pointer value to the null pointer value of the destination type.
+> 
+> Any expression can be explicitly converted to type void by the **`static_cast`** operator. The destination void type can optionally include the **`const`**, **`volatile`**, or **`__unaligned`** attribute.
+> 
+> The **`static_cast`** operator cannot cast away the **`const`**, **`volatile`**, or **`__unaligned`** attributes. See [const\_cast Operator](https://docs.microsoft.com/en-us/cpp/cpp/const-cast-operator?view=msvc-160) for information on removing these attributes.
+
+
+```cpp
+// static_cast_Operator_3.cpp
+// compile with: /LD /GR
+typedef unsigned char BYTE;
+
+void f() {
+   char ch;
+   int i = 65;
+   float f = 2.5;
+   double dbl;
+
+   ch = static_cast<char>(i);   // int to char
+   dbl = static_cast<double>(f);   // float to double
+   i = static_cast<BYTE>(ch);
+}
+```
+
+#### Dynamic Casts
+
+!!!Note Only works on Pointers
+>   The type-id must be a pointer or a reference to a previously defined class type or a "pointer to void". The type of expression must be a pointer if type-id is a pointer, or an l-value if type-id is a reference.
+
+#### Const Casts
+
+
+#### Reinterpret Casts
+
+
+#### Static Casts
+
+
+
+
+#### Safe Casts
+
+MSFT Only
+
+[Safe Casts](https://docs.microsoft.com/en-us/cpp/extensions/safe-cast-cpp-component-extensions?view=msvc-160)
+
+
+
+<!-- Todo -->
+
+#### Run Time informatioon
+
+<!-- Todp -->
 Two ways I have seen:
 
 `reinterpret_cast<const char *> `
@@ -1591,6 +1841,11 @@ and
 char c = 'x';
 int i = (int) c
 ```
+
+##### Static Cast vs Dynamic
+
+
+
 
 ___
 ## Symbols, Operators, and Keywords
@@ -1974,129 +2229,8 @@ int main()
 }
 ```
 
+____
 
-## Structs
-
-Binds types into a new type.  Structs are the same as classes, but all items are public.
-
-```c++
-struct Car{
-
-   int year;
-   int miles;
-   std::string make;
-   int getValue() const;
-}
-
-struct SpreadsheetCell
-{
-      void setValue(double inValue);
-      double getValue() const;
-   private: //can have methods and private members
-      double mValue;
-};
-
-
-
-// Has a constructor
-struct TempData2
-{
-    TempData2(double minimum, double maximum, double cur, int id, time_t t) :
-       stationId{id}, timeSet{t}, current{cur}, maxTemp{maximum}, minTemp{minimum} {}
-    int stationId;
-    time_t timeSet;
-    double current;
-    double maxTemp;
-    double minTemp;
-};
-
-
-//initialize nested values.
-struct example {
-    struct addr_t {
-       uint32_t port;
-    } addr;
-    union {
-       uint8_t a8[4];
-       uint16_t a16[2];
-    } in_u;
-};
-struct example ex = { // start of initializer list for struct example
-                     { // start of initializer list for ex.addr
-                        80 // initialized struct's only member
-                     }, // end of initializer list for ex.addr
-                     { // start of initializer-list for ex.in_u
-                        {127,0,0,1} // initializes first element of the union
-                     } };
-```
-
-If the nested initializer does not begin with an opening brace, only enough initializers from the list are taken to account for the elements or members of the member array, struct or union; any remaining initializers are left to initialize the next struct member:
-
-```c++
-struct example ex = {80, 127, 0, 0, 1}; // 80 initializes ex.addr.port
-                                        // 127 initializes ex.in_u.a8[0]
-                                        // 0 initializes ex.in_u.a8[1]
-                                        // 0 initializes ex.in_u.a8[2]
-                                        // 1 initializes ex.in_u.a8[3]
-```
-You declare a car by just defining it: `Car car;`
-
-Then access each value with the `.` operator.
-
-### typedef
-
-Using `typedef` on a `struct` defines it for external linkage.
-
- 
-`typedef struct { /* ... */ } S;`
-
-### Templates
-
-
-[Templates (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/templates-cpp?view=msvc-160)
-
-Templates are actually a type of struct.
-
-
-```cpp
-template <class T> T f(T t);// Overload f for all types
-template <class T> class X {// Class with type parameter T
-  X(T t); };                // A constructor
-template <class T> X<T>::X(T t) {}
-                            // Definition of constructor
-X<int> x(3);                // An object of type "X of int"
-template <class T, class U=T, int n=0>
-                            // Template with default parameters
-```
-
-#### Useful Structures:
-
-!!!Example Snippet: Get the index of an enum.  Basically casting an enum class back to int
-
-    ```C++ 
-    template <typename Enumeration>
-	 static auto indexof(Enumeration const value)
-	-> typename std::underlying_type<Enumeration>::type
-	{
-		return static_cast<typename std::underlying_type<Enumeration>::type>(value);
-	}
-
-    ```
-    
-!!!Example : another supposed to replicate toString()
-    ```C++ 
-        template <typename T>
-        std::string to_string( const T& value )
-        {
-            std::ostringstream ss;
-            ss << value;
-            return ss.str();
-        }
-    ```
-    
-    
-    
-    
 
 
 ---
@@ -2408,7 +2542,9 @@ auto c = {11, 22.2} //ERROR must be same type
 
 ### Casting
 
-`sstatic_cast<T>(v);`
+`static_cast<T>(v);`
+
+see main article in Types [Conversion](#Conversion)
 
 Assigning a value to increasing precision is ok
 
@@ -2825,66 +2961,66 @@ int connect_four[H][W];   // ISO C++ forbids variable length array
 
  This initializer is used when we want to initialize a range with the same value. This is used only with GCC compilers.
 
-[ first . . . last ] = value;
+    [ first . . . last ] = value;
 
     int num[5]={ [0 . . . 4 ] = 3 };               // num = { 3, 3, 3, 3, 3}
 
-We may also ignore the size of array:
+ We may also ignore the size of array:
 
             int num[  ]={ [0 . . . 4 ] = 3 };               // num = { 3, 3, 3, 3, 3}
 
 
 #### Macro Initializers
 
-Macros: For initializing a huge array with the same value we can use macros.
+  Macros: For initializing a huge array with the same value we can use macros.
 
-```C
-#include<stdio.h>
+  ```C
+  #include<stdio.h>
 
-#define x1 1
-#define x2 x1, x1
-#define x4 x2, x2
-#define x8 x4, x4
-#define x16 x8, x8
-#define x32 x16, x16
+  #define x1 1
+  #define x2 x1, x1
+  #define x4 x2, x2
+  #define x8 x4, x4
+  #define x16 x8, x8
+  #define x32 x16, x16
 
-int main(void)
-{
-// array declaration
-int num[] = { x32, x8, x4, x1};
-int size = sizeof(num)/ sizeof(int);    // 32+8+4+1= 45
+  int main(void)
+  {
+  // array declaration
+  int num[] = { x32, x8, x4, x1};
+  int size = sizeof(num)/ sizeof(int);    // 32+8+4+1= 45
 
-printf("The size of the array is %d\n", size);
-printf("The value of element in the array at index 5 is %d ", 
-                                    num[4]);
+  printf("The size of the array is %d\n", size);
+  printf("The value of element in the array at index 5 is %d ", 
+                                      num[4]);
 
-return 0;
+  return 0;
 
-}
-```
+  }
+  ```
 ### structure
 
-[See the main article on Structs](#Structs)
+  [See the main article on Structs](#Structs)
 
-You define struct names at the end when its a type def.  This is really an anonymous structure, with a typedef assingment.  As in 
+  You define struct names at the end when its a type def.  This is really an anonymous structure, with a typedef assingment.  As in 
 
-typedef int ittybittyint;
+  typedef int ittybittyint;
 
-```c++
-   #include <string>
+  ```c++
+    #include <string>
 
-    typedef struct {
-        string valueName;
-        long long value;
-    } values;
-```
+      typedef struct {
+          string valueName;
+          long long value;
+      } values;
+  ```
 
-____
+  ____
 ### class
 
-[See the main article on Classes](#Classes)
+  [See the main article on Classes](#Classes)
 ### union
-
+  <!-- Todo -->
 ____
 ### enumerator
 
@@ -2898,43 +3034,43 @@ ____
 
 [See Initializer Lists for examples](#Initializer Lists)
 
-[Vector Doc](https://www.cplusplus.com/reference/vector/vector/)
-
-(1) **empty container constructor (default constructor)** - Constructs an [empty](https://www.cplusplus.com/vector::empty) container, with no elements.
-
-            explicit vector (const allocator_type& alloc = allocator_type());
-
-(2) **fill constructor**
-
-Constructs a container with *n* elements. Each element is a copy of *val* (if provided).
-
-            explicit vector (size_type n);
-            vector (size_type n, const value_type& val,
-            const allocator_type& alloc = allocator_type());
-
-(3) **range constructor** --> Constructs a container with as many elements as the range `[first,last)`, with each element *emplace-constructed* from its corresponding element in that range, in the same order.
-
-            template <class InputIterator>
-            vector (InputIterator first, InputIterator last,
-            const allocator_type& alloc = allocator_type());
-
-(4) **copy constructor (and** copying with allocator) --> Constructs a container with a copy of each of the elements in *x*, in the same order.
-
-            vector (const vector& x);
-            vector (const vector& x, const allocator_type& alloc);
-
-
-(5) **move constructor** (and moving with allocator) - Constructs a container that acquires the elements of *x*. 
-    - If *alloc* is specified and is different from *x*'s allocator, the elements are moved.Otherwise, no elements are constructed (their ownership is directly transferred).
-    - *x* is left in an unspecified but valid state.
-
-            vector (vector&& x);
-            vector (vector&& x, const allocator_type& alloc);
-
-**(6) initializer list constructor** --> Constructs a container with a copy of each of the elements in *il*, in the same order.
-
-            vector (initializer_list<value_type> il,
-            const allocator_type& alloc = allocator_type());
+[Vector Doc](https://www.cplusplus.com/reference/vector/vector/)  
+> 
+> (1) **empty container constructor (default constructor)** - Constructs an [empty](https://www.cplusplus.com/vector::empty) container, with no elements.
+> 
+> explicit vector (const allocator_type& alloc = allocator_type());
+> 
+> (2) **fill constructor**
+> 
+> Constructs a container with *n* elements. Each element is a copy of *val* (if provided).
+> 
+>     explicit vector (size_type n);
+>   vector (size_type n, const value_type& val,
+>      const allocator_type& alloc = allocator_type());
+> 
+> (3) **range constructor** --> Constructs a container with as many elements as the range `[first,last)`, with each element *emplace-constructed* from its corresponding element in that range, in the same order.
+> 
+> template <class InputIterator>
+> vector (InputIterator first, InputIterator last,
+> const allocator_type& alloc = allocator_type());
+> 
+> (4) **copy constructor (and** copying with allocator) --> Constructs a container with a copy of each of the elements in *x*, in the same order.
+>                                                                                   
+> vector (const vector& x);
+> vector (const vector& x, const allocator_type& alloc);
+> 
+> 
+> (5) **move constructor** (and moving with allocator) - Constructs a container that acquires the elements of *x*.
+> - If *alloc* is specified and is different from *x*'s allocator, the elements are moved.Otherwise, no elements are constructed (their ownership is directly transferred).
+> - *x* is left in an unspecified but valid state.
+> 
+> vector (vector&& x);
+> vector (vector&& x, const allocator_type& alloc);
+> 
+> **(6) initializer list constructor** --> Constructs a container with a copy of each of the elements in *il*, in the same order.
+> 
+> vector (initializer_list<value_type> il,
+> const allocator_type& alloc = allocator_type());
 
 **Member functions**
 (constructor)
@@ -3563,6 +3699,382 @@ int main()
 
 //41
 
+## Flow Control
+
+
+The articles on statements describe the following C++ keywords:
+
+break
+case
+catch
+continue
+default
+do
+
+else
+__except
+__finally
+for
+goto
+
+if
+__if_exists
+__if_not_exists
+__leave
+return
+
+switch
+throw
+__try
+try
+while
+
+[Overview of C++ Statements | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/overview-of-cpp-statements?view=msvc-160)
+
+### labeled-statement
+
+
+      identifier :  statement
+      case constant-expression :  statement
+      default :  statement
+
+  There are three types of labeled statements. All use a colon to separate some type of label from the statement. The case and default labels are specific to case statements.
+
+
+
+  ```cpp
+  #include <iostream>
+  using namespace std;
+
+  void test_label(int x) {
+
+      if (x == 1){
+          goto label1;
+      }
+      goto label2;
+
+  label1:
+      cout << "in label1" << endl;
+      return;
+
+  label2:
+      cout << "in label2" << endl;
+      return;
+  }
+
+  int main() {
+      test_label(1);  // in label1
+      test_label(2);  // in label2
+  }
+  ```
+
+#### The goto statement
+
+  identifier label  declares a label. Only a goto statement can transfer control to an identifier label. 
+
+  A label cannot appear by itself but must always be attached to a statement. If a label is needed by itself, place a null statement after the label.
+
+  The label has function scope and cannot be redeclared within the function. However, the same name can be used as a label in different functions.
+
+
+
+  ```cpp
+  // labels_with_goto.cpp
+  // compile with: /EHsc
+  #include <iostream>
+  int main() {
+    using namespace std;
+    goto Test2;
+
+    cout << "testing" << endl;
+
+    Test2:
+        cerr << "At Test2 label." << endl;
+  }
+
+  //Output: At Test2 label.
+  ```
+
+  These latter two are specific to switch statements and arent really all that meaningful when talking of labels.
+
+#### The case statement
+
+  Labels that appear after the case keyword cannot also appear outside a switch statement. (This restriction also applies to the default keyword.) The following code fragment shows the correct use of case labels:
+
+
+
+  > ```cpp
+  > // Sample Microsoft Windows message processing loop.
+  > switch( msg )
+  > {
+  > case WM_TIMER:    // Process timer event.
+  > SetClassWord( hWnd, GCW_HICON, ahIcon[nIcon++] );
+  > ShowWindow( hWnd, SW_SHOWNA );
+  > nIcon %= 14;
+  > Yield();
+  > break;
+  > 
+  > case WM_PAINT:
+  > // Obtain a handle to the device context.
+  > // BeginPaint will send WM_ERASEBKGND if appropriate.
+  > 
+  > memset( &ps, 0x00, sizeof(PAINTSTRUCT) );
+  > hDC = BeginPaint( hWnd, &ps );
+  > 
+  > // Inform Windows that painting is complete.
+  > 
+  > EndPaint( hWnd, &ps );
+  > break;
+  > 
+  > case WM_CLOSE:
+  > // Close this window and all child windows.
+  > 
+  > KillTimer( hWnd, TIMER1 );
+  > DestroyWindow( hWnd );
+  > if ( hWnd == hWndMain )
+  > PostQuitMessage( 0 );  // Quit the application.
+  > break;
+  > 
+  > default:
+  > // This choice is taken for all messages not specifically
+  > //  covered by a case statement.
+  > 
+  > return DefWindowProc( hWnd, Message, wParam, lParam );
+  > break;
+  > }
+  > ```
+
+#### default statement
+
+ `default:`
+
+
+
+### expression-statement
+
+ #### Null statement
+
+  The only non obvious addition here:
+
+
+  The "null statement" is an expression statement with the expression missing. It is useful when the syntax of the language calls for a statement but no expression evaluation. It consists of a semicolon.
+
+  Null statements are commonly used as placeholders in iteration statements or as statements on which to place labels at the end of compound statements or functions.
+
+  The following code fragment shows how to copy one string to another and incorporates the null statement:
+
+  
+  ```cpp
+    // null_statement.cpp
+  char *myStrCpy( char *Dest, const char *Source )
+  {
+      char *DestStart = Dest;
+
+      // Assign value pointed to by Source to
+      // Dest until the end-of-string 0 is
+      // encountered.
+      while( *Dest++ = *Source++ )
+          ;   // Null statement.
+
+      return DestStart;
+  }
+
+  int main()
+  {
+  }
+  ```
+  
+  
+### compound-statement
+### selection-statement
+
+ #### if 
+
+todo
+
+ #### switch
+
+ 
+
+        selection-statement:
+            switch ( init-statementoptC++17 condition ) statement
+
+        init-statement:
+            expression-statement
+            simple-declaration
+
+        condition:
+            expression
+            attribute-specifier-seqopt decl-specifier-seq declarator brace-or-equal-initializer
+
+        labeled-statement:
+            case constant-expression : statement
+            default : statement
+
+None of the constants match the constants in the case labels; a default label is present. 	Control is transferred to the default label.
+
+None of the constants match the constants in the case labels; no default label is present. 	Control is transferred to the statement after the switch statement.
+
+
+Example below is a simple case. also illustrates `[[fallthrough]]`
+
+
+    ```cpp
+    int main()
+    {
+        int n = 5;
+        switch (n)
+        {
+
+        case 1:
+            a();
+            break;
+        case 2:
+            b();
+            d();
+            [[fallthrough]]; // I meant to do this!
+        case 3:
+            c();
+            break;
+        default:
+            d();
+            break;
+        }
+
+        return 0;
+    }
+    ```
+
+ `[[fallthrough]]` doesnt seem to be appropriate (error) in 
+
+        case 1:
+        case 2:
+            <expr>
+
+situations.  Must need an expression
+
+
+ #### __if_exists
+
+ [__if_exists Statement | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160)
+
+> Syntax
+> 
+>     __if_exists ( identifier ) {
+>     statements
+>     };
+>     
+> 
+>  [Parameters](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160#parameters)
+> 
+> _identifier_  -  The identifier whose existence you want to test.
+> 
+> _statements_  - > One or more statements to execute if _identifier_ exists.
+> 
+>  [Remarks](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160#remarks)
+> 
+> Caution
+> 
+To achieve the most reliable results, use the **`__if_exists`** statement under the following constraints.
+
+-   Apply the **`__if_exists`** statement to only simple types, not templates.
+
+-   Apply the **`__if_exists`** statement to identifiers both inside or outside a class. Do not apply the **`__if_exists`** statement to local variables.
+
+-   Use the **`__if_exists`** statement only in the body of a function. Outside of the body of a function, the **`__if_exists`** statement can test only fully defined types.
+
+-   When you test for overloaded functions, you cannot test for a specific form of the overload.
+
+>     
+> 
+> The complement to the **`__if_exists`** statement is the [\_\_if\_not\_exists](https://docs.microsoft.com/en-us/cpp/cpp/if-not-exists-statement?view=msvc-160) statement.
+> 
+> [Example](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160#example)
+> 
+> Notice that this example uses templates, which is not advised.
+> 
+> ```C++
+> 
+>     // the__if_exists_statement.cpp
+>     // compile with: /EHsc
+>     #include <iostream>
+>     
+>     template<typename T>
+>     class X : public T {
+>     public:
+>        void Dump() {
+>           std::cout << "In X<T>::Dump()" << std::endl;
+>     
+>           __if_exists(T::Dump) {
+>              T::Dump();
+>           }
+>     
+>           __if_not_exists(T::Dump) {
+>              std::cout << "T::Dump does not exist" << std::endl;
+>           }
+>        }
+>     };
+>     
+>     class A {
+>     public:
+>        void Dump() {
+>           std::cout << "In A::Dump()" << std::endl;
+>        }
+>     };
+>     
+>     class B {};
+>     
+>     bool g_bFlag = true;
+>     
+>     class C {
+>     public:
+>        void f(int);
+>        void f(double);
+>     };
+>     
+>     int main() {
+>        X<A> x1;
+>        X<B> x2;
+>     
+>        x1.Dump();
+>        x2.Dump();
+>     
+>        __if_exists(::g_bFlag) {
+>           std::cout << "g_bFlag = " << g_bFlag << std::endl;
+>        }
+>     
+>        __if_exists(C::f) {
+>           std::cout << "C::f exists" << std::endl;
+>        }
+>     
+>        return 0;
+>     }
+>     
+> ```
+> [Output](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160#output)
+> 
+> 
+>       In X<T>::Dump() 
+>       In A::Dump()
+>       In X<T>::Dump()
+>       T::Dump does not exist
+>       g_bFlag = 1 C::f exists
+> 
+
+#### __if_not_exists
+
+See Above
+
+        __if_not_exists ( identifier ) {
+             statements
+        };
+
+### iteration-statement
+### jump-statement
+### declaration-statement
+### try-throw-catch
+
+
 ## Functions
 
 
@@ -3746,36 +4258,237 @@ create() method takes a type or string parameter from which it decides which obj
 example, a CarFactory class could provide a requestCar() method that takes a string representing
 the type of car to build, and constructs the appropriate car.
 ___
+
+____
+
+### Structs Classes Unions
+
+| param             | Structures | Classes    | Unions                    |
+| ----------------- | ---------- | ---------- | ------------------------- |
+| class key         | is struct  | is class   | is union                  |
+| Default access    | is public  | is private | is public                 |
+| usage constraints | No         | No         | only one member at a time |
+
+_____
+## Structs
+
+        [template-spec] struct [ms-decl-spec] [tag [: base-list ]]
+        {
+            member-list
+        } [declarators];
+        [struct] tag declarators;                       
+
+    *template-spec*\
+Optional template specifications. For more information, refer to [Template Specifications](https://docs.microsoft.com/en-us/cpp/cpp/templates-cpp?view=msvc-160).
+
+*struct*\
+The **`struct`** keyword.
+
+==*ms-decl-spec*==
+     Microsoft (MSVC) Specific
+Optional storage-class specification. For more information, refer to the [__declspec](https://docs.microsoft.com/en-us/cpp/cpp/declspec?view=msvc-160) keyword.
+
+*tag*\
+The type name given to the structure. The tag becomes a reserved word within the scope of the structure. The tag is optional. If omitted, an anonymous structure is defined. For more information, see [Anonymous Class Types](https://docs.microsoft.com/en-us/cpp/cpp/anonymous-class-types?view=msvc-160).
+
+*base-list*\
+Optional list of classes or structures this structure will derive its members from. See [Base Classes](https://docs.microsoft.com/en-us/cpp/cpp/base-classes?view=msvc-160) for more information. Each base class or structure name can be preceded by an access specifier ([public](https://docs.microsoft.com/en-us/cpp/cpp/public-cpp?view=msvc-160), [private](https://docs.microsoft.com/en-us/cpp/cpp/private-cpp?view=msvc-160), [protected](https://docs.microsoft.com/en-us/cpp/cpp/protected-cpp?view=msvc-160)) and the [virtual](https://docs.microsoft.com/en-us/cpp/cpp/virtual-cpp?view=msvc-160) keyword. See the member-access table in [Controlling Access to Class Members](https://docs.microsoft.com/en-us/cpp/cpp/member-access-control-cpp?view=msvc-160) for more information.
+
+*member-list*\
+List of structure members. Refer to [Class Member Overview](https://docs.microsoft.com/en-us/cpp/cpp/class-member-overview?view=msvc-160) for more information. The only difference here is that **`struct`** is used in place of **`class`**.
+
+*declarators*\
+Declarator list specifying the names of the structure. Declarator lists declare one or more instances of the structure type. Declarators may include initializer lists if all data members of the structure are **`public`**. Initializer lists are common in structures because data members are **`public`** by default. See [Overview of Declarators](https://docs.microsoft.com/en-us/cpp/cpp/declarations-and-definitions-cpp?view=msvc-160) for more information.
+
+```cpp
+
+
+#include <iostream>
+using namespace std;
+
+struct PERSON {   // Declare PERSON struct type
+    int age;   // Declare member types
+    long ss;
+    float weight;
+    char name[25];
+} family_member;   // Define object of type PERSON
+
+struct CELL {   // Declare CELL bit field
+    unsigned short character  : 8;  // 00000000 ????????
+    unsigned short foreground : 3;  // 00000??? 00000000
+    unsigned short intensity  : 1;  // 0000?000 00000000
+    unsigned short background : 3;  // 0???0000 00000000
+    unsigned short blink      : 1;  // ?0000000 00000000
+} screen[25][80];       // Array of bit fields
+
+int main() {
+    struct PERSON sister;   // C style structure declaration
+    PERSON brother;   // C++ style structure declaration
+    sister.age = 13;   // assign values to members
+    brother.age = 7;
+    cout << "sister.age = " << sister.age << '\n';
+    cout << "brother.age = " << brother.age << '\n';
+
+    CELL my_cell;
+    my_cell.character = 1;
+    cout << "my_cell.character = " << my_cell.character;
+}
+// Output:
+// sister.age = 13
+// brother.age = 7
+// my_cell.character = 1
+
+
+```
+
+
+Binds types into a new type.  Structs are the same as classes, but all items are public.
+
+```c++
+struct Car{
+
+   int year;
+   int miles;
+   std::string make;
+   int getValue() const;
+}
+
+struct SpreadsheetCell
+{
+      void setValue(double inValue);
+      double getValue() const;
+   private: //can have methods and private members
+      double mValue;
+};
+
+
+
+// Has a constructor
+struct TempData2
+{
+    TempData2(double minimum, double maximum, double cur, int id, time_t t) :
+       stationId{id}, timeSet{t}, current{cur}, maxTemp{maximum}, minTemp{minimum} {}
+    int stationId;
+    time_t timeSet;
+    double current;
+    double maxTemp;
+    double minTemp;
+};
+
+
+//initialize nested values.
+struct example {
+    struct addr_t {
+       uint32_t port;
+    } addr;
+    union {
+       uint8_t a8[4];
+       uint16_t a16[2];
+    } in_u;
+};
+struct example ex = { // start of initializer list for struct example
+                     { // start of initializer list for ex.addr
+                        80 // initialized struct's only member
+                     }, // end of initializer list for ex.addr
+                     { // start of initializer-list for ex.in_u
+                        {127,0,0,1} // initializes first element of the union
+                     } };
+```
+
+If the nested initializer does not begin with an opening brace, only enough initializers from the list are taken to account for the elements or members of the member array, struct or union; any remaining initializers are left to initialize the next struct member:
+
+```c++
+struct example ex = {80, 127, 0, 0, 1}; // 80 initializes ex.addr.port
+                                        // 127 initializes ex.in_u.a8[0]
+                                        // 0 initializes ex.in_u.a8[1]
+                                        // 0 initializes ex.in_u.a8[2]
+                                        // 1 initializes ex.in_u.a8[3]
+```
+You declare a car by just defining it: `Car car;`
+
+Then access each value with the `.` operator.
+
+### typedef
+
+Using `typedef` on a `struct` defines it for external linkage.
+
+ 
+`typedef struct { /* ... */ } S;`
+
+### Templates
+
+
+[Templates (C++) | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/templates-cpp?view=msvc-160)
+
+Templates are actually a type of struct.
+
+
+```cpp
+template <class T> T f(T t);// Overload f for all types
+template <class T> class X {// Class with type parameter T
+  X(T t); };                // A constructor
+template <class T> X<T>::X(T t) {}
+                            // Definition of constructor
+X<int> x(3);                // An object of type "X of int"
+template <class T, class U=T, int n=0>
+                            // Template with default parameters
+```
+
+#### Useful Structures:
+
+!!!Example Snippet: Get the index of an enum.  Basically casting an enum class back to int
+
+    ```C++ 
+    template <typename Enumeration>
+	 static auto indexof(Enumeration const value)
+	-> typename std::underlying_type<Enumeration>::type
+	{
+		return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+	}
+
+    ```
+    
+!!!Example : another supposed to replicate toString()
+    ```C++ 
+        template <typename T>
+        std::string to_string( const T& value )
+        {
+            std::ostringstream ss;
+            ss << value;
+            return ss.str();
+        }
+    ```
+    
+_____
+## Unions
+
+### Unions and bit fields 
+
+to do.
+    
+    
 ## Classes 
 ---
 https://www.learncpp.com/cpp-tutorial/const-class-objects-and-member-functions/
 
-Abstract Classes are classes that are never
-instantiated
-• Don’t contain enough properties and/or behavior to be useful
-on their own
-• Used as building blocks for more useful classes---one way of
-reusing code
+Abstract Classes are classes that are never instantiated
+• Don’t contain enough properties and/or behavior to be useful on their own
+• Used as building blocks for more useful classes---one way of reusing code
 • Compilers enforce prevention of instantiation
 
 
-Concrete Classes are classes that are
-instantiated
+Concrete Classes are classes that are instantiated
 
 
 Const classes:
 
 
-Const classes
+Similarly, instantiated class objects can also be made const by using the `const` keyword. Initialization is done via class constructors:
 
-Similarly, instantiated class objects can also be made const by using the const keyword. Initialization is done via class constructors:
+    const Date date1; // initialize using default constructor
+    const Date date2(2020, 10, 16); // initialize using parameterized constructor
+    const Date date3 { 2020, 10, 16 }; // initialize using parameterized constructor (C++11)
 
-1
-2
-3
-const Date date1; // initialize using default constructor
-const Date date2(2020, 10, 16); // initialize using parameterized constructor
-const Date date3 { 2020, 10, 16 }; // initialize using parameterized constructor (C++11)
 Once a const class object has been initialized via constructor, any attempt to modify the member variables of the object is disallowed, as it would violate the const-ness of the object. This includes both changing member variables directly (if they are public), or calling member functions that set the value of member variables. Consider the following class:
 
 ```C++ 

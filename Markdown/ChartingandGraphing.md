@@ -1,4 +1,81 @@
-# markdown-nomnoml README
+
+Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc. A lot of its ideas are inspired by Markdown Preview Plus and RStudio Markdown.
+
+https://plantuml.com/activity-diagram-beta
+
+https://graphviz.org/
+https://graphviz.org/download/
+
+State Diagrams
+
+https://plantuml.com/state-diagram
+
+
+Dia for Windows
+http://dia-installer.de/index.html.en
+
+https://en.wikipedia.org/wiki/Dia_(software)
+
+https://wiki.gnome.org/Apps/Dia
+
+https://mermaid-js.github.io/mermaid/#/
+
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
+
+From <https://mermaid-js.github.io/mermaid/#/sequenceDiagram> 
+
+
+
+http://plantuml.com/guide
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: Another authentication Response
+@enduml
+
+From <https://plantuml.com/sequence-diagram> 
+
+
+https://plantuml.com/
+
+https://github.com/neenjaw/compile-mermaid-markdown-action
+
+https://github.com/TomWright/mermaid-server
+
+
+## markdown-nomnoml README
+
+[PlantUML](https://plantuml.com/)
+
+PlantUML is a component that allows to quickly write :
+Sequence diagram
+Usecase diagram
+Class diagram
+Object diagram
+Activity diagram (here is the legacy syntax)
+Component diagram
+Deployment diagram
+State diagram
+Timing diagram
+The following non-UML diagrams are also supported:
+JSON data
+YAML data
+Network diagram (nwdiag)
+Wireframe graphical interface (salt)
+Archimate diagram
+Specification and Description Language (SDL)
+Ditaa diagram
+Gantt diagram
+MindMap diagram
+Work Breakdown Structure diagram (WBS)
+Mathematic with AsciiMath or JLaTeXMath notation
+Entity Relationship diagram (IE/ER)
+
+
 
 [![](https://vsmarketplacebadge.apphb.com/version/amoosbr.markdown-nomnoml.svg)](https://vsmarketplacebadge.apphb.com/version/amoosbr.markdown-nomnoml.svg)
 

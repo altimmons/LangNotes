@@ -3,13 +3,15 @@
 sudo apt install git
 
 sudo apt install build-essential
-sagi xclip xsel
+sagi xclip xsel fzf
 
 sudo apt install python3 python3-pip python3-setuptools python3-distutils-extra  python-setuptools-doc python3-pygments 
 
 # install tilix
+##todo get quake style tmux
+
+#this is needed to patch func missing in some ubuntu dists.
  sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
-echo 
 
 
 #get mouse to work 
@@ -41,8 +43,13 @@ rm ./linux-amd64-1.1.0/*
 rm -d linux-amd64-1.1.0/
 rm ./linux-amd64-1.1.0.tar.gz 
 
+
+#custom tmux
 #https://www.byobu.org/
 sudo apt install byobu
+
+# File Managers, 
+sudo apt install nnn mc -
 
 #CMake v3.17  v3.20 is latest, machines always have earlier.
 # https://github.com/Kitware/CMake/releases?after=v3.18.4

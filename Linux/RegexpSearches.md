@@ -409,6 +409,33 @@ Pattern  Description
 - `|\d{3}-\d{2}-\d{4}` If n2 was not matched, match three decimal digits, a hyphen, two decimal digits, another hyphen, and four decimal digits.
 - `\b`  Match a word boundary.
 
+
+
+### Lookaheads and Lookbehinds
+
+Lookarounds at a glance
+
+When the regular expression engine hits a lookaround expression, it takes a substring reaching from the current position to the start (lookbehind) or end (lookahead) of the original string, and then runs Regex.IsMatch on that substring using the lookaround pattern. Success of this subexpression's result is then determined by whether it's a positive or negative assertion.
+
+Lookarounds at a glance
+Lookaround 	Name 	Function
+(?=check) 	Positive Lookahead 	Asserts that what immediately follows the current position in the string is "check"
+(?<=check) 	Positive Lookbehind 	Asserts that what immediately precedes the current position in the string is "check"
+(?!check) 	Negative Lookahead 	Asserts that what immediately follows the current position in the string is not "check"
+(?<!check) 	Negative Lookbehind 	Asserts that what immediately precedes the current position in the string is not "check"
+
+| Lookaround | Name                | Function                                                                                 |
+| ----------- | -------------------- | ---------------------------------------------------------------------------------------- |
+| (?=check)  | Positive Lookahead  | Asserts that what immediately follows the current position in the string is "check"      |
+| (?<=check) | Positive Lookbehind | Asserts that what immediately precedes the current position in the string is "check"     |
+| (?!check)  | Negative Lookahead  | Asserts that what immediately follows the current position in the string is not "check"  |
+| (?<!check) | Negative Lookbehind | Asserts that what immediately precedes the current position in the string is not "check" |
+
+
+Once they have matched, atomic groups won't be re-evaluated again, even when the remainder of the pattern fails due to the match. This can significantly improve performance when quantifiers occur within the atomic group or the remainder of the pattern.
+
+
+
 ### Examples
 
 Verifying Email:
