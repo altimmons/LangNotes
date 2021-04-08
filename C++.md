@@ -147,6 +147,98 @@ Header file includes:
 
 do not `#include` a *.cpp, only `#include *.h`
 
+!!!Important Important: Must not declare variables in .h files.  Throws tons of mysterious errors
+
+    See [Stack Overflow on the Topic](https://stackoverflow.com/questions/58724828/when-defining-a-variable-as-static-why-can-it-be-defined-multiple-times)
+    
+> my_global.h
+> 
+> #ifndef MY_GLOBAL_H
+> #define MY_GLOBAL_H
+> 
+> static int my_global_with_static[]={10, 20, 30, 40};
+> 
+> extern int my_global_with_extern[4];
+> 
+> void
+> show_array(const char *title,
+> const int *array,
+> int count);
+> 
+> void
+> another_function(void);
+> 
+> #endif
+> 
+> my_global.c
+> 
+> ```cpp
+> #include "my_global.h"
+> 
+> #include <stdio.h>
+> 
+> int my_global_with_extern[4]={1, 2, 3, 4};
+> 
+> void
+> show_array(const char *title,
+> const int *array,
+> int count)
+> {
+> printf("%s:\n", title);
+> printf("  at %p:", (void *)array);
+> for(int i=0; i<count; ++i)
+> {
+> printf("  %d", array[i]);
+> }
+> printf("\n");
+> }
+> 
+> void
+> another_function(void)
+> {
+> show_array("my_global_with_static from another translation unit",
+> my_global_with_static, 4);
+> show_array("my_global_with_extern from another translation unit",
+> my_global_with_extern, 4);
+> }
+> ```
+
+
+> prog.c
+> 
+> ```cpp
+> #include "my_global.h"
+> 
+> #include <stdio.h>
+> 
+> int
+> main(void)
+> {
+> show_array("my_global_with_static from main translation unit",
+> my_global_with_static, 4);
+> show_array("my_global_with_extern from main translation unit",
+> my_global_with_extern, 4);
+> another_function();
+> return 0;
+> }
+> ```
+> When running this program, I obtain this result
+> 
+>   my_global_with_static from main translation unit:
+>       at 0x5630507e10a0:  10  20  30  40
+>   my_global_with_extern from main translation unit:
+>       at 0x5630507e1200:  1  2  3  4
+>   my_global_with_static from another translation unit:
+>       at 0x5630507e11c0:  10  20  30  40
+>   my_global_with_extern from another translation unit:
+>       at 0x5630507e1200:  1  2  3  4
+
+We can see that my_global_with_extern is the exact same array when considered from the main translation unit or from another one; indeed not only the values are the same but this array is visible at the same address (0x5630507e1200 during this run).
+
+On the other hand, my_global_with_static looks the same in both translation units (the values are identical) but consists actually in two distinct arrays with their own memory location in each translation unit (0x5630507e10a0 and 0x5630507e11c0 in this run).
+
+**The extern keyword means that we are only declaring the variable.**
+
 #### Implementation
 
 ```c++
@@ -197,6 +289,69 @@ Sinle File:
 To multiple files:
 `g++ -W -Wall -s -pendantic-errors treeFarm.cpp treeFarmFunctions.cpp -o my_proq`
 `g++ -W -Wall -s -pendantic-errors *.cpp  -o my_proq`
+
+### Search Path
+
+This seems to give me a fair amount of trouble- so this is focused here:
+
+
+By default, the preprocessor looks for header files included by the **quote form** of the directive `#include` "file" first relative to the directory of the current file, and then in a preconfigured list of standard system directories. For example, if `/usr/include/sys/stat.h` contains `#include "types.h"`, GCC looks for` types.h` first in `/usr/include/sys`, then in its usual search path.
+
+For the angle-bracket form #include <file>, the preprocessor’s default behavior is to look only in the standard system directories. The exact search directory list depends on the target system, how GCC is configured, and where it is installed. You can find the default search directory list for your version of CPP by invoking it with the -v option. For example,
+
+!!!Tip Use the following command if files are not being found - the `-v` opt.
+        `cpp -v /dev/null -o /dev/null`
+
+        Note that you can also prevent the preprocessor from searching any of the default system header directories with the -nostdinc option. This is useful when you are compiling an operating system kernel or some other program that does not use the standard C library facilities, or the standard C library itself. 
+
+There are a number of command-line options you can use to add additional directories to the search path. The most commonly-used option is `-Idir`, which causes *dir* to be searched after the current directory (for the quote form of the directive) and ahead of the standard system directories. You can specify multiple `-I` options on the command line, in which case the directories are searched in left-to-right order.
+
+If you need separate control over the search paths for **the quote and angle-bracket forms** of the `‘#include`’ directive, you can use the `-iquote` and/or `-isystem` options instead of `-I.` See Invocation, for a detailed description of these options, as well as others that are less generally useful. 
+
+### Include
+
+[Include](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/cpp/Search-Path.html#Search-Path)
+
+
+The ‘#include’ directive works by directing the C preprocessor to scan the specified file as input before continuing with the rest of the current file. The output from the preprocessor contains the output already generated, followed by the output resulting from the included file, followed by the output that comes from the text after the ‘#include’ directive. For example, if you have a header file header.h as follows,
+
+        char *test (void);
+
+and a main program called program.c that uses the header file, like this,
+
+        int x;
+        #include "header.h"
+
+        int
+        main (void)
+        {
+        puts (test ());
+        }
+
+the compiler will see the same token stream as it would if program.c read
+
+        int x;
+    *-> char *test (void);
+
+        int
+        main (void)
+        {
+        puts (test ());
+        }
+
+ Any fragment of a C program can be included from another file. The include file could even contain the beginning of a statement that is concluded in the containing file, or the end of a statement that was started in the including file. However, an included file must consist of complete tokens. Comments and string literals which have not been closed by the end of an included file are invalid. For error recovery, they are considered to end at the end of the file. 
+
+
+## Pre-Processor 
+
+[MSFT Preprocessor reference](https://docs.microsoft.com/en-us/cpp/preprocessor/c-cpp-preprocessor-reference?view=msvc-160)
+
+[GCC Preprocessor Doc](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/gcc/Preprocessor-Options.html#Preprocessor-Options)
+
+[C-Oreoricessir](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/cpp/)
+
+
+
 
 ### Pragmas:
 
@@ -275,6 +430,44 @@ The compiler supports these predefined macros specified by the ISO C99 and ISO C
 
 (Microsoft-specific predefined macros)[https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=vs-2017#microsoft-specific-predefined-macros]
 
+
+### C++ Std Lib Predefined Macros
+
+[Gnu Doc on C++ Macros](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/libstdc++/manual/manual/using_macros.html)
+
+Below are the macros which users may check for library version information.
+
+
+!!!Note- I dont make an effort to really define these here.  See the link above.
+
+`_GLIBCXX_RELEASE`
+
+`__GLIBCXX__` 
+
+`__GNUC__` 
+
+`_GLIBCXX_USE_DEPRECATED`   Defined by default. Not configurable. ABI-changing.
+
+`_GLIBCXX_USE_CXX11_ABI`    Defined to the value 1 by default. Configurable via `--disable-libstdcxx-dual-abi` and/or `--with-default-libstdcxx-abi`. ABI-changing.
+
+`_GLIBCXX_CONCEPT_CHECKS`    Undefined by default. Configurable via `--enable-concept-checks`. 
+
+`_GLIBCXX_ASSERTIONS`    Undefined by default
+
+`_GLIBCXX_DEBUG`    Undefined by default. When defined, compiles user code using the debug mode. When defined, `_GLIBCXX_ASSERTIONS` is defined automatically, so all the assertions enabled by that macro are also enabled in debug mode. 
+
+`_GLIBCXX_DEBUG_PEDANTIC` -     Undefined by default. When defined while compiling with the debug mode, makes the debug mode extremely picky by making the use of libstdc++ extensions and libstdc++-specific behavior into errors.
+
+`_GLIBCXX_PARALLEL`    Undefined by default. When defined, compiles user code using the parallel mode. 
+
+`_GLIBCXX_PARALLEL_ASSERTIONS`   Undefined by default, but when any parallel mode header is included this macro will be defined to a non-zero value if `_GLIBCXX_ASSERTIONS` has a non-zero value, otherwise to zero. When defined to a non-zero value, it enables extra error checking and assertions in the parallel mode. 
+
+`_GLIBCXX_PROFILE `   Undefined by default. When defined, compiles user code using the profile mode. 
+
+`__STDCPP_WANT_MATH_SPEC_FUNCS__`  Undefined by default. When defined to a non-zero integer constant, enables support for ISO/IEC 29124 Special Math Functions. 
+
+
+
 ### Preprocessor operators
 
 [Preprocessor operators | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/preprocessor/preprocessor-operators?view=vs-2017)
@@ -339,11 +532,76 @@ The preprocessor recognizes the following directives:
 [#ifndef](https://docs.microsoft.com/en-us/cpp/preprocessor/hash-ifdef-and-hash-ifndef-directives-c-cpp?view=vs-2019) 
 [#pragma](https://docs.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword?view=vs-2019)
 
+### #if, #elif, #else, and #endif directives 
+
+conditional :
+    if-part elif-partsopt else-partopt endif-line
+
+if-part :
+    if-line text
+
+if-line :
+    #if constant-expression
+    #ifdef identifier
+    #ifndef identifier
+
+elif-parts :
+    elif-line text
+    elif-parts elif-line text
+
+elif-line :
+    #elif constant-expression
+
+else-part :
+    else-line text
+
+else-line :
+    #else
+
+endif-line :
+    #endif
+    
+Each #if directive in a source file must be matched by a closing #endif directive. Any number of #elif directives can appear between the #if and #endif directives, but at most one #else directive is allowed. The #else directive, if present, must be the last directive before #endif.
+
+The #if, #elif, #else, and #endif directives can nest in the text portions of other #if directives. Each nested #else, #elif, or #endif directive belongs to the closest preceding #if directive.
+
+All conditional-compilation directives, such as #if and #ifdef, must match a closing #endif directive before the end of file. Otherwise, an error message is generated. When conditional-compilation directives are contained in include files, they must satisfy the same conditions: There must be no unmatched conditional-compilation directives at the end of the include file.
+
+Macro replacement is done within the part of the line that follows an #elif command, so a macro call can be used in the constant-expression.
+
+
+The preprocessor selects a single text item by evaluating the constant expression following each #if or #elif directive until it finds a true (nonzero) constant expression. It selects all text (including other preprocessor directives beginning with #) up to its associated #elif, #else, or #endif.
+
+If all occurrences of constant-expression are false, or if no #elif directives appear, the preprocessor selects the text block after the #else clause. When there's no #else clause, and all instances of constant-expression in the #if block are false, no text block is selected.
+
+The constant-expression is an integer constant expression with these additional restrictions:
+
+    Expressions must have integral type and can include only integer constants, character constants, and the defined operator.
+
+    The expression can't use sizeof or a type-cast operator.
+
+    The target environment may be unable to represent all ranges of integers.
+
+    The translation represents type int the same way as type long, and unsigned int the same way as unsigned long.
+
+    The translator can translate character constants to a set of code values different from the set for the target environment. To determine the properties of the target environment, use an app built for that environment to check the values of the LIMITS.H macros.
+
+    The expression must not query the environment, and must remain insulated from implementation details on the target computer.
 
 ___
 
 ## Standard Libraries
 
+
+### Links
+
+[GNU Std Lib Doc](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/libstdc++/manual/)
+
+
+[Microsoft Doc](https://docs.microsoft.com/en-us/cpp/standard-library/cpp-standard-library-overview?view=msvc-160)
+
+
+### Reference Lists
 ___
 
 - [Language Support
@@ -489,6 +747,8 @@ Atomics and threading library
  
 ____
 ### C++ Library
+
+
 
 > ### Miscellaneous headers
 
@@ -782,6 +1042,8 @@ int main()
 
 
 [[maybe_unused]] Visual Studio 2017 version 15.3 and later: (available with /std:c++17) Specifies that a variable, function, class, typedef, non-static data member, enum, or template specialization may intentionally not be used. The compiler does not warn when an entity marked [[maybe_unused]] is not used. An entity that is declared without the attribute can later be redeclared with the attribute and vice versa. An entity is considered marked after its first declaration that is marked is analyzed, and for the remainder of translation of the current translation unit.## C++ Operators
+
+### Operator Precedence
 
 [C++ built-in operators, precedence, and associativity | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/cpp-built-in-operators-precedence-and-associativity?view=msvc-160)
 
@@ -1631,12 +1893,16 @@ ___
 <!-- Todo  -->
 [Standard conversions | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/standard-conversions?view=msvc-160)
 
+The cast operator `()` are lower precedence than the `static_cast`, `dynamic_cast` etc types, (2 vs 3.)
+
 
 #### Cast Operator 
+
 
 [Cast Operator: () | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/cast-operator-parens?view=msvc-160)
 
 > Cast Operator: ()
+
 
 unary-expression ( type-name ) cast-expression
 
@@ -1699,7 +1965,17 @@ int main()
 > 
 > -   [dynamic\_cast](https://docs.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator?view=msvc-160) Used for conversion of polymorphic types.
 >     
+>> This type of conversion is called an "upcast" because it moves a pointer up a class hierarchy, from a derived class to a class it is derived from. An upcast is an implicit conversion.
+>> 
+>> If `type-id` is void\*, a run-time check is made to determine the actual type of `expression`. The result is a pointer to the complete object pointed to by `expression`. F
+>
 > -   [static\_cast](https://docs.microsoft.com/en-us/cpp/cpp/static-cast-operator?view=msvc-160) Used for conversion of nonpolymorphic types.
+
+>> The **`static_cast`** operator can be used for operations such as converting a pointer to a base class to a pointer to a derived class. Such conversions are not always safe.
+>> 
+>> In general you use **`static_cast`** when you want to convert numeric data types such as enums to ints or ints to floats, and you are certain of the data types involved in the conversion. 
+
+
 >     
 > -   [const\_cast](https://docs.microsoft.com/en-us/cpp/cpp/const-cast-operator?view=msvc-160) Used to remove the **`const`**, **`volatile`**, and **`__unaligned`** attributes.
 >     
@@ -1807,13 +2083,181 @@ void f() {
 !!!Note Only works on Pointers
 >   The type-id must be a pointer or a reference to a previously defined class type or a "pointer to void". The type of expression must be a pointer if type-id is a pointer, or an l-value if type-id is a reference.
 
+
+
+```cpp
+// dynamic_cast_1.cpp
+// compile with: /c
+class B { };
+class C : public B { };
+class D : public C { };
+
+void f(D* pd) {
+   C* pc = dynamic_cast<C*>(pd);   // ok: C is a direct base class
+                                   // pc points to C subobject of pd
+   B* pb = dynamic_cast<B*>(pd);   // ok: B is an indirect base class
+                                   // pb points to B subobject of pd
+}
+```
+
+
+This type of conversion is called an "upcast" because it moves a pointer up a class hierarchy, from a derived class to a class it is derived from. An upcast is an implicit conversion.
+
+If type-id is void*, a run-time check is made to determine the actual type of expression. The result is a pointer to the complete object pointed to by expression. For example:
+
+```cpp
+// dynamic_cast_2.cpp
+// compile with: /c /GR
+class A {virtual void f();};
+class B {virtual void f();};
+
+void f() {
+   A* pa = new A;
+   B* pb = new B;
+   void* pv = dynamic_cast<void*>(pa);
+   // pv now points to an object of type A
+
+   pv = dynamic_cast<void*>(pb);
+   // pv now points to an object of type B
+}
+```
+
+If type-id is not void*, a run-time check is made to see if the object pointed to by expression can be converted to the type pointed to by type-id.
+
+If the type of expression is a base class of the type of type-id, a run-time check is made to see if expression actually points to a complete object of the type of type-id. If this is true, the result is a pointer to a complete object of the type of type-id. For example:
+
+
+
+```cpp
+// dynamic_cast_3.cpp
+// compile with: /c /GR
+class B {virtual void f();};
+class D : public B {virtual void f();};
+
+void f() {
+   B* pb = new D;   // unclear but ok
+   B* pb2 = new B;
+
+   D* pd = dynamic_cast<D*>(pb);   // ok: pb actually points to a D
+   D* pd2 = dynamic_cast<D*>(pb2);   // pb2 points to a B not a D
+}
+```
+
+This type of conversion is called a "downcast" because it moves a pointer down a class hierarchy, from a given class to a class derived from it.
+
+In cases of multiple inheritance, possibilities for ambiguity are introduced. Consider the class hierarchy shown in the following figure.
+
+For CLR types, dynamic_cast results in either a no-op if the conversion can be performed implicitly, or an MSIL isinst instruction, which performs a dynamic check and returns nullptr if the conversion fails.
+
+The following sample uses dynamic_cast to determine if a class is an instance of particular type:
+
+
+```cpp
+// dynamic_cast_7.cpp
+// compile with: /c /GR
+class A {virtual void f();};
+class B {virtual void f();};
+
+void f() {
+   A* pa = new A;
+   B* pb = dynamic_cast<B*>(pa);   // fails at runtime, not safe;
+   // B not derived from A
+}
+```
+
+[dynamic_cast Operator | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator?view=msvc-160)
+
+> The value of a failed cast to pointer type is the null pointer. A failed cast to reference type throws a [bad\_cast Exception](https://docs.microsoft.com/en-us/cpp/cpp/bad-cast-exception?view=msvc-160). If `expression` does not point to or reference a valid object, a `__non_rtti_object` exception is thrown.
+
 #### Const Casts
 
+[const_cast Operator](https://docs.microsoft.com/en-us/cpp/cpp/const-cast-operator?view=msvc-160)
+
+>     const_cast <type-id> (expression)
+>     
+> A pointer to any object type or a pointer to a data member can be explicitly converted to a type that is identical except for the **`const`**, **`volatile`**, and **`__unaligned`** qualifiers. For pointers and references, the result will refer to the original object. For pointers to data members, the result will refer to the same member as the original (uncast) pointer to data member. Depending on the type of the referenced object, a write operation through the resulting pointer, reference, or pointer to data member might produce undefined behavior.
+> 
+> You cannot use the **`const_cast`** operator to directly override a constant variable's constant status.
+> 
+> The **`const_cast`** operator converts a null pointer value to the null pointer value of the destination type.
+
+
+```cpp
+// expre_const_cast_Operator.cpp
+// compile with: /EHsc
+#include <iostream>
+
+using namespace std;
+class CCTest {
+public:
+   void setNumber( int );
+   void printNumber() const;
+private:
+   int number;
+};
+
+void CCTest::setNumber( int num ) { number = num; }
+
+void CCTest::printNumber() const {
+   cout << "\nBefore: " << number;
+   const_cast< CCTest * >( this )->number--;
+   cout << "\nAfter: " << number;
+}
+
+int main() {
+   CCTest X;
+   X.setNumber( 8 );
+   X.printNumber();
+}
+```
+
+> On the line containing the **`const_cast`**, the data type of the **`this`** pointer is `const CCTest *`. The **`const_cast`** operator changes the data type of the **`this`** pointer to `CCTest *`, allowing the member `number` to be modified. The cast lasts only for the remainder of the statement in which it appears.
 
 #### Reinterpret Casts
 
+        reinterpret_cast < type-id > ( expression )
 
-#### Static Casts
+[reinterpret_cast Operator](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160)
+
+> The **`reinterpret_cast`** operator can be used for conversions such as **`char*`** to **`int*`**, or `One_class*` to `Unrelated_class*`, which are inherently unsafe.
+> 
+> The result of a **`reinterpret_cast`** cannot safely be used for anything other than being cast back to its original type. Other uses are, at best, nonportable.
+> 
+> The **`reinterpret_cast`** operator cannot cast away the **`const`**, **`volatile`**, or **`__unaligned`** attributes. See [const\_cast Operator](https://docs.microsoft.com/en-us/cpp/cpp/const-cast-operator?view=msvc-160) for information on removing these attributes.
+> 
+> The **`reinterpret_cast`** operator converts a null pointer value to the null pointer value of the destination type.
+> 
+> One practical use of **`reinterpret_cast`** is in a hash function, which maps a value to an index in such a way that two distinct values rarely end up with the same index.
+
+> The **`reinterpret_cast`** allows the pointer to be treated as an integral type. The result is then bit-shifted and XORed with itself to produce a unique index (unique to a high degree of probability). The index is then truncated by a standard C-style cast to the return type of the function.
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Returns a hash code based on an address
+unsigned short Hash( void *p ) {
+   unsigned int val = reinterpret_cast<unsigned int>( p );
+   return ( unsigned short )( val ^ (val >> 16));
+}
+
+using namespace std;
+int main() {
+   int a[20];
+   for ( int i = 0; i < 20; i++ )
+      cout << Hash( a + i ) << endl;
+}
+
+Output:
+64641
+64645
+64889
+64893
+64881
+64885
+64873
+```
 
 
 
@@ -2069,6 +2513,27 @@ Note the use of `->` since glcd is a pointer to the object (as created by the & 
 
 <!-- To Do- Mentioned in the Microsoft  Doc on Type aliases -->
 
+takes the general form:  Let HelloWorld be a simple parameterless func.
+
+    auto func_name = &HelloWorld;
+
+Dont need the `&` because its implicit
+
+    auto func_name = HelloWorld;
+
+What type is auto?
+
+    void(*func_name)(param typename)
+
+eg 
+
+    void(*myFunc)(int)
+
+This is complicated, which is why people use the `auto`.  Can also use `using` or `typedef`
+
+
+
+
 ```C++
 // C++11
 using func = void(*)(int);
@@ -2232,26 +2697,6 @@ int main()
 ____
 
 
-
----
----
-## Control
----
-- Iteration constructs
-   - for
-   - while
-   - do-while
-   - 'enhanced' for (C++ 11)
-- Decision constructs
-   - if-else
-   - switch
-   - conditional
-- Other constructs
-   - goto
-   - break - used with switch.
-   - continue - can be high risk
-
-!!! question continue - said hed make a comment if used.
 
 ## Variables
 
@@ -3030,212 +3475,6 @@ ____
 
 47-84, 114-134
 
-### Vectors
-
-[See Initializer Lists for examples](#Initializer Lists)
-
-[Vector Doc](https://www.cplusplus.com/reference/vector/vector/)  
-> 
-> (1) **empty container constructor (default constructor)** - Constructs an [empty](https://www.cplusplus.com/vector::empty) container, with no elements.
-> 
-> explicit vector (const allocator_type& alloc = allocator_type());
-> 
-> (2) **fill constructor**
-> 
-> Constructs a container with *n* elements. Each element is a copy of *val* (if provided).
-> 
->     explicit vector (size_type n);
->   vector (size_type n, const value_type& val,
->      const allocator_type& alloc = allocator_type());
-> 
-> (3) **range constructor** --> Constructs a container with as many elements as the range `[first,last)`, with each element *emplace-constructed* from its corresponding element in that range, in the same order.
-> 
-> template <class InputIterator>
-> vector (InputIterator first, InputIterator last,
-> const allocator_type& alloc = allocator_type());
-> 
-> (4) **copy constructor (and** copying with allocator) --> Constructs a container with a copy of each of the elements in *x*, in the same order.
->                                                                                   
-> vector (const vector& x);
-> vector (const vector& x, const allocator_type& alloc);
-> 
-> 
-> (5) **move constructor** (and moving with allocator) - Constructs a container that acquires the elements of *x*.
-> - If *alloc* is specified and is different from *x*'s allocator, the elements are moved.Otherwise, no elements are constructed (their ownership is directly transferred).
-> - *x* is left in an unspecified but valid state.
-> 
-> vector (vector&& x);
-> vector (vector&& x, const allocator_type& alloc);
-> 
-> **(6) initializer list constructor** --> Constructs a container with a copy of each of the elements in *il*, in the same order.
-> 
-> vector (initializer_list<value_type> il,
-> const allocator_type& alloc = allocator_type());
-
-**Member functions**
-(constructor)
-Construct vector (public member function )
-(destructor)
-Vector destructor (public member function )
-operator=
-Assign content (public member function )
-
-Iterators:
-begin
-Return iterator to beginning (public member function )
-end
-Return iterator to end (public member function )
-rbegin
-Return reverse iterator to reverse beginning (public member function )
-rend
-Return reverse iterator to reverse end (public member function )
-cbegin 
-Return const_iterator to beginning (public member function )
-cend 
-Return const_iterator to end (public member function )
-crbegin 
-Return const_reverse_iterator to reverse beginning (public member function )
-crend 
-Return const_reverse_iterator to reverse end (public member function )
-
-Capacity:
-size
-Return size (public member function )
-max_size
-Return maximum size (public member function )
-resize
-Change size (public member function )
-capacity
-Return size of allocated storage capacity (public member function )
-empty
-Test whether vector is empty (public member function )
-reserve
-Request a change in capacity (public member function )
-shrink_to_fit 
-Shrink to fit (public member function )
-
-Element access:
-operator[]
-Access element (public member function )
-at
-Access element (public member function )
-front
-Access first element (public member function )
-back
-Access last element (public member function )
-data 
-Access data (public member function )
-
-Modifiers:
-assign
-Assign vector content (public member function )
-push_back
-Add element at the end (public member function )
-pop_back
-Delete last element (public member function )
-insert
-Insert elements (public member function )
-erase
-Erase elements (public member function )
-swap
-Swap content (public member function )
-clear
-Clear content (public member function )
-emplace 
-Construct and insert element (public member function )
-emplace_back 
-Construct and insert element at the end (public member function )
-
-Allocator:
-get_allocator
-Get allocator (public member function )
-
-Non-member function overloads
-relational operators
-Relational operators for vector (function template )
-swap
-Exchange contents of vectors (function template )
-
-
-#### Assign
-
-
-1. range (1)-
-
-        template <class InputIterator>
-        void assign (InputIterator first, InputIterator last);
-
-2. fill (2)-
-
-        void assign (size_type n, const value_type& val);
-
-3. initializer list (3)- 
-
-        void assign (initializer_list<value_type> il);
-
-
-```C++ 
-    // vector assign
-#include <iostream>
-#include <vector>
-
-int main ()
-{
-  std::vector<int> first;
-  std::vector<int> second;
-  std::vector<int> third;
-
-//this is constructor 2- the fill version
-  first.assign (7,100);  // 7 ints with a value of 100 
-
-  std::vector<int>::iterator it;
-  it=first.begin()+1;
-
-  second.assign (it,first.end()-1); // the 5 central values of first
-
-  int myints[] = {1776,7,4};
-  third.assign (myints,myints+3);   // assigning from array.
-
-  std::cout << "Size of first: " << int (first.size()) << '\n';
-  std::cout << "Size of second: " << int (second.size()) << '\n';
-  std::cout << "Size of third: " << int (third.size()) << '\n';
-  return 0;
-}
-```
-
-
-#### push_back
-```c++
-vector<double> mSequence;
-std::vector<std::string> myVec = {"String 1", "String 2", "String 3"};
-std::vector<std::string> myVec;
-myVec.push_back("String 1");
-myVec.push_back("String 2");
-myVec.push_back("String 3");
-mSequence.assign(args);
-```
-
-
-std::swap() swaps the values of two vectors.  
-
-vector::swap() swaps two entire vectors. 
-
-
-```c++
-vector<int> v1 = {1, 2, 3}; 
-vector<int> v2 = {4, 5, 6};
-
-v1.swap(v2); 
-vector<int> v1 = {1, 2, 3}; 
-vector<int> v2 = {4, 5, 6}; 
-// swapping the above two vectors 
-// by traversing and swapping each element 
-for(int i=0; i<3; i++) 
-{ 
-    swap(v1[i], v2[i]); 
-} 
-
-```
 
 ### void * type
 
@@ -3402,6 +3641,12 @@ int main()
 
 ### Strings
 
+See Strings (below)
+
+
+## Strings
+
+
 char arrays in C
 
 
@@ -3451,8 +3696,6 @@ int main()
 }
 ```
 
-
-## Strings
 
 
 ### String Literals 
@@ -3543,6 +3786,57 @@ std::string to_string( const T& value )
  
  ```
  
+see also:
+
+[Overloading the << Operator for Your Own Classes | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=msvc-160)
+
+> The `write` function example showed the use of a `Date` structure. A date is an ideal candidate for a C++ class in which the data members (month, day, and year) are hidden from view. An output stream is the logical destination for displaying such a structure. This code displays a date using the `cout` object:
+> 
+>``` C++
+> 
+>     Date dt(1, 2, 92);
+>     
+>     cout <<dt;
+>     
+>```
+ 
+> To get `cout` to accept a `Date` object after the insertion operator, overload the insertion operator to recognize an `ostream` object on the left and a `Date` on the right. The overloaded `<<` operator function must then be declared as a friend of class `Date` so it can access the private data within a `Date` object.
+> 
+>``` C++
+> 
+>     // overload_date.cpp
+>     // compile with: /EHsc
+>     #include <iostream>
+>     using namespace std;
+>     
+>     class Date
+>     {
+>         int mo, da, yr;
+>     public:
+>         Date(int m, int d, int y)
+>         {
+>             mo = m; da = d; yr = y;
+>         }
+>         friend ostream& operator<<(ostream& os, const Date& dt);
+>     };
+>     
+>     ostream& operator<<(ostream& os, const Date& dt)
+>     {
+>         os << dt.mo << '/' << dt.da << '/' << dt.yr;
+>         return os;
+>     }
+>     
+>     int main()
+>     {
+>         Date dt(5, 6, 92);
+>         cout << dt;
+>     }
+>```    
+> 
+> Output
+> 
+> `5/6/92`
+
  
 or operator overloading
  
@@ -3568,6 +3862,8 @@ int main()
   std::cout << "I have a point at " << p << ".\n";
   my_fn_which_takes_a_string( to_string(p) );
 ```
+
+
 
 ____
 ### String Stream
@@ -3695,12 +3991,326 @@ int main()
 }
 ```
 
+#### Some good examples on the topic and a link
+
+[Using Insertion Operators and Controlling Format | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/standard-library/using-insertion-operators-and-controlling-format?view=msvc-160)
+
+> Output streams default to right-aligned text. To left-align the names in the previous example and right-align the numbers, replace the **`for`** loop as follows:
+> 
+> C++
+> 
+>     for (int i = 0; i <4; i++)
+>         cout << setiosflags(ios::left)
+>              << setw(6) << names[i]
+>              << resetiosflags(ios::left)
+>              << setw(10) << values[i] << endl;
+>     
+
+Output
+
+    Zoot 1.23 
+    Jimmy 35.36 
+    Al 653.7 
+    Stan 4358.24
+
+
+```cpp
+for (int i = 0; i <4; i++)
+    cout << setiosflags(ios::left)
+         << setw(6)
+         << names[i]
+         << resetiosflags(ios::left)
+         << setw(10)
+         << setprecision(1)
+         << values[i]
+         << endl;
+```
+
+
+    Zoot          1
+    Jimmy     4e+01
+    Al        7e+02
+    Stan      4e+03
+
+
+## Containers
+
+ associative containers (map, set, etc): 
+
+!!!Warning : The size() operation is O(n) time
+    >    One implication of linear time size(): you should never write
+    >
+    >>    if (L.size() == 0)
+    >>        ...
+    >    
+    >
+    > Instead, you should write
+    >>
+    >>    if (L.empty())
+    >>      ...
+    >
+    > [Source](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/libstdc++/manual/manual/containers.html#sequences.list.size)
+    
+    Unordered Associative
+         std::unordered_set and std::unordered_map 
+ std::unordered_multiset and std::unordered_multimap 
+
+[C++ Standard Library Containers | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/standard-library/stl-containers?view=msvc-160)
+
+
+Vector Array, Deque, List, Forward_list (Singly linked list)
+> Sequence Containers
+> 
+> Sequence containers ==maintain the ordering of inserted elements that you specify.==
+> 
+> A `vector` container behaves like an array, but can automatically grow as required. It is random access and contiguously stored, and length is highly flexible. For these reasons and more, `vector` is the preferred sequence container for most applications. When in doubt as to what kind of sequence container to use, start by using a vector! For more information, see [vector Class](https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-160).
+> 
+> An `array` container has some of the strengths of `vector`, but the length isn't as flexible. For more information, see [array Class](https://docs.microsoft.com/en-us/cpp/standard-library/array-class-stl?view=msvc-160).
+> 
+> A `deque` (double-ended queue) container allows for fast insertions and deletions at the beginning and end of the container. It shares the random-access and flexible-length advantages of `vector`, but isn't contiguous. For more information, see [deque Class](https://docs.microsoft.com/en-us/cpp/standard-library/deque-class?view=msvc-160).
+> 
+> A `list` container is a doubly linked list that enables bidirectional access, fast insertions, and fast deletions anywhere in the container, but you can't randomly access an element in the container. For more information, see [list Class](https://docs.microsoft.com/en-us/cpp/standard-library/list-class?view=msvc-160).
+> 
+> A `forward_list` container is a singly linked list—the forward-access version of `list`. For more information, see [forward\_list Class](https://docs.microsoft.com/en-us/cpp/standard-library/forward-list-class?view=msvc-160).
+> 
+>  [Associative Containers](https://docs.microsoft.com/en-us/cpp/standard-library/stl-containers?view=msvc-160#associative-containers)
+> 
+> In associative containers, elements are inserted in a ==pre-defined order—for example, as sorted ascending. Unordered== associative containers are also available. The associative containers can be grouped into two subsets: ==maps== and ==sets.==
+> 
+> A `map`, sometimes referred to as a dictionary, consists of a key/value pair. The key is used to order the sequence, and the value is associated with that key. For example, a `map` might contain keys that represent every unique word in a text and corresponding values that represent the number of times that each word appears in the text. The unordered version of `map` is `unordered_map`. For more information, see [map Class](https://docs.microsoft.com/en-us/cpp/standard-library/map-class?view=msvc-160) and [unordered\_map Class](https://docs.microsoft.com/en-us/cpp/standard-library/unordered-map-class?view=msvc-160).
+> 
+> A `set` is just an ascending container of unique elements—the value is also the key. The unordered version of `set` is `unordered_set`. For more information, see [set Class](https://docs.microsoft.com/en-us/cpp/standard-library/set-class?view=msvc-160) and [unordered\_set Class](https://docs.microsoft.com/en-us/cpp/standard-library/unordered-set-class?view=msvc-160).
+> 
+> Both `map` and `set` only allow one instance of a key or element to be inserted into the container. If multiple instances of elements are required, use `multimap` or `multiset`. The unordered versions are `unordered_multimap` and `unordered_multiset`. For more information, see [multimap Class](https://docs.microsoft.com/en-us/cpp/standard-library/multimap-class?view=msvc-160), [unordered\_multimap Class](https://docs.microsoft.com/en-us/cpp/standard-library/unordered-multimap-class?view=msvc-160), [multiset Class](https://docs.microsoft.com/en-us/cpp/standard-library/multiset-class?view=msvc-160), and [unordered\_multiset Class](https://docs.microsoft.com/en-us/cpp/standard-library/unordered-multiset-class?view=msvc-160).
+> 
+> Ordered maps and sets support bi-directional iterators, and their unordered counterparts support forward iterators. For more information, see [Iterators](https://docs.microsoft.com/en-us/cpp/standard-library/iterators?view=msvc-160).
+
+ 
+Queue, Priority Queue, Stack
+
+ [C++ Standard Library Containers | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/standard-library/stl-containers?view=msvc-160)
+
+> Container Adapters
+> 
+> A container adapter is a variation of a sequence or associative container that restricts the interface for simplicity and clarity. Container adapters don't support iterators.
+> 
+> A `queue` container follows FIFO (first in, first out) semantics. The first element _pushed_—that is, inserted into the queue—is the first to be _popped_—that is, removed from the queue. For more information, see [queue Class](https://docs.microsoft.com/en-us/cpp/standard-library/queue-class?view=msvc-160).
+> 
+> A `priority_queue` container is organized such that the element that has the highest value is always first in the queue. For more information, see [priority\_queue Class](https://docs.microsoft.com/en-us/cpp/standard-library/priority-queue-class?view=msvc-160).
+> 
+> A `stack` container follows LIFO (last in, first out) semantics. The last element pushed on the stack is the first element popped. For more information, see [stack Class](https://docs.microsoft.com/en-us/cpp/standard-library/stack-class?view=msvc-160).
+> 
+> Because container adapters don't support iterators, they can't be used with the C++ Standard Library algorithms. For more information, see [Algorithms](https://docs.microsoft.com/en-us/cpp/standard-library/algorithms?view=msvc-160).
+
+
+
+
+### Vectors
+
+
+
+
+[MSFT Vectors](https://docs.microsoft.com/en-us/cpp/standard-library/vector?view=msvc-160)
+
+ !!!Note Note:
+    The <vector> library also uses the #include <initializer_list> statement.
+    /
+    [See Initializer Lists for examples](#Initializer Lists)
+
+[Vector Doc](https://www.cplusplus.com/reference/vector/vector/)  
+> 
+> (1) **empty container constructor (default constructor)** - Constructs an [empty](https://www.cplusplus.com/vector::empty) container, with no elements.
+> 
+> explicit vector (const allocator_type& alloc = allocator_type());
+> 
+> (2) **fill constructor**
+> 
+> Constructs a container with *n* elements. Each element is a copy of *val* (if provided).
+> 
+>     explicit vector (size_type n);
+>   vector (size_type n, const value_type& val,
+>      const allocator_type& alloc = allocator_type());
+> 
+> (3) **range constructor** --> Constructs a container with as many elements as the range `[first,last)`, with each element *emplace-constructed* from its corresponding element in that range, in the same order.
+> 
+> template <class InputIterator>
+> vector (InputIterator first, InputIterator last,
+> const allocator_type& alloc = allocator_type());
+> 
+> (4) **copy constructor (and** copying with allocator) --> Constructs a container with a copy of each of the elements in *x*, in the same order.
+>                                                                                   
+> vector (const vector& x);
+> vector (const vector& x, const allocator_type& alloc);
+> 
+> 
+> (5) **move constructor** (and moving with allocator) - Constructs a container that acquires the elements of *x*.
+> - If *alloc* is specified and is different from *x*'s allocator, the elements are moved.Otherwise, no elements are constructed (their ownership is directly transferred).
+> - *x* is left in an unspecified but valid state.
+> 
+> vector (vector&& x);
+> vector (vector&& x, const allocator_type& alloc);
+> 
+> **(6) initializer list constructor** --> Constructs a container with a copy of each of the elements in *il*, in the same order.
+> 
+> vector (initializer_list<value_type> il,
+> const allocator_type& alloc = allocator_type());
+
+**Member functions**
+____
+-`(constructor)` - Construct vector (public member function )
+-`(destructor)` - Vector destructor (public member function )
+-`operator=` - Assign content (public member function )
+
+Iterators:
+-`begin` - Return iterator to beginning (public member function )
+-`end` - Return iterator to end (public member function )
+-`rbegin` - Return reverse iterator to reverse beginning (public member function )
+-`rend` - Return reverse iterator to reverse end (public member function )
+-`cbegin ` - Return const_iterator to beginning (public member function )
+-`cend ` - Return const_iterator to end (public member function )
+-`crbegin ` - Return const_reverse_iterator to reverse beginning (public member function )
+-`crend ` - Return const_reverse_iterator to reverse end (public member function )
+
+Capacity:
+-`size` - Return size (public member function )
+-`max_size` - Return maximum size (public member function )
+-`resize` - Change size (public member function )
+-`capacity` - Return size of allocated storage capacity (public member function )
+-`empty` - Test whether vector is empty (public member function )
+-`reserve` - Request a change in capacity (public member function )
+-`shrink_to_fit ` - Shrink to fit (public member function )
+
+Element access:
+-`operator[]` - Access element (public member function )
+-`at` - Access element (public member function )
+-`front` - Access first element (public member function )
+-`back` - Access last element (public member function )
+-`data ` - Access data (public member function )
+
+Modifiers:
+-`assign` - Assign vector content (public member function )
+-`push_back` - Add element at the end (public member function )
+-`pop_back` - Delete last element (public member function )
+-`insert` - Insert elements (public member function )
+-`erase` - Erase elements (public member function )
+-`swap` - Swap content (public member function )
+-`clear` - Clear content (public member function )
+-`emplace ` - Construct and insert element (public member function )
+-`emplace_back ` - Construct and insert element at the end (public member function )
+
+Allocator:
+-`get_allocator` - Get allocator (public member function )
+
+Non-member function overloads
+-`relational operators` - Relational operators for vector (function template )
+-`swap` - Exchange contents of vectors (function template )
+
+
+
+#### Assign
+
+
+1. range (1)-
+
+        template <class InputIterator>
+        void assign (InputIterator first, InputIterator last);
+
+2. fill (2)-
+
+        void assign (size_type n, const value_type& val);
+
+3. initializer list (3)- 
+
+        void assign (initializer_list<value_type> il);
+
+
+```C++ 
+    // vector assign
+#include <iostream>
+#include <vector>
+
+int main ()
+{
+  std::vector<int> first;
+  std::vector<int> second;
+  std::vector<int> third;
+
+//this is constructor 2- the fill version
+  first.assign (7,100);  // 7 ints with a value of 100 
+
+  std::vector<int>::iterator it;
+  it=first.begin()+1;
+
+  second.assign (it,first.end()-1); // the 5 central values of first
+
+  int myints[] = {1776,7,4};
+  third.assign (myints,myints+3);   // assigning from array.
+
+  std::cout << "Size of first: " << int (first.size()) << '\n';
+  std::cout << "Size of second: " << int (second.size()) << '\n';
+  std::cout << "Size of third: " << int (third.size()) << '\n';
+  return 0;
+}
+```
+
+
+#### push_back
+```c++
+vector<double> mSequence;
+std::vector<std::string> myVec = {"String 1", "String 2", "String 3"};
+std::vector<std::string> myVec;
+myVec.push_back("String 1");
+myVec.push_back("String 2");
+myVec.push_back("String 3");
+mSequence.assign(args);
+```
+
+
+std::swap() swaps the values of two vectors.  
+
+vector::swap() swaps two entire vectors. 
+
+
+```c++
+vector<int> v1 = {1, 2, 3}; 
+vector<int> v2 = {4, 5, 6};
+
+v1.swap(v2); 
+vector<int> v1 = {1, 2, 3}; 
+vector<int> v2 = {4, 5, 6}; 
+// swapping the above two vectors 
+// by traversing and swapping each element 
+for(int i=0; i<3; i++) 
+{ 
+    swap(v1[i], v2[i]); 
+} 
+
+```
+
 ## Mixing Input Types
 
 //41
 
-## Flow Control
 
+---
+---
+## Control
+---
+- Iteration constructs
+   - for
+   - while
+   - do-while
+   - 'enhanced' for (C++ 11)
+- Decision constructs
+   - if-else
+   - switch
+   - conditional
+- Other constructs
+   - goto
+   - break - used with switch.
+   - continue - can be high risk
+
+!!! question continue - said hed make a comment if used.
 
 The articles on statements describe the following C++ keywords:
 
@@ -3956,6 +4566,8 @@ situations.  Must need an expression
 
  #### __if_exists
 
+ !!!Warning Warning Microsoft Specific?
+
  [__if_exists Statement | Microsoft Docs](https://docs.microsoft.com/en-us/cpp/cpp/if-exists-statement?view=msvc-160)
 
 > Syntax
@@ -4062,6 +4674,8 @@ To achieve the most reliable results, use the **`__if_exists`** statement under 
 > 
 
 #### __if_not_exists
+
+ !!!Warning Warning Microsoft Specific?
 
 See Above
 
@@ -4433,6 +5047,56 @@ X<int> x(3);                // An object of type "X of int"
 template <class T, class U=T, int n=0>
                             // Template with default parameters
 ```
+
+
+Some interesting template examples:
+https://gcc.gnu.org/onlinedocs/gcc-7.5.0/libstdc++/manual/manual/containers_and_c.html
+
+> The result is that if all your algorithm calls look like
+> 
+> std::transform(beginof(foo), endof(foo), beginof(foo), SomeFunction);
+> 
+> 
+> then the type of foo can change from an array of ints to a vector of ints to a deque of ints and back again, without ever changing any client code.
+
+```cpp
+
+	std::transform(beginof(foo), endof(foo), beginof(foo), SomeFunction);
+	
+	// beginof
+	template<typename T>
+	inline typename vector<T>::iterator
+	beginof(vector<T> &v)
+	{ return v.begin(); }
+
+	template<typename T, unsigned int sz>
+	inline T*
+	beginof(T (&array)[sz]) { return array; }
+
+// endof
+	template<typename T>
+	inline typename vector<T>::iterator
+	endof(vector<T> &v)
+	{ return v.end(); }
+
+	template<typename T, unsigned int sz>
+	inline T*
+	endof(T (&array)[sz]) { return array + sz; }
+
+// lengthof
+	template<typename T>
+	inline typename vector<T>::size_type
+	lengthof(vector<T> &v)
+	{ return v.size(); }
+
+	template<typename T, unsigned int sz>
+	inline unsigned int
+	lengthof(T (&)[sz]) { return sz; }
+};
+
+```
+
+
 
 #### Useful Structures:
 
@@ -6237,6 +6901,13 @@ Macros
 Types
 
 - `size_t` - Unsigned integral type (typ
+
+## RegEx 
+### Regular Expressions
+
+[Link](https://docs.microsoft.com/en-us/cpp/standard-library/regular-expressions-cpp?view=msvc-160)
+
+
 
 ## Windows Specific Information
 

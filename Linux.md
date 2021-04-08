@@ -4071,3 +4071,86 @@ systemctl start xrdp
 echo "Install is complete."
 echo "Reboot your machine to begin using XRDP."
 ```
+
+
+## Samba Setup
+
+
+[share]
+    path = /home/pi/shared
+    read only = no
+    public = yes
+    writable = yes
+
+
+
+[share]
+Comment = Pi shared folder
+Path = /share
+Browseable = yes
+Writeable = Yes
+only guest = no
+create mask = 0777
+directory mask = 0777
+Public = yes
+Guest ok = yes
+
+From <https://magpi.raspberrypi.org/articles/samba-file-server> 
+
+
+Other commands- 
+
+where testparm
+/usr/bin/
+
+smbstatus  shows connections
+smbtree shows shares
+smbcacls
+smbclient
+smbcquotas
+smbget
+smbpasswd -sets the password
+smbspool - prob printer related
+smbtar
+smbtree
+sudo /etc/init.d/smbd restart
+
+Mount the folder on the Raspberry Pi
+Mounting in Linux is the process of attaching a folder to a location, so firstly we need that location.
+
+mkdir windowshare
+
+
+Now, we need to mount the remote folder to that location. The remote folder is the host name or IP address of the Windows PC, and the share name used when sharing it. We also need to provide the Windows username that will be used to access the remote machine.
+
+sudo mount.cifs //<hostname or IP address>/share /home/pi/windowshare -o user=<name>
+
+You should now be able to view the content of the Windows share on your Raspberry Pi.
+
+cd windowshare
+ls
+
+Sharing a folder for use by Windows
+Firstly, create a folder to share. This example creates a folder called shared in the home folder of the current user, and assumes the current user is pi.
+
+cd ~
+mkdir shared
+
+Now we need to tell Samba to share this folder, using the Samba configuration file.
+
+sudo nano /etc/samba/smb.conf
+
+At the end of the file, add the following to share the folder, giving the remote user read/write permissions:
+
+[share]
+    path = /home/pi/shared
+    read only = no
+    public = yes
+    writable = yes
+
+
+In the same file, find the workgroup line, and if necessary, change it to the name of the workgroup of your local Windows network.
+
+workgroup = <your workgroup name here>
+
+That should be enough to share the folder. On your Windows device, when you browse the network, the folder should appear and you should be able to connect to it.

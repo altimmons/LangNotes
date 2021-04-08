@@ -7,14 +7,23 @@ sagi xclip xsel fzf
 
 sudo apt install python3 python3-pip python3-setuptools python3-distutils-extra  python-setuptools-doc python3-pygments 
 
+#Ubuntu set python3 as default
+sudo update-alternatives --install /usr/bin/python python $(which python3) 1
+
+
 # install tilix
 ##todo get quake style tmux
 
 #this is needed to patch func missing in some ubuntu dists.
  sudo ln -s /etc/profile.d/vte-2.91.sh /etc/profile.d/vte.sh
 
+## Update path to include some extra dirs
 
-#get mouse to work 
+echo 'export PATH="$PATH:/home/.local/bin"' >> ~/.zshrc
+echo 'export PATH="$PATH:/home/.local/bin"' >> ~/.bashrc
+
+
+#get mouse to work  NOTWORKING
 sudo apt-get install xbindkeys xautomation x11-utils
 #havent finished this
 

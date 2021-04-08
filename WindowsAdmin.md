@@ -5,6 +5,55 @@
 ["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
 
 
+
+
+## Root
+
+Windows does have a `/` like linux its just entirely hidden from the user
+
+`C:\` is actually \DosDevices\C:\Windows
+
+\Device\Null ~= /Dev/Null
+\Device\TCP
+\Registry
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Good and Useful Links
 
 - [Windows Command Line](https://www.windows-commandline.com/)
@@ -6876,5 +6925,57 @@ They can both be used for performance analysis, but ETW provides an audit trail 
 [More](https://docs.microsoft.com/en-us/dotnet/framework/wcf/)
 
 
-
 ## Generate a UUID
+
+
+
+## Windows Container
+
+[Important Links Here](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/containerd)
+
+
+
+The Windows container platform is expanding! Docker was the first piece of the container journey, now we are building other container platform tools.
+
+    containerd/cri - new in Windows Server 2019/Windows 10 1809.
+    runhcs - a Windows container host counterpart to runc.
+    hcs - the Host Compute Service + handy shims to make it easier to use.
+        hcsshim
+        dotnet-computevirtualization
+
+But we have
+
+hcsdiag
+
+    ❯ hcsdiag
+    Copyright (c) Microsoft Corporation. All rights reserved.
+
+      hcsdiag <command> [options...]
+
+      list
+        Lists running containers and VMs.
+
+      exec [-uvm] <id> <command line>
+        Executes a process inside the container.
+
+      console [-uvm] <id> [command line]
+        Launches an interactive console inside the container.
+
+      read [-uvm] <id> <container file> [host file]
+        Reads a file from the container and outputs it to standard output or a file.
+
+      write [-uvm] <id> [host file] <container file>
+        Writes from standard input or a host file to a file in the container.
+
+      kill <id>
+        Terminates a running container.
+
+      share [-uvm] [-readonly] [-asuser] [-port <portnumber>] <id> <host folder> <container folder>
+        Shares a host folder into the container.
+
+      vhd [-uvm] <id> <host vhdx file> <container folder>
+        Shares a virtual hard disk file into the container.
+
+      crash <id>
+        Forces a crash of the virtual machine hosting the container (only works
+    for containers hosted in a virtual machine).

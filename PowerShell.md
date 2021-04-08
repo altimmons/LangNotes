@@ -3126,6 +3126,15 @@ param([Int32]$MajorStart, [Int32]$MajorStop, [Int32]$MinorStart0, [Int32]$MinorS
 
 ```
 
+#### Example
+
+Some Random [Source](https://gist.github.com/guitarrapc/79d31b8cd02649075642b77c4ae796ab)
+
+ that might be inspiration Later
+
+
+        [system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('http://[YourProxyDNS]:[yourProxyPort]') [system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials [system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
+
 ### Find a command
 
 ```powershell
@@ -4987,3 +4996,79 @@ EmphasisItalics : [36m
 ```
 
 Parameters see link 
+
+
+### 
+
+Corporate Proxy
+I'm Behind a corporate proxy with windows authentication
+I had to run the following lines for Register-PSRepository -Default to work
+
+
+Powershell Profile
+You can add these lignes in your powershell profile
+
+Create the profile file if you don't have one
+New-Item -path $PROFILE -type file –force
+
+Edit the profile file
+notepad $PROFILE
+
+
+## Install Docker 
+
+[Prep Windows operating system containers | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server)
+
+> Open an elevated PowerShell session and install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
+> 
+> -       Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+>         
+>     If you're prompted to install the NuGet provider, type `Y` to install it as well.
+>     
+> -   Use the PackageManagement PowerShell module to install the latest version of Docker.
+>     
+> -       Install-Package -Name docker -ProviderName DockerMsftProvider
+>     
+>     When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation.
+>     
+> -   After the installation completes, restart the computer.
+>     
+> 
+> 1.      Restart-Computer -Force
+>         
+> 
+> If you want to update Docker later:
+> 
+> -   Check the installed version using:
+> 
+>     Get-Package -Name Docker -ProviderName DockerMsftProvider
+> 
+> -   Find the current version using:
+> 
+>     Find-Package -Name Docker -ProviderName DockerMsftProvider
+>     
+> -   When you're ready, upgrade using:
+> 
+> 
+>     Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+>     
+> -   Then, followed with:
+> 
+>       `Start-Service Docker`
+
+### For Windows 10 they offer:
+
+[Prep Windows operating system containers | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10)
+
+> You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
+> 
+> 1.  Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), creating a free Docker account if you don't have one already. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
+>     
+> 2.  During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
+>     
+>     Console
+>     
+> 
+> `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
+
+https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
