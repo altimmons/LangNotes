@@ -464,6 +464,220 @@ item **bold red**{style="color:red"}
 `{style="color:red"}`
 
 
+### Attributes
+
+[markdown-it-attrs](https://www.npmjs.com/package/markdown-it-attrs)
+
+item **bold red**{style="color:red"}
+        
+        item **bold red**{style="color:red"}
+
+!!!tldr tldr after a `bold` symbol e.g. `**`...`**`, follow in braces a style `{style=` `}` with the command quoted `"color:red"`
+
+Its unclear what commands are available.
+
+It looks like all the [HTML Color Names](https://www.w3schools.com/colors/colors_names.asp) are available:
+
+Also, [CSS Syntax](https://www.w3schools.com/css/css_syntax.asp) May also be relevant
+
+- unstyled **style sample**{style="color:red"}
+- unstyled **style sample**{style="color:black"}
+- unstyled **style sample**{style="color:green"}
+- unstyled **style sample**{style="color:cyan"}
+- unstyled **style sample**{style="color:teal"}
+- unstyled **style sample**{style="color:CornflowerBlue"} - so any of the 140 HTML color names can be used...
+- unstyled **style sample**{.style-me} -sample from the site (first link) has no obvious effect.
+- unstyled **style sample**{data-toggle=modal}
+- unstyled **style sample**{style="color:green"}
+- unstyled **style sample**{..green}
+- `$ npm install --save markdown-it-attrs`{style="color:cyan"}
+- _title_{style="color:cyan"}
+- title{style="color:purple"} - so it doesnt need a delimiter if its on its own line, as below
+- title{style="color:purple"} 
+- unstyled *style sample*{style="color:red"} - so it still renders the bold and italics normally
+- unstyled **styled sample**{style="font-family:fantasy"}
+- unstyled `styled sample`{style="font-style:italic; font-size:2.5em"}
+- unstyled `styled sample`{style="font-style:italic; font-size:12vw; color:purple; font-weight:bold; font-variant:small-caps"}
+
+styled sample{style="text-align:center"}
+
+1. test{style="text-align:center"}
+
+2. {style="text-align:center"} works if on a line by itself
+
+3. Test2{..h1}
+
+4. Another test{style="border: 5px solid red"}
+
+5. Another test{style="border: dotted blue"}
+
+6. Another test{style="border: ridge blue"}
+
+7. Another test{style="border: 10px inset blue"}
+
+
+8. Another test{style="border: 10px outset blue"}
+
+9. Another test{style="border: 10px ridge blue"}
+
+10. Another test{style="border: 10px groove blue ; margin: 0px 10px"}
+
+11. Another test{style="border: outset purple"}
+
+12. Another test{style="border: ridge; border-color : green;"}
+
+13. test{style="background: -webkit-linear-gradient(60deg, #FFFFFF, #AAAAAA); border: inset; margin: 20px }
+
+
+14. Another test{style="border: dotted blue; border-width: thin medium thick 10px;"}
+
+
+15. Another test{style="border: dotted; border-color: blue green red orange; border-width: thin medium 5px 10px;"}
+
+
+
+16. Another test{style="border: double"}
+
+17. Another Test {style="color: red;  text-align: center;"}
+
+18. Another Test {style="color: red;  text-align: center; margin:auto; border: medium inset green; width: 20vw; background: linear-gradient(to right, #f46b45,#eea849); height:3vw; padding-top:20px;font-size:150%; width-min:100px"}
+
+
+19. test9{style="<i class="material-icons">cloud</i>"}
+
+20. tes  {style="color: red;  text-align: center; font-weight:100"}
+
+
+21.. Text Test {style="font-family:'Times New Roman', Times, serif;"}
+
+
+22. XML Tools {style="<i class="material-icons">cloud</i>"}
+
+
+ ==**Digits**=={style="background: -webkit-linear-gradient(60deg, mediumvioletred, #0Fa4c3); font-size: 20px} -
+
+test{style="font-family:}
+- text
+  - text-align
+  - text-decoration
+    - overline
+    - line-through
+    - under-line 
+    - text-transform
+      - upppercase
+      - lowercase
+      - capitalize
+    - text-indent:
+      - size
+    - letter-spacing:
+      - size
+    - line-height:
+      - size
+    - direction
+      - rtl
+    - word-spacing
+    - text-shadow
+- font-style:
+  - italic
+  - normal
+  - oblique (not always supported)
+- color:
+  - most color names- see link
+  - probably Hex too
+- font-size
+  - expressed in
+    - px (10px)
+    - em (2 em)
+    - percent (150%)
+    - vw (view width- scales with window)
+- font-weight
+  - normal
+  - bold
+  - 100
+  - ...
+  - 1000
+- font-variant
+  - normal
+  - small-caps
+- font-family
+  - Font Names - cant figure out names with spaces...(dashes)
+  - Generic Names
+    - Monospace
+    - Serif
+    - Sans-seriff
+    - fantasy
+    - cursive- doesnt work?
+- font:
+  - font: 15px arial, sans-serif;
+  - font: italic bold 12px/30px Georgia, serif;
+- border:  Always declare the border-style property before the border-width property.
+  - border: 5px solid red;
+  - border: 4px dotted blue;
+  - border: double
+  - border-width:
+    - has 1-4 values, precedence is all, top/bottom, top/sides/bottom, top/right/bottom/left
+  - border-color:
+    - has 1-4 values, precedence is all, top/bottom, top/sides/bottom, top/right/bottom/left
+  - border-style:
+    - has 1-4 values, precedence is all, top/bottom, top/sides/bottom, top/right/bottom/left
+    - dotted - Defines a dotted border
+    - dashed - Defines a dashed border
+    - solid - Defines a solid border
+    - double - Defines a double border
+    - groove - Defines a 3D grooved border. The effect depends on the border-color value
+    - ridge - Defines a 3D ridged border. The effect depends on the border-color value
+    - inset - Defines a 3D inset border. The effect depends on the border-color value
+    - outset - Defines a 3D outset border. The effect depends on the border-color value
+    - none - Defines no border
+    - hidden - Defines a hidden border
+  - border-*-**
+    - *=
+      - top
+      - right
+      - left
+      - bottom
+    - ** = 
+      - style
+      - weight
+      - size
+- margin
+  - margin-top
+  - margin-bottom
+  - margin-right
+  - margin-left
+  - margin: top right bottom left
+  - auto
+- padding
+  - same as margin
+- background
+  - linear-gradient(to right, #f46b45,#eea849)
+- background-color
+- height
+  - px
+  - percent
+  - vw
+- outline
+  - outline-color
+  - outline-width
+  - outline-offset
+  - outline
+    - 5px solid yellow;
+    - thick ridge pink;
+  - outline-style
+    - dotted - Defines a dotted outline
+    - dashed - Defines a dashed outline
+    - solid - Defines a solid outline
+    - double - Defines a double outline
+    - groove - Defines a 3D grooved outline
+    - ridge - Defines a 3D ridged outline
+    - inset - Defines a 3D inset outline
+    - outset - Defines a 3D outset outline
+    - none - Defines no outline
+    - hidden - Defines a hidden outline
+  -  outline-offset:
+    
+
+
 ## Mermaid [^2]
 
 ```mermaid

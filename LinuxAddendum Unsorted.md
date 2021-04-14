@@ -330,7 +330,7 @@ OR
 
 
 Part III – Search Files Based On Owners and Groups
-22. To find all or single file called tecmint.txt under / root directory of owner root.
+22. To find all or single file called tecmint.txt under / root directory of owner **root.**
 
 		$# find / -user root -name tecmint.txt
 

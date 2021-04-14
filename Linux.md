@@ -407,6 +407,84 @@ to give the world permission to read and write to your home directory, then you 
 chmod o+rw /home/youruserna
 
 
+## File Descripters
+
+[Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_01)
+
+> e input and output are accomplished by integer handles that track all open files for a given process. These numeric values are known as file descriptors. The best known file descriptors are _stdin_, _stdout_ and _stderr_, with file descriptor numbers 0, 1 and 2, respectively. These numbers and respective devices are reserved. Bash can take TCP or UDP ports on networked hosts as file descriptors as well.
+
+
+
+ The output below shows how the reserved file descriptors point to actual devices:
+
+```sh
+  michel ~> **ls \-l /dev/std\***
+  >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stderr -> ../proc/self/fd/2
+  >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdin -> ../proc/self/fd/0
+  >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdout -> ../proc/self/fd/1
+
+
+michel ~> **ls \-l /proc/self/fd/\[0-2\]**
+  >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/0 -> /dev/pts/6
+  >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/1 -> /dev/pts/6
+  >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/2 -> /dev/pts/6
+```
+
+> Note that each [process] has its own view of the files under /proc/self, as it is actually a symbolic link to /proc/<process\_ID>.
+> 
+> You might want to check **info MAKEDEV** and **info proc** for more information about /proc subdirectories and the way your system handles standard file descriptors for each running process.
+
+When excuting a given command, the following steps are excuted, in order:
+
+- prev out -> cur in
+  - If the standard output of a previous command is being piped to the standard input of the current command, then `/proc/<current_process_ID>/fd/0` is updated to target the same anonymous pipe as `/proc/<previous_process_ID/fd/1.`
+
+- cur out -> next in
+  - If the standard output of the current command is being piped to the standard input of the next command, then `/proc/<current_process_ID>/fd/1` is updated to target another *anonymous pipe.*
+
+
+- Redirection for the current command is processed from left to right.
+
+- The stuff added at the end `2>&1` or whatever.
+- set N to be the same as M 
+  - Redirection `"N>&M"` or `"N<&M"` after a command has the effect of creating or updating the symbolic link `/proc/self/fd/N` with the same target as the symbolic link `/proc/self/fd/M`.
+
+- The redirections` "N> file"` and `"N< file"` have the effect of creating or updating the symbolic link `/proc/self/fd/N` with the target file.
+
+- File descriptor closure `"N>&-"` has the effect of deleting the symbolic link `/proc/self/fd/N.`
+
+    Only now is the current command executed.
+
+
+[Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_01)
+
+### Redirection of errors
+
+> 
+> From the previous examples, it is clear that you can provide input and output files for a script (see [Section 8.2.4](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_02_04) for more), but some tend to forget about redirecting errors - output which might be depended upon later on. Also, if you are lucky, errors will be mailed to you and eventual causes of failure might get revealed. If you are not as lucky, errors will cause your script to fail and won't be caught or sent anywhere, so that you can't start to do any worthwhile debugging.
+> 
+> When redirecting errors, note that the order of precedence is significant. For example, this command, issued in /var/spool
+> 
+> **ls \-l \* _2_\> /var/tmp/unaccessible-in-spool** 
+> 
+> will redirect standard output of the **ls** command to the file unaccessible-in-spool in /var/tmp. The command
+> 
+> **ls \-l \* > /var/tmp/spoollist _2_\>&_1_** 
+> 
+> will direct both standard input and standard error to the file spoollist. The command
+> 
+> **ls \-l \* _2_ >& _1_ > /var/tmp/spoollist** 
+> 
+> directs only the standard output to the destination file, because the standard error is copied to standard output before the standard output is redirected.
+> 
+> For convenience, errors are often redirected to /dev/null, if it is sure they will not be needed. Hundreds of examples can be found in the startup scripts for your system.
+> 
+> Bash allows for both standard output and standard error to be redirected to the file whose name is the result of the expansion of FILE with this construct:
+> 
+> **&> FILE**
+> 
+> This is the equivalent of **\> FILE 2>&1**, the construct used in the previous set of examples. It is also often combined with redirection to /dev/null, for instance when you just want a command to execute, no matter what output or errors it gives.
+
 
 
 ## Path
@@ -625,22 +703,36 @@ apt list --installed
 
 `man` gets the manual
 
-The manual has 8 main sections-
+!!!Note The manual has 8 main sections-
 
-1. Executable programs or shell commands
-2. System calls (functions provided by the kernel)
-3. Library calls (functions within program libraries)
-4. Special files (usually found in /dev)
-5. File formats and conventions eg /etc/passwd
-6. Games
-7. Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
-8. System administration commands (usually only for root)
-9. Kernel routines [Non standard]
+  1. Executable programs or shell commands
+  2. System calls (functions provided by the kernel)
+  3. Library calls (functions within program libraries)
+  4. Special files (usually found in /dev)
+  5. File formats and conventions eg /etc/passwd
+  6. Games
+  7. Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+  8. System administration commands (usually only for root)
+  9. Kernel routines [Non standard]
 
 Ok 9. This is the number in the [command] help >> see command(#) bit.
 
-Ironically, `man man` gets help with the manual.
+~~Ironically,~~ `man man` gets help with the manual.
 
+Understanding Help Syntax 
+
+    cp [OPTION]... [-T] SOURCE DEST 
+
+Anything inside `[` and `]` means that it is optional. In this case, 
+
+`...` The three dots (or ellipsis) that come after [OPTION] or SOURCE mean that the preceding item may appear more than once. If that item is optional, ... means zero or more times, and if the item is mandatory, then the three dots mean one of more times.
+
+so   `[]...`  Means zero or more times
+and  `SOURCE...` means not optional and one or more times.
+
+    usage: csi [FILENAME | OPTION...]
+
+`|` means one or the other.  This is optional
 
 ## at
 
@@ -717,6 +809,107 @@ at
 - `atq` - lists the user's pending jobs, unless the user is the superuser; in that case, everybody's jobs are listed. The format of the output lines (one for each job) is: job number, date, hour, year, queue, and username.
 - `atrm` - deletes jobs, identified by their job number.
 - `batch` - executes commands when system load levels permit; in other words, when the load average drops below 1.5, or the value specified in the invocation of atd.
+
+## cat 
+
+    Usage: cat [OPTION]... [FILE]...
+    Concatenate FILE(s) to standard output.
+
+    With no FILE, or when FILE is -, read standard input.
+
+      -A, --show-all           equivalent to -vET
+      -b, --number-nonblank    number nonempty output lines, overrides -n
+      -e                       equivalent to -vE
+      -E, --show-ends          display $ at end of each line
+      -n, --number             number all output lines
+      -s, --squeeze-blank      suppress repeated empty output lines
+      -t                       equivalent to -vT
+      -T, --show-tabs          display TAB characters as ^I
+      -u                       (ignored)
+      -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB
+          --help     display this help and exit
+          --version  output version information and exit
+
+`cat -v` shows key scan codes, which is useful.
+
+
+## grep
+
+search for matches
+
+ grep --help
+Usage: grep [OPTION]... PATTERN [FILE]...
+Search for PATTERN in each FILE.
+Example: grep -i 'hello world' menu.h main.c
+
+Pattern selection and interpretation:
+  -E, --extended-regexp     PATTERN is an extended regular expression
+  -F, --fixed-strings       PATTERN is a set of newline-separated strings
+  -G, --basic-regexp        PATTERN is a basic regular expression (default)
+  -P, --perl-regexp         PATTERN is a Perl regular expression
+  -e, --regexp=PATTERN      use PATTERN for matching
+  -f, --file=FILE           obtain PATTERN from FILE
+  -i, --ignore-case         ignore case distinctions
+  -w, --word-regexp         force PATTERN to match only whole words
+  -x, --line-regexp         force PATTERN to match only whole lines
+  -z, --null-data           a data line ends in 0 byte, not newline
+
+Miscellaneous:
+  -s, --no-messages         suppress error messages
+  -v, --invert-match        select non-matching lines
+  -V, --version             display version information and exit
+      --help                display this help text and exit
+
+Output control:
+  -m, --max-count=NUM       stop after NUM selected lines
+  -b, --byte-offset         print the byte offset with output lines
+  -n, --line-number         print line number with output lines
+      --line-buffered       flush output on every line
+  -H, --with-filename       print file name with output lines
+  -h, --no-filename         suppress the file name prefix on output
+      --label=LABEL         use LABEL as the standard input file name prefix
+  -o, --only-matching       show only the part of a line matching PATTERN
+  -q, --quiet, --silent     suppress all normal output
+      --binary-files=TYPE   assume that binary files are TYPE;
+                            TYPE is 'binary', 'text', or 'without-match'
+  -a, --text                equivalent to --binary-files=text
+  -I                        equivalent to --binary-files=without-match
+  -d, --directories=ACTION  how to handle directories;
+                            ACTION is 'read', 'recurse', or 'skip'
+  -D, --devices=ACTION      how to handle devices, FIFOs and sockets;
+                            ACTION is 'read' or 'skip'
+  -r, --recursive           like --directories=recurse
+  -R, --dereference-recursive  likewise, but follow all symlinks
+      --include=FILE_PATTERN  search only files that match FILE_PATTERN
+      --exclude=FILE_PATTERN  skip files and directories matching FILE_PATTERN
+      --exclude-from=FILE   skip files matching any file pattern from FILE
+      --exclude-dir=PATTERN  directories that match PATTERN will be skipped.
+  -L, --files-without-match  print only names of FILEs with no selected lines
+  -l, --files-with-matches  print only names of FILEs with selected lines
+  -c, --count               print only a count of selected lines per FILE
+  -T, --initial-tab         make tabs line up (if needed)
+  -Z, --null                print 0 byte after FILE name
+
+Context control:
+  -B, --before-context=NUM  print NUM lines of leading context
+  -A, --after-context=NUM   print NUM lines of trailing context
+  -C, --context=NUM         print NUM lines of output context
+  -NUM                      same as --context=NUM
+      --color[=WHEN],
+      --colour[=WHEN]       use markers to highlight the matching strings;
+                            WHEN is 'always', 'never', or 'auto'
+  -U, --binary              do not strip CR characters at EOL (MSDOS/Windows)
+
+When FILE is '-', read standard input.  With no FILE, read '.' if
+recursive, '-' otherwise.  With fewer than two FILEs, assume -h.
+Exit status is 0 if any line is selected, 1 otherwise;
+if any error occurs and -q is not given, the exit status is 2.
+
+Report bugs to: bug-grep@gnu.org
+GNU grep home page: <http://www.gnu.org/software/grep/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+
+
 
 ## Less
 
@@ -1104,7 +1297,7 @@ ip route show
   ip route ls
 ip route list table local
 
-ip -c address - add color, show addresses.
+**ip -c address - add color, show addresses.** I quite like the color aspect.
 ip -c address show dev eth3 
 ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 
@@ -1176,6 +1369,86 @@ ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 I have this command stored in my notes, unsure what it does:
 
       ip route get 8.8.8.8 | sed -n 's/.*dev \([^\ ]*\) table.*/\1/p' 
+
+## ps 
+
+> Usage:
+> ps [options]
+> 
+> Basic options:
+> -A, -e               all processes
+> -a                   all with tty, except session leaders
+> a                   all with tty, including other users
+> -d                   all except session leaders
+> -N, --deselect       negate selection
+> r                   only running processes
+> T                   all processes on this terminal
+> x                   processes without controlling ttys
+> 
+> Selection by list:
+> -C <command>         command name
+> -G, --Group <GID>    real group id or name
+> -g, --group <group>  session or effective group name
+> -p, p, --pid <PID>   process id
+> --ppid <PID>  parent process id
+> -q, q, --quick-pid <PID>
+> process id (quick mode)
+> -s, --sid <session>  session id
+> -t, t, --tty <tty>   terminal
+> -u, U, --user <UID>  effective user id or name
+> -U, --User <UID>     real user id or name
+> 
+> The selection options take as their argument either:
+> a comma-separated list e.g. '-u root,nobody' or
+> a blank-separated list e.g. '-p 123 4567'
+> 
+> Output formats:
+> -F                   extra full
+> -f                   full-format, including command lines
+> f, --forest         ascii art process tree
+> -H                   show process hierarchy
+> -j                   jobs format
+> j                   BSD job control format
+> -l                   long format
+> l                   BSD long format
+> -M, Z                add security data (for SELinux)
+> -O <format>          preloaded with default columns
+> O <format>          as -O, with BSD personality
+> -o, o, --format <format>
+> user-defined format
+> s                   signal format
+> u                   user-oriented format
+> v                   virtual memory format
+> X                   register format
+> -y                   do not show flags, show rss vs. addr (used with -l)
+> --context        display security context (for SELinux)
+> --headers        repeat header lines, one per page
+> --no-headers     do not print header at all
+> --cols, --columns, --width <num>
+> set screen width
+> --rows, --lines <num>
+> set screen height
+> 
+> Show threads:
+> H                   as if they were processes
+> -L                   possibly with LWP and NLWP columns
+> -m, m                after processes
+> -T                   possibly with SPID column
+> 
+> Miscellaneous options:
+> -c                   show scheduling class with -l option
+> c                   show true command name
+> e                   show the environment after command
+> k,    --sort        specify sort order as: [+|-]key[,[+|-]key[,...]]
+> L                   show format specifiers
+> n                   display numeric uid and wchan
+> S,    --cumulative  include some dead child process data
+> -y                   do not show flags, show rss (only with -l)
+> -V, V, --version     display version information and exit
+> -w, w                unlimited output width
+> 
+> --help <simple|list|output|threads|misc|all>
+> display help and exit
 
 ## RSync
 
@@ -1931,6 +2204,65 @@ mpstat displays CPU statistics.
 pidstat reports statistics based on the process id (PID)
 nfsiostat displays NFS I/O statistics.
 cifsiostat generates CIFS statistics.
+
+
+## Watch
+
+watch -h
+
+    Usage:
+    watch [options] command
+
+    Options:
+      -b, --beep             beep if command has a non-zero exit
+      -c, --color            interpret ANSI color and style sequences
+      -d, --differences[=<permanent>]
+                            highlight changes between updates
+      -e, --errexit          exit if command has a non-zero exit
+      -g, --chgexit          exit when output from command changes
+      -n, --interval <secs>  seconds to wait between updates
+      -p, --precise          attempt run command in precise intervals
+      -t, --no-title         turn off header
+      -x, --exec             pass command to exec instead of "sh -c"
+
+    -h, --help     display this help and exit
+    -v, --version  output version information and exit
+
+    For more details see watch(1).
+
+## wc
+
+Word Counting
+
+Used for counting words
+
+
+    wc --help
+    Usage: wc [OPTION]... [FILE]...
+      or:  wc [OPTION]... --files0-from=F
+    Print newline, word, and byte counts for each FILE, and a total line if
+    more than one FILE is specified.  A word is a non-zero-length sequence of
+    characters delimited by white space.
+
+    With no FILE, or when FILE is -, read standard input.
+
+    The options below may be used to select which counts are printed, always in
+    the following order: newline, word, character, byte, maximum line length.
+      -c, --bytes            print the byte counts
+      -m, --chars            print the character counts
+      -l, --lines            print the newline counts
+          --files0-from=F    read input from the files specified by
+                              NUL-terminated names in file F;
+                              If F is - then read names from standard input
+      -L, --max-line-length  print the maximum display width
+      -w, --words            print the word counts
+          --help     display this help and exit
+          --version  output version information and exit
+
+    GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+    Report wc translation bugs to <http://translationproject.org/team/>
+    Full documentation at: <http://www.gnu.org/software/coreutils/wc>
+    or available locally via: info '(coreutils) wc invocation'
 
 ## CLI Customization
 
@@ -2737,6 +3069,7 @@ Or write a string over and over into a file, for "testing" or something:
 - `gawk` Find and Replace text within file(s)
 - `getopts` Parse positional parameters
 - `grep-` Search file(s) for lines that match a given pattern
+  - use grep -v to find inverse matches.'
 - `groupadd` Add a user security group
 - `groupdel` Delete a group
 - `groupmod` Modify a group
@@ -2979,7 +3312,7 @@ Or write a string over and over into a file, for "testing" or something:
 
 Need to determine from the above which are Unix /Linux and which are ZSH.
 
-## Terminal Color Output
+### Terminal Color Output
 
 !!! Warning ZSH Specific-
   On even more testing, its revieled from `type print` that its a shell built-in.  Running the same command on bash- doesnt work.
@@ -3482,7 +3815,459 @@ The part of the prompt string to be truncated runs to the end of the string, or 
 
 Truncation applies only within each individual line of the prompt, as delimited by embedded newlines (if any). If the total length of any line of the prompt after truncation is greater than the terminal width, or if the part to be truncated contains embedded newlines, truncation behavior is undefined and may change in a future version of the shell. Use '`%-`*n*`(l.`*true-text*`.`*false-text*`)`' to remove parts of the prompt when the available space is less than *n*.
 
+### ZSH Execute Menu
 
+[[ctrl]] +[[shift]] [[x]]accesses
+
+_bash_complete-word
+_bash_list-choices
+_complete_debug
+_complete_help
+_complete_tag
+_correct_filename
+_correct_word
+_expand_alias
+_expand_word
+_history-complete-newer
+_history-complete-older
+_list_expansions
+_most_recent_file
+_next_tags
+_read_comp
+._p9k_orig_clear-screen
+._p9k_orig_deactivate-region
+._p9k_orig_overwrite-mode
+._p9k_orig_send-break
+._p9k_orig_vi-replace
+._p9k_orig_visual-line-mode
+._p9k_orig_visual-mode
+._p9k_orig_zle-line-finish
+._p9k_orig_zle-line-init
+.accept-and-hold
+.accept-and-infer-next-history
+.accept-and-menu-complete
+.accept-line
+.accept-line-and-down-history
+.accept-search
+.argument-base
+.auto-suffix-remove
+.auto-suffix-retain
+.backward-char
+.backward-delete-char
+.backward-delete-word
+.backward-kill-line
+.backward-kill-word
+.backward-word
+.beep
+.beginning-of-buffer-or-history
+.beginning-of-history
+.beginning-of-line
+.beginning-of-line-hist
+.bracketed-paste
+.capitalize-word
+.clear-screen
+.complete-word
+.copy-prev-shell-word
+.copy-prev-word
+.copy-region-as-kill
+.deactivate-region
+.delete-char
+.delete-char-or-list
+.delete-word
+.describe-key-briefly
+.digit-argument
+.down-case-word
+.down-history
+.down-line
+.down-line-or-history
+.down-line-or-search
+.emacs-backward-word
+.emacs-forward-word
+.end-of-buffer-or-history
+.end-of-history
+.end-of-line
+.end-of-line-hist
+.end-of-list
+.exchange-point-and-mark
+.execute-last-named-cmd
+.execute-named-cmd
+.expand-cmd-path
+.expand-history
+.expand-or-complete
+.expand-or-complete-prefix
+.expand-word
+.forward-char
+.forward-word
+.get-line
+.gosmacs-transpose-chars
+.history-beginning-search-backward
+.history-beginning-search-forward
+.history-incremental-pattern-search-backward
+.history-incremental-pattern-search-forward
+.history-incremental-search-backward
+.history-incremental-search-forward
+.history-search-backward
+.history-search-forward
+.infer-next-history
+.insert-last-word
+.kill-buffer
+.kill-line
+.kill-region
+.kill-whole-line
+.kill-word
+.list-choices
+.list-expand
+.magic-space
+.menu-complete
+.menu-expand-or-complete
+.menu-select
+.neg-argument
+.overwrite-mode
+.pound-insert
+.push-input
+.push-line
+.push-line-or-edit
+.put-replace-selection
+.quote-line
+.quote-region
+.quoted-insert
+.read-command
+.recursive-edit
+.redisplay
+.redo
+.reset-prompt
+.reverse-menu-complete
+.run-help
+.select-a-blank-word
+.select-a-shell-word
+.select-a-word
+.select-in-blank-word
+.select-in-shell-word
+.select-in-word
+.self-insert
+.self-insert-unmeta
+.send-break
+.set-local-history
+.set-mark-command
+.spell-word
+.split-undo
+.transpose-chars
+.transpose-words
+.undefined-key
+.undo
+.universal-argument
+.up-case-word
+.up-history
+.up-line
+.up-line-or-history
+.up-line-or-search
+.vi-add-eol
+.vi-add-next
+.vi-backward-blank-word
+.vi-backward-blank-word-end
+.vi-backward-char
+.vi-backward-delete-char
+.vi-backward-kill-word
+.vi-backward-word
+.vi-backward-word-end
+.vi-beginning-of-line
+.vi-caps-lock-panic
+.vi-change
+.vi-change-eol
+.vi-change-whole-line
+.vi-cmd-mode
+.vi-delete
+.vi-delete-char
+.vi-digit-or-beginning-of-line
+.vi-down-case
+.vi-down-line-or-history
+.vi-end-of-line
+.vi-fetch-history
+.vi-find-next-char
+.vi-find-next-char-skip
+.vi-find-prev-char
+.vi-find-prev-char-skip
+.vi-first-non-blank
+.vi-forward-blank-word
+.vi-forward-blank-word-end
+.vi-forward-char
+.vi-forward-word
+.vi-forward-word-end
+.vi-goto-column
+.vi-goto-mark
+.vi-goto-mark-line
+.vi-history-search-backward
+.vi-history-search-forward
+.vi-indent
+.vi-insert
+.vi-insert-bol
+.vi-join
+.vi-kill-eol
+.vi-kill-line
+.vi-match-bracket
+.vi-open-line-above
+.vi-open-line-below
+.vi-oper-swap-case
+.vi-pound-insert
+.vi-put-after
+.vi-put-before
+.vi-quoted-insert
+.vi-repeat-change
+.vi-repeat-find
+.vi-repeat-search
+.vi-replace
+.vi-replace-chars
+.vi-rev-repeat-find
+.vi-rev-repeat-search
+.vi-set-buffer
+.vi-set-mark
+.vi-substitute
+.vi-swap-case
+.vi-undo-change
+.vi-unindent
+.vi-up-case
+.vi-up-line-or-history
+.vi-yank
+.vi-yank-eol
+.vi-yank-whole-line
+.visual-line-mode
+.visual-mode
+.what-cursor-position
+.where-is
+.which-command
+.yank
+.yank-pop
+accept-and-hold
+accept-and-infer-next-history
+accept-and-menu-complete
+accept-line
+accept-line-and-down-history
+accept-search
+argument-base
+auto-suffix-remove
+auto-suffix-retain
+backward-char
+backward-delete-char
+backward-delete-word
+backward-kill-line
+backward-kill-word
+backward-word
+beep
+beginning-of-buffer-or-history
+beginning-of-history
+beginning-of-line
+beginning-of-line-hist
+bracketed-paste
+capitalize-word
+clear-screen
+complete-word
+copy-prev-shell-word
+copy-prev-word
+copy-region-as-kill
+deactivate-region
+delete-char
+delete-char-or-list
+delete-word
+describe-key-briefly
+digit-argument
+down-case-word
+down-history
+down-line
+down-line-or-beginning-search
+down-line-or-history
+down-line-or-search
+edit-command-line
+emacs-backward-word
+emacs-forward-word
+end-of-buffer-or-history
+end-of-history
+end-of-line
+end-of-line-hist
+end-of-list
+exchange-point-and-mark
+execute-last-named-cmd
+execute-named-cmd
+execute: _
+expand-cmd-path
+expand-history
+expand-or-complete
+expand-or-complete-prefix
+expand-word
+forward-char
+forward-word
+fuck-command-line
+get-line
+gosmacs-transpose-chars
+history-beginning-search-backward
+history-beginning-search-forward
+history-incremental-pattern-search-backward
+history-incremental-pattern-search-forward
+history-incremental-search-backward
+history-incremental-search-forward
+history-search-backward
+history-search-forward
+infer-next-history
+insert-last-word
+kill-buffer
+kill-line
+kill-region
+kill-whole-line
+kill-word
+list-choices
+list-expand
+magic-space
+menu-complete
+menu-expand-or-complete
+menu-select
+neg-argument
+orig-s0.0000020000-r10082-_bash_complete-word
+orig-s0.0000020000-r10082-_bash_list-choices
+orig-s0.0000020000-r10082-_complete_debug
+orig-s0.0000020000-r10082-_complete_help
+orig-s0.0000020000-r10082-_complete_tag
+orig-s0.0000020000-r10082-_correct_filename
+orig-s0.0000020000-r10082-_correct_word
+orig-s0.0000020000-r10082-_expand_alias
+orig-s0.0000020000-r10082-_expand_word
+orig-s0.0000020000-r10082-_history-complete-newer        vi-repeat-find
+orig-s0.0000020000-r10082-_history-complete-older        vi-repeat-search
+orig-s0.0000020000-r10082-_list_expansions
+orig-s0.0000020000-r10082-_most_recent_file
+orig-s0.0000020000-r10082-_next_tags
+orig-s0.0000020000-r10082-_read_comp
+orig-s0.0000020000-r10082-bracketed-paste
+orig-s0.0000020000-r10082-complete-word
+orig-s0.0000020000-r10082-delete-char-or-list
+orig-s0.0000020000-r10082-down-line-or-beginning-search  vi-swap-case
+orig-s0.0000020000-r10082-edit-command-line
+orig-s0.0000020000-r10082-expand-or-complete
+orig-s0.0000020000-r10082-expand-or-complete-prefix      vi-up-case
+orig-s0.0000020000-r10082-fuck-command-line
+orig-s0.0000020000-r10082-list-choices
+orig-s0.0000020000-r10082-menu-complete
+orig-s0.0000020000-r10082-menu-expand-or-complete        vi-yank-whole-line
+orig-s0.0000020000-r10082-reverse-menu-complete
+orig-s0.0000020000-r10082-self-insert
+orig-s0.0000020000-r10082-up-line-or-beginning-search    what-cursor-position
+orig-s0.0000020000-r10082-zle-line-finish
+orig-s0.0000020000-r10082-zle-line-init
+overwrite-mode
+pound-insert
+push-input
+push-line
+push-line-or-edit
+put-replace-selection
+quote-line
+quote-region
+quoted-insert
+read-command
+recursive-edit
+redisplay
+redo
+reset-prompt
+reverse-menu-complete
+run-help
+select-a-blank-word
+select-a-shell-word
+select-a-word
+select-in-blank-word
+select-in-shell-word
+select-in-word
+self-insert
+self-insert-unmeta
+send-break
+set-local-history
+set-mark-command
+spell-word
+split-undo
+transpose-chars
+transpose-words
+undefined-key
+undo
+universal-argument
+up-case-word
+up-history
+up-line
+up-line-or-beginning-search
+up-line-or-history
+up-line-or-search
+vi-add-eol
+vi-add-next
+vi-backward-blank-word
+vi-backward-blank-word-end
+vi-backward-char
+vi-backward-delete-char
+vi-backward-kill-word
+vi-backward-word
+vi-backward-word-end
+vi-beginning-of-line
+vi-caps-lock-panic
+vi-change
+vi-change-eol
+vi-change-whole-line
+vi-cmd-mode
+vi-delete
+vi-delete-char
+vi-digit-or-beginning-of-line
+vi-down-case
+vi-down-line-or-history
+vi-end-of-line
+vi-fetch-history
+vi-find-next-char
+vi-find-next-char-skip
+vi-find-prev-char
+vi-find-prev-char-skip
+vi-first-non-blank
+vi-forward-blank-word
+vi-forward-blank-word-end
+vi-forward-char
+vi-forward-word
+vi-forward-word-end
+vi-goto-column
+vi-goto-mark
+vi-goto-mark-line
+vi-history-search-backward
+vi-history-search-forward
+vi-indent
+vi-insert
+vi-insert-bol
+vi-join
+vi-kill-eol
+vi-kill-line
+vi-match-bracket
+vi-open-line-above
+vi-open-line-below
+vi-oper-swap-case
+vi-pound-insert
+vi-put-after
+vi-put-before
+vi-quoted-insert
+vi-repeat-change
+vi-replace
+vi-replace-chars
+vi-rev-repeat-find
+vi-rev-repeat-search
+vi-set-buffer
+vi-set-mark
+vi-substitute
+vi-undo-change
+vi-unindent
+vi-up-line-or-history
+vi-yank
+vi-yank-eol
+visual-line-mode
+visual-mode
+where-is
+which-command
+yank
+yank-pop
+z4h-clear-screen-hard-top
+z4h-clear-screen-soft-top
+zle-isearch-update
+zle-keymap-select
+zle-line-finish
+zle-line-init
+zle-line-pre-redraw
 ## fonts
 
 
@@ -4154,3 +4939,71 @@ In the same file, find the workgroup line, and if necessary, change it to the na
 workgroup = <your workgroup name here>
 
 That should be enough to share the folder. On your Windows device, when you browse the network, the folder should appear and you should be able to connect to it.
+
+
+
+
+## Low Level Technical
+
+
+### Signals
+
+Get them:
+
+`man 7 signal.` When in doubt, locate the exact man page and section using commands like
+
+`man -k signal | grep list`
+
+or
+
+`apropos signal | grep list`
+
+
+ Signal dispositions
+       Each signal has a current disposition, which determines how the process behaves when it is delivered the
+       signal.
+
+       The entries in the "Action" column of the tables below specify the default disposition for each  signal,
+       as follows:
+
+       Term   Default action is to terminate the process.
+
+       Ign    Default action is to ignore the signal.
+
+       Core   Default action is to terminate the process and dump core (see core(5)).
+
+       Stop   Default action is to stop the process.
+
+       Cont   Default action is to continue the process if it is currently stopped.
+
+   Sending a signal
+       The following system calls and library functions allow the caller to send a signal:
+
+       raise(3)        Sends a signal to the calling thread.
+
+       kill(2)         Sends a signal to a specified process, to all members of a specified process  group,  or
+                       to all processes on the system.
+
+       killpg(3)       Sends a signal to all of the members of a specified process group.
+
+       pthread_kill(3) Sends a signal to a specified POSIX thread in the same process as the caller.
+
+       tgkill(2)       Sends  a  signal  to  a specified thread within a specific process.  (This is the system
+                       call used to implement pthread_kill(3).)
+
+       sigqueue(3)     Sends a real-time signal with accompanying data to a specified process.
+
+   Waiting for a signal to be caught
+       The following system calls suspend execution of the calling process or thread until a signal  is  caught
+       (or an unhandled signal terminates the process):
+
+       pause(2)        Suspends execution until any signal is caught.
+
+       sigsuspend(2)   Temporarily  changes the signal mask (see below) and suspends execution until one of the
+                       unmasked signals is caught.
+
+
+
+Ctrl+C	The interrupt signal, sends SIGINT to the job running in the foreground.
+Ctrl+Y	The delayed suspend character. Causes a running process to be stopped when it attempts to read input from the terminal. Control is returned to the shell, the user can foreground, background or kill the process. Delayed suspend is only available on operating systems supporting this feature.
+Ctrl+Z	The suspend signal, sends a SIGTSTP to a running program, thus stopping it and returning control to the shell.

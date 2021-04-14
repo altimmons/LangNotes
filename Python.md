@@ -2629,12 +2629,12 @@ ____
  Use split to split at a particular character. Returns a tuple.
 
  ```py
- >>> addr = 'a.l.timmons@gmail.com'
+ >>> addr = 'myemail@domain.com'
  >>> user, domain = addr.split('@')
  >>> user
- 'a.l.timmons'
+ 'myemail'
  >>> domain
- 'gmail.com'
+ 'domain.com'
  ```
 
  ### Other string Functions
@@ -4002,7 +4002,7 @@ ____
 
  #### Assignment
 
- A series of variables and expressions as tubles will be assigned to each other as long as their numbers match:
+ A series of variables and expressions as tuples will be assigned to each other as long as their numbers match:
 
  ```py
  >>> (a,b,c,d) = (1,2,3,4)
@@ -4014,13 +4014,13 @@ ____
  (3, 4)
  >>> type(a)
  <type 'int'>
-
- >>> addr = 'a.l.timmons@gmail.com'
+ >>> addr = 'myemail@domain.com'
  >>> user, domain = addr.split('@')
  >>> user
- 'a.l.timmons'
+ 'myemail'
  >>> domain
- 'gmail.com'
+ 'domain.com'
+
  ```
 
  #### zip()
@@ -4029,8 +4029,8 @@ ____
 
  ```py
  >>> t = range(5)
- >>> s= 'andrew'
- >>> u = 'Timmons'
+ >>> s= 'ardvark'
+ >>> u = 'Thompson'
  >>> zip(s,t,u)
  [('a', 0, 'T'), ('n', 1, 'i'), ('d', 2, 'm'), ('r', 3, 'm'), ('e', 4, 'o')]
  >>> type(zip(s,t,u))
@@ -4040,10 +4040,10 @@ ____
 
 
  ('a', 0, 'T')
- ('n', 1, 'i')
- ('d', 2, 'm')
- ('r', 3, 'm')
- ('e', 4, 'o')
+ ('r', 1, 'h')
+ ('d', 2, 'o')
+ ('v', 3, 'm')
+ ('a', 4, ~~'p')~~
  ```
 
  **Book says this creates a zip object, that then has to be turned into a list with `list(zip(*args))`, however, I get a list at the outset.** This may be a difference with python 2 and 3.

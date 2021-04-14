@@ -79,7 +79,8 @@ sudo ln -f ./bin/* /usr/bin/
 
 sudo update-alternatives --install /usr/bin/cmale cmake /opt/cmake/bin/cmake 60
 
-
+##zsh plugins
+#  https://github.com/unixorn/awesome-zsh-plugins#plugins
 
 sudo apt install node-typescript make git
 git clone https://github.com/pop-os/shell
@@ -91,12 +92,30 @@ cd shell-shortcuts
 make
 sudo make install
 
-sudo apt-get install zsh zsh-common zsh-antigen
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo apt-get install zsh zsh-common 
+
+
+sudo apt install zsh-antigen
+mkdir ~/.antigen
+cd ~/.antigen
+git init .
+git submodule add https://github.com/zsh-users/antigen.git antigen
+touch ./.zshrc
+
+
+#or oh-my zsh:
+#sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+
+
 sudo apt install zsh-theme-powerlevel9k fonts-powerline 
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
 curl https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+
+
+
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
@@ -167,14 +186,21 @@ sudo apt-get install mc, ytree
 
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
 pushd /opt/
 
 sudo sh -c "$(curl -fsSL https://getmic.ro)"
 sudo ln -s /opt/micro /usr/local/bin/
+#or whatever path its installed to- careful will install to current dir.
+
 
 #sudo curl https://getmic.ro | bash
 echo 'alias micro="~/usrbin/micro"'  >> ~/.bash_aliases
 
+
+
+# https://github.com/romkatv/powerlevel10k
 #to do. gist to append.
 #.bashrc will look for .bash_aliases and load it if present
 touch .bash_aliases
@@ -247,3 +273,15 @@ sudo edit /etc/pam.d/common-auth
 # auth [success=1 defauilt = ignore] pam_unix.so `nullok_secure`
 #requires reboot
 #https://askubuntu.com/questions/1239503/ubuntu-20-04-and-20-10-etc-securetty-no-such-file-or-directory
+
+
+################################
+##new setup
+
+mkdir .zshconfig
+cd .zshconfig
+git init . 
+git submodule add https://github.com/zsh-users/antigen.git antigen
+touch .zshrc
+git add .zshrc
+ln -s ./.zshrc ~/.zshrc

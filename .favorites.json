@@ -116,12 +116,20 @@
         "id": "ikFjrISOyHvXdMx8"
     },
     {
-        "type": "File",
-        "name": "o:\\OneDrive\\Programming\\JetBrains_Settings\\PostFix\\CustomPostfix.postfixTemplates",
+        "type": "Group",
+        "name": "Linux",
         "parent_id": null,
-        "fsPath": "o:\\OneDrive\\Programming\\JetBrains_Settings\\PostFix\\CustomPostfix.postfixTemplates",
         "workspaceRoot": null,
         "workspacePath": null,
-        "id": "wGuZxQS7LK6bVp3z"
+        "id": "VsEqW4pc6vOF9PHU"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Linux\\BashScriptNotes.md",
+        "parent_id": "VsEqW4pc6vOF9PHU",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Linux\\BashScriptNotes.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "c4NS0zQElj7JxP9R"
     }
 ]

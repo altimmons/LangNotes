@@ -535,6 +535,7 @@
   "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true,
   "markdown.preview.breaks": true,
   "markdown.links.openLocation": "beside",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 } // {
 //     "python.pythonPath": "C:\\Python37\\python.exe",
 //     "workbench.colorCustomizations": {

@@ -43,7 +43,113 @@
 [A Dump of all the microsoft Documentation]("file:///O:/OneDrive/Textbooks/Comput~1/C++/C++ Language Ref- MS Doc Dump.pdf")
 
 
+
+## Compiler Options Here
+
+[MSVSC Compiler Options](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-alphabetically?view=msvc-160)
+
+
+GCC
+
+[Good Summary Here](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/gcc/Option-Summary.html#Option-Summary)
+
+
+
+
+Commands starting with -f affect the language -the 'dialect'
+
+e.g. `-fconstexpr-depth=n` `-fconcepts`
+
+Suppressing or requestign errors is with `-W` e.g.
+
+`-Wall` `-Wpendantic`
+`-g` (and many `-f` too) affect debugging (or debug building more)
+     e.g. `-gpubnames` `-gcolumn-info`
+
+`-O` controls optimization- it has specific [levels](https://gcc.gnu.org/onlinedocs/gcc-7.5.0/gcc/Optimize-Options.html#Optimize-Options)
+
+    `-O, -O1, -O2, -O3,-Os` (opt for small size), `-Ofast` `-O0` (default, no optimization make debugging work as expected.) and `-Og` some optimization but debugging still works.
+
+
+### Preprossesor Flags
+
+
+`-D`**name**[ *=def*] Defines symbol name to the preprocessor.
+
+`-E`  - Runs only the preprocessor on the C++ source files and sends the result to stdout. Does not compile.
+`-H`  - Prints the path names of included files.
+`-P`  - Only preprocesses source; outputs to .i file.
+`-U` **name** - Deletes initial definition of preprocessor symbol name.
+`-xM` - Outputs makefile dependency information.
+`-xM1` - Generates dependency information but excludes /usr/include.
+
+    -D name
+
+    Predefine name as a macro, with definition 1.
+-D name=definition
+
+    The contents of definition are tokenized and processed as if they appeared during translation phase three in a ‘#define’ directive. In particular, the definition is truncated by embedded newline characters.
+
+    If you are invoking the preprocessor from a shell or shell-like program you may need to use the shell’s quoting syntax to protect characters such as spaces that have a meaning in the shell syntax.
+
+    If you wish to define a function-like macro on the command line, write its argument list with surrounding parentheses before the equals sign (if any). Parentheses are meaningful to most shells, so you should quote the option. With sh and csh, -D'name(args…)=definition' works.
+
+    -D and -U options are processed in the order they are given on the command line. All -imacros file and -include file options are processed after all -D and -U options.
+-U name
+
+    Cancel any previous definition of name, either built in or provided with a -D option.
+-include file
+
+    Process file as if #include "file" appeared as the first line of the primary source file. However, the first directory searched for file is the preprocessor’s working directory instead of the directory containing the main source file. If not found there, it is searched for in the remainder of the #include "…" search chain as normal.
+
+    If multiple -include options are given, the files are included in the order they appear on the command line.
+-imacros file
+
+    Exactly like -include, except that any output produced by scanning file is thrown away. Macros it defines remain defined. This allows you to acquire all the macros from a header without also processing its declarations.
+
+    All files specified by -imacros are processed before all files specified by -include.
+-undef
+
+    Do not predefine any system-specific or GCC-specific macros. The standard predefined macros remain defined.
+-pthread
+
+    Define additional macros required for using the POSIX threads library. You should use this option consistently for both compilation and linking. This option is supported on GNU/Linux targets, most other Unix derivatives, and also on x86 Cygwin and MinGW targets.
+-M
+
+    Instead of outputting the result of preprocessing, output a rule suitable for make describing the dependencies of the main source file. The preprocessor outputs one make rule containing the object file name for that source file, a colon, and the names of all the included files, including those coming from -include or -imacros command-line options. 
+
+-d<letters>  debugging dumps
+
+-l Library files
+
+-fuse-ld=bfd
+
+    Use the bfd linker instead of the default linker.
+-fuse-ld=gold
+
+    Use the gold linker instead of the default linker.
+-llibrary
+-l library
+-lobjc
+-pthread
+-static
+-shared
+
+## Make 
+
+See `C` Notes
+
+Also see [here](https://www.gnu.org/software/make/manual/make.html)
+
+
+
+
+
 ## CMake
+
+[Reasonable High Level Overview](https://cmake.org/cmake/help/v3.17/manual/cmake-buildsystem.7.html#target-properties)
+
+
 
 add_subdirectory-Users must explicitly build targets in the subdirectory. This is meant for use when the subdirectory contains a separate part of the project that is useful but not necessary, such as a set of examples. Typically the subdirectory should contain its own project() command
 
@@ -56,7 +162,64 @@ Dependencies added to an imported target or an interface library are followed tr
 
 [Generator Expressions e.g. COmparisons and Logic](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html?highlight=strequal#genex:STREQUAL)
 
+Generator Expressions are like functions.
 
+
+[cmake-buildsystem(7) — CMake 3.17.5 Documentation](https://cmake.org/cmake/help/v3.17/manual/cmake-buildsystem.7.html)
+
+Executables and libraries are defined using the add_executable() and add_library() commands. The resulting binary files have appropriate PREFIX, SUFFIX and extensions for the platform targeted. Dependencies between binary targets are expressed using the target_link_libraries() command:
+
+        add_library(archive archive.cpp zip.cpp lzma.cpp)
+        add_executable(zipapp zipapp.cpp)
+        target_link_libraries(zipapp archive)
+
+archive is defined as a STATIC library – an archive containing objects compiled from archive.cpp, zip.cpp, and lzma.cpp. zipapp is defined as an executable formed by compiling and linking zipapp.cpp. When linking the zipapp executable, the archive static library is linked in.
+Binary Executables
+
+The add_executable() command defines an executable target:
+
+        add_executable(mytool mytool.cpp)
+
+y default, the add_library() command defines a STATIC library, unless a type is specified. A type may be specified when using the command:
+
+        add_library(archive SHARED archive.cpp zip.cpp lzma.cpp)
+
+        add_library(archive STATIC archive.cpp zip.cpp lzma.cpp)
+
+The BUILD_SHARED_LIBS variable may be enabled to change the behavior of add_library() to build shared libraries by default.
+
+In the context of the buildsystem definition as a whole, it is largely irrelevant whether particular libraries are SHARED or STATIC – the commands, dependency specifications and other APIs work similarly regardless of the library type. The MODULE library type is dissimilar in that it is generally not linked to – it is not used in the right-hand-side of the target_link_libraries() command. It is a type which is loaded as a plugin using runtime techniques. If the library does not export any unmanaged symbols (e.g. Windows resource DLL, C++/CLI DLL), it is required that the library not be a SHARED library because CMake expects SHARED libraries to export at least one symbol.
+
+        add_library(archive MODULE 7z.cpp)
+
+###  Property Origin Debugging
+
+Because build specifications can be determined by dependencies, the lack of locality of code which creates a target and code which is responsible for setting build specifications may make the code more difficult to reason about. cmake(1) provides a debugging facility to print the origin of the contents of properties which may be determined by dependencies. The properties which can be debugged are listed in the CMAKE_DEBUG_TARGET_PROPERTIES variable documentation:
+
+set(CMAKE_DEBUG_TARGET_PROPERTIES
+  INCLUDE_DIRECTORIES
+  COMPILE_DEFINITIONS
+  POSITION_INDEPENDENT_CODE
+  CONTAINER_SIZE_REQUIRED
+  LIB_VERSION
+)
+
+
+# set(CMAKE_DEBUG_TARGET_PROPERTIES
+# SOURCES
+#   INCLUDE_DIRECTORIES
+#   COMPILE_DEFINITIONS
+#   COMPILE_OPTIONS
+#   LINK_DIRECTORIES
+#   LINK_OPTIONS
+#   POSITION_INDEPENDENT_CODE
+#   CONTAINER_SIZE_REQUIRED
+#   LIB_VERSION
+# )
+
+
+!!!Note Adding these flags could look bad
+    This will dump extra info into output- but the IDE interprets this as errors (red squiggles) when it gets feedback on each line.  Seems to work fine anyway.
 
 
 ### Interesting Command
@@ -2532,7 +2695,29 @@ eg
 This is complicated, which is why people use the `auto`.  Can also use `using` or `typedef`
 
 
+    typedef void(*func_name)(param typename) HelloWorldFunction;
 
+    typedef void(*HelloWorldFunction) 
+    
+?- I think he means:
+
+     typedef void(*HelloWorld)(<T>) HelloWorldFunction
+
+No the way he had it compiles?
+
+
+    typedef void (*HelloWorldFunction);
+
+    HelloWorldFunction func = HelloWorld;
+
+if HelloWorld now takes an int param:
+
+    typedef void (*HelloWorldFunction)(int);
+
+    HelloWorldFunction func = HelloWorld;
+
+    func(8)
+    func(2)
 
 ```C++
 // C++11
@@ -2572,7 +2757,50 @@ return thisCard;
 `weak_ptr` - (C++11) weak reference to an object managed by std::shared_ptr
 ~~`auto_ptr` - (removed in C++17) smart pointer with strict object ownership semantics~~
 
+## Functors
 
+Function Objects
+
+ Arithmetic operations
+- ==plus== - function object implementing x + y
+- ==minus== - function object implementing x - y
+- ==multiplies== - function object implementing x * y
+- ==divides== - function object implementing x / y
+- ==modulus== - function object implementing x % y
+- ==negate== - function object implementing -x
+Comparisons
+- ==equal_to== - function object implementing x == y
+- ==not_equal_to== - function object implementing x != y
+- ==greater== - function object implementing x > y
+- ==less== - function object implementing x < y
+- ==greater_equal== - function object implementing x >= y
+- ==less_equal== - function object implementing x <= y
+Logical operations
+- ==logical_and== - function object implementing x && y
+- ==logical_or== - function object implementing x || y
+- ==logical_not== - function object implementing !x
+Bitwise operations
+- ==bit_and== - function object implementing x & y
+- ==bit_or== - function object implementing x | y
+- ==bit_xor== - function object implementing x ^ y
+- ==bit_not== - function object implementing ~x
+
+
+[All_of, any_of, None_of]([std::all_of, std::any_of, std::none_of - cppreference.com](https://en.cppreference.com/w/cpp/algorithm/all_any_none_of))
+
+
+```
+if (all_of(v.begin(), v.end(), isEven))cout<< "All are even"
+
+
+
+
+```
+
+
+### STL  Standard Template Libraries
+
+https://www.geeksforgeeks.org/the-c-standard-template-library-stl/
 ___
 ## Enums
 
@@ -4034,6 +4262,11 @@ for (int i = 0; i <4; i++)
 
 
 ## Containers
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20191111161536/Screenshot-from-2019-11-11-16-13-18.png)
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/20191111161627/Screenshot-from-2019-11-11-16-15-07.png)
+
 
  associative containers (map, set, etc): 
 

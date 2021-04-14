@@ -11,6 +11,7 @@
 #   https://github.com/b-ryan/powerline-shell
 #   https://github.com/ryanoasis/nerd-fonts
 #   https://github.com/Peltoche/lsd
+https://github.com/unixorn/awesome-zsh-plugins#plugins
 #NOTE: You have to use one of the Nerd Fonts to see correct icons for some icon sets (Devicons, Font Awesome Extension, Font Linux), but other sets should work with their standard fonts too.
 
 cd ~

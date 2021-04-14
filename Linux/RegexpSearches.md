@@ -335,7 +335,7 @@ exe64=x64\\(.*?)(
 ^()(\S+?)([ ]{2,}\t*[ ]{2,})(\b.*)$
 ^()(\S+?)(([ ]{3,}|)\t*([ ]{3,}|))(\b.*)$
 
-Group Referencing (Reusing a previously used group)
+## Group Referencing (Reusing a previously used group)
 - `(exp)` Indexed group
 - `(?<name>exp)` -  Named group
 - `(?<name1-name2>exp)` - Balancing group
@@ -347,7 +347,7 @@ Group Referencing (Reusing a previously used group)
 - `(?>exp)` - Non-backtracking (greedy)
 -  `?!` = NOT , `real(?!ity)` matched real and really but not reality.
 
-Use To substitute
+## Use To substitute
 - `$n` - Substring matched by group number n
 - `${` - name}     Substring matched by group
 - `$$` - Literal $ character
@@ -357,20 +357,23 @@ Use To substitute
 - `$+` - Last captured group
 - `$` - _   Entire input string
 
-Conditionals
+## Conditionals
 
 - `a |b` - Either a or b
 - `(?(exp) yes | no)` -> `yes` if exp is matched and  =`no` if exp isn't matched
 - `(?(name) yes | no)` -> `yes` if name is matched  and  = `no` if name isn't matched
 
-Comments
+## Comments
 - `(?# comment)` Add inline comment
 - `#` Add x-mode comment
--
-backreferencing
+
+
+## backreferencing
 - `\n` - Indexed group
 - `\k<name>` - Named group
-- Options
+
+
+## Options
 - `(?imnsximnsx)` Set or disable the specified options
 - `(?imnsximnsx:exp)` Set or disable the specified options within the expression
   - `i` - Case-insensitive

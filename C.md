@@ -740,9 +740,9 @@ _Noreturn 2, a
 _Static_assert 2, a
 _Thread_local 2, b
 
-1 Keywords introduced in ISO C99.
+^1^ Keywords introduced in ISO C99.
 
-2 Keywords introduced in ISO C11.
+^2^ Keywords introduced in ISO C11.
 
 a Starting in Visual Studio 2019 version 16.8, these keywords are supported in code compiled as C when the /std:c11 or /std:c17 compiler options are specified.
 
@@ -1169,6 +1169,77 @@ Given by L"string"
 
 The wide-character-string literal L"hello" becomes an array of six integers of type **wchar_t.**
 
+### C type library
+
+The ctype.h header file of the C Standard Library declares several functions that are useful for testing and mapping characters.
+
+!!!Note All the functions accepts int as a parameter, whose value must be EOF or representable as an unsigned char.
+
+!!!Note All the functions return non-zero (true) if the argument c satisfies the condition described, and zero(false) if not.
+
+#### Functions
+
+- `int isalnum(int c)` - This function checks whether the passed character is alphanumeric.
+
+- `int isalpha(int c)` - This function checks whether the passed character is alphabetic.
+
+- `int iscntrl(int c)` - This function checks whether the passed character is control character.
+
+- `int isdigit(int c)` - This function checks whether the passed character is decimal digit.
+
+- `int isgraph(int c)` - This function checks whether the passed character has graphical representation using locale.
+
+- `int islower(int c)` - This function checks whether the passed character is lowercase letter.
+
+- `int isprint(int c)` - This function checks whether the passed character is printable.
+
+- `int ispunct(int c)` - This function checks whether the passed character is a punctuation character.
+
+- `int isspace(int c)` - This function checks whether the passed character is white-space.
+
+- `int isupper(int c)` - This function checks whether the passed character is an uppercase letter.
+
+- `int isxdigit(int c)` - This function checks whether the passed character is a hexadecimal digit.
+
+
+
+The library also **contains two conversion functions** that accepts and returns an "int".
+
+
+- `int tolower(int c)` - This function converts uppercase letters to lowercase.
+
+- `int toupper(int c)` - This function converts lowercase letters to uppercase.
+
+#### Character Classes
+
+- `Digits` - This is a set of whole numbers { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
+
+- `Hexadecimal digits` - This is the set of { 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f }.
+
+- `Lowercase letters` - This is a set of lowercase letters { a b c d e f g h i j k l m n o p q r s t u v w x y z }.
+
+- `Uppercase letters` - This is a set of uppercase letters {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z }.
+
+- `Letters` - This is a set of lowercase and uppercase letters.
+
+- `Alphanumeric characters` - This is a set of Digits, Lowercase letters and Uppercase letters.
+
+- `Punctuation characters` - This is a set of ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+
+- `Graphical characters` - This is a set of Alphanumeric characters and Punctuation characters.
+
+- `Space characters` - This is a set of tab, newline, vertical tab, form feed, carriage return, and space.
+
+- `Printable characters` - This is a set of Alphanumeric characters, Punctuation characters and Space characters.
+
+- `Control characters` - In ASCII, these characters have octal codes 000 through 037, and 177 (DEL).
+
+- `Blank characters` - These are spaces and tabs.
+
+- `Alphabetic characters` - This is a set of Lowercase letters and Uppercase letters.
+
+
+
 ## printing
 
 `puts()` = print.
@@ -1233,6 +1304,129 @@ Found: [[SOLVED] C language programming problem.](https://www.linuxquestions.org
         String value = 9899.89, Float value = 9899.889648
 
 created `local.h`, added all `#include <xxx>` to it.  Ran gcc -c local.h to get a precompiled header.
+
+
+### Stdio library
+
+Library Variables
+
+Following are the variable types defined in the header stdio.h −
+- `size_t` - This is the unsigned integral type and is the result of the sizeof keyword.
+
+- `FILE` - This is an object type suitable for storing information for a file stream.
+
+- `fpos_t` - This is an object type suitable for storing any position in a file.
+
+Library Macros
+
+Following are the macros defined in the header stdio.h −
+Sr.No. 	Macro & Description
+- `NULL` - This macro is the value of a null pointer constant.
+
+- `_IOFBF, _IOLBF and _IONBF` - These are the macros which expand to integral constant expressions with distinct values and suitable for the use as third argument to the setvbuf function.
+
+- `BUFSIZ` - This macro is an integer, which represents the size of the buffer used by the setbuf function.
+
+- `EOF` - This macro is a negative integer, which indicates that the end-of-file has been reached.
+
+- `FOPEN_MAX` - This macro is an integer, which represents the maximum number of files that the system can guarantee to be opened simultaneously.
+
+- `FILENAME_MAX` - This macro is an integer, which represents the longest length of a char array suitable for holding the longest possible filename. If the implementation imposes no limit, then this value should be the recommended maximum value.
+
+- `L_tmpnam` - This macro is an integer, which represents the longest length of a char array suitable for holding the longest possible temporary filename created by the tmpnam function.
+
+- `SEEK_CUR, SEEK_END, and SEEK_SET` - These macros are used in the fseek function to locate different positions in a file.
+
+- `TMP_MAX` - This macro is the maximum number of unique filenames that the function tmpnam can generate.
+
+- `stderr, stdin, and stdout` - These macros are pointers to FILE types which correspond to the standard error, standard input, and standard output streams.
+
+Library Functions
+
+Following are the functions defined in the header stdio.h −
+Sr.No. 	Function & Description
+- `int fclose(FILE *stream)` - Closes the stream. All buffers are flushed.
+
+- `void clearerr(FILE *stream)` - Clears the end-of-file and error indicators for the given stream.
+
+- `int feof(FILE *stream)` - Tests the end-of-file indicator for the given stream.
+
+- `int ferror(FILE *stream)` - Tests the error indicator for the given stream.
+
+- `int fflush(FILE *stream)` - Flushes the output buffer of a stream.
+
+- `int fgetpos(FILE *stream, fpos_t *pos)` - Gets the current file position of the stream and writes it to pos.
+
+- `FILE *fopen(const char *filename, const char *mode)` - Opens the filename pointed to by filename using the given mode.
+
+- `size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)` - Reads data from the given stream into the array pointed to by ptr.
+
+- `FILE *freopen(const char *filename, const char *mode, FILE *stream)` - Associates a new filename with the given open stream and same time closing the old file in stream.
+
+- `int fseek(FILE *stream, long int offset, int whence)` - Sets the file position of the stream to the given offset. The argument offset signifies the number of bytes to seek from the given whence position.
+
+- `int fsetpos(FILE *stream, const fpos_t *pos)` - Sets the file position of the given stream to the given position. The argument pos is a position given by the function fgetpos.
+
+- `long int ftell(FILE *stream)` - Returns the current file position of the given stream.
+
+- `size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)` - Writes data from the array pointed to by ptr to the given stream.
+
+- `int remove(const char *filename)` - Deletes the given filename so that it is no longer accessible.
+
+- `int rename(const char *old_filename, const char *new_filename)` - Causes the filename referred to, by old_filename to be changed to new_filename.
+
+- `void rewind(FILE *stream)` - Sets the file position to the beginning of the file of the given stream.
+
+- `void setbuf(FILE *stream, char *buffer)` - Defines how a stream should be buffered.
+
+- `int setvbuf(FILE *stream, char *buffer, int mode, size_t size)` - Another function to define how a stream should be buffered.
+
+- `FILE *tmpfile(void)` - Creates a temporary file in binary update mode (wb+).
+
+- `char *tmpnam(char *str)` - Generates and returns a valid temporary filename which does not exist.
+
+- `int fprintf(FILE *stream, const char *format, ...)` - Sends formatted output to a stream.
+
+- `int printf(const char *format, ...)` - Sends formatted output to stdout.
+
+- `int sprintf(char *str, const char *format, ...)` - Sends formatted output to a string.
+
+- `int vfprintf(FILE *stream, const char *format, va_list arg)` - Sends formatted output to a stream using an argument list.
+
+- `int vprintf(const char *format, va_list arg)` - Sends formatted output to stdout using an argument list.
+
+- `int vsprintf(char *str, const char *format, va_list arg)` - Sends formatted output to a string using an argument list.
+
+- `int fscanf(FILE *stream, const char *format, ...)` - Reads formatted input from a stream.
+
+- `int scanf(const char *format, ...)` - Reads formatted input from stdin.
+
+- `int sscanf(const char *str, const char *format, ...)` - Reads formatted input from a string.
+
+- `int fgetc(FILE *stream)` - Gets the next character (an unsigned char) from the specified stream and advances the position indicator for the stream.
+
+- `char *fgets(char *str, int n, FILE *stream)` - Reads a line from the specified stream and stores it into the string pointed to by str. It stops when either (n-1) characters are read, the newline character is read, or the end-of-file is reached, whichever comes first.
+
+- `int fputc(int char, FILE *stream)` - Writes a character (an unsigned char) specified by the argument char to the specified stream and advances the position indicator for the stream.
+
+- `int fputs(const char *str, FILE *stream)` - Writes a string to the specified stream up to but not including the null character.
+
+- `int getc(FILE *stream)` - Gets the next character (an unsigned char) from the specified stream and advances the position indicator for the stream.
+
+- `int getchar(void)` - Gets a character (an unsigned char) from stdin.
+
+- `char *gets(char *str)` - Reads a line from stdin and stores it into the string pointed to by, str. It stops when either the newline character is read or when the end-of-file is reached, whichever comes first.
+
+- `int putc(int char, FILE *stream)` - Writes a character (an unsigned char) specified by the argument char to the specified stream and advances the position indicator for the stream.
+
+- `int putchar(int char)` - Writes a character (an unsigned char) specified by the argument char to stdout.
+
+- `int puts(const char *str)` - Writes a string to stdout up to but not including the null character. A newline character is appended to the output.
+
+- `int ungetc(int char, FILE *stream)` - Pushes the character char (an unsigned char) onto the specified stream so that the next character is read.
+
+- `void perror(const char *str)` - Prints a descriptive error message to stderr. First the string str is printed followed by a colon and then a space.
+
 
 
 ## Types
@@ -2024,46 +2218,22 @@ The above command writes the PID of the current shell −
 
 The following table shows a number of special variables that you can use in your shell scripts −
 Sr.No. 	Variable & Description
-1 	
+- `$0` - The filename of the current script.
 
-$0
+- `$n` - These variables correspond to the arguments with which a script was invoked. Here n is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).
 
-The filename of the current script.
-2 	
+- `$#` - The number of arguments supplied to a script.
 
-$n
+- `$*` - All the arguments are double quoted. If a script receives two arguments, $* is equivalent to $1 $2.
 
-These variables correspond to the arguments with which a script was invoked. Here n is a positive decimal number corresponding to the position of an argument (the first argument is $1, the second argument is $2, and so on).
-3 	
+- `$@` - All the arguments are individually double quoted. If a script receives two arguments, $@ is equivalent to $1 $2.
 
-$#
+- `$?` - The exit status of the last command executed.
 
-The number of arguments supplied to a script.
-4 	
+- `$$` - The process number of the current shell. For shell scripts, this is the process ID under which they are executing.
 
-$*
+- `$!` - The process number of the last background command.
 
-All the arguments are double quoted. If a script receives two arguments, $* is equivalent to $1 $2.
-5 	
-
-$@
-
-All the arguments are individually double quoted. If a script receives two arguments, $@ is equivalent to $1 $2.
-6 	
-
-$?
-
-The exit status of the last command executed.
-7 	
-
-$$
-
-The process number of the current shell. For shell scripts, this is the process ID under which they are executing.
-8 	
-
-$!
-
-The process number of the last background command.
 
 
 
@@ -2381,6 +2551,1639 @@ Macro constants
 
 
 
+## `<stdlib> C std lib 
+
+Library Variables
+
+Following are the variable types defined in the header stdlib.h −
+Sr.No. 	Variable & Description
+- `size_t` - This is the unsigned integral type and is the result of the sizeof keyword.
+
+- `wchar_t` - This is an integer type of the size of a wide character constant.
+
+- `div_t` - This is the structure returned by the div function.
+
+- `ldiv_t` - This is the structure returned by the ldiv function.
+
+### Library Macros
+
+Following are the macros defined in the header stdlib.h −
+Sr.No. 	Macro & Description
+- `NULL` - This macro is the value of a null pointer constant.
+
+- `EXIT_FAILURE` - This is the value for the exit function to return in case of failure.
+
+- `EXIT_SUCCESS` - This is the value for the exit function to return in case of success.
+
+- `RAND_MAX` - This macro is the maximum value returned by the rand function.
+
+- `MB_CUR_MAX` - This macro is the maximum number of bytes in a multi-byte character set which cannot be larger than MB_LEN_MAX.
+
+### Library Functions
+
+Following are the functions defined in the header stlib.h −
+
+- `double atof(const char *str)` - Converts the string pointed to, by the argument str to a floating-point number (type double).
+
+- `int atoi(const char *str)` - Converts the string pointed to, by the argument str to an integer (type int).
+
+- `long int atol(const char *str)` - Converts the string pointed to, by the argument str to a long integer (type long int).
+
+- `double strtod(const char *str, char **endptr)` - Converts the string pointed to, by the argument str to a floating-point number (type double).
+
+- `long int strtol(const char *str, char **endptr, int base)` - Converts the string pointed to, by the argument str to a long integer (type long int).
+
+- `unsigned long int strtoul(const char *str, char **endptr, int base)` - Converts the string pointed to, by the argument str to an unsigned long integer (type unsigned long int).
+
+- `void *calloc(size_t nitems, size_t size)` - Allocates the requested memory and returns a pointer to it.
+
+- `void free(void *ptr` - Deallocates the memory previously allocated by a call to calloc, malloc, or realloc.
+
+- `void *malloc(size_t size)` - Allocates the requested memory and returns a pointer to it.
+
+- `void *realloc(void *ptr, size_t size)` - Attempts to resize the memory block pointed to by ptr that was previously allocated with a call to malloc or calloc.
+
+- `void abort(void)` - Causes an abnormal program termination.
+
+- `int atexit(void (*func)(void))` - Causes the specified function func to be called when the program terminates normally.
+
+- `void exit(int status)` - Causes the program to terminate normally.
+
+- `char *getenv(const char *name)` - Searches for the environment string pointed to by name and returns the associated value to the string.
+
+- `int system(const char *string)` - The command specified by string is passed to the host environment to be executed by the command processor.
+
+- `void *bsearch(const void *key, const void *base, size_t nitems, size_t size, int (*compar)(const void *, const void *))` - Performs a binary search.
+
+- `void qsort(void *base, size_t nitems, size_t size, int (*compar)(const void *, const void*))` - Sorts an array.
+
+- `int abs(int x)` - Returns the absolute value of x.
+
+- `div_t div(int numer, int denom)` - Divides numer (numerator) by denom (denominator).
+
+- `long int labs(long int x)` - Returns the absolute value of x.
+
+- `ldiv_t ldiv(long int numer, long int denom)` - Divides numer (numerator) by denom (denominator).
+
+- `int rand(void)` - Returns a pseudo-random number in the range of 0 to RAND_MAX.
+
+- `void srand(unsigned int seed)` - This function seeds the random number generator used by the function rand.
+
+- `int mblen(const char *str, size_t n)` - Returns the length of a multibyte character pointed to by the argument str.
+
+- `size_t mbstowcs(schar_t *pwcs, const char *str, size_t n)` - Converts the string of multibyte characters pointed to by the argument str to the array pointed to by pwcs.
+
+- `int mbtowc(whcar_t *pwc, const char *str, size_t n)` - Examines the multibyte character pointed to by the argument str.
+
+- `size_t wcstombs(char *str, const wchar_t *pwcs, size_t n)` - Converts the codes stored in the array pwcs to multibyte characters and stores them in the string str.
+
+- `int wctomb(char *str, wchar_t wchar)` - Examines the code which corresponds to a multibyte character given by the argument wchar.
+
 ## Thread and other functions
 
 pthread_create2;
+
+
+## [C Library - <stdlib.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm)
+
+### Library Variables
+
+Following are the variable types defined in the header stdlib.h −
+
+Sr.No.
+
+Variable & Description
+
+1
+
+**size\_t**
+
+This is the unsigned integral type and is the result of the **sizeof** keyword.
+
+2
+
+**wchar\_t**
+
+This is an integer type of the size of a **wide** character constant.
+
+3
+
+**div\_t**
+
+This is the structure returned by the **div** function.
+
+4
+
+**ldiv\_t**
+
+This is the structure returned by the **ldiv** function.
+
+## Library Macros
+
+Following are the macros defined in the header stdlib.h −
+
+Sr.No.
+
+Macro & Description
+
+1
+
+**NULL**
+
+This macro is the value of a null pointer constant.
+
+2
+
+**EXIT\_FAILURE**
+
+This is the value for the exit function to return in case of failure.
+
+3
+
+**EXIT\_SUCCESS**
+
+This is the value for the exit function to return in case of success.
+
+4
+
+**RAND\_MAX**
+
+This macro is the maximum value returned by the rand function.
+
+5
+
+**MB\_CUR\_MAX**
+
+This macro is the maximum number of bytes in a multi-byte character set which cannot be larger than MB\_LEN\_MAX.
+
+### Library Functions
+
+Following are the functions defined in the header stlib.h −
+
+
+Function & Description
+
+-[ `double atof(const char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_atof.htm) - Converts the string pointed to, by the argument _str_ to a floating-point number (type double).
+
+
+-[ `int atoi(const char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_atoi.htm) - Converts the string pointed to, by the argument _str_ to an integer (type int).
+
+
+-[ `long int atol(const char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_atol.htm) - Converts the string pointed to, by the argument _str_ to a long integer (type long int).
+
+
+-[ `double strtod(const char \*str, char \*\*endptr)`](https://www.tutorialspoint.com/c_standard_library/c_function_strtod.htm) - Converts the string pointed to, by the argument _str_ to a floating-point number (type double).
+
+
+-[ `long int strtol(const char \*str, char \*\*endptr, int base)`](https://www.tutorialspoint.com/c_standard_library/c_function_strtol.htm) - Converts the string pointed to, by the argument _str_ to a long integer (type long int).
+
+
+-[ `unsigned long int strtoul(const char \*str, char \*\*endptr, int base)`](https://www.tutorialspoint.com/c_standard_library/c_function_strtoul.htm) - Converts the string pointed to, by the argument _str_ to an unsigned long integer (type unsigned long int).
+
+
+-[ `void \*calloc(size\_t nitems, size\_t size)`](https://www.tutorialspoint.com/c_standard_library/c_function_calloc.htm) - Allocates the requested memory and returns a pointer to it.
+
+
+-[ `void free(void \*ptr`](https://www.tutorialspoint.com/c_standard_library/c_function_free.htm) - Deallocates the memory previously allocated by a call to _calloc, malloc,_ or _realloc_.
+
+
+-[ `void \*malloc(size\_t size)`](https://www.tutorialspoint.com/c_standard_library/c_function_malloc.htm) - Allocates the requested memory and returns a pointer to it.
+
+
+-[ `void \*realloc(void \*ptr, size\_t size)`](https://www.tutorialspoint.com/c_standard_library/c_function_realloc.htm) - Attempts to resize the memory block pointed to by ptr that was previously allocated with a call to _malloc_ or _calloc_.
+
+
+-[ `void abort(void)`](https://www.tutorialspoint.com/c_standard_library/c_function_abort.htm) - Causes an abnormal program termination.
+
+
+-[ `int atexit(void (\*func)(void))`](https://www.tutorialspoint.com/c_standard_library/c_function_atexit.htm) - Causes the specified function **func** to be called when the program terminates normally.
+
+
+-[ `void exit(int status)`](https://www.tutorialspoint.com/c_standard_library/c_function_exit.htm) - Causes the program to terminate normally.
+
+
+-[ `char \*getenv(const char \*name)`](https://www.tutorialspoint.com/c_standard_library/c_function_getenv.htm) - Searches for the environment string pointed to by name and returns the associated value to the string.
+
+
+-[ `int system(const char \*string)`](https://www.tutorialspoint.com/c_standard_library/c_function_system.htm) - The command specified by string is passed to the host environment to be executed by the command processor.
+
+
+-[ `void \*bsearch(const void \*key, const void \*base, size\_t nitems, size\_t size, int (\*compar)(const void \*, const void \*))`](https://www.tutorialspoint.com/c_standard_library/c_function_bsearch.htm) - Performs a binary search.
+
+
+-[ `void qsort(void \*base, size\_t nitems, size\_t size, int (\*compar)(const void \*, const void\*))`](https://www.tutorialspoint.com/c_standard_library/c_function_qsort.htm) - Sorts an array.
+
+
+-[ `int abs(int x)`](https://www.tutorialspoint.com/c_standard_library/c_function_abs.htm) - Returns the absolute value of x.
+
+
+-[ `div\_t div(int numer, int denom)`](https://www.tutorialspoint.com/c_standard_library/c_function_div.htm) - Divides numer (numerator) by denom (denominator).
+
+
+-[ `long int labs(long int x)`](https://www.tutorialspoint.com/c_standard_library/c_function_labs.htm) - Returns the absolute value of x.
+
+
+-[ `ldiv\_t ldiv(long int numer, long int denom)`](https://www.tutorialspoint.com/c_standard_library/c_function_ldiv.htm) - Divides numer (numerator) by denom (denominator).
+
+
+-[ `int rand(void)`](https://www.tutorialspoint.com/c_standard_library/c_function_rand.htm) - Returns a pseudo-random number in the range of 0 to _RAND\_MAX_.
+
+
+-[ `void srand(unsigned int seed)`](https://www.tutorialspoint.com/c_standard_library/c_function_srand.htm) - This function seeds the random number generator used by the function **rand**.
+
+
+-[ `int mblen(const char \*str, size\_t n)`](https://www.tutorialspoint.com/c_standard_library/c_function_mblen.htm) - Returns the length of a multibyte character pointed to by the argument _str_.
+
+
+-[ `size\_t mbstowcs(schar\_t \*pwcs, const char \*str, size\_t n)`](https://www.tutorialspoint.com/c_standard_library/c_function_mbstowcs.htm) - Converts the string of multibyte characters pointed to by the argument _str_ to the array pointed to by _pwcs_.
+
+
+-[ `int mbtowc(whcar\_t \*pwc, const char \*str, size\_t n)`](https://www.tutorialspoint.com/c_standard_library/c_function_mbtowc.htm) - Examines the multibyte character pointed to by the argument _str_.
+
+
+-[ `size\_t wcstombs(char \*str, const wchar\_t \*pwcs, size\_t n)`](https://www.tutorialspoint.com/c_standard_library/c_function_wcstombs.htm) - Converts the codes stored in the array _pwcs_ to multibyte characters and stores them in the string _str_.
+
+
+-[ `int wctomb(char \*str, wchar\_t wchar)`](https://www.tutorialspoint.com/c_standard_library/c_function_wctomb.htm) - Examines the code which corresponds to a multibyte character given by the argument _wchar_.
+
+
+## \<ctypes> \<types.h>
+
+
+[C Library - <ctype.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/ctype_h.htm)
+
+### Library Functions
+
+Following are the functions defined in the header ctype.h −
+
+Sr.No.
+
+Function & Description
+
+-[ `int isalnum(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isalnum.htm) - This function checks whether the passed character is alphanumeric.
+
+
+-[ `int isalpha(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isalpha.htm) - This function checks whether the passed character is alphabetic.
+
+
+-[ `int iscntrl(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_iscntrl.htm) - This function checks whether the passed character is control character.
+
+
+-[ `int isdigit(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isdigit.htm) - This function checks whether the passed character is decimal digit.
+
+
+-[ `int isgraph(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isgraph.htm) - This function checks whether the passed character has graphical representation using locale.
+
+
+-[ `int islower(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_islower.htm) - This function checks whether the passed character is lowercase letter.
+
+
+-[ `int isprint(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isprint.htm) - This function checks whether the passed character is printable.
+
+
+-[ `int ispunct(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_ispunct.htm) - This function checks whether the passed character is a punctuation character.
+
+
+-[ `int isspace(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isspace.htm) - This function checks whether the passed character is white-space.
+
+
+-[ `int isupper(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isupper.htm) - This function checks whether the passed character is an uppercase letter.
+
+
+-[ `int isxdigit(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_isxdigit.htm) - This function checks whether the passed character is a hexadecimal digit.
+
+
+The library also contains two conversion functions that accepts and returns an "int".
+
+Sr.No.
+
+Function & Description
+
+-[ `int tolower(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_tolower.htm) - This function converts uppercase letters to lowercase.
+
+
+-[ `int toupper(int c)`](https://www.tutorialspoint.com/c_standard_library/c_function_toupper.htm) - This function converts lowercase letters to uppercase.
+
+
+### Character Classes
+
+Sr.No.
+
+Character Class & Description
+
+1
+
+**Digits**
+
+This is a set of whole numbers { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
+
+2
+
+**Hexadecimal digits**
+
+This is the set of { 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f }.
+
+3
+
+**Lowercase letters**
+
+This is a set of lowercase letters { a b c d e f g h i j k l m n o p q r s t u v w x y z }.
+
+4
+
+**Uppercase letters**
+
+This is a set of uppercase letters {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z }.
+
+5
+
+**Letters**
+
+This is a set of lowercase and uppercase letters.
+
+6
+
+**Alphanumeric characters**
+
+This is a set of Digits, Lowercase letters and Uppercase letters.
+
+7
+
+**Punctuation characters**
+
+This is a set of ! " # $ % & ' ( ) \* + , - . / : ; < = > ? @ \[ \\ \] ^ \_ \` { | } ~
+
+8
+
+**Graphical characters**
+
+This is a set of Alphanumeric characters and Punctuation characters.
+
+9
+
+**Space characters**
+
+This is a set of tab, newline, vertical tab, form feed, carriage return, and space.
+
+10
+
+**Printable characters**
+
+This is a set of Alphanumeric characters, Punctuation characters and Space characters.
+
+11
+
+**Control characters**
+
+In ASCII, these characters have octal codes 000 through 037, and 177 (DEL).
+
+12
+
+**Blank characters**
+
+These are spaces and tabs.
+
+13
+
+**Alphabetic characters**
+
+This is a set of Lowercase letters and Uppercase letters.
+
+## \<cstdarg> \<stdarg.h>
+
+[C Library - <stdarg.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/stdarg_h.htm)
+
+The **stdarg.h** header defines a variable type **va\_list** and three macros which can be used to get the arguments in a function when the number of arguments are not known i.e. variable number of arguments.
+
+A function of variable arguments is defined with the ellipsis (,...) at the end of the parameter list.
+
+## Library Variables
+
+Following is the variable type defined in the header stdarg.h −
+
+Sr.No.
+
+Variable & Description
+
+1
+
+**va\_list**
+
+This is a type suitable for holding information needed by the three macros **va\_start(), va\_arg()** and **va\_end()**.
+
+## Library Macros
+
+Following are the macros defined in the header stdarg.h −
+
+Sr.No.
+
+Macro & Description
+
+-[ `void va\_start(va\_list ap, last\_arg)`](https://www.tutorialspoint.com/c_standard_library/c_macro_va_start.htm) - This macro initializes **ap** variable to be used with the **va\_arg** and **va\_end** macros. The **last\_arg** is the last known fixed argument being passed to the function i.e. the argument before the ellipsis.
+
+-[ `type va\_arg(va\_list ap, type)`](https://www.tutorialspoint.com/c_standard_library/c_macro_va_arg.htm) - This macro retrieves the next argument in the parameter list of the function with type **type**.
+
+-[ `void va\_end(va\_list ap)`](https://www.tutorialspoint.com/c_standard_library/c_macro_va_end.htm) - This macro allows a function with variable arguments which used the **va\_start** macro to return. If **va\_end** is not called before returning from the function, the result is undefined.
+
+
+
+
+## \<cstdio>  \<stdio>
+
+[C Library - <stdio.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm)
+
+
+## Library Variables
+
+Following are the variable types defined in the header stdio.h −
+
+Sr.No.
+
+Variable & Description
+
+1
+
+**size\_t**
+
+This is the unsigned integral type and is the result of the **sizeof** keyword.
+
+2
+
+**FILE**
+
+This is an object type suitable for storing information for a file stream.
+
+3
+
+**fpos\_t**
+
+This is an object type suitable for storing any position in a file.
+
+## Library Macros
+
+Following are the macros defined in the header stdio.h −
+
+Sr.No.
+
+Macro & Description
+
+1
+
+**NULL**
+
+This macro is the value of a null pointer constant.
+
+2
+
+**\_IOFBF, \_IOLBF** and **\_IONBF**
+
+These are the macros which expand to integral constant expressions with distinct values and suitable for the use as third argument to the **setvbuf** function.
+
+3
+
+**BUFSIZ**
+
+This macro is an integer, which represents the size of the buffer used by the **setbuf** function.
+
+4
+
+**EOF**
+
+This macro is a negative integer, which indicates that the end-of-file has been reached.
+
+5
+
+**FOPEN\_MAX**
+
+This macro is an integer, which represents the maximum number of files that the system can guarantee to be opened simultaneously.
+
+6
+
+**FILENAME\_MAX**
+
+This macro is an integer, which represents the longest length of a char array suitable for holding the longest possible filename. If the implementation imposes no limit, then this value should be the recommended maximum value.
+
+7
+
+**L\_tmpnam**
+
+This macro is an integer, which represents the longest length of a char array suitable for holding the longest possible temporary filename created by the **tmpnam** function.
+
+8
+
+**SEEK\_CUR, SEEK\_END,** and **SEEK\_SET**
+
+These macros are used in the **fseek** function to locate different positions in a file.
+
+9
+
+**TMP\_MAX**
+
+This macro is the maximum number of unique filenames that the function **tmpnam** can generate.
+
+10
+
+**stderr, stdin,** and **stdout**
+
+These macros are pointers to FILE types which correspond to the standard error, standard input, and standard output streams.
+
+## Library Functions
+
+Following are the functions defined in the header stdio.h −
+
+Sr.No.
+
+Function & Description
+
+-[ `int fclose(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fclose.htm) - Closes the stream. All buffers are flushed.
+
+-[ `void clearerr(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_clearerr.htm) - Clears the end-of-file and error indicators for the given stream.
+
+-[ `int feof(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_feof.htm) - Tests the end-of-file indicator for the given stream.
+
+-[ `int ferror(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_ferror.htm) - Tests the error indicator for the given stream.
+
+-[ `int fflush(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fflush.htm) - Flushes the output buffer of a stream.
+
+-[ `int fgetpos(FILE \*stream, fpos\_t \*pos)`](https://www.tutorialspoint.com/c_standard_library/c_function_fgetpos.htm) - Gets the current file position of the stream and writes it to pos.
+
+-[ `FILE \*fopen(const char \*filename, const char \*mode)`](https://www.tutorialspoint.com/c_standard_library/c_function_fopen.htm) - Opens the filename pointed to by filename using the given mode.
+
+-[ `size\_t fread(void \*ptr, size\_t size, size\_t nmemb, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fread.htm) - Reads data from the given stream into the array pointed to by ptr.
+
+-[ `FILE \*freopen(const char \*filename, const char \*mode, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_freopen.htm) - Associates a new filename with the given open stream and same time closing the old file in stream.
+
+-[ `int fseek(FILE \*stream, long int offset, int whence)`](https://www.tutorialspoint.com/c_standard_library/c_function_fseek.htm) - Sets the file position of the stream to the given offset. The argument _offset_ signifies the number of bytes to seek from the given _whence_ position.
+
+-[ `int fsetpos(FILE \*stream, const fpos\_t \*pos)`](https://www.tutorialspoint.com/c_standard_library/c_function_fsetpos.htm) - Sets the file position of the given stream to the given position. The argument _pos_ is a position given by the function fgetpos.
+
+-[ `long int ftell(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_ftell.htm) - Returns the current file position of the given stream.
+
+-[ `size\_t fwrite(const void \*ptr, size\_t size, size\_t nmemb, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fwrite.htm) - Writes data from the array pointed to by ptr to the given stream.
+
+-[ `int remove(const char \*filename)`](https://www.tutorialspoint.com/c_standard_library/c_function_remove.htm) - Deletes the given filename so that it is no longer accessible.
+
+-[ `int rename(const char \*old\_filename, const char \*new\_filename)`](https://www.tutorialspoint.com/c_standard_library/c_function_rename.htm) - Causes the filename referred to, by old\_filename to be changed to new\_filename.
+
+-[ `void rewind(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_rewind.htm) - Sets the file position to the beginning of the file of the given stream.
+
+-[ `void setbuf(FILE \*stream, char \*buffer)`](https://www.tutorialspoint.com/c_standard_library/c_function_setbuf.htm) - Defines how a stream should be buffered.
+
+-[ `int setvbuf(FILE \*stream, char \*buffer, int mode, size\_t size)`](https://www.tutorialspoint.com/c_standard_library/c_function_setvbuf.htm) - Another function to define how a stream should be buffered.
+
+-[ `FILE \*tmpfile(void)`](https://www.tutorialspoint.com/c_standard_library/c_function_tmpfile.htm) - Creates a temporary file in binary update mode (wb+).
+
+-[ `char \*tmpnam(char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_tmpnam.htm) - Generates and returns a valid temporary filename which does not exist.
+
+-[ `int fprintf(FILE \*stream, const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_fprintf.htm) - Sends formatted output to a stream.
+
+-[ `int printf(const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm) - Sends formatted output to stdout.
+
+-[ `int sprintf(char \*str, const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_sprintf.htm) - Sends formatted output to a string.
+
+-[ `int vfprintf(FILE \*stream, const char \*format, va\_list arg)`](https://www.tutorialspoint.com/c_standard_library/c_function_vfprintf.htm) - Sends formatted output to a stream using an argument list.
+
+-[ `int vprintf(const char \*format, va\_list arg)`](https://www.tutorialspoint.com/c_standard_library/c_function_vprintf.htm) - Sends formatted output to stdout using an argument list.
+
+-[ `int vsprintf(char \*str, const char \*format, va\_list arg)`](https://www.tutorialspoint.com/c_standard_library/c_function_vsprintf.htm) - Sends formatted output to a string using an argument list.
+
+-[ `int fscanf(FILE \*stream, const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_fscanf.htm) - Reads formatted input from a stream.
+
+-[ `int scanf(const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_scanf.htm) - Reads formatted input from stdin.
+
+-[ `int sscanf(const char \*str, const char \*format, ...)`](https://www.tutorialspoint.com/c_standard_library/c_function_sscanf.htm) - Reads formatted input from a string.
+
+-[ `int fgetc(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fgetc.htm) - Gets the next character (an unsigned char) from the specified stream and advances the position indicator for the stream.
+
+-[ `char \*fgets(char \*str, int n, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fgets.htm) - Reads a line from the specified stream and stores it into the string pointed to by str. It stops when either (n-1) characters are read, the newline character is read, or the end-of-file is reached, whichever comes first.
+
+-[ `int fputc(int char, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fputc.htm) - Writes a character (an unsigned char) specified by the argument char to the specified stream and advances the position indicator for the stream.
+
+-[ `int fputs(const char \*str, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_fputs.htm) - Writes a string to the specified stream up to but not including the null character.
+
+-[ `int getc(FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_getc.htm) - Gets the next character (an unsigned char) from the specified stream and advances the position indicator for the stream.
+
+-[ `int getchar(void)`](https://www.tutorialspoint.com/c_standard_library/c_function_getchar.htm) - Gets a character (an unsigned char) from stdin.
+
+-[ `char \*gets(char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_gets.htm) - Reads a line from stdin and stores it into the string pointed to by, str. It stops when either the newline character is read or when the end-of-file is reached, whichever comes first.
+
+-[ `int putc(int char, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_putc.htm) - Writes a character (an unsigned char) specified by the argument char to the specified stream and advances the position indicator for the stream.
+
+-[ `int putchar(int char)`](https://www.tutorialspoint.com/c_standard_library/c_function_putchar.htm) - Writes a character (an unsigned char) specified by the argument char to stdout.
+
+-[ `int puts(const char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_puts.htm) - Writes a string to stdout up to but not including the null character. A newline character is appended to the output.
+
+-[ `int ungetc(int char, FILE \*stream)`](https://www.tutorialspoint.com/c_standard_library/c_function_ungetc.htm) - Pushes the character char (an unsigned char) onto the specified stream so that the next character is read.
+
+-[ `void perror(const char \*str)`](https://www.tutorialspoint.com/c_standard_library/c_function_perror.htm) - Prints a descriptive error message to stderr. First the string str is printed followed by a colon and then a space.
+
+
+## cstddef stddef.h
+
+
+[C Library - <stddef.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/stddef_h.htm)
+
+> The **stddef.h** header defines various variable types and macros. Many of these definitions also appear in other headers.
+> 
+> ## Library Variables
+> 
+> Following are the variable types defined in the header stddef.h −
+> 
+> Sr.No.
+> 
+> Variable & Description
+> 
+> 1
+> 
+> **ptrdiff\_t**
+> 
+> This is the signed integral type and is the result of subtracting two pointers.
+> 
+> 2
+> 
+> **size\_t**
+> 
+> This is the unsigned integral type and is the result of the **sizeof** keyword.
+> 
+> 3
+> 
+> **wchar\_t**
+> 
+> This is an integral type of the size of a wide character constant.
+> 
+> ## Library Macros
+> 
+> Following are the macros defined in the header stddef.h −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> [NULL](https://www.tutorialspoint.com/c_standard_library/c_macro_null.htm)
+> 
+> This macro is the value of a null pointer constant.
+> 
+> 2
+> 
+> [offsetof(type, member-designator)](https://www.tutorialspoint.com/c_standard_library/c_macro_offsetof.htm)
+> 
+> This results in a constant integer of type size\_t which is the offset in bytes of a structure member from the beginning of the structure. The member is given by _member-designator_, and the name of the structure is given in _type_.
+
+
+## string.h cstring
+
+[C Library - <string.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/string_h.htm)
+
+> The **string.h** header defines one variable type, one macro, and various functions for manipulating arrays of characters.
+> 
+> ## Library Variables
+> 
+> Following is the variable type defined in the header string.h −
+> 
+> Sr.No.
+> 
+> Variable & Description
+> 
+> 1
+> 
+> **size\_t**
+> 
+> This is the unsigned integral type and is the result of the **sizeof** keyword.
+> 
+> ## Library Macros
+> 
+> Following is the macro defined in the header string.h −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **NULL**
+> 
+> This macro is the value of a null pointer constant.
+> 
+> ## Library Functions
+> 
+> Following are the functions defined in the header string.h −
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [void \*memchr(const void \*str, int c, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_memchr.htm)
+> 
+> Searches for the first occurrence of the character c (an unsigned char) in the first n bytes of the string pointed to, by the argument _str_.
+> 
+> 2
+> 
+> [int memcmp(const void \*str1, const void \*str2, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_memcmp.htm)
+> 
+> Compares the first n bytes of _str1_ and _str2_.
+> 
+> 3
+> 
+> [void \*memcpy(void \*dest, const void \*src, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_memcpy.htm)
+> 
+> Copies n characters from src to _dest_.
+> 
+> 4
+> 
+> [void \*memmove(void \*dest, const void \*src, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_memmove.htm)
+> 
+> Another function to copy n characters from _str2_ to _str1_.
+> 
+> 5
+> 
+> [void \*memset(void \*str, int c, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_memset.htm)
+> 
+> Copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument _str_.
+> 
+> 6
+> 
+> [char \*strcat(char \*dest, const char \*src)](https://www.tutorialspoint.com/c_standard_library/c_function_strcat.htm)
+> 
+> Appends the string pointed to, by _src_ to the end of the string pointed to by _dest_.
+> 
+> 7
+> 
+> [char \*strncat(char \*dest, const char \*src, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_strncat.htm)
+> 
+> Appends the string pointed to, by _src_ to the end of the string pointed to, by _dest_ up to n characters long.
+> 
+> 8
+> 
+> [char \*strchr(const char \*str, int c)](https://www.tutorialspoint.com/c_standard_library/c_function_strchr.htm)
+> 
+> Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument _str_.
+> 
+> 9
+> 
+> [int strcmp(const char \*str1, const char \*str2)](https://www.tutorialspoint.com/c_standard_library/c_function_strcmp.htm)
+> 
+> Compares the string pointed to, by _str1_ to the string pointed to by _str2_.
+> 
+> 10
+> 
+> [int strncmp(const char \*str1, const char \*str2, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_strncmp.htm)
+> 
+> Compares at most the first n bytes of _str1_ and _str2_.
+> 
+> 11
+> 
+> [int strcoll(const char \*str1, const char \*str2)](https://www.tutorialspoint.com/c_standard_library/c_function_strcoll.htm)
+> 
+> Compares string _str1_ to _str2_. The result is dependent on the LC\_COLLATE setting of the location.
+> 
+> 12
+> 
+> [char \*strcpy(char \*dest, const char \*src)](https://www.tutorialspoint.com/c_standard_library/c_function_strcpy.htm)
+> 
+> Copies the string pointed to, by _src_ to _dest_.
+> 
+> 13
+> 
+> [char \*strncpy(char \*dest, const char \*src, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_strncpy.htm)
+> 
+> Copies up to n characters from the string pointed to, by _src_ to _dest_.
+> 
+> 14
+> 
+> [size\_t strcspn(const char \*str1, const char \*str2)](https://www.tutorialspoint.com/c_standard_library/c_function_strcspn.htm)
+> 
+> Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
+> 
+> 15
+> 
+> [char \*strerror(int errnum)](https://www.tutorialspoint.com/c_standard_library/c_function_strerror.htm)
+> 
+> Searches an internal array for the error number errnum and returns a pointer to an error message string.
+> 
+> 16
+> 
+> [size\_t strlen(const char \*str)](https://www.tutorialspoint.com/c_standard_library/c_function_strlen.htm)
+> 
+> Computes the length of the string str up to but not including the terminating null character.
+> 
+> 17
+> 
+> [char \*strpbrk(const char \*str1, const char \*str2)](https://www.tutorialspoint.com/c_standard_library/c_function_strpbrk.htm)
+> 
+> Finds the first character in the string _str1_ that matches any character specified in _str2_.
+> 
+> 18
+> 
+> [char \*strrchr(const char \*str, int c)](https://www.tutorialspoint.com/c_standard_library/c_function_strrchr.htm)
+> 
+> Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument _str_.
+> 
+> 19
+> 
+> [size\_t strspn(const char \*str1, const char \*str2)](https://www.tutorialspoint.com/c_standard_library/c_function_strspn.htm)
+> 
+> Calculates the length of the initial segment of _str1_ which consists entirely of characters in _str2_.
+> 
+> 20
+> 
+> [char \*strstr(const char \*haystack, const char \*needle)](https://www.tutorialspoint.com/c_standard_library/c_function_strstr.htm)
+> 
+> Finds the first occurrence of the entire string _needle_ (not including the terminating null character) which appears in the string _haystack_.
+> 
+> 21
+> 
+> [char \*strtok(char \*str, const char \*delim)](https://www.tutorialspoint.com/c_standard_library/c_function_strtok.htm)
+> 
+> Breaks string _str_ into a series of tokens separated by _delim_.
+> 
+> 22
+> 
+> [size\_t strxfrm(char \*dest, const char \*src, size\_t n)](https://www.tutorialspoint.com/c_standard_library/c_function_strxfrm.htm)
+> 
+> Transforms the first **n** characters of the string **src** into current locale and places them in the string **dest**.
+
+## ctime time.h
+
+[C Library - <time.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/time_h.htm)
+
+> he **time.h** header defines four variable types, two macro and various functions for manipulating date and time.
+> 
+> ## Library Variables
+> 
+> Following are the variable types defined in the header time.h −
+> 
+> Sr.No.
+> 
+> Variable & Description
+> 
+> 1
+> 
+> **size\_t**
+> 
+> This is the unsigned integral type and is the result of the **sizeof** keyword.
+> 
+> 2
+> 
+> **clock\_t**
+> 
+> This is a type suitable for storing the processor time.
+> 
+> 3
+> 
+> **time\_t is**
+> 
+> This is a type suitable for storing the calendar time.
+> 
+> 4
+> 
+> **struct tm**
+> 
+> This is a structure used to hold the time and date.
+> 
+> The tm structure has the following definition −
+> 
+> struct tm { int tm\_sec; /\* seconds,  range 0 to 59          \*/ int tm\_min; /\* minutes, range 0 to 59           \*/ int tm\_hour; /\* hours, range 0 to 23             \*/ int tm\_mday; /\* day of the month, range 1 to 31  \*/ int tm\_mon; /\* month, range 0 to 11             \*/ int tm\_year; /\* The number of years since 1900   \*/ int tm\_wday; /\* day of the week, range 0 to 6    \*/ int tm\_yday; /\* day in the year, range 0 to 365  \*/ int tm\_isdst; /\* daylight saving time             \*/ };
+> 
+> ## Library Macros
+> 
+> Following are the macros defined in the header time.h −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **NULL**
+> 
+> This macro is the value of a null pointer constant.
+> 
+> 2
+> 
+> **CLOCKS\_PER\_SEC**
+> 
+> This macro represents the number of processor clocks per second.
+> 
+> ## Library Functions
+> 
+> Following are the functions defined in the header time.h −
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [char \*asctime(const struct tm \*timeptr)](https://www.tutorialspoint.com/c_standard_library/c_function_asctime.htm)
+> 
+> Returns a pointer to a string which represents the day and time of the structure timeptr.
+> 
+> 2
+> 
+> [clock\_t clock(void)](https://www.tutorialspoint.com/c_standard_library/c_function_clock.htm)
+> 
+> Returns the processor clock time used since the beginning of an implementation defined era (normally the beginning of the program).
+> 
+> 3
+> 
+> [char \*ctime(const time\_t \*timer)](https://www.tutorialspoint.com/c_standard_library/c_function_ctime.htm)
+> 
+> Returns a string representing the localtime based on the argument timer.
+> 
+> 4
+> 
+> [double difftime(time\_t time1, time\_t time2)](https://www.tutorialspoint.com/c_standard_library/c_function_difftime.htm)
+> 
+> Returns the difference of seconds between time1 and time2 (time1-time2).
+> 
+> 5
+> 
+> [struct tm \*gmtime(const time\_t \*timer)](https://www.tutorialspoint.com/c_standard_library/c_function_gmtime.htm)
+> 
+> The value of timer is broken up into the structure tm and expressed in Coordinated Universal Time (UTC) also known as Greenwich Mean Time (GMT).
+> 
+> 6
+> 
+> [struct tm \*localtime(const time\_t \*timer)](https://www.tutorialspoint.com/c_standard_library/c_function_localtime.htm)
+> 
+> The value of timer is broken up into the structure tm and expressed in the local time zone.
+> 
+> 7
+> 
+> [time\_t mktime(struct tm \*timeptr)](https://www.tutorialspoint.com/c_standard_library/c_function_mktime.htm)
+> 
+> Converts the structure pointed to by timeptr into a time\_t value according to the local time zone.
+> 
+> 8
+> 
+> [size\_t strftime(char \*str, size\_t maxsize, const char \*format, const struct tm \*timeptr)](https://www.tutorialspoint.com/c_standard_library/c_function_strftime.htm)
+> 
+> Formats the time represented in the structure timeptr according to the formatting rules defined in format and stored into str.
+> 
+> 9
+> 
+> [time\_t time(time\_t \*timer)](https://www.tutorialspoint.com/c_standard_library/c_function_time.htm)
+> 
+> Calculates the current calender time and encodes it into time\_t format.
+
+## Signal.h
+
+
+[C Library - <signal.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/signal_h.htm)
+
+> The **signal.h** header defines a variable type **sig\_atomic\_t**, two function calls, and several macros to handle different signals reported during a program's execution.
+> 
+> ## Library Variables
+> 
+> Following is the variable type defined in the header signal.h −
+> 
+> Sr.No.
+> 
+> Variable & Description
+> 
+> 1
+> 
+> **sig\_atomic\_t**
+> 
+> This is of **int** type and is used as a variable in a signal handler. This is an integral type of an object that can be accessed as an atomic entity, even in the presence of asynchronous signals.
+> 
+> ## Library Macros
+> 
+> Following are the macros defined in the header signal.h and these macros will be used in two functions listed below. The **SIG\_** macros are used with the signal function to define signal functions.
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **SIG\_DFL**
+> 
+> Default signal handler.
+> 
+> 2
+> 
+> **SIG\_ERR**
+> 
+> Represents a signal error.
+> 
+> 3
+> 
+> **SIG\_IGN**
+> 
+> Signal ignore.
+> 
+> The **SIG** macros are used to represent a signal number in the following conditions −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **SIGABRT**
+> 
+> Abnormal program termination.
+> 
+> 2
+> 
+> **SIGFPE**
+> 
+> Floating-point error like division by zero.
+> 
+> 3
+> 
+> **SIGILL**
+> 
+> Illegal operation.
+> 
+> 4
+> 
+> **SIGINT**
+> 
+> Interrupt signal such as ctrl-C.
+> 
+> 5
+> 
+> **SIGSEGV**
+> 
+> Invalid access to storage like segment violation.
+> 
+> 6
+> 
+> **SIGTERM**
+> 
+> Termination request.
+> 
+> ## Library Functions
+> 
+> Following are the functions defined in the header signal.h −
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [void (\*signal(int sig, void (\*func)(int)))(int)](https://www.tutorialspoint.com/c_standard_library/c_function_signal.htm)
+> 
+> This function sets a function to handle signal i.e. a signal handler.
+> 
+> 2
+> 
+> [int raise(int sig)](https://www.tutorialspoint.com/c_standard_library/c_function_raise.htm)
+> 
+> This function causes signal **sig** to be generated. The sig argument is compatible with the SIG macros.
+
+
+## math.h
+
+[C Library - <math.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
+
+> The **math.h** header defines various mathematical functions and one macro. All the functions available in this library take **double** as an argument and return **double** as the result.
+> 
+> ## Library Macros
+> 
+> There is only one macro defined in this library −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **HUGE\_VAL**
+> 
+> This macro is used when the result of a function may not be representable as a floating point number. If magnitude of the correct result is too large to be represented, the function sets errno to ERANGE to indicate a range error, and returns a particular, very large value named by the macro HUGE\_VAL or its negation (- HUGE\_VAL).
+> 
+> If the magnitude of the result is too small, a value of zero is returned instead. In this case, errno might or might not be set to ERANGE.
+> 
+> ## Library Functions
+> 
+> Following are the functions defined in the header math.h −
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [double acos(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_acos.htm)
+> 
+> Returns the arc cosine of x in radians.
+> 
+> 2
+> 
+> [double asin(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_asin.htm)
+> 
+> Returns the arc sine of x in radians.
+> 
+> 3
+> 
+> [double atan(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_atan.htm)
+> 
+> Returns the arc tangent of x in radians.
+> 
+> 4
+> 
+> [double atan2(double y, double x)](https://www.tutorialspoint.com/c_standard_library/c_function_atan2.htm)
+> 
+> Returns the arc tangent in radians of y/x based on the signs of both values to determine the correct quadrant.
+> 
+> 5
+> 
+> [double cos(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_cos.htm)
+> 
+> Returns the cosine of a radian angle x.
+> 
+> 6
+> 
+> [double cosh(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_cosh.htm)
+> 
+> Returns the hyperbolic cosine of x.
+> 
+> 7
+> 
+> [double sin(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_sin.htm)
+> 
+> Returns the sine of a radian angle x.
+> 
+> 8
+> 
+> [double sinh(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_sinh.htm)
+> 
+> Returns the hyperbolic sine of x.
+> 
+> 9
+> 
+> [double tanh(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_tanh.htm)
+> 
+> Returns the hyperbolic tangent of x.
+> 
+> 10
+> 
+> [double exp(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_exp.htm)
+> 
+> Returns the value of **e** raised to the xth power.
+> 
+> 11
+> 
+> [double frexp(double x, int \*exponent)](https://www.tutorialspoint.com/c_standard_library/c_function_frexp.htm)
+> 
+> The returned value is the mantissa and the integer pointed to by exponent is the exponent. The resultant value is x = mantissa \* 2 ^ exponent.
+> 
+> 12
+> 
+> [double ldexp(double x, int exponent)](https://www.tutorialspoint.com/c_standard_library/c_function_ldexp.htm)
+> 
+> Returns **x** multiplied by 2 raised to the power of exponent.
+> 
+> 13
+> 
+> [double log(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_log.htm)
+> 
+> Returns the natural logarithm (base-e logarithm) of **x**.
+> 
+> 14
+> 
+> [double log10(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_log10.htm)
+> 
+> Returns the common logarithm (base-10 logarithm) of **x**.
+> 
+> 15
+> 
+> [double modf(double x, double \*integer)](https://www.tutorialspoint.com/c_standard_library/c_function_modf.htm)
+> 
+> The returned value is the fraction component (part after the decimal), and sets integer to the integer component.
+> 
+> 16
+> 
+> [double pow(double x, double y)](https://www.tutorialspoint.com/c_standard_library/c_function_pow.htm)
+> 
+> Returns x raised to the power of **y**.
+> 
+> 17
+> 
+> [double sqrt(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_sqrt.htm)
+> 
+> Returns the square root of **x**.
+> 
+> 18
+> 
+> [double ceil(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_ceil.htm)
+> 
+> Returns the smallest integer value greater than or equal to **x**.
+> 
+> 19
+> 
+> [double fabs(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_fabs.htm)
+> 
+> Returns the absolute value of **x**.
+> 
+> 20
+> 
+> [double floor(double x)](https://www.tutorialspoint.com/c_standard_library/c_function_floor.htm)
+> 
+> Returns the largest integer value less than or equal to **x**.
+> 
+> 21
+> 
+> [double fmod(double x, double y)](https://www.tutorialspoint.com/c_standard_library/c_function_fmod.htm)
+> 
+> Returns the remainder of x divided by **y**.
+
+
+## float.h
+
+[C Library - <float.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/float_h.htm)
+
+> The **float.h** header file of the C Standard Library contains a set of various platform-dependent constants related to floating point values. These constants are proposed by ANSI C. They allow making more portable programs. Before checking all the constants, it is good to understand that floating-point number is composed of following four elements −
+> 
+> Sr.No.
+> 
+> Component & Component Description
+> 
+> 1
+> 
+> **S**
+> 
+> sign ( +/- )
+> 
+> 2
+> 
+> **b**
+> 
+> base or radix of the exponent representation, 2 for binary, 10 for decimal, 16 for hexadecimal, and so on...
+> 
+> 3
+> 
+> **e**
+> 
+> exponent, an integer between a minimum **emin** and a maximum **emax**.
+> 
+> 4
+> 
+> **p**
+> 
+> precision, the number of base-b digits in the significand.
+> 
+> Based on the above 4 components, a floating point will have its value as follows −
+> 
+> floating\-point \= ( S ) p x be or floating\-point \= (+/-) precision x baseexponent
+> 
+> ## Library Macros
+> 
+> The following values are implementation-specific and defined with the #define directive, but these values may not be any lower than what is given here. Note that in all instances FLT refers to type **float**, DBL refers to **double**, and LDBL refers to **long double**.
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> **FLT\_ROUNDS**
+> 
+> Defines the rounding mode for floating point addition and it can have any of the following values −
+> 
+> -   \-1 − indeterminable
+> -   0 − towards zero
+> -   1 − to nearest
+> -   2 − towards positive infinity
+> -   3 − towards negative infinity
+> 
+> 2
+> 
+> **FLT\_RADIX 2**
+> 
+> This defines the base radix representation of the exponent. A base-2 is binary, base-10 is the normal decimal representation, base-16 is Hex.
+> 
+> 3
+> 
+> **FLT\_MANT\_DIG**
+> 
+> **DBL\_MANT\_DIG**
+> 
+> **LDBL\_MANT\_DIG**
+> 
+> These macros define the number of digits in the number (in the FLT\_RADIX base).
+> 
+> 4
+> 
+> **FLT\_DIG 6**
+> 
+> **DBL\_DIG 10**
+> 
+> **LDBL\_DIG 10**
+> 
+> These macros define the maximum number decimal digits (base-10) that can be represented without change after rounding.
+> 
+> 5
+> 
+> **FLT\_MIN\_EXP**
+> 
+> **DBL\_MIN\_EXP**
+> 
+> **LDBL\_MIN\_EXP**
+> 
+> These macros define the minimum negative integer value for an exponent in base FLT\_RADIX.
+> 
+> 6
+> 
+> **FLT\_MIN\_10\_EXP -37**
+> 
+> **DBL\_MIN\_10\_EXP -37**
+> 
+> **LDBL\_MIN\_10\_EXP -37**
+> 
+> These macros define the minimum negative integer value for an exponent in base 10.
+> 
+> 7
+> 
+> **FLT\_MAX\_EXP**
+> 
+> **DBL\_MAX\_EXP**
+> 
+> **LDBL\_MAX\_EXP**
+> 
+> These macros define the maximum integer value for an exponent in base FLT\_RADIX.
+> 
+> 8
+> 
+> **FLT\_MAX\_10\_EXP +37**
+> 
+> **DBL\_MAX\_10\_EXP +37**
+> 
+> **LDBL\_MAX\_10\_EXP +37**
+> 
+> These macros define the maximum integer value for an exponent in base 10.
+> 
+> 9
+> 
+> **FLT\_MAX 1E+37**
+> 
+> **DBL\_MAX 1E+37**
+> 
+> **LDBL\_MAX 1E+37**
+> 
+> These macros define the maximum finite floating-point value.
+> 
+> 10
+> 
+> **FLT\_EPSILON 1E-5**
+> 
+> **DBL\_EPSILON 1E-9**
+> 
+> **LDBL\_EPSILON 1E-9**
+> 
+> These macros define the least significant digit representable.
+> 
+> 11
+> 
+> **FLT\_MIN 1E-37**
+> 
+> **DBL\_MIN 1E-37**
+> 
+> **LDBL\_MIN 1E-37**
+> 
+> These macros define the minimum floating-point values.
+> 
+> ## Example
+> 
+> The following example shows the usage of few of the constants defined in float.h file.
+> 
+> [Live Demo](http://tpcg.io/FK5Hwy)
+> 
+> #include <stdio.h> #include <float.h> int main () { printf("The maximum value of float = %.10e\\n", FLT\_MAX); printf("The minimum value of float = %.10e\\n", FLT\_MIN); printf("The number of digits in the number = %.10e\\n", FLT\_MANT\_DIG); }
+> 
+> Let us compile and run the above program that will produce the following result −
+> 
+> The maximum value of float = 3.4028234664e+38
+> The minimum value of float = 1.1754943508e-38
+> The number of digits in the number = 7.2996655210e-312
+
+## errno.h
+
+[C Library - <errno.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/errorno_h.htm)
+
+> The **errno.h** header file of the C Standard Library defines the integer variable **errno**, which is set by system calls and some library functions in the event of an error to indicate what went wrong. This macro expands to a modifiable lvalue of type int, therefore it can be both read and modified by a program.
+> 
+> The **errno** is set to zero at program startup. Certain functions of the standard C library modify its value to other than zero to signal some types of error. You can also modify its value or reset to zero at your convenience.
+> 
+> The **errno.h** header file also defines a list of macros indicating different error codes, which will expand to integer constant expressions with type **int**.
+> 
+> ## Library Macros
+> 
+> Following are the macros defined in the header errno.h −
+> 
+> Sr.No.
+> 
+> Macro & Description
+> 
+> 1
+> 
+> [extern int errno](https://www.tutorialspoint.com/c_standard_library/c_macro_errno.htm)
+> 
+> This is the macro set by system calls and some library functions in the event of an error to indicate what went wrong.
+> 
+> 2
+> 
+> [EDOM Domain Error](https://www.tutorialspoint.com/c_standard_library/c_macro_edom.htm)
+> 
+> This macro represents a domain error, which occurs if an input argument is outside the domain, over which the mathematical function is defined and errno is set to EDOM.
+> 
+> 3
+> 
+> [ERANGE Range Error](https://www.tutorialspoint.com/c_standard_library/c_macro_erange.htm)
+> 
+> This macro represents a range error, which occurs if an input argument is outside the range, over which the mathematical function is defined and errno is set to ERANGE.
+
+## type.h
+
+
+[C Library - <ctype.h> - Tutorialspoint](https://www.tutorialspoint.com/c_standard_library/ctype_h.htm)
+
+> The **ctype.h** header file of the C Standard Library declares several functions that are useful for testing and mapping characters.
+> 
+> All the functions accepts **int** as a parameter, whose value must be EOF or representable as an unsigned char.
+> 
+> All the functions return non-zero (true) if the argument c satisfies the condition described, and zero(false) if not.
+> 
+> ## Library Functions
+> 
+> Following are the functions defined in the header ctype.h −
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [int isalnum(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isalnum.htm)
+> 
+> This function checks whether the passed character is alphanumeric.
+> 
+> 2
+> 
+> [int isalpha(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isalpha.htm)
+> 
+> This function checks whether the passed character is alphabetic.
+> 
+> 3
+> 
+> [int iscntrl(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_iscntrl.htm)
+> 
+> This function checks whether the passed character is control character.
+> 
+> 4
+> 
+> [int isdigit(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isdigit.htm)
+> 
+> This function checks whether the passed character is decimal digit.
+> 
+> 5
+> 
+> [int isgraph(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isgraph.htm)
+> 
+> This function checks whether the passed character has graphical representation using locale.
+> 
+> 6
+> 
+> [int islower(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_islower.htm)
+> 
+> This function checks whether the passed character is lowercase letter.
+> 
+> 7
+> 
+> [int isprint(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isprint.htm)
+> 
+> This function checks whether the passed character is printable.
+> 
+> 8
+> 
+> [int ispunct(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_ispunct.htm)
+> 
+> This function checks whether the passed character is a punctuation character.
+> 
+> 9
+> 
+> [int isspace(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isspace.htm)
+> 
+> This function checks whether the passed character is white-space.
+> 
+> 10
+> 
+> [int isupper(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isupper.htm)
+> 
+> This function checks whether the passed character is an uppercase letter.
+> 
+> 11
+> 
+> [int isxdigit(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_isxdigit.htm)
+> 
+> This function checks whether the passed character is a hexadecimal digit.
+> 
+> The library also contains two conversion functions that accepts and returns an "int".
+> 
+> Sr.No.
+> 
+> Function & Description
+> 
+> 1
+> 
+> [int tolower(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_tolower.htm)
+> 
+> This function converts uppercase letters to lowercase.
+> 
+> 2
+> 
+> [int toupper(int c)](https://www.tutorialspoint.com/c_standard_library/c_function_toupper.htm)
+> 
+> This function converts lowercase letters to uppercase.
+> 
+> ## Character Classes
+> 
+> Sr.No.
+> 
+> Character Class & Description
+> 
+> 1
+> 
+> **Digits**
+> 
+> This is a set of whole numbers { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
+> 
+> 2
+> 
+> **Hexadecimal digits**
+> 
+> This is the set of { 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f }.
+> 
+> 3
+> 
+> **Lowercase letters**
+> 
+> This is a set of lowercase letters { a b c d e f g h i j k l m n o p q r s t u v w x y z }.
+> 
+> 4
+> 
+> **Uppercase letters**
+> 
+> This is a set of uppercase letters {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z }.
+> 
+> 5
+> 
+> **Letters**
+> 
+> This is a set of lowercase and uppercase letters.
+> 
+> 6
+> 
+> **Alphanumeric characters**
+> 
+> This is a set of Digits, Lowercase letters and Uppercase letters.
+> 
+> 7
+> 
+> **Punctuation characters**
+> 
+> This is a set of ! " # $ % & ' ( ) \* + , - . / : ; < = > ? @ \[ \\ \] ^ \_ \` { | } ~
+> 
+> 8
+> 
+> **Graphical characters**
+> 
+> This is a set of Alphanumeric characters and Punctuation characters.
+> 
+> 9
+> 
+> **Space characters**
+> 
+> This is a set of tab, newline, vertical tab, form feed, carriage return, and space.
+> 
+> 10
+> 
+> **Printable characters**
+> 
+> This is a set of Alphanumeric characters, Punctuation characters and Space characters.
+> 
+> 11
+> 
+> **Control characters**
+> 
+> In ASCII, these characters have octal codes 000 through 037, and 177 (DEL).
+> 
+> 12
+> 
+> **Blank characters**
+> 
+> These are spaces and tabs.
+> 
+> 13
+> 
+> **Alphabetic characters**
+> 
+> This is a set of Lowercase letters and Uppercase letters.

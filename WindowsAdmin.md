@@ -5,6 +5,57 @@
 ["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
 
 
+## Critical CMD Line Programs I always forget about
+
+sc 
+sc query  SC is a command line program used for communicating with the
+        Service Control Manager and services.
+
+pktmon comp list -i -- observe internet and packet data flow *internally*
+
+nvspinfo - related internal network stuff.
+
+net stop winnat
+net start winnat
+
+netsh
+
+iexpress
+
+logman - check if any etl counters are running
+
+ winrs.exe Windows Remote Shell - unknown if usefull
+
+ Tasklist
+
+Taskkill
+
+Qprocess - similar to tasklist but no services,
+qwinsta
+
+Route
+
+hcsdiag
+
+DPIScaling.exe
+
+nvspinfo 
+
+Driverquery
+
+
+sfc /scannow
+Netdiag
+
+repair-bde <root> <target> -rk | rp <root> - can sometiems get data of a dying drive
+
+Comp - compare files
+
+bcdboot C:\Windows
+
+fsutil file findbysid myfile d:\hello
+
+fsutil lots of file settings
 
 
 ## Root
@@ -168,12 +219,18 @@ Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome
 
 ## Notes to Be Placed
 
+https://bytescout.com/blog/windows-command-prompt-commands.html
+
 ### Changing Startup OPTIONS
 
 [[Windows]] + [[Pause/Break]] - then "Advanced Settings" -> Then Under Advanced "Startup and Recovery"-
 Disable Memory Dump.  You cxan also change Boot Options.
 
 ### Stopping Just In Time debugging
+
+[JIT Debugging](https://www.vioreliftode.com/index.php/annoyed-by-visual-studio-just-in-time-debugger/)
+
+
 
 To Stop Debugging Queries (An uncaught exception occured do you want to debug?) - Go to services
 
@@ -184,11 +241,23 @@ In the Registry Editor window, locate and delete the following registry entries:
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\DbgManagedDebugger
 
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\DbgManagedDebugger
+
+> The DbgJITDebugLaunchSetting value at this key sets the behavior of the just-in-time dialog box. There are three possible values.
+
+> A value of **zero** requests that the Microsoft Error Reporting dialog box is displayed for JIT debugging. In the Microsoft Error Reporting dialog box, click the Don't Send button to launch the JIT debugging dialog box. Both the Microsoft Error Reporting and the JIT debugging dialog boxes are shown in Figures 13-1 and 13-2. 
+
+>A value of **1 causes** the Microsoft Error Reporting dialog box to be suppressed.
+
+>A value **of 2** forces the JIT debugging dialog box to be displayed when JIT debugging occurs. However, the Microsoft Error Reporting dialog box is not shown. The default value for DbgJITDebugLaunchSetting is zero. In addition to the DbgJITDebugLaunchSetting value, you can name the managed JIT debugger in the DbgManagedDebugger value. Figure 13-3 has the managed debugging key and value
+
+[Source](http://etutorials.org/Programming/programming+microsoft+visual+c+sharp+2005/Part+IV+Debugging/Chapter+13+Advanced+Debugging/Just-In-Time+JIT+Debugging/)
+
+
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
 
 If your computer is running a 64-bit operating system, also delete the following registry entries:
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\DbgManagedDebugger
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
 
@@ -197,6 +266,50 @@ Try setting
 HKCU\Software\Microsoft\Windows\Windows Error Reporting\DontShowUI
 
 to 1.
+
+
+[Made Easy by Viorel Iftode ](https://www.vioreliftode.com/index.php/annoyed-by-visual-studio-just-in-time-debugger/)
+
+
+Disable JIT
+
+
+        Windows Registry Editor Version 5.00
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework]
+        "DbgManagedDebugger"=-
+        "DbgJITDebugLaunchSetting"=dword:00000001
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"=-
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework]
+        "DbgManagedDebugger"=-
+        "DbgJITDebugLaunchSetting"=dword:00000001
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"=-
+
+
+Enable JIT
+
+        Windows Registry Editor Version 5.00
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework]
+        "DbgManagedDebugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" PID %d APPDOM %d EXTEXT \"%s\" EVTHDL %d"
+        "DbgJITDebugLaunchSetting"=dword:00000010
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" -p %ld -e %ld"
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework]
+        "DbgManagedDebugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" PID %d APPDOM %d EXTEXT \"%s\" EVTHDL %d"
+        "DbgJITDebugLaunchSetting"=dword:00000010
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" -p %ld -e %ld"
+
+
 ### NoDrives
 
 
@@ -1137,7 +1250,8 @@ prompt $p$g
 win
 ^Z
 
-Redirecting output to txtfile always handy
+#### Redirecting output to txtfile always handy
+
 Like:
 dir /b | find ".exe" > findlist.txt | notepad findlist.txt
 https://technet.microsoft.com/en-us/library/bb490982.aspx
@@ -1161,7 +1275,8 @@ check if the env-var echo contains something. by doing "set echo=on" before call
 Set the current directory to the scripts directory. this is optional, but most of my scripts assume relative path (My old saying: The absolute path is the singleton of config management)
 
 
-Catching errors:
+#### Catching errors:
+
 dir I-do-not-exist || goto :error
 goto :eof
 :error
@@ -1209,10 +1324,12 @@ for pausing output per page
 dir /a,
 Hidden dir parameter - shows all files (hidden, system, etc) without have to specify the full list of things to unhide. (note that is a comma after the "/a")
 
+#### Mklink
 
 "mklink" is a good use of "cmd". I prefer symbolic links to shortcuts. I haven't seen a way to make symbolic links in the file manager.
 
 
+#### Hidden Data
 
 Try this on command line on NTFS drive:
 echo hidden > test.txt:hidden
@@ -1227,19 +1344,22 @@ hostname
 whoami
 
 
-Don't forget pushd and popd.
+#### Don't forget pushd and popd.
 'Pushd' changes directory to the parameter and remembers the current directory on a stack. It's a little better than 'cd' because you can also change folders and drive letters in one command.
 'Popd' pops the directory off the stack and changes to it -- including changing drive letters.
 So with pushd and popd you can really drill in and then pop back. I use a DOSKEY macrofile that makes 'cd' a macro for pushd and '.' a macro for popd. This turns the '.' key into a back button.
 
 
 
-'Call' for subroutines
+#### 'Call' for subroutines
+
 To execute a set of custom commands based on command line arguments
 1. Parse/validate command line arguments
 2. Use ECHO to write .bat file to execute the sequence of commands
 3. Call that batch file
 This provides equivalent function call functionality to bash.
+
+
 Current command set:
 - The built in dos batch commands
 - gnuwin32 - most of the basic unix commands
@@ -1260,7 +1380,52 @@ That's let me watch/convert from most video and audio formats, convert/extract/b
 If VS would only add one thing.....tell the actual DLL that was not found when it reports a DLL or one of its dependencies could not be loaded........................
 The OS has the information since it could not find/load the DLL and should have a way to report it back to VS in debug mode.....
 
+### IEXPRESS
+
+[IEXpress](https://ss64.com/nt/iexpress.html)
+
+
+
+Create a selfextracting archive-
+
+Apparently still a thing in windows.
+
+        IEXPRESS.exe
+
+        Create a self extracting ZIP file archive. iexpress 2.0 must be run with elevated permissions.
+
+        Syntax
+            IEXPRESS [ /N [/Q] [/M] ] SED_filename
+                [/O:Override_SED_filename, OverrideSectionName] [/D:directory]
+
+        Key:
+
+        /N   Build package now (SED filename must be specified)
+        /Q   Quiet mode when using /N
+        /M   Use minimised windows when using /N
+        /O   Specify overrideSED file and section
+        /D   Override directory for exe stub
+
+        When running the created self extracting archive, the following options can be used:
+
+        /Q            Quiet mode, No prompts and no errors.
+        /QA           Quiet + Assume the person running the app is admin/SMS so do not check for admin rights or disk space.[Build 306]
+        /QU           Quiet + Assume the person running the app is an non-admin user. [Build 306]
+                        No extract UI, but still get warnings on admin checks or disk space issues.
+                        Used when IExpress packages are shipped on CDs or installed through ActiveSetup.
+
+        /T:Full_path  A Temporary working folder
+        /C            Extract files only, when used with /T
+        /C:cmd        Override the install command defined by the author.
+
+        /R:N    Never restart the computer after installation.
+        /R:A    Ask to restart the computer after installation.
+        /R:S    Restart the computer after installation without prompting the user.
+
 ### FOR Command
+
+[For Files](https://ss64.com/nt/for_cmd.html)
+[For /f - Loop through text - Windows CMD - SS64.com](https://ss64.com/nt/for_f.html)
 
 Runs a specified command for each file in a set of files.
 
@@ -3300,6 +3465,181 @@ Examples:
 - `REG ADD HKLM\Software\MyCo /v Path /t REG_EXPAND_SZ /d ^%systemroot^%` - Adds a value (name: Path, type: REG_EXPAND_SZ, data: %systemroot%)   Notice:  Use the caret symbol ( ^ ) inside the expand string
 
 
+#### PKTMON
+
+[Doc from ss64](https://ss64.com/nt/pktmon.html)
+
+[MSFT DOc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon)
+
+
+[How To](https://www.bleepingcomputer.com/news/microsoft/windows-10-quietly-got-a-built-in-network-sniffer-how-to-use/)
+
+
+pktmon <command> [OPTIONS | help]
+    Advanced packet capture and event collection.
+
+Commands
+    filter     Manage packet filters.
+    list       List packet processing components.
+
+    start      Start packet capture and event collection.
+    stop       Stop data collection.
+    status     Query current status.
+    unload     Unload PktMon driver.
+
+    counters   Display current packet counters.
+    reset      Reset packet counters to zero.
+
+    etl2txt    Convert log file to text format.
+    etl2pcap   Convert log file to pcapng format.
+    hex2pkt    Decode packet in hexadecimal format.
+
+    help       Show help text for specific command.
+               Example: pktmon start help
+
+[pktmon | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon)
+
+> **Command** **Description** 
+- [pktmon filter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-filter) Manage packet filters.
+- [pktmon comp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-comp) Manage registered components.
+- [pktmon reset](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-reset) Reset counters to zero.
+- [pktmon counters](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-counters) Query packet counters.
+- [pktmon format](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-format) Convert log file to text.
+- [pktmon list](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-list) List all active components.
+- [pktmon start](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-start) Start packet monitoring. pktmon stop Stop packet monitoring.
+- [pktmon pcapng](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-pcapng) Convert log file to pcapng format.
+- [pktmon unload](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-unload) Unload pktmon driver. pktmon help Displays a short summary of subcomma
+
+
+Monitor internal packet propagation and packet drop reports. Run all PktMon commands from an **Elevated** command prompt.
+
+Syntax **- List all active components:**
+
+`PKTMON comp list` ==options==
+
+   Options:
+   `-i`, `--show-hidden`
+   Show components that are hidden by default.
+
+   --json  Output the list in Json format
+
+Syntax **- Display current per-component counters:**
+
+`PKTMON comp counters` ==options==
+
+   Options:
+   `-i`, `--show-hidden`
+   Show components that are hidden by default.
+
+   `--json`  Output the list in Json format
+
+   `-t`,`--counter-type`
+   Select which types of counters to show
+   Supported values are all counters (default), drops only, or flows only.
+
+   `-z`, `--show-zeros`
+   Show counters that are zero in both directions.
+
+Syntax - Manage packet filters:
+
+`PKTMON filter` { **list** | **add** | **remove** } *[options* | *help]*
+
+   Key:
+    - `list`    Display active packet filters.
+    - `add`     Add a filter to control which packets are reported.
+    - `remove` Removes all filters.
+    - `help`    Show help text and sub-options for a command.
+
+Syntax - Reset all component counters to zero:
+      `PKTMON reset` [ **-counters** ]
+
+Syntax - Stop packet monitoring and show results:
+      `PKTMON stop`
+
+Syntax - Convert log file to text format:
+      `PKTMON format log.etl [-o log.txt]`
+   Key:
+
+   `-o`, `--out`     Name of the formatted text file.
+
+Syntax - Stop the PktMon driver service and unload PktMon.sys:
+      `PKTMON unload`
+      Effectively equivalent to 'SC.exe stop PktMon'.
+      Measurement (if active) will immediately stop, and any state will be
+      deleted (counters, filters, etc.).
+
+Syntax - Start packet monitoring:
+      `PKTMON start` [-c { **all** | **nics** | ==[ids...]== }] `[-d]`
+         [`--etw` [`-p ==`size]== [`-k` ==keywords]]==  `[-f] [-s] [-r] [-m]`
+
+   Key:
+   `-c`, `--components`
+      Select components to monitor. Can be all components, NICs only, or a
+      list of component ids. Defaults to all.
+
+  `-d`, `--drop-only`
+      Only report dropped packets. By default, successful packet propagation
+      is reported as well.
+
+##### ETW Logging
+
+`--etw`
+    Start a logging session for packet capture.
+`-p`, `--packet-size`
+    Number of bytes to log from each packet. To always log the entire
+    packet, set this to 0. Default is 128 bytes.
+
+`-k`, `--keywords`
+    Hexadecimal bitmask (i.e. sum of the below flags) that controls
+    which events are logged. By default all events are logged.
+
+    Flags:
+    `0x001` - General configuration events.
+    `0x002` - Component related information, including counters.
+    `0x004` - Pre-parsed packets.
+    `0x008` - Packet metadata (NBL OOB).
+    `0x010` - Raw packet payload.
+
+   `-f`, `--file-name`
+      .etl log file. Default is PktMon.etl.
+
+   `-s`, `--file-size`
+      Maximum log file size in megabytes. Default is 512 MB.
+
+   Logging mode
+    `-r`, `--circular`
+        New events overwrite the oldest ones when 
+        when the maximum file size is reached.
+    `-m`, `--multi-file`
+        A new log file is created when the maximum file size is reached.
+        Log files are sequentially numbered. PktMon1.etl, PktMon2.etl, etc.
+
+##### Examples
+
+**Create a packet filter for the traffic on TCP port 20:**
+
+`pktmon filter add -p 20`
+
+**List the current packet filters:**
+
+`pktmon filter list`
+
+**Start monitoring to a file** called _PktMon.etl_
+
+ (n.b. without the `-p` option this will default to capturing only the first 128 bytes of each packet.):
+
+pktmon start --etw
+
+Stop monitoring:
+
+pktmon stop
+
+Convert the PktMon.etl file to a human-readable text format:
+
+pktmon format PktMon.etl -o converted.txt
+
+“Sooner or later we all discover that the important moments in life are not the advertised ones, not the birthdays, the graduations, the weddings, not the great goals achieved. The real milestones are less prepossessing. They come to the door of memory unannounced, stray dogs that amble in, sniff around a bit and simply never leave. Our lives are measured by these” ~ Susan B. Anthony
+
 #### Query
 
 
@@ -5337,6 +5677,12 @@ Type or copy-paste the following command: [guid]::NewGuid().This will produce a 
 Alternatively, you can run the command '{'+[guid]::NewGuid().ToString()+'}' to get a new GUID in the traditional Registry format.
 
 
+[Windows Terminal Advanced Profile Settings | Microsoft Docs](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-advanced)
+
+> Tip
+> 
+> You can run `[guid]::NewGuid()` in PowerShell to generate a GUID for your custom profile.
+
 There is also an application included with one of the Windows kits.
 
 For example `C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64`
@@ -5420,6 +5766,10 @@ Derives the computer hardware IDs from SMBIOS information.
 
 [Get started with the Universal Windows Platform (UWP) - UWP applications | Microsoft Docs](https://docs.microsoft.com/en-us/windows/uwp/get-started/)
 [Windows Terminal Settings](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/global-settings)
+
+
+[Interesting Tips](https://bytescout.com/blog/windows-command-prompt-commands.html)
+
 
 
 ## Registry
@@ -5863,13 +6213,13 @@ First setup basics
 
 ```bash
 git config --global user.name "altimmons"
-git config --global user.email "A.L.Timmons@gmail.com"
+git config --global user.email "@gmail.com"
 ```
 
 Then generate an SSH key to upload to github
 
 ```
-ssh-keygen -t rsa -C "A.L.Timmons@gmail.com"
+ssh-keygen -t rsa -C "my email@gmail"
 ```
 
 This is best done with wsl
@@ -6945,7 +7295,7 @@ The Windows container platform is expanding! Docker was the first piece of the c
 
 But we have
 
-hcsdiag
+### hcsdiag
 
     ❯ hcsdiag
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -6979,3 +7329,412 @@ hcsdiag
       crash <id>
         Forces a crash of the virtual machine hosting the container (only works
     for containers hosted in a virtual machine).
+
+
+
+## Unknown Additional Programs
+
+
+### winrs.exe Windows Remote Shell
+
+USAGE
+=====
+(ALL UPPER-CASE = value that must be supplied by user.)
+
+winrs [-/SWITCH[:VALUE]] COMMAND
+
+COMMAND - Any string that can be executed as a command in the cmd.exe shell.
+
+SWITCHES
+========
+(All switches accept both short form or long form. For example both -r and
+-remote are valid.)
+
+-r[emote]:ENDPOINT      - The target endpoint using a NetBIOS name or the standard connection URL: [TRANSPORT://]TARGET[:PORT]. If not specified
+-r:localhost is used.
+
+-un[encrypted]          - Specify that the messages to the remote shell will not be encrypted. This is useful for troubleshooting, or when the network traffic is already encrypted using ipsec, or when physical security is enforced. By default the messages are encrypted using Kerberos or NTLM keys. This switch is ignored when HTTPS transport is selected.
+
+-u[sername]:USERNAME    - Specify username on command line. If not specified the tool will use Negotiate authentication or prompt for the name.
+If -username is specified, -password must be as well.
+
+-p[assword]:PASSWORD    - Specify password on command line. If -password is not specified but -username is the tool will prompt for the password. If -password is specified, -user must be specified as well.
+
+-t[imeout]:SECONDS      - This option is deprecated.
+
+-d[irectory]:PATH       - Specifies starting directory for remote shell. If not specified the remote shell will start in the user's home directory defined by the environment variable %USERPROFILE%.
+
+-env[ironment]:STRING=VALUE   - Specifies a single environment variable to be set when shell starts, which allows changing default environment for shell. Multiple occurrences of this switch must be used to specify multiple environment variables.
+
+-noe[cho]               - Specifies that echo should be disabled. This may be necessary to ensure that user's answers to remote prompts are not displayed locally. By default echo is "on".
+
+-nop[rofile]            - Specifies that the user's profile should not be loaded. By default the server will attempt to load the user profile. If the remote user is not a local administrator on the target system then this option will be required (the default will result in error).
+
+-a[llow]d[elegate]      - Specifies that the user's credentials can be used to access a remote share, for example, found on a different machine than the target endpoint.
+
+-comp[ression]          - Turn on compression.  Older installations on remote machines may not support compression so it is off by default.
+
+-[use]ssl               - Use an SSL connection when using a remote endpoint.  Specifying this instead of the transport "https:" will use the default WinRM default port.
+
+-?                      - Help
+
+To terminate the remote command the user can type Ctrl-C or Ctrl-Break, which will be sent to the remote shell. The second Ctrl-C will force termination of winrs.exe.
+
+To manage active remote shells or WinRS configuration, use the WinRM tool.  The URI alias to manage active shells is shell/cmd.  The URI alias for WinRS configuration is winrm/config/winrs.  Example usage can be found in the WinRM tool by typing "WinRM -?".
+
+Examples:
+winrs -r:https://myserver.com command
+winrs -r:myserver.com -usessl command
+winrs -r:myserver command
+winrs -r:http://127.0.0.1 command
+winrs -r:http://169.51.2.101:80 -unencrypted command
+winrs -r:https://[::FFFF:129.144.52.38] command
+winrs -r:http://[1080:0:0:0:8:800:200C:417A]:80 command
+winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+winrs -r:myserver -env:PATH=^%PATH^%;c:\tools -env:TEMP=d:\temp config.cmd
+winrs -r:myserver netdom join myserver /domain:testdomain /userd:johns /passwordd:$%fgh789
+winrs -r:myserver -ad -u:administrator -p:$%fgh7 dir \\anotherserver\sha
+
+
+### Fondue.exe
+
+Features oin Demand User Experience Tool
+
+Produces a GUI Help Menu
+
+
+### DPIScaling.exe
+
+Pops up Settings menu immmedietly
+
+### nvspinfo 
+
+This turns out to be exactly what I need
+
+
+    usage: nvspinfo
+            -c    display nvsp related control services
+            -a    display network adapters
+            -i    display network interfaces
+            -S    display stack table
+            -h    include hidden adapters (implies -a)
+            -b    include network bindings (implies -a)
+            -o    include offloads (implies -a)
+            -n    display all network information (same as -a -i -b)
+            -v    display virtual NICs
+            -D    includes drops in virtual NIC status (implies -v)
+            -s    display switch information
+            -p    include port details (implies -s)
+            -d    include disconnected ports (implies -s -d)
+            -m    include mac details (implies -s and -p)
+            -q    include 801.1q (vlan) details (implies -s and -p)
+            -t    display statistics (implies -s and -p)
+            -l    display statistics in a one second loop (implies -t)
+            -e    display everything
+            -g    display setup DI
+            -z    analyze (implies -e)
+            -Z    analyze mac and ip
+            -V    display vmq details (implies -v)
+            -u    display unicast addresses
+            -Q    display VMQ groups
+            -F:I  display stats in CSV format in a loop for the NIC at the specified index I. I = -1 lists available indexes.
+            -P    display host processor stats for all host processors
+
+###  Driverquery
+This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
+
+The command is:
+
+`driverquery`
+
+If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
+
+`driverquery -v`
+
+driverquery -si
+
+### Pathping CMD command
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+### MakeCab
+
+
+    Cabinet Maker - Lossless Data Compression Tool
+
+    MAKECAB [/V[n]] [/D var=value ...] [/L dir] source [destination]
+    MAKECAB [/V[n]] [/D var=value ...] /F directive_file [...]
+
+    source         File to compress.
+    destination    File name to give compressed file.  If omitted, the
+                    last character of the source file name is replaced
+                    with an underscore (_) and used as the destination.
+    /F directives  A file with MakeCAB directives (may be repeated). Refer to
+                    Microsoft Cabinet SDK for information on directive_file.
+    /D var=value   Defines variable with specified value.
+    /L dir         Location to place destination (default is current directory).
+    /V[n]          Verbosity level (1..3).
+
+
+
+
+
+2. Driverquery
+This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
+
+The command is:
+
+driverquery
+
+If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
+
+driverquery -v
+
+driverquery -si
+
+
+4. Pathping CMD command
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+pathping 192.168.1.1
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+tasklist -m
+
+tasklist -svc
+
+
+taskkill -pid 3125
+
+taskkill -im chrome.exe
+
+
+7. System File Checker
+One can say that this command comes under the most important Windows commands. Wicked apps will regularly strive to substitute kernel system files with altered variants in an attempt to gain control of the system. The System File Checker can be utilized to check the probity of the Windows system registers. If any of the folders are discovered to be lost or nefarious, they will be repaired. Users can execute the System File Checker by utilizing this command:
+
+sfc /scannow
+
+The sfc /scannow command examines all secured system files, and substitute damaged files with a cached model that is placed in a compressed enclosure at %WinDir%\System32\dllcache.
+
+
+8. Repair-bde Windows command
+This is one of the most amazing Windows command line commands. If a drive that is secured is facing some problems then users can seldom retrieve the data utilizing a service named repair-bde. To apply this command, users require a target drive to which the retrieved data can be recorded, as well as the BitLocker retrieval key or restoration password. The primary syntax for this command is:
+
+repair-bde <root> <target> -rk | rp <root>
+
+Users should define the root drive, the target drive, and both the rk (recovery key) or the rp (recovery password) switch, along with the route to the restoration key or the restoration password. Following is the example:
+
+repair-bde c: d: -rk e:\restore.bek
+
+
+
+tracert  abc.com
+
+The above command is one of the most crucial Command Prompt Windows 10 commands.
+
+11. CIPHER
+The cipher comes under the encryption Windows Command Prompt Commands. This reveals or changes the encryption of records and files on NTFS volumes. If employed without parameters, cipher reveals the encryption status of the prevailing directory and any records it holds. For example, the following command enables the encryption of the Private directory.
+
+cipher /e private
+
+12. Finger
+The Command Prompt Windows 10 also has one important command known as finger. It displays information about a user or users on a particular remote computer. For example,
+
+finger user1@users.abc.com
+
+13. Comp
+This Windows Command Line command is used to compare the contents of two files byte-by-byte. If applied without parameters, it allows users to enter the files to compare. For example,
+
+comp c:\annualreports \\sales\myfile\march
+
+14. Clip
+The clip comes under the redirecting Windows Commands. It redirects command output from the command line. Users can also paste the output into other programs and files. For example,
+
+clip < myfile.txt
+
+15. Color
+The color is one of the featuring CMD Prompt Commands. It develops the font and background colors in the Command Prompt pane for the running session. If applied without parameters, color alters the default view and setting colors. For example,
+
+color 84
+
+16. Append
+Important: This command is not supported on Windows 10 Home and Pro.
+
+The append comes under the directories Command Prompt Commands Windows 10. This allows programs to open files in particular folders or directories. If applied without parameters, the append command reveals the appended directory index. For example,
+
+append /e
+
+The above command will store a copy of the appended directory list.
+
+17. Getmac
+The getmac command comes under the most important Windows CMD Commands. This command gives the media access control (MAC) address. It also gives the record of network rules connected with each address for all network cards locally or over a network. getmac can be beneficial if you want to use the MAC address into a network analyzer or when you want to understand what rules are running on a specific network adapter. For example,
+
+getmac /fo table /nh /v
+
+18. Label
+The label commands are basic CMD Line Commands. It forms, switches, or removes the name of a disk. If applied without parameters, the label command modifies the prevailing volume label or eliminates the current label. An NTFS volume label is 32 characters in length. It can retain and disclose the fact that was applied when the label was formed. For example,
+
+label a:reports-december
+
+19. Logman
+The logman commands are used in windows server Command Prompt Windows 10. The logman command builds and maintains Performance logs and Event Trace Session. This command also backs many roles of Performance Monitor from the command line. For example,
+
+logman query "perf_log"
+
+20. Ftype
+The ftype commands are Windows System Commands. It represents or changes filetypes that are applied in file name extension assistance. If applied without an operator(=), ftype shows the prevailing open command string for the designated filetype. If applied without parameters, ftype shows the filetypes that have open strings specified. For example,
+
+ftype txtfile
+
+
+21. BCDBOOT
+BCDBOOT is a command-line utility. It is applied to install the bootmgr bootloader and to set and configure its boot configuration data (BCD). BCD is a binary file that represents all installed Windows applications. bcdboot images the primary boot files from a separated Windows on the disk to the custom boot distribution, and combines that with a proper admission to the boot configuration data. In other words, bcdboot is used to build and repair a system partition. For example, the following command is displaying the use of bcdboot command.
+
+bcdboot C:\Windows
+
+22. CERTREQ
+The CERTREQ command can be utilized to get certificates from a certification authority (CA), to regain a reply to a prior request from a CA, to build a new request. The .cer file users get from the Certificate Authority can simply be fixed by keeping the file on the server they created the CSR on, for example as cert.cer, and by performing the subsequent command at the prompt:
+
+For example,
+
+certreq –submit certrequest.req certnew.cer certnew.pfx
+
+C:\>certreq -accept cert.cer
+
+This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the –submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
+
+
+26. Fsutil
+The fsutil is one of the administrative commands. It is used to accomplish jobs that are linked to the file allocation table (FAT) and NTFS file systems. For example, this command is used for handling reparsepoints, sparse files, or decreasing a volume. It can also be used with various parameters and if it is used without parameters then it displays a list of supported sub-commands. To use this command, one must be an administrator. For example,
+
+fsutil file findbysid myfile d:\hello
+
+The above command will find ‘myfile’ from the hello folder.
+
+
+28. klist
+This command is used to display a list of cached Kerberos tickets. This notice refers to Windows Server 2012. In Kerberos, the client sends a request for a ticket to the key distribution centre. It is the process of authentication. The klist command is used to list cached tickets. This command is also used with various parameters and if parameters are not provided then the klist command will give all the tickets with currently logged in user. For example,
+
+klist sessions
+
+The above command is used when you want to diagnose a logon session for a user or a service. This command is used to find the LogonID from the klist.
+
+30. mstsc
+This command is used to create a remote desktop connection to Remote Desktop Session Host (rd Session Host) servers or other remote machines. This command is also used to edit the current remote Desktop Connection (.rdp) configuration file. It is also used to transfer old connection files that were designed with the Client Connection Manager to new .rdp connection files. This windows command is used on a Windows Server and many other versions
+
+ 
+
+of the Windows operating system. It can be used with different parameters and it can also be used to start a remote desktop connection in a full-screen mode. In other words, this command is mainly used for remote desktop connections. For example,
+
+mstsc/f
+
+The above command is used to connect to a screen in a full-screen mode.
+
+
+
+
+ 
+ RunDumpWcnCache
+'c:\Windows\System32>grep "\s*cmd = \"cmd /c " ./gatherNetworkInfo.vbs | clip
+'Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurityVerbose
+"& commandname &" "& filename &" , RunDumpWcnCache
+arp -a 
+certutil -v -enterprise -store -silent NTAuth
+certutil -v -store -silent -user My
+certutil -v -store -silent My
+certutil -v -store -silent root
+certutil -v -user -store -silent root
+dispdiag -out dispdiag_stop.dat
+dxdiag /t 
+dxdiag /t dxdiag.txt
+gpresult /scope:computer /v 
+ipconfig /all
+ipconfig /displaydns 
+nbtstat -c 
+nbtstat -n 
+net config rdr 
+net config srv 
+net share 
+netcfg -m
+netsh advfirewall consec show rule name=all verbose
+netsh advfirewall firewall show rule name=all verbose
+netsh advfirewall monitor show consec
+netsh advfirewall monitor show consec rule name=all
+netsh advfirewall monitor show currentprofile
+netsh advfirewall monitor show firewall
+netsh advfirewall monitor show firewall rule name=all
+netsh advfirewall show currentprofile
+netsh int ipv6 show neigh 
+netsh interface httpstunnel show interface
+netsh interface httpstunnel show statistics
+netsh interface teredo show state
+netsh lan show interfaces
+netsh lan show profiles
+netsh lan show settings
+netsh mbn show capability interface=*
+netsh mbn show interfaces
+netsh mbn show profile name=* interface=*
+netsh mbn show readyinfo interface=*
+netsh namespace show effective 
+netsh namespace show policy 
+netsh wfp show filters file=
+netsh wfp show netevents file=
+netsh wfp show state file=
+netsh wfp show sysports file=
+netsh winsock show catalog 
+netsh wl show d 
+netsh wl show i 
+netsh wlan sho net m=b 
+netsh wlan show all 
+netsh wlan show device
+netsh wlan show interfaces 
+netsh wlan show wlanreport
+netsh.exe winsock show catalog
+objShell.Run cmd, 0, True
+powercfg.exe /batteryreport /output
+reg export 
+reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc\Parameters
+Reg.exe Export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\EnterpriseDataProtection\Policies
+Reg.exe Export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\Providers 
+Reg.exe Export HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HomeGroupListener
+Reg.exe Export HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HomeGroupProvider
+reg.exe query ""hklm\system\CurrentControlSet\Services\Winsock\Setup Migration"" /v ""Provider List""
+reg.exe query hklm\system\CurrentControlSet\Services\Winsock\Parameters /v Transports
+route print
+sc query eaphost 
+sc query fdrespub 
+sc query upnphost  
+sc query wcncsvc 
+sc query wlansvc 
+sc.exe qc dhcp
+sc.exe qc nativewifip
+sc.exe qc wlansvc
+sc.exe queryex dhcp
+sc.exe queryex nativewifip
+sc.exe queryex wlansvc
+set processor
+set u
+systeminfo
+tasklist /svc 
+time /t 
+wevtutil al
+wevtutil epl
+wevtutil epl ""Microsoft-Windows-Hyper-V-VMMS-Networking""
+wevtutil epl ""Microsoft-Windows-Wcmsvc/Operational""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurity
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurityVerbose""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/Firewall""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/FirewallVerbose"" 
+wevtutil epl ""Microsoft-Windows-WLAN-AutoConfig/Operational""
+wevtutil epl ""Microsoft-Windows-WWAN-SVC-EVENTS/Operational""
+wevtutil epl Application
+wevtutil epl Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
+wevtutil epl System 
+wevtutil epl System /q:""*[System[Provider[@Name='Microsoft-Windows-Hyper-V-VmSwitch']]]"" 
+wmic qfe

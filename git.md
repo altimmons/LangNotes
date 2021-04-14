@@ -140,3 +140,17 @@ Inside a git repository, and with no arguments, `gh` will automatically create a
 
 https://gist.github.com/31e0dd028c898f50386df8216dbb9210
 
+
+
+## git submodule
+
+Add other git projects to mine
+
+    git submodule add [depth=1] https://github.com/<someUser>/<someProject>.git 
+
+    #from another project I stole this possible command
+
+git submodule update --init --recursive   # Pull in ~~dependencies~~
+
+
+

@@ -1,9 +1,15 @@
 #! usr/bin/code
 
-Last 1:03:00
-
-
+----
+----
 # - Shell Scripting Intro
+----
+----
+
+## Resources
+
+[Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html)
+
 
 - `/etc/shells` - contains a list of available shells
 
@@ -40,6 +46,15 @@ alt@andylaptop-popos:~$ which bash
 #! /bin/bash
 <-Start File->
 ```
+
+
+## Path Vars:
+
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+From the above command- `${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}`
+
+Seems to suggest that we go to ZSH_CUSTOM but if it doesnt exist, the latter.
 
 
 ## Permissions
@@ -342,6 +357,8 @@ echo "Entered name : $name"
 
 By default the result of `read` goes into `$REPLY`
 
+____
+
 ## Passing arguments to a BASH script
 
 By default- arguments are stored in `$1`, `$2`, `$3`, `$4`
@@ -372,7 +389,330 @@ This prints the number of items in the array
   Passing values to a function is the same.
 
 
+Can also use Zennity
+
+
+## Heredoc
+
+<!-- Todo look up more on this for now just an example: -->
+
+[Commands · zsh-users/antigen Wiki](https://github.com/zsh-users/antigen/wiki/Commands)
+
+> The easiest way to do this, is using the heredoc syntax.
+> 
+>     antigen bundles <<EOBUNDLES
+>       # Guess what to install when running an unknown command.
+>       command-not-found
+>     
+>       # The heroku tool helper plugin.
+>       heroku
+>     EOBUNDLES
+>     
+> 
+> This is equivalent to
+> 
+>     antigen bundle command-not-found
+>     antigen bundle heroku
+>     
+> 
+> Of course, as you can see, from the lines piped to `antigen bundles`, empty lines and those starting with a `#` are ignored. The rest are passed to `antigen bundle` without any quoting rules ~~applied.~~
+
+
+Heres a quick description as my attempt to use it failed.
+
+
+[Here Document And Here String | Baeldung on Linux](https://www.baeldung.com/linux/heredoc-herestring)
+
+> In Linux, **here document (also commonly referred to as heredoc) refers to a special block of code that contains multi-line strings that will be redirected to a command**. On the other hand, **here string is a simpler version of heredoc, offering somewhat similar functionality, albeit not as powerful as the latter**.
+
+
+
+```sh
+
+ssh -T baeldung@example.com "touch log1.txt"
+ssh -T baeldung@example.com "touch log2.txt"
+
+#becomes:
+
+ssh -T baeldung@host.com << EOF
+touch log1.txt
+touch log2.txt
+EOF
+
+cat <<-EOF
+    This message is indented
+        This message is double indented
+EOF
+
+
+```
+
+Note the last example above- the `-EOF` the `-` suppresses tabs so that we can tab things over for readability but wont pass it into output.
+
+However, white spaces will not be suppressed even with the dash prefix.
+
+also, `cat` works to print output of multiple lines to the stdout but `echo` does not.
+
+
+The delimiter token can be any value as long as it is unique enough that it won’t appear within the content
+
+
+### Disable a block of code
+
+
+
+[Here Document And Here String | Baeldung on Linux](https://www.baeldung.com/linux/heredoc-herestring)
+
+> 3.7. Disable Block of Code Using Here Document[](https://www.baeldung.com/linux/heredoc-herestring#7-disable-block-of-code-using-here-document)
+> 
+>instead of adding a prefix every line of the code with a ‘#’ to make them into comments,  we can do it much more efficiently using **heredoc** with the dummy command `‘:’.` For example, we can disable several lines of code in our shell script:
+> 
+>     #!/bin/bash
+>     # disable-with-heredoc.sh
+>     
+>     : <<'DISABLED'
+>     echo "This line will not show up in the console.
+>     echo "Neither will this line.
+>     DISABLED
+>     
+>     echo "This line will be printed to the console
+
+
+
+In the case that we want to escape all the special characters, we can either quote the delimiter token or prefix the delimiter token with a backslash.
+
+The three different ways of escaping all the special characters are:
+
+`'EOF'` `"EOF"` `\EOF`
+
+```sh
+    cat <<'EOF'
+    Some Special Characters: $ \ `
+    EOF
+
+    cat <<"EOF"
+    Some Special Characters: $ \ `
+    EOF
+
+    cat <<\EOF
+    Some Special Characters: $ \ `
+    EOF
+```
+
+### Substitutions
+
+
+[Here Document With Parameter Substitution](https://www.baeldung.com/linux/heredoc-herestring#3-here-document-with-parameter-substitution)
+> 
+> We can also parameterize a heredoc by using variables, thereby making it dynamic. For example, we can change the output of a heredoc based on the value of a parameter:
+> 
+>```sh
+>   cat <<EOF
+>     Hello ${USER}
+>     EOF
+> 
+>```
+> The output will then be customized based on the value of the variable _USER_.
+
+
+[Here Document With Command Substitution](https://www.baeldung.com/linux/heredoc-herestring#4-here-document-with-command-substitution)
+
+> In addition to parameters, heredoc also supports ==command substitution== in its content. For example, let’s say we want to customize the output such that it always print the current date and time:
+> 
+>```sh
+>     cat <<EOF
+>     Hello! It is currently: $(date)
+>     EOF
+>```
+>
+> Now, whenever we run the command above, the output will always have the current date and time.
+> 
+
+[Passing Arguments to Function With Here Document](https://www.baeldung.com/linux/heredoc-herestring#5-passing-arguments-to-function-with-here-document)
+> 
+> We can also make use of heredoc to pass arguments to a function that otherwise requires interactive user input. For example, let’s consider the following function:
+> 
+>```sh
+>     LoginToModule()
+>     {
+>         read -p "Username: " username
+>         read -p "Passphrase: " passphrase
+>         echo "Obtained input ${username} and ${passphrase}"
+>     }
+>```
+> 
+> When invoked, the function will wait for the user’s input to capture the value for variable _username_ and _passphrase_:
+> 
+>```sh
+>     LoginToModule
+>     Username: baeldung
+>     Passphrase: secret
+>     Obtained input baeldung and secret
+>```
+> 
+> Other than supplying the input interactively, we can construct a heredoc to pass the values:
+> 
+>```sh
+>     LoginToModule <<EOF
+>     adminuser
+>     adminpassphrase
+>     EOF
+>```
+
+
+Another example of the last case comes 
+From: [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_01)
+
+> Although we talk about a _here document_, it is supposed to be a construct within the same script. This is an example that installs a package automatically, eventhough you should normally confirm:
+> 
+> #!/bin/bash
+>  
+> # This script installs packages automatically, using yum.
+>  
+> if \[ $# -lt 1 \]; then
+>         echo "Usage: $0 package."
+>         exit 1
+> fi
+>  
+> yum install $1 << CONFIRM
+> y
+> CONFIRM
+____
+## HereString  “<<<” 
+
+ much simpler version of heredoc. For that reason, here string does not need a delimiter token. It is usually preferred whenever we need a quick way to redirect some strings into a command.
+
+[Here Document And Here String | Baeldung on Linux](https://www.baeldung.com/linux/heredoc-herestring)
+
+> 4.1. Syntax[](https://www.baeldung.com/linux/heredoc-herestring#1-syntax-1)
+> 
+> To construct a here string, we use “<<<” operator to redirect a string into a command. Concretely, the syntax is:
+> 
+>     COMMAND <<< $VAR
+> 
+> What it essentially does is expanding the variable _VAR_ and redirect the output string to the _COMMAND._
+
+[Here Document And Here String | Baeldung on Linux](https://www.baeldung.com/linux/heredoc-herestring)
+
+> To escape special characters like $, \\, and \`, we can enclose the string with the single quote instead of the double quote:
+> 
+>     cat <<< 'Display special characters: $ ` \'
+____
+
+
 ## LOGIC
+
+
+### `[[` `[` `{` `(())`
+
+
+**testing variables**
+
+`if [ condition ]`
+`if [[ condition ]]`
+
+The double bracket, which is a shell **keyword,** enables additional functionality. For example, you can use `&&` and `||` instead of `-a` and `-o` and there's a regular expression matching operator `=~`.
+
+Because `[[ ]]` is a keyword, must have spaces around it.
+
+
+Also, in a simple test, double square brackets seem to evaluate quite a lot quicker than single ones. [From: ](https://stackoverflow.com/questions/2188199/how-to-use-double-or-single-brackets-parentheses-curly-braces)
+
+
+
+        $ time for ((i=0; i<10000000; i++)); do [[ "$i" = 1000 ]]; done
+
+        real    0m24.548s
+        user    0m24.337s
+        sys 0m0.036s
+        $ time for ((i=0; i<10000000; i++)); do [ "$i" = 1000 ]; done
+
+        real    0m33.478s
+        user    0m33.478s
+        sys 0m0.000s
+
+_**Braces**_        
+
+The braces, in addition to delimiting a variable name are used for parameter expansion so you can do things like:
+
+#### Truncate the contents of a variable
+
+        $ var="abcde"; echo ${var%d*}
+        abc
+
+
+Note the `%` and the wildcard `*`
+
+#### Make substitutions similar to sed
+
+        $ var="abcde"; echo ${var/de/12}
+        abc12
+
+
+#### Use a default value
+
+
+        $ default="hello"; unset var; echo ${var:-$default}
+        hell
+        
+and several more
+
+Also, brace expansions create lists of strings which are typically iterated over in loops:
+
+$ echo f{oo,ee,a}d
+food feed fad
+
+$ mv error.log{,.OLD}
+(error.log is renamed to error.log.OLD because the brace expression
+expands to "mv error.log error.log.OLD")
+
+$ for num in {000..2}; do echo "$num"; done
+000
+001
+002
+
+$ echo {00..8..2}
+00 02 04 06 08
+
+$ echo {D..T..4}
+D H L P T
+Note that the leading zero and increment features weren't available before Bash 4.
+
+Thanks to gboffi for reminding me about brace expansions.
+
+
+`false` and `true` are built in programs in sh.
+
+```sh
+$> type false && type true
+        false is a shell builtin
+        true is a shell builtin
+```
+
+You can set vars to equal them though
+
+DEBUG=false
+ if $DEBUG; then echo true; else echo false; fi
+
+have to be careful with these vars though-  a non-empty string evaluates to true
+
+`d="false"` will evaluate to true
+
+
+```sh
+
+ $DEBUG=false 
+  if $DEBUG; then echo true; else echo false; fi
+
+  ### Bad assignment - doesnt work = 
+true
+ DEBUG=false   #correct way
+  if $DEBUG; then echo true; else echo false; fi 
+false
+ DEBUG=true   
+  if $DEBUG; then echo true; else echo false; fi   
+true
+```
 
 ### IF
 
@@ -445,7 +785,7 @@ fi
 | ***-ge*** | greater than or equal | **[**`"$a" `[[-ge]]` "$b"`**]** |
 | ***-lt*** | less than             | **[**`"$a" `[[-lt]]` "$b"`**]** |
 | ***-le*** | less than or equal    | **[**`"$a" `[[-le]]` "$b"`**]** |
-| ***<***   | less than             | **((**`"$a" `[[<]]`"$b"`**))**   |
+| ***`<`*** | less than             | **((**`"$a" `[[<]]`"$b"`**))**  |
 | ***<=***  | less than or equal to | **((**`"$a"`[[<=]]`"$b"`**))**  |
 | ***>***   | greater than          | **((**`"$a"`[[>]]`"$b"`**))**   |
 | ***>=***  | less than or equal to | **((**`"$a"`[[>=]]`"$b"`**))**  |
@@ -467,14 +807,14 @@ fi
 
 #### String Comparison
 
-| SYM  | Meaning                     | Example              |
-| ---- | --------------------------- | -------------------- |
+| SYM  | Meaning                     | Example                                  |
+| ---- | --------------------------- | ---------------------------------------- |
 | `=`  | is equal to                 | `if` **[**`"$a" `[[=]]`  "$b"`**]** ^*^  |
-| `==` | is equal to                 | `if` **[**`"$a" `[[==]]` "$b"`**]** |
-| `!=` | is NOT equal to             | `if` **[**`"$a" `[[!=]]` "$b"`**]**  |
+| `==` | is equal to                 | `if` **[**`"$a" `[[==]]` "$b"`**]**      |
+| `!=` | is NOT equal to             | `if` **[**`"$a" `[[!=]]` "$b"`**]**      |
 | `<`  | is less than^**^            | `if` **\[\[**`"$a" `[[>]]` "$b"`**\]\]** |
 | `>`  | is greater than^**^         | `if` **\[\[**`"$a" `[[<]]` "$b"`**\]\]** |
-| `-z` | string is null, zero length |  ??? `if \[\["$a" -z]]     ?               |
+| `-z` | string is null, zero length | ??? `if \[\["$a" -z]]     ?              |
 
 note the **null** operator - `-z`
 
@@ -512,21 +852,104 @@ fi
 
         if ["$a" = "$b"]
 
+The test command takes one of the following syntax forms:
 
+!!! Note 
+    test EXPRESSION
+    [ EXPRESSION ]
+    [[ EXPRESSION ]]
+    Copy
+    If you want your script to be portable, you should prefer using the old test **[ command, which is available on all POSIX shells.** The new **upgraded version of the test command [[ (double brackets)** is supported on most modern systems using Bash, Zsh, and Ksh as a default shell.
+
+
+Check if File Exists
 
 #### File Comparison
 
-| SYM  | Meaning                     | Example              |
-| ---- | --------------------------- | -------------------- |
-|***-e***| File Exists| `if [ `[[-e]]` $file_name]`
-|***-f***| Is this a regular file & exist | `[ -f $file_name]`|
-|***-d***| Does the Directory exist | `[ -d $file_name]`|
-|***-b***| Is it a *block*/binary file | `[ -b $file_name]`|
-|***-c***| Is it a *charcter* file | `[ -c $file_name]`|
-|***-s***| Is it an *empty* file | `[ -s $file_name]`|
-|***-r***| Do I have *read* permission | `[ -r $file_name]`|
-|***-w***| Do I have *write* permission | `[ -w $file_name]`|
-|***-x***| Do I have *execution* permission | `[ -x $file_name]`|
+| SYM      | Meaning                          | Example                     |
+| -------- | -------------------------------- | --------------------------- |
+| ***-e*** | File Exists                      | `if [ `[[-e]]` $file_name]` |
+| ***-f*** | Is this a regular file & exist   | `[ -f $file_name]`          |
+| ***-d*** | Does the Directory exist         | `[ -d $file_name]`          |
+| ***-b*** | Is it a *block*/binary file      | `[ -b $file_name]`          |
+| ***-c*** | Is it a *charcter* file          | `[ -c $file_name]`          |
+| ***-s*** | Is it an *empty* file            | `[ -s $file_name]`          |
+| ***-r*** | Do I have *read* permission      | `[ -r $file_name]`          |
+| ***-w*** | Do I have *write* permission     | `[ -w $file_name]`          |
+| ***-x*** | Do I have *execution* permission | `[ -x $file_name]`          |
+ 
+ -g set group ID flag_ is set.
+
+ -h symbolic link
+
+[More](https://tldp.org/LDP/abs/html/fto.html)
+
+
+
+<!-- ^(-\p{L}) (filename|file_descriptor|string)\t((Return )*([tT]rue)( if)*)(.*?)(\2)(.*)$   - [[`$1`]] `$2` - $4 **$5** $6 $7 *$8* $9-->
+[ Expression ]	Meaning
+- [[`-b`]] `filename` - Return **true** if *filename* is a _block special file._
+
+- [[`-c`]] `filename` - Return **true** if *filename* exists and is a _character special file._
+
+- [[`-d`]] `filename` - Return **true** *filename* exists and is a _directory._
+
+- [[`-e`]] `filename` - Return **true** *filename* exists (regardless of type).
+
+- [[`-f`]] `filename` - Return **true** *filename* exists and is a _regular file._
+
+- [[`-g`]] `filename` - Return **true** *filename* exists and its _set group ID flag_ is set.
+
+- [[`-h`]] `filename` - Return **true** *filename* exists and is a _symbolic link._ 
+        This operator is retained for compatibility with previous versions of this program. Do not rely on its existence; use -L instead.
+
+- [[`-k`]] `filename` - Return **true** *filename* exists and _its sticky bit is set._
+
+- [[`-n`]]` filename` - Return true the length of string is nonzero.
+
+- [[`-p`]] `filename` - Return **true** *filename* is _a named pipe (FIFO)._
+
+- [[`-r`]] `filename` - Return **true** *filename* _exists and is readable._
+
+- [[`-s`]] `filename` - Return **true** *filename* exists and has a size greater than zero.
+
+- [[`-t`]] `file_descriptor` - Return **true** the filename whose file descriptor number is *file_descriptor* is open and is associated with a terminal.
+
+- [[`-u`]] `filename` - Return **true** *filename* exists and its _set user ID flag_ is set.
+
+- [[`-w`]] `filename` - Return **true** *filename* exists _and is writable._ 
+
+    - True indicates only that the write flag is on. The file is not writable on a read-only file system even if this test indicates true.
+
+- [[`-x`]] `filename` - Return **true** *filename* exists and 
+
+    -  True indicates only that the execute flag is on. If file is a directory, true indicates that file can be searched.
+
+- [[`-z`]] `string` - Return **true** the length of *string* is zero.
+
+- [[`-L`]] `filename` - Return **true** *filename* exists and is a symbolic link.
+
+- [[`-O`]] `filename` - Return **true** *filename* exists and its owner matches the effective user id of this process.
+
+- [[`-G`]] `filename` - Return **true** *filename* exists and its group matches the effective group id of this process.
+
+- [[`-S`]] `filename` - Return **true** *filename* exists and is a socket.
+
+`file1` [[-nt ]]`file2`	True if file1 exists and is newer than file2.
+`file1` [[-ot]] `file2`	True if file1 exists and is older than file2.
+`file1` [[-ef]] `file2`	True if file1 and file2 exist and refer to the same file.
+
+
+!!!!!Tip Tip: Testing if it exists on path:
+
+    I used this to test if a program existed on path:
+    
+
+    ```sh
+    if [[ -x $(which cp) ]]; then
+    echo "$FILE exists."
+        fi
+    ```
 
 
 Note echo uses the `-e` flag to allow escaped characters, `\c` keeps the cursor on the same line.
@@ -809,6 +1232,21 @@ echo All done
 
 ```
 
+```sh
+# loop through a directory
+
+for f in *; do
+    if [ -d "$f" ]; then
+        # $f is a directory
+        echo 'something'; else
+        echo "someting else";
+    fi
+done
+
+for f in /usr/bin/*; do
+    echo ${f};
+done
+
 #### RANGES
 
 While there is the numerical example above, thats more an array than a range-  alternatively you can say:
@@ -1011,11 +1449,6 @@ It is a language in itself for basic cal`culations. See `man bc`
         SS" | bc -l
         echo "scale=2;sqrt($num1)" | bc -l
 
-## Passing arguments to a BASH script
-
-By default- arguments are stored in `$1`, `$2`, `$3`, `$4`
-
-`$0` stores the actual file name.
 
 
 ## if statement
@@ -1319,6 +1752,14 @@ funcName () {
     return [intValue]
 }
 
+Both of these ways are used as well
+
+$name=function($param){return '';};
+
+function name($param){return "${param}";};
+
+
+
 You dont really pass or return values, they aren't true functions with divisions.
 
 ```sh
@@ -1472,6 +1913,56 @@ version() {
   echo "Nerd Fonts installer -- Version $__ScriptVersion"
 }
 ```
+
+## Expansion
+[Parameter-Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion)
+
+[Parameter-Expansion-Flags](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-Flags)
+[14 Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Expansion)
+
+
+[zsh: Table of Contents](http://zsh.sourceforge.net/Doc/Release/zsh_toc.html)
+
+[14 Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Expansion)
+
+-   [14.1 History Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#History-Expansion)
+    -   [14.1.1 Overview](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Overview)
+    -   [14.1.2 Event Designators](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Event-Designators)
+    -   [14.1.3 Word Designators](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Word-Designators)
+    -   [14.1.4 Modifiers](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Modifiers)
+-   [14.2 Process Substitution](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Process-Substitution)
+-   [14.3 Parameter Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion)
+    -   [14.3.1 Parameter Expansion Flags](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-Flags)
+    -   [14.3.2 Rules](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Rules)
+    -   [14.3.3 Examples](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Examples-1)
+-   [14.4 Command Substitution](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Command-Substitution)
+-   [14.5 Arithmetic Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Arithmetic-Expansion)
+-   [14.6 Brace Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Brace-Expansion)
+-   [14.7 Filename Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Expansion)
+    -   [14.7.1 Dynamic named directories](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Dynamic-named-directories)
+    -   [14.7.2 Static named directories](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Static-named-directories)
+    -   [14.7.3 ‘=’ expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#g_t_0060_003d_0027-expansion)
+    -   [14.7.4 Notes](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Notes)
+-   [14.8 Filename Generation](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation)
+    -   [14.8.1 Glob Operators](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Operators)
+    -   [14.8.2 ksh-like Glob Operators](http://zsh.sourceforge.net/Doc/Release/Expansion.html#ksh_002dlike-Glob-Operators)
+    -   [14.8.3 Precedence](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Precedence)
+    -   [14.8.4 Globbing Flags](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Globbing-Flags)
+    -   [14.8.5 Approximate Matching](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Approximate-Matching)
+    -   [14.8.6 Recursive Globbing](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Recursive-Globbing)
+    -   [14.8.7 Glob Qualifiers](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers)
+
+
+## Process Substitution
+
+Process substitution is supported on systems that support named pipes (FIFOs) or the /dev/fd method ofnaming open files. It takes the form of
+
+        <(LIST)
+or
+        >(LIST)
+
+The process LIST is run with its input or output connected to a FIFO or some file in `/dev/fd`. The name ofthis file is passed as an argument to the current command as the result of the expansion. If the "`>(LIST)`" formis used, writing to the file will provide input for LIST. If the "`<(LIST)`" form is used, the file passed as anargument should be read to obtain the output of LIST. Note that no space may appear between the < or >signs and the left parenthesis, otherwise the construct would be interpreted as a redirection.When available, process substitution is performed simultaneously with parameter and variable expansion,command substitution, and arithmetic expansion
+
 
 ## Interface
 
