@@ -37,9 +37,7 @@ ____
 
   [Recipes « ActiveState Code](https://code.activestate.com/recipes/)
 
-  [Module Reference](https://docs.python.org/3/py-modindex.html)
-
-____
+  - **____** - Module Reference
 ____
 ## Doc Overview Links
 
@@ -102,9 +100,7 @@ ____
 
   [History and License of Python](https://docs.python.org/3/license.html)
 
-  [Copyright](https://docs.python.org/3/copyright.html)
-
-____
+  - **____** - Copyright
 ____
 ## Python Standard Library
 
@@ -427,9 +423,7 @@ ____
       -   [`optparse` --- Parser for command line options](https://docs.python.org/3/library/optparse.html)
       -   [`imp` --- Access the import internals](https://docs.python.org/3/library/imp.html)
   -   [Undocumented Modules](https://docs.python.org/3/library/undoc.html)
-      -   [Platform specific modules](https://docs.python.org/3/library/undoc.html#platform-specific-modules)
-
-____
+      -   - **____** - Platform specific modules
 ____
 ## Troubleshooting
 
@@ -4301,6 +4295,36 @@ ____
               'queens counyt': {}}}
  ```
 
+#### Ordered Dictionary
+
+Another class is the ordered dict. Its a fifo like struct
+
+
+
+```py
+>>> from collections import OrderedDict
+>>> class OrderedNodeGraph(nx.Graph):
+...     node_dict_factory=OrderedDict
+>>> G=OrderedNodeGraph()
+>>> G.add_nodes_from( (2,1) )
+>>> G.nodes()
+[2, 1]
+>>> G.add_edges_from( ((2,2), (2,1), (1,1)) )
+>>> G.edges()
+[(2, 1), (2, 2), (1, 1)]
+```
+
+>>> class OrderedGraph(nx.Graph):
+...    node_dict_factory = OrderedDict
+...    adjlist_dict_factory = OrderedDict
+>>> G = OrderedGraph()
+>>> G.add_nodes_from( (2,1) )
+>>> G.nodes()
+[2, 1]
+>>> G.add_edges_from( ((2,2), (2,1), (1,1)) )
+>>> G.edges()
+[(2, 2), (2, 1), (1, 1)]
+
  #### Iterate Through a dictionary
 
  Use the following:
@@ -7862,9 +7886,7 @@ ____
  -   [`test.support` --- Utilities for the Python test suite](https://docs.python.org/3/library/test.html#module-test.support)
  -   [`test.support.socket_helper` --- Utilities for socket tests](https://docs.python.org/3/library/test.html#module-test.support.socket_helper)
  -   [`test.support.script_helper` --- Utilities for the Python execution tests](https://docs.python.org/3/library/test.html#module-test.support.script_helper)
- -   [`test.support.bytecode_helper` --- Support tools for testing correct bytecode generation](https://docs.python.org/3/library/test.html#module-test.support.bytecode_helper)
-
-____
+ -   - **____** - `test.support.bytecode_helper` --- Support tools for testing correct bytecode generation
 ____
 ## GUIs
 
@@ -8880,7 +8902,195 @@ ____
 
  ### NetworkX
 
+[Current Doc](https://networkx.org/documentation/stable/reference/index.html)
+
+However, sometimes the older doc is easier to follow.
+
+[Network X Doc](https://networkx.org/documentation/networkx-1.10/reference/introduction.html)
+
+
+
+        import matplotlib.pyplot as plt
+        import networkx as nx
+        from random import randint as rint
+        import matplotlib.cbook
+
+
+        n = 6
+
+                
+        G = nx.complete_graph(n)
+        pos = nx.spring_layout(G) 
+        options = {"node_size": 500, "alpha": 0.8}
+
+The simplest case:
+
+```py
+G2 = nx.complete_graph(10)
+nx.draw(G2)
+
+nx.draw(G2, nx.spiral_layout(G2))
+nx.draw(G2, nx.circular_layout(G2))
+```
+
+10 nodes each connected to the other.
+
+Then we add a layout algorithm from the list below.  `nx.spring_layout()` is probably closest to "standard" , though `nx.circular_layout(G)` may make sense in many cases.
+
+A simple example
+
+```
+
+
+
+n = 3
+G2 = nx.complete_graph(3)
+pos = nx.spring_layout(G2)
+options = {
+    "node_size": 1000,
+    "alpha": 0.8,
+    "node_color": ["grey", "grey", "GoldenRod"],
+    "edge_color": ["grey", "orange", "orange"],
+    "with_labels": True,
+    "font_color": "White",
+    "font_size": 22
+}
+nodes = [_n for _n in range(n)]
+# edgelist = list(zip(range(0, n), range(1, n)))  # might need list
+G2.add_edges_from(makeedge(nodes))
+nx.draw(
+    G, pos, **options)
+
+
+```
+
+
+#### Layout options 
+
+    
+- `bipartite_layout(G, nodes[, align, scale, …])` => *Position nodes in two straight lines.*
+- `circular_layout(G[, scale, center, dim])` => *Position nodes on a circle.*
+- `kamada_kawai_layout(G[, dist, pos, weight, …])` => *Position nodes using Kamada-Kawai path-length cost-function.*
+- `planar_layout(G[, scale, center, dim])` => *Position nodes without edge intersections.*
+- `random_layout(G[, center, dim, seed])` => *Position nodes uniformly at random in the unit square.*
+- `rescale_layout(pos[, scale])` => *Returns scaled position array to (-scale, scale) in all axes.*
+- `rescale_layout_dict(pos[, scale])` => *Return a dictionary of scaled positions keyed by node*
+- `shell_layout(G[, nlist, rotate, scale, …])` => *Position nodes in concentric circles.*
+- `spring_layout(G[, k, pos, fixed, …])` => *Position nodes using Fruchterman-Reingold force-directed algorithm.*
+- `spectral_layout(G[, weight, scale, center, dim])` => *Position nodes using the eigenvectors of the graph Laplacian.*
+- `spiral_layout(G[, scale, center, dim, …])` => *Position nodes in a spiral layout.*
+- `multipartite_layout(G[, subset_key, align, …])` => *Position nodes in layers of straight lines.*
+!!! Tip  Great way to find all the edges I discovered much too late:
+
+        `zip(range(0,3),range(1,4))`
+
+    to print needs: p(list(zip(range(0,3),range(1,4))))
+    where p is a pretty printer- replace with print;
+
+    Generalized: 
+        
+        zip(range(0,n-1),range(1,n))
+
+    Here is the code I used:
+    
+    ```py
+    def makeedge(inlist, print=False):
+    edgelist = list()
+    _length = len(inlist)
+    for i in range(0, _length):
+        for j in range(i + 1, _length):
+            edgelist.insert(0, (inlist[i], inlist[j]))
+    edgelist.reverse()
+     if print: print(edgelist)
+    return edgelist
+    ```
+[draw_networkx_edges — NetworkX 1.10 documentation](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html#networkx.drawing.nx_pylab.draw_networkx_edges)
+
+> [`draw()`](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw.html#networkx.drawing.nx_pylab.draw "networkx.drawing.nx_pylab.draw"), [`draw_networkx()`](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx "networkx.drawing.nx_pylab.draw_networkx"), [`draw_networkx_nodes()`](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx_nodes.html#networkx.drawing.nx_pylab.draw_networkx_nodes "networkx.drawing.nx_pylab.draw_networkx_nodes"), [`draw_networkx_labels()`](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx_labels.html#networkx.drawing.nx_pylab.draw_networkx_labels "networkx.drawing.nx_pylab.draw_networkx_labels"), [`draw_networkx_edge_labels()`](https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edge_labels.html#networkx.drawing.nx_pylab.draw_networkx_edge_labels "networkx.drawing.nx_pylab.draw_networkx_edge_labels")
+
+matplotlib
+    http://matplotlib.org/
+pygraphviz
+    http://pygraphviz.github.io/
+
+- `draw(G[, pos, ax, hold]) ` -*Draw the graph G with Matplotlib.*
+- `draw_networkx(G[, pos, arrows, with_labels]) ` -*Draw the graph G using Matplotlib.*
+- `draw_networkx_nodes(G, pos[, nodelist, ...]) ` -*Draw the nodes of the graph G.*
+- `draw_networkx_edges(G, pos[, edgelist, ...]) ` -*Draw the edges of the graph G.*
+- `draw_networkx_labels(G, pos[, labels, ...]) ` -*Draw node labels on the graph G.*
+- `draw_networkx_edge_labels(G, pos[, ...]) ` -*Draw edge labels.*
+- `draw_circular(G, **kwargs) ` -*Draw the graph G with a circular layout.*
+- `draw_random(G, **kwargs) ` -*Draw the graph G with a random layout.*
+- `draw_spectral(G, **kwargs) ` -*Draw the graph G with a spectral layout.*
+- `draw_spring(G, **kwargs) ` -*Draw the graph G with a spring layout.*
+- `draw_shell(G, **kwargs) ` -*Draw networkx graph with shell layout.*
+- `draw_graphviz(G[, prog]) ` -*Draw networkx graph with graphviz layout.*
+
  #### Attributes
+
+ --------
+
+There are two simple ways of getting a list of all nodes in the graph:
+
+  The Graph class uses a dict-of-dict-of-dict data structure.    The **outer dict** (`node_dict`) holds adjacency information keyed by node.  The next dict (`adjlist_dict`) represents the adjacency information and holds edge data keyed by neighbor.  The inner dict (`edge_attr_dict`) represents the edge data and holds edge attribute values keyed by attribute names.
+
+Each of these three dicts can be replaced in a subclass by a user defined
+    dict-like object. In general, the dict-like features should be
+    maintained but extra features can be added. To replace one of the
+    dicts create a new graph class by changing the class(!) variable
+    holding the factory for that dict-like structure. The variable names are
+    node_dict_factory, node_attr_dict_factory, adjlist_inner_dict_factory,
+    adjlist_outer_dict_factory, edge_attr_dict_factory and graph_attr_dict_factory.
+
+`node_dict` (Node: Neighbor)
+    `adjlist_dict` Neighbor: 
+        `edge_attr_dict` : (attribute)
+
+
+
+        >>> G = nx.path_graph(3)
+        >>> list(G.nodes)
+        [0, 1, 2]
+        >>> list(G)
+        [0, 1, 2]
+
+        >>> G.add_node(1, time="5pm")
+        >>> G.nodes[0]["foo"] = "bar"
+        >>> list(G.nodes(data=True))
+        [(0, {'foo': 'bar'}), (1, {'time': '5pm'}), (2, {})]
+        >>> list(G.nodes.data())
+        [(0, {'foo': 'bar'}), (1, {'time': '5pm'}), (2, {})]
+        >>> list(G.nodes(data="foo"))
+        [(0, 'bar'), (1, None), (2, None)]
+        >>> list(G.nodes.data("foo"))
+        [(0, 'bar'), (1, None), (2, None)]
+
+        >>> list(G.nodes(data="time"))
+        [(0, None), (1, '5pm'), (2, None)]
+        >>> list(G.nodes.data("time"))
+        [(0, None), (1, '5pm'), (2, None)]
+
+
+        If some of your nodes have an attribute and the rest are assumed
+        to have a default attribute value you can create a dictionary
+        from node/attribute pairs using the `default` keyword argument
+        to guarantee the value is never None::
+
+            >>> G = nx.Graph()
+            >>> G.add_node(0)
+            >>> G.add_node(1, weight=2)
+            >>> G.add_node(2, weight=3)
+            >>> dict(G.nodes(data="weight", default=1))
+            {0: 1, 1: 2, 2: 3}
+
+
+
+
+
+
+
+
+
 
  Parameters
  ----------
@@ -8894,7 +9104,7 @@ ____
 
  - `arrowsize` : **int, optional (default=10)** - For directed graphs, choose the size of the arrow head head's length and width. See :py:class: `matplotlib.patches.FancyArrowPatch` for attribute `mutation_scale` for more info.
 
- - `with_labels` : ** bool, optional (default=True)** - Set to True to draw labels on the nodes.
+ - `with_labels` : ** bool, optional `(default=True)`** - Set to True to draw labels on the nodes.
 
  - `ax` : **Matplotlib Axes object, optional** - Draw the graph in the specified Matplotlib axes.
 
@@ -8904,9 +9114,9 @@ ____
 
  - `node_size` : **scalar or array, optional (default=300)** - Size of nodes.  If an array is specified it must be the same length as nodelist.
 
- - `node_color` : **color or array of colors (default='#1f78b4')** - Node color. Can be a single color or a sequence of colors with the same length as nodelist. Color can be string, or rgb (or rgba) tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the cmap and vmin,vmax parameters. See matplotlib.scatter for more details.
+ - `node_color` : **color or array of colors (default='#1f78b4')** - Node color. Can be a single color or a sequence of colors with the same length as nodelist. Color can be string, or rgb `(or rgba)` tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the cmap and vmin,vmax parameters. See matplotlib.scatter for more details.
 
- - `node_shape` : ** string, optional (default='o')** - The shape of the node.  Specification is as matplotlib.scatter marker, one of 'so^>v<dph8'.
+ - `node_shape` : ** string, optional `(default='o')`** - The shape of the node.  Specification is as matplotlib.scatter marker, one of 'so^>v<dph8'.
 
  - `alpha` : **float, optional (default=None)** - The node and edge transparency
 
@@ -8914,17 +9124,17 @@ ____
 
  - `vmin,vmax` : **float, optional (default=None)** - Minimum and maximum for node colormap scaling
 
- - `linewidths` : **[None | scalar | sequence]** - Line width of symbol border (default =1.0)
+ - `linewidths` : **[None | scalar | sequence]** - Line width of symbol border `(default =1.0)`
 
  - `width` : **float, optional (default=1.0)** - Line width of edges
 
- - `edge_color` : **color or array of colors (default='k')** - Edge color. Can be a single color or a sequence of colors with the same length as edgelist. Color can be string, or rgb (or rgba) tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the edge_cmap and edge_vmin,edge_vmax parameters.
+ - `edge_color` : **color or array of colors (default='k')** - Edge color. Can be a single color or a sequence of colors with the same length as edgelist. Color can be string, or rgb `(or rgba)` tuple of floats from 0-1. If numeric values are specified they will be mapped to colors using the edge_cmap and edge_vmin,edge_vmax parameters.
 
  - `edge_cmap` : **Matplotlib colormap, optional (default=None)** - Colormap for mapping intensities of edges
 
  - `edge_vmin,edge_vmax` : **floats, optional (default=None)** - Minimum and maximum for edge colormap scaling
 
- - `style` : **string, optional (default='solid')** - Edge line style (solid|dashed|dotted,dashdot)
+ - `style` : **string, optional `(default='solid')`** - Edge line style (solid|dashed|dotted,dashdot)
 
  - `labels` : **dictionary, optional (default=None)** - Node labels in a dictionary keyed by node of text labels
 
@@ -8936,3 +9146,1186 @@ ____
 
  - `font_family` : **string, optional (default='sans-serif')** - Font family
 
+
+Options
+
+- `G` [ **graph** ] -    A networkx graph 
+
+- `pos` [ **dictionary** ] - Positions should be sequences of length 2. A dictionary with nodes as keys and positions as values.
+
+- `ax` [ **Matplotlib Axes object, optional** ] - Draw the graph in the specified Matplotlib axes. 
+
+- `nodelist` [ **list, optional** ] - Draw only specified nodes `(default G.nodes()`) 
+
+- `node_size` [ **scalar or array** ] - same length as nodelist. Size of nodes `(default=300)`.  If an array is specified it must be the
+
+- `node_color` [ **color or array of colors (default='#1f78b4')** ] - matplotlib.scatter for more details. mapped to colors using the cmap and vmin,vmax parameters. See
+
+- `node_shape` [ ** string** ] - marker, one of [`so^>v<dph8`]`(default='o').` The shape of the node.  Specification is as matplotlib.scatter
+
+- `alpha` [ **float or array of floats** ] - in order (cycling through alpha multiple times if necessary). if it is an array, the elements of alpha will be applied to the colors
+
+- `cmap` [ **Matplotlib colormap** ] - Colormap for mapping intensities of nodes (default=None) 
+
+- `vmin,vmax` [ **floats** ] - Minimum and maximum for node colormap scaling `(default=None)` 
+
+- `linewidths` [ **[None | scalar | sequence]** ] - Line width of symbol border `(default =1.0)` 
+
+- `edgecolors` [ **[None | scalar | sequence]** ] - Colors of node borders `(default = node_color)` 
+
+- `label` [ **[None| string]** ] - Label for legend 
+
+
+### Digraph Methods
+
+[DiGraph - Directed graphs with self loops — NetworkX 1.10 documentation](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#overview)
+
+## Adding and removing nodes and edges[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#adding-and-removing-nodes-and-edges "Permalink to this headline")
+
+https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#overview
+
+- **Initialize a graph with edges, name, graph attributes.** - `DiGraph.__init__`
+
+- **Add a single node n and update node attributes.** - `DiGraph.add_node`
+
+- **Add multiple nodes.** - `DiGraph.add_nodes_from`
+
+- **Remove node n.** - `DiGraph.remove_node`
+
+- **Remove multiple nodes.** - `DiGraph.remove_nodes_from`
+
+- **Add an edge between u and v.** - `DiGraph.add_edge`
+
+- **Add all the edges in ebunch.** - `DiGraph.add_edges_from`
+
+- **Add all the edges in ebunch as weighted edges with specified weights.** - `DiGraph.add_weighted_edges_from`
+
+- **Remove the edge between u and v.** - `DiGraph.remove_edge`
+
+- **Remove all edges specified in ebunch.** - `DiGraph.remove_edges_from`
+
+- **Add a star.** - `DiGraph.add_star`
+
+- **Add a path.** - `DiGraph.add_path`
+
+- **Add a cycle.** - `DiGraph.add_cycle`
+
+- **Remove all nodes and edges from the graph.** - `DiGraph.clear`
+
+## Iterating over nodes and edges[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#iterating-over-nodes-and-edges "Permalink to this headline")
+
+
+
+- **Return a list of the nodes in the graph.** - `DiGraph.nodes`
+
+- **Return an iterator over the nodes.** - `DiGraph.nodes_iter`
+
+- **Iterate over the nodes.** - `DiGraph.__iter__`
+
+- **Return a list of edges.** - `DiGraph.edges`
+
+- **Return an iterator over the edges.** - `DiGraph.edges_iter`
+
+- **Return a list of edges.** - `DiGraph.out_edges`
+
+- **Return an iterator over the edges.** - `DiGraph.out_edges_iter`
+
+- **Return a list of the incoming edges.** - `DiGraph.in_edges`
+
+- **Return an iterator over the incoming edges.** - `DiGraph.in_edges_iter`
+
+- **Return the attribute dictionary associated with edge (u,v).** - `DiGraph.get_edge_data`
+
+- **Return a list of successor nodes of n.** - `DiGraph.neighbors`
+
+- **Return an iterator over successor nodes of n.** - `DiGraph.neighbors_iter`
+
+- **Return a dict of neighbors of node n.** - `DiGraph.__getitem__`
+
+- **Return a list of successor nodes of n.** - `DiGraph.successors`
+
+- **Return an iterator over successor nodes of n.** - `DiGraph.successors_iter`
+
+- **Return a list of predecessor nodes of n.** - `DiGraph.predecessors`
+
+- **Return an iterator over predecessor nodes of n.** - `DiGraph.predecessors_iter`
+
+- **Return an adjacency list representation of the graph.** - `DiGraph.adjacency_list`
+
+- **Return an iterator of (node, adjacency dict) tuples for all nodes.** - `DiGraph.adjacency_iter`
+
+- **Return an iterator of nodes contained in nbunch that are also in the graph.** - `DiGraph.nbunch_iter`
+
+## Information about graph structure[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#information-about-graph-structure "Permalink to this headline")
+
+
+
+- **Return True if the graph contains the node n.** - `DiGraph.has_node`
+
+- **Return True if n is a node, False otherwise.** - `DiGraph.__contains__`
+
+- **Return True if the edge (u,v) is in the graph.** - `DiGraph.has_edge`
+
+- **Return the number of nodes in the graph.** - `DiGraph.order`
+
+- **Return the number of nodes in the graph.** - `DiGraph.number_of_nodes`
+
+- **Return the number of nodes.** - `DiGraph.__len__`
+
+- **Return the degree of a node or nodes.** - `DiGraph.degree`
+
+- **Return an iterator for (node, degree).** - `DiGraph.degree_iter`
+
+- **Return the in-degree of a node or nodes.** - `DiGraph.in_degree`
+
+- **Return an iterator for (node, in-degree).** - `DiGraph.in_degree_iter`
+
+- **Return the out-degree of a node or nodes.** - `DiGraph.out_degree`
+
+- **Return an iterator for (node, out-degree).** - `DiGraph.out_degree_iter`
+
+- **Return the number of edges.** - `DiGraph.size`
+
+- **Return the number of edges between two nodes.** - `DiGraph.number_of_edges`
+
+- **Return a list of nodes with self loops.** - `DiGraph.nodes_with_selfloops`
+
+- **Return a list of selfloop edges.** - `DiGraph.selfloop_edges`
+
+- **Return the number of selfloop edges.** - `DiGraph.number_of_selfloops`
+
+## Making copies and subgraphs[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#making-copies-and-subgraphs "Permalink to this headline")
+
+
+
+- **Return a copy of the graph.** - `DiGraph.copy`
+
+- **Return an undirected representation of the digraph.** - `DiGraph.to_undirected`
+
+- **Return a directed copy of the graph.** - `DiGraph.to_directed`
+
+- **Return the subgraph induced on nodes in nbunch.** - `DiGraph.subgraph`
+
+- **Return the reverse of the graph.** - `DiGraph.reverse`
+
+
+
+#### Adding and removing nodes and edges
+
+- Graph`.__init__([data]) ` -*Initialize a graph with edges, name, graph attributes.*
+- Graph`.add_node(n[, attr_dict]) ` -*Add a single node n and update node attributes.*
+- Graph`.add_nodes_from(nodes, **attr) ` -*Add multiple nodes.*
+- Graph`.remove_node(n) ` -*Remove node n.*
+- Graph`.remove_nodes_from(nodes) ` -*Remove multiple nodes.*
+- Graph`.add_edge(u, v[, attr_dict]) ` -*Add an edge between u and v.*
+- Graph`.add_edges_from(ebunch[, attr_dict]) ` -*Add all the edges in ebunch.*
+- Graph`.add_weighted_edges_from(ebunch[, weight]) ` -*Add all the edges in ebunch as weighted edges with specified weights.*
+- Graph`.remove_edge(u, v) ` -*Remove the edge between u and v.*
+- Graph`.remove_edges_from(ebunch) ` -*Remove all edges specified in ebunch.*
+- Graph`.add_star(nodes, **attr) ` -*Add a star.*
+- Graph`.add_path(nodes, **attr) ` -*Add a path.*
+- Graph`.add_cycle(nodes, **attr) ` -*Add a cycle.*
+- Graph`.clear() ` -*Remove all nodes and edges from the graph.*
+
+#### Iterating over nodes and edges
+
+- Graph`.nodes([data]) ` -*Return a list of the nodes in the graph.*
+- Graph`.nodes_iter([data]) ` -*Return an iterator over the nodes.*
+- Graph`.__iter__() ` -*Iterate over the nodes.*
+- Graph`.edges([nbunch, data, default]) ` -*Return a list of edges.*
+- Graph`.edges_iter([nbunch, data, default]) ` -*Return an iterator over the edges.*
+- Graph`.get_edge_data(u, v[, default]) ` -*Return the attribute dictionary associated with edge (u,v).*
+- Graph`.neighbors(n) ` -*Return a list of the nodes connected to the node n.*
+- Graph`.neighbors_iter(n) ` -*Return an iterator over all neighbors of node n.*
+- Graph`.__getitem__(n) ` -*Return a dict of neighbors of node n.*
+- Graph`.adjacency_list() ` -*Return an adjacency list representation of the graph.*
+- Graph`.adjacency_iter() ` -*Return an iterator of (node, adjacency dict) tuples for all nodes.*
+- Graph`.nbunch_iter([nbunch]) ` -*Return an iterator of nodes contained in nbunch that are also in the graph.*
+
+#### Information about graph structure
+
+- Graph`.has_node(n) ` -*Return True if the graph contains the node n.*
+- Graph`.__contains__(n) ` -*Return True if n is a node, False otherwise.*
+- Graph`.has_edge(u, v) ` -*Return True if the edge (u,v) is in the graph.*
+- Graph`.order() ` -*Return the number of nodes in the graph.*
+- Graph`.number_of_nodes() ` -*Return the number of nodes in the graph.*
+- Graph`.__len__() ` -*Return the number of nodes.*
+- Graph`.degree([nbunch, weight]) ` -*Return the degree of a node or nodes.*
+- Graph`.degree_iter([nbunch, weight]) ` -*Return an iterator for (node, degree).*
+- Graph`.size([weight]) ` -*Return the number of edges.*
+- Graph`.number_of_edges([u, v]) ` -*Return the number of edges between two nodes.*
+- Graph`.nodes_with_selfloops() ` -*Return a list of nodes with self loops.*
+- Graph`.selfloop_edges([data, default]) ` -*Return a list of selfloop edges.*
+- Graph`.number_of_selfloops() ` -*Return the number of selfloop edges.*
+
+#### Making copies and subgraphs
+
+- Graph`.copy() ` -*Return a copy of the graph.*
+- Graph`.to_undirected() ` -*Return an undirected copy of the graph.*
+- Graph`.to_directed() ` -*Return a directed representation of the graph.*
+- Graph`.subgraph(nbunch) ` -*Return the subgraph induced on nodes in nbunch.*
+
+
+Members of G
+
+'add_edge',
+ 'add_edges_from',
+ 'add_node',
+ 'add_nodes_from',
+ 'add_weighted_edges_from',
+ 'adj',
+ 'adjacency',
+ 'adjlist_inner_dict_factory',
+ 'adjlist_outer_dict_factory',
+ 'clear',
+ 'clear_edges',
+ 'copy',
+ 'degree',
+ 'edge_attr_dict_factory',
+ 'edge_subgraph',
+ 'edges',
+ 'get_edge_data',
+ 'graph',
+ 'graph_attr_dict_factory',
+ 'has_edge',
+ 'has_node',
+ 'is_directed',
+ 'is_multigraph',
+ 'name',
+ 'nbunch_iter',
+ 'neighbors',
+ 'node_attr_dict_factory',
+ 'node_dict_factory',
+ 'nodes',
+ 'number_of_edges',
+ 'number_of_nodes',
+ 'order',
+ 'remove_edge',
+ 'remove_edges_from',
+ 'remove_node',
+ 'remove_nodes_from',
+ 'size',
+ 'subgraph',
+ 'to_directed',
+ 'to_directed_class',
+ 'to_undirected',
+ 'to_undirected_class',
+ 'update'
+
+
+
+ Nx Members/classes?:
+
+ 'AmbiguousSolution',
+ 'DiGraph',
+ 'ExceededMaxIterations',
+ 'Graph',
+ 'GraphMLReader',
+ 'GraphMLWriter',
+ 'HasACycle',
+ 'LCF_graph',
+ 'LFR_benchmark_graph',
+ 'MultiDiGraph',
+ 'MultiGraph',
+ 'NetworkXAlgorithmError',
+ 'NetworkXError',
+ 'NetworkXException',
+ 'NetworkXNoCycle',
+ 'NetworkXNoPath',
+ 'NetworkXNotImplemented',
+ 'NetworkXPointlessConcept',
+ 'NetworkXTreewidthBoundExceeded',
+ 'NetworkXUnbounded',
+ 'NetworkXUnfeasible',
+ 'NodeNotFound',
+ 'NotATree',
+ 'OrderedDiGraph',
+ 'OrderedGraph',
+ 'OrderedMultiDiGraph',
+ 'OrderedMultiGraph',
+ 'PlanarEmbedding',
+ 'PowerIterationFailedConvergence',
+ '__author__',
+ '__bibtex__',
+ '__builtins__',
+ '__cached__',
+ '__date__',
+ '__doc__',
+ '__file__',
+ '__loader__',
+ '__name__',
+ '__package__',
+ '__path__',
+ '__spec__',
+ '__version__',
+
+
+properties
+
+no some of these are definitely methods.
+
+_____
+ 'adamic_adar_index',
+ 'add_cycle',
+ 'add_path',
+ 'add_star',
+ 'adj_matrix',
+ 'adjacency',
+ 'adjacency_data',
+ 'adjacency_graph',
+ 'adjacency_matrix',
+ 'adjacency_spectrum',
+ 'adjlist',
+ 'algebraic_connectivity',
+ 'algebraicconnectivity',
+ 'algorithms',
+ 'all',
+ 'all_neighbors',
+ 'all_node_cuts',
+ 'all_pairs_bellman_ford_path',
+ 'all_pairs_bellman_ford_path_length',
+ 'all_pairs_dijkstra',
+ 'all_pairs_dijkstra_path',
+ 'all_pairs_dijkstra_path_length',
+ 'all_pairs_lowest_common_ancestor',
+ 'all_pairs_node_connectivity',
+ 'all_pairs_shortest_path',
+ 'all_pairs_shortest_path_length',
+ 'all_shortest_paths',
+ 'all_simple_edge_paths',
+ 'all_simple_paths',
+ 'all_topological_sorts',
+ 'all_triads',
+ 'all_triplets',
+ 'ancestors',
+ 'antichains',
+ 'approximate_current_flow_betweenness_centrality',
+ 'articulation_points',
+ 'assortativity',
+ 'astar',
+ 'astar_path',
+ 'astar_path_length',
+ 'asteroidal',
+ 'atlas',
+ 'attr_matrix',
+ 'attr_sparse_matrix',
+ 'attracting',
+ 'attracting_components',
+ 'attribute_assortativity_coefficient',
+ 'attribute_mixing_dict',
+ 'attribute_mixing_matrix',
+ 'attrmatrix',
+ 'authority_matrix',
+ 'average_clustering',
+ 'average_degree_connectivity',
+ 'average_neighbor_degree',
+ 'average_node_connectivity',
+ 'average_shortest_path_length',
+ 'balanced_tree',
+ 'barabasi_albert_graph',
+ 'barbell_graph',
+ 'barycenter',
+ 'beamsearch',
+ 'bellman_ford_path',
+ 'bellman_ford_path_length',
+ 'bellman_ford_predecessor_and_distance',
+ 'bethe_hessian_matrix',
+ 'bethe_hessian_spectrum',
+ 'bethehessianmatrix',
+ 'betweenness',
+ 'betweenness_centrality',
+ 'betweenness_centrality_source',
+ 'betweenness_centrality_subset',
+ 'betweenness_subset',
+ 'bfs_beam_edges',
+ 'bfs_edges',
+ 'bfs_predecessors',
+ 'bfs_successors',
+ 'bfs_tree',
+ 'biconnected',
+ 'biconnected_component_edges',
+ 'biconnected_components',
+ 'bidirectional_dijkstra',
+ 'bidirectional_shortest_path',
+ 'binary',
+ 'binomial_graph',
+ 'binomial_tree',
+ 'bipartite',
+ 'bipartite_layout',
+ 'boundary',
+ 'boundary_expansion',
+ 'breadth_first_search',
+ 'bridges',
+ 'bull_graph',
+ 'capacity_scaling',
+ 'cartesian_product',
+ 'caveman_graph',
+ 'center',
+ 'centrality',
+ 'chain_decomposition',
+ 'chains',
+ 'check_planarity',
+ 'chordal',
+ 'chordal_cycle_graph',
+ 'chordal_graph_cliques',
+ 'chordal_graph_treewidth',
+ 'chvatal_graph',
+ 'circulant_graph',
+ 'circular_ladder_graph',
+ 'circular_layout',
+ 'classes',
+ 'classic',
+ 'clique',
+ 'cliques_containing_node',
+ 'closeness',
+ 'closeness_centrality',
+ 'closeness_vitality',
+ 'cluster',
+ 'clustering',
+ 'cn_soundarajan_hopcroft',
+ 'cographs',
+ 'coloring',
+ 'combinatorial_embedding_to_pos',
+ 'common_neighbor_centrality',
+ 'common_neighbors',
+ 'communicability',
+ 'communicability_alg',
+ 'communicability_betweenness_centrality',
+ 'communicability_exp',
+ 'community',
+ 'complement',
+ 'complete_bipartite_graph',
+ 'complete_graph',
+ 'complete_multipartite_graph',
+ 'complete_to_chordal_graph',
+ 'components',
+ 'compose',
+ 'compose_all',
+ 'condensation',
+ 'conductance',
+ 'configuration_model',
+ 'connected',
+ 'connected_caveman_graph',
+ 'connected_components',
+ 'connected_double_edge_swap',
+ 'connected_watts_strogatz_graph',
+ 'connectivity',
+ 'constraint',
+ 'contracted_edge',
+ 'contracted_nodes',
+ 'convert',
+ 'convert_matrix',
+ 'convert_node_labels_to_integers',
+ 'core',
+ 'core_number',
+ 'coreviews',
+ 'correlation',
+ 'cost_of_flow',
+ 'could_be_isomorphic',
+ 'covering',
+ 'create_empty_copy',
+ 'cubical_graph',
+ 'current_flow_betweenness',
+ 'current_flow_betweenness_centrality',
+ 'current_flow_betweenness_centrality_subset',
+ 'current_flow_betweenness_subset',
+ 'current_flow_closeness',
+ 'current_flow_closeness_centrality',
+ 'cut_size',
+ 'cuts',
+ 'cycle_basis',
+ 'cycle_graph',
+ 'cycles',
+ 'cytoscape',
+ 'cytoscape_data',
+ 'cytoscape_graph',
+ 'd_separated',
+ 'd_separation',
+ 'dag',
+ 'dag_longest_path',
+ 'dag_longest_path_length',
+ 'dag_to_branching',
+ 'davis_southern_women_graph',
+ 'degree',
+ 'degree_alg',
+ 'degree_assortativity_coefficient',
+ 'degree_centrality',
+ 'degree_histogram',
+ 'degree_mixing_dict',
+ 'degree_mixing_matrix',
+ 'degree_pearson_correlation_coefficient',
+ 'degree_seq',
+ 'degree_sequence_tree',
+ 'dense',
+ 'dense_gnm_random_graph',
+ 'density',
+ 'depth_first_search',
+ 'desargues_graph',
+ 'descendants',
+ 'descendants_at_distance',
+ 'dfs_edges',
+ 'dfs_labeled_edges',
+ 'dfs_postorder_nodes',
+ 'dfs_predecessors',
+ 'dfs_preorder_nodes',
+ 'dfs_successors',
+ 'dfs_tree',
+ 'diameter',
+ 'diamond_graph',
+ 'difference',
+ 'digraph',
+ 'dijkstra_path',
+ 'dijkstra_path_length',
+ 'dijkstra_predecessor_and_distance',
+ 'directed',
+ 'directed_combinatorial_laplacian_matrix',
+ 'directed_configuration_model',
+ 'directed_havel_hakimi_graph',
+ 'directed_joint_degree_graph',
+ 'directed_laplacian_matrix',
+ 'directed_modularity_matrix',
+ 'disjoint_union',
+ 'disjoint_union_all',
+ 'dispersion',
+ 'distance_measures',
+ 'distance_regular',
+ 'dodecahedral_graph',
+ 'dominance',
+ 'dominance_frontiers',
+ 'dominating',
+ 'dominating_set',
+ 'dorogovtsev_goltsev_mendes_graph',
+ 'double_edge_swap',
+ 'draw',
+ 'draw_circular',
+ 'draw_kamada_kawai',
+ 'draw_networkx',
+ 'draw_networkx_edge_labels',
+ 'draw_networkx_edges',
+ 'draw_networkx_labels',
+ 'draw_networkx_nodes',
+ 'draw_planar',
+ 'draw_random',
+ 'draw_shell',
+ 'draw_spectral',
+ 'draw_spring',
+ 'drawing',
+ 'dual_barabasi_albert_graph',
+ 'duplication',
+ 'duplication_divergence_graph',
+ 'eccentricity',
+ 'edge_betweenness',
+ 'edge_betweenness_centrality',
+ 'edge_betweenness_centrality_subset',
+ 'edge_bfs',
+ 'edge_boundary',
+ 'edge_connectivity',
+ 'edge_current_flow_betweenness_centrality',
+ 'edge_current_flow_betweenness_centrality_subset',
+ 'edge_dfs',
+ 'edge_disjoint_paths',
+ 'edge_expansion',
+ 'edge_load_centrality',
+ 'edge_subgraph',
+ 'edgebfs',
+ 'edgedfs',
+ 'edgelist',
+ 'edges',
+ 'effective_size',
+ 'efficiency',
+ 'efficiency_measures',
+ 'ego',
+ 'ego_graph',
+ 'eigenvector',
+ 'eigenvector_centrality',
+ 'eigenvector_centrality_numpy',
+ 'empty_graph',
+ 'enumerate_all_cliques',
+ 'equitable_color',
+ 'erdos_renyi_graph',
+ 'estrada_index',
+ 'euler',
+ 'eulerian_circuit',
+ 'eulerian_path',
+ 'eulerize',
+ 'exception',
+ 'expanders',
+ 'expected_degree_graph',
+ 'extended_barabasi_albert_graph',
+ 'extrema_bounding',
+ 'fast_could_be_isomorphic',
+ 'fast_gnp_random_graph',
+ 'faster_could_be_isomorphic',
+ 'fiedler_vector',
+ 'filters',
+ 'find_asteroidal_triple',
+ 'find_cliques',
+ 'find_cliques_recursive',
+ 'find_cores',
+ 'find_cycle',
+ 'find_induced_nodes',
+ 'florentine_families_graph',
+ 'flow',
+ 'flow_hierarchy',
+ 'flow_matrix',
+ 'floyd_warshall',
+ 'floyd_warshall_numpy',
+ 'floyd_warshall_predecessor_and_distance',
+ 'freeze',
+ 'from_dict_of_dicts',
+ 'from_dict_of_lists',
+ 'from_edgelist',
+ 'from_graph6_bytes',
+ 'from_nested_tuple',
+ 'from_numpy_array',
+ 'from_numpy_matrix',
+ 'from_pandas_adjacency',
+ 'from_pandas_edgelist',
+ 'from_prufer_sequence',
+ 'from_scipy_sparse_matrix',
+ 'from_sparse6_bytes',
+ 'frucht_graph',
+ 'fruchterman_reingold_layout',
+ 'full_join',
+ 'full_rary_tree',
+ 'function',
+ 'gaussian_random_partition_graph',
+ 'general_random_intersection_graph',
+ 'generalized_degree',
+ 'generate_adjlist',
+ 'generate_edgelist',
+ 'generate_gexf',
+ 'generate_gml',
+ 'generate_graphml',
+ 'generate_multiline_adjlist',
+ 'generate_pajek',
+ 'generators',
+ 'generic',
+ 'geographical_threshold_graph',
+ 'geometric',
+ 'get_edge_attributes',
+ 'get_node_attributes',
+ 'gexf',
+ 'global_efficiency',
+ 'global_parameters',
+ 'global_reaching_centrality',
+ 'gml',
+ 'gn_graph',
+ 'gnc_graph',
+ 'gnm_random_graph',
+ 'gnp_random_graph',
+ 'gnr_graph',
+ 'goldberg_radzik',
+ 'gomory_hu_tree',
+ 'google_matrix',
+ 'gpickle',
+ 'graph',
+ 'graph6',
+ 'graph_atlas',
+ 'graph_atlas_g',
+ 'graph_clique_number',
+ 'graph_edit_distance',
+ 'graph_hashing',
+ 'graph_number_of_cliques',
+ 'graphical',
+ 'graphmatrix',
+ 'graphml',
+ 'graphviews',
+ 'greedy_color',
+ 'grid_2d_graph',
+ 'grid_graph',
+ 'group',
+ 'group_betweenness_centrality',
+ 'group_closeness_centrality',
+ 'group_degree_centrality',
+ 'group_in_degree_centrality',
+ 'group_out_degree_centrality',
+ 'harmonic',
+ 'harmonic_centrality',
+ 'has_bridges',
+ 'has_eulerian_path',
+ 'has_path',
+ 'havel_hakimi_graph',
+ 'heawood_graph',
+ 'hexagonal_lattice_graph',
+ 'hierarchy',
+ 'hits',
+ 'hits_alg',
+ 'hits_numpy',
+ 'hits_scipy',
+ 'hoffman_singleton_graph',
+ 'house_graph',
+ 'house_x_graph',
+ 'hub_matrix',
+ 'hybrid',
+ 'hypercube_graph',
+ 'icosahedral_graph',
+ 'identified_nodes',
+ 'immediate_dominators',
+ 'in_degree_centrality',
+ 'incidence_matrix',
+ 'incremental_closeness_centrality',
+ 'induced_subgraph',
+ 'info',
+ 'information_centrality',
+ 'internet_as_graphs',
+ 'intersection',
+ 'intersection_all',
+ 'intersection_array',
+ 'interval_graph',
+ 'inverse_line_graph',
+ 'is_aperiodic',
+ 'is_arborescence',
+ 'is_at_free',
+ 'is_attracting_component',
+ 'is_biconnected',
+ 'is_bipartite',
+ 'is_branching',
+ 'is_chordal',
+ 'is_connected',
+ 'is_digraphical',
+ 'is_directed',
+ 'is_directed_acyclic_graph',
+ 'is_distance_regular',
+ 'is_dominating_set',
+ 'is_edge_cover',
+ 'is_empty',
+ 'is_eulerian',
+ 'is_forest',
+ 'is_frozen',
+ 'is_graphical',
+ 'is_isolate',
+ 'is_isomorphic',
+ 'is_k_edge_connected',
+ 'is_k_regular',
+ 'is_kl_connected',
+ 'is_matching',
+ 'is_maximal_matching',
+ 'is_multigraphical',
+ 'is_negatively_weighted',
+ 'is_path',
+ 'is_perfect_matching',
+ 'is_pseudographical',
+ 'is_regular',
+ 'is_semiconnected',
+ 'is_semieulerian',
+ 'is_simple_path',
+ 'is_strongly_connected',
+ 'is_strongly_regular',
+ 'is_tree',
+ 'is_triad',
+ 'is_valid_degree_sequence_erdos_gallai',
+ 'is_valid_degree_sequence_havel_hakimi',
+ 'is_valid_directed_joint_degree',
+ 'is_valid_joint_degree',
+ 'is_weakly_connected',
+ 'is_weighted',
+ 'isolate',
+ 'isolates',
+ 'isomorphism',
+ 'jaccard_coefficient',
+ 'jit',
+ 'jit_data',
+ 'jit_graph',
+ 'johnson',
+ 'join',
+ 'joint_degree_graph',
+ 'joint_degree_seq',
+ 'json_graph',
+ 'junction_tree',
+ 'k_components',
+ 'k_core',
+ 'k_corona',
+ 'k_crust',
+ 'k_edge_augmentation',
+ 'k_edge_components',
+ 'k_edge_subgraphs',
+ 'k_factor',
+ 'k_nearest_neighbors',
+ 'k_random_intersection_graph',
+ 'k_shell',
+ 'k_truss',
+ 'kamada_kawai_layout',
+ 'karate_club_graph',
+ 'katz',
+ 'katz_centrality',
+ 'katz_centrality_numpy',
+ 'kl_connected_subgraph',
+ 'kosaraju_strongly_connected_components',
+ 'krackhardt_kite_graph',
+ 'ladder_graph',
+ 'laplacian_matrix',
+ 'laplacian_spectrum',
+ 'laplacianmatrix',
+ 'lattice',
+ 'lattice_reference',
+ 'layout',
+ 'leda',
+ 'les_miserables_graph',
+ 'lexicographic_product',
+ 'lexicographical_topological_sort',
+ 'linalg',
+ 'line',
+ 'line_graph',
+ 'link_analysis',
+ 'link_prediction',
+ 'load',
+ 'load_centrality',
+ 'local_bridges',
+ 'local_constraint',
+ 'local_efficiency',
+ 'local_reaching_centrality',
+ 'lollipop_graph',
+ 'lowest_common_ancestor',
+ 'lowest_common_ancestors',
+ 'make_clique_bipartite',
+ 'make_max_clique_graph',
+ 'make_small_graph',
+ 'margulis_gabber_galil_graph',
+ 'matching',
+ 'max_flow_min_cost',
+ 'max_weight_clique',
+ 'max_weight_matching',
+ 'maximal_independent_set',
+ 'maximal_matching',
+ 'maximum_branching',
+ 'maximum_flow',
+ 'maximum_flow_value',
+ 'maximum_spanning_arborescence',
+ 'maximum_spanning_edges',
+ 'maximum_spanning_tree',
+ 'min_cost_flow',
+ 'min_cost_flow_cost',
+ 'min_edge_cover',
+ 'minimum_branching',
+ 'minimum_cut',
+ 'minimum_cut_value',
+ 'minimum_cycle_basis',
+ 'minimum_edge_cut',
+ 'minimum_node_cut',
+ 'minimum_spanning_arborescence',
+ 'minimum_spanning_edges',
+ 'minimum_spanning_tree',
+ 'minors',
+ 'mis',
+ 'mixing',
+ 'mixing_dict',
+ 'mixing_expansion',
+ 'modularity_matrix',
+ 'modularity_spectrum',
+ 'modularitymatrix',
+ 'moebius_kantor_graph',
+ 'moral',
+ 'moral_graph',
+ 'multi_source_dijkstra',
+ 'multi_source_dijkstra_path',
+ 'multi_source_dijkstra_path_length',
+ 'multidigraph',
+ 'multigraph',
+ 'multiline_adjlist',
+ 'multipartite_layout',
+ 'mycielski',
+ 'mycielski_graph',
+ 'mycielskian',
+ 'navigable_small_world_graph',
+ 'negative_edge_cycle',
+ 'neighbor_degree',
+ 'neighbors',
+ 'network_simplex',
+ 'networkx',
+ 'newman_watts_strogatz_graph',
+ 'node_attribute_xy',
+ 'node_boundary',
+ 'node_classification',
+ 'node_clique_number',
+ 'node_connected_component',
+ 'node_connectivity',
+ 'node_degree_xy',
+ 'node_disjoint_paths',
+ 'node_expansion',
+ 'node_link',
+ 'node_link_data',
+ 'node_link_graph',
+ 'nodes',
+ 'nodes_with_selfloops',
+ 'non_edges',
+ 'non_neighbors',
+ 'non_randomness',
+ 'nonisomorphic_trees',
+ 'normalized_cut_size',
+ 'normalized_laplacian_matrix',
+ 'normalized_laplacian_spectrum',
+ 'not_implemented_for',
+ 'null_graph',
+ 'number_attracting_components',
+ 'number_connected_components',
+ 'number_of_cliques',
+ 'number_of_edges',
+ 'number_of_isolates',
+ 'number_of_nodes',
+ 'number_of_nonisomorphic_trees',
+ 'number_of_selfloops',
+ 'number_strongly_connected_components',
+ 'number_weakly_connected_components',
+ 'numeric_assortativity_coefficient',
+ 'numeric_mixing_matrix',
+ 'nx',
+ 'nx_agraph',
+ 'nx_pydot',
+ 'nx_pylab',
+ 'nx_shp',
+ 'nx_yaml',
+ 'octahedral_graph',
+ 'omega',
+ 'onion_layers',
+ 'operators',
+ 'optimal_edit_paths',
+ 'optimize_edit_paths',
+ 'optimize_graph_edit_distance',
+ 'ordered',
+ 'out_degree_centrality',
+ 'overall_reciprocity',
+ 'pagerank',
+ 'pagerank_alg',
+ 'pagerank_numpy',
+ 'pagerank_scipy',
+ 'pairs',
+ 'pajek',
+ 'paley_graph',
+ 'pappus_graph',
+ 'parse_adjlist',
+ 'parse_edgelist',
+ 'parse_gml',
+ 'parse_graphml',
+ 'parse_leda',
+ 'parse_multiline_adjlist',
+ 'parse_pajek',
+ 'partial_duplication_graph',
+ 'path_graph',
+ 'path_weight',
+ 'percolation',
+ 'percolation_centrality',
+ 'periphery',
+ 'petersen_graph',
+ 'planar_drawing',
+ 'planar_layout',
+ 'planarity',
+ 'planted_partition_graph',
+ 'power',
+ 'powerlaw_cluster_graph',
+ 'predecessor',
+ 'preferential_attachment',
+ 'prefix_tree',
+ 'product',
+ 'project',
+ 'projected_graph',
+ 'quotient_graph',
+ 'ra_index_soundarajan_hopcroft',
+ 'radius',
+ 'random_clustered',
+ 'random_clustered_graph',
+ 'random_cograph',
+ 'random_degree_sequence_graph',
+ 'random_geometric_graph',
+ 'random_graphs',
+ 'random_internet_as_graph',
+ 'random_k_out_graph',
+ 'random_kernel_graph',
+ 'random_layout',
+ 'random_lobster',
+ 'random_partition_graph',
+ 'random_powerlaw_tree',
+ 'random_powerlaw_tree_sequence',
+ 'random_reference',
+ 'random_regular_graph',
+ 'random_shell_graph',
+ 'random_tree',
+ 'random_triad',
+ 'reaching',
+ 'read_adjlist',
+ 'read_edgelist',
+ 'read_gexf',
+ 'read_gml',
+ 'read_gpickle',
+ 'read_graph6',
+ 'read_graphml',
+ 'read_leda',
+ 'read_multiline_adjlist',
+ 'read_pajek',
+ 'read_shp',
+ 'read_sparse6',
+ 'read_weighted_edgelist',
+ 'read_yaml',
+ 'readwrite',
+ 'reciprocity',
+ 'reconstruct_path',
+ 'recursive_simple_cycles',
+ 'regular',
+ 'relabel',
+ 'relabel_gexf_graph',
+ 'relabel_nodes',
+ 'relaxed_caveman_graph',
+ 'release',
+ 'reportviews',
+ 'rescale_layout',
+ 'rescale_layout_dict',
+ 'resistance_distance',
+ 'resource_allocation_index',
+ 'restricted_view',
+ 'reverse',
+ 'reverse_view',
+ 'rich_club_coefficient',
+ 'richclub',
+ 'ring_of_cliques',
+ 'rooted_product',
+ 's_metric',
+ 'scale_free_graph',
+ 'second_order',
+ 'second_order_centrality',
+ 'sedgewick_maze_graph',
+ 'selfloop_edges',
+ 'semiconnected',
+ 'set_edge_attributes',
+ 'set_node_attributes',
+ 'shell_layout',
+ 'shortest_path',
+ 'shortest_path_length',
+ 'shortest_paths',
+ 'shortest_simple_paths',
+ 'sigma',
+ 'similarity',
+ 'simple_cycles',
+ 'simple_paths',
+ 'simrank_similarity',
+ 'simrank_similarity_numpy',
+ 'single_source_bellman_ford',
+ 'single_source_bellman_ford_path',
+ 'single_source_bellman_ford_path_length',
+ 'single_source_dijkstra',
+ 'single_source_dijkstra_path',
+ 'single_source_dijkstra_path_length',
+ 'single_source_shortest_path',
+ 'single_source_shortest_path_length',
+ 'single_target_shortest_path',
+ 'single_target_shortest_path_length',
+ 'small',
+ 'smallworld',
+ 'smetric',
+ 'social',
+ 'soft_random_geometric_graph',
+ 'spanner',
+ 'sparse6',
+ 'sparsifiers',
+ 'spectral_graph_forge',
+ 'spectral_layout',
+ 'spectral_ordering',
+ 'spectrum',
+ 'spiral_layout',
+ 'spring_layout',
+ 'square_clustering',
+ 'star_graph',
+ 'stochastic',
+ 'stochastic_block_model',
+ 'stochastic_graph',
+ 'stoer_wagner',
+ 'strong_product',
+ 'strongly_connected',
+ 'strongly_connected_components',
+ 'strongly_connected_components_recursive',
+ 'structuralholes',
+ 'subgraph',
+ 'subgraph_alg',
+ 'subgraph_centrality',
+ 'subgraph_centrality_exp',
+ 'subgraph_view',
+ 'sudoku',
+ 'sudoku_graph',
+ 'swap',
+ 'symmetric_difference',
+ 'tensor_product',
+ 'test',
+ 'testing',
+ 'tetrahedral_graph',
+ 'thresholded_random_geometric_graph',
+ 'to_dict_of_dicts',
+ 'to_dict_of_lists',
+ 'to_directed',
+ 'to_edgelist',
+ 'to_graph6_bytes',
+ 'to_nested_tuple',
+ 'to_networkx_graph',
+ 'to_numpy_array',
+ 'to_numpy_matrix',
+ 'to_numpy_recarray',
+ 'to_pandas_adjacency',
+ 'to_pandas_edgelist',
+ 'to_prufer_sequence',
+ 'to_scipy_sparse_matrix',
+ 'to_sparse6_bytes',
+ 'to_undirected',
+ 'topological_sort',
+ 'tournament',
+ 'transitive_closure',
+ 'transitive_closure_dag',
+ 'transitive_reduction',
+ 'transitivity',
+ 'traversal',
+ 'tree',
+ 'tree_all_pairs_lowest_common_ancestor',
+ 'tree_data',
+ 'tree_graph',
+ 'trees',
+ 'triad_graph',
+ 'triad_type',
+ 'triadic_census',
+ 'triads',
+ 'triads_by_type',
+ 'triangles',
+ 'triangular_lattice_graph',
+ 'trivial_graph',
+ 'trophic',
+ 'trophic_differences',
+ 'trophic_incoherence_parameter',
+ 'trophic_levels',
+ 'truncated_cube_graph',
+ 'truncated_tetrahedron_graph',
+ 'turan_graph',
+ 'tutte_graph',
+ 'unary',
+ 'uniform_random_intersection_graph',
+ 'union',
+ 'union_all',
+ 'unweighted',
+ 'utils',
+ 'vitality',
+ 'volume',
+ 'voronoi',
+ 'voronoi_cells',
+ 'voterank',
+ 'voterank_alg',
+ 'watts_strogatz_graph',
+ 'waxman_graph',
+ 'weakly_connected',
+ 'weakly_connected_components',
+ 'weighted',
+ 'weisfeiler_lehman_graph_hash',
+ 'wheel_graph',
+ 'wiener',
+ 'wiener_index',
+ 'windmill_graph',
+ 'within_inter_cluster',
+ 'write_adjlist',
+ 'write_edgelist',
+ 'write_gexf',
+ 'write_gml',
+ 'write_gpickle',
+ 'write_graph6',
+ 'write_graphml',
+ 'write_graphml_lxml',
+ 'write_graphml_xml',
+ 'write_multiline_adjlist',
+ 'write_pajek',
+ 'write_shp',
+ 'write_sparse6',
+ 'write_weighted_edgelist',
+ 'write_yaml'

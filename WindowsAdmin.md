@@ -6792,6 +6792,48 @@ Finding a table
 
 ### Get any programs location using the registry.
 
+Reforat lists.
+
+- `$1` [ **$2** ] - $5 $4  #
+^([\w,]+) : (.*$)\n    ((.*$)\n    )*(.*)*$
+
+node_color : color or array of colors (default='#1f78b4')
+    Node color. Can be a single color or a sequence of colors with the same
+    length as nodelist. Color can be string, or rgb (or rgba) tuple of
+    floats from 0-1. If numeric values are specified they will be
+    mapped to colors using the cmap and vmin,vmax parameters. See
+    matplotlib.scatter for more details.
+
+node_shape :  string
+    The shape of the node.  Specification is as matplotlib.scatter
+    marker, one of 'so^>v<dph8' (default='o').
+
+alpha : float or array of floats
+    The node transparency.  This can be a single alpha value (default=None),
+    in which case it will be applied to all the nodes of color. Otherwise,
+    if it is an array, the elements of alpha will be applied to the colors
+    in order (cycling through alpha multiple times if necessary).
+
+cmap : Matplotlib colormap
+    Colormap for mapping intensities of nodes (default=None)
+
+vmin,vmax : floats
+    Minimum and maximum for node colormap scaling (default=None)
+
+linewidths : [None | scalar | sequence]
+    Line width of symbol border (default =1.0)
+
+edgecolors : [None | scalar | sequence]
+    Colors of node borders (default = node_color)
+
+label : [None| string]
+    Label for legend
+
+
+
+
+
+
 This is in powershell
 ```ps1
 >#get the path to 7-zip from the registry

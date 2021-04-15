@@ -18,6 +18,10 @@ puppeteer:
 ]
 Sample Exporting instructions
 
+[See Here ~~later](http://mixu.net/markdown-styles/)~~
+
+
+
 # Markdown Reference
 
 [[TOC]]
