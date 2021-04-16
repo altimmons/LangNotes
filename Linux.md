@@ -322,6 +322,12 @@ alt 2639
 
 ## File permissions
 
+[Numeric Permissions Operators](https://www.gnu.org/software/coreutils/manual/html_node/Operator-Numeric-Modes.html#Operator-Numeric-Modes)
+
+[File Permissions](https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html#File-permissions)
+
+
+
 Get user and group information:
 
 cat /etc/passwd
@@ -418,13 +424,13 @@ chmod o+rw /home/youruserna
  The output below shows how the reserved file descriptors point to actual devices:
 
 ```sh
-  michel ~> **ls \-l /dev/std\***
+  michel ~> **ls -l /dev/std\***
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stderr -> ../proc/self/fd/2
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdin -> ../proc/self/fd/0
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdout -> ../proc/self/fd/1
 
 
-michel ~> **ls \-l /proc/self/fd/\[0-2\]**
+michel ~> **ls -l /proc/self/fd/\[0-2\]**
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/0 -> /dev/pts/6
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/1 -> /dev/pts/6
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/2 -> /dev/pts/6
@@ -465,15 +471,15 @@ When excuting a given command, the following steps are excuted, in order:
 > 
 > When redirecting errors, note that the order of precedence is significant. For example, this command, issued in /var/spool
 > 
-> **ls \-l \* _2_\> /var/tmp/unaccessible-in-spool** 
+> **ls -l \* _2_\> /var/tmp/unaccessible-in-spool** 
 > 
 > will redirect standard output of the **ls** command to the file unaccessible-in-spool in /var/tmp. The command
 > 
-> **ls \-l \* > /var/tmp/spoollist _2_\>&_1_** 
+> **ls -l \* > /var/tmp/spoollist _2_\>&_1_** 
 > 
 > will direct both standard input and standard error to the file spoollist. The command
 > 
-> **ls \-l \* _2_ >& _1_ > /var/tmp/spoollist** 
+> **ls -l \* _2_ >& _1_ > /var/tmp/spoollist** 
 > 
 > directs only the standard output to the destination file, because the standard error is copied to standard output before the standard output is redirected.
 > 
@@ -494,6 +500,229 @@ When excuting a given command, the following steps are excuted, in order:
 `alias python ='/usr/bin/python3.7'`
 
 ## Useful commands
+
+### GNU Core Utils
+
+[Top (GNU Coreutils)](https://www.gnu.org/software/coreutils/manual/html_node/index.html#Top)
+
+
+[Core Utils PDF](https://www.gnu.org/software/coreutils/manual/coreutils.pdf)
+
+
+
+• Output of entire files	  	`cat`, `tac`, `nl`, `od`, `base32`, `base64`, `basenc`,
+• Formatting file contents	  	`fmt`, `pr`, `fold`,
+• Output of parts of files	  	`head`, `tail`, `split`, `csplit`,
+• Summarizing files	  	`wc`, `sum`, `cksum`, `b2sum`, `md5sum`, `sha1sum`, `sha2`,
+• Operating on sorted files	  	`sort`, `shuf`, `uniq`, `comm`, `ptx`, `tsort`,
+• Operating on fields	  	`cut`, `paste`, `join`,
+• Operating on characters	  	`tr`, `expand`, `unexpand`,
+• Directory listing	  	`ls`, `dir`, `vdir`, `dircolors`,
+• Basic operations	  	`cp`, `dd`, `install`, `mv`, `rm`, `shred`,
+• Special file types	  	`mkdir`, `rmdir`, `unlink`, `mkfifo`, `mknod`, `ln`, `link`, readlink
+• Changing file attributes	  	`chgrp`, `chmod`, `chown`, `touch`,
+• Disk usage	  	`df`, `du`, `stat`, `sync`, `truncate`,
+• Printing text	  	`echo`, `printf`, `yes`,
+• Conditions	  	`false`, `true`, `test`, `expr`,
+• Redirection	  	`tee`,
+• File name manipulation	  	`dirname`, `basename`, `pathchk`, `mktemp`, `realpath`,
+• Working context	  	`pwd`, `stty`, `printenv`, `tty`,
+• User information	  	`id`, `logname`, `whoami`, `groups`, `users`, `who`,
+• System context	  	`date`, `arch`, `nproc`, `uname`, `hostname`, `hostid`, `uptime`,
+• SELinux context	  	`chcon`, `runcon`,
+• Modified command invocation	  	`chroot`, `env`, `nice`, `nohup`, `stdbuf`, `timeout`,
+• Process control	  	`kill`,
+• Delaying	  	`sleep`,
+• Numeric operations	  	`factor`, `numfmt`, `seq`,
+
+
+• Output of entire files	  	
+    - `cat`
+    - `tac`
+    - `nl`
+    - `od`
+    - `base32`
+    - `base64`
+    - `basenc`,
+• Formatting file contents	  	
+    - `fmt`
+    - `pr`
+    - `fold`,
+• Output of parts of files	  	
+    - `head`
+    - `tail`
+    - `split`
+    - `csplit`,
+• Summarizing files	  	
+    - `wc`
+    - `sum`
+    - `cksum`
+    - `b2sum`
+    - `md5sum`
+    - `sha1sum`
+    - `sha2`,
+• Operating on sorted files	  	
+    - `sort`
+    - `shuf`
+    - `uniq`
+    - `comm`
+    - `ptx`
+    - `tsort`,
+• Operating on fields	  	
+    - `cut`
+    - `paste`
+    - `join`,
+• Operating on characters	  	
+    - `tr`
+    - `expand`
+    - `unexpand`,
+• Directory listing	  	
+    - `ls`
+    - `dir`
+    - `vdir`
+    - `dircolors`,
+• Basic operations	  	
+    - `cp`
+    - `dd`
+    - `install`
+    - `mv`
+    - `rm`
+    - `shred`,
+• Special file types	  	
+    - `mkdir`
+    - `rmdir`
+    - `unlink`
+    - `mkfifo`
+    - `mknod`
+    - `ln`
+    - `link`
+    - `readlink`,
+• Changing file attributes	  	
+    - `chgrp`
+    - `chmod`
+    - `chown`
+    - `touch`,
+• Disk usage	  	
+    - `df`
+    - `du`
+    - `stat`
+    - `sync`
+    - `truncate`,
+• Printing text	  	
+    - `echo`
+    - `printf`
+    - `yes`,
+• Conditions	  	
+    - `false`
+    - `true`
+    - `test`
+    - `expr`,
+• Redirection	  	
+    - `tee`,
+• File name manipulation	  	
+    - `dirname`
+    - `basename`
+    - `pathchk`
+    - `mktemp`
+    - `realpath`,
+• Working context	  	
+    - `pwd`
+    - `stty`
+    - `printenv`
+    - `tty`,
+• User information	  	
+    - `id`
+    - `logname`
+    - `whoami`
+    - `groups`
+    - `users`
+    - `who`,
+• System context	  	
+    - `date`
+    - `arch`
+    - `nproc`
+    - `uname`
+    - `hostname`
+    - `hostid`
+    - `uptime`,
+• SELinux context	  	
+    - `chcon`
+    - `runcon`,
+• Modified command invocation	  	
+    - `chroot`
+    - `env`
+    - `nice`
+    - `nohup`
+    - `stdbuf`
+    - `timeout`,
+• Process control	  	
+    - `kill`,
+• Delaying	  	
+    - `sleep`,
+• Numeric operations	  	
+    - `factor`
+    - `numfmt`
+    - `seq`,
+
+[Common options (GNU Coreutils)](https://www.gnu.org/software/coreutils/manual/html_node/Common-options.html#Common-options)
+
+Certain options are available in all of these programs. Rather than writing identical descriptions for each of the programs, they are described here. (In fact, every GNU program accepts (or should accept) these options.)
+
+Normally options and operands can appear in any order, and programs act as if all the options appear before any operands. For example, ‘sort -r passwd -t :’ acts like ‘sort -r -t : passwd’, since ‘:’ is an option-argument of -t. However, if the `POSIXLY_CORRECT` environment variable is set, options must appear before operands, unless otherwise specified for a particular command.
+
+A few programs can usefully have trailing operands with leading ‘-’. With such a program, options must precede operands even if `POSIXLY_CORRECT` is not set, and this fact is noted in the program description. For example, the `env` command’s options must appear before its operands, since in some cases the operands specify a command that itself contains options.
+
+Most programs that accept long options recognize unambiguous abbreviations of those options. For example, ‘rmdir --ignore-fail-on-non-empty’ can be invoked as ‘rmdir --ignore-fail’ or even ‘rmdir --i’. Ambiguous options, such as ‘ls --h’, are identified as such.
+
+Some of these programs recognize the --help and --version options only when one of them is the sole command line argument. For these programs, abbreviations of the long options are not always recognized.
+
+‘--help’
+
+Print a usage message listing all available options, then exit successfully.
+
+‘--version’
+
+Print the version number, then exit successfully.
+
+‘--’
+
+Delimit the option list. Later arguments, if any, are treated as operands even if they begin with ‘-’. For example, ‘sort -- -r’ reads from the file named -r.
+
+A single ‘-’ operand is not really an option, though it looks like one. It stands for a file operand, and some tools treat it as standard input, or as standard output if that is clear from the context. For example, ‘sort -’ reads from standard input, and is equivalent to plain ‘sort’. Unless otherwise specified, a ‘-’ can appear as any operand that requires a file name.
+
+• [Exit status - Indicating program success or failure.](https://www.gnu.org/software/coreutils/manual/html_node/Exit-status.html#Exit-status)
+
+• [Backup options (`-b` `-S`, in some programs.)](https://www.gnu.org/software/coreutils/manual/html_node/Backup-options.html#Backup-options)
+
+• [`BLOCK_SIZE` and `–block-size`, in some programs.](https://www.gnu.org/software/coreutils/manual/html_node/Block-size.html#Block-size)
+
+• [Floating point number representation.](https://www.gnu.org/software/coreutils/manual/html_node/Floating-point.html#Floating-point)
+
+• [Specifying signals using the `–signal` option.](https://www.gnu.org/software/coreutils/manual/html_node/Signal-specifications.html#Signal-specifications)
+
+• [Disambiguating names and IDs (`chgrp`, `chown`, `chroot`, `id:` user and group syntax)](https://www.gnu.org/software/coreutils/manual/html_node/Disambiguating-names-and-IDs.html#Disambiguating-names-and-IDs)
+
+• [`–random-source`, in some programs.](https://www.gnu.org/software/coreutils/manual/html_node/Random-sources.html#Random-sources)
+
+• [Specifying a target directory, in some programs.](https://www.gnu.org/software/coreutils/manual/html_node/Target-directory.html#Target-directory)
+
+• [`–strip-trailing-slashes`, in some programs. ](https://www.gnu.org/software/coreutils/manual/html_node/Trailing-slashes.html#Trailing-slashes)
+
+• [Traversing symlinks `-H`, `-L`, or -`P,` in some programs.](https://www.gnu.org/software/coreutils/manual/html_node/Traversing-symlinks.html#Traversing-symlinks)
+
+• [Treating `/` specially (`–preserve-root` and `–no-preserve-root`.)](https://www.gnu.org/software/coreutils/manual/html_node/Treating-_002f-specially.html#Treating-_002f-specially)
+
+• [Special built-in utilities (`break`, `:`,` …`)](https://www.gnu.org/software/coreutils/manual/html_node/Special-built_002din-utilities.html#Special-built_002din-utilities)
+
+• [Conformance to the POSIX standard.](https://www.gnu.org/software/coreutils/manual/html_node/Standards-conformance.html#Standards-conformance)
+
+• [Multi-call program invocation](https://www.gnu.org/software/coreutils/manual/html_node/Multi_002dcall-invocation.html#Multi_002dcall-invocation)
+
+
+
+
+
+* * *
 
 - `lscpu` - reports information about the cpu and processing units
 - `lshw`-  reports detailed and brief information about multiple different hardware units such as cpu, memory, disk, usb controllers, network adapters etc. Lshw extracts the information from different /proc files.
@@ -516,7 +745,7 @@ When excuting a given command, the following steps are excuted, in order:
     - lssubsys
     - lsusb.py
     - lsattr
-    - lscgroup\
+    - lscgroup
     - lsdev
     - lsipc
     - lslogins
@@ -2795,6 +3024,45 @@ http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Prompt-Expansion
     Multiple uses of %G accumulate in the obvious fashion; the position of the %G is unimportant. Negative integers are not handled.
 
     Note that when prompt truncation is in use it is advisable to divide up output into single characters within each %{...%} group so that the correct truncation point can be found.
+
+
+### For Bash
+
+Using`tput setaf`
+
+[Appears dead but sounds good.](https://wiki.bash-hackers.org/scripting/terminalcodes)
+
+
+
+[BashFAQ/037](http://bash.cumulonim.biz/BashFAQ%282f%29037.html)
+
+> ## How can I print text in various colors?
+> 
+> _Do not_ hard-code ANSI color escape sequences in your program! The tput command lets you interact with the terminal database in a sane way:
+> 
+>   # Bourne
+>   tput setaf 1; echo this is red
+>   tput setaf 2; echo this is green
+>   tput bold; echo "boldface (and still green)"
+>   tput sgr0; echo back to normal
+> 
+> **Cygwin users:** you need to install the ncurses package to get tput (see: [Where did "tput" go in 1.7?](http://old.nabble.com/Where-did-%22tput%22-go-in-1.7--ts22422087.html))
+> 
+> tput reads the terminfo database which contains all the escape codes necessary for interacting with your terminal, as defined by the $TERM variable. For more details, see the terminfo(5) man page.
+> 
+> tput sgr0 resets the colors to their default settings. This also turns off boldface (tput bold), underline, etc.
+> 
+> If you want fancy colors in your prompt, consider using something manageable:
+> 
+>   # Bash
+>   red=$(tput setaf 1)
+>   green=$(tput setaf 2)
+>   blue=$(tput setaf 4)
+>   reset=$(tput sgr0)
+>   PS1='\\\[$red\\\]\\u\\\[$reset\\\]@\\\[$green\\\]\\h\\\[$reset\\\]:\\\[$blue\\\]\\w\\\[$reset\\\]\\$ '
+> 
+> Note that we do **not** hard-code ANSI color escape sequences. Instead, we [store the output](http://bash.cumulonim.biz/BashFAQ(2f)002.html) of the tput command into variables, which are then used when $PS1 is expanded. Storing the values means we don't have to fork a tput process multiple times every time the prompt is displayed; tput is only invoked 4 times during [shell startup](http://bash.cumulonim.biz/DotFiles.html). The \\\[ and \\\] symbols allow bash to understand which parts of the prompt cause no cursor move
+
 
 
 ### Getting Help:

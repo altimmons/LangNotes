@@ -106,6 +106,7 @@ ____
 
   With links to official [Documentation](https://docs.python.org/3/library/index.html)
 
+
   -   [Built-in Functions](https://docs.python.org/3/library/functions.html)
   -   [Built-in Constants](https://docs.python.org/3/library/constants.html)
       -   [Constants added by the `site` module](https://docs.python.org/3/library/constants.html#constants-added-by-the-site-module)
@@ -124,11 +125,22 @@ ____
       -   [Generic Alias Type](https://docs.python.org/3/library/stdtypes.html#generic-alias-type)
       -   [Other Built-in Types](https://docs.python.org/3/library/stdtypes.html#other-built-in-types)
       -   [Special Attributes](https://docs.python.org/3/library/stdtypes.html#special-attributes)
+
+ Exceptions
+ _____
+ 
+
   -   [Built-in Exceptions](https://docs.python.org/3/library/exceptions.html)
       -   [Base classes](https://docs.python.org/3/library/exceptions.html#base-classes)
       -   [Concrete exceptions](https://docs.python.org/3/library/exceptions.html#concrete-exceptions)
       -   [Warnings](https://docs.python.org/3/library/exceptions.html#warnings)
       -   [Exception hierarchy](https://docs.python.org/3/library/exceptions.html#exception-hierarchy)
+
+ _____
+ Text Processing
+
+
+
   -   [Text Processing Services](https://docs.python.org/3/library/text.html)
       -   [`string` --- Common string operations](https://docs.python.org/3/library/string.html)
       -   [`re` --- Regular expression operations](https://docs.python.org/3/library/re.html)
@@ -141,6 +153,11 @@ ____
   -   [Binary Data Services](https://docs.python.org/3/library/binary.html)
       -   [`struct` --- Interpret bytes as packed binary data](https://docs.python.org/3/library/struct.html)
       -   [`codecs` --- Codec registry and base classes](https://docs.python.org/3/library/codecs.html)
+
+ ____
+ Data Types
+
+
   -   [Data Types](https://docs.python.org/3/library/datatypes.html)
       -   [`datetime` --- Basic date and time types](https://docs.python.org/3/library/datetime.html)
       -   [`zoneinfo` --- IANA time zone support](https://docs.python.org/3/library/zoneinfo.html)
@@ -157,14 +174,23 @@ ____
       -   [`reprlib` --- Alternate `repr()` implementation](https://docs.python.org/3/library/reprlib.html)
       -   [`enum` --- Support for enumerations](https://docs.python.org/3/library/enum.html)
       -   [`graphlib` --- Functionality to operate with graph-like structures](https://docs.python.org/3/library/graphlib.html)
+
+ ____
+ Numeric and Mathematical Modules
+
   -   [Numeric and Mathematical Modules](https://docs.python.org/3/library/numeric.html)
       -   [`numbers` --- Numeric abstract base classes](https://docs.python.org/3/library/numbers.html)
       -   [`math` --- Mathematical functions](https://docs.python.org/3/library/math.html)
       -   [`cmath` --- Mathematical functions for complex numbers](https://docs.python.org/3/library/cmath.html)
       -   [`decimal` --- Decimal fixed point and floating point arithmetic](https://docs.python.org/3/library/decimal.html)
       -   [`fractions` --- Rational numbers](https://docs.python.org/3/library/fractions.html)
-      -   [`random` --- Generate pseudo-random numbers](https://docs.python.org/3/library/random.html)
+      -   [`random` --- Generate pseudo-random numbers](https://docs.python.org/3/library/random.html) 
       -   [`statistics` --- Mathematical statistics functions](https://docs.python.org/3/library/statistics.html)
+
+____
+Functional Programming Modules
+
+
   -   [Functional Programming Modules](https://docs.python.org/3/library/functional.html)
       -   [`itertools` --- Functions creating iterators for efficient looping](https://docs.python.org/3/library/itertools.html)
       -   [`functools` --- Higher-order functions and operations on callable objects](https://docs.python.org/3/library/functools.html)
@@ -180,6 +206,12 @@ ____
       -   [`fnmatch` --- Unix filename pattern matching](https://docs.python.org/3/library/fnmatch.html)
       -   [`linecache` --- Random access to text lines](https://docs.python.org/3/library/linecache.html)
       -   [`shutil` --- High-level file operations](https://docs.python.org/3/library/shutil.html)
+
+ ____
+ Data Persistence
+
+
+
   -   [Data Persistence](https://docs.python.org/3/library/persistence.html)
       -   [`pickle` --- Python object serialization](https://docs.python.org/3/library/pickle.html)
       -   [`copyreg` --- Register `pickle` support functions](https://docs.python.org/3/library/copyreg.html)
@@ -187,6 +219,11 @@ ____
       -   [`marshal` --- Internal Python object serialization](https://docs.python.org/3/library/marshal.html)
       -   [`dbm` --- Interfaces to Unix "databases"](https://docs.python.org/3/library/dbm.html)
       -   [`sqlite3` --- DB-API 2.0 interface for SQLite databases](https://docs.python.org/3/library/sqlite3.html)
+
+
+ Data Compression and Archiving
+ ____
+
   -   [Data Compression and Archiving](https://docs.python.org/3/library/archiving.html)
       -   [`zlib` --- Compression compatible with **gzip**](https://docs.python.org/3/library/zlib.html)
       -   [`gzip` --- Support for **gzip** files](https://docs.python.org/3/library/gzip.html)
@@ -194,16 +231,31 @@ ____
       -   [`lzma` --- Compression using the LZMA algorithm](https://docs.python.org/3/library/lzma.html)
       -   [`zipfile` --- Work with ZIP archives](https://docs.python.org/3/library/zipfile.html)
       -   [`tarfile` --- Read and write tar archive files](https://docs.python.org/3/library/tarfile.html)
+
+ File Formats
+ ____
+
+
   -   [File Formats](https://docs.python.org/3/library/fileformats.html)
       -   [`csv` --- CSV File Reading and Writing](https://docs.python.org/3/library/csv.html)
       -   [`configparser` --- Configuration file parser](https://docs.python.org/3/library/configparser.html)
       -   [`netrc` --- netrc file processing](https://docs.python.org/3/library/netrc.html)
       -   [`xdrlib` --- Encode and decode XDR data](https://docs.python.org/3/library/xdrlib.html)
       -   [`plistlib` --- Generate and parse Apple `.plist` files](https://docs.python.org/3/library/plistlib.html)
+
+ Cryptographic Services
+ ____
+
+
   -   [Cryptographic Services](https://docs.python.org/3/library/crypto.html)
       -   [`hashlib` --- Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html)
       -   [`hmac` --- Keyed-Hashing for Message Authentication](https://docs.python.org/3/library/hmac.html)
       -   [`secrets` --- Generate secure random numbers for managing secrets](https://docs.python.org/3/library/secrets.html)
+
+
+ Generic Operating System Services
+ ____
+
   -   [Generic Operating System Services](https://docs.python.org/3/library/allos.html)
       -   [`os` --- Miscellaneous operating system interfaces](https://docs.python.org/3/library/os.html)
       -   [`io` --- Core tools for working with streams](https://docs.python.org/3/library/io.html)
@@ -221,6 +273,10 @@ ____
       -   [`platform` --- Access to underlying platform's identifying data](https://docs.python.org/3/library/platform.html)
       -   [`errno` --- Standard errno system symbols](https://docs.python.org/3/library/errno.html)
       -   [`ctypes` --- A foreign function library for Python](https://docs.python.org/3/library/ctypes.html)
+
+ Concurrent Execution
+ ____
+
   -   [Concurrent Execution](https://docs.python.org/3/library/concurrency.html)
       -   [`threading` --- Thread-based parallelism](https://docs.python.org/3/library/threading.html)
       -   [`multiprocessing` --- Process-based parallelism](https://docs.python.org/3/library/multiprocessing.html)
@@ -231,10 +287,19 @@ ____
       -   [`sched` --- Event scheduler](https://docs.python.org/3/library/sched.html)
       -   [`queue` --- A synchronized queue class](https://docs.python.org/3/library/queue.html)
       -   [`_thread` --- Low-level threading API](https://docs.python.org/3/library/_thread.html)
+
+ context?
+ ____
+
   -   [`contextvars` --- Context Variables](https://docs.python.org/3/library/contextvars.html)
       -   [Context Variables](https://docs.python.org/3/library/contextvars.html#context-variables)
       -   [Manual Context Management](https://docs.python.org/3/library/contextvars.html#manual-context-management)
       -   [asyncio support](https://docs.python.org/3/library/contextvars.html#asyncio-support)
+
+
+ Networking and Interprocess Communication]
+ ____
+ 
   -   [Networking and Interprocess Communication](https://docs.python.org/3/library/ipc.html)
       -   [`asyncio` --- Asynchronous I/O](https://docs.python.org/3/library/asyncio.html)
       -   [`socket` --- Low-level networking interface](https://docs.python.org/3/library/socket.html)
@@ -245,6 +310,11 @@ ____
       -   [`asynchat` --- Asynchronous socket command/response handler](https://docs.python.org/3/library/asynchat.html)
       -   [`signal` --- Set handlers for asynchronous events](https://docs.python.org/3/library/signal.html)
       -   [`mmap` --- Memory-mapped file support](https://docs.python.org/3/library/mmap.html)
+
+ Internet Data Handling
+ ____
+
+
   -   [Internet Data Handling](https://docs.python.org/3/library/netdata.html)
       -   [`email` --- An email and MIME handling package](https://docs.python.org/3/library/email.html)
       -   [`json` --- JSON encoder and decoder](https://docs.python.org/3/library/json.html)
@@ -256,6 +326,11 @@ ____
       -   [`binascii` --- Convert between binary and ASCII](https://docs.python.org/3/library/binascii.html)
       -   [`quopri` --- Encode and decode MIME quoted-printable data](https://docs.python.org/3/library/quopri.html)
       -   [`uu` --- Encode and decode uuencode files](https://docs.python.org/3/library/uu.html)
+
+ Structured Markup Processing Tools
+ ____
+
+
   -   [Structured Markup Processing Tools](https://docs.python.org/3/library/markup.html)
       -   [`html` --- HyperText Markup Language support](https://docs.python.org/3/library/html.html)
       -   [`html.parser` --- Simple HTML and XHTML parser](https://docs.python.org/3/library/html.parser.html)
@@ -270,6 +345,12 @@ ____
       -   [`xml.sax.saxutils` --- SAX Utilities](https://docs.python.org/3/library/xml.sax.utils.html)
       -   [`xml.sax.xmlreader` --- Interface for XML parsers](https://docs.python.org/3/library/xml.sax.reader.html)
       -   [`xml.parsers.expat` --- Fast XML parsing using Expat](https://docs.python.org/3/library/pyexpat.html)
+
+
+ Internet Protocols and Support
+ ____
+
+
   -   [Internet Protocols and Support](https://docs.python.org/3/library/internet.html)
       -   [`webbrowser` --- Convenient Web-browser controller](https://docs.python.org/3/library/webbrowser.html)
       -   [`cgi` --- Common Gateway Interface support](https://docs.python.org/3/library/cgi.html)
@@ -299,6 +380,10 @@ ____
       -   [`xmlrpc.client` --- XML-RPC client access](https://docs.python.org/3/library/xmlrpc.client.html)
       -   [`xmlrpc.server` --- Basic XML-RPC servers](https://docs.python.org/3/library/xmlrpc.server.html)
       -   [`ipaddress` --- IPv4/IPv6 manipulation library](https://docs.python.org/3/library/ipaddress.html)
+
+ Multimedia
+ ____
+
   -   [Multimedia Services](https://docs.python.org/3/library/mm.html)
       -   [`audioop` --- Manipulate raw audio data](https://docs.python.org/3/library/audioop.html)
       -   [`aifc` --- Read and write AIFF and AIFC files](https://docs.python.org/3/library/aifc.html)
@@ -309,13 +394,27 @@ ____
       -   [`imghdr` --- Determine the type of an image](https://docs.python.org/3/library/imghdr.html)
       -   [`sndhdr` --- Determine type of sound file](https://docs.python.org/3/library/sndhdr.html)
       -   [`ossaudiodev` --- Access to OSS-compatible audio devices](https://docs.python.org/3/library/ossaudiodev.html)
+
+ Internationalization
+ ____
+
+
   -   [Internationalization](https://docs.python.org/3/library/i18n.html)
       -   [`gettext` --- Multilingual internationalization services](https://docs.python.org/3/library/gettext.html)
       -   [`locale` --- Internationalization services](https://docs.python.org/3/library/locale.html)
+
+ Program Frameworks
+ ____
+
+
   -   [Program Frameworks](https://docs.python.org/3/library/frameworks.html)
       -   [`turtle` --- Turtle graphics](https://docs.python.org/3/library/turtle.html)
       -   [`cmd` --- Support for line-oriented command interpreters](https://docs.python.org/3/library/cmd.html)
       -   [`shlex` --- Simple lexical analysis](https://docs.python.org/3/library/shlex.html)
+
+ Graphical User Interfaces with Tk
+  _____
+
   -   [Graphical User Interfaces with Tk](https://docs.python.org/3/library/tk.html)
       -   [`tkinter` --- Python interface to Tcl/Tk](https://docs.python.org/3/library/tkinter.html)
       -   [`tkinter.colorchooser` --- Color choosing dialog](https://docs.python.org/3/library/tkinter.colorchooser.html)
@@ -345,6 +444,10 @@ ____
       -   [`test.support.socket_helper` --- Utilities for socket tests](https://docs.python.org/3/library/test.html#module-test.support.socket_helper)
       -   [`test.support.script_helper` --- Utilities for the Python execution tests](https://docs.python.org/3/library/test.html#module-test.support.script_helper)
       -   [`test.support.bytecode_helper` --- Support tools for testing correct bytecode generation](https://docs.python.org/3/library/test.html#module-test.support.bytecode_helper)
+
+ Debugging and Profiling
+ ____
+
   -   [Debugging and Profiling](https://docs.python.org/3/library/debug.html)
       -   [Audit events table](https://docs.python.org/3/library/audit_events.html)
       -   [`bdb` --- Debugger framework](https://docs.python.org/3/library/bdb.html)
@@ -354,11 +457,22 @@ ____
       -   [`timeit` --- Measure execution time of small code snippets](https://docs.python.org/3/library/timeit.html)
       -   [`trace` --- Trace or track Python statement execution](https://docs.python.org/3/library/trace.html)
       -   [`tracemalloc` --- Trace memory allocations](https://docs.python.org/3/library/tracemalloc.html)
+
+Software Packaging and Distribution'
+____
+
+
   -   [Software Packaging and Distribution](https://docs.python.org/3/library/distribution.html)
       -   [`distutils` --- Building and installing Python modules](https://docs.python.org/3/library/distutils.html)
       -   [`ensurepip` --- Bootstrapping the `pip` installer](https://docs.python.org/3/library/ensurepip.html)
       -   [`venv` --- Creation of virtual environments](https://docs.python.org/3/library/venv.html)
       -   [`zipapp` --- Manage executable Python zip archives](https://docs.python.org/3/library/zipapp.html)
+
+ Python Runtime Services
+ ____
+
+
+
   -   [Python Runtime Services](https://docs.python.org/3/library/python.html)
       -   [`sys` --- System-specific parameters and functions](https://docs.python.org/3/library/sys.html)
       -   [`sysconfig` --- Provide access to Python's configuration information](https://docs.python.org/3/library/sysconfig.html)
@@ -384,6 +498,13 @@ ____
       -   [`runpy` --- Locating and executing Python modules](https://docs.python.org/3/library/runpy.html)
       -   [`importlib` --- The implementation of `import`](https://docs.python.org/3/library/importlib.html)
       -   [Using `importlib.metadata`](https://docs.python.org/3/library/importlib.metadata.html)
+
+
+ 
+ Python Language Services
+ ____
+
+
   -   [Python Language Services](https://docs.python.org/3/library/language.html)
       -   [`parser` --- Access Python parse trees](https://docs.python.org/3/library/parser.html)
       -   [`ast` --- Abstract Syntax Trees](https://docs.python.org/3/library/ast.html)
@@ -405,6 +526,9 @@ ____
       -   [`msvcrt` --- Useful routines from the MS VC++ runtime](https://docs.python.org/3/library/msvcrt.html)
       -   [`winreg` --- Windows registry access](https://docs.python.org/3/library/winreg.html)
       -   [`winsound` --- Sound-playing interface for Windows](https://docs.python.org/3/library/winsound.html)
+
+Unix Specific Services
+
   -   [Unix Specific Services](https://docs.python.org/3/library/unix.html)
       -   [`posix` --- The most common POSIX system calls](https://docs.python.org/3/library/posix.html)
       -   [`pwd` --- The password database](https://docs.python.org/3/library/pwd.html)
@@ -419,8 +543,12 @@ ____
       -   [`resource` --- Resource usage information](https://docs.python.org/3/library/resource.html)
       -   [`nis` --- Interface to Sun's NIS (Yellow Pages)](https://docs.python.org/3/library/nis.html)
       -   [`syslog` --- Unix syslog library routines](https://docs.python.org/3/library/syslog.html)
+
+ Superseded Modules     
   -   [Superseded Modules](https://docs.python.org/3/library/superseded.html)
       -   [`optparse` --- Parser for command line options](https://docs.python.org/3/library/optparse.html)
+      
+Undocumented
       -   [`imp` --- Access the import internals](https://docs.python.org/3/library/imp.html)
   -   [Undocumented Modules](https://docs.python.org/3/library/undoc.html)
       -   - **____** - Platform specific modules
@@ -2426,14 +2554,107 @@ ____
 
  ### A note on comparison
 
- Mutable objects will be un-equal unless they are the same object, because comparisons are based upon a hash.
-
- Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
-
+ !!!Warning WARNING Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
+    Mutable objects will be un-equal unless they are the same object, because comparisons are based upon a hash.
 
 
 
  ### Strings - see following
+
+
+## Math
+
+### Random Values
+
+ -   [`random` --- Generate pseudo-random numbers](https://docs.python.org/3/library/random.html)
+
+ 
+
+The doc has this warning: The pseudo-random generators of this module should not be used for security purposes. For security or cryptographic uses, see the secrets module. 
+
+
+Some methods:
+
+random.randrange(0,100)
+
+rand_list = random.sample(range(10000), 8)
+
+from random import randint
+
+
+!!!warning WARNING: random values are inclusive at the top end. 
+    
+    A fact that has bitten me more than a few times...
+
+    ```py
+    a, b = randint(0, c), range(10)
+    for _ in range(1000):  #just so it terminates eventually.
+        a, b = randint(0, c), range(10)
+        if not (a in b):
+            print(f"randint={a}, and {a} in {b}: {a in b}", b)
+            break
+    ```
+
+
+
+ ```python
+ random_num = random.randrange(0,100)
+
+ while (random_num != 15):
+    print(random_num)
+    random_num = random.randrange(0,100)
+
+ y = 0  #MIT Class Example
+ x = 3
+ itersLeft  = x
+ while(itersLeft>0):
+    y = y + x
+    itersLeft = itersLeft - 1
+    print('y =', y, ', itersLeft=', itersLeft)
+ ```
+
+
+It has these submodules (?)
+'BPF',
+ 'LOG4',
+ 'NV_MAGICCONST',
+ 'RECIP_BPF',
+ 'Random',
+ 'SG_MAGICCONST',
+ 'SystemRandom',
+ 'TWOPI',
+ '_Sequence',
+ '_Set',
+
+And these methods:
+
+ 'betavariate',
+ 'choice',
+ 'choices',
+ 'expovariate',
+ 'gammavariate',
+ 'gauss',
+ 'getrandbits',
+ 'getstate',
+ 'lognormvariate',
+ 'normalvariate',
+ 'paretovariate',
+ 'randbytes',
+ 'randint',
+ 'random',
+ 'randrange',
+ 'sample',
+ 'seed',
+ 'setstate',
+ 'shuffle',
+ 'triangular',
+ 'uniform',
+ 'vonmisesvariate',
+ 'weibullvariate'
+
+
+### itertools
+
 
 ____
 ____
