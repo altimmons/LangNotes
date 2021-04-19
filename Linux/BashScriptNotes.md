@@ -2,7 +2,7 @@
 
 ----
 ----
-# - Shell Scripting Intro
+# Shell Scripting Intro
 ----
 ----
 
@@ -10,6 +10,253 @@
 
 [Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html)
 
+[The Advanced Bash Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
+
+[SHELLdorado - Links](http://www.shelldorado.com/links/)
+
+[Bash Commands Linuxize](https://linuxize.com/tags/terminal/)
+
+- [GNU Bash Manual](https://www.gnu.org/manual/) - gzip archives.
+- [Documentation and Examples](http://www.bashcookbook.com/bashinfo/) - bash cook book.
+- [bash tips](https://www.ukuug.org/events/linux2003/papers/bash_tips/) - Configure the bash terminal.
+- [Bash pitfalls](http://mywiki.wooledge.org/BashPitfalls) - GreyCat's wiki.
+
+- [Bash Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#SEC_Contents)
+
+
+#  http://tldp.org/LDP/abs/html/index.html
+#  http://www.caliban.org/bash
+#  http://www.shelldorado.com/scripts/categories.html
+#  http://www.dotfiles.org
+
+> ![](http://www.shelldorado.com/images/pixel.gif)  ![](http://www.shelldorado.com/images/pixel.gif)  
+> The location of these links' source page is [http://www.shelldorado.com/links/](http://www.shelldorado.com/links/)
+> 
+> Script Archives
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [UNIX Power Tools Book](http://www.amazon.com/exec/obidos/ASIN/1565922603/heinersshelldora/) (_Jerry D. Peek_, _Tim O'Reilly_, _Mike Loukides_) - Excellent book about UNIX shell scripting with many examples
+>     -   [Archive of all shell scripts (684 KB)](ftp://ftp.ora.com/published/oreilly/power_tools/unix/upt9707.tgz)
+> -   [John Chamber's Script directory](http://trillian.mit.edu/~jc/sh/) (_John Chambers_) - Large collection of more than 300 good shell scripts, well commented
+>     -   [Home directory](http://trillian.mit.edu/~jc/)
+> -   [ftp.armory.com](ftp://ftp.armory.com./pub/scripts/) (_John H. DuBois III_) - Archive of more than 100 scripts. They tend to be large, but well commented. Some are specific to the SCO UNIX operating system
+>     -   [Short descripton of each script](http://www.armory.com/~ftp/)
+> -   [Steve Kinzler's Home Directory](http://www.cs.indiana.edu/hyplan/kinzler/home.html) (_Steve Kinzler_) - more than 180 scripts (shell and perl) simplifying web usage, administration, configuration
+> -   [Carlos' Scripts](http://cgd.sdf-eu.org/a_scripts.html) (_Carlos J. G. Duarte_) - more than 220 useful scripts (shell, awk, perl)
+>     -   [Libraries (awk, m4, perl, sh, ...)](http://cgd.sdf-eu.org/a_libs.html)
+>     -   [many templates (awk, script, c, ...)](http://cgd.sdf-eu.org/a_templates.html)
+> -   [GNU shtool](http://www.gnu.org/software/shtool/) (_Ralf S. Engelschall_) - a collection of useful script functionality (i.e. for software installation) in one script
+>     -   [shtool download directory](ftp://ftp.gnu.org/gnu/shtool/)
+> -   [Portable Shell Programming: An Extensive Collection of Bourne Shell Examples](http://www.amazon.com/exec/obidos/ASIN/0134514947/heinersshelldora) (_Bruce Blinn_)
+>     -   [Examples from the book (28 KB)](ftp://ftp.prenhall.com/pub/ptr/hewlett_packard_professional_books.w-064/blinn/port.sh/shbook.tar.Z)
+> -   [Unix shell programming notes](http://shell.cfajohnson.com/) (_Chris F.A. Johnson_) - Shell scripts, articles and libraries, e.g. for date manipulation or array handling
+>     -   [Date functions](http://shell.cfajohnson.com/arrays/)
+>     -   [Bash array functions](http://shell.cfajohnson.com/arrays/)
+> -   [Linux / Unix Scripts](http://www.pixelbeat.org/scripts/) (_PÃ¡draig Brady_) - Collection of miscellaneous scripts
+>     -   [pixelb / scripts github page](https://github.com/pixelb/scripts)
+> -   [The tcshrc Project Page](http://sourceforge.net/projects/tcshrc/) (_Simos Xenitellis_) - a set of advanced startup scripts for the TCSH
+> -   [Linux shell scripts, Bash scripting, shell programming](http://www.comp.eonworks.com/scripts/scripts.html) (_Dawid Michalczyk_) - More than 30 shell scripts for different purposes, some of them BASH specific
+> 
+> Sophisticated Script Examples
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [\[dilbert.sh\] CSE80 -- Lecture 4, Apr 25 -- An Example of Shell Script](http://cseweb.ucsd.edu/~bsy/cse80/lec4/script.html) (_Bennet Yee_) - Extensively explained example script getting the daily "Dilbert" comic via the Web
+> -   [ccirc 2.x](http://www.cus.org.uk/~ccooke/ccirc2/) (_Charles Cooke_) - IRC client written in KSH scripts
+> 
+> Shell Utilities
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [The GNU Netcat -- Official homepage](http://netcat.sourceforge.net/download.php) - GNU Reimplementation of the "netcat" network utility program
+> -   [GNU wget - the noninteractive download utility](http://www.gnu.org/software/wget/) (_Hrvoje Niksic_) - may be used to download files or web pages from scripts. If you are using Linux, you may already have it in /usr/bin. Solaris 9 users should search in /usr/sfw/bin
+>     -   [GNU Wget Manual](http://www.gnu.org/software/wget/manual/wget.html)
+>     -   [wget download directory](ftp://ftp.gnu.org/pub/gnu/wget)
+> -   [ShellCheck source code, written in Haskell](https://github.com/koalaman/shellcheck) (_Vidar Holen_) - Static analysis and linting (problem checking) tool for sh / bash scripts
+>     -   [ShellCheck online shell script analyzer](http://www.shellcheck.net/)
+> -   [ShellCheck source code, written in Haskell](https://github.com/koalaman/shellcheck) (_Vidar Holen_) - Static analysis and linting (problem checking) tool for sh / bash scripts
+>     -   [ShellCheck online shell script analyzer](http://www.shellcheck.net/)
+> -   [KSH debugger](ftp://ftp.ora.com/pub/examples/nutshell/ksh/ksh.tar.Z) (_Bill Rosenblatt_) - from the book "Learning the Korn Shell" by Bill Rosenblatt. Written in KSH
+>     -   [Learning the Korn Shell (Book)](http://www.amazon.com/exec/obidos/ASIN/1565920546/heinersshelldora/)
+> -   [UNIX Guru Universe](http://www.ugu.com/) (_Kirk Waingrow_) - many UNIX related programs, some of them are scripts
+>     -   [Shell Software - some shell utility programs written in C](http://www.ugu.com/sui/ugu/show?I=software.shell&F=1111111111&G=Y)
+> -   [shc Shell Script Compiler project page](https://github.com/neurobin/shc) (_Francisco Javier Rosales Garcia_, _Jahidul Hamid_) - Converts simple shell scripts to C code, which can be compiled afterwards
+>     -   [release.tar.gz (118 KB)](https://github.com/neurobin/shc/archive/release.tar.gz)
+> -   [UNIX Guru Universe](http://www.ugu.com/) (_Kirk Waingrow_) - many UNIX related programs, some of them are scripts
+>     -   [Shell Software - some shell utility programs written in C](http://www.ugu.com/sui/ugu/show?I=software.shell&F=1111111111&G=Y)
+> -   [pipe\_scripting](http://pobox.com/~oleg/ftp/Communications.html#sh-agents) (_Oleg Kiselyov_) - A tool written in C turning "...any UNIX-interactive application into a server...". I recommend "netcat" for this purpose
+> -   [Autoconf](http://www.gnu.org/software/autoconf/) - "autoconf" is the system that creates the common "configure" installation and configuration scripts based on M4 macros and shell code. The manual contains a chapter dedicated to portable shell programming, listing many lesser known quirks of different shells on different operating systems
+>     -   [autoconf - Portable Shell Programming](http://www.gnu.org/software/autoconf/manual/html_node/Portable-Shell.html)
+> 
+> Shell Links
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Softpanorama Virtual Library: Open Source Shells Webliography](http://www.softpanorama.org/Scripting/shells.shtml) (_Nikolai Bezroukov_) - a fairly comprehensive collection of shell scripting links. A little hard to read because of large quoted article excerpts
+> -   [www.kornshell.com](http://www.kornshell.com) (_David G. Korn_) - Links to software, documentation, web-resources and books on ksh and ksh93
+> -   [Korn Shell Web (kshWeb)](http://dfrench.tripod.com/kshweb.html) (_Dana French_) - KSH scripts and the "Shell Curses", a curses-like library for korn shell programmers
+> 
+> Tutorials
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Advanced BASH Scripting HOWTO (HTML, current version)](http://www.tldp.org/LDP/abs/html/) (_Mendel Leo Cooper_) - Excellent, comprehensive introduction to BASH scripting. Many examples. Unfortunately BASH specific parts are not indicated explicitly
+>     -   [Advanced Bash Scripting Guide (Paperback book)](http://www.amazon.com/exec/obidos/ASIN/143575218X/heinersshelldora)
+>     -   [Advanced BASH Scripting HOWTO (latest version) (tar.bz2)](http://bash.webofcrafts.net/abs-guide-latest.tar.bz2)
+> -   [BASH Frequently Asked Questions](http://mywiki.wooledge.org/BashFAQ) - Answers to frequently asked BASH questions, but most also apply to other Bourne-Shell compatible shells. This very helpful document is frequently updated by the users of the #BASH channel on irc.freenode.org.
+> -   [An introduction to the UNIX Shell](http://rhols66.adsl.netsonic.fi/era/unix/shell.html) (_Stephen R. Bourne_) - Introduction to the Bourne shell by its inventor
+>     -   [text version](http://www.softlab.ece.ntua.gr/facilities/documentation/unix/docs/sh.txt)
+>     -   [PostScript (95 kb)](http://www.softlab.ece.ntua.gr/facilities/documentation/unix/docs/sh.ps)
+> -   [The Grymoire - home for UNIX wizards](http://www.grymoire.com/Unix/index.html) (_Bruce Barnett_) - Excellent resource for UNIX related articles about the shell, awk, sed and more
+>     -   [Sh](http://www.grymoire.com/Unix/Sh.html)
+> -   [A User's Guide to the Z-Shell](http://zsh.sourceforge.net/Guide/zshguide.html) (_Peter Stephenson_) - A very extensive tutorial to the ZSH
+> -   [Bash by example, Part 1](http://www.ibm.com/developerworks/linux/library/l-bash/index.html) (_Daniel Robbins_) - Good, medium-sized BASH tutorial
+>     -   [Bash by example, Part 2](http://www.ibm.com/developerworks/linux/library/l-bash2/index.html)
+>     -   [Bash by example, Part 3](http://www.ibm.com/developerworks/library/l-bash3/index.html)
+> -   [Bourne Shell Programming](http://sayle.net/book/) (_Robert P. Sayle_) - many practical examples, not only for system administrators
+> -   [Unix shell scripting with sh/ksh](http://www.dartmouth.edu/~rc/classes/ksh/) (_Richard Brittain_) - Medium sized introduction to sh/ksh scripting
+> -   [Ryan's Bash Scripting Tutorial](http://ryanstutorials.net/bash-scripting-tutorial/) (_Ryan Chadwick_) - Introduction to the basic BASH scripting elements. With excercises. Describes the use of tput(1) for formatting script output.
+> -   [BashGuide](http://mywiki.wooledge.org/BashGuide) (_Greg Wooledge_, _Maarten Billemont_) - BASH tutorial, provided as a Wiki
+> -   [Shell Scripts and Awk on the CUED Teaching System](http://www-h.eng.cam.ac.uk/help/tpl/unix/scripts/scripts.html) (_Tim P. Love_) - Short introduction into shell programming for UNIX beginners. Note that the referenced shell is the KornShell.
+> -   [Bourne Shell Programming](http://www.shellscript.sh/) - Easy Bourne shell tutorial
+> -   [Book: A Scientist's and Engineer's Guide to Workstations and Supercomputers: Coping with Unix, RISC, Vectors, and Programming](http://www.amazon.com/exec/obidos/ASIN/0471532711/heinersshelldora) (_Rubin H. Landau_, _Melanie Johnson_, _Jon Maestri_) - A very gentle approach to lerning UNIX, in many small steps, starting with "Logging In". Based on a book. The "interactive" version even has a terminal window you can enter commands in (did not work for me)
+> 
+> References
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Shell Command Language Index](http://pubs.opengroup.org/onlinepubs/007908799/xcu/shellix.html) (_The Open Group_) - Excellent, detailed and comprehensive reference for the Korn Shell (part of the Single UNIX(R) Specification)
+> -   [Bash Reference Manual](http://tiswww.case.edu/php/chet/bash/bashref.html) (_Chet Ramey_, _Brian Fox_) - Definite reference for the "Bourne-Again SHell" (BASH)
+> -   [Desktop KornShell User's Guide](http://www.oracle.com/technetwork/indexes/documentation/index.html) (_Sun Microsystems_) - Describes the dtksh (a ksh93 with Motif extension)
+> -   [User Commands - ksh](http://www.oracle.com/technetwork/indexes/documentation/index.html) (_Sun Microsystems_) - ksh manual page for Solaris 9
+> -   [sh manual page](http://www.neosoft.com/neosoft/man/sh.1.html) (_NeoSoft_)
+>     -   [csh](http://www.neosoft.com/neosoft/man/csh.1.html)
+>     -   [(pd)ksh](http://www.neosoft.com/neosoft/man/ksh.1.html)
+>     -   [bash](http://www.neosoft.com/neosoft/man/bash.1.html)
+>     -   [zsh](http://www.neosoft.com/neosoft/man/zsh.1.html)
+>     -   [tcsh](http://www.neosoft.com/neosoft/man/tcsh.1.html)
+> 
+> Articles
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Unix Shell Patterns](http://c2.com/cgi/wiki?UnixShellPatterns) (_James Coplien_, _Alan Robertson_, _Gregg Wonderly_) - A collection of "...frequent Shell programming problems that often are resolved only with expert insight"
+> -   [A survey of UNIX shells](http://web.archive.org/web/20041127042140/http://www.computerbits.com/archive/1997/1100/lnx9711.html) (_Terry Griffin_) - Shortly describes the differences of the most popular shells
+> -   [UNIX SHELL Quote Tutorial](http://www.grymoire.com/Unix/Quote.html) (_Bruce Barnett_) - Excellent resource for UNIX related articles about the shell, awk, sed and more
+>     -   [Regular Expressions](http://www.grymoire.com/Unix/Regular.html)
+>     -   [Top Ten Reasons not to use the C shell](http://www.grymoire.com/Unix/CshTop10.txt)
+> -   [A Guide to Unix Shell Quoting](http://rg1-teaching.mpi-inf.mpg.de/unixffb-ss98/quoting-guide.html) (_Uwe Waldmann_) - Explanation of the different type of quoting: \\ '...',"..."
+> -   [SunWorld "Unix 101" Articles (UGU Links)](http://www.ugu.com/sui/ugu/show?I=help.articles.unix101&F=1111111110&G=Y) (_Mo Budlong_) - Good shell script related articles. Take some time to browse them!
+>     -   [Command line psychology 101 - How the shell program interprets commands](http://www.itworld.com/swol-0298-unix101)
+>     -   [Shell Programming and simple menus (part 1)](http://www.itworld.com/swol-0797-unix101)
+>     -   [Shell programming and simple menus (part 2)](http://www.itworld.com/swol-0897-unix101)
+>     -   [Using history and command line editing](http://www.itworld.com/swol-0198-unix101)
+> -   [Sending email with attachments on UNIX systems](http://www.panix.com/~kylet/unix-att.html) - describes how to send email from shell scripts using external programs like "metamail", "mpack", "mutt"
+>     -   [Sending files as mail attachments](http://www.shelldorado.com/articles/mailattachments.html)
+> -   [Bash Features](http://web.mit.edu/gnu/doc/html/features_toc.html) (_Chet Ramey_, _Brian Fox_) - Detailed description of the BASH in comparison with Bourne Shell, C-Shell and Korn Shell
+> -   [autoconf - Portable Shell Programming](http://www.gnu.org/software/autoconf/manual/html_node/Portable-Shell.html) - "autoconf" is the system that creates the common "configure" installation and configuration scripts based on M4 macros and shell code. The manual contains a chapter dedicated to portable shell programming, listing many lesser known quirks of different shells on different operating systems
+> -   [Shell Script Porting Guidelines](http://www.raycosoft.com/default.php) (_Raycosoft_) - highlights some aspects of portable (ksh) shell scripts
+> -   [Toolman's ;login: articles](http://www.cs.duke.edu/~des/toolman/) (_Daniel E. Singer_) - Shell related articles for the ;login: magazine
+> -   [Useless Use of Cat Award](http://www.iki.fi/era/unix/award.html) (_Era Eriksson_) - Description of the "award" handed out by Randal L. Schwartz in comp.unix.shell
+> -   [Shell corner (unixreview.com)](http://www.unixreview.com/columns/schaefer/) (_Ed Schaefer_) - Shell scripts of different usefulness, with helpful descriptions
+> -   [Consultix Shell Quoting Guidelines](http://www.consultix-inc.com/quoting1_2.txt) (_Tim Maher_) - Describes the usage of single quotes (''), quotation marks (""), and the backslash character '\\'
+> -   [lintsh](http://code.dogmap.org./lintsh/) (_Paul Jarc_) - Describes unportable shell programming constructs
+> -   [The Traditional Bourne Shell Family](http://www.in-ulm.de/~mascheck/bourne/) (_Sven Mascheck_) - Lists differences of Bourne Shell dialects on many UNIX platforms; helps keeping scripts portable
+> -   [Tower Floor -- Shell Scripts](http://www.sct.gu.edu.au/~anthony/info/shell/) (_Anthony Thyssen_) - Some articles and tips about shell scripting, AWK, sed, ...
+> -   [Answerman - Help, I've Fallen](http://www.daemonnews.org) (_Gary Kline_, _David Leonard_, _Dirk Myers_) - short, but nice article describing the very first steps to the first own shell scripts
+> -   [Using Bash shell scripts for function testing](http://www.ibm.com/developerworks/linux/library/l-bashfv/index.html) (_Angel Rivers_) - Describes how to use BASH scripts for testing programs
+> -   [Tip: Prompt magic](http://www.ibm.com/developerworks/linux/library/l-tip-prompt/index.html?dwzone=linux) (_Daniel Robbins_) - Short description of how to customize (e.g. colour) the BASH prompt, and set the xterm title
+> 
+> Downloads
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Metalab shell binaries for Linux](http://www.ibiblio.org/pub/Linux/system/shells/!INDEX.short.html) (_Metalab_) - precompiled binaries for the most common shells, including ash, bash, csh, pdksh, rc, scsh, tcsh, zsh
+> -   [Shell source codes](ftp://ftp.funet.fi/pub/unix/shells/) (_FUNET Archive_) - Source code for the following shells: ash, bash, es, esh, ksh, rc, ssh, tcsh, zsh. Some versions (i.e. pdksh) are rather old
+> -   [ES - Extensible Shell](ftp://ftp.sys.utoronto.ca/pub/es/) (_Soren Dayton_, _Paul Haahr_, _Byron Rakitzis_) - A shell derived from the RC shell (the standard Plan9 shell)
+> -   [RC - shell (re-implementation)](ftp://ftp.white.toronto.edu/pub/rc/) (_Byron Rakitzis_, _Tim Goodwin_) - The default shell of the Plan9 operating system
+> 
+> UNIX Tools
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Awk -- A Pattern Scanning and Processing Language](http://www.softlab.ece.ntua.gr/facilities/documentation/unix/docs/awk.txt) (_Alfred V. Aho_, _Brian W. Kernighan_, _Peter J. Weinberger_) - Introduction to the language by it's authors
+> -   [Make -- A Program for Maintaining Computer Programs](http://www.softlab.ece.ntua.gr/facilities/documentation/unix/docs/make.txt) (_Stuard I. Feldman_)
+> -   [Sed](http://www.grymoire.com/Unix/Sed.html) (_Bruce Barnett_) - Excellent resource for UNIX related articles about the shell, awk, sed and more
+>     -   [Awk](http://www.grymoire.com/Unix/Awk.html)
+> 
+> UNIX Tools (commercial)
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Cactus Utilities - Shell-Lock](http://www.cactus.com/products/cactus/shell-lock.html) (_Lone Star Software Corporation_) - Commercial shell script compiler
+> -   [CCsh, the Bourne Shell Compiler](http://www.comeaucomputing.com) (_Comeau Computing_)
+> 
+> UNIX Tools for Windows
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [U/WIN](http://www.research.att.com/software_tools) (_David G. Korn_) - UNIX environment for Windows with many tools, including an implementation of the Korn Shell
+> -   [Cygwin](http://www.sourceware.org/cygwin/) (_Cygwin Solutions_) - GNU development tools for Windows, including UNIX commands and shells like BASH
+> -   [djgpp](http://www.delorie.com/djgpp/) (_DJ Delorie_) - Port of the GNU C compiler to Windows
+> -   [GNU utilities for Win32](http://www.wzw.tum.de/public-html/syring/win32/UnxUtils.html) (_Karl M. Syring_) - Ports of some UNIX utilities for WIndows; most notably ZSH
+> 
+> UNIX Tools for Windows (commercial)
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Hamilton C shell](http://www.hamiltonlabs.com) (_Nicole Ashley Hamilton_) - An implementation of the CSH for Windows. A free demo version is available
+> -   [UNIX Shell for Windows - Installer binary](http://www.janotech.com/setup.exe) (_Janotech_) - A Unix shell environment, a graphical command line shell, and a C programming library for writing shell scripts for MS Windows
+> 
+> UNIX and Shell Frequently Asked Questions (FAQ)
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Csh Programming Considered Harmful](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/) (_Tom Christiansen_) - Famous article with reasons NOT to program using CSH
+> -   [KSH-93 Frequently Asked Questions](http://www.kornshell.com/doc/faq.html) (_David G. Korn_) - Focuses on the newest version of the Korn Shell language
+> -   [UNIX shell differences and how to change your shell](http://www.faqs.org/faqs/unix-faq/shell/shell-differences/) (_Brian Blackmore_) - A brief history of UNIX shells, shell feature comparison, and a small chapter on "how to change your shell"
+> -   [comp.unix.shell FAQ (HTML version)](http://cfajohnson.com/shell/cus-faq.html) (_Joe Halpin_) - Many answers to shell script related questions. Compared to the Unix FAQ the focus is more on shell scripts than on Unix
+> -   [Unix - Frequently Asked Questions (HTML version)](http://faqs.cs.uu.nl/na-bng/comp.unix.questions.html) (_Ted Timar_)
+> -   [comp.lang.awk FAQ](http://www.faqs.org/faqs/computer-lang/awk/faq/) (_Russell Schulz_) - Describes how to get AWK, online-resources, and answers some actual AWK questions
+> -   [comp.unix.shell](news:comp.unix.shell) - This newsgroup is a good place to pose shell questions. Almost all questions are answered
+> -   [Internet FAQ Archives](http://www.faqs.org/faqs/) (_Internet FAQ Consortium_) - Official server for Frequently Asked Questions (FAQs)
+> 
+> Books
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [The New KornShell Command And Programming Language](http://www.amazon.com/exec/obidos/ASIN/0131827006/heinersshelldora) (_David G. Korn_, _Morris I.Bolsky_) - The definite book on ksh93. Sometimes more a reference than a tutorial
+>     -   [Examples from the book](http://www.kornshell.com/examples/)
+> -   [Shell Scripting Recipes](http://www.amazon.com/exec/obidos/ASIN/1590594711/heinersshelldora) (_Chris F.A. Johnson_) - A book full of interesting and ready-to-use shell scripts for learning the shell (or just using the scripts)
+> -   [Wicked Cool Shell Scripts: 101 Scripts for Linux, OS X, and UNIX Systems, 2nd Edition](https://www.amazon.com/Wicked-Cool-Shell-Scripts-Systems/dp/1593276028/heinersshelldora/) (_Dave Taylor_, _Brandon Perry_)
+> -   [Unix Shell Programming](http://www.amazon.com/exec/obidos/ASIN/067248448X/heinersshelldora) (_Stephen G. Kochan_, _Patrick H. Wood_)
+> -   [Learning the Korn Shell](http://www.amazon.com/exec/obidos/ASIN/1565920546/heinersshelldora) (_Bill Rosenblatt_)
+> -   [Learning the Bash Shell](http://www.amazon.com/exec/obidos/ASIN/1565923472/heinersshelldora) (_Bill Rosenblatt_)
+> -   [Portable Shell Programming: An Extensive Collection of Bourne Shell Examples](http://www.amazon.com/exec/obidos/ASIN/0134514947/heinersshelldora) (_Bruce Blinn_)
+>     -   [Examples from the book (28 KB)](ftp://ftp.prenhall.com/pub/ptr/hewlett_packard_professional_books.w-064/blinn/port.sh/shbook.tar.Z)
+> -   [The Korn Shell: User and Programming Manual](http://www.amazon.com/exec/obidos/ASIN/0201176882/heinersshelldora) (_Anatole Olczak_)
+> -   [Hands-On KornShell 93 Programming](http://www.amazon.com/exec/obidos/ASIN/020131018X/heinersshelldora) (_Barry Rosenberg_)
+> -   [Kornshell Programming Tutorial](http://www.amazon.com/exec/obidos/ASIN/020156324X/heinersshelldora) (_Barry Rosenberg_)
+> -   [Teach Yourself Shell Programming in 24 Hours](http://www.amazon.com/exec/obidos/ASIN/0672314819/heinersshelldora) (_Sriranga R. Veeraraghavan_)
+> -   [The New KornShell Command And Programming Language](http://www.amazon.com/exec/obidos/ASIN/0131827006/heinersshelldora) (_David G. Korn_, _Morris I.Bolsky_) - The definite book on ksh93. Sometimes more a reference than a tutorial
+>     -   [Examples from the book](http://www.kornshell.com/examples/)
+> -   [An Introduction to Shell Scripting](http://www.slashetcbooks.co.uk/itss.html) (_Glen Smith_) - Teaches how to write shell scripts with many examples that are explained in much detail. Good book for beginners
+>     -   [An Introduction to Shell Scripting](http://www.amazon.co.uk/exec/obidos/ASIN/095440100X)
+> -   [Universal Command Guide: For Operating Systems](http://www.amazon.com/exec/obidos/ASIN/0764548336/heinersshelldora/) (_Guy Lotgering_) - A comprehensive cross-reference of UNIX commands and their options
+> -   [UNIX Shells by Example (3rd edition)](http://www.amazon.com/exec/obidos/ASIN/013066538X/heinersshelldora) (_Ellie Quigley_)
+> -   [From Bash to Z Shell](http://www.amazon.com/exec/obidos/ASIN/1590593766/heinersshelldora) (_Jerry D. Peek_, _Peter Stephenson_, _Oliver Kiddle_) - In addition to a basic introduction to shells, the book also covers less well documented parts of the shells, e.g customizing the prompt, binding keys, (tab-) completion (including writing them), writing editor commands, and others
+> -   [Advanced Bash Scripting Guide (Paperback book)](http://www.amazon.com/exec/obidos/ASIN/143575218X/heinersshelldora) (_Mendel Leo Cooper_) - Excellent, comprehensive introduction to BASH scripting. Many examples. Unfortunately BASH specific parts are not indicated explicitly
+> 
+> Other Shells
+> 
+> [Top](http://www.shelldorado.com/links/#top)
+> 
+> -   [Z shell](http://dotsrc.org/) (_SunSITE Denmark_) - ZSH links, documentation, FAQs
+>     -   [Z-Shell Frequently-Asked Questions](http://zsh.sourceforge.net/FAQ/)
+> -   [TCSH(1) Manual Page](http://www.kitebird.com/csh-tcsh-book/tcsh.html/) (_Dave Schweisguth_)
+> -   [Csh](http://www.grymoire.com/Unix/Csh.html) (_Bruce Barnett_) - Excellent resource for UNIX related articles about the shell, awk, sed and more
+> -   [An Introduction to the C shell](http://www.softlab.ece.ntua.gr/facilities/documentation/unix/docs/csh.txt) (_William Joy_, _National Technical University of Athens - Software Engineering Laboratory_) - tutorial by the author of the shell
 
 - `/etc/shells` - contains a list of available shells
 
@@ -93,7 +340,9 @@ Adds +x to all   == -rwxrwxr-x
 
 `${#Var}` gives the length of a var
 
-### System
+
+
+### System Environment
 
 Generally Indicated by all caps.
 
@@ -319,6 +568,165 @@ Reference (substitute) with `$` eg
 
 `source $ZSH/oh-my-zsh.sh`
 
+
+## Files
+
+[Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_02_04)
+
+> ### Using /dev/fd
+> 
+> The /dev/fd directory contains entries named 0, 1, 2, and so on. Opening the file /dev/fd/N is equivalent to duplicating file descriptor _N_. If your system provides /dev/stdin, /dev/stdout and /dev/stderr, you will see that these are equivalent to /dev/fd/0, /dev/fd/1 and /dev/fd/2, respectively.
+> 
+> The main use of the /dev/fd files is from the shell. This mechanism allows for programs that use pathname arguments to handle standard input and standard output in the same way as other pathnames. If /dev/fd is not available on a system, you'll have to find a way to bypass the problem. This can be done for instance using a hyphen (_\-_) to indicate that a program should read from a pipe. An example:
+> 
+> michel ~> **filter body.txt.gz | cat header.txt - footer.txt**
+> This text is printed at the beginning of each print job and thanks the sysadmin
+> for setting us up such a great printing infrastructure.
+> 
+> Text to be filtered.
+> 
+> This text is printed at the end of each print job. 
+> 
+
+### cat
+
+ The **cat** command first reads the file header.txt, next its standard input which is the output of the **filter** command, and last the footer.txt file. The special meaning of the hyphen as a command-line argument to refer to the standard input or standard output is a misconception that has crept into many programs. There might also be problems when specifying hyphen as the first argument, since it might be interpreted as an option to the preceding command. Using /dev/fd allows for uniformity and prevents confusion:
+
+
+
+>       michel ~> **filter body.txt | cat header.txt /dev/fd/0 footer.txt | lp** 
+> 
+
+In this clean example, all output is additionally piped through **lp** to send it to the default printer.
+
+### Assigning file descriptors to files
+
+Another way of looking at file descriptors is thinking of them as a way to assign a numeric value to a file. Instead of using the file name, you can use the file descriptor number. The exec built-in command can be used to replace the shell of the current process or to alter the file descriptors of the current shell. For example, it can be used to assign a file descriptor to a file. Use
+
+`exec fdN> file`
+
+for assigning file descriptor N to file for output, and
+
+`exec fdN< file`
+
+for assigning file descriptor N to file for input. After a file descriptor has been assigned to a file, it can be used with the shell redirection operators, as is demonstrated in the following example:
+
+
+`michel ~> exec 4> result.txt`
+
+`michel ~> filter body.txt | cat header.txt /dev/fd/0 footer.txt >& 4`
+
+`michel ~> cat result.txt`
+
+This text is printed at the beginning of each print job and thanks the sysadmin
+for setting us up such a great printing infrastructure.
+
+
+### Redirection of Loops
+
+Example 20-9. Redirected for loop (both stdin and stdout redirected)
+
+
+
+```sh
+
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+  Filename=names.data          # Default, if no filename specified.
+else
+  Filename=$1
+fi  
+
+Savefile=$Filename.new         # Filename to save results in.
+FinalName=Jonah                # Name to terminate "read" on.
+
+line_count=`wc $Filename | awk '{ print $1 }'`  # Number of lines in target file.
+
+
+for name in `seq $line_count`
+do
+  read name
+  echo "$name"
+  if [ "$name" = "$FinalName" ]
+  then
+    break
+  fi  
+done < "$Filename" > "$Savefile"     # Redirects stdin to file $Filename,
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^       and saves it to backup file.
+
+exit 0
+```
+
+Example 20-7. Redirected until loop
+
+
+```sh
+#!/bin/bash
+# Same as previous example, but with "until" loop.
+
+if [ -z "$1" ]
+then
+  Filename=names.data         # Default, if no filename specified.
+else
+  Filename=$1
+fi  
+
+# while [ "$name" != Smith ]
+until [ "$name" = Smith ]     # Change  !=  to =.
+do
+  read name                   # Reads from $Filename, rather than stdin.
+  echo $name
+done <"$Filename"             # Redirects stdin to file $Filename. 
+#    ^^^^^^^^^^^^
+
+# Same results as with "while" loop in previous example.
+
+exit 0
+```
+
+
+[Complex Functions and Function Complexities](https://tldp.org/LDP/abs/html/complexfunct.html#REALNAME)
+
+> There is an alternate, and perhaps less confusing method of redirecting a function's stdin. This involves redirecting the stdin to an embedded bracketed code block within the function.
+> 
+
+```sh
+\# Instead of:
+Function ()
+{
+...
+} < file
+
+# Try this:
+Function ()
+{
+{
+...
+} < file
+}
+
+# Similarly,
+
+Function ()  # This works.
+{
+{
+echo $\*
+} | tr a b
+}
+
+Function ()  # This doesn't work.
+{
+echo $\*
+} | tr a b   # A nested code block is mandatory here.
+
+
+```
+
+
+> # Thanks, S.C.
+
 ## Getting User input
 
 `read` - used to get User input
@@ -426,6 +834,25 @@ Heres a quick description as my attempt to use it failed.
 > In Linux, **here document (also commonly referred to as heredoc) refers to a special block of code that contains multi-line strings that will be redirected to a command**. On the other hand, **here string is a simpler version of heredoc, offering somewhat similar functionality, albeit not as powerful as the latter**.
 
 
+[Bash Heredoc | Linuxize](https://linuxize.com/post/bash-heredoc/)
+
+> When writing shell scripts you may be in a situation where you need to pass a multiline block of text or code to an interactive command, such as [`tee`](https://linuxize.com/post/linux-tee-command/) , `cat`, or [`sftp`](https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/) .
+> 
+> In Bash and other shells like Zsh, a Here document (Heredoc) is a type of redirection that allows you to pass multiple lines of input to a command.
+> 
+> The syntax of writing HereDoc takes the following form:
+> 
+>     [COMMAND] <<[-] 'DELIMITER'
+>       HERE-DOCUMENT
+>     DELIMITER
+>     
+> 
+> -   The first line starts with an optional command followed by the special redirection operator `<<` and the delimiting identifier.
+>     -   You can use any string as a delimiting identifier, the most commonly used are EOF or END.
+>     -   If the delimiting identifier is unquoted, the shell will substitute all variables, commands and special characters before passing the here-document lines to the command.
+>     -   Appending a minus sign to the redirection operator `<<-`, will cause all leading tab characters to be ignored. This allows you to use indentation when writing here-documents in shell scripts. Leading whitespace characters are not allowed, only tab.
+> -   The here-document block can contain strings, variables, commands and any other type of input.
+> -   The last line ends with the delimiting identifier. White space in front of the delimiter is not allowed.
 
 ```sh
 
@@ -561,10 +988,67 @@ The three different ways of escaping all the special characters are:
 
 
 Another example of the last case comes 
-From: [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_01)
 
-> Although we talk about a _here document_, it is supposed to be a construct within the same script. This is an example that installs a package automatically, eventhough you should normally confirm:
+
+~~## Here Documents:~~  Here Documents are exactly the same as Here Docs...
+
+[Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_02_04)
+
+
+Frequently, your script might call on another program or script that requires input. The _here_ document provides a way of instructing the shell to read input from the current source until a line containing only the search string is found (no trailing blanks). All of the lines read up to that point are then used as the standard input for a command.
+
+The result is that you don't need to call on separate files; you can use shell-special characters, and it looks nicer than a bunch of **echo**'s:
+
+Here is _startsurf.sh_
+
+> ```sh
+> michel ~> **cat startsurf.sh**
+> #!/bin/bash
 > 
+> # This script provides an easy way for users to choose between browsers.
+> 
+> echo "These are the web browsers on this system:"
+>  
+> # Start here document
+> cat <<BROWSERS
+> mozilla
+> links
+> lynx
+> konqueror
+> opera
+> netscape
+> BROWSERS
+>
+> # End here document
+> 
+> echo -n "Which is your favorite? "
+> read browser
+> 
+> echo "Starting $browser, please wait..."
+> $browser &>
+>```
+
+
+```sh
+$> michel ~> startsurf.sh
+
+These are the web browsers on this system:
+mozilla
+links
+lynx
+konqueror
+opera
+netscape
+Which is your favorite?
+$> opera
+
+Starting opera, please wait...
+```
+
+Although we talk about a _here document_, it is supposed to be a construct within the same script. This is an example that installs a package automatically, eventhough you should normally confirm:
+> 
+>
+>```sh
 > #!/bin/bash
 >  
 > # This script installs packages automatically, using yum.
@@ -577,7 +1061,64 @@ From: [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/
 > yum install $1 << CONFIRM
 > y
 > CONFIRM
+>```
+
+And this is how the script runs. When prompted with the "Is this ok [y/N]" string, the script answers "y" automatically:
+
+```sh
+[...truncated example- looks like apt installer]
+
+Resolving dependencies
+Dependencies resolved
+I will do the following:
+[install: tuxracer 0.61-26.i386]
+Is this ok [y/N]: EnterDownloading Packages
+Running test transaction:
+Test transaction complete, Success!
+tuxracer 100 % done 1/1
+Installed:  tuxracer 0.61-26.i386
+Transaction(s) Complete
+```
+
+### Sending Heredoc (e.g. blocks of text) to other destinations:
+
+[Bash Heredoc | Linuxize](https://linuxize.com/post/bash-heredoc/)
+
+> Instead of displaying the output on the screen you can redirect it to a file using the `>`, `>>` operators.
+> 
+>     cat << EOF > file.txt
+>     The current working directory is: $PWD
+>     You are logged in as: $(whoami)
+>     EOF
+>     
+> 
+> If the file.txt doesn’t exist it will be created. When using `>` the file will be overwritten, while the `>>` will append the output to the file.
+> 
+>     cat << EOF >> file.txt
+>     The current working directory is: $PWD
+>     You are logged in as: $(whoami)
+>     EOF
+>     
+> 
+> The heredoc input can also be piped. In the following example the [`sed`](https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/) command will replace all instances of the `l` character with `e`:
+> 
+>     cat <<'EOF' |  sed 's/l/e/g'
+>     Hello
+>     World
+>     EOF
+>     
+> 
+> `Heeeo Wored`
+> 
+> To write the piped data to a file:
+> 
+>     cat <<'EOF' |  sed 's/l/e/g' > file.txt
+>     Hello
+>     World
+>     EOF
+
 ____
+
 ## HereString  “<<<” 
 
  much simpler version of heredoc. For that reason, here string does not need a delimiter token. It is usually preferred whenever we need a quick way to redirect some strings into a command.
@@ -597,6 +1138,9 @@ ____
 > To escape special characters like $, \\, and \`, we can enclose the string with the single quote instead of the double quote:
 > 
 >     cat <<< 'Display special characters: $ ` \'
+
+
+
 ____
 
 

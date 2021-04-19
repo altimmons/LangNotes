@@ -1,5 +1,28 @@
  # Python Notes
 
+<!-- 
+Common
+Regex
+
+
+for fomat of 
+
+    value
+
+    description
+
+    value
+
+    description
+
+
+(^.*$)\n\n(.*$)\n  ->  - `$1` -$2
+
+
+
+-->
+
+
 ## Table of Contents
 
   [[TOC]]
@@ -2175,9 +2198,18 @@ ____
 
  In the above example, note that the address of x initially matches that of n  as it is passed to `increment()` but changes after reassignment, while the address of n never changes.  If it was passed by value, then it should have a new address, as it was returned from increment(n).  Of note, it should also have the form of `n=increment(n)`
 
+
+### __dict__
+
+
 ____
 ____
-## Values
+## Types
+
+
+
+[The standard type hierarchy](https://docs.python.org/3/reference/datamodel.html#types)
+[Objects, values and types](https://docs.python.org/3/reference/datamodel.html#objects)
 
  - integer [int] - (1,2,3,4) Integers are primitive data types that represent whole numbers.
  - float -(1., 1.0, 2.345, Pi) Floats are primitive data types, which hold decimal numbers.
@@ -2197,6 +2229,8 @@ ____
  [tuple()](#(TUPLES))
  [dict()](#{DICTIONARY})
  [str()](#Other string Functions)
+
+
 
 
  ### int()
@@ -2281,6 +2315,56 @@ ____
  ` '{0:{fill}{width}b}'.format((x + 2**n) % 2**n, fill='0', width=n) `
 
 
+
+### Collection Type
+
+
+
+[Built-in Types — Python 3.9.4 documentation](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#standard-generic-collections)
+
+> Standard Generic Collections[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#standard-generic-collections )
+>
+> - tuple
+> - list
+> - dict
+> - set
+> - frozenset
+> - type
+> - collections.deque
+> - collections.defaultdict
+> - collections.OrderedDict
+> - collections.Counter
+> - collections.ChainMap
+> - collections.abc.Awaitable
+> - collections.abc.Coroutine
+> - collections.abc.AsyncIterable
+> - collections.abc.AsyncIterator
+> - collections.abc.AsyncGenerator
+> - collections.abc.Iterable
+> - collections.abc.Iterator
+> - collections.abc.Generator
+> - collections.abc.Reversible
+> - collections.abc.Container
+> - collections.abc.Collection
+> - collections.abc.Callable
+> - collections.abc.Set
+> - collections.abc.MutableSet
+> - collections.abc.Mapping
+> - collections.abc.MutableMapping
+> - collections.abc.Sequence
+> - collections.abc.MutableSequence
+> - collections.abc.ByteString
+> - collections.abc.MappingView
+> - collections.abc.KeysView
+> - collections.abc.ItemsView
+> - collections.abc.ValuesView
+> - contextlib.AbstractContextManager
+> - contextlib.AbstractAsyncContextManager
+> - re.Pattern
+> - re.Match
+
+!!!Note The above is only "generic" types, there are other collections, just havent found a comprehensive list yet.
+
  ### Type() commmand
 
  Type can be checked with the `type(`**var**`)` command
@@ -2292,6 +2376,13 @@ ____
  print(type(a))
  >>> <type 'int'
  ```
+
+
+### Typing 
+
+[Typing](https://docs.python.org/3/library/typing.html)
+
+
 
  ### Expected Types
 
@@ -2324,6 +2415,172 @@ ____
 
  install with `pip install mypy` check a given file with `mypy headlines.py`
 
+
+### Generic Alias Type
+
+[Python Doc on this](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#generic-alias-type)
+
+
+`GenericAlias` (class) objects are created by subscripting a class (usually a container), such as list[int]. They are intended primarily for type annotations.
+
+T[X, Y, ...]
+Creates a GenericAlias representing a type T containing elements of types X, Y, and more depending on the T used. For example, a function expecting a list containing float elements:
+
+def average(values: list[float]) -> float:
+    return sum(values) / len(values)
+
+The Python runtime does not enforce type annotations. This extends to generic types and their type parameters. When creating an object from a GenericAlias, container elements are not checked against their type. For example, the following code is discouraged, but will run without errors:
+ 
+```py
+>>>
+>>> t = list[str]
+>>> t([1, 2, 3])
+[1, 2, 3]
+```
+
+Furthermore, parameterized generics erase type parameters during object creation:
+
+```py
+>>>
+>>> t = list[str]
+>>> type(t)
+<class 'types.GenericAlias'>
+
+>>> l = t()
+>>> type(l)
+<class 'list'>
+```
+Calling repr() or str() on a generic shows the parameterized type:
+
+```py
+>>>
+>>> repr(list[int])
+'list[int]'
+
+>>> str(list[int])
+'list[int]'
+```
+
+### Named Tuple Class
+
+[Typed Tuple](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+
+Typed version of collections.namedtuple().
+
+
+See `typing.NamedTuple` for a way to add type hints for named tuples. It also provides an elegant notation using the class keyword:
+
+class Component(NamedTuple):
+    part_number: int
+    weight: float
+    description: Optional[str] = None
+
+### Special Types
+
+[Built-in Types — Python 3.9.4 documentation](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#standard-generic-collections)
+
+#### Null (`None`)
+
+The Null Object[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#the-null-object )
+
+This object is returned by functions that don’t explicitly return a value. It supports no special operations. There is exactly one null object, named `None` (a built-in name). `type(None)()` produces the same singleton.
+
+It is written as `None`.
+
+
+#### Ellipsis (`...`)
+
+
+ The Ellipsis Object[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#the-ellipsis-object )
+
+This object is commonly used by slicing (see [Slicings](https://docs.python.org/3/reference/expressions.html#slicings)). It supports no special operations. There is exactly one ellipsis object, named [`Ellipsis`](https://docs.python.org/3/library/constants.html#Ellipsis "Ellipsis") (a built-in name). `type(Ellipsis)()` produces the [`Ellipsis`](https://docs.python.org/3/library/constants.html#Ellipsis "Ellipsis") singleton.
+
+It is written as `Ellipsis` or `...`.
+
+
+
+#### NotImplemented
+
+The NotImplemented Object[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#the-notimplemented-object )
+
+This object is returned from comparisons and binary operations when they are asked to operate on types they don’t support. See [Comparisons](https://docs.python.org/3/reference/expressions.html#comparisons) for more information. There is exactly one `NotImplemented` object. `type(NotImplemented)()` produces the singleton instance.
+
+It is written as `NotImplemented`.
+
+#### Boolean Types (`True` and `False`)
+
+ Boolean Values[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#boolean-values )
+
+Boolean values are the two constant objects `False` and `True`. They are used to represent truth values (although other values can also be considered false or true). In numeric contexts (for example when used as the argument to an arithmetic operator), they behave like the integers 0 and 1, respectively. The built-in function [`bool()`](https://docs.python.org/3/library/functions.html#bool "bool") can be used to convert any value to a Boolean, if the value can be interpreted as a truth value (see section [Truth Value Testing](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#truth) above).
+
+They are written as `False` and `True`, respectively.
+
+ 
+#### Special Attributes for Internal Types
+
+
+ [Internal Objects](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#internal-objects )
+
+See [The standard type hierarchy](https://docs.python.org/3/reference/datamodel.html#types) for this information. It describes stack frame objects, traceback objects, and slice objects.
+
+See also [Special Attributes](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#special-attributes )
+
+The implementation adds a few special read-only attributes to several object types, where they are relevant. Some of these are not reported by the [`dir()`](https://docs.python.org/3/library/functions.html#dir "dir") built-in function.
+
+`object.``__dict__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ )
+
+A dictionary or other mapping object used to store an object’s (writable) attributes.
+
+`instance.``__class__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#instance.__class__ )
+
+The class to which a class instance belongs.
+
+`class.``__bases__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#class.__bases__ )
+
+The tuple of base classes of a class object.
+
+`definition.``__name__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#definition.__name__ )
+
+The name of the class, function, method, descriptor, or generator instance.
+
+`definition.``__qualname__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#definition.__qualname__ )
+
+The [qualified name](https://docs.python.org/3/glossary.html#term-qualified-name) of the class, function, method, descriptor, or generator instance.
+
+New in version 3.3.
+
+`class.``__mro__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#class.__mro__ )
+
+This attribute is a tuple of classes that are considered when looking for base classes during method resolution.
+
+`class.``mro`()[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#class.mro )
+
+This method can be overridden by a metaclass to customize the method resolution order for its instances. It is called at class instantiation, and its result is stored in [`__mro__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#class.__mro__ "class.__mro__").
+
+`class.``__subclasses__`()[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#class.__subclasses__ )
+
+Each class keeps a list of weak references to its immediate subclasses. This method returns a list of all those references still alive. The list is in definition order. Example:
+
+```py
+>>>
+
+>>> int.__subclasses__()
+[<class 'bool'>\]
+```
+
+### Module.__dict__
+
+[Built-in Types — Python 3.9.4 documentation](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#standard-generic-collections)
+
+> [Modules](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#modules "Permalink to this headline")
+> 
+> The only special operation on a module is attribute access: `m.name`, where _m_ is a module and _name_ accesses a name defined in _m_’s symbol table. Module attributes can be assigned to. (Note that the [`import`](https://docs.python.org/3/reference/simple_stmts.html#import) statement is not, strictly speaking, an operation on a module object; `import foo` does not require a module object named _foo_ to exist, rather it requires an (external) _definition_ for a module named _foo_ somewhere.)
+> 
+> A special attribute of every module is [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__"). This is the dictionary containing the module’s symbol table. Modifying this dictionary will actually change the module’s symbol table, but direct assignment to the [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") attribute is not possible (you can write `m.__dict__['a'] = 1`, which defines `m.a` to be `1`, but you can’t write `m.__dict__ = {}`). Modifying [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") directly is not recommended.
+> 
+> Modules built into the interpreter are written like this: `<module 'sys' (built-in)>`. If loaded from a file, they are written as `<module 'os' from '/usr/local/lib/pythonX.Y/os.pyc'>`.
+
 ____
 ____
 ## VARIABLES
@@ -2336,7 +2593,7 @@ ____
  print(name)
  ```
 
- A variable name can contain letters, numbers, or \_ but can't start with a number.
+ A variable name can contain letters, numbers, or _ but can't start with a number.
  There are 5 data types Numbers, Strings, List, Tuple, Dictionary. You can store any of them in the same variable
 
  ```python
@@ -2659,6 +2916,8 @@ And these methods:
 ____
 ____
 ## STRINGS
+
+[Text Sequence Type — str~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
 
  Strings are so important they get their own section
 
@@ -3536,82 +3795,116 @@ ____
 
  Meaning
 
- ASCII, A
-
- Makes several escapes like \w, \b, \s and \d match only on ASCII characters with the respective property.
-
- DOTALL, S
-
- Make . match any character, including newlines.
-
- IGNORECASE, I
-
- Do case-insensitive matches.
-
- LOCALE, L
-
- Do a locale-aware match.
-
- MULTILINE, M
-
- Multi-line matching, affecting ^ and $.
-
- VERBOSE, X (for ‘extended’)
-
- Enable verbose REs, which can be organized more cleanly and understandably.
-
+- ` ASCII, A` - Makes several escapes like \w, \b, \s and \d match only on ASCII characters with the respective property.
+- ` DOTALL, S` - Make . match any character, including newlines.
+- ` IGNORECASE, I` - Do case-insensitive matches.
+- ` LOCALE, L` - Do a locale-aware match.
+- ` MULTILINE, M` - Multi-line matching, affecting ^ and $.
+- ` VERBOSE, X (for ‘extended’)` - Enable verbose REs, which can be organized more cleanly and understandably.
 
 
  Lookahead Assertions
  Another zero-width assertion is the lookahead assertion. Lookahead assertions are available in both positive and negative form, and look like this:
 
- (?=...)
- Positive lookahead assertion. This succeeds if the contained regular expression, represented here by ..., successfully matches at the current location, and fails otherwise. But, once the contained expression has been tried, the matching engine doesn’t advance at all; the rest of the pattern is tried right where the assertion started.
 
- (?!...)
- Negative lookahead assertion. This is the opposite of the positive assertion; it succeeds if the contained expression doesn’t match at the current position in the string.
- ___
+- ` (?=...)` - Positive lookahead assertion. This succeeds if the contained regular expression, represented here by ..., successfully matches at the current location, and fails otherwise. But, once the contained expression has been tried, the matching engine doesn’t advance at all; the rest of the pattern is tried right where the assertion started.
+
+
+- ` (?!...)` - Negative lookahead assertion. This is the opposite of the positive assertion; it succeeds if the contained expression doesn’t match at the current position in the string. ___
  ___
 
 ____
 ____
 ## LISTS, TUPLES and DICTIONARIES
 
+____
+
+Python refers to the [Sequence Types — list, tuple, range](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
+
+
+[Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
+
+
+- `x in s` -True if an item of s is equal to x, else False
+- `x not in s` -False if an item of s is equal to x, else True
+- `s + t` -the concatenation of s and t
+- `s * n or n * s` -equivalent to adding s to itself n times
+- `s[i]` -ith item of s, origin 0
+- `s[i:j]` -slice of s from i to j
+- `s[i:j:k]` -slice of s from i to j with step k
+- `len(s)` -length of s
+- `min(s)` -smallest item of s
+- `max(s)` -largest item of s
+- `s.index(x[, i[, j]])` -index of the first occurrence of x in s (at or after index i and before index j)
+- `s.count(x)` -total number of occurrences of x in s
+
+Immutable Sequence Objects
+
+Set, Range, Tuple, String, Bytes
+
+
+[Binary Sequence Types — bytes, bytearray, memoryview~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
+
+Mutable Seq. Objects
+
+List, Byte Array
+
+Mutable Object Methods
+
+List,  
+[Mutable Seq](https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence)
+
+
+- `s[i] = x` -item i of s is replaced by x
+- `s[i:j] = t` -slice of s from i to j is replaced by the contents of the iterable t
+- `del s[i:j]` -same as s[i:j] = []
+- `s[i:j:k] = t` -the elements of s[i:j:k] are replaced by those of t
+- `del s[i:j:k]` -removes the elements of s[i:j:k] from the list
+- `s.append(x)` -appends x to the end of the sequence (same as s[len(s):len(s)] = [x])
+- `s.clear()` -removes all items from s (same as del s[:])
+- `s.copy()` -creates a shallow copy of s (same as s[:])
+- `s.extend(t) or s += t` -extends s with the contents of t (for the most part the same as s[len(s):len(s)] = t)
+- `s *= n` -updates s with its contents repeated n times
+- `s.insert(i, x)` -inserts x into s at the index given by i (same as s[i:i] = [x])
+- `s.pop([i])` -retrieves the item at i and also removes it from s
+- `s.remove(x)` -remove the first item from s where s[i] is equal to x
+- `s.reverse()` -reverses the items of s in place
  ___
 
- | `LISTS`           | **TUPLES**         | _DICTIONARES_             |                                                                                              |
- | ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
- | dunder            | methods            |                           |                                                                                              |
- | list methods      | tuple equivalent   | works in dictionaries     | descriptions                                                                                 |
- | x is a List       |                    |                           |                                                                                              |
- | x+**L**           | yes                | no                        | y=list (0)                                                                                   |
- | x[i]=**L**        | no                 | yes, where y is a key     | set item                                                                                     |
- | x[i:j]=**L**      | no                 | no                        | set items (1)                                                                                |
- | y in x            | yes                | Yes, only searches keys   | x must be an item in a list. not another list(2)                                             |
- | del x[y]          | no                 | yes, where y is a key     | remove y (int)                                                                               |
- | del x[i:j]        | no                 | no                        | remove i through j (ints) (1)                                                                |
- | cmp(x,y)          | yes                | yes                       | compares                                                                                     |
- | ----------------- | ------------------ | ------------------------- | -------------------------------------------------------------------------------------------- |
- | ==,>=,<=,>,<,!=   | yes                | yes                       | unsure, comparing two lists does equal true in some cases. Length?                           |
- | x[y]              | yes                | yes, where y is a key     | lookup 0 indexed value                                                                       |
- | x[i:j]            | yes                | no                        | as above a slice (1)                                                                         |
- | len(x)            | yes                | yes                       | returns the length of list.                                                                  |
- | x+=**L**          | yes,               | no                        | x+=y perform action and set. y must be list. basically append. (3)                           |
- | x\*=**L**         | yes                | no                        | multiplies the list by copying itself (4)                                                    |
- | repr(x)           | yes                | yes                       | returns a string representation                                                              |
- | iter(x)           | yes                | yes                       | uses in iteration                                                                            |
- | x\*n              | yes                | no                        | returns the list or tuple that many times in one list or tuple                               |
- | explicit          | methods            |                           | definition                                                                                   |
- | append(...)       | no                 | no                        | L.append(object) -- append object to end                                                     |
- | count(...)        | yes                | no                        | L.count(value) -> integer -- return number of occurrences of value                           |
- | extend(...)       | no                 | no                        | L.extend(iterable) -- extend list by appending elements from the iterable                    |
- | index(...)        | yes                | no                        | L.index(value, [start, [stop]]) -> integer -- return first index of value. (5)               |
- | insert(...)       | no                 | no                        | L.insert(index, object) -- insert object before index                                        |
- | pop(...)          | no                 | yes                       | L.pop([index]) -> item -- remove and return item at index (default last).                    |
- |                   |                    |                           | similar to L[i]; del L[i](6)                                                                 |
- | remove(...)       | no                 | no                        | L.remove(value) -- remove first occurrence of value. (5)                                     |
- | reverse(...)      | reversed(l)        | no                        | L.reverse() -- reverse _IN PLACE_                                                            |
- | sort(...)         | sorted(t)          | no                        | L.sort(cmp=None, key=None, reverse=False) -- stable sort _IN PLACE_; cmp(x, y) -> -1, 0, 1   |
+| `LISTS`         | **TUPLES**   | _DICTIONARES_  |                                              |
+| --------------- | ------------ | -------------- | -------------------------------------------- |
+| dunder          | methods      |                |                                              |
+| list methods    | (8)        s | . descriptions |                                              |
+| x is a List     |              |                |                                              |
+| x+**L**         | yes          | no             | y=list (0)                                   |
+| x[i]=**L**      | no           | yes,           | set item                                     |
+| x[i:j]=**L**    | no           | no             | set items (1)                                |
+| y in x          | yes          | Yes (key)      | xnot another list(2)                         |
+| del x[y]        | no           | yes, (9)       | remove y (int)                               |
+| del x[i:j]      | no           | no             | remove i through j (ints) (1)                |
+| cmp(x,y)        | yes          | yes            | compares                                     |
+| ==,>=,<=,>,<,!= | yes          | yes            | Length?                                      |
+| x[y]            | yes          | yes, (9)       | lookup 0 indexed value                       |
+| x[i:j]          | yes          | no             | as above a slice (1)                         |
+| len(x)          | yes          | yes            | returns the length of list.                  |
+| x+=**L**        | yes,         | no             | x+=y (append)                                |
+| x\*=**L**       | yes          | no             | multiplies the list by copying itself (4)    |
+| repr(x)         | yes          | yes            | returns a string representation              |
+| iter(x)         | yes          | yes            | uses in iteration                            |
+| x\*n            | yes          | no             | returns n x [] or ()                         |
+| explicit        | methods      |                | definition                                   |
+| `LISTS`         | **TUPLES**   | _DICTIONARES_  |                                              |
+| ----            | ---          | --             | --------                                     |
+| append(...)     | no           | no             | L.append(object)                             |
+| count(...)      | yes          | no             | L.count(value)                               |
+| extend(...)     | no           | no             | L.extend(iterable)                           |
+| index(...)      | yes          | no             | L.index(value, [start, [stop]]) -> int       |
+| insert(...)     | no           | no             | L.insert(index, object) before index         |
+| pop(...)        | no           | yes            | L.pop([index]) -> item                       |
+|                 |              |                | similar to L[i]; del L[i](6)                 |
+| remove(...)     | no           | no             | L.remove(value) first occurrence  (5)        |
+| reverse(...)    | reversed(l)  | no             | L.reverse() -- reverse _IN PLACE_            |
+| sort(...)       | sorted(t)    | no             | L.sort(cmp=None, key=None, reverse=False)(10 |
 
  ---
 
@@ -3622,7 +3915,9 @@ ____
  5. L \* (int) = L + L + L+…(int)
  6. Raises ValueError if the value is not present.
  7. Raises IndexError if list is empty or index is out of range.
-
+ 8. tuple equivalent
+ 9. where y is a key 
+ 10.  stable sort _IN PLACE_; cmp(x, y) -> -1, 0, 1  
  See the [Dictionary](### DICTIONARY or MAP { } - Mutable, heterogeneous)
 
  ___
@@ -4276,9 +4571,65 @@ ____
     print(first, last, directory[last,first]) #to print the phonebook.
  ```
 
+#### NamedTuple Class
+
+and the `namedtuple` class.
+
+!!!Warning Careful- there are 2 classes.  The one with Capitals is in `types` and is typed.  The other is in `collections` and is untyped.  
+
+[named tuple](https://docs.python.org/3/library/collections.html#collections.namedtuple)
+[Named Tuple](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+
+
+
+
+[collections — Container datatypes — Python 3.9.4 documentation](https://docs.python.org/3/library/collections.html#collections.namedtuple)
+
+> `collections.``namedtuple`(_typename_, _field\_names_, _\*_, _rename=False_, _defaults=None_, _module=None_)[¶](https://docs.python.org/3/library/collections.html#collections.namedtuple "Permalink to this definition")
+> 
+> Returns a new tuple subclass named _typename_. The new subclass is used to create tuple-like objects that have fields accessible by attribute lookup as well as being indexable and iterable. Instances of the subclass also have a helpful docstring (with typename and field\_names) and a helpful [`__repr__()`](https://docs.python.org/3/reference/datamodel.html#object.__repr__ "object.__repr__") method which lists the tuple contents in a `name=value` format.
+
+Useful class.  ~~No imports needed it seems.~~  `from typing import NamedTuple`
+
+`field_names` is actually a list `[a, b, x]` of strings.
+
+> The field_names are a sequence of strings such as **['x', 'y'].** Alternatively, field_names can be a single string with each fieldname separated by whitespace and/or commas, for example **'x y'** or **'x, y'.**
+
+Defaults are confusign a bit, but the example below demonstrates.
+
+> defaults can be None or an iterable of default values. Since fields with a default value must come after any fields without a default, the defaults are applied to the rightmost parameters. For example, if the fieldnames are ['x', 'y', 'z'] and the defaults are (1, 2), then x will be a required argument, y will default to 1, and z will default to 2.
+
+
+NamedTuple seems to have major difference, what one might think is the obvious definition
+
+
+    Employee = NamedTuple('Employee', [('name', str), ('id', int)])
+
+ (Unfortunately theres no archetype??)  But they call the above the "Backward-compatible usage:"
+ and suggest this usagee. 
+
+
+```cpp
+class Employee(NamedTuple):
+    """Represents an employee."""
+    name: str
+    id: int = 3
+
+    def __repr__(self) -> str:
+        return f'<Employee {self.name}, id={self.id}>'
+
+employee = Employee('Guido')
+assert employee.id == ~~3~~
+```
+
+
+
  ___
 
  ### {DICTIONARY}
+
+[Mapping Types — dict](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#dict)
 
  ___
 
@@ -4316,8 +4667,29 @@ ____
  ```
 
 
+>From Python Doc
+>the following examples all return a dictionary equal to {"one": 1, "two": 2, "three": 3}:
+>```py
+>>>
+>>> a = dict(one=1, two=2, three=3)
+>>> b = {'one': 1, 'two': 2, 'three': 3}
+>>> c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))
+>>> d = dict([('two', 2), ('one', 1), ('three', 3)])
+>>> e = dict({'three': 3, 'one': 1, 'two': 2})
+>>> f = dict({'one': 1, 'three': 3}, two=2)
+>>> a == b == c == d == e == f
+True
+```
+> [source](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#dict)
+
+
+A mapping object maps hashable values to arbitrary objects. Mappings are mutable objects. There is currently only one standard mapping type, the dictionary. (For other containers see the built-in list, set, and tuple classes, and the collections module.)
+
+A dictionary’s keys are almost arbitrary values. Values that are not hashable, that is, values containing lists, dictionaries or other mutable types (that are compared by value rather than by object identity) may not be used as keys.
+
  As of 3.7 dictionaries have a stable order, as opposed to a random order in prior versions.
 
+Dictionaries preserve insertion order. Note that updating a key does not affect the order. Keys added after deletion are inserted at the end.
 
  - `clear()` - Removes all the elements from the dictionary
  - `copy()` - Returns a copy of the dictionary
@@ -4330,6 +4702,8 @@ ____
  - `setdefault()` - Returns the value of the specified key. If the key does not exist: insert the key, with the specified value
  - `update()` - Updates the dictionary with the specified key-value pairs
  - `values()` - Returns a list of all the values in the dictionary
+
+The objects returned by `dict.keys(), dict.values()` and `dict.items()` are view objects. They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.
 
 
  Accessing the dictionary and setting: Like
@@ -4401,7 +4775,86 @@ ____
  - In either case, this is followed by: for k in F: D[k] = F[k]
 
 
+#### Dictionary Comprehension 
+
+        
+     dict_variable = {key:value for (key,value) in dictonary.items()}
+
+[Dict Comprehension.](https://www.datacamp.com/community/tutorials/python-dictionary-comprehension)
+
+```py
+dict1 = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+# Put all keys of `dict1` in a list and returns the list
+dict1.keys()
+dict_keys(['c', 'd', 'a', 'b'])
+# Put all values saved in `dict1` in a list and returns the list
+dict1.values()
+dict_values([3, 4, 1, 2])
+So, now that you know how to access all the keys and their values in a dictionary. You can also access each key-value pair within a dictionary using the items() method:
+
+dict1.items()
+dict_items([('c', 3), ('d', 4), ('a', 1), ('b', 2)])
+```
+
+Let's start off with a simple dictionary comprehension:
+
+        dict1 = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+        # Double each value in the dictionary
+        double_dict1 = {k:v*2 for (k,v) in dict1.items()}
+        print(double_dict1)
+
+Let's look at the lambda function along with the map() function:
+```py
+# Initialize `fahrenheit` dictionary 
+fahrenheit = {'t1':-30, 't2':-20, 't3':-10, 't4':0}
+
+#Get the corresponding `celsius` values
+celsius = list(map(lambda x: (float(5)/9)*(x-32), fahrenheit.values()))
+
+#Create the `celsius` dictionary
+celsius_dict = dict(zip(fahrenheit.keys(), celsius))
+
+print(celsius_dict)
+{'t2': -28.88888888888889, 't3': -23.333333333333336, 't1': -34.44444444444444, 't4': -17.77777777777778}
+
+```
+
+
+
  #### Nesting dictionaries
+
+ I was trying to make a nested dict as follows:
+
+```py
+
+from random import randint
+c = 10
+random_fake = randint(0, c-1)
+# coins = [_ for _ in range(c)]
+V, F = "Value", "Fake"  # So we can use descriptive names, but access easily.
+d = {V: None, F: False}
+# create the default values.  V = value (for + or -) F for fake.
+coins = [{_: d} for _ in range(c)]
+
+```
+
+but I kepy having to access the dictionary like:
+
+        coins[1]
+        (1, {'Value': None, 'Fake': False})
+        coins[1][1]
+
+        {'Value': None, 'Fake': False}
+        coins[1][1][F] = False
+
+So I had to reference '1' twice.  All I really had to do was this though:
+
+`dict(coins)`
+
+And it works.  This however led me to dictionary comprehension - see below. 
+
+but the above is a simple nested dict.
+
 
  ```py
  import collections
@@ -4515,6 +4968,8 @@ ____
                                 'salesmen': 36},
               'queens counyt': {}}}
  ```
+
+
 
 #### Ordered Dictionary
 
@@ -4793,6 +5248,83 @@ Another class is the ordered dict. Its a fifo like struct
 
  [Doc on Sequence Types](https://docs.python.org/3/library/stdtypes.html#typesseq)
 
+ #### RANGE
+
+ `range(int, int, int)`
+
+ - (stop)
+ - (start, stop)
+ - (start, stop, step)
+
+
+ !!!warn: Float values don't work in the range command.
+    [Link for float ranges](http://code.activestate.com/recipes/579000/)
+
+    also this works fine:
+    
+        >>> for i in range(0,100,5):
+            t = i/100
+            print(t)
+ 
+
+
+ ##### Methods for Float Range
+
+ [frange recipe](https://code.activestate.com/recipes/577068/)
+
+ [Float Range](https://perso.limsi.fr/pointal/python:floatrange)
+
+ [Module on PyPI](https://pypi.python.org/pypi/floatrange/)
+
+ [Floating point range « Python recipes « ActiveState Code](https://code.activestate.com/recipes/577068/)
+
+ [Equally-spaced numbers (linspace) « Python recipes « ActiveState Code](https://code.activestate.com/recipes/579000/)
+
+ **Reversed Example** `range( len(data) -1, -1, -1):`
+
+ ```py
+ >>> start = 1
+ >>> stop = 8
+ >>> step = 2
+ >>> range(stop)
+ [0, 1, 2, 3, 4, 5, 6, 7]
+ >>> range(start, stop)
+ [1, 2, 3, 4, 5, 6, 7]
+ >>> range(start, stop, step)
+ [1, 3, 5, 7]
+ >>> step = -1
+ >>> range(stop, start)
+ []
+ >>> range(stop, start, step)
+ [8, 7, 6, 5, 4, 3, 2]
+ >>> range(start, stop, step)
+ []
+ >>> range(1.01, 2.004)
+ Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ TypeError: range() integer end argument expected, got float.
+ ```
+
+ The step by default is +1. Python will not handle ranges that don't make sense. It just returns an empty list. So if Start > stop (and no step given) then there is no series of +1 to get to 1. And it only takes integers.
+
+ Importantly, this method allows you to change the values within the range. (Not sure what I meant by this in retrospect...)
+
+ ```py
+ for value in range(0,8):
+    print value
+    if value %2-==1:
+        print 'odd'
+    elif value%2 ==0:
+        print 'even'
+    else:
+
+ [0,1,2,3,4,5,6,7]
+ range(5)
+ [0,1,2,3,4,5]
+ #exclusive of end
+ >>> range(5,0,-1)
+ [5, 4, 3, 2, 1]
+ ```
 
  ### Collections
 
@@ -4808,7 +5340,12 @@ Another class is the ordered dict. Its a fifo like struct
  * UserList     wrapper around list objects for easier list subclassing
  * UserString   wrapper around string objects for easier string subclassing
 
+[See Also Mutable Seq](https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence)
+
+[Also Bytes, and Byte Array](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#bytes)
 ____
+
+
 ____
 ## CONDITIONALS
 
@@ -5399,83 +5936,6 @@ ____
  - `pass` - handle the condition without the loop being impacted in any way;
  - `enumerate(x)` - create a for loop that iterates over the keys and the values
 
- #### RANGE
-
- `range(int, int, int)`
-
- - (stop)
- - (start, stop)
- - (start, stop, step)
-
-
- !!!warn: Float values don't work in the range command.
-    [Link for float ranges](http://code.activestate.com/recipes/579000/)
-
-    also this works fine:
-    
-        >>> for i in range(0,100,5):
-            t = i/100
-            print(t)
- 
-
-
- ##### Methods for Float Range
-
- [frange recipe](https://code.activestate.com/recipes/577068/)
-
- [Float Range](https://perso.limsi.fr/pointal/python:floatrange)
-
- [Module on PyPI](https://pypi.python.org/pypi/floatrange/)
-
- [Floating point range « Python recipes « ActiveState Code](https://code.activestate.com/recipes/577068/)
-
- [Equally-spaced numbers (linspace) « Python recipes « ActiveState Code](https://code.activestate.com/recipes/579000/)
-
- **Reversed Example** `range( len(data) -1, -1, -1):`
-
- ```py
- >>> start = 1
- >>> stop = 8
- >>> step = 2
- >>> range(stop)
- [0, 1, 2, 3, 4, 5, 6, 7]
- >>> range(start, stop)
- [1, 2, 3, 4, 5, 6, 7]
- >>> range(start, stop, step)
- [1, 3, 5, 7]
- >>> step = -1
- >>> range(stop, start)
- []
- >>> range(stop, start, step)
- [8, 7, 6, 5, 4, 3, 2]
- >>> range(start, stop, step)
- []
- >>> range(1.01, 2.004)
- Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
- TypeError: range() integer end argument expected, got float.
- ```
-
- The step by default is +1. Python will not handle ranges that don't make sense. It just returns an empty list. So if Start > stop (and no step given) then there is no series of +1 to get to 1. And it only takes integers.
-
- Importantly, this method allows you to change the values within the range. (Not sure what I meant by this in retrospect...)
-
- ```py
- for value in range(0,8):
-    print value
-    if value %2-==1:
-        print 'odd'
-    elif value%2 ==0:
-        print 'even'
-    else:
-
- [0,1,2,3,4,5,6,7]
- range(5)
- [0,1,2,3,4,5]
- #exclusive of end
- >>> range(5,0,-1)
- [5, 4, 3, 2, 1]
- ```
 
  #### BREAK
 
@@ -9401,7 +9861,7 @@ Options
 
 [DiGraph - Directed graphs with self loops — NetworkX 1.10 documentation](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#overview)
 
-## Adding and removing nodes and edges[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#adding-and-removing-nodes-and-edges "Permalink to this headline")
+## Adding and removing nodes and edges[~[link]~](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#adding-and-removing-nodes-and-edges )
 
 https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#overview
 
@@ -9433,7 +9893,7 @@ https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#
 
 - **Remove all nodes and edges from the graph.** - `DiGraph.clear`
 
-## Iterating over nodes and edges[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#iterating-over-nodes-and-edges "Permalink to this headline")
+## Iterating over nodes and edges[~[link]~](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#iterating-over-nodes-and-edges )
 
 
 
@@ -9477,7 +9937,7 @@ https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#
 
 - **Return an iterator of nodes contained in nbunch that are also in the graph.** - `DiGraph.nbunch_iter`
 
-## Information about graph structure[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#information-about-graph-structure "Permalink to this headline")
+## Information about graph structure[~[link]~](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#information-about-graph-structure )
 
 
 
@@ -9515,7 +9975,7 @@ https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#
 
 - **Return the number of selfloop edges.** - `DiGraph.number_of_selfloops`
 
-## Making copies and subgraphs[¶](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#making-copies-and-subgraphs "Permalink to this headline")
+## Making copies and subgraphs[~[link]~](https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#making-copies-and-subgraphs )
 
 
 

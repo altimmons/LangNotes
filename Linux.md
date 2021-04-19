@@ -2,6 +2,27 @@
 
 [[TOC]]
 
+## Bash Docs
+
+See shellnotes and bash notes
+
+
+[Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html)
+
+[The Advanced Bash Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
+
+[SHELLdorado - Links](http://www.shelldorado.com/links/)
+
+[Bash Commands Linuxize](https://linuxize.com/tags/terminal/)
+
+- [GNU Bash Manual](https://www.gnu.org/manual/) - gzip archives.
+- [Documentation and Examples](http://www.bashcookbook.com/bashinfo/) - bash cook book.
+- [bash tips](https://www.ukuug.org/events/linux2003/papers/bash_tips/) - Configure the bash terminal.
+- [Bash pitfalls](http://mywiki.wooledge.org/BashPitfalls) - GreyCat's wiki.
+
+- [Bash Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#SEC_Contents)
+
+
 ## Tips, Tutorials and Documentation
 
 [All Man topics Alphabetically](http://man7.org/linux/man-pages/dir_all_alphabetic.html)
@@ -424,13 +445,13 @@ chmod o+rw /home/youruserna
  The output below shows how the reserved file descriptors point to actual devices:
 
 ```sh
-  michel ~> **ls -l /dev/std\***
+  michel ~> **ls -l /dev/std***
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stderr -> ../proc/self/fd/2
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdin -> ../proc/self/fd/0
   >lrwxrwxrwx  1 root    root     17 Oct  2 07:46 /dev/stdout -> ../proc/self/fd/1
 
 
-michel ~> **ls -l /proc/self/fd/\[0-2\]**
+michel ~> **ls -l /proc/self/fd/[0-2]**
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/0 -> /dev/pts/6
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/1 -> /dev/pts/6
   >lrwx------  1 michel  michel   64 Jan 23 12:11 /proc/self/fd/2 -> /dev/pts/6
@@ -464,6 +485,115 @@ When excuting a given command, the following steps are excuted, in order:
 
 [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_01)
 
+##Redirection 
+
+[zsh: 7 Redirection](http://zsh.sourceforge.net/Doc/Release/Redirection.html)
+
+The following may appear anywhere in a simple command or may precede or follow a complex command. Expansion occurs before word or digit is used except as noted below. If the result of substitution on word produces more than one filename, redirection occurs for each separate filename in turn.
+
+< word
+
+Open file word for reading as standard input. It is an error to open a file in this fashion if it does not exist.
+
+<> word
+
+Open file word for reading and writing as standard input. If the file does not exist then it is created.
+
+> word
+
+Open file word for writing as standard output. If the file does not exist then it is created. If the file exists, and the CLOBBER option is unset, this causes an error; otherwise, it is truncated to zero length.
+
+>| word
+
+>! word
+
+Same as >, except that the file is truncated to zero length if it exists, regardless of CLOBBER.
+
+>> word
+
+Open file word for writing in append mode as standard output. If the file does not exist, and the CLOBBER and APPEND\_CREATE options are both unset, this causes an error; otherwise, the file is created.
+
+>>| word
+
+>>! word
+
+Same as >>, except that the file is created if it does not exist, regardless of CLOBBER and APPEND\_CREATE.
+
+<<[-] word
+
+The shell input is read up to a line that is the same as word, or to an end-of-file. No parameter expansion, command substitution or filename generation is performed on word. The resulting document, called a _here-document_, becomes the standard input.
+
+If any character of word is quoted with single or double quotes or a ‘\’, no interpretation is placed upon the characters of the document. Otherwise, parameter and command substitution occurs, ‘\’ followed by a newline is removed, and ‘\’ must be used to quote the characters ‘\’, ‘$’, ‘‘’ and the first character of word.
+
+Note that word itself does not undergo shell expansion. Backquotes in word do not have their usual effect; instead they behave similarly to double quotes, except that the backquotes themselves are passed through unchanged. (This information is given for completeness and it is not recommended that backquotes be used.) Quotes in the form $’...’ have their standard effect of expanding backslashed references to special characters.
+
+If <<- is used, then all leading tabs are stripped from word and from the document.
+
+<<< word
+
+Perform shell expansion on word and pass the result to standard input. This is known as a _here-string_. Compare the use of word in here-documents above, where word does not undergo shell expansion.
+
+<& number
+
+>& number
+
+The standard input/output is duplicated from file descriptor number (see man page dup2(2)).
+
+<& -
+
+>& -
+
+Close the standard input/output.
+
+<& p
+
+>& p
+
+The input/output from/to the coprocess is moved to the standard input/output.
+
+>& word
+
+&> word
+
+(Except where ‘>& word’ matches one of the above syntaxes; ‘&>’ can always be used to avoid this ambiguity.) Redirects both standard output and standard error (file descriptor 2) in the manner of ‘> word’. Note that this does _not_ have the same effect as ‘> word 2>&1’ in the presence of multios (see the section below).
+
+>&| word
+
+>&! word
+
+&>| word
+
+&>! word
+
+Redirects both standard output and standard error (file descriptor 2) in the manner of ‘>| word’.
+
+>>& word
+
+&>> word
+
+Redirects both standard output and standard error (file descriptor 2) in the manner of ‘>> word’.
+
+>>&| word
+
+>>&! word
+
+&>>| word
+
+&>>! word
+
+Redirects both standard output and standard error (file descriptor 2) in the manner of ‘>>| word’.
+
+If one of the above is preceded by a digit, then the file descriptor referred to is that specified by the digit instead of the default 0 or 1. The order in which redirections are specified is significant. The shell evaluates each redirection in terms of the (_file descriptor_, _file_) association at the time of evaluation. For example:
+
+> ... 1>fname 2>&1
+
+first associates file descriptor 1 with file fname. It then associates file descriptor 2 with the file associated with file descriptor 1 (that is, fname). If the order of redirections were reversed, file descriptor 2 would be associated with the terminal (assuming file descriptor 1 had been) and then file descriptor 1 would be associated with file fname.
+
+The ‘|&’ command separator described in [Simple Commands & Pipelines](http://zsh.sourceforge.net/Doc/Release/Shell-Grammar.html#Simple-Commands-_0026-Pipelines) is a shorthand for ‘2>&1 |’.
+
+The various forms of process substitution, ‘<(list)’, and ‘\=(list)’ for input and ‘>(list)’ for output, are often used together with redirection. For example, if word in an output redirection is of the form ‘>(list)’ then the output is piped to the command represented by list. See [Process Substitution](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Process-Substitution).
+
+
 ### Redirection of errors
 
 > 
@@ -471,15 +601,19 @@ When excuting a given command, the following steps are excuted, in order:
 > 
 > When redirecting errors, note that the order of precedence is significant. For example, this command, issued in /var/spool
 > 
-> **ls -l \* _2_\> /var/tmp/unaccessible-in-spool** 
+> **ls -l * _2_> /var/tmp/unaccessible-in-spool** 
+
+or: Unsure if the `\` snuck in due to auto markdown generation
+
+> **ls -l \* _2_> /var/tmp/unaccessible-in-spool** 
 > 
 > will redirect standard output of the **ls** command to the file unaccessible-in-spool in /var/tmp. The command
 > 
-> **ls -l \* > /var/tmp/spoollist _2_\>&_1_** 
+> **ls -l * > /var/tmp/spoollist _2_>&_1_** 
 > 
 > will direct both standard input and standard error to the file spoollist. The command
 > 
-> **ls -l \* _2_ >& _1_ > /var/tmp/spoollist** 
+> **ls -l * _2_ >& _1_ > /var/tmp/spoollist** 
 > 
 > directs only the standard output to the destination file, because the standard error is copied to standard output before the standard output is redirected.
 > 
@@ -489,7 +623,7 @@ When excuting a given command, the following steps are excuted, in order:
 > 
 > **&> FILE**
 > 
-> This is the equivalent of **\> FILE 2>&1**, the construct used in the previous set of examples. It is also often combined with redirection to /dev/null, for instance when you just want a command to execute, no matter what output or errors it gives.
+> This is the equivalent of **> FILE 2>&1**, the construct used in the previous set of examples. It is also often combined with redirection to /dev/null, for instance when you just want a command to execute, no matter what output or errors it gives.
 
 
 
@@ -788,9 +922,51 @@ for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; toilet
 ```
 requires toilet package
 
+
+!!!Note NOTE: To display all available toilet fonts use this one-liner:
+          for i in ${TOILET_FONT_PATH:=/usr/share/figlet}/*.{t,f}lf; do j=${i##*/}; toilet -d "${i%/*}" -f "$j" "${j%.*}"; done
+
 ### tput
 
  tput setb 4 -sets the bg color
+
+TPut example from the `now` script
+
+
+ 
+ ```sh
+ 
+tput sc                 # Save cursor position.
+# Move up 9 lines
+i=0
+while [ $((++i)) -lt $Vsize ]; do tput cuu1; done
+tput cuf $TimeColumn    # Move 49 columns right
+echo $(date +"%I:%M %P") > /tmp/terminal
+
+# Do we have the toilet package?
+if hash toilet 2>/dev/null; then
+    echo " "$(date +"%I:%M %P")" " | \
+        toilet -f pagga --filter border > /tmp/terminal
+# Do we have the figlet package?
+elif hash figlet 2>/dev/null; then
+    echo $(date +"%I:%M %P") | figlet > /tmp/terminal
+# else use standard font
+else
+    echo $(date +"%I:%M %P") > /tmp/terminal
+fi
+
+while IFS= read -r Time; do
+    printf "\033[01;36m"    # color cyan
+    printf "$Time"
+    tput cud1               # Up one line
+    tput cuf $TimeColumn    # Move 49 columns right
+done < /tmp/terminal
+
+tput rc                     # Restore saved cursor position.
+
+ ```
+ 
+ 
 
 ### Quick Tips
 
@@ -899,6 +1075,31 @@ Provides a summary of the system, often for sharing on forums and such.
 - `-S` system
 
 `inxi -G`
+
+
+## Heredoc
+
+Heredoc (Main article in bash notes)
+
+[Bash Heredoc | Linuxize](https://linuxize.com/post/bash-heredoc/)
+
+> When writing shell scripts you may be in a situation where you need to pass a multiline block of text or code to an interactive command, such as [`tee`](https://linuxize.com/post/linux-tee-command/) , `cat`, or [`sftp`](https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/) .
+> 
+> In Bash and other shells like Zsh, a Here document (Heredoc) is a type of redirection that allows you to pass multiple lines of input to a command.
+> 
+> The syntax of writing HereDoc takes the following form:
+> 
+>     [COMMAND] <<[-] 'DELIMITER'
+>       HERE-DOCUMENT
+>     DELIMITER
+>     
+> 
+> -   The first line starts with an optional command followed by the special redirection operator `<<` and the delimiting identifier.
+>     -   You can use any string as a delimiting identifier, the most commonly used are EOF or END.
+>     -   If the delimiting identifier is unquoted, the shell will substitute all variables, commands and special characters before passing the here-document lines to the command.
+>     -   Appending a minus sign to the redirection operator `<<-`, will cause all leading tab characters to be ignored. This allows you to use indentation when writing here-documents in shell scripts. Leading whitespace characters are not allowed, only tab.
+> -   The here-document block can contain strings, variables, commands and any other type of input.
+> -   The last line ends with the delimiting identifier. White space in front of the delimiter is not allowed.
 
 Show the graphics info
 
@@ -1345,12 +1546,12 @@ ls
 
 ```bash
 file=${file/C://c}
-file=${file//\\//}
+file=${file//\//}
 echo $file
 
 #Rewritten As
 file=${file/C://c}
-file=${file//\\//}
+file=${file//\//}
 
 #Using Filenames as an array
 filenames=(
@@ -1360,7 +1561,7 @@ filenames=(
 
 for f in "${filenames[@]}"; do
   f="${f/C://c}"
-  f="${f//\\//}"
+  f="${f//\//}"
   echo "$f"
 done
 
@@ -1375,7 +1576,7 @@ If you want to put the output into an array instead of printing, replace the ech
   filenames_out+=( "$f" )
 
 #Shell Function
-win2lin () { f="${1/C://c}"; printf '%s\n' "${f//\\//}"; }
+win2lin () { f="${1/C://c}"; printf '%s\n' "${f//\//}"; }
 
 $ file='C:\Users\abcd\Downloads\testingFile.log'
 $ win2lin "$file"
@@ -1385,17 +1586,17 @@ $ win2lin "$file"
 /c/Users/pqrs/Documents/foobar
 
 #Option3
-file="$(echo "$file" | sed -r -e 's|^C:|/c|' -e 's|\\|/|g')"
+file="$(echo "$file" | sed -r -e 's|^C:|/c|' -e 's|\|/|g')"
 
 #or
-file="$(sed 's|^C:|/c|; s|\\|/|g' <<< "$file")"
+file="$(sed 's|^C:|/c|; s|\|/|g' <<< "$file")"
 
 #Or Using tr
-file="/$(echo 'C:\Users\abcd\Downloads\testingFile.log'|tr '^C' 'c'|tr '\\' '/')"
+file="/$(echo 'C:\Users\abcd\Downloads\testingFile.log'|tr '^C' 'c'|tr '\' '/')"
 
-file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^N' 'n'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^T' 't'|tr '^U' 'u'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\\' '/')"
+file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^N' 'n'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^T' 't'|tr '^U' 'u'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\' '/')"
 
-file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\\' '/')"
+file="/mnt/$(echo $file|tr '^C' 'c'|tr '^D' 'd'|tr '^E' 'e'|tr '^F' 'f'|tr '^G' 'g'|tr '^H' 'h'|tr 'q^I' 'i'|tr '^J' 'j'|tr '^K' 'k'|tr '^L' 'l'|tr '^M' 'm'|tr '^O' 'o'|tr '^P' 'p'|tr '^Q' 'q'|tr '^R' 'r'|tr '^S' 's'|tr '^V' 'v'|tr '^W' 'w'|tr '^X' 'x'|tr '^Y' 'y'|tr '^Z' 'z'|tr '^A' 'a'|tr '^B' 'b'|tr '\' '/')"
 ```
 
 ## lsof
@@ -1941,11 +2142,11 @@ For example, to copy the structure of the Linux directory to Documents, enter:
 
 You can easily add a date to a directory name if you want to put a date stamp to your transfers.
 
-Append $(date +\\%Y-\\%m-\\%d) to the destination directory name you want to create. This option is useful when you want to keep track of when transfers took place without opening directory properties.
+Append $(date +\%Y-\%m-\%d) to the destination directory name you want to create. This option is useful when you want to keep track of when transfers took place without opening directory properties.
 
 For example:
 
-    rsync -av /home/test/Desktop/Linux /home/test/Desktop/rsync$(date +\\%Y-\\%m-\\%d)
+    rsync -av /home/test/Desktop/Linux /home/test/Desktop/rsync$(date +\%Y-\%m-\%d)
 
 #### Do Not Copy Source File if the Same Destination File is Modified
 
@@ -2514,7 +2715,7 @@ use `**` to descend into directories. `ls **/*.pyc`
 
 Use globs for patterns to search for files. `ls *.(py|sh)`
 
-Use glob modifiers ls -l \*(@)
+Use glob modifiers ls -l *(@)
 
 `kill doc` to list running processes
 
@@ -2945,7 +3146,7 @@ Words of the form $'string' are treated specially. The word expands to string, w
 - `\r` - carriage return
 - `\t` - horizontal tab
 - `\v` - vertical tab
-- `\\` - backslash
+- `\` - backslash
 - `\'` - single quote
 - `\"` - double quote
 - `\?` - question mark
@@ -3059,9 +3260,9 @@ Using`tput setaf`
 >   green=$(tput setaf 2)
 >   blue=$(tput setaf 4)
 >   reset=$(tput sgr0)
->   PS1='\\\[$red\\\]\\u\\\[$reset\\\]@\\\[$green\\\]\\h\\\[$reset\\\]:\\\[$blue\\\]\\w\\\[$reset\\\]\\$ '
+>   PS1='\[$red\]\u\[$reset\]@\[$green\]\h\[$reset\]:\[$blue\]\w\[$reset\]\$ '
 > 
-> Note that we do **not** hard-code ANSI color escape sequences. Instead, we [store the output](http://bash.cumulonim.biz/BashFAQ(2f)002.html) of the tput command into variables, which are then used when $PS1 is expanded. Storing the values means we don't have to fork a tput process multiple times every time the prompt is displayed; tput is only invoked 4 times during [shell startup](http://bash.cumulonim.biz/DotFiles.html). The \\\[ and \\\] symbols allow bash to understand which parts of the prompt cause no cursor move
+> Note that we do **not** hard-code ANSI color escape sequences. Instead, we [store the output](http://bash.cumulonim.biz/BashFAQ(2f)002.html) of the tput command into variables, which are then used when $PS1 is expanded. Storing the values means we don't have to fork a tput process multiple times every time the prompt is displayed; tput is only invoked 4 times during [shell startup](http://bash.cumulonim.biz/DotFiles.html). The \[ and \] symbols allow bash to understand which parts of the prompt cause no cursor move
 
 
 
@@ -3752,7 +3953,7 @@ Temporarily disable the *name*d hash table elements or patterns. The default is
 
   -  `\v` - vertical tab
 
-  -  `\\` - backslash
+  -  `\` - backslash
 
   -  `\0`*NNN* - character code in octal
 
@@ -4075,7 +4276,7 @@ Additionally, the GNU extension that a '`-`' between the `%` and the format ch
 
 The numeric argument, which in the third form may appear immediately after the '`[`', specifies the maximum permitted length of the various strings that can be displayed in the prompt. In the first two forms, this numeric argument may be negative, in which case the truncation length is determined by subtracting the absolute value of the numeric argument from the number of character positions remaining on the current prompt line. If this results in a zero or negative length, a length of 1 is used. In other words, a negative argument arranges that after truncation at least *n* characters remain before the right margin (left margin for `RPROMPT`).
 
-The forms with '`<`' truncate at the left of the string, and the forms with '`>`' truncate at the right of the string. For example, if the current directory is '`/home/pike`', the prompt '`%8<..<%/`' will expand to '`..e/pike`'. In this string, the terminating character ('`<`', '`>`' or '`]`'), or in fact any character, may be quoted by a preceding '`\`'; note when using `print -P`, however, that this must be doubled as the string is also subject to standard `print` processing, in addition to any backslashes removed by a double quoted string: the worst case is therefore '`print -P "%<\\\\<<..."`'.
+The forms with '`<`' truncate at the left of the string, and the forms with '`>`' truncate at the right of the string. For example, if the current directory is '`/home/pike`', the prompt '`%8<..<%/`' will expand to '`..e/pike`'. In this string, the terminating character ('`<`', '`>`' or '`]`'), or in fact any character, may be quoted by a preceding '`\`'; note when using `print -P`, however, that this must be doubled as the string is also subject to standard `print` processing, in addition to any backslashes removed by a double quoted string: the worst case is therefore '`print -P "%<\\<<..."`'.
 
 If the *string* is longer than the specified truncation length, it will appear in full, completely replacing the truncated string.
 
@@ -4653,7 +4854,7 @@ sudo nano /etc/hosts
 127.0.0.1 hostname
 ```
 
-#### Change enx\*\*\*{MAC address} to eth0
+#### Change enx***{MAC address} to eth0
 
 Get regular net names back
 

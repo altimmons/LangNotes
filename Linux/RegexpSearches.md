@@ -611,3 +611,9 @@ Finding a table
 
 ``(`)([ ]{3,})(\S)`` -> `$1 | $3`
 
+
+
+!!!Example To handle the escapes that the Firefox Auto Markdown plugin generates:
+    `\\([><*\]\[\-\\])`
+    `$1`
+    Replaces `\_ \\, \< \> \] \[ \*` with just the character

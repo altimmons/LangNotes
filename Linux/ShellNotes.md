@@ -4,6 +4,10 @@
 
 [All Man topics Alphabetically](http://man7.org/linux/man-pages/dir_all_alphabetic.html)
 
+
+https://tldp.org/LDP/abs/html/tabexpansion.html  Adding your own expansions. http://freshmeat.net/projects/bashcompletion
+
+
 Links from [SS64](https://ss64.com/links/bash.html)
 
 - [The Linix Documentation Project](http://tldp.org/) & [Linux man pages online](http://man7.org/linux/man-pages/index.html).
@@ -40,6 +44,36 @@ Links from [SS64](https://ss64.com/links/bash.html)
 
 - [Bash Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#SEC_Contents)
 
+[VIM](https://linuxize.com/post/vim-find-replace/)
+
+[Bash Beginners Guide](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html)
+
+
+[The Advanced Bash Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
+
+Shell Fmt
+
+[mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
+
+> ### Related projects
+> 
+> The following editor integrations wrap `shfmt`:
+> 
+> -   [format-shell](https://atom.io/packages/format-shell) - Atom plugin
+> -   [intellij-shellcript](https://www.jetbrains.com/help/idea/shell-scripts.html) - Intellij Jetbrains `shell script` plugin
+> -   [micro](https://micro-editor.github.io/) - Editor with a built-in plugin
+> -   [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format) - VS Code plugin
+> -   [shfmt.el](https://github.com/purcell/emacs-shfmt/) - Emacs package
+> -   [Sublime-Pretty-Shell](https://github.com/aerobounce/Sublime-Pretty-Shell) - Sublime Text 3 plugin
+> -   [vim-shfmt](https://github.com/z0mbix/vim-shfmt) - Vim plugin
+> 
+> Other noteworthy integrations include:
+> 
+> -   Alternative docker image by [PeterDaveHello](https://github.com/PeterDaveHello/dockerized-shfmt/)
+> -   [modd](https://github.com/cortesi/modd) - A developer tool that responds to filesystem changes
+> -   [prettier-plugin-sh](https://github.com/rx-ts/prettier/tree/master/packages/sh) - [Prettier](https://prettier.io) plugin using [mvdan-sh](https://www.npmjs.com/package/mvdan-sh)
+> -   [sh-checker](https://github.com/luizm/action-sh-checker) - A GitHub Action that performs static analysis for shell scripts
+> -   [mdformat-shfmt](https://github.com/hukkinj1/mdformat-shfmt) - [mdformat](https://github.com/executablebooks/mdformat) plugin to format shell scripts embedded in Markdown with shf
 
 
 ## WSL (Windows Subsystem Linux)
@@ -498,11 +532,11 @@ ____
 
 > Functions are declared using this syntax:
 > 
->       fname () compound-command \[ redirections \]
+>       fname () compound-command [ redirections ]
 > 
 > or
 >               
->       function fname \[()\] compound-command \[ redirections \]
+>       function fname [()] compound-command [ redirections ]
 > 
 > This defines a shell function named fname. The reserved word `function` is optional. If the `function` reserved word is supplied, the parentheses are optional. The body of the function is the compound command compound-command 
 
@@ -694,7 +728,7 @@ a b c d e f g
 where M is ALT and ^ is CTRL.
 
 
-(^    )([A-Za-z0-9, _ -,+\\#.-\\!]+)(:)
+(^    )([A-Za-z0-9, _ -,+\#.-\!]+)(:)
 \t- [[`$2`]]  $3  
 
 
@@ -1103,7 +1137,7 @@ ____
 
 `{varname}` seems used to dereference a variable
 
-`signal=$(nmcli device wifi | grep \* | awk '{print $6}')`
+`signal=$(nmcli device wifi | grep * | awk '{print $6}')`
 
 note the `$()` around the expression
 
@@ -1801,7 +1835,7 @@ However mmv supports some standard wildcards.
 According to the manual the ";" wildcard is useful for matching files at any depth in the directory tree
 (ie it will go below the current directory, recursively).
 
-!!!example `mmv \*.JPG \#1.jpg`
+!!!example `mmv *.JPG \#1.jpg`
 The first pattern matches anything with a "`.JPG`" and renames each file (the "`#1`" matches the first wildcard) to "`.jpg`".
 Each time you use a `\(wildcard)` you can use a `#x` to get that wildcard. Where `x` is a positive number
 starting at 1.
@@ -2083,11 +2117,11 @@ In addition, the following table describes the special characters which can appe
 
 - `\nnn` - The character whose ASCII code is the octal value nnn. 
 
-- `\\` - A backslash. 
+- `\` - A backslash. 
 
-- `\[` - Begin a sequence of non-printing characters. This could be used to embed a terminal control sequence into the prompt. 
+- `[` - Begin a sequence of non-printing characters. This could be used to embed a terminal control sequence into the prompt. 
 
-- `\]` - End a sequence of non-printing characters. 
+- `]` - End a sequence of non-printing characters. 
 
 
 
@@ -2943,7 +2977,7 @@ As each input record is read, gawk splits the record into fields, using the valu
 
 !!!Example:  The Following code gets the wifi networks available, then pipes it to `grep` which finds the active one marked by an asterisk, then uses the default pattern matching, where each spaced field gives another value.
 
-                local signal=$(nmcli device wifi | grep \* | awk '{print $8}')
+                local signal=$(nmcli device wifi | grep * | awk '{print $8}')
 
         The first two commands give:
 
@@ -3439,7 +3473,7 @@ With no FILE, or when FILE is -, read standard input.
 
               info grep
 
-example `nmcli device wifi` prints out the wifi networks.  Piping `grep \*` to it finds the line that starts with an asterisk- which is the one that is connected.
+example `nmcli device wifi` prints out the wifi networks.  Piping `grep *` to it finds the line that starts with an asterisk- which is the one that is connected.
 
 another- `ls -l | grep "\.txt$"` runs `ls -l` then pipes it to grep- which will print the lines using the regex `\.txt$`
 
@@ -4147,3 +4181,532 @@ hibernate your computer.
 ` $ watch 'tail FILE | sort | uniq -c | sort -gr'`
 
 `exo-preferred-applications`
+
+
+
+
+## Historu Commands
+
+[History Commands](https://tldp.org/LDP/abs/html/histcommands.html)
+
+
+The Bash shell provides command-line tools for editing and manipulating a user's _command history_. This is primarily a convenience, a means of saving keystrokes.
+
+Bash history commands:
+
+        1.  **history**
+
+        2.  **fc**
+
+
+        bash$ **history**
+        1  mount /mnt/cdrom
+        2  cd /mnt/cdrom
+        3  ls
+        ...
+
+Internal variables associated with Bash history commands:
+
+        1.  $HISTCMD
+
+        2.  $HISTCONTROL
+
+        3.  $HISTIGNORE
+
+        4.  $HISTFILE
+
+        5.  $HISTFILESIZE
+
+        6.  $HISTSIZE
+
+        7.  $HISTTIMEFORMAT (Bash, ver. 3.0 or later)
+
+        8.  !!
+
+        9.  !$
+
+        10.  !#
+
+        11.  !N
+
+        12.  !-N
+
+        13.  !STRING
+
+        14.  !?STRING?
+
+        15.  ^STRING^string^
+
+
+Unfortunately, the Bash history tools find no use in scripting.
+
+
+```sh
+
+#!/bin/bash
+# history.sh
+# A (vain) attempt to use the 'history' command in a script.
+
+history                      # No output.
+
+var=$(history); echo "$var"  # $var is empty.
+
+#  History commands are, by default, disabled within a script.
+#  However, as dhw points out,
+#+ set -o history
+#+ enables the history mechanism.
+
+set -o history
+var=$(history); echo "$var"   # 1  var=$(history)
+
+bash$ **./history.sh**
+(no output)
+```
+
+[Advancing in the Bash Shell – ${me:-whatever}](http://samrowe.com/wordpress/advancing-in-the-bash-shell/)
+
+
+
+> 
+> Here’s an example of history output:
+> 
+> [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+> 
+> 1.  190 ps -axu | grep htt
+>     
+> 2.  191 /www/bin/apachectl start
+>     
+> 3.  192 vi /usr/local/lib/php.ini
+>     
+> 4.  193 cat /www/logs/error\_log
+>     
+> 5.  194 ps -auxw | grep http
+>     
+> 6.  195 pwd
+>     
+> 
+
+!! tells bash "repeat the last command I entered." 
+
+
+!xyz will allow you to run the last command beginning with xyz that you typed. 
+
+> ### :p isn’t just an emoticon
+> 
+> If you need to be very sure of the command you’re targeting, :p can be a huge help.
+
+ !xyz:p will print the command that would be executed rather than executing it. :p is also clever enough to add the printed command to your history list as the last command executed (even though it didn’t execute it) so that, if you decide that you like what was printed, a !! is all you need to make it happen,
+
+
+> Bash provides a couple of methods for searching the command history. Both are useful in different situations. The first method is to simply type
+
+ `history`, find the number of the command you want and then type
+ 
+`!N` where "N" is the number of the command you’d like to execute. (`:p` works here too.)
+
+ The other method is a tad more complex but also adds flexibilty. 
+ 
+ `^r` ([[ctrl]]-[[r]]) followed by whatever you type will search the command history for that string. The bonus here is that you’re able to edit the command line you’ve searched for before you send it down the line.
+ 
+> ### Bang dollar-sign
+> 
+`!$` is the "end" of the previous command. Consider the following example: We start by looking for a word in a file
+> 
+>       1.  $ grep -i joe /some/long/directory/structure/user-lists/list-15
+>     
+> 
+> if joe is in that userlist, we want to remove him from it. We can either fire up vi with that long directory tree as the argument, or as simply as
+> 
+> 1.  $ vi !$
+>     
+> Which bash expands to:
+        
+        > 1.  $ vi /some/long/directory/structure/user-lists/list-15
+
+
+> A word of caution: `!$` expands to the end word of the previous command. 
+
+Another thing to keep in mind when using !$ is that if the previous command had no agruments, `!$` will expand to the previous command rather than the most recent argument.
+
+ This can be handy if, for example, you forget to type vi and you just type the filename. A simple `vi !$ `and you’re in.
+
+Similar to `!$` is `!*`. `!*` is _all_ of the arguments to the previous command rather than just the last one. As usual, this is useful in many situations. Here’s a simple example:
+
+>$ vi cd /stuff #(oops!)
+
+[exit vi twice]
+
+$ !*
+
+Which bash expands to:
+
+  $ cd /stuff
+>     
+
+### Circumflex hats
+
+
+Have you ever typed a command, hit return and a micro-second later realized that you made a typo? Back when I still used the more pager I was always typing:
+
+1.  $ mroe filename
+
+
+Luckily, the folks who wrote bash weren’t the greatest typists either. In bash, you can fix typos in the previous command with a circumflex (^) or "hat." Consider the following:
+
+$ vi /etc/Somefile.conf #(oops!)
+
+ $ ^f^F
+
+Which bash turns into:
+
+  $ vi /etc/SomeFile.conf
+
+
+What happened there? The name of the file that I was trying to edit was /etc/SomeFile.conf (note the capital "F.") I typed a lower-case "f" and vi saw my error as a request for a new file. Once I closed out of vi I was able to fix my mistake with the following formula: `^error^correction`. Also notice that it only changed the first instance of "f" and not the second.
+
+If you need a global replacement, you’ll need to use a different kind of history modifier that’s discussed in the Word Modifiers section below.
+
+Hats needn’t be only used for errors… Let’s say you have a few redundant commands that can’t be handled with a wildcard, hats will work great for you. For example:
+
+$ dd if\=kern.flp of\=/dev/fd0
+
+ $ ^kern^mfsroot
+
+Which bash turns into:
+
+ $ dd if\=mfsroot.flp of\=/dev/fd0
+
+
+# stopped editing here:
+
+### A few handy movement commands
+
+Sometimes a mistake is noticed before the enter key is pressed. We’ve already talked about terminals that don’t translate cursor-keys properly, so how do you fix a mistake? To make matters worse, sometimes the backspace key gets mapped to `^H` or even worse something like `^[[~`. Now how do you fix your mistake before hitting the enter key?
+
+Once again, bash comes through for us. Here are some of the movement keystrokes that I use most often:
+
+-   ^w erase word
+-   ^u erase from here to beginning of the line (I use this ALL the time.)
+-   ^a move the cursor to the beginning of the line
+-   ^e move the curor to the end of the line
+
+There are more of course, but those are the ones you simply can’t live without. For those who don’t know the ^N notation means ctrl+N, don’t confuse it with hats mentioned above.
+
+### tab-tab
+
+One of my favorite features of bash is tab-completion. Tab-completion works in a couple of ways, it can complete filenames in the current directory or in your $PATH. Like the !commands above, you just need to give bash enough of the filename to make it unique and hit the tab key — bash will do the rest for you. Let’s say you have a file in your home directory called ransom.note, consider the following:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ mor[tab] ran[tab]
+
+
+Will expand to
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ more ransom.note
+
+
+Let’s say you also have a file named _random_ in your home directory. ran above is no longer enough to be unique, but you’re in luck. If you hit tab twice, bash will print the list of matching files to the screen so that you can see what you need to add to make your shortcut unique.
+
+### Aliases
+
+Using aliases is sort of like creating your own commands. You decide what you want to type _and_ what happens when you type that. Aliases can live in a few of different places, ~/.bashrc ~/.bash\_profile ~/.profile and ~/.aliases are some, but not all. In fact, you’re not really limited to keeping them all in one place. Those different files behave differently based upon what kind of shell you’re running, but that’s beyond the scope of this document. For the purposes of this discussion, we’ll settle on ~/.bash\_profile (used for login shells.)
+
+In that file, usually at the bottom, I assemble my aliases. Here’s some examples:
+
+-   alias ud=’aptitude update && aptitude dist-upgrade’
+-   alias ls=’ls –color=auto’
+-   alias mroe=’less’
+-   alias H=’kill -HUP’
+-   alias ssh=’ssh -AX’
+-   alias webshare=’python -c “import SimpleHTTPServer;SimpleHTTPServer.test()”‘
+
+The bottom one will probably wrap, but it provides a great example of why aliases are great. A whole string of commands has been reduced to something short and easy to remember.
+
+### Brace Expansion
+
+Everyone has done one of the following to make a quick backup of a file:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ cp filename filename-old
+
+2.  $ cp filename-old filename
+
+
+These seem fairly straightforward, what could possibly make them more efficient? Let’s look at an example:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ cp filename{,-old}
+
+2.  $ cp filename{-old,}
+
+3.  $ cp filename{-v1,-v2}
+
+
+In the first two examples, I’m doing exactly the same thing as I did in the previous set of examples, but with far less typing. The first example takes a file named filename and copies it to filename-old The second example takes a file named filename-old and copies it to simply filename.
+
+The third example might give us a clearer picture of what’s actually occuring in the first two. In the third example, I’m copying a file called filename-v1 to a file called filename-v2 The curly brace ({) in this context, tells bash that "brace expansion" is taking place. The _preamble_ (in our case filename,) is prepended to each of the strings in the comma-separated _list_ found within the curly braces, creating a new word for each string. So the third example above expands to:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ cp filename-v1 filename-v2
+
+
+Brace expansion can take place anywhere in your command string, can occur multiple times in a line and even be nested. Brace expansion expressions are evaluated left to right. Some examples:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ touch a{1,2,3}b
+
+2.  $ touch {p2,pv,av,}p
+
+3.  $ ls /usr/{,local/}{,s}bin/jojo
+
+
+The first example will create three files called a1b, a2b and a3b In this case, the preamble is prepended and the _postscript_ is appended to each string within the curly braces. The second example contains no preamble, so the postscript is appended to each string as before, creating p2p, pvp, avp and simply p The last string in the second example is empty, so p is appended to nothing and becomes just p The third example shows multiple brace expansions on the same line and expands to this:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ ls /usr/bin/jojo /usr/sbin/jojo /usr/local/bin/jojo /usr/local/sbin/jojo
+
+
+The following example is an example of nested brace expansion.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ apt-get remove --purge ppp{,config,oe{,conf}}
+
+
+The shell will expand it to:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ apt-get remove --purge ppp pppconfig pppoe pppoeconf
+
+
+The preamble, "ppp" will be prepended to, (left to right,) nothing ({,), config, then a second expansion will take place and a new preamble, "oe" will be prepended to, first nothing ({,), and then conf which will then each be appended to the original preamble.
+
+For more on brace expansion, including examples of nesting, read the bash man page.
+
+### Word Modifiers
+
+In the first installment of Advancing in the Bash Shell, we learned about :p which is used to print a command, but not execute it. :p is an example of a "word modifier" and it has several siblings. Here’s a shortened list from the bash man page:
+
+h
+
+Remove a trailing file name component, leaving only the head.
+
+t
+
+Remove all leading file name components, leaving the tail.
+
+r
+
+Remove a trailing suffix of the form .xxx, leaving the basename.
+
+e
+
+Remove all but the trailing suffix.
+
+Let’s say I’m reading a file nested deeply in a directory structure. When I finish editing the file, I realize that there are some other operations I want to do in that directory and that they would be more easily accomplished if I were _in_ that directory. I can use :h to help get me there.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ links /usr/local/share/doc/3dm/3DM\_help.html
+
+2.  $ cd !$:h
+
+3.  $ links !-2$:t
+
+
+Our old friend !$ is back and is being modified by :h. The second command tells bash to cd to !$ or _the last argument of the previous command_, modifying it with :h which trims off the file name portion of the string, leaving just the directory.
+
+The third command looks pretty crazy, but it is acutally quite simple. !-2 means _the command **N**_(in this case 2) _commands ago_. $ means _the last argument of that command_ and the :t means modify that argument to remove the path from it. So, all told: run links using the last argument of the command preceding the most recent one, trimming the path from that argument, or links 3DM\_help.html. No big deal, right?
+
+In our next example, we’ve downloaded a tar ball from the Internet. We check to see if it is going to create a directory for its files and find out that it will not. Rather than clutter up the current directory, we’ll make a directory for it.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ wget [http://www.example.com/path/to/jubby.tgz](http://www.example.com/path/to/jubby.tgz)
+
+2.  $ tar tzvf jubby.tgz
+
+3.  [output]
+
+4.  $ mkdir !$:r
+
+
+The third command will create a directory called ‘jubby’.
+
+Word modifiers can be stacked as well. In the next example, we’ll download a file to /tmp, and then create a directory for the contents of that tar file in /usr/local/src.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ cd /tmp
+
+2.  $ wget [http://www.example.com/path/KickassApplicationSuite.tar.gz](http://www.example.com/path/KickassApplicationSuite.tar.gz)
+
+3.  $ cd /usr/local/src/
+
+4.  $ mkdir !-2$:t:r:r
+
+5.  {creates directory called 'KickassApplicationSuite'}
+
+6.  $ cd !$
+
+7.  $ tar xvzf /tmp/!-4$:t
+
+
+The first three commands are fairly common and use no substitution. The fourth command, however, seems like gibberish. We know !-2 means _the command prior to the most recent one_ and that $ indicates the last argument of that command. We even know that :t will strip off the path portion of that argument (in this case, even the "http://".) We even know that :r will remove the file-extension to that argument, but here we call it twice, because there are two extensions (.gz is removed by the first :r and .tar is removed by the second.) We then cd into that directory (!$, again, is the argument to the previous command, in this case the argument to mkdir, which is ‘KickassApplicationSuite’.) We then untar the file. !-4$ is the last argument to the command four commands ago, which is then modified by :t to remove the path, because we added the path as /tmp/. So the last command becomes tar xvzf /tmp/KickassApplicationSuite.tar.gz.
+
+There’s even a word modifier for substitution. :s can be used similarly to circumflex hats to do simple line substitution.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ vi /etc/X11/XF86config
+
+2.  $ !!:s/config/Config-4/
+
+
+We know that !! means the previous command string. :s modifies the previous command, substituting the first argument to :s with the second argument to :s. My example used / to delimit the two arguments, but any non-whitespace character can be used. It’s also important to note that, just like circumflex hat substitution, the substitution will only take place on the first instance of the string to be substituted. If you want to affect every instance of the substitution string, you must use the :g word modifier along with :s.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ mroe file1 ; mroe file2
+
+2.  $ !!:gs/mroe/more
+
+
+The second command substitutes (:s) more for all (:g) instances of mroe. Hint: :g can be used with circumflex hats too!
+
+The final word modifer we’ll look at in this tutorial is &. & means _repeat the previous substitution._ Let’s say we’re examining file attributes with the ls command.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ ls -lh myfile otherfile anotherfile
+
+2.  $ !!:s/myfile/myfile.old/
+
+
+Seems simple enough. :s steps in and changes myfile to myfile.old so we end up with ls -lh myfile.old myfile2 myfile3. & is just a shortcut that we can use to represent the first argument to :s The following example is equivalent to the example above:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ ls -lh myfile otherfile anotherfile
+
+2.  $ !!:s/myfile/&.old/
+
+
+& is a bit of a tricky one, as it has different contexts in the shell. Remember that this use of & is as a word modifier.
+
+### Bash Functions
+
+Earlier, we learned a bit about aliases. Aliases are simple, static, substitutions. This isn’t to say that one can’t have a very advanced and complex alias, but rather to say that no matter how complex the alias, the shell is simply substituting _^x_ for _^y_. Shell functions are like aliases, but they have the ability to contain logic and positional arguments, making them quite powerful.
+
+What is a positional argument? I’m glad you asked. A positional argument is an argument whose _position_ is important. For example, in the following function the directory containing the data to be copied _must_ come first and the destination directory _must_ come second.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  function treecp { tar cf - "${1}" | (cd "${2}" ; tar xpf -) ; };
+
+
+It’s certainly possible (and easy) to write functions that can accept their arguments in any order, but in many cases, it just doesn’t make sense to do so. Imagine if cp could take its arguments in any order and you had to use switches to designate which file was which!
+
+Let’s look at the example function above. To let bash know that you’re declaring a function, you start your function with the word function. The first argument to function is the name of the function you want to declare. In this case, treecp. The next character, {, as above, indicates a list to the shell. The list, in this case, is a list of commands. After the curly brace, the logic of the function is defined until the function is closed with a semi-colon followed by a closing curly brace (}.)
+
+The logic of this function is fairly simple, once you understand the two variables that it is using. "${1}" is _the first argument to a given command_. "${2}" is the second, and so on.These are positional arguments. Their number indicates their position. You might think that, "${0}" is the name of the command itself, but it’s actually the name of the current "environment". In a shell script, it will be the name of the shell script. In your interactive shell, it’ll be the shell name with arguments. If you want the name of the function you’re in, you can use ${FUNCNAME}.
+
+So, in order to use our treecp function, we must supply it with two arguments, the source tree and the destination tree:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ treecp dmr ~/public\_html
+
+
+dmr becomes "${1}", and ~/public\_html is expanded to /home/whomever/public\_html which then becomes "${2}".
+
+What happens if the user forgets to add either or both arguments? How can the function know that it shouldn’t continue? The function, as above, doesn’t. It’ll just continue on its merry way no matter how few arguments it receives. Let’s add some logic to make sure things are as we expect them before proceeding.
+
+Before we can do that, we need to learn about another variable that is set, (like "${1}",) when a command is run. The "${#}" variable is equal to the number of arguments given to a command. For example:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ function myfunc { echo "${#}" ; } ;
+
+2.  $ myfunc foo bar taco jojo
+
+3.  [output is '4']
+
+4.  $ myfunc *
+
+5.  [output is the same as 'ls | wc -l']
+
+6.  $ myfunc
+
+7.  [output is '0']
+
+
+So now that we can discover how many arguments were passed to our command, (in this case a function,) we can determine if we’ve received the two arguments necessary to make our command work. There’s still a chance that these arguments are garbage, containing typos or directories that don’t exist, but unfortunately the function can’t think for you. :)
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  function treecp {
+
+2.  if [ "${#}" != 2 ] ; then
+
+3.  echo "Usage: treecp source destination";
+
+4.  return 1;
+
+5.  else
+
+6.  tar cf - "${1}" | (cd "${2}" ; tar xpf -) ;
+
+7.  fi ;
+
+8.  };
+
+
+I’ve made use of the [ (aka test) application to see if the number of arugments is other than the expected two. If there are more or less than two arguments, the function willl echo a usage statement and set the value of "${?}" to 1. "${?}" is called a _return code_. I’ll discuss return codes in a little bit. If there _are_ two arguments, the command runs using the first argument as an argument to tar cf – and the second command as an argument to cd. For more information on [ read its man page (man [.)
+
+Ok, so positional parameters are fun, but what if I don’t care about placement and I need to pass _all_ arguments to a command within my function? "${*}" is just what you’re looking for.
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  $ function n { echo "${*}" >> ~/notes; };
+
+2.  $ n do the dumb things I gotta do, touch the puppet head.
+
+
+No matter how many words are passed to n they’ll all end up concatenated to the end of notes in my home directory. Be careful to avoid shell-special characters when entering notes in this manner!
+
+Above, we designated 1 as a return code for an error state. There are no rules about what number should be returned in what case, but there are some commonly used return codes that you may want to use or at least be aware of. 0 (zero) is commonly used to denote successful completion of a task. 1 (one), (or any non-zero number,) is commonly used to denote an error state.
+
+If an function or shell script is quite complex, the author may choose to use any number of error codes to mean different things went wrong. For example, return code _28_ might mean your script was unable to create a file in a certain directory, whereas return code _29_ might mean that the script received an error code from wget when it tried to download a file. Return codes are more helpful to logic than to people. Don’t forget to include good error messages for the humans trying to figure out what’s going wrong.
+
+The following is an example of checking a return code:
+
+[View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
+
+1.  function err {
+
+2.  grep "${*}" /usr/include/*/errno.h;
+
+3.  if [ "${?}" != 0 ] ; then
+
+4.  echo "Not found."
+
+5.  fi
+
+6.  };
+
+
+grep will return non-zero if no match was found. We then call test again (as [) to see if the return code from grep was other than zero. If [‘s expression evaluates to true, in this case if a non-zero number was returned, the command after then will be run. If grep returns 0, it will output the files/lines that match the expression passed to it, [‘s expression will evaluate false and the command after then will **not** run.
+
+This is just the tip of the bash iceberg. If you’re interested in learning more about the programming aspects of Bash, don’t miss Mike G’s [BASH Programming – Introduction HOW-TO](http://en.tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html). [Greg’s Bash Wiki](http://mywiki.wooledge.org/BashFAQ) are also an excellent resources.
+
+I hope this tutorial has been useful to you. The most difficult hurdle here is not the learning curve, but simply becoming accustomed to using these built-ins. Just like learning vi, once you get good with these, you’ll be amazed you ever lived without them.
