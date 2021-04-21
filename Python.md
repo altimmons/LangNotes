@@ -3824,6 +3824,8 @@ Python refers to the [Sequence Types — list, tuple, range](https://docs.python
 
 [Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
 
+Iterables - Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict, file objects, and objects of any classes you define with an __iter__() method or with a __getitem__() method that implements Sequence semantics.
+
 
 - `x in s` -True if an item of s is equal to x, else False
 - `x not in s` -False if an item of s is equal to x, else True
@@ -4647,8 +4649,15 @@ assert employee.id == ~~3~~
  Made up of values with a unique key for each value
  Similar to lists, but you can't join dicts with a +
 
+[Built-in Types — Python 3.9.4 documentation](https://docs.python.org/3/library/stdtypes.html#dict)
 
-
+> Dictionaries can be created by several means:
+> 
+> -   Use a comma-separated list of `key: value` pairs within braces: `{'jack': 4098, 'sjoerd': 4127}` or `{4098: 'jack', 4127: 'sjoerd'}`
+>     
+> -   Use a dict comprehension: `{}`, `{x: x ** 2 for x in range(10)}`
+>     
+> -   Use the type constructor: `dict()`, `dict([('foo', 100), ('bar', 200)])`, `dict(foo=100, bar=200)`
  declaration format: 
 
  returns a list of tuples for the dictionary.
@@ -4723,46 +4732,46 @@ The objects returned by `dict.keys(), dict.values()` and `dict.items()` are view
 
  Dictionary Additional Methods
 
- | Dictionary        | Additional Methods                                                                                           |
- | ----------------- | ------------------------------------------------------------------------------------------------------------ |
- | **init**          |                                                                                                              |
- | dict()            | new empty dictionary                                                                                         |
- | dict(mapping)     | new dictionary initialized from a mapping object's (key, value) pairs                                        |
- | dict(iterable)    | new dictionary initialized as if via: d = {}                                                                 |
- |                   | for k, v in iterable:                                                                                        |
- |                   | d[k] = v                                                                                                     |
- | dict()            | dict(**kwargs) -> new dictionary initialized with the name=value pairs in the keyword argument list. **1\*\* |
- | **implicit**      |                                                                                                              |
- | D.**contains**(k) | **contains**(...) -> True if D has a key k, else False **2**                                                 |
- | k in D            |                                                                                                              |
- | x[i]=y            | set item                                                                                                     |
- | x[y]              | get item, lookup                                                                                             |
- | del x[y]          | delete item                                                                                                  |
- | ==,>=,<=,>,<,!=   | comparison, unknown (to me) how this works.                                                                  |
- | **explicit**      |                                                                                                              |
- | iter(x)           | uses in iteration                                                                                            |
- | len(x)            | returns the length of Length                                                                                 |
- | repr(x)           | returns the value as a string                                                                                |
- | clear(...)        | D.clear() -> None. Remove all items from D.                                                                  |
- | copy(...)         | D.copy() -> a shallow copy of D                                                                              |
- | fromkeys(...)     | dict.fromkeys(S[,v]) -> New dict with keys from S and values equal to v. **3**                               |
- | get(...)          | D.get(k[,d]) -> D[k] if k in D, else d. d defaults to None. **4**                                            |
- | has_key(...)      | D.has_key(k) -> True if D has a key k, else False                                                            |
- | items(...)        | D.items() -> list of D's (key, value) pairs, as 2-tuples- spits the Dict out as a list of tuples.            |
- | iteritems(...)    | D.iteritems() -> an iterator over the (key, value) items of D                                                |
- | iterkeys(...)     | D.iterkeys() -> an iterator over the keys of D                                                               |
- | itervalues(...)   | D.itervalues() -> an iterator over the values of D                                                           |
- | keys(...)         | D.keys() -> list of D's keys                                                                                 |
- | pop(...)          | D.pop(k[,d]) -> v, remove specified key and return the corresponding value. **5**                            |
- | popitem(...)      | D.popitem() -> (k, v), remove and return some (key, value) pair as a 2-tuple; **6**                          |
- | setdefault(...)   | D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D                                             |
- | update(...)       | D.update([E, ]**F) -> None. Update D from dict/iterable E and F. **7a-c\*\*\*                                |
- | values(...)       | D.values() -> list of D's values                                                                             |
- | viewitems(...)    | D.viewitems() -> a set-like object providing a view on D's items                                             |
- | viewkeys(...)     | D.viewkeys() -> a set-like object providing a view on D's keys                                               |
- | viewvalues(...)   | D.viewvalues() -> an object providing a view on D's values                                                   |
+| Dictionary        | Additional Methods                                                          |
+| ----------------- | --------------------------------------------------------------------------- |
+| **init**          |                                                                             |
+| dict()            | new empty dictionary                                                        |
+| dict(mapping)     | new dict init from a mapping object's (key, value) pairs                    |
+| dict(iterable)    | new dictionary initialized as if via: d = {}                                |
+|                   | for k, v in iterable:                                                       |
+|                   | d[k] = v                                                                    |
+| dict()            | dict(**kwargs) ->  dict init w/ name=value pairs in kwargs [1]              |
+| **implicit**      |                                                                             |
+| D.**contains**(k) | **contains**(...) -> True if D has a key k, else False **2**                |
+| k in D            |                                                                             |
+| x[i]=y            | set item                                                                    |
+| x[y]              | get item, lookup                                                            |
+| del x[y]          | delete item                                                                 |
+| ==,>=,<=,>,<,!=   | comparison, unknown (to me) how this works. [9]                            |
+| **explicit**      |                                                                             |
+| iter(x)           | uses in iteration                                                           |
+| len(x)            | returns the length of Length                                                |
+| repr(x)           | returns the value as a string                                               |
+| clear(...)        | D.clear() -> None. Remove all items from D.                                 |
+| copy(...)         | D.copy() -> a shallow copy of D                                             |
+| fromkeys(...)     | dict.fromkeys(S[,v]) -> New dict with keys S and values v. **3**            |
+| get(...)          | D.get(k[,d]) -> D[k] if k in D, else d. d defaults to None. **4**           |
+| has_key(...)      | D.has_key(k) -> True if D has a key k, else False                           |
+| items(...)        | D.items() -> list of D's (key, value) pairs, as 2-tuples- [8]               |
+| iteritems(...)    | D.iteritems() -> an iterator over the (key, value) items of D               |
+| iterkeys(...)     | D.iterkeys() -> an iterator over the keys of D                              |
+| itervalues(...)   | D.itervalues() -> an iterator over the values of D                          |
+| keys(...)         | D.keys() -> list of D's keys                                                |
+| pop(...)          | D.pop(k[,d]) -> v, remove specified key and return v **5**                  |
+| popitem(...)      | D.popitem() -> (k, v), remove + return (key, value) pair in  2-tuple; **6** |
+| setdefault(...)   | D.setdefault(k[,d]) -> D.get(k,d), also set D[k]=d if k not in D            |
+| update(...)       | D.update([E, ]**F) -> None. Update D from dict/iter E and F. [7]            |
+| values(...)       | D.values() -> list of D's values                                            |
+| viewitems(...)    | D.viewitems() -> a set-like object providing a view on D's items            |
+| viewkeys(...)     | D.viewkeys() -> a set-like object providing a view on D's keys              |
+| viewvalues(...)   | D.viewvalues() -> an object providing a view on D's values                  |
 
- 1. For example: dict(one=1, two=2)
+ 1. in keyword argument list. **1\*\*  For example: dict(one=1, two=2)
  2. 'Barkingtreefrog'in bw_grams
  3. v defaults to None.
  4. printbw_grams.get('Barkingtreefrog','Notfound')
@@ -4773,9 +4782,38 @@ The objects returned by `dict.keys(), dict.values()` and `dict.items()` are view
  - has a .keys() method, does: for k in E: D[k] = E[k]
  - lacks .keys() method, does: for (k, v) in E: D[k] = v
  - In either case, this is followed by: for k in F: D[k] = F[k]
+8. spits the Dict out as a list of tuples.
+9. [One place in the doc ](https://docs.python.org/3/library/stdtypes.html#dict) seems to suggest this would throw type error.  See below (and ~~link)~~
 
+
+
+#### Dictionary Operators
+
+
+d `|` other - Create a new dictionary with the merged keys and values of d and other, which must both be dictionaries. The values of other take priority when d and other share keys.
+
+    New in version 3.9.
+
+d `|=` other - Update the dictionary d with keys and values from other, which may be either a mapping or an iterable of key/value pairs. The values of other take priority when d and other share keys.
+
+
+`==` Dictionaries compare equal if and only if they have the same (key, value) pairs (regardless of ordering). 
+
+
+Order comparisons `(‘<’, ‘<=’, ‘>=’, ‘>’)` raise TypeError.
 
 #### Dictionary Comprehension 
+
+[Technical Discussion](https://docs.python.org/3/reference/expressions.html#displays-for-lists-sets-and-dictionaries)
+
+
+
+Common syntax elements for comprehensions are:
+
+comprehension ::=  assignment_expression comp_for
+comp_for      ::=  ["async"] "for" target_list "in" or_test [comp_iter]
+comp_iter     ::=  comp_for | comp_if
+comp_if       ::=  "if" or_test [comp_iter]
 
         
      dict_variable = {key:value for (key,value) in dictonary.items()}
@@ -4973,6 +5011,22 @@ but the above is a simple nested dict.
 
 #### Ordered Dictionary
 
+By default- since 3.7 dict is ordered by default.
+
+But there are two additional methods here.
+
+ `class collections.OrderedDict([items])`
+
+Return an instance of a dict subclass that has methods specialized for rearranging dictionary order.
+
+`popitem(last=True)`
+
+        The popitem() method for ordered dictionaries returns and removes a (key, value) pair. The pairs are returned in LIFO order if last is true or FIFO order if false.
+
+`move_to_end(key, last=True)`
+
+        Move an existing key to either end of an ordered dictionary. The item is moved to the right end if last is true (the default) or to the beginning if last is false. Raises KeyError if the key does not exist:
+
 Another class is the ordered dict. Its a fifo like struct
 
 
@@ -5000,6 +5054,50 @@ Another class is the ordered dict. Its a fifo like struct
 >>> G.add_edges_from( ((2,2), (2,1), (1,1)) )
 >>> G.edges()
 [(2, 2), (2, 1), (1, 1)]
+
+##### LRU Cache from Ordered Dict
+
+
+
+OrderedDict Examples and Recipes
+
+It is straightforward to create an ordered dictionary variant that remembers the order the keys were last inserted. If a new entry overwrites an existing entry, the original insertion position is changed and moved to the end:
+
+class LastUpdatedOrderedDict(OrderedDict):
+    'Store items in the order the keys were last added'
+
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        self.move_to_end(key)
+
+An OrderedDict would also be useful for implementing variants of functools.lru_cache():
+
+
+```python
+class LRU(OrderedDict):
+    'Limit size, evicting the least recently looked-up key when full'
+
+    def __init__(self, maxsize=128, /, *args, **kwds):
+        self.maxsize = maxsize
+        super().__init__(*args, **kwds)
+
+    def __getitem__(self, key):
+        value = super().__getitem__(key)
+        self.move_to_end(key)
+        return value
+
+    def __setitem__(self, key, value):
+        if key in self:
+            self.move_to_end(key)
+        super().__setitem__(key, value)
+        if len(self) > self.maxsize:
+            oldest = next(iter(self))
+            del self[oldest]
+
+
+```
+
+
 
  #### Iterate Through a dictionary
 
@@ -5432,6 +5530,42 @@ ____
 ____
 ____
 ## ITERABLES
+
+[Async Iterators]([Glossary — Python 3.9.4 documentation](https://docs.python.org/3/glossary.html#term-asynchronous-iterator)
+
+
+
+
+[iterable](https://docs.python.org/3/glossary.html#term-iterable)
+
+!!!quote [Iterator Types](https://docs.python.org/3/library/stdtypes.html#typeiter)
+    > Python supports a concept of iteration over containers. This is implemented using two distinct methods; these are used to allow user-defined classes to support iteration. `Sequences`, described below in more detail, always support the iteration methods.
+
+> Iterables can be used in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop and in many other places where a sequence is needed ([`zip()`](https://docs.python.org/3/library/functions.html#zip "zip"), [`map()`](https://docs.python.org/3/library/functions.html#map "map"), …). When an iterable object is passed as an argument to the built-in function [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter"), it returns an iterator for the object. This iterator is good for one pass over the set of values. When using iterables, it is usually not necessary to call [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") or deal with iterator objects yourself. The `for` statement does that automatically for you, creating a temporary unnamed variable to hold the iterator for the duration of the loop. See also [iterator](https://docs.python.org/3/glossary.html#term-iterator), [sequence](https://docs.python.org/3/glossary.html#term-sequence), and [generator](https://docs.python.org/3/glossary.html#term-generator).
+> 
+!!!quote [Iterator](https://docs.python.org/3/glossary.html#term-iterator)
+    > An object representing a stream of data. Repeated calls to the iterator’s [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
+> 
+> More information can be found in [Iterator Types](https://docs.python.org/3/library/stdtypes.html#typeiter).)
+
+
+
+[Glossary — Python 3.9.4 documentation](https://docs.python.org/3/glossary.html#term-asynchronous-iterator)
+
+> An object capable of returning its members one at a time. Examples of iterables include all sequence types (such as [`list`](https://docs.python.org/3/library/stdtypes.html#list "list"), [`str`](https://docs.python.org/3/library/stdtypes.html#str "str"), and [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "tuple")) and some non-sequence types like [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "dict"), [file objects](https://docs.python.org/3/glossary.html#term-file-object), and objects of any classes you define with an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method or with a [`__getitem__()`](https://docs.python.org/3/reference/datamodel.html#object.__getitem__ "object.__getitem__") method that implements [Sequence](https://docs.python.org/3/glossary.html#term-sequence) semantics.
+
+==Iterables== - Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict, file objects, and objects of any classes you define with an __iter__() method or with a __getitem__() method that implements Sequence semantics.
+
+[Glossary — Python 3.9.4 documentation](https://docs.python.org/3/glossary.html#term-asynchronous-iterator)
+
+> Iterables can be used in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop and in many other places where a sequence is needed ([`zip()`](https://docs.python.org/3/library/functions.html#zip "zip"), [`map()`](https://docs.python.org/3/library/functions.html#map "map"), …). When an iterable object is passed as an argument to the built-in function [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter"), it returns an iterator for the object. This iterator is good for one pass over the set of values. When using iterables, it is usually not necessary to call [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") or deal with iterator objects yourself. The `for` statement does that automatically for you, creating a temporary unnamed variable to hold the iterator for the duration of the loop. See also [iterator](https://docs.python.org/3/glossary.html#term-iterator), [sequence](https://docs.python.org/3/glossary.html#term-sequence), and [generator](https://docs.python.org/3/glossary.html#term-generator).
+> 
+> ==iterator==
+> 
+> An object representing a stream of data. Repeated calls to the iterator’s [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
+> 
+> More information can be found in [Iterator Types](https://docs.python.org/3/library/stdtypes.html#typeiter).
+
 
  The general thought process for iteration
 

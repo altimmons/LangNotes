@@ -145,6 +145,10 @@ Microsoft Docs - supports the following insert types.
 
 ## Add Image
 
+![]("file:///O:/OneDrive/Programming/.Sync/'VS Code'/md/res/04/19/000022.png")
+
+
+![](https://markhneedham.com/blog//me.jpg)
 Syntax:
 
 `![Opt Name](path = imgsize)`

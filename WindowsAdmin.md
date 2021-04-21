@@ -425,13 +425,25 @@ If you are using Windows 7 or newer, open the folder containing the new DLL file
 Type regsvr32 dllname.dll and press Enter. This will add the DLL file to Windows Registry.
 Type regsvr32 -u dllname.dll to remove the DLL file from the Windows Registry.
 
+### Current Path
+There is another current path, maintained by Windows, that applies to all .NET methods. It may be different than PowerShell’s current path:
 
+ 
+PS> [Environment]::CurrentDirectory
+C:\test
+
+PS> [System.IO.Path]::GetFullPath('.')
+C:\test
+
+PS>  
+ 
 
 ## Protocol Host
 
 Nirsoft URLProtocolView
 
-Running `ms-taskswitcher:/` brings up task viewThe protocol host seems useful!
+Running `ms-taskswitcher:/` brings up task view
+The protocol host seems useful!
 .
 
 #### Getting a programs Path
@@ -682,6 +694,280 @@ Windows Update 	wuapp
 Windows Update Standalone Installer 	wusa
 Windows Version (About Windows) 	winver
 WordPad 	write
+
+
+## Browsers 
+
+### Chrome and Firefox internal Links
+
+
+Google Chrome
+
+In Google Chrome, it's either of these:
+
+    `about:about`
+    `chrome://chrome-urls`
+
+The page will list all possible pages. In Chrome, all `about:` pages are internally treated as Chrome URLs, with the   - `chrome://` protocol handler. Therefore, these are equivalent.
+
+ >- chrome://`accessibility`
+  - chrome://`appcache-internals`
+  - chrome://`apps`
+  - chrome://`blob-internals`
+  - chrome://`bookmarks`
+  - chrome://`cache`
+  - chrome://`chrome`
+  - chrome://`chrome-urls`
+  - chrome://`components`
+  - chrome://`copresence`
+  - chrome://`crashes`
+  - chrome://`credits`
+  - chrome://`device-log`
+  - chrome://`devices`
+  - chrome://`dns`
+  - chrome://`downloads`
+  - chrome://`extensions`
+  - chrome://`flags`
+  - chrome://`flash`
+  - chrome://`gcm-internals`
+  - chrome://`gpu`
+  - chrome://`help`
+  - chrome://`histograms`
+  - chrome://`history`
+  - chrome://`indexeddb-internals`
+  - chrome://`inspect`
+  - chrome://`invalidations`
+  - chrome://`linux-proxy-config`
+  - chrome://`local-state`
+  - chrome://`media-internals`
+  - chrome://`memory`
+  - chrome://`memory-internals`
+  - chrome://`nacl`
+  - chrome://`net-internals`
+  - chrome://`newtab`
+  - chrome://`omnibox`
+  - chrome://`password-manager-internals`
+  - chrome://`plugins`
+  - chrome://`policy`
+  - chrome://`predictors`
+  - chrome://`print`
+  - chrome://`profiler`
+  - chrome://`quota-internals`
+  - chrome://`sandbox`
+  - chrome://`serviceworker-internals`
+  - chrome://`settings`
+  - chrome://`signin-internals`
+  - chrome://`suggestions`
+  - chrome://`sync-internals`
+  - chrome://`system`
+  - chrome://`terms`
+  - chrome://`thumbnails`
+  - chrome://`tracing`
+  - chrome://`translate-internals`
+  - chrome://`user-actions`
+  - chrome://`version`
+  - chrome://`view-http-cache`
+  - chrome://`voicesearch`
+  - chrome://`webrtc-internals`
+  - chrome://`webrtc-logs`
+
+The following URLs are sectioned off because they cause something "bad" to happen:
+
+>  - chrome://`badcastcrash`
+  - chrome://`crash`
+  - chrome://`crashdump`
+  - chrome://`kill`
+  - chrome://`hang`
+  - chrome://`shorthang`
+  - chrome://`gpuclean`
+  - chrome://`gpucrash`
+  - chrome://`gpuhang`
+  - chrome://`ppapiflashcrash`
+  - chrome://`ppapiflashhang`
+  - chrome://`quit`/
+  - chrome://`restart`/
+
+Last Updated: Chrome 46
+Mozilla Firefox
+
+
+!!!summary  Mozilla Firefox has the same meta-page:   - about:`about`, but here's a list as well:
+    - about:`about`
+    - about:`accounts`
+    - about:`addons`
+    - about:`app-manager`
+    - about:`buildconfig`
+    - about:`cache`
+    - about:`config`
+    - about:`crashes`
+    - about:`credits`
+    - about:`customizing`
+    - about:`downloads`
+    - about:`healthreport`
+    - about:`home`
+    - about:`license`
+    - about:`logo`
+    - about:`memory`
+    - about:`mozilla`
+    - about:`networking`
+    - about:`newtab`
+    - about:`performance`
+    - about:`permissions`
+    - about:`plugins`
+    - about:`preferences`
+    - about:`privatebrowsing`
+    - about:`rights`
+    - about:`robots`
+    - about:`serviceworkers`
+    - about:`sessionrestore`
+    - about:`startpage`
+    - about:`support`
+    - about:`sync-log`
+    - about:`sync-progress`
+    - about:`sync-tabs`
+    - about:`telemetry`
+    - about:`webrtc`
+    - about:`welcomeback`
+
+!!!summary Firefox Methods
+    |                        |                         |
+    | ---------------------- | ----------------------- |
+    | about:`about`          | about:`accounts`        |
+    | about:`addons`         | about:`app-manager`     |
+    | about:`buildconfig`    | about:`cache`           |
+    | about:`config`         | about:`crashes`         |
+    | about:`credits`        | about:`customizing`     |
+    | about:`downloads`      | about:`healthreport`    |
+    | about:`home`           | about:`license`         |
+    | about:`logo`           | about:`memory`          |
+    | about:`mozilla`        | about:`networking`      |
+    | about:`newtab`         | about:`performance`     |
+    | about:`permissions`    | about:`plugins`         |
+    | about:`preferences`    | about:`privatebrowsing` |
+    | about:`rights`         | about:`robots`          |
+    | about:`serviceworkers` | about:`sessionrestore`  |
+    | about:`startpage`      | about:`support`         |
+    | about:`sync-log`       | about:`sync-progress`   |
+    | about:`sync-tabs`      | about:`telemetry`       |
+    | about:`webrtc`         | about:`welcomeback`     |
+
+(^[^\s]+$)\n(^[^\s]*$)\n(^[^\s]*$)
+| $1 | $2 | $3 |
+
+!!!summary Firefox Methods
+    |                        |                       |                         |
+    | ---------------------- | --------------------- | ----------------------- |
+    | about:`about`          | about:`accounts`      | about:`addons`          |
+    | about:`app-manager`    | about:`buildconfig`   | about:`cache`           |
+    | about:`config`         | about:`crashes`       | about:`credits`         |
+    | about:`customizing`    | about:`downloads`     | about:`healthreport`    |
+    | about:`home`           | about:`license`       | about:`logo`            |
+    | about:`memory`         | about:`mozilla`       | about:`networking`      |
+    | about:`newtab`         | about:`performance`   | about:`permissions`     |
+    | about:`plugins`        | about:`preferences`   | about:`privatebrowsing` |
+    | about:`rights`         | about:`robots`        | about:`serviceworkers`  |
+    | about:`sessionrestore` | about:`startpage`     | about:`support`         |
+    | about:`sync-log`       | about:`sync-progress` | about:`sync-tabs`       |
+    | about:`telemetry`      | about:`webrtc`        | about:`welcomeback`     |
+
+(^[^\s]+$)\n(^[^\s]*$)\n(^[^\s]*$)\n(^[^\s]*$)
+| $1 | $2 | $3 | $4 |
+
+
+!!!summary Firefox Methods
+    |                     |                     |                        |                         |
+    | ------------------- | ------------------- | ---------------------- | ----------------------- |
+    | about:`about`       | about:`accounts`    | about:`addons`         | about:`app-manager`     |
+    | about:`buildconfig` | about:`cache`       | about:`config`         | about:`crashes`         |
+    | about:`credits`     | about:`customizing` | about:`downloads`      | about:`healthreport`    |
+    | about:`home`        | about:`license`     | about:`logo`           | about:`memory`          |
+    | about:`mozilla`     | about:`networking`  | about:`newtab`         | about:`performance`     |
+    | about:`permissions` | about:`plugins`     | about:`preferences`    | about:`privatebrowsing` |
+    | about:`rights`      | about:`robots`      | about:`serviceworkers` | about:`sessionrestore`  |
+    | about:`startpage`   | about:`support`     | about:`sync-log`       | about:`sync-progress`   |
+    | about:`sync-tabs`   | about:`telemetry`   | about:`webrtc`         | about:`welcomeback`     |
+
+
+This seems to apply to chrome
+
+  - about:`blank` – the empty page
+  - about:`cache` – disk and memory cache information
+  - about:`net-internals` – network information including Proxy, HostResolver, URLRequest, HTTPCache and SocketStream
+  - about:`crash` – the page shown when a tab process crashes
+  - about:`credits` – list of libraries and other code used in Chrome, with links
+  - about:`hang` – this seems to kill a tab for me (I haven’t linked for that reason – use at your own risk)
+  - about:`memory` – memory usage of the various processes
+  - about:`shorthang` – see   - about:`hang` above
+  - about:`terms` – Google Chrome Terms of Service
+  - about:`inducebrowsercrashforrealz` – not many lolz here
+
+
+  - chrome://`extensions`/ – installed extensions
+  - chrome://`history`/ – your browsing history
+  - chrome://`newtab` – the new tab page
+  - chrome://`thumb`/http://www.google.com/ – thumbnail for a page you’ve visited
+  - chrome://`favicon`/http://www.google.com/ – favicon for a page you’ve visited
+view-source:http://www.santiagolizardo.com – view the source of a web page
+
+See https://code.google.com/p/chromium/codesearch#chromium/src/chrome/common/url_constants.cc 
+or http://src.chromium.org/svn/trunk/src/chrome/common/url_constants.cc 
+
+for the complete listing of Chromium chrome://... URLs.
+
+
+Now defunct source but found on internet archive (http://web.archive.org/web/20130318184424/http://www.chromeplugins.org/google/chrome-tips-tricks/about-chrome-more-internal-urls-7793.html)
+
+  The first section of definitions (kAboutScheme through kViewSourceScheme) are what go before the : in the URI.
+  We should all know what ftp, http, https, javascript, view-source, and mailto do (and probably file). But just for reference:
+  file:///Drive:/path/to/file.ext Example: file:///C:/myfile.txt
+  javascript:js code Example: javascript:alert("Hi");
+  mailto:email@domain.tld Example: mailto:myfirend@gmail.com
+  For information on the data URI scheme see here.
+  For information on the feed URI scheme see here.
+  I'm not sure how to use the gears URI scheme, it won't let me enter such a URL.
+  print:webpageurl I assume, but I don't have a printer to try it with.
+
+  As for the rest of them, I can't be too sure what they all do, but I'll tell you what I've figured out.
+
+  chrome-internal: These URLs cannot be entered into the omnibox.
+  view-cache: shows you all the files in your cache with links to view the HTTP headers received when you got the file, as well as a hex/ASCII view of the data.
+  chrome-user-script:*.user.js where *.user.js is the filename of the installed User Script. Shows you the source of that User Script.
+  - `about:` -  Shows you your version information of Chrome and WebKit and stuff.
+  - `about:version` -  Same as above.
+  about:blank Blank page.
+  about:cache Same as view-cache:
+  about:memory "Stats for nerds" as linked to by the Task Manager
+  about:memory-redirect Redirects to "about:memory"
+  about:terms Google Chrome Terms of Service.
+  about:dns View DNS request history.
+  about:histograms "Histograms"..not sure what that means :P looks like benchmarks to me.
+  about:objects Listed, but it doesn't seem to display anything..
+  about:stats Displays stats about V8 and stuff. Only able to render if you use the command line switch --enable-stats-table
+  about:plugins Shows all your plugins, if they're enabled, etc etc.
+  about:credits Shows all third-party libraries used in Chrome's creation with links to their homepages and licenses.
+  about:linux-splash Listed, but it doesn't seem to display anything.. Might be linux only.
+  chrome://about/* Where * is what normally goes to the right of a colon in and "about:" URI. It's the same thing as about:*, just more typing. lol This is what all "about:*" urls are routed to.
+  chrome://theme/* Where * is the name of the piece of the current theme. For example: theme_frame, theme_frame_incognito, theme_toolbar, css/newtab.css At least that's all I can find in the source that work.
+  chrome://thumb/URL Where URL is a URL you've visited, such as http://www.google.com
+  chrome://favicon/URL See above.
+  view-net-internal:* View network internals, currently only your proxy configuration. You can also use any of the URL listed on that page to view only a specific one. * can be one of the strings listed after the slash in the URLs listed on that page, for example: proxyservice
+  about:net-internal/* Mapped to ]view-net-internal:*
+  about:crash Show the crash page.
+  about:hang Constantly loading.. ie. hangs the page.
+  about:shorthang Constantly loading.. ie. hangs the page.
+  about:inducebrowsercrashforrealz Crashes the browser. lol Seems to only be here temporarily.
+
+  Self-explanatory/already known:
+  chrome://extensions/
+  chrome://history/
+  chrome://downloads/
+  chrome://newtab/
+
+    So yeah just basically hunting through the source and stuff for technical information cause the wiki sucks so hard. :S Figured I'd post these results. I'll edit as I find more info. 
+
+    Last edited by Waha; 09-09-2009 at 11:19 PM. 
+
+
 ## Basic Commands
 
 

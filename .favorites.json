@@ -131,5 +131,67 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "c4NS0zQElj7JxP9R"
+    },
+    {
+        "type": "Group",
+        "name": "technicals",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Tx6q9wQFtfbZPh8c"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\regedit_recipies.md",
+        "parent_id": "Tx6q9wQFtfbZPh8c",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\regedit_recipies.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "zSTknab6omRGr0xI"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Linux.md",
+        "parent_id": "VsEqW4pc6vOF9PHU",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Linux.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Kal9fQJ0u8IqgvrX"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\Markdown_Reference.md",
+        "parent_id": "Tx6q9wQFtfbZPh8c",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\Markdown_Reference.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "vk3P6H8zxFatJpAS"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\Markdown.md",
+        "parent_id": "Tx6q9wQFtfbZPh8c",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\Markdown.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "OPqZoUp9kAHM7aSf"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\regedit_recipies.md",
+        "parent_id": "Tx6q9wQFtfbZPh8c",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\regedit_recipies.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "XzvT1iG7Hsg6qSb9"
+    },
+    {
+        "type": "File",
+        "name": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\RegexpSearches.md",
+        "parent_id": "Tx6q9wQFtfbZPh8c",
+        "fsPath": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Markdown\\RegexpSearches.md",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "W6Tle5gQ8xVrSk4s"
     }
 ]
