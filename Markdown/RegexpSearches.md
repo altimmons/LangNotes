@@ -1,5 +1,10 @@
 # Reg Ex
 
+
+[Javascript Regex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags)
+
+
+
 ## Reference
 
 
@@ -65,67 +70,6 @@ Expression flags change how the expression is interpreted. Flags follow the clos
 
 !!!note Patterns such as `/^[\s\S]+$/m` may return matches that span multiple lines because the anchors will match the start/end of any line.
 
-
-(-{1,2}[\w-]*)
-([-]{1,2}\w+)
-`$1`
-
-alternative :
-/([\n]^|[\s])(([-]{1,2}.*?)(\s|[,]+))*?(.*$)/
-$1`$2`$3
-(-{1,2}[^\s{2,},]+)(,| {2,})
-(-{1,2}[^\s,]+)(,|\s)
-
-Best One:
-
-         (-{1,2})(.+?)(,| {2,}|\t)
-
-        `$1$2`$3  Followed by a ruleset
-
-
-Main operation mode:
-
--A, --catenate, --concatenate   append tar files to an archive
--c, --create               create a new archive
--d, --diff, --compare      find differences between archive and file system
-    --delete               delete from the archive (not on mag tapes!)
--r, --append               append files to the end of an archive
--t, --list                 list the contents of an archive
-    --test-label           test the archive volume label and exit
--u, --update               only append files newer than copy in archive
--x, --extract, --get       extract files from an archive
-
-`-A`, `--catenate`, `--concatenate`   append tar files to an archive
-`-c`, `--create`               create a new archive
-`-d`, `--diff`, `--compare`      find differences between archive and file system
-    `--delete`               delete from the archive (not on mag tapes!)
-`-r`, `--append`               append files to the end of an archive
-`-t`, `--list`                 list the contents of an archive
-    `--test-label`           test the archive volume label and exit
-`-u`, `--update`               only append files newer than copy in archive
-`-x`, `--extract`, `--get`       extract files from an archive
-
-
-## 2
-
-xargs also takes various options:
-◊ −nx −−− will group the first x commands together
-◊ −lx −−− xargs will execute the command for every x number of lines of input
-◊ −p −−− prompt whether or not to execute this particular string
-◊ −t −−− (tell) be verbose, echo each command before performing it
-◊ −i −−− will use substitution similar to find's −exec option, it will execute certain commands
-on something.
-
-(◊ )(−[a-z]{1,2})( −−−)
-- `$2`-
-
----
-
-([\s]{3,})
-
-Find more than 3 spaces. Replace with
-
-' - '
 
 ## word list to individual lines
 
@@ -382,6 +326,27 @@ exe64=x64\\(.*?)(
   - `s` - Single-line mode
   - `x` - Ignore white space
 
+
+## Another set of flags
+
+[Mozilla Docs on RegEx](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags)
+
+
+
+| Flag | Description                               | Corresponding property      |
+| ---- | ----------------------------------------- | --------------------------- |
+| d    | Generate indices for substring matches.   | RegExp.prototype.hasIndices |
+| g    | Global search.                            | RegExp.prototype.global     |
+| i    | Case-insensitive search.                  | RegExp.prototype.ignoreCase |
+| m    | Multi-line search.                        | RegExp.prototype.multiline  |
+| s    | Allows . to match newline characters.     | RegExp.prototype.dotAll     |
+| u    | "unicode";[2]                             | RegExp.prototype.unicode    |
+| y    | Perform a "sticky" search [1] See sticky. | RegExp.prototype.sticky     |
+
+1. that matches starting at the current position in the target string.
+2.  treat a pattern as a sequence of unicode code points.
+
+
 Greedy Lazy Matches
 0 or more times | `*` Greedy `*?`  Lazy
 1 or more times | `+` Greedy  `+?`  Lacy
@@ -493,9 +458,71 @@ Defines a balancing group definition. For more information, see the "Balancing G
 
 [Parsing a string - Serial No Example in C#](https://stackoverflow.com/questions/18229939/regex-check-and-pad-string-to-ensure-certain-string-format-is-use)
 
-#### My Examples
+# My Examples
+
+## 1
+
+(-{1,2}[\w-]*)
+([-]{1,2}\w+)
+`$1`
+
+alternative :
+/([\n]^|[\s])(([-]{1,2}.*?)(\s|[,]+))*?(.*$)/
+$1`$2`$3
+(-{1,2}[^\s{2,},]+)(,| {2,})
+(-{1,2}[^\s,]+)(,|\s)
+
+Best One:
+
+         (-{1,2})(.+?)(,| {2,}|\t)
+
+        `$1$2`$3  Followed by a ruleset
 
 
+Main operation mode:
+
+-A, --catenate, --concatenate   append tar files to an archive
+-c, --create               create a new archive
+-d, --diff, --compare      find differences between archive and file system
+    --delete               delete from the archive (not on mag tapes!)
+-r, --append               append files to the end of an archive
+-t, --list                 list the contents of an archive
+    --test-label           test the archive volume label and exit
+-u, --update               only append files newer than copy in archive
+-x, --extract, --get       extract files from an archive
+
+`-A`, `--catenate`, `--concatenate`   append tar files to an archive
+`-c`, `--create`               create a new archive
+`-d`, `--diff`, `--compare`      find differences between archive and file system
+    `--delete`               delete from the archive (not on mag tapes!)
+`-r`, `--append`               append files to the end of an archive
+`-t`, `--list`                 list the contents of an archive
+    `--test-label`           test the archive volume label and exit
+`-u`, `--update`               only append files newer than copy in archive
+`-x`, `--extract`, `--get`       extract files from an archive
+
+
+## 2
+
+xargs also takes various options:
+◊ −nx −−− will group the first x commands together
+◊ −lx −−− xargs will execute the command for every x number of lines of input
+◊ −p −−− prompt whether or not to execute this particular string
+◊ −t −−− (tell) be verbose, echo each command before performing it
+◊ −i −−− will use substitution similar to find's −exec option, it will execute certain commands
+on something.
+
+(◊ )(−[a-z]{1,2})( −−−)
+- `$2`-
+
+## 3
+---
+
+([\s]{3,})
+
+Find more than 3 spaces. Replace with
+
+' - '\
     ([{]+)(?<in>.*?)([}]+)(\k<in>)
 
 This code had tis weird duplication inside braces.  But not all, some were just in braces.
@@ -574,7 +601,7 @@ Finding a table
 
         !!!tip Use:
 
-                (^[\b\w., ]+?)([\n]|[\t\n])(^.+?$)
+                (^[\b\w., ]+?)([\n]|[\t\n]*)(^.+?$)
                 (^[\b\w., ]+?)([\n])(^.+?$)
 
             and replace with

@@ -59,21 +59,21 @@ Shell Fmt
 > 
 > The following editor integrations wrap `shfmt`:
 > 
-> -   [format-shell](https://atom.io/packages/format-shell) - Atom plugin
-> -   [intellij-shellcript](https://www.jetbrains.com/help/idea/shell-scripts.html) - Intellij Jetbrains `shell script` plugin
-> -   [micro](https://micro-editor.github.io/) - Editor with a built-in plugin
-> -   [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format) - VS Code plugin
-> -   [shfmt.el](https://github.com/purcell/emacs-shfmt/) - Emacs package
-> -   [Sublime-Pretty-Shell](https://github.com/aerobounce/Sublime-Pretty-Shell) - Sublime Text 3 plugin
-> -   [vim-shfmt](https://github.com/z0mbix/vim-shfmt) - Vim plugin
+>-    [format-shell](https://atom.io/packages/format-shell) - Atom plugin
+>-    [intellij-shellcript](https://www.jetbrains.com/help/idea/shell-scripts.html) - Intellij Jetbrains `shell script` plugin
+>-    [micro](https://micro-editor.github.io/) - Editor with a built-in plugin
+>-    [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format) - VS Code plugin
+>-    [shfmt.el](https://github.com/purcell/emacs-shfmt/) - Emacs package
+>-    [Sublime-Pretty-Shell](https://github.com/aerobounce/Sublime-Pretty-Shell) - Sublime Text 3 plugin
+>-    [vim-shfmt](https://github.com/z0mbix/vim-shfmt) - Vim plugin
 > 
 > Other noteworthy integrations include:
 > 
-> -   Alternative docker image by [PeterDaveHello](https://github.com/PeterDaveHello/dockerized-shfmt/)
-> -   [modd](https://github.com/cortesi/modd) - A developer tool that responds to filesystem changes
-> -   [prettier-plugin-sh](https://github.com/rx-ts/prettier/tree/master/packages/sh) - [Prettier](https://prettier.io) plugin using [mvdan-sh](https://www.npmjs.com/package/mvdan-sh)
-> -   [sh-checker](https://github.com/luizm/action-sh-checker) - A GitHub Action that performs static analysis for shell scripts
-> -   [mdformat-shfmt](https://github.com/hukkinj1/mdformat-shfmt) - [mdformat](https://github.com/executablebooks/mdformat) plugin to format shell scripts embedded in Markdown with shf
+>-    Alternative docker image by [PeterDaveHello](https://github.com/PeterDaveHello/dockerized-shfmt/)
+>-    [modd](https://github.com/cortesi/modd) - A developer tool that responds to filesystem changes
+>-    [prettier-plugin-sh](https://github.com/rx-ts/prettier/tree/master/packages/sh) - [Prettier](https://prettier.io) plugin using [mvdan-sh](https://www.npmjs.com/package/mvdan-sh)
+>-    [sh-checker](https://github.com/luizm/action-sh-checker) - A GitHub Action that performs static analysis for shell scripts
+>-    [mdformat-shfmt](https://github.com/hukkinj1/mdformat-shfmt) - [mdformat](https://github.com/executablebooks/mdformat) plugin to format shell scripts embedded in Markdown with shf
 
 
 ## WSL (Windows Subsystem Linux)
@@ -341,11 +341,11 @@ It’s a common idiom to use `*` as the final pattern to define the default case
 
 
 
-> - `;;` no subsequent matches are attempted after the first pattern match.
-> - `;&` in place of `;;` causes execution to continue with the command-list associated with the next clause, if any.
-> - `;;&` in place of `;;` causes the shell to test the patterns in the next clause, if any, and execute any associated command-list on a successful match, continuing the case statement execution as if the pattern list had not matched.
+>-  `;;` no subsequent matches are attempted after the first pattern match.
+>-  `;&` in place of `;;` causes execution to continue with the command-list associated with the next clause, if any.
+>-  `;;&` in place of `;;` causes the shell to test the patterns in the next clause, if any, and execute any associated command-list on a successful match, continuing the case statement execution as if the pattern list had not matched.
 
-> - **return status** is zero if no pattern is matched. Otherwise, the return status is the exit status of the command-list executed.
+>-  **return status** is zero if no pattern is matched. Otherwise, the return status is the exit status of the command-list executed.
 
 > *_select_* - The select construct allows the easy generation of menus. It has almost the same syntax as the for command:
 
@@ -415,116 +415,118 @@ ____
 ### Operators
 
 
-- `id++ id--` - variable post-increment and post-decrement
-
-- `++id --id` - variable pre-increment and pre-decrement
-
-- `- +` - unary minus and plus
-
-- `! ~` - logical and bitwise negation
-
-- `**` - exponentiation
-
-- `* / %` - multiplication, division, remainder
-
-- `+ -` - addition, subtraction
-
-- `<< >>` - left and right bitwise shifts
-
-- `<= >= < >` - comparison
-
-- `== !=` - equality and inequality
-
-- `&` - bitwise AND
-
-- `^` - bitwise exclusive OR
-
-- `|` - bitwise OR
-
-- `&&` - logical AND
-
-- `||` - logical OR
-
-- `expr ? expr : expr` - conditional operator
-
-- `= *= /= %= += -= <<= >>= &= ^= |=` - assignment
-
-- `expr1 , expr2` - comma 
+>-  `id++ id--` - variable post-increment and post-decrement
+> 
+>-  `++id --id` - variable pre-increment and pre-decrement
+> 
+>-  `- +` - unary minus and plus
+> 
+>-  `! ~` - logical and bitwise negation
+> 
+>-  `**` - exponentiation
+> 
+>-  `* / %` - multiplication, division, remainder
+> 
+>-  `+ -` - addition, subtraction
+> 
+>-  `<< >>` - left and right bitwise shifts
+> 
+>-  `<= >= < >` - comparison
+> 
+>-  `== !=` - equality and inequality
+> 
+>-  `&` - bitwise AND
+> 
+>-  `^` - bitwise exclusive OR
+> 
+>-  `|` - bitwise OR
+> 
+>-  `&&` - logical AND
+> 
+>-  `||` - logical OR
+> 
+>-  `expr ? expr : expr` - conditional operator
+> 
+>-  `= *= /= %= += -= <<= >>= &= ^= |=` - assignment
+> 
+>-  `expr1 , expr2` - comma
 
 
 ____
 
 ### Conditionals
 
-- `-a`  *_[file]_* - True if file exists.
+>-  `-a`  *_[file]_* - True if file exists.
+> 
+>-  `-b`  *_[file]_* - True if file exists and is a block special file.
+> 
+>-  `-c`  *_[file]_* - True if file exists and is a character special file.
+> 
+>-  `-d`  *_[file]_* - True if file exists and is a directory.
+> 
+>-  `-e`  *_[file]_* - True if file exists.
+> 
+>-  `-f`  *_[file]_* - True if file exists and is a regular file.
+> 
+>-  `-g`  *_[file]_* - True if file exists and its set-group-id bit is set.
+> 
+>-  `-h`  *_[file]_* - True if file exists and is a symbolic link.
+> 
+>-  `-k`  *_[file]_* - True if file exists and its "sticky" bit is set.
+> 
+>-  `-p`  *_[file]_* - True if file exists and is a named pipe (FIFO).
+> 
+>-  `-r`  *_[file]_* - True if file exists and is readable.
+> 
+>-  `-s`  *_[file]_* - True if file exists and has a size greater than zero.
+> 
+>-  `-t`  *_[fd]_*   - True if file descriptor fd is open and refers to a terminal.
+> 
+>-  `-u`  *_[file]_* - True if file exists and its set-user-id bit is set.
+> 
+>-  `-w`  *_[file]_* - True if file exists and is writable.
+> 
+>-  `-x`  *_[file]_* - True if file exists and is executable.
+> 
+>-  `-G`  *_[file]_* - True if file exists and is owned by the effective group id.
+> 
+>-  `-L`  *_[file]_* - True if file exists and is a symbolic link.
+> 
+>-  `-N`  *_[file]_* - True if file exists and has been modified since it was last read.
+> 
+>-  `-O`  *_[file]_* - True if file exists and is owned by the effective user id.
+> 
+>-  `-S`  *_[file]_* - True if file exists and is a socket.
+> 
+>-   *_[file1]_* -ef *_[file2]_* - True if file1 and file2 refer to the same device and inode numbers.
+> 
+>-   *_[file1]_* -nt *_[file2]_* - True if file1 is newer (according to modification date) than file2, or if file1 exists and file2 does not.
+> 
+>-   *_[file1]_* -ot *_[file2]_* - True if file1 is older than file2, or if file2 exists and file1 does not.
+> 
+>-  `-o`  *optname* -  True if the shell option optname is enabled. The list of options appears in the description of the -o option to the set builtin (see The Set Builtin).
+> 
+>-  `-v`  *varname* -  True if the shell variable varname is set (has been assigned a value).
+> 
+>-  `-R`  *varname* - True if the shell variable varname is set and is a name reference.
+> 
+>-  `-z`  *string*  -  True if the length of string is zero.
+> 
+>-  `-n`  *string*  ||  *string* -   True if the length of string is non-zero.
+> 
+>-   *string1* == *string2* ||  *string1* = *string2* - True if the strings are equal. When used with the [[ command, this performs pattern matching as described above (see Conditional Constructs).
+> 
+> `=` should be used with the test command for POSIX conformance.
+> 
+>-   *string1* != *string2* -  True if the strings are not equal.
+> 
+>-   *string1* < *string2* -  True if string1 sorts before string2 lexicographically.
+> 
+>-   *string1* > *string2* - True if string1 sorts after string2 lexicographically.
+> 
+>-  *arg1* `OP` *arg2* - OP is one of `-eq`, `-ne`, `-lt`, `-le`, `-gt`, or `-ge`. 
 
-- `-b`  *_[file]_* - True if file exists and is a block special file.
-
-- `-c`  *_[file]_* - True if file exists and is a character special file.
-
-- `-d`  *_[file]_* - True if file exists and is a directory.
-
-- `-e`  *_[file]_* - True if file exists.
-
-- `-f`  *_[file]_* - True if file exists and is a regular file.
-
-- `-g`  *_[file]_* - True if file exists and its set-group-id bit is set.
-
-- `-h`  *_[file]_* - True if file exists and is a symbolic link.
-
-- `-k`  *_[file]_* - True if file exists and its "sticky" bit is set.
-
-- `-p`  *_[file]_* - True if file exists and is a named pipe (FIFO).
-
-- `-r`  *_[file]_* - True if file exists and is readable.
-
-- `-s`  *_[file]_* - True if file exists and has a size greater than zero.
-
-- `-t`  *_[fd]_*   - True if file descriptor fd is open and refers to a terminal.
-
-- `-u`  *_[file]_* - True if file exists and its set-user-id bit is set.
-
-- `-w`  *_[file]_* - True if file exists and is writable.
-
-- `-x`  *_[file]_* - True if file exists and is executable.
-
-- `-G`  *_[file]_* - True if file exists and is owned by the effective group id.
-
-- `-L`  *_[file]_* - True if file exists and is a symbolic link.
-
-- `-N`  *_[file]_* - True if file exists and has been modified since it was last read.
-
-- `-O`  *_[file]_* - True if file exists and is owned by the effective user id.
-
-- `-S`  *_[file]_* - True if file exists and is a socket.
-
--  *_[file1]_* -ef *_[file2]_* - True if file1 and file2 refer to the same device and inode numbers.
-
--  *_[file1]_* -nt *_[file2]_* - True if file1 is newer (according to modification date) than file2, or if file1 exists and file2 does not.
-
--  *_[file1]_* -ot *_[file2]_* - True if file1 is older than file2, or if file2 exists and file1 does not.
-
-- `-o`  *optname* -  True if the shell option optname is enabled. The list of options appears in the description of the -o option to the set builtin (see The Set Builtin).
-
-- `-v`  *varname* -  True if the shell variable varname is set (has been assigned a value).
-
-- `-R`  *varname* - True if the shell variable varname is set and is a name reference.
-
-- `-z`  *string*  -  True if the length of string is zero.
-
-- `-n`  *string*  ||  *string* -   True if the length of string is non-zero.
-
--  *string1* == *string2* ||  *string1* = *string2* - True if the strings are equal. When used with the [[ command, this performs pattern matching as described above (see Conditional Constructs).
-
-    `=` should be used with the test command for POSIX conformance.
-
--  *string1* != *string2* -  True if the strings are not equal.
-
--  *string1* < *string2* -  True if string1 sorts before string2 lexicographically.
-
--  *string1* > *string2* - True if string1 sorts after string2 lexicographically.
-
-- *arg1* `OP` *arg2* - OP is one of `-eq`, `-ne`, `-lt`, `-le`, `-gt`, or `-ge`. These arithmetic binary operators return true if arg1 is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to arg2, respectively. Arg1 and arg2 may be positive or negative integers. When used with the [[ command, Arg1 and Arg2 are evaluated as arithmetic expressions (see Shell Arithmetic). 
+!!!note These arithmetic binary operators return true if arg1 is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to arg2, respectively. Arg1 and arg2 may be positive or negative integers. When used with the [[ command, Arg1 and Arg2 are evaluated as arithmetic expressions (see Shell Arithmetic).
 
 ____
 
@@ -544,55 +546,57 @@ ____
 
 ## Quick Look
 
-- `/` - root
-- `~` - home
-- `..` - one step up in tree
-- `.` - cwd
-- `<`, `>` - pipe stream
-   - `2>` redirects StdErr (instead of StdOut)
-        make someFile 2> /dev/null
+!!!attention Overview
 
-   squelches error output
-   - `&>` - Redirects both stderr and stdout to another destination.
-        make &> /dev/null
-- `>>` - append stream
-- `<<` - starts std input to take in information.  Exit with [[CTRL]] + [[D]].
-    - `<<WORD` - Starts StdInput until *WORD* is typed.  The result is sent without word. e.g.:
-                $echo <<WORLD
-                $HELLO WORLD
-                >HELLO
-- `|` pipe character
-    - e.g. `set | less`
-    - e.g. `cat file1.txt file2.txt | less`
-- `|&` - pipe char- only this pipes stdout  AND stderr.
-- `tee` - sends output to a file AND StdOut. Like a `Y` or `T` exchange.
-        ls /home/user | tee my_directories.txt
-- `&&` combines commands
-        - on error does not continue
-        - logical and, works on the basis of return code being 0.
-- `||` - logical or
-        - e.g. `ls || pwd`
-        - if the first command is successful, the second command does not execute.  Only executes if prior command failed.
-- `;` line break, combines commands,
-        - e.g `ls ; cal ; date`
-        - on error - continues
-- `!` - bang character.
-        - `!n` = execute the nth prior command
-                e.g. `!2`
-        - `!!` - last command
-        - `!-n` - execute the command n times before
-                - `!-1` == `!!`
-        - `!STRING` - executes the last command starting with 'STRING'
-                - e.g `!cd` runs the last command starting with 'cd'
-        - `!?STRING?` - executes the last command containing
-        - `COMMAND !*` - executes "COMMAND" with the last command's arguments
-        - `!:^` -== `!:0` - first arg
-        - `!:$` - last arg
-        - `!:2-3` the second and third arg.
-        - `!-2:3-$` combining the two.
-Starting with ! accesses history
-        COM1 -Opt1 -Opt2 -Opt3
-        COM2 !* == COM2 -Opt1 -Opt2 -Opt3
+    - `/` - root
+    - `~` - home
+    - `..` - one step up in tree
+    - `.` - cwd
+    - `<`, `>` - pipe stream
+    - `2>` redirects StdErr (instead of StdOut)
+            make someFile 2> /dev/null
+
+    squelches error output
+    - `&>` - Redirects both stderr and stdout to another destination.
+            make &> /dev/null
+    - `>>` - append stream
+    - `<<` - starts std input to take in information.  Exit with [[CTRL]] + [[D]].
+        - `<<WORD` - Starts StdInput until *WORD* is typed.  The result is sent without word. e.g.:
+                    $echo <<WORLD
+                    $HELLO WORLD
+                    >HELLO
+    - `|` pipe character
+        - e.g. `set | less`
+        - e.g. `cat file1.txt file2.txt | less`
+    - `|&` - pipe char- only this pipes stdout  AND stderr.
+    - `tee` - sends output to a file AND StdOut. Like a `Y` or `T` exchange.
+            ls /home/user | tee my_directories.txt
+    - `&&` combines commands
+            - on error does not continue
+            - logical and, works on the basis of return code being 0.
+    - `||` - logical or
+            - e.g. `ls || pwd`
+            - if the first command is successful, the second command does not execute.  Only executes if prior command failed.
+    - `;` line break, combines commands,
+            - e.g `ls ; cal ; date`
+            - on error - continues
+    - `!` - bang character.
+            - `!n` = execute the nth prior command
+                    e.g. `!2`
+            - `!!` - last command
+            - `!-n` - execute the command n times before
+                    - `!-1` == `!!`
+            - `!STRING` - executes the last command starting with 'STRING'
+                    - e.g `!cd` runs the last command starting with 'cd'
+            - `!?STRING?` - executes the last command containing
+            - `COMMAND !*` - executes "COMMAND" with the last command's arguments
+            - `!:^` -== `!:0` - first arg
+            - `!:$` - last arg
+            - `!:2-3` the second and third arg.
+            - `!-2:3-$` combining the two.
+    Starting with ! accesses history
+            COM1 -Opt1 -Opt2 -Opt3
+            COM2 !* == COM2 -Opt1 -Opt2 -Opt3
 
 
 
@@ -603,54 +607,64 @@ Starting with @ accesses Partameters [Positional Parameters](https://www.gnu.org
 
 
 ### `$` Positional Access
-   `$N`
-   `${N}`
-   `*` - `$*` -  Expands to the positional parameters, starting from one. When the expansion is not within double quotes, each positional parameter expands to a separate word.
-   - `@` - (`$@`)Expands to the positional parameters, starting from one. I
 
-   - `#` - ($#) Expands to the number of positional parameters in decimal.
+!!!tip `$` Parameter Recall
+    >- `$N`
+    >- `${N}`
+    >- `*` - `$*` -  Expands to the positional parameters, starting from one. When the expansion is not within double quotes, each positional parameter expands to a separate word.
+    >-  `@` - (`$@`)Expands to the positional parameters, starting from one. I
+    > 
+    >-  `#` - ($#) Expands to the number of positional parameters in decimal.
+    > 
+    >-  `?` -    ($?) Expands to the exit status of the most recently executed foreground pipeline.
+    > 
+    >-  `-` - ($-, a hyphen.) Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the -i option).
+    > 
+    >-  `$` - ($$) Expands to the process ID of the shell. In a () subshell, it expands to the process ID of the invoking shell, not the subshell.
+    > 
+    >-  `!` - ($!) Expands to the process ID of the job most recently placed into the background, whether executed as an asynchronous command or using the bg builtin (see Job Control Builtins).
+    >-  `0` - ($0) Expands to the name of the shell or shell script. This is set at shell initialization. If Bash is invoked with a file of commands (see Shell Scripts), $0 is set to the name of that file.
+    > 
+    you can void the "closing the terminal kills all spawned programs" issue by launching the program with the
 
-   - `?` -    ($?) Expands to the exit status of the most recently executed foreground pipeline.
 
-   - `-` - ($-, a hyphen.) Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the -i option).
+### Brace Expansion
 
-   - `$` - ($$) Expands to the process ID of the shell. In a () subshell, it expands to the process ID of the invoking shell, not the subshell.
+[Bash Reference Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions)
 
-   - `!` - ($!) Expands to the process ID of the job most recently placed into the background, whether executed as an asynchronous command or using the bg builtin (see Job Control Builtins).
-   - `0` - ($0) Expands to the name of the shell or shell script. This is set at shell initialization. If Bash is invoked with a file of commands (see Shell Scripts), $0 is set to the name of that file.
+Patterns to be brace expanded take the form of an ==optional preamble,== followed by either ==a series of comma-separated strings or a sequence expression between a pair of braces,== followed by an ==optional postscript.== The preamble is prefixed to each string contained within the braces, and the postscript is then appended to each resulting string, expanding left to right. 
 
-you can void the "closing the terminal kills all spawned programs" issue by launching the program with the
+bash$ echo a{d,c,b}e
+ade ace abe
 
+!!!tip A sequence expression takes the form `{x..y[..incr]}`, where x and y are either integers or single characters, and `incr`, an optional increment, is an integer. 
+    - When integers are supplied, the expression expands to each number between x and y, inclusive.
+    - Supplied integers may be prefixed with ‘0’ to force each term to have the same width
+    - When either x or y begins with a zero, the shell attempts to force all generated terms to contain the same number of digits, zero-padding where necessary.
+    - When characters are supplied, the expression expands to each character lexicographically between x and y, **inclusive,** using the default C locale.
+    - x and y must be of the same type.
+    - When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.
+    - Brace expansion is performed before any other expansions, and any characters special to other expansions are preserved in the result. 
+    - Any incorrectly formed brace expansion is left unchanged.
+
+!!!faq Similarity with `Parameter Expansion`:
+    -   A `{` or ‘`,`’ may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string ‘[[${]]’ is not considered eligible for brace expansion, and inhibits brace expansion until the closing ‘[[}]]’. 
+____
 ### `~` Tilde Expavnsion
 
 Accesses the directory stack
 
+!!!example `~` Tilde Expavnsion
+    If the characters following the tilde in the tilde-prefix consist of a number N, optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
 
-If the characters following the tilde in the tilde-prefix consist of a number N, optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
-~
-
-    The value of $HOME 
-~/foo
-
-    $HOME/foo
-~fred/foo
-
-    The subdirectory foo of the home directory of the user fred
-~+/foo
-
-    $PWD/foo
-~-/foo
-
-    ${OLDPWD-'~-'}/foo
-~N
-
-    The string that would be displayed by ‘dirs +N’
-~+N
-
-    The string that would be displayed by ‘dirs +N’
-~-N
-
-    The string that would be displayed by ‘dirs -N’ 
+    >- [[`~`]] - The value of `$HOME`
+    >- [[`~/foo`]] - `$HOME/foo`
+    >- [[`~fred/foo`]] - The subdirectory *foo* of the home directory of the user **fred**
+    >- [[`~+/foo`]] - `$PWD/foo`
+    >- [[`~-/foo`]] - `${OLDPWD-'~-'}/foo`
+    >- [[`~N`]] -  The string that would be displayed by `‘dirs +N’`
+    >- [[`~+N`]] - The string that would be displayed by `‘dirs +N’`
+    >- [[`~-N`]] - The string that would be displayed by `‘dirs -N’` 
 
 
 
@@ -751,71 +765,50 @@ $ man  -P 'less -p ^HISTORY\ EXPANSION' bash
 
 -----
 
-### Word Designators
-
-Word designators are used to select desired words from the event.
-A : separates the event specification from the word designator.
-It may be omitted if the word designator begins with a ^, $, *, -,
-or %.  Words are numbered from the beginning of the line, with the
-first word being denoted by 0 (zero).  Words are inserted into the
-current line separated by single spaces.
-
-   0 (zero)
-          The zeroth word.  For the shell, this is the command word.
-   n      The nth word.
-   ^      The first argument.  That is, word 1.
-   $      The last argument.
-   %      The word matched by the most recent `?string?` search.
-   x-y    A range of words; `-y` abbreviates `0-y`.
-   *      All of the words but the zeroth.
-          This is a synonym for `1-$`.  
-          It is not an error to use * if there is just one word in
-          the event; the empty string is returned in that case.
-   x*     Abbreviates x-$.
-   x-     Abbreviates x-$ like x*, but omits the last word.
-
-   If a word designator is supplied without an event
-   specification, the previous command is used as the event.
-
-----
-
 #### Word Designators
 
-[Using History Interactively](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Using-History-Interactively)
+!!!cite [Using History Interactively](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Using-History-Interactively)
 
-Word designators are used to select desired words from the event. A `:` separates the event specification from the word designator. It may be omitted if the word designator begins with a `^`, `$`, `*`, `-`, or `%`. Words are numbered from the beginning of the line, with the first word being denoted by `0` (zero). Words are inserted into the current line separated by single spaces.
+Word designators are used to **select desired words** from the event.
 
-For example,
+A [[:]] separates the event specification from the word designator.
 
-- `!!` - designates the preceding command. When you type this, the preceding command is repeated in toto.
+It may be omitted if the word designator begins with a [[^]], [[$]], [[*]], [[-]],
+or [[%]].  
 
-- `!!:$` - designates the last argument of the preceding command. This may be shortened to !$.
+Words are numbered from the beginning of the line, with the
+first word being denoted by [[0]] (zero).  
 
-- `!fi:2` - designates the second argument of the most recent command starting with the letters fi. 
-
+Words are inserted into the current line separated by single spaces.
 
 Here are the word designators:
 
-- `0 (zero)` -  The 0th word. For many applications, this is the command word.
+>- [[0]] *(zero)* The zeroth word.  For the shell, this is the command word.
+>- [[n]]      The nth word.
+>- [[^]]      The first argument.  That is, word 1.
+>- [[$]]      The last argument.
+>- [[%]]      The word matched by the most recent `?string?` search.
+>- [[x-y]]    A range of words; `-y` abbreviates `0-y`.
+>- [[*]]      All of the words but the zeroth.
+>   >- This is a synonym for `1-$`.
+>   >- It is not an error to use `*` if there is just one word in the event; the empty string is returned in that case.
+>- [[x*]]     Abbreviates `x-$`.
+>- [[x-]]     Abbreviates `x-$` like `x*`, but omits the last word.
 
-- `n` - The nth word.
+If [[`x`]] is missing, it defaults to 0.
 
-- `^` - The first argument; that is, word 1.
+   If a word designator is supplied without an event specification, the previous command is used as the event.
 
-- `$` - The last argument.
+!!!example Example: 
+    recall -A [[`:`]] separates the event specification from the **word designator** unless the **word designator** begins with a [[`^`]], [[`$`]], [[`*`]], [[`-`]], or [[`%`]].
+    
+    For example,
 
-- `%` - The first word matched by the most recent `?string?` search, if the search string begins with a character that is part of a word.
+    - `!!` - designates the preceding command. When you type this, the preceding command is repeated in toto.
 
-- `x-y` - A range of words; `-y` abbreviates `0-y`.
+    - `!!:$` - designates the last argument of the preceding command. This may be shortened to !$.
 
-- `*` - All of the words, except the 0th. This is a synonym for `1-$`. It is not an error to use `*` if there is just one word in the event; the empty string is returned in that case.
-
-- `x*` - Abbreviates `x-$`
-
-- `x-` - Abbreviates `x-$` like `x*`, but omits the last word. If `x` is missing, it defaults to 0.
-
-
-If a word designator is supplied without an event specification, the previous command is used as the event.
+    - `!fi:2` - designates the second argument of the most recent command starting with the letters fi.
 
 
 ----
@@ -824,60 +817,48 @@ If a word designator is supplied without an event specification, the previous co
 
 An event designator is a reference to a command line entry in the history list. Unless the reference is absolute, events are relative to the current position in the history list.
 
-- `!` - Start a history substitution, except when followed by a space, tab, the end of the line, `=` or `(` 
+- [[`!`]] - Start a history substitution, except when followed by a space, tab, the end of the line, [[`=`]] or [[`(`]] 
                 - (when the extglob shell option is enabled using the shopt builtin).
 
-- `!n` - Refer to command line n.
+- [[`!n`]] - Refer to command line n.
 
-- `!-n` - Refer to the command n lines back.
+- [[`!-n`]] - Refer to the command n lines back.
 
-- `!!` - Refer to the previous command. This is a synonym for `!-1`.
+- [[`!!`]] - Refer to the previous command. This is a synonym for [[`!-1`]].
 
-- `!string` - Refer to the most recent command preceding the current position in the history list starting with string.
+- [[`!string`]] - Refer to the most recent command preceding the current position in the history list starting with string.
 
-- `!?string[?]` - Refer to the most recent command preceding the current position in the history list containing string. The trailing `?` may be omitted if the string is followed immediately by a newline. If string is missing, the string from the most recent search is used; it is an error if there is no previous search string.
+- [[`!?string[?]`]] - Refer to the most recent command preceding the current position in the history list containing string. The trailing [[`?`]] may be omitted if the string is followed immediately by a newline. If string is missing, the string from the most recent search is used; it is an error if there is no previous search string.
 
-- `^string1^string2^` - Quick Substitution. Repeat the last command, replacing string1 with string2. Equivalent to !!:s^string1^string2^.
+- [[`^string1^string2^`]] - Quick Substitution. Repeat the last command, replacing string1 with string2. Equivalent to !!:s^string1^string2^.
 
-- `!#` - The entire command line typed so far.
+- [[`!#`]] - The entire command line typed so far.
 
 
-Previous: Word Designators, Up: History Interaction   [Contents][Index]
 9.3.3 Modifiers
 
-After the optional word designator, you can add a sequence of one or more of the following modifiers, each preceded by a `:`. These modify, or edit, the word or words selected from the history event.
+After the optional word designator, you can add a sequence of one or more of the following modifiers, each preceded by a [[`:`]]. These modify, or edit, the word or words selected from the history event.
 
-- `h` - Remove a trailing pathname component, leaving only the head.
-
-- `t` - Remove all leading pathname components, leaving the tail.
-
-- `r` - Remove a trailing suffix of the form `.suffix`, leaving the basename.
-
-- `e` - Remove all but the trailing suffix.
-
-- `p` - Print the new command but do not execute it.
-
-- `q` - Quote the substituted words, escaping further substitutions.
-
-- `x` - Quote the substituted words as with `q`, but break into words at spaces, tabs, and newlines. The `q` and `x` modifiers are mutually exclusive; the last one supplied is used.
-
-- `s/old/new/` - Substitute new for the first occurrence of old in the event line. Any character may be used as the delimiter in place of `/`. The delimiter may be quoted in old and new with a single backslash. If `&` appears in new, it is replaced by old. A single backslash will quote the `&`. If old is null, it is set to the last old substituted, or, if no previous history substitutions took place, the last string in a !?string[?] search. If new is is null, each matching old is deleted. The final delimiter is optional if it is the last character on the input line.
-
-- `&` - Repeat the previous substitution.
-
-
-- `a` | `g`  - Cause changes to be applied over the entire event line. Used in conjunction with `s`, as in gs/old/new/, or with `&`.
-
-- `G` - Apply the following `s` or `&` modifier once to each word in the event.
+>- [[`h`]] - Remove a trailing pathname component, leaving only the head.
+>- [[`t`]] - Remove all leading pathname components, leaving the tail.
+>- [[`r`]] - Remove a trailing suffix of the form [[`.suffix`]], leaving the basename.
+>- [[`e`]] - Remove all but the trailing suffix.
+>- [[`p`]] - Print the new command but do not execute it.
+>- [[`q`]] - Quote the substituted words, escaping further substitutions.
+>- [[`x`]] - Quote the substituted words as with [[`q`]], but break into words at spaces, tabs, and newlines. The [[`q`]] and [[`x`]] modifiers are mutually exclusive; the last one supplied is used.
+>- [[`s/old/new/`]] - Substitute new for the first occurrence of old in the event line. Any character may be used as the delimiter in place of [[`/`]]. The delimiter may be quoted in old and new with a single backslash. If [[`&`]] appears in new, it is replaced by old. A single backslash will quote the [[`&`]]. If old is null, it is set to the last old substituted, or, if no previous history substitutions took place, the last string in a !?string[?] search. If new is is null, each matching old is deleted. The final delimiter is optional if it is the last character on the input line.
+>- [[`&`]] - Repeat the previous substitution.
+>- [[`a`]] | [[`g`]]  - Cause changes to be applied over the entire event line. Used in conjunction with [[`s`]], as in gs/old/new/, or with [[`&`]].
+>- [[`G`]] - Apply the following [[`s`]] or [[`&`]] modifier once to each word in the event.
 ----
 
 Tested on Ubuntu 18.04
 To insert previous arguments:
 
-    `Alt+.` [[Alt]]+[[.]]: insert last argument from last command.
-    `Alt+#+.` [[Alt]]+[[#]]+[[.]]: insert #nth last argument from last command.
-`Alt+-` , `#` , `Alt+.` **bash:** [[Alt]]+[[-]] , [[#]] , [[Alt]]+[[.]]
-`Alt+-#+.` ** zsh:** [[Alt]]+[[-]]+[[#]]+[[.]]
+    [[`Alt+.`]] [[Alt]]+[[.]]: insert last argument from last command.
+    [[`Alt+#+.`]] [[Alt]]+[[#]]+[[.]]: insert #nth last argument from last command.
+[[`Alt+-`]] , `#` , `Alt+.` **bash:** [[Alt]]+[[-]] , [[#]] , [[Alt]]+[[.]]
+`Alt+-#+.` ** zsh:** [[Alt]]+[[-]]+ [[#]]{style="color:black; } +[[.]]
          insert #nth first argument from last command. 
 
 In Linux you can repeat commands to go back in history
@@ -955,6 +936,120 @@ event-level(*) substitution for the first found (matched) string in the previous
 
         Bye, world! Bye, people!
 
+ Return true if a bash variable is unset or set to the empty string: if \[ -z ${my\_variable+x} \];
+
+> !!!faq How to check if bash variable defined in script - [nixCraft](https://www.cyberciti.biz/faq/see-check-if-bash-variable-defined-in-script-on-linux-unix-macos/) 
+     >    To find out if a bash variable is defined:
+    > 
+    > 1.  Return true if a bash variable is unset or set to the empty string: `if [ -z ${my_variable+x} ];`
+    > 2.  Also try: `[ -z ${my_bash_var+y} ] && echo "\$my_bash_var not defined"`
+    > 3.  Determine if a bash variable is set or not : `[[ ! -z ${PURGEIMAGE+z} ]] && echo "Set" || echo "Not defined"`
+    > 4.  Return true if the variable is set on **Bash version 4.2+**:` [ -v $VAR ] && echo "Bash \$VAR NOT set"`
+    > 
+    >  if command syntax and example to see if bash variable named `PURGEIMAGE` set or not
+    > 
+    > The syntax is simple:
+    >
+    > ```sh
+    > if [ -z ${PURGEIMAGE+x} ];
+    > then
+    >     echo "We need to only purge URL from Clodudfront CDN ..."
+    > else
+    >     echo "We need to purge images and URL from Cloudfront CDN ..."
+    > fi
+    >``` 
+    >
+    >
+    > OR use the [test command](https://bash.cyberciti.biz/guide/Test_command "See Linux/Unix test command examples for more info")
+    > 
+    >```sh
+    > if test -z ${PURGEIMAGE+y}
+    > then
+    >     echo "We need to only purge URL from Clodudfront CDN ..."
+    > else
+    >     echo "We need to purge images and URL from Cloudfront CDN ..."
+    > fi
+    >```
+    >
+    > ### How does ${my_variable+x} syntax works?
+    > 
+    > Let us print commands and their arguments as script is executed by using the [set command](https://bash.cyberciti.biz/guide/Set_command "See Linux/Unix set command examples for more info"):
+    > 
+    > ```sh
+    > set -x
+    > ./script
+    > PURGEIMAGE\=whatever ./script
+    > export PURGEIMAGE\=whatever
+    > ./script
+    > unset PURGEIMAGE
+    > ./script
+    > set +x
+    > ```
+    >- The `${my_variable+x}` is a bash parameter expansion.
+    >     
+    >- It evaluates to nothing if my_variable is unset.
+    >     
+    >- Otherwise it substitutes the string `x`.
+    >     
+    >- You can use any string and not limited to `x`. For instance, I can use foobar as follows:
+    >     
+    >     
+    >```sh
+    >     # instead of 'x' we used 'foobar'
+    >     # but 'x' seems like a good practice 
+    >     if [ -z ${PURGEIMAGE+foobar} ];
+    >     then
+    >         echo "We need to only purge URL from Clodudfront CDN ..."
+    >     else
+    >         echo "We need to purge images and URL from Cloudfront CDN ..."
+    >     fi
+    > ```   
+    > 
+    > Another option to see if bash shell variable is set or not
+    > 
+    > can try the control operators. The syntax is:
+    > 
+    > ```sh
+    > [ -z ${var+foo} ] && echo "\${var} not defined"
+    > [ -z ${var+foo} ] && echo "\${var} not defined" || echo "\${var} is defined"
+    >```
+    >
+    > ==If portability is not your concern try `[[` syntax==
+    > 
+    > The following are bash specific option, and you need bash version 4.x+. I would avoid these examples due to portability issues if I were you, but I provide them below as they are in bash man pages.
+    > 
+    > ```sh
+    > [[ -z ${var+z} ]] && echo "\${var} not defined" 
+    > [[ -z ${var+z} ]] && echo "\${var} not defined" || echo "\${var} is defined"
+    > ```
+    > 
+    > _Checking if a variable is set in Bash or not_
+    > 
+    > The -v VAR returns true if the shell variable VAR is set:
+    > 
+    > ```sh
+    > [[ -v ${var} ]] && echo "\${var} not defined" 
+    > [[ -v ${var} ]] && echo "\${var} not defined" || echo "\${var} is defined"
+    > [ -v ${var} ] && echo "\${var} not defined" || echo "\${var} is defined"
+    > ```
+    >
+    > !!!example Example
+    >       This example was in my zshrc from powerline.
+    >      ```sh
+    >     if [[ -r "${XDG_CACHE_HOME:-$ZSH_CUSTOM/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    >      source "${XDG_CACHE_HOME:-$ZSH_CUSTOM/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    >     fi
+    >     
+    >     #another example. Looking for better.
+    >     
+    >     set variable identifying the chroot you work in (used in the prompt below)
+    >     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    >     debian_chroot=$(cat /etc/debian_chroot)
+    >     fi
+    >    ```
+        
+
+
 
 
 
@@ -964,31 +1059,31 @@ running `export` displays them.
 
 Here are some common environmental variables that you will come across:
 
-- `SHELL`: This describes the shell--in most cases, this will be **bash** but other values can be set if you prefer other options.
-- `TERM`: This specifies the type of terminal to emulate when running the shell. Different hardware terminals can be emulated based on requirements.
-- `USER`: The current logged in **user.**
-- `PWD`: The *current working directory.*
-- `OLDPWD`: The *previous working directory.* This is kept by the shell in order to switch back by running `cd -`.
-- `LS_COLORS`: This defines color codes that are used to optionally add colored output to the ls command.
-- `MAIL`: The path to the current user's mailbox.
-- **`PATH`**: A list of directories that the system will check when looking for commands. When a user types in a command, the system will check directories in this order for the executable.
-- `LANG`: The current language and localization settings, including character encoding.
-- `HOME`: The current user's home directory.
+>- `SHELL`: This describes the shell--in most cases, this will be **bash** but other values can be set if you prefer other options.
+>- `TERM`: This specifies the type of terminal to emulate when running the shell. Different hardware terminals can be emulated based on requirements.
+>- `USER`: The current logged in **user.**
+>- `PWD`: The *current working directory.*
+>- `OLDPWD`: The *previous working directory.* This is kept by the shell in order to switch back by running `cd -`.
+>- `LS_COLORS`: This defines color codes that are used to optionally add colored output to the ls command.
+>- `MAIL`: The path to the current user's mailbox.
+>- **`PATH`**: A list of directories that the system will check when looking for commands. When a user types in a command, the system will check directories in this order for the executable.
+>- `LANG`: The current language and localization settings, including character encoding.
+>- `HOME`: The current user's home directory.
 `_`: The most recent previously executed command.
 In addition to these environmental variables, some shell variables that you'll often see are:
 
--`BASHOPTS`: The list of options that were used when bash was executed. This can be useful for finding out if the shell environment will operate in the way you want it to.
--`BASH_VERSION`: The version of bash being executed, in human-readable form.
--`BASH_VERSINFO`: The version of bash, in machine-readable output.
--`COLUMNS`: The number of columns wide that are being used to draw output on the screen.
--`DIRSTACK`: The stack of directories that are available with the pushd and popd commands.
--`HISTFILESIZE`: Number of lines of command history stored to a file.
--`HISTSIZE`: Number of lines of command history allowed in memory.
--`HOSTNAME`: The hostname of the computer at this time.
--`IFS`: The internal field separator to separate input on the command line. By default, this is a space.
--`PS1`: The primary command prompt definition. This is used to define what your prompt looks like when you -start a shell session. The PS2 is used to declare secondary prompts for when a command spans multiple lines.
--`SHELLOPTS`: Shell options that can be set with the set option.
--`UID`: The UID of the current user.
+>- `BASHOPTS`: The list of options that were used when bash was executed. This can be useful for finding out if the shell environment will operate in the way you want it to.
+>- `BASH_VERSION`: The version of bash being executed, in human-readable form.
+>- `BASH_VERSINFO`: The version of bash, in machine-readable output.
+>- `COLUMNS`: The number of columns wide that are being used to draw output on the screen.
+>- `DIRSTACK`: The stack of directories that are available with the pushd and popd commands.
+>- `HISTFILESIZE`: Number of lines of command history stored to a file.
+>- `HISTSIZE`: Number of lines of command history allowed in memory.
+>- `HOSTNAME`: The hostname of the computer at this time.
+>- `IFS`: The internal field separator to separate input on the command line. By default, this is a space.
+>- `PS1`: The primary command prompt definition. This is used to define what your prompt looks like when you -start a shell session. The PS2 is used to declare secondary prompts for when a command spans multiple lines.
+>- `SHELLOPTS`: Shell options that can be set with the set option.
+>- `UID`: The UID of the current user.
 
 
 -----
@@ -1544,19 +1639,19 @@ Open Virtual Box
 
 ## tree
 
-- `tree` prints an ASCII file tree
-
-                tree −option(s) /optional/directory/to/list
-
-- `-a` - **a**ll
-- `-d` - **d**irectories only
-- `-L #` - max **L**evels
-- `P` - **P**attern - lists all files that match a Pattern
-- `I` - lists all files that *do not* match a Pattern
-- `-p` - print **p**ermissions for each file (a la ls -a)
-- `-s` - print the **s**ize of each file (in bytes)
-- `-h` - print the size of each file (in **h**uman readable format)
-
+>-  `tree` prints an ASCII file tree
+> 
+>       tree −option(s) /optional/directory/to/list
+> 
+>-  `-a` - **a**ll
+>-  `-d` - **d**irectories only
+>-  `-L #` - max **L**evels
+>-  `P` - **P**attern - lists all files that match a Pattern
+>-  `I` - lists all files that *do not* match a Pattern
+>-  `-p` - print **p**ermissions for each file (a la ls -a)
+>-  `-s` - print the **s**ize of each file (in bytes)
+>-  `-h` - print the size of each file (in **h**uman readable format)
+> 
 ## find
 
 - `find` seaches for files, using wildcards or regex.
@@ -1566,12 +1661,13 @@ Open Virtual Box
 This would look for a file named "file" and start at the root directory (it will search all directories
 including those that are mounted filesystems).
 
-- `−name` -seach name-  case sensitive
-- `−iname`- find name regardless of case.
-- `−regex`- to find according to a regexp (case
-sensitive)
-- `−iregex` to find according to a regexp (case insensitive).
-- `−exec`- executes a command on the files it
+>-  `−name` -seach name-  case sensitive
+>-  `−iname`- find name regardless of case.
+>-  `−regex`- to find according to a regexp (case
+> sensitive)
+>-  `−iregex` to find according to a regexp (case insensitive).
+>-  `−exec`- executes a command on the files it
+
 finds (such as moving or removing it or anything else...).
 
 !!!example: For example if you wanted to remove everything it finds then you would use
@@ -1637,29 +1733,30 @@ Command syntax:
 
 ## clear
 
-- `clear` - scrolls N lines
+>-  `clear` - scrolls N lines
 
 ## cd
 
 unlike Windows, requires a space after command - `cd ..`
 
-- `cd..` produces an error.-> `alias cd..="cd ..`
+>-  `cd..` produces an error.-> `alias cd..="cd ..`
+> 
+>-  `cd!` - goes back to the previous directory- like an *undo* for `cd`. (WRONG?)
+> 
+>-  `cd -` - goes to PWD.  (Go back)
 
-- `cd!` - goes back to the previous directory- like an *undo* for `cd`. (WRONG?)
-
-- `cd -` - goes to PWD.  (Go back)
 ## ls
 
 lists the files in a location
 
-- `-l` - long
-- `-a` - show hidden
-- `-d`- directories
-- `-F`- append symbols, such as **"*"** to executables
-- `-S` - sort by file/dir size
-- `-R` - show Dir structure
-- "*.html" - show only html files
-- `--color=auto` - shows ls in color.
+>-  `-l` - long
+>-  `-a` - show hidden
+>-  `-d`- directories
+>-  `-F`- append symbols, such as **"*"** to executables
+>-  `-S` - sort by file/dir size
+>-  `-R` - show Dir structure
+>-  "*.html" - show only html files
+>-  `--color=auto` - shows ls in color.
 
         alias ls=ls --color=auto -la
 
@@ -1675,20 +1772,18 @@ Shows directories that are sub directories of current.  If not already present, 
 
 ## cat
 
-- `cat` - concatenate- displays, compines, and creates text files.
-
-- `cat` (no flags)- allows input - echo whatever is typed. `Cat` will open a simple editor.
-
-[[Ctrl]] + [[D]] - exits `cat`
+>-  `cat` - concatenate- displays, compines, and creates text files.
+> 
+>-  `cat` (no flags)- allows input - echo whatever is typed. `Cat` will open a simple editor.
 
         cat list1.txt list2.txt
 
 Concatenates the two files to StdOut.
 
-- `-b` adds the line # to non-blank lines
-- `-n` adds the line # to all lines
-- `-s` removes multiple consecutive blank lines
-- `-E` adds $ to each line break
+>-  `-b` adds the line # to non-blank lines
+>-  `-n` adds the line # to all lines
+>-  `-s` removes multiple consecutive blank lines
+>-  `-E` adds $ to each line break
 
         cat > text.txt
 
@@ -1727,9 +1822,9 @@ Produces an error.  The correct way is:
 *`rmdir` a/b/c/d/e* - only removes `e`
 *`rmdir` -p a/b/c/d/e* - removes the entire tree.
 
-- `-p`, `--parents` -  produces the entire path
-- `-v`, `--verbose` - produces the verbose output
-- `-i`, `--interactive` - interactive
+>-  `-p`, `--parents` -  produces the entire path
+>-  `-v`, `--verbose` - produces the verbose output
+>-  `-i`, `--interactive` - interactive
 
 ## rm
 
@@ -1741,11 +1836,11 @@ Command syntax:
 
 only need to give a parent dir.
 
-- `-p`, `--parents` -  produces the entire path
-- `-v`, `--verbose` - produces the **v**erbose output
-- `-i`, `--interactive` - **i**nteractive
-- `-r`, `-R` - Remove **r**ecursively - to remove everything in sub-directories
-- `-f` - **f**orce
+>-  `-p`, `--parents` -  produces the entire path
+>-  `-v`, `--verbose` - produces the **v**erbose output
+>-  `-i`, `--interactive` - **i**nteractive
+>-  `-r`, `-R` - Remove **r**ecursively - to remove everything in sub-directories
+>-  `-f` - **f**orce
 
 !!!tip Disabling Aliases (per execution)
       On some systems such as Mandrake an `alias` will send `rm` to `rm −i` (prompting you for every file you wish to delete). To override this use: `\rm −R directory`
@@ -1759,11 +1854,11 @@ Command syntax:
 
       cp −options file_or_files new_location
 
-- `-i`, `--interactive` - interactive
-- `-v`, `--verbose` - produces the verbose output
-- `-R` - recursive copying
-- `-u` - only copy if source is newer than the destination or dest doesn't exist.
-- `-n` - no clobber (over-ridden by i)
+>-  `-i`, `--interactive` - interactive
+>-  `-v`, `--verbose` - produces the verbose output
+>-  `-R` - recursive copying
+>-  `-u` - only copy if source is newer than the destination or dest doesn't exist.
+>-  `-n` - no clobber (over-ridden by i)
 
 if destination doesnt exist, its created.
 
@@ -1800,8 +1895,8 @@ mv -opts src dest
 
 mv file1.txt dir1/
 
-- `-v`, `--verbose` - produces the verbose output
-- `-i`, `--interactive` - interactive
+>-  `-v`, `--verbose` - produces the verbose output
+>-  `-i`, `--interactive` - interactive
 
 !!!sample: Rename example:
          mv filename1 filename2
@@ -1950,7 +2045,7 @@ Looking at Privledges
 
         $ touch test.sh
         $ ls -l *.sh
-        >> -rw-rw-r-- 1 user user 0 Tod 00 00:00 test.sh
+        >>- rw-rw-r-- 1 user user 0 Tod 00 00:00 test.sh
 
     `touch` creates priviledges that are rw for user and group, and r for others, but not at all execute, in the case of an *.sh (shell script file)
 
@@ -3222,19 +3317,19 @@ but this fixed it:
 ### nmcli
 
 OPTIONS
-- `-a`, `--ask` - ask for missing parameters
-- `-c`, `--colors` auto|yes|no - whether to use colors in output
-- `-e`, `--escape` yes|no - escape columns separators in values
-- `-f`, `--fields` <field,...>|all|common - specify fields to output
-- `-g`, `--get-values` <field,...>|all|common  shortcut for `-m tabular -t -f`
-- `-h`, `--help` - print this help
-- `-m`, `--mode` tabular|multiline - output mode
-- `-o`, `--overview` - overview mode
-- `-p`, `--pretty` - pretty output
-- `-s`, `--show-secrets` - allow displaying passwords
-- `-t`, `--terse` - terse output
-- `-v`, `--version` - show program version
-- `-w`, `--wait` <seconds> - set timeout waiting for finishing operations
+>-  `-a`, `--ask` - ask for missing parameters
+>-  `-c`, `--colors` auto|yes|no - whether to use colors in output
+>-  `-e`, `--escape` yes|no - escape columns separators in values
+>-  `-f`, `--fields` <field,...>|all|common - specify fields to output
+>-  `-g`, `--get-values` <field,...>|all|common  shortcut for `-m tabular -t -f`
+>-  `-h`, `--help` - print this help
+>-  `-m`, `--mode` tabular|multiline - output mode
+>-  `-o`, `--overview` - overview mode
+>-  `-p`, `--pretty` - pretty output
+>-  `-s`, `--show-secrets` - allow displaying passwords
+>-  `-t`, `--terse` - terse output
+>-  `-v`, `--version` - show program version
+>-  `-w`, `--wait` <seconds> - set timeout waiting for finishing operations
 
 OBJECT
 - g[eneral] - NetworkManager's general status and operations
@@ -3371,13 +3466,13 @@ see `/etc/default/tlp` and ``
 
 ### tar
 
-- `tar` -  stands for **Tape Archiving**
-
-- `-c` - **c**reate
-- `-v` - **v**erbose
-- `-f` - **f**ile
-- `-x` - e**x**tract
-- `-z` - **z**ip file (gz)
+>-  `tar` -  stands for **Tape Archiving**
+> 
+>-  `-c` - **c**reate
+>-  `-v` - **v**erbose
+>-  `-f` - **f**ile
+>-  `-x` - e**x**tract
+>-  `-z` - **z**ip file (gz)
 
 
 To create:
@@ -3400,59 +3495,49 @@ To Extract a tar.gz
 
 #### Main operation mode:
 
-- _`-A`,_ `--catenate`, `--concatenate`- **append** tar files to an archive
-- _`-c`,_ `--create` - **create** a new archive
-- `-d`, `--diff`, `--compare` - find differences between archive and file system
-- `--delete` - delete from the archive (not on mag tapes!)
-- _`-r`,_ `--append` - **append** files to the end of an archive
-- _`-t`,_ `--list` - **list** the contents of an archive
-- `--test-label` - test the archive volume label and exit
-- `-u`, `--update` - only append files newer than copy in archive
-- _`-x`,_ `--extract`, `--get` - **extract** files from an archive
-
+>-  _`-A`,_ `--catenate`, `--concatenate`- **append** tar files to an archive
+>-  _`-c`,_ `--create` - **create** a new archive
+>-  `-d`, `--diff`, `--compare` - find differences between archive and file system
+>-  `--delete` - delete from the archive (not on mag tapes!)
+>-  _`-r`,_ `--append` - **append** files to the end of an archive
+>-  _`-t`,_ `--list` - **list** the contents of an archive
+>-  `--test-label` - test the archive volume label and exit
+>-  `-u`, `--update` - only append files newer than copy in archive
+>-  _`-x`,_ `--extract`, `--get` - **extract** files from an archive
+> 
 #### Compression options:
 
--  `-a,` `--auto-compress` - use archive suffix to determine the compression program
--  `-I,` `--use-compress-program=PROG` filter through PROG (must accept `-d)`
--  `-j,` `--bzip2` - filter the archive through bzip2
--  `-J,` `--xz` - filter the archive through xz
-- `--lzip` - filter the archive through lzip
-- `--lzma` - filter the archive through xz
-- `--lzop` - filter the archive through lzop
-- `--no-auto-compress` - do not use archive suffix to determine the compression program
--  `-z,` `--gzip,` `--gunzip,` `--ungzip`   filter the archive through gzip
- - `--zstd` - filter the archive through zstd
--  `-Z,` `--compress,` `--uncompress`   filter the archive through compress
-
-**Many more options available - see `--help`
-
-#### to extract a tar file:
-
-        tar -xf pygobject-3.32.2.tar
-        tar -C pygobject -xf pygobject-3.32.2.tar
-
--C to give a DIR, though it still puts the top level folder in there
-
+>-   `-a,` `--auto-compress` - use archive suffix to determine the compression program
+>-   `-I,` `--use-compress-program=PROG` filter through PROG (must accept `-d)`
+>-   `-j,` `--bzip2` - filter the archive through bzip2
+>-   `-J,` `--xz` - filter the archive through xz
+>-  `--lzip` - filter the archive through lzip
+>-  `--lzma` - filter the archive through xz
+>-  `--lzop` - filter the archive through lzop
+>-  `--no-auto-compress` - do not use archive suffix to determine the compression program
+>-   `-z,` `--gzip,` `--gunzip,` `--ungzip`   filter the archive through gzip
+>-  `--zstd` - filter the archive through zstd
+>-   `-Z,` `--compress,` `--uncompress`   filter the archive through compress
 
 ### xz
 
 Compress or decompress FILEs in the .xz format.
 
-- `-z,` ``--compress`` - force compression
-- `-d`, `--decompress` - force decompression
-- `-t`, `--test` - test compressed file integrity
-- `-l`, `--list` - list information about .xz files
-- `-k`, `--keep` - keep (don't delete) input files
-- `-f`, `--force` - force overwrite of output file and (de)compress links
-- `-c`, `--stdout` - write to standard output and don't delete input files
-- `-0` ... `-9` - compression preset; default is 6; take compressor *and* decompressor memory usage into account before using 7-9!
-- `-e`, `--extreme` - try to improve compression ratio by using more CPU time; does not affect decompressor memory requirements
-- `-T`, `--threads=NUM` - use at most NUM threads; the default is 1; set to 0 to use as many threads as there are processor cores
-- `-q`, `--quiet` - suppress warnings; specify twice to suppress errors too
-- `-v`, `--verbose` - be verbose; specify twice for even more verbose
-- `-h`, `--help` - display this short help and exit
-- `-H`, `--long-help` - display the long help (lists also the advanced options)
-- `-V`, `--version` - display the version number and exit
+>-  `-z,` ``--compress`` - force compression
+>-  `-d`, `--decompress` - force decompression
+>-  `-t`, `--test` - test compressed file integrity
+>-  `-l`, `--list` - list information about .xz files
+>-  `-k`, `--keep` - keep (don't delete) input files
+>-  `-f`, `--force` - force overwrite of output file and (de)compress links
+>-  `-c`, `--stdout` - write to standard output and don't delete input files
+>-  `-0` ... `-9` - compression preset; default is 6; take compressor *and* decompressor memory usage into account before using 7-9!
+>-  `-e`, `--extreme` - try to improve compression ratio by using more CPU time; does not affect decompressor memory requirements
+>-  `-T`, `--threads=NUM` - use at most NUM threads; the default is 1; set to 0 to use as many threads as there are processor cores
+>-  `-q`, `--quiet` - suppress warnings; specify twice to suppress errors too
+>-  `-v`, `--verbose` - be verbose; specify twice for even more verbose
+>-  `-h`, `--help` - display this short help and exit
+>-  `-H`, `--long-help` - display the long help (lists also the advanced options)
+>-  `-V`, `--version` - display the version number and exit
 
 With no FILE, or when FILE is -, read standard input.
 
@@ -3504,40 +3589,40 @@ The  colors are  defined  by  the  environment  variable  GREP_COLORS.
         --color[=WHEN] {never|always|auto}
 
 
-- `-i` - Case **i**nsensitive
-- `-n` - Prints the line **n**umber]
-- `-v` - In**v**erts the search criteria
-- `--help` - help
-- `-c` - **C**ount the number of matching lines (`-v` = or non-matching)
-- `-l` - just list the files that contain a match
-- `-L` - list the files that Do not contain a match.
-- `-m #` - a max count after which to stop
-- `-H` - print the file name (default with more than one file) in which match was found
-- `-h` - DON'T print the file name in which match was found
-- `-a` - treat binary file as if it were ASCII
-- `-r` - recurse through each file if input arrives at a directory.  Same as `-d recurse`
-- `-R` - Same as above- but follow Symbolic links
-
-
-- `-A #` - Number of lines to show AFTER a match
-- `-B #` - Number of lines to show BEFORE a match
-- `-C #` - Number of lines to show CENTERING a match
-
-- `-D ACTION`{read|skip} - how to treat devices
-- `-d ACTION`{read|skip|recurse} - how to treat directories `-d recurse` == `-r`
-
-- `--exclude=GLOB` - exclude files that match the GLOB.  Only uses the basename
-- `--include=GLOB` - only include files that match the GLOB.  Only uses the basename
-- `--exclude-from=FILE` - exclude files that match the GLOBs giben in FILE.  Only uses the basename, same as above, but reads a file.
-- `--exclude-dir=GLOB` - exclude dirs that match the GLOB.
-
-the variant programs `egrep`, `fgrep` and `rgrep` are the same as `grep -E`, `grep -F`, and `grep -r`,
-
-- `-E`, `--extended-regexp` Interpret  PATTERNS  as  _extended regular expressions (EREs)_
-- `-F`, `--fixed-strings`- Interpret PATTERNS as _fixed strings,_ not regular expressions.
-- `-G`, `--basic-regexp` - Interpret PATTERNS  as  _basic  regular  expressions  (BREs)_        - **This is the default.**
-- `-P`, `--perl-regexp` - Interpret   PATTERNS   as  _Perl-compatible  regular  expressions (PCREs)._
-        - This option is experimental _
+>-  `-i` - Case **i**nsensitive
+>-  `-n` - Prints the line **n**umber]
+>-  `-v` - In**v**erts the search criteria
+>-  `--help` - help
+>-  `-c` - **C**ount the number of matching lines (`-v` = or non-matching)
+>-  `-l` - just list the files that contain a match
+>-  `-L` - list the files that Do not contain a match.
+>-  `-m #` - a max count after which to stop
+>-  `-H` - print the file name (default with more than one file) in which match was found
+>-  `-h` - DON'T print the file name in which match was found
+>-  `-a` - treat binary file as if it were ASCII
+>-  `-r` - recurse through each file if input arrives at a directory.  Same as `-d recurse`
+>-  `-R` - Same as above- but follow Symbolic links
+> 
+> 
+>-  `-A #` - Number of lines to show AFTER a match
+>-  `-B #` - Number of lines to show BEFORE a match
+>-  `-C #` - Number of lines to show CENTERING a match
+> 
+>-  `-D ACTION`{read|skip} - how to treat devices
+>-  `-d ACTION`{read|skip|recurse} - how to treat directories `-d recurse` == `-r`
+> 
+>-  `--exclude=GLOB` - exclude files that match the GLOB.  Only uses the basename
+>-  `--include=GLOB` - only include files that match the GLOB.  Only uses the basename
+>-  `--exclude-from=FILE` - exclude files that match the GLOBs giben in FILE.  Only uses the basename, same as above, but reads a file.
+>-  `--exclude-dir=GLOB` - exclude dirs that match the GLOB.
+> 
+> the variant programs `egrep`, `fgrep` and `rgrep` are the same as `grep -E`, `grep -F`, and `grep -r`,
+> 
+>-  `-E`, `--extended-regexp` Interpret  PATTERNS  as  _extended regular expressions (EREs)_
+>-  `-F`, `--fixed-strings`- Interpret PATTERNS as _fixed strings,_ not regular expressions.
+>-  `-G`, `--basic-regexp` - Interpret PATTERNS  as  _basic  regular  expressions  (BREs)_        - **This is the default.**
+>-  `-P`, `--perl-regexp` - Interpret   PATTERNS   as  _Perl-compatible  regular  expressions (PCREs)._
+>-  This option is experimental _
 
  grep understands three different versions of regular expression syntax:  **“basic”  (BRE),**  **“extended” (ERE)** and **“perl” (PCRE).**  In GNU grep there is no difference in available functionality between basic and  extended syntaxes.  In other implementations, basic regular expressions are less powerful.
 
@@ -3553,19 +3638,19 @@ Perl-compatible  regular  expressions   give   additional functionality,  and ar
 
                 DESCRIPTION - Sed  is a stream editor.  A stream editor is used to perform basic text transformations on an input stream (a file or input from a pipeline).  While in some ways similar to an editor which permits scripted edits (such as ed), sed works by making only one pass over the input(s), and is consequently more efficient.  But it is sed's ability to filter text in a pipeline which particularly distinguishes it from other types of editors.
 
-- `-n`, `--quiet`, `--silent` - suppress automatic printing of pattern space
-- `--debug` - annotate program execution
-- `-e [script]`, `--expression=script` - add the script to the commands to be executed
-- `-f [script-file]`, `--file=script-file` - add the contents of script-file to the commands to be executed
-- `--follow-symlinks` - follow symlinks when processing in place
-- `-i[SUFFIX]`, `--in-place[=SUFFIX]` - edit files in place (makes backup if SUFFIX supplied)
-- `-l` N, `--line-length=N` - specify the desired line-wrap length for the `l' command
-- `--posix` - disable all GNU extensions.
-- `-E`, `-r`, `--regexp-extended` - use extended regular expressions in the script (for portability use `POSIX -E`).
-- `-s`, `--separate` - consider files as separate rather than as a single, continuous long stream.
-- `--sandbox` - operate in sandbox mode (disable e/r/w commands).
-- `-u`, `--unbuffered` - load minimal amounts of data from the input files and flush the output buffers more often
-- `-z`, `--null-data` - separate lines by NUL characters
+>-  `-n`, `--quiet`, `--silent` - suppress automatic printing of pattern space
+>-  `--debug` - annotate program execution
+>-  `-e [script]`, `--expression=script` - add the script to the commands to be executed
+>-  `-f [script-file]`, `--file=script-file` - add the contents of script-file to the commands to be executed
+>-  `--follow-symlinks` - follow symlinks when processing in place
+>-  `-i[SUFFIX]`, `--in-place[=SUFFIX]` - edit files in place (makes backup if SUFFIX supplied)
+>-  `-l` N, `--line-length=N` - specify the desired line-wrap length for the `l' command
+>-  `--posix` - disable all GNU extensions.
+>-  `-E`, `-r`, `--regexp-extended` - use extended regular expressions in the script (for portability use `POSIX -E`).
+>-  `-s`, `--separate` - consider files as separate rather than as a single, continuous long stream.
+>-  `--sandbox` - operate in sandbox mode (disable e/r/w commands).
+>-  `-u`, `--unbuffered` - load minimal amounts of data from the input files and flush the output buffers more often
+>-  `-z`, `--null-data` - separate lines by NUL characters
 
 
 If no `-e`, `--expression`, `-f`, or `--file` option is given, then the first non-option argument is taken as the sed script to interpret.  All remaining arguments are names of input files; if no input files are specified,  then  the standard input is read.
@@ -3616,36 +3701,36 @@ echo $clean_date
 !!!warning Interesting Note on Locales (source _man grep_ *"Character Classes...")*
          For example, in the default C locale, [a-d] is equivalent to [abcd].  Many locales sort characters in dictionary   order,  and  in  these  locales  [a-d]  is  typically  notequivalent to [abcd]; it might be equivalent to [aBbCcDd], for example.
 
-- `?` - The preceding item is optional and matched at most once.
-- `*` - The preceding item will be matched zero or more times.
-- `+` - The preceding item will be matched one or more times.
-- `{n}` - The preceding item is matched exactly n times.
-- `{n,}` - The preceding item is matched n or more times.
-- `{,m}` - The  preceding  item  is matched at most m times.  This is a GNU
-        extension.
-- `{n,m}` - The preceding item is matched at least n  times,  but  not  more
-        than m times.
-- `$` anchors at the end of the line
-- `^` anchors at the beginning of the line.
+>-  `?` - The preceding item is optional and matched at most once.
+>-  `*` - The preceding item will be matched zero or more times.
+>-  `+` - The preceding item will be matched one or more times.
+>-  `{n}` - The preceding item is matched exactly n times.
+>-  `{n,}` - The preceding item is matched n or more times.
+>-  `{,m}` - The  preceding  item  is matched at most m times.  This is a GNU
+> extension.
+>-  `{n,m}` - The preceding item is matched at least n  times,  but  not  more
+> than m times.
+>-  `$` anchors at the end of the line
+>-  `^` anchors at the beginning of the line.
 
 
 ## netstat
 
 `netstat` - see who is connected
 
-- `-a` - see all connections
-- `-t` - see TCP connections
-- `-u` - see UDP connections
-- `-x` - see UNIX ports of connections
-- `-n` - see numeric ports of connections
-- `-c` - see continuously updated connections
-    - [[CTRL]] + [[C]] to quit.
-- `-l` - see listening connections
-- `-s` - see statistics on the connections
-- `-p` - see PID of each connection
-- `-lt` - see listening TCP connections
-- `-ie` - interface extended
-    - same as `ifconfig`
+>-  `-a` - see all connections
+>-  `-t` - see TCP connections
+>-  `-u` - see UDP connections
+>-  `-x` - see UNIX ports of connections
+>-  `-n` - see numeric ports of connections
+>-  `-c` - see continuously updated connections
+>-  [[CTRL]] + [[C]] to quit.
+>-  `-l` - see listening connections
+>-  `-s` - see statistics on the connections
+>-  `-p` - see PID of each connection
+>-  `-lt` - see listening TCP connections
+>-  `-ie` - interface extended
+>   - same as `ifconfig`
 
             netstat -a | less` ([[q]] to quit)
             netstat -an | grep ';80'
@@ -3832,102 +3917,102 @@ flock - manage locks from shell scripts
 
 
 ## GNU CoreUtils (list)
-- `arch`
-- `base64`
-- `basename`
-- `cat`
-- `chcon`
-- `chgrp`
-- `chmod`
-- `chown`
-- `chroot`
-- `cksum`
-- `comm`
-- `cp`
-- `csplit`
-- `cut`
-- `date`
-- `dd`
-- `df`
-- `dir`
-- `dircolors`
-- `dirname`
-- `du`
-- `echo`
-- `env`
-- `expand`
-- `expr`
-- `factor`
-- `false`
-- `flock`
-- `fmt`
-- `fold`
-- `groups`
-- `head`
-- `hostid`
-- `id`
-- `install`
-- `join`
-- `link`
-- `ln`
-- `logname`
-- `ls`
-- `md5sum`
-- `mkdir`
-- `mkfifo`
-- `mknod`
-- `mktemp`
-- `mv`
-- `nice`
-- `nl`
-- `nohup`
-- `nproc`
-- `numfmt`
-- `od`
-- `paste`
-- `pathchk`
-- `pinky`
-- `pr`
-- `printenv`
-- `printf`
-- `ptx`
-- `pwd`
-- `readlink`
-- `realpath`
-- `rm`
-- `rmdir`
-- `runcon`
-- `sha*sum`
-- `seq`
-- `shred`
-- `sleep`
-- `sort`
-- `split`
-- `stat`
-- `stty`
-- `sum`
-- `sync`
-- `tac`
-- `tail`
-- `tee`
-- `test`
-- `timeout`
-- `touch`
-- `tr`
-- `true`
-- `truncate`
-- `tsort`
-- `tty`
-- `uname`
-- `unexpand`
-- `uniq`
-- `unlink`
-- `users`
-- `vdir`
-- `wc`
-- `who`
-- `whoami`
-- `yes`
+>-  `arch`
+>-  `base64`
+>-  `basename`
+>-  `cat`
+>-  `chcon`
+>-  `chgrp`
+>-  `chmod`
+>-  `chown`
+>-  `chroot`
+>-  `cksum`
+>-  `comm`
+>-  `cp`
+>-  `csplit`
+>-  `cut`
+>-  `date`
+>-  `dd`
+>-  `df`
+>-  `dir`
+>-  `dircolors`
+>-  `dirname`
+>-  `du`
+>-  `echo`
+>-  `env`
+>-  `expand`
+>-  `expr`
+>-  `factor`
+>-  `false`
+>-  `flock`
+>-  `fmt`
+>-  `fold`
+>-  `groups`
+>-  `head`
+>-  `hostid`
+>-  `id`
+>-  `install`
+>-  `join`
+>-  `link`
+>-  `ln`
+>-  `logname`
+>-  `ls`
+>-  `md5sum`
+>-  `mkdir`
+>-  `mkfifo`
+>-  `mknod`
+>-  `mktemp`
+>-  `mv`
+>-  `nice`
+>-  `nl`
+>-  `nohup`
+>-  `nproc`
+>-  `numfmt`
+>-  `od`
+>-  `paste`
+>-  `pathchk`
+>-  `pinky`
+>-  `pr`
+>-  `printenv`
+>-  `printf`
+>-  `ptx`
+>-  `pwd`
+>-  `readlink`
+>-  `realpath`
+>-  `rm`
+>-  `rmdir`
+>-  `runcon`
+>-  `sha*sum`
+>-  `seq`
+>-  `shred`
+>-  `sleep`
+>-  `sort`
+>-  `split`
+>-  `stat`
+>-  `stty`
+>-  `sum`
+>-  `sync`
+>-  `tac`
+>-  `tail`
+>-  `tee`
+>-  `test`
+>-  `timeout`
+>-  `touch`
+>-  `tr`
+>-  `true`
+>-  `truncate`
+>-  `tsort`
+>-  `tty`
+>-  `uname`
+>-  `unexpand`
+>-  `uniq`
+>-  `unlink`
+>-  `users`
+>-  `vdir`
+>-  `wc`
+>-  `who`
+>-  `whoami`
+>-  `yes`
 
 Other GNU Programs
 

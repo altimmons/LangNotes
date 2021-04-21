@@ -204,6 +204,7 @@ set(CMAKE_DEBUG_TARGET_PROPERTIES
   LIB_VERSION
 )
 
+```
 
 # set(CMAKE_DEBUG_TARGET_PROPERTIES
 # SOURCES
@@ -216,7 +217,7 @@ set(CMAKE_DEBUG_TARGET_PROPERTIES
 #   CONTAINER_SIZE_REQUIRED
 #   LIB_VERSION
 # )
-
+```
 
 !!!Note Adding these flags could look bad
     This will dump extra info into output- but the IDE interprets this as errors (red squiggles) when it gets feedback on each line.  Seems to work fine anyway.
