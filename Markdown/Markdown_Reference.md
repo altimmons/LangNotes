@@ -27,6 +27,14 @@ Sample Exporting instructions
 [[TOC]]
 
 
+## Working Font List
+
+"CaskaydiaCove Nerd Font",
+"Pragmata Pro",
+"CamingoCode",
+"BPScript",
+"Proxima Nova",
+ "'DejaVuSansMono NF'",
 ## Summary of symbols
 
 ** New Keybindings I added

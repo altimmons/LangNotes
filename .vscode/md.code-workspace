@@ -1,7 +1,8 @@
 {
+	//THESE ARE THE WORKSPACE SETTINGS  OR SHOULD BE (Actually in ..)
 	"folders": [
 		{
-			"path": "."
+			"path": ".."
 		}
 	],
 	"settings": {
@@ -10,10 +11,7 @@
 			"[Pop Dark]": {
 				"editor.background": "#4d4747",
 				"panel.background": "#362a24"
-			},
-			"activityBar.background": "#1F0598",
-			"titleBar.activeBackground": "#2C07D5",
-			"titleBar.activeForeground": "#FDFDFF"
+			}
 		},
 		"debug.console.fontFamily": "'DejaVuSansMono NF'",
 		// "terminal.integrated.fontFamily": "'DejaVuSansMono NF'",
@@ -367,9 +365,6 @@ Markdown Setting
 		"vscode_custom_css.imports": [
 		"file:///O:/OneDrive/Programming/Notes/.vscode/custom.css"
 		],
-		"files.associations": {
-			"*.yaml": "home-assistant"
-		},
 		// "markdown-header-coloring.userDefinedHeaderColor": {
 		// 	"enabled": true,
 		// 	"Header_1": {

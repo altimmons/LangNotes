@@ -1,4 +1,6 @@
 {
+
+  //THESE ARE THE FOLDER SETTINGS 
   "markdown.preview.fontFamily": " Pragmata Pro, 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
   "editor.snippetSuggestions": "top",
   "editor.quickSuggestionsDelay": 5000,
@@ -536,7 +538,7 @@
   "markdown.preview.breaks": true,
   "markdown.links.openLocation": "beside",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-} // {
+  } // {
 //     "python.pythonPath": "C:\\Python37\\python.exe",
 //     "workbench.colorCustomizations": {
 //         "titleBar.activeForeground": "#db9ac8",

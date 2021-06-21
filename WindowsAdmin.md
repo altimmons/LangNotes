@@ -440,7 +440,9 @@ PS>
 
 ## Protocol Host
 
-Nirsoft URLProtocolView
+### URLProtocol VIew
+
+!!!tip Nirsoft URLProtocolView
 
 Running `ms-taskswitcher:/` brings up task view
 The protocol host seems useful!

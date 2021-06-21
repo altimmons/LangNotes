@@ -76,12 +76,6 @@ Shell Fmt
 >-    [mdformat-shfmt](https://github.com/hukkinj1/mdformat-shfmt) - [mdformat](https://github.com/executablebooks/mdformat) plugin to format shell scripts embedded in Markdown with shf
 
 
-## WSL (Windows Subsystem Linux)
-
----
-
-sudo gedit /var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla
-
 
 ---
 General Notes:
@@ -183,6 +177,245 @@ But to get section number - use `apropos`KEYWORD
 All this must be built with ROOT as `makewhatis` (SLOW)
 
 ## Quick Summary
+
+### Core Commands
+
+!!!tip 
+
+    - [[:]] (a colon) - `: [arguments]` - Do nothing beyond expanding arguments and performing redirections. The return status is zero.
+    
+    - [[.]] (a period) - `. filename [arguments]` - Read and execute commands from the filename argument in the current shell context. If filename does not contain a slash, the PATH variable is used to find filename. When Bash is not in POSIX mode, the current directory is searched
+    
+    - [[break]] - `break [n]` - Exit from a for, while, until, or select loop. If n is supplied, the nth enclosing loop is exited. n must be greater than or equal to 1. The return status is zero unless n is not greater than or equal to 1.
+
+[[cd]]
+
+     `cd [-L|[-P [-e]] [-@] [directory]` 
+
+     Change the current working directory to directory. 
+        >- If directory is not supplied, the value of the `HOME` shell variable is used.
+        >- Any additional arguments following directory are ignored. 
+        >- If the shell variable `CDPATH` exists, it is used as a search path: each directory name in CDPATH is searched for directory, with alternative directory names in CDPATH separated by a colon (‘:’). 
+        >- If directory begins with a slash, `CDPATH` is not used.
+        >-  [[-P]] means to not follow symbolic links
+        >- [[-L]] **(default)** option is supplied, symbolic links in directory are resolved after cd processes an instance of ‘..’ in directory.
+        >- other options are `-e`, `..`, `-`, and `-@`  
+    
+[[continue]]
+
+  `continue [n]` - 
+  
+  Resume the next iteration of an enclosing for, while, until, or select loop. If n is supplied, the execution of the nth enclosing loop is resumed. n must be greater than or equal to 1. The return status is zero unless n is not greater than or equal to 1.
+
+eval
+
+  `eval [arguments]`
+
+    The arguments are concatenated together into a single command, which is then read and executed, and its exit status returned as the exit status of eval. If there are no arguments or only empty arguments, the return status is zero.
+
+exec
+
+  `exec [-cl] [-a name] [command [arguments]]`
+
+    If command is supplied, it replaces the shell without creating a new process. If the -l option is supplied, the shell places a dash at the beginning of the zeroth argument passed to command. 
+exit
+
+  `exit [n]`
+
+    Exit the shell, returning a status of n to the shell’s parent. If n is omitted, the exit status is that of the last command executed. Any trap on EXIT is executed before the shell terminates.
+export
+
+  `export [-fn] [-p] [name[=value]`]
+
+    Mark each name to be passed to child processes in the environment. If the
+     -f option is supplied, the names refer to shell functions; otherwise the names refer to shell variables.
+     -n option means to no longer mark each name for export.
+     -p (or  If no names ) is given, a list of names of all exported variables is displayed. 
+    
+getopts
+
+    `getopts optstring name [arg …]`
+
+    getopts is used by shell scripts to parse positional parameters. optstring contains the option characters to be recognized; if a character is followed by a colon, the option is expected to have an argument, which should be separated from it by whitespace. The colon (‘:’) and question mark (‘?’) may not be used as option characters. Each time it is invoked, getopts places the next option in the shell variable name, initializing name if it does not exist, and the index of the next argument to be processed into the variable OPTIND. 
+     
+
+hash
+
+    `hash [-r] [-p filename] [-dt] [name]`
+
+    Each time hash is invoked, it remembers the full pathnames of the commands specified as name arguments, so they need not be searched for on subsequent invocations. 
+
+!!!danger Do not run this with out arguments.  Idk what it does but its bad.
+
+
+pwd
+
+    pwd [-LP]
+
+    Print the absolute pathname of the current working directory. I
+
+
+shift
+
+    shift [n]
+
+    Shift the positional parameters to the left by n. The positional parameters from n+1 … $# are renamed to $1 … $#-n. Parameters represented by the numbers $# down to $#-n+1 are unset. n must be a non-negative number less than or equal to $#. If n is zero or greater than $#, the positional parameters are not changed. If n is not supplied, it is assumed to be 1. The return status is zero unless n is greater than $# or less than zero, non-zero otherwise.
+test
+[
+
+    test expr
+
+    Evaluate a conditional expression expr and return a status of 0 (true) or 1 (false). Each operator and operand must be a separate argument. 
+        
+   ` expr` True if expr is false.
+   ` ( expr )` Returns the value of expr. This may be used to override the normal precedence of operators.
+    `expr1 -a expr2` True if both expr1 and expr2 are true.
+    `expr1 -o expr2` True if either expr1 or expr2 is true. 
+
+    The test and [ builtins evaluate conditional expressions using a set of rules based on the number of arguments. 
+
+times
+
+    times
+
+    Print out the user and system times used by the shell and its children. The return status is zero.
+trap
+
+    trap [-lp] [arg] [sigspec …]
+
+    The commands in arg are to be read and executed when the shell receives signal sigspec. If arg is absent (and there is a single sigspec) or equal to ‘-’, each specified signal’s disposition is reset to the value it had when the shell was started. 
+umask
+
+    umask [-p] [-S] [mode]
+
+    Set the shell process’s file creation mask to mode. If mode begins with a digit, it is interpreted as an octal number; if not, it is interpreted as a symbolic mode mask similar to that accepted by the chmod command. 
+
+unset
+
+    unset [-fnv] [name]
+
+    Remove each variable or function name. If the -v option is given, each name refers to a shell variable and that variable is removed. I
+
+
+    
+____
+
+____
+____
+
+
+
+## WSL  (Windows Subsystem Linux)  Commands
+
+!!!cite [WSL Command Line Reference | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/reference)
+
+ !!!help Stopping and Starting WSL
+    In an administrator shell:
+
+        net stop LxssManager
+        net start LxssManager
+    
+    also
+
+        sc status LxssManager
+        sc start LxssManager
+        sc stop LxssManager 
+
+    Lxss itself exists but cant be interacted with.
+    
+    See also: amd tje VM Service
+        
+        hcsdiag
+
+____
+
+Cant remember what this is.  Stupid...
+
+ `sudo gedit /var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla`
+
+
+### Arguments for running Linux commands
+
+-   **Without arguments** -If no command line is provided, wsl.exe launches the default shell.
+
+-   **\--exec, -e <CommandLine>**- Execute the specified command without using the default Linux shell.
+
+-   **\--** - Pass the remaining command line as is.
+
+
+The above commands also accept the following options:
+
+-   **\--distribution, -d <Distro>** - Run the specified distribution.
+
+-   **\--user, -u <UserName>** - Run as the specified user.
+
+
+_Arguments for managing Windows Subsystem for Linux_
+
+-   **\--export <Distro> <FileName>** - Exports the distribution to a tar file. The filename can be `-` for standard output.
+
+-   **\--import <Distro> <InstallLocation> <FileName>** - Imports the specified tar file as a new distribution. The filename can be - for standard input.
+
+-   **\--list, -l \[Options\]** - Lists distributions.
+
+_Options:_
+
+    -   **\--all** - Li0st all distributions, including distributions that are currently being installed or uninstalled.
+    -   **\--running** - List only distributions that are currently running.
+    -   **\--set-default, -s <Distro>** - Sets the distribution as the default.
+    -   **\--terminate, -t <Distro>** - Terminates the specified distribution.
+    -   **\--unregister <Distro>** -Un-register the distribution.
+    -   **\--help** Display usage information.
+
+
+_Additional Commands_
+
+There are also historic commands to interact with the Windows Subsystem for Linux. Their functionality is encompassed within `wsl.exe`, but they are still available for use.
+
+`wslconfig.exe` [~link~](https://docs.microsoft.com/en-us/windows/wsl/reference#wslconfigexe)
+
+This command lets you configure your WSL distribution. Below is a list of its options.
+
+Using: `wslconfig [Argument] [Options...]`
+
+   Arguments:  `/l, /list \[Options\]` [~link~](https://docs.microsoft.com/en-us/windows/wsl/reference#arguments) -> Lists registered distributions.
+
+
+Options:
+
+-   **/all** Optionally list all distributions, including distributions that are currently being installed or uninstalled.
+-   **/running** List only distributions that are currently running.
+-   **/s, /setdefault <Distro>** Sets the distribution as the default.
+-   **/t, /terminate <Distro>** Terminates the distribution.
+-   **/u, /unregister <Distro>** Un-registers the distribution.
+-   **/upgrade <Distro>** Upgrades the distribution to the WslFs file system format.
+
+
+[`bash.exe`](https://docs.microsoft.com/en-us/windows/wsl/reference#bashexe) - This command is used to start a bash shell. Below are the options you can use with this command.
+
+Using: `bash [Options...]`
+
+    -   **No Option given**  - Launches the Bash shell in the current directory. If the Bash shell is not installed automatically runs `lxrun /install`
+
+-   **~**  `bash ~` launches the bash shell into the user's home directory. Similar to running `cd ~`.
+
+-   **\-c "<command>"** Runs the command, prints the output and exits back to the Windows command prompt.
+
+!!!example Example: `bash -c "ls"`.
+
+
+ [Deprecated: `lxrun.exe` ~as of Windows 10 1803 and later.~](https://docs.microsoft.com/en-us/windows/wsl/reference#deprecated-commands)
+
+
+`lxrun` The lxrun command is used to manage the WSL instance.
+`lxrun /install`Starts the download and install process.
+`lxrun /uninstall`Uninstalls and deletes the Ubuntu image. By default this does not remove the user's Ubuntu home directory.
+`lxrun /update`Updates the subsystem's package index
+
+
+____
+____
+____
 
 ### File Commands
 
@@ -668,101 +901,6 @@ Accesses the directory stack
 
 
 
-!!!!!Attention Attention: Important `&`
-- `&` suffix so that it runs as a background process and then issuing `disown %1` in bash or whatever job number the program is. Then you can safely close the terminal. So, it could be something like: `sudo my-program &;disown %1;exit;`
-
-[Source](https://stackoverflow.com/questions/3371294/how-can-i-recall-the-argument-of-the-previous-bash-command)
-
-
-
-The shell command [[!]] recalls an old command from the history buffer.
-[[!1]] - this starts from the beginning of the history.  In this case- there are 1500 entries, and this is the very first.
-[[!2]] etc
-[[!-1]] - start from the most recent.
-
-`cat .zsh_history | wc -l`
-running [[!$]] gives the last arguement `-l`  juist like reg-ex
-running [[!^]] gives the first arguments - here .zsh_history.  Note the command isnt included.
-
-`!2^` gives another item- .zshrc.  Its adjacent alphabeticallty but thats it...
-`!-1^` try to get the negatives of the value. Running `!5` without the hat, it does whats show above.   `zsh: no such word in event`
-`!^3` just puts the number at the end of the `!^` value.
-
-`$_` the last argument.  Similar to `!$`.  
-
-
-[[Alt]]+[[.]] ALT and period, Allegedly does as well but not working on the current machine I am on. 
-[[Esc]]+[[.]] Esc + period is also supposed to do the same.
-
-For items other than the first or last `!^` vs `!$` & `$_` you can do `!:1` to get a specific one.  Starts numbering after the command.
-
-`!:0` works as expected, annd gives the first word in the last command.
-
-`!!:0` - this actually does the same thing.
-
-Can even do ranges!
-`!:0-3`
-
-`!:^-$` the values `^` and `$` are just variables, and can be substituted.
-
-More advanced stuff
-
-`!pattern` - most recent command matching pattern
-
-`!!:s/find/replace` - last command, substitute find with replace
-
-you can also `^find^replace`.
-
-`!*` - all arguments from the previous command (after the program/built-in/script). e.g.: ls *.tmp *.cache rm !* 
-
-You can even combine the two methods- running the commands vertically, and the arguments horizontally.
-`!-2:3` - the command run 2 cmds prev. and the 3 argument.
-
-[[CTRL]]+[[R]] Does a reverse search.
-
-
-
-Just as [[M]]0[[.]] **(meta-dot** or **esc-dot** or **alt-dot)** is the readline function yank-last-arg, M-C-y (meta-control-y or esc-ctrl-y or ctrl-alt-y) is the readline function yank-nth-arg. Without specifying n, it yanks the first argument of the previous command.
-
-To specify an argument, press Escape and a number or hold Alt and press a number. You can do Alt--to begin specifying a negative number then release Alt and press the digit (this will count from the end of the list of arguments.
-
-
-$ echo a b c d e f g
-a b c d e f g
-
-[[Alt]][[CTRL]][[Y]]
-
--gives 'a' to show but we arent done
-
-[[Alt]]+[[3]] [[Alt]]+[[Ctrl]]+[[Y]]
-[[Alt]]+( [[-]]+[[2]] )  [[Alt]]+[[Ctrl]]+[[Y]]
-
-^My ->M3->^My-> M- +2 -> M^y
-
-where M is ALT and ^ is CTRL.
-
-
-(^    )([A-Za-z0-9, _ -,+\#.-\!]+)(:)
-\t- [[`$2`]]  $3  
-
-
-!^      first argument
-!$      last argument
-!*      all arguments
-!:2     second argument
-
-!:2-3   second to third arguments
-!:2-$   second to last arguments
-!:2*    second to last arguments
-!:2-    second to next to last arguments
-
-!:0     the command
-!!      repeat the previous line
-
-$ man  -P 'less -p ^HISTORY\ EXPANSION' bash
-<...>
-
-
 -----
 
 #### Word Designators
@@ -852,6 +990,8 @@ After the optional word designator, you can add a sequence of one or more of the
 >- [[`G`]] - Apply the following [[`s`]] or [[`&`]] modifier once to each word in the event.
 ----
 
+### Keyboard Shortcuts for Substitutions
+
 Tested on Ubuntu 18.04
 To insert previous arguments:
 
@@ -900,6 +1040,106 @@ General shortcuts
     end or [[Ctrl]]+[[e]]: move to end of li
 
 
+### Disown `&` and Redirection
+
+!!!!!Attention Attention: Important `&`
+- `&` suffix so that it runs as a background process and then issuing `disown %1` in bash or whatever job number the program is. Then you can safely close the terminal. So, it could be something like: `sudo my-program &;disown %1;exit;`
+
+### `!` Bang Substitution
+
+[Source](https://stackoverflow.com/questions/3371294/how-can-i-recall-the-argument-of-the-previous-bash-command)
+
+
+
+The shell command [[!]] recalls an old command from the history buffer.
+[[!1]] - this starts from the beginning of the history.  In this case- there are 1500 entries, and this is the very first.
+[[!2]] etc
+[[!-1]] - start from the most recent.
+
+`cat .zsh_history | wc -l`
+running [[!$]] gives the last arguement `-l`  juist like reg-ex
+running [[!^]] gives the first arguments - here .zsh_history.  Note the command isnt included.
+
+`!2^` gives another item- .zshrc.  Its adjacent alphabeticallty but thats it...
+`!-1^` try to get the negatives of the value. Running `!5` without the hat, it does whats show above.   `zsh: no such word in event`
+`!^3` just puts the number at the end of the `!^` value.
+
+`$_` the last argument.  Similar to `!$`.  
+
+
+[[Alt]]+[[.]] ALT and period, Allegedly does as well but not working on the current machine I am on. 
+[[Esc]]+[[.]] Esc + period is also supposed to do the same.
+
+For items other than the first or last `!^` vs `!$` & `$_` you can do `!:1` to get a specific one.  Starts numbering after the command.
+
+`!:0` works as expected, annd gives the first word in the last command.
+
+`!!:0` - this actually does the same thing.
+
+Can even do ranges!
+`!:0-3`
+
+`!:^-$` the values `^` and `$` are just variables, and can be substituted.
+
+More advanced stuff
+
+`!pattern` - most recent command matching pattern
+
+`!!:s/find/replace` - last command, substitute find with replace
+
+you can also `^find^replace`.
+
+`!*` - all arguments from the previous command (after the program/built-in/script). e.g.: ls *.tmp *.cache rm !* 
+
+You can even combine the two methods- running the commands vertically, and the arguments horizontally.
+`!-2:3` - the command run 2 cmds prev. and the 3 argument.
+
+
+
+
+[[CTRL]]+[[R]] Does a reverse search.
+
+
+
+Just as [[M]]0[[.]] **(meta-dot** or **esc-dot** or **alt-dot)** is the readline function yank-last-arg, M-C-y (meta-control-y or esc-ctrl-y or ctrl-alt-y) is the readline function yank-nth-arg. Without specifying n, it yanks the first argument of the previous command.
+
+To specify an argument, press Escape and a number or hold Alt and press a number. You can do Alt--to begin specifying a negative number then release Alt and press the digit (this will count from the end of the list of arguments.
+
+
+$ echo a b c d e f g
+a b c d e f g
+
+[[Alt]][[CTRL]][[Y]]
+
+-gives 'a' to show but we arent done
+
+[[Alt]]+[[3]] [[Alt]]+[[Ctrl]]+[[Y]]
+[[Alt]]+( [[-]]+[[2]] )  [[Alt]]+[[Ctrl]]+[[Y]]
+
+^My ->M3->^My-> M- +2 -> M^y
+
+where M is ALT and ^ is CTRL.
+
+
+(^    )([A-Za-z0-9, _ -,+\#.-\!]+)(:)
+\t- [[`$2`]]  $3  
+
+
+!^      first argument
+!$      last argument
+!*      all arguments
+!:2     second argument
+
+!:2-3   second to third arguments
+!:2-$   second to last arguments
+!:2*    second to last arguments
+!:2-    second to next to last arguments
+
+!:0     the command
+!!      repeat the previous line
+
+$ man  -P 'less -p ^HISTORY\ EXPANSION' bash
+<...>
 
 
 
@@ -1048,10 +1288,22 @@ event-level(*) substitution for the first found (matched) string in the previous
     >     fi
     >    ```
         
+If one is missing we can sub another. 
 
+This looks for Home2 which shouldnt exist bc I made it up.
 
+```sh
+f [[ -z ${HOME2:-$HOME} ]]; then;
+ echo "true";
+ else echo "false";  
+fi
+```
 
+This corrects the path for you- the object must exist
 
+:  `USER=/home/${andyt:-andy}`
+
+Here `andy` is my actual user.  andyt fails to exist, it replaces it and moves on.
 
 ### environmental and shell variables
 

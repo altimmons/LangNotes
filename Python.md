@@ -1626,6 +1626,10 @@ ____
 
   Python has a few built in functions:
 
+  [Updated Link 3.8](https://docs.python.org/3.8/library/functions.html#enumerate)
+
+
+
   [Defined Here](https://docs.python.org/3/library/functions.html)
 
  >- [`__import__()`](#import)

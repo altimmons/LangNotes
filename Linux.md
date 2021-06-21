@@ -965,7 +965,7 @@ done < /tmp/terminal
 tput rc                     # Restore saved cursor position.
 
  ```
- 
+ w
  
 
 ### Quick Tips
