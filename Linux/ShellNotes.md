@@ -761,6 +761,24 @@ ____
 
 !!!note These arithmetic binary operators return true if arg1 is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to arg2, respectively. Arg1 and arg2 may be positive or negative integers. When used with the [[ command, Arg1 and Arg2 are evaluated as arithmetic expressions (see Shell Arithmetic).
 
+
+
+-b filename - Block special file
+-c filename - Special character file
+-d directoryname - Check for directory Existence
+-e filename - Check for file existence, regardless of type (node, directory, socket, etc.)
+-f filename - Check for regular file existence not a directory
+-G filename - Check if file exists and is owned by effective group ID
+-G filename set-group-id - True if file exists and is set-group-id
+-k filename - Sticky bit
+-L filename - Symbolic link
+-O filename - True if file exists and is owned by the effective user id
+-r filename - Check if file is a readable
+-S filename - Check if file is socket
+-s filename - Check if file is nonzero size
+-u filename - Check if file set-user-id bit is set
+-w filename - Check if file is writable
+-x filename - Check if file is executable
 ____
 
 ### Functions
@@ -1341,6 +1359,9 @@ In addition to these environmental variables, some shell variables that you'll o
 -----
 ### Shell parameter Substitution
 
+[Much of this is similar to #AWK](#awk)
+
+
 [Shell Parameter Expansion](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Parameter-Expansion)
 
 !!!Tip Tip: A lot more here. Check out the link above.
@@ -1882,6 +1903,536 @@ Open Virtual Box
 
 
 ---
+
+## coreutils (GNU)
+
+[GNU Coreutils](https://www.gnu.org/software/coreutils/manual/coreutils.html)
+
+[GNU Docs](https://www.gnu.org/manual/manual.html)
+
+Below is a list of all the *coreutils* applications, there are many other useful sections in the site above but only the programs are included.
+
+-   [2 Common options](https://www.gnu.org/software/coreutils/manual/coreutils.html#Common-options)
+    -   [2.6 `chown`, `chgrp`, `chroot`, `id`: Disambiguating user names and IDs](https://www.gnu.org/software/coreutils/manual/coreutils.html#Disambiguating-names-and-IDs)
+    -   [2.14 `coreutils`: Multi-call program](https://www.gnu.org/software/coreutils/manual/coreutils.html#Multi_002dcall-invocation)
+-   [3 Output of entire files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-entire-files)
+    -   [3.1 `cat`: Concatenate and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation)
+    -   [3.2 `tac`: Concatenate and write files in reverse](https://www.gnu.org/software/coreutils/manual/coreutils.html#tac-invocation)
+    -   [3.3 `nl`: Number lines and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#nl-invocation)
+    -   [3.4 `od`: Write files in octal or other formats](https://www.gnu.org/software/coreutils/manual/coreutils.html#od-invocation)
+    -   [3.5 `base32`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base32-invocation)
+    -   [3.6 `base64`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base64-invocation)
+    -   [3.7 `basenc`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#basenc-invocation)
+-   [4 Formatting file contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-contents)
+    -   [4.1 `fmt`: Reformat paragraph text](https://www.gnu.org/software/coreutils/manual/coreutils.html#fmt-invocation)
+    -   [4.2 `pr`: Paginate or columnate files for printing](https://www.gnu.org/software/coreutils/manual/coreutils.html#pr-invocation)
+    -   [4.3 `fold`: Wrap input lines to fit in specified width](https://www.gnu.org/software/coreutils/manual/coreutils.html#fold-invocation)
+-   [5 Output of parts of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-parts-of-files)
+    -   [5.1 `head`: Output the first part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#head-invocation)
+    -   [5.2 `tail`: Output the last part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#tail-invocation)
+    -   [5.3 `split`: Split a file into pieces.](https://www.gnu.org/software/coreutils/manual/coreutils.html#split-invocation)
+    -   [5.4 `csplit`: Split a file into context-determined pieces](https://www.gnu.org/software/coreutils/manual/coreutils.html#csplit-invocation)
+-   [6 Summarizing files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Summarizing-files)
+    -   [6.1 `wc`: Print newline, word, and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#wc-invocation)
+    -   [6.2 `sum`: Print checksum and block counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#sum-invocation)
+    -   [6.3 `cksum`: Print CRC checksum and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-invocation)
+    -   [6.4 `b2sum`: Print or check BLAKE2 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#b2sum-invocation)
+    -   [6.5 `md5sum`: Print or check MD5 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#md5sum-invocation)
+    -   [6.6 `sha1sum`: Print or check SHA-1 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#sha1sum-invocation)
+    -   [6.7 `sha2` utilities: Print or check SHA-2 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#sha2-utilities)
+-   [7 Operating on sorted files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-sorted-files)
+    -   [7.1 `sort`: Sort text files](https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation)
+    -   [7.2 `shuf`: Shuffling text](https://www.gnu.org/software/coreutils/manual/coreutils.html#shuf-invocation)
+    -   [7.3 `uniq`: Uniquify files](https://www.gnu.org/software/coreutils/manual/coreutils.html#uniq-invocation)
+    -   [7.4 `comm`: Compare two sorted files line by line](https://www.gnu.org/software/coreutils/manual/coreutils.html#comm-invocation)
+    -   [7.5 `ptx`: Produce permuted indexes](https://www.gnu.org/software/coreutils/manual/coreutils.html#ptx-invocation)
+    -   [7.6 `tsort`: Topological sort](https://www.gnu.org/software/coreutils/manual/coreutils.html#tsort-invocation)
+-   [8 Operating on fields](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-fields)
+    -   [8.1 `cut`: Print selected parts of lines](https://www.gnu.org/software/coreutils/manual/coreutils.html#cut-invocation)
+    -   [8.2 `paste`: Merge lines of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#paste-invocation)
+    -   [8.3 `join`: Join lines on a common field](https://www.gnu.org/software/coreutils/manual/coreutils.html#join-invocation)
+-   [9 Operating on characters](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-characters)
+    -   [9.1 `tr`: Translate, squeeze, and/or delete characters](https://www.gnu.org/software/coreutils/manual/coreutils.html#tr-invocation)
+    -   [9.2 `expand`: Convert tabs to spaces](https://www.gnu.org/software/coreutils/manual/coreutils.html#expand-invocation)
+    -   [9.3 `unexpand`: Convert spaces to tabs](https://www.gnu.org/software/coreutils/manual/coreutils.html#unexpand-invocation)
+-   [10 Directory listing](https://www.gnu.org/software/coreutils/manual/coreutils.html#Directory-listing)
+    -   [10.1 `ls`: List directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation)
+    -   [10.2 `dir`: Briefly list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#dir-invocation)
+    -   [10.3 `vdir`: Verbosely list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#vdir-invocation)
+    -   [10.4 `dircolors`: Color setup for `ls`](https://www.gnu.org/software/coreutils/manual/coreutils.html#dircolors-invocation)
+-   [11 Basic operations](https://www.gnu.org/software/coreutils/manual/coreutils.html#Basic-operations)
+    -   [11.1 `cp`: Copy files and directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#cp-invocation)
+    -   [11.2 `dd`: Convert and copy a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation)
+    -   [11.3 `install`: Copy files and set attributes](https://www.gnu.org/software/coreutils/manual/coreutils.html#install-invocation)
+    -   [11.4 `mv`: Move (rename) files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mv-invocation)
+    -   [11.5 `rm`: Remove files or directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rm-invocation)
+    -   [11.6 `shred`: Remove files more securely](https://www.gnu.org/software/coreutils/manual/coreutils.html#shred-invocation)
+-   [12 Special file types](https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-file-types)
+    -   [12.1 `link`: Make a hard link via the link syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#link-invocation)
+    -   [12.2 `ln`: Make links between files](https://www.gnu.org/software/coreutils/manual/coreutils.html#ln-invocation)
+    -   [12.3 `mkdir`: Make directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkdir-invocation)
+    -   [12.4 `mkfifo`: Make FIFOs (named pipes)](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkfifo-invocation)
+    -   [12.5 `mknod`: Make block or character special files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mknod-invocation)
+    -   [12.6 `readlink`: Print value of a symlink or canonical file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#readlink-invocation)
+    -   [12.7 `rmdir`: Remove empty directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rmdir-invocation)
+    -   [12.8 `unlink`: Remove files via the unlink syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#unlink-invocation)
+-   [13 Changing file attributes](https://www.gnu.org/software/coreutils/manual/coreutils.html#Changing-file-attributes)
+    -   [13.1 `chown`: Change file owner and group](https://www.gnu.org/software/coreutils/manual/coreutils.html#chown-invocation)
+    -   [13.2 `chgrp`: Change group ownership](https://www.gnu.org/software/coreutils/manual/coreutils.html#chgrp-invocation)
+    -   [13.3 `chmod`: Change access permissions](https://www.gnu.org/software/coreutils/manual/coreutils.html#chmod-invocation)
+    -   [13.4 `touch`: Change file timestamps](https://www.gnu.org/software/coreutils/manual/coreutils.html#touch-invocation)
+-   [14 Disk usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#Disk-usage)
+    -   [14.1 `df`: Report file system disk space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#df-invocation)
+    -   [14.2 `du`: Estimate file space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#du-invocation)
+    -   [14.3 `stat`: Report file or file system status](https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation)
+    -   [14.4 `sync`: Synchronize cached writes to persistent storage](https://www.gnu.org/software/coreutils/manual/coreutils.html#sync-invocation)
+    -   [14.5 `truncate`: Shrink or extend the size of a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#truncate-invocation)
+-   [15 Printing text](https://www.gnu.org/software/coreutils/manual/coreutils.html#Printing-text)
+    -   [15.1 `echo`: Print a line of text](https://www.gnu.org/software/coreutils/manual/coreutils.html#echo-invocation)
+    -   [15.2 `printf`: Format and print data](https://www.gnu.org/software/coreutils/manual/coreutils.html#printf-invocation)
+    -   [15.3 `yes`: Print a string until interrupted](https://www.gnu.org/software/coreutils/manual/coreutils.html#yes-invocation)
+-   [16 Conditions](https://www.gnu.org/software/coreutils/manual/coreutils.html#Conditions)
+    -   [16.1 `false`: Do nothing, unsuccessfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#false-invocation)
+    -   [16.2 `true`: Do nothing, successfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#true-invocation)
+    -   [16.3 `test`: Check file types and compare values](https://www.gnu.org/software/coreutils/manual/coreutils.html#test-invocation)
+    -   [16.4 `expr`: Evaluate expressions](https://www.gnu.org/software/coreutils/manual/coreutils.html#expr-invocation)
+-   [17 Redirection](https://www.gnu.org/software/coreutils/manual/coreutils.html#Redirection)
+    -   [17.1 `tee`: Redirect output to multiple files or processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#tee-invocation)
+-   [18 File name manipulation](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-name-manipulation)
+    -   [18.1 `basename`: Strip directory and suffix from a file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#basename-invocation)
+    -   [18.2 `dirname`: Strip last file name component](https://www.gnu.org/software/coreutils/manual/coreutils.html#dirname-invocation)
+    -   [18.3 `pathchk`: Check file name validity and portability](https://www.gnu.org/software/coreutils/manual/coreutils.html#pathchk-invocation)
+    -   [18.4 `mktemp`: Create temporary file or directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#mktemp-invocation)
+    -   [18.5 `realpath`: Print the resolved file name.](https://www.gnu.org/software/coreutils/manual/coreutils.html#realpath-invocation)
+-   [19 Working context](https://www.gnu.org/software/coreutils/manual/coreutils.html#Working-context)
+    -   [19.1 `pwd`: Print working directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#pwd-invocation)
+    -   [19.2 `stty`: Print or change terminal characteristics](https://www.gnu.org/software/coreutils/manual/coreutils.html#stty-invocation)
+    -   [19.3 `printenv`: Print all or some environment variables](https://www.gnu.org/software/coreutils/manual/coreutils.html#printenv-invocation)
+    -   [19.4 `tty`: Print file name of terminal on standard input](https://www.gnu.org/software/coreutils/manual/coreutils.html#tty-invocation)
+-   [20 User information](https://www.gnu.org/software/coreutils/manual/coreutils.html#User-information)
+    -   [20.1 `id`: Print user identity](https://www.gnu.org/software/coreutils/manual/coreutils.html#id-invocation)
+    -   [20.2 `logname`: Print current login name](https://www.gnu.org/software/coreutils/manual/coreutils.html#logname-invocation)
+    -   [20.3 `whoami`: Print effective user ID](https://www.gnu.org/software/coreutils/manual/coreutils.html#whoami-invocation)
+    -   [20.4 `groups`: Print group names a user is in](https://www.gnu.org/software/coreutils/manual/coreutils.html#groups-invocation)
+    -   [20.5 `users`: Print login names of users currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#users-invocation)
+    -   [20.6 `who`: Print who is currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#who-invocation)
+-   [21 System context](https://www.gnu.org/software/coreutils/manual/coreutils.html#System-context)
+    -   [21.1 `date`: Print or set system date and time](https://www.gnu.org/software/coreutils/manual/coreutils.html#date-invocation)
+    -   [21.2 `arch`: Print machine hardware name](https://www.gnu.org/software/coreutils/manual/coreutils.html#arch-invocation)
+    -   [21.3 `nproc`: Print the number of available processors](https://www.gnu.org/software/coreutils/manual/coreutils.html#nproc-invocation)
+    -   [21.4 `uname`: Print system information](https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation)
+    -   [21.5 `hostname`: Print or set system name](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostname-invocation)
+    -   [21.6 `hostid`: Print numeric host identifier](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostid-invocation)
+    -   [21.7 `uptime`: Print system uptime and load](https://www.gnu.org/software/coreutils/manual/coreutils.html#uptime-invocation)
+-   [22 SELinux context](https://www.gnu.org/software/coreutils/manual/coreutils.html#SELinux-context)
+    -   [22.1 `chcon`: Change SELinux context of file](https://www.gnu.org/software/coreutils/manual/coreutils.html#chcon-invocation)
+    -   [22.2 `runcon`: Run a command in specified SELinux context](https://www.gnu.org/software/coreutils/manual/coreutils.html#runcon-invocation)
+-   [23 Modified command invocation](https://www.gnu.org/software/coreutils/manual/coreutils.html#Modified-command-invocation)
+    -   [23.1 `chroot`: Run a command with a different root directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#chroot-invocation)
+    -   [23.2 `env`: Run a command in a modified environment](https://www.gnu.org/software/coreutils/manual/coreutils.html#env-invocation)
+    -   [23.3 `nice`: Run a command with modified niceness](https://www.gnu.org/software/coreutils/manual/coreutils.html#nice-invocation)
+    -   [23.4 `nohup`: Run a command immune to hangups](https://www.gnu.org/software/coreutils/manual/coreutils.html#nohup-invocation)
+    -   [23.5 `stdbuf`: Run a command with modified I/O stream buffering](https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation)
+    -   [23.6 `timeout`: Run a command with a time limit](https://www.gnu.org/software/coreutils/manual/coreutils.html#timeout-invocation)
+-   [24 Process control](https://www.gnu.org/software/coreutils/manual/coreutils.html#Process-control)
+    -   [24.1 `kill`: Send a signal to processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#kill-invocation)
+-   [25 Delaying](https://www.gnu.org/software/coreutils/manual/coreutils.html#Delaying)
+    -   [25.1 `sleep`: Delay for a specified time](https://www.gnu.org/software/coreutils/manual/coreutils.html#sleep-invocation)
+-   [26 Numeric operations](https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-operations)
+    -   [26.1 `factor`: Print prime factors](https://www.gnu.org/software/coreutils/manual/coreutils.html#factor-invocation)
+    -   [26.2 `numfmt`: Reformat numbers](https://www.gnu.org/software/coreutils/manual/coreutils.html#numfmt-invocation)
+    -   [26.3 `seq`: Print numeric sequences](https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation)
+-   [27 File permissions](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-permissions)
+-   [28 File timestamps](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-timestamps)
+-   [29 Date input formats](https://www.gnu.org/software/coreutils/manual/coreutils.html#Date-input-formats)
+    -   [29.11 Authors of `parse_datetime`](https://www.gnu.org/software/coreutils/manual/coreutils.html#Authors-of-parse_005fdatetime)
+-   [31 Opening the Software Toolbox](https://www.gnu.org/software/coreutils/manual/coreutils.html#Opening-the-software-toolbox)
+    -   [The `who` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-who-command)
+    -   [The `cut` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-cut-command)
+    -   [The `sort` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-sort-command)
+    -   [The `uniq` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-uniq-command)
+-   [Appendix A GNU Free Documentation License](https://www.gnu.org/software/coreutils/manual/coreutils.html#GNU-Free-Documentation-License)
+-   [Index](https://www.gnu.org/software/coreutils/manual/coreutils.html#Concept-index)
+
+---
+
+### GNU
+
+[Other Manuals](https://www.gnu.org/manual/manual.html)
+
+[Aspell](http://aspell.net/man-html/index.html) - Spell checker. [[aspell home](https://www.gnu.org/software/aspell/)]
+
+[AUCTeX](https://www.gnu.org/software/auctex/manual/) - Emacs environment for editing (all flavors of) TeX files. [[auctex home](https://www.gnu.org/software/auctex/)]
+
+[Bool](https://www.gnu.org/software/bool/) - Finding text and HTML files that match boolean expressions. [[bool home](https://www.gnu.org/software/bool/)]
+
+[Combine](https://www.gnu.org/software/combine/manual/) Extensible file matching and filtering. [[combine home](https://www.gnu.org/software/combine/)]
+
+[Diction](https://www.gnu.org/software/diction/) -Identifies wordy and commonly misused phrases. [[diction home](https://www.gnu.org/software/diction/)]
+
+[Diffutils](https://www.gnu.org/software/diffutils/manual/html_node/) -
+Comparing and merging files. [[diffutils home](https://www.gnu.org/software/diffutils/)]
+
+- [Ed](https://www.gnu.org/software/ed/manual/ed_manual.html) - Line-oriented text editor. [[ed home](https://www.gnu.org/software/ed/)]
+- [Gawk](https://www.gnu.org/software/gawk/manual/)  ([gawkinet](https://www.gnu.org/software/gawk/manual/gawkinet/html_node/)  [gawk](https://www.gnu.org/software/gawk/manual/html_node/)) - Text scanning and processing language. [[gawk home](https://www.gnu.org/software/gawk/)]
+- [Grep](https://www.gnu.org/software/grep/manual/) - Print lines matching a pattern. [[grep home](https://www.gnu.org/software/grep/)]
+- [Groff](https://www.gnu.org/software/groff/manual/html_node/) - Typesetting from plain text mixed with formatting commands. [[groff home](https://www.gnu.org/software/groff/)]
+- [Help2man](https://www.gnu.org/software/help2man/) - Automatically generate man pages from program --help. [[help2man home](https://www.gnu.org/software/help2man/)]
+- [Html-info](https://www.gnu.org/software/html-info/) - HTML-Info viewer and tools. [[html-info home](https://www.gnu.org/software/html-info/)]
+- [Hyperbole](https://www.gnu.org/software/hyperbole/) - Emacs hypertext system via customizable buttons. [[hyperbole home](https://www.gnu.org/software/hyperbole/)]
+- [Less](https://www.gnu.org/software/less/) - Paginator for terminals. [[less home](https://www.gnu.org/software/less/)]
+- [M4](https://www.gnu.org/software/m4/manual/) - Macro processor. [[m4 home](https://www.gnu.org/software/m4/)]
+- [Miscfiles](https://www.gnu.org/software/miscfiles/) - Data files for airport codes, zip codes, a dictionary, and more. [[miscfiles home](https://www.gnu.org/software/miscfiles/)]
+- [Ocrad](https://www.gnu.org/software/ocrad/manual/ocrad_manual.html) - Optical character recognition based on feature extraction. [[ocrad home](https://www.gnu.org/software/ocrad/)]
+- [OrgaDoc](https://www.gnu.org/software/orgadoc/manual/) - Eiffel program to maintain and query documents across machines. [[orgadoc home](https://www.gnu.org/software/orgadoc/)]
+- [Reftex](https://www.gnu.org/software/auctex/manual/reftex.index.html) - Emacs support for LaTeX cross-references of all kinds. [[reftex home](https://www.gnu.org/software/reftex/)]
+- [Sed](https://www.gnu.org/software/sed/manual/) - Stream editor. [[sed home](https://www.gnu.org/software/sed/)]
+- [Spell](https://www.gnu.org/software/spell/) - Spell checking. [[spell home](https://www.gnu.org/software/spell/)]
+- [Src-highlite](https://www.gnu.org/software/src-highlite/source-highlight.html) - Produce a document with syntax highlighting from a source file. [[src-highlite home](https://www.gnu.org/software/src-highlite/)]
+- [TeX for the Impatient](https://www.gnu.org/software/teximpatient/) - Book on TeX, plain TeX, and Eplain. [[teximpatient home](https://www.gnu.org/software/teximpatient/)]
+- [Texinfo](https://www.gnu.org/software/texinfo/manual/)  ([info-stnd](https://www.gnu.org/software/texinfo/manual/info-stnd/html_node/)  [texinfo](https://www.gnu.org/software/texinfo/manual/texinfo/html_node/)) - The GNU documentation format. [[texinfo home](https://www.gnu.org/software/texinfo/)]
+- [TeXmacs](https://www.gnu.org/software/texmacs/) - Editing platform with special features for scientists. [[texmacs home](https://www.gnu.org/software/texmacs/)]
+- [UnRTF](https://www.gnu.org/software/unrtf/) - Convert Rich Text Format documents to other formats. [[unrtf home](https://www.gnu.org/software/unrtf/)]
+- [Wdiff](https://www.gnu.org/software/wdiff/manual/) - Word difference finder. [[wdiff home](https://www.gnu.org/software/wdiff/)]
+## awk
+
+
+                        Usage: awk [POSIX or GNU style options] -f progfile [--] file ...
+                        Usage: awk [POSIX or GNU style options] [--] 'program' file ...
+                        POSIX options:          GNU long options: (standard)
+                                -f progfile             --file=progfile
+                                -F fs                   --field-separator=fs
+                                -v var=val              --assign=var=val
+                        Short options:          GNU long options: (extensions)
+                                -b                      --characters-as-bytes
+                                -c                      --traditional
+                                -C                      --copyright
+                                -d[file]                --dump-variables[=file]
+                                -D[file]                --debug[=file]
+                                -e 'program-text'       --source='program-text'
+                                -E file                 --exec=file
+                                -g                      --gen-pot
+                                -h                      --help
+                                -i includefile          --include=includefile
+                                -l library              --load=library
+                                -L[fatal|invalid]       --lint[=fatal|invalid]
+                                -M                      --bignum
+                                -N                      --use-lc-numeric
+                                -n                      --non-decimal-data
+                                -o[file]                --pretty-print[=file]
+                                -O                      --optimize
+                                -p[file]                --profile[=file]
+                                -P                      --posix
+                                -r                      --re-interval
+                                -S                      --sandbox
+                                -t                      --lint-old
+                                -V                      --version
+
+                        To report bugs, see node `Bugs' in `gawk.info', which is
+                        section `Reporting Problems and Bugs' in the printed version.
+
+                        gawk is a pattern scanning and processing language.
+                        By default it reads standard input and writes standard output.
+
+                        Examples:
+                                gawk '{ sum += $1 }; END { print sum }' file
+                                gawk -F: '{ print $1 }' /etc/passwd
+
+
+[Documentation](https://www.tutorialspoint.com/awk/index.htm)
+[Manual](https://www.gnu.org/software/gawk/manual/gawk.html)
+
+
+## CoreUtils
+
+
+- (File utilities)
+  - chcon - Changes file security context (SELinux)
+  - chgrp - Changes file group ownership
+  - chown - Changes file ownership
+  - chmod - Changes the permissions of a file or directory
+  - cp - Copies a file or directory
+  - dd - Copies and converts a file
+  - df - Shows disk free space on file systems
+  - dir - Is exactly like "ls -C -b".
+  - dircolors - Set up color for ls
+  - install - Copies files and set attributes
+  - ln - Creates a link to a file
+  - ls - Lists the files in a directory
+  - mkdir - Creates a directory
+  - mkfifo - Makes named pipes (FIFOs)
+  - mknod - Makes block or character special files
+  - mktemp - Creates a temporary file or directory
+  - mv - Moves files or rename files
+  - realpath - Returns the resolved absolute or relative path for a file
+  - rm - Removes (deletes) files, directories, device nodes and symbolic links
+  - rmdir - Removes empty directories
+  - shred - Overwrites a file to hide its contents, and optionally deletes it
+  - sync - Flushes file system buffers
+  - touch - Changes file timestamps
+  - truncate - Shrink or extend the size of a file to the specified size
+  - vdir - Is exactly like "ls -l -b". (Files are by default listed in long format.)
+-  (Text utilities)
+    - b2sum - Computes and checks BLAKE2b message digest
+    - base32 - Encodes or decodes Base32, and prints result to standard output
+    - base64 - Encodes or decodes Base64, and prints result to standard output
+    - cat - Concatenates and prints files on the standard output
+    - cksum - Checksums (IEEE Ethernet CRC-32) and count the bytes in a file
+    - comm - Compares two sorted files line by line
+    - csplit - Splits a file into sections determined by context lines
+    - cut - Removes sections from each line of files
+    - expand - Converts tabs to spaces
+    - fmt - Simple optimal text formatter
+    - fold - Wraps each input line to fit in specified width
+    - head - Outputs the first part of files
+    - join - Joins lines of two files on a common field
+    - md5sum - Computes and checks MD5 message digest
+    - nl - Numbers lines of files
+    - numfmt - Reformat numbers
+    - od - Dumps files in octal and other formats
+    - paste - Merges lines of files
+    - ptx - Produces a permuted index of file contents
+    - pr - Converts text files for printing
+
+      - sha512sum - Computes and checks SHA-1/SHA-2 message digests
+          -  sha1sum,
+          - sha224sum,
+          - sha256sum,
+          - sha384sum,
+    - shuf - generate random permutations
+    - sort - sort lines of text files
+    - split - Splits a file into pieces
+    - sum - Checksums and counts the blocks in a file
+    - tac - Concatenates and prints files in reverse order line by line
+    - tail - Outputs the last part of files
+    - tr - Translates or deletes characters
+    - tsort - Performs a topological sort
+    - unexpand - Converts spaces to tabs
+    - uniq - Removes duplicate lines from a sorted file
+    - wc - Prints the number of bytes, words, and lines in files
+- ( Shell utilities)
+      - arch - Prints machine hardware name (same as uname -m)
+      - basename - Removes the path prefix from a given pathname
+      - chroot - Changes the root directory
+      - date - Prints or sets the system date and time
+      - dirname - Strips non-directory suffix from file name
+      - du - Shows disk usage on file systems
+      - echo - Displays a specified line of text
+      - env - Displays and modifies environment variables
+      - expr - Evaluates expressions
+      - factor - Factors numbers
+      - false - Does nothing, but exits unsuccessfully
+      - groups - Prints the groups of which the user is a member
+      - hostid - Prints the numeric identifier for the current host
+      - id - Prints real or effective UID and GID
+      - link - Creates a link to a file
+      - logname - Print the user's login name
+      - nice - Modifies scheduling priority
+      - nohup - Allows a command to continue running after logging out
+      - nproc - Queries the number of (active) processors
+      - pathchk - Checks whether file names are valid or portable
+      - pinky - A lightweight version of finger
+      - printenv - Prints environment variables
+      - printf - Formats and prints data
+      - pwd - Prints the current working directory
+      - readlink - Displays value of a symbolic link
+      - runcon - Run command with specified security context
+      - seq - Prints a sequence of numbers
+      - sleep - Delays for a specified amount of time
+      - stat - Returns data about an inode
+      - stdbuf - Controls buffering for commands that use stdio
+      - stty - Changes and prints terminal line settings
+      - tee - Sends output to multiple files
+      - test - Evaluates an expression
+      - timeout - Run a command with a time limit
+      - true - Does nothing, but exits successfully
+      - tty - Prints terminal name
+      - uname - Prints system information
+      - unlink - Removes the specified file using the unlink function
+      - uptime - Tells how long the system has been running
+      - users - Prints the user names of users currently logged into the current host
+      - who - Prints a list of all users currently logged in
+      - whoami - Prints the effective userid
+      - yes - Prints a string repeatedly
+- Other Utilities
+      - `[` 	A synonym for test; this program permits expressions like [ expression ].
+
+
+## Unix Binaries
+
+### syntax
+
+`$0` = the whole line.
+`$1, $2, $3, ... $n` - print the nth field it finds, by default its space delimited, so it prints the n'th word.
+
+change delimeter -F ","
+
+the terms are single quoted, 
+
+
+`(conditional)` a conditional term goes in parentheses - this seems optional unless there is syntactuical ambiguity
+
+`{action}` an action goes in curly braces.
+
+`/search_all_record (line)/` must be enclosed on both sides with `/`, or delimited with a double quote
+`" "`the search term is double quoted, though perhaps not necessarily but just to enclose them.
+
+`NR` = the number record (unless altered, this is the line.) as here:
+        `awk  '(NR>= 0 && NR<=11){print} (NR==11){exit}' file.sh`
+
+
+you can run commands suchg as
+
+`awk 'tolower($0) ~ /dir/' file.sh`  this takes the line - applies tolower to the whole line, then searches for lines containing (`~`)  'dir' `/dir/`
+
+commands:
+        -  toupper
+        - tolower
+
+### examples
+
+generated a tabular text file with `ls -l /usr/bin > usrbintxt`
+
+`cat` equiv - `awk '{ print $0 }' file.sh`
+
+`grep` equiv = `awk '/#/' file.sh`
+        `awk '/myDir/' file.sh`
+
+        a search term is delimited by `/` a forward slash.
+
+`awk  '$1 == "#" { print $2 } ' file.sh`
+        if the (space delimited) first field is a '#' (eg a comment in 'sh' files) then print the $2 (second word)
+
+`awk  '$1 == "elif" { print $4 }' file.sh` 
+        this asks that the first field equal exactly "elif", to do approximate (containing?) matches- replace the `==` with `~`
+
+`awk  '$1 ~ "elif" { print  $4 }' file.sh` 
+
+
+`awk  '$1 !~ "dir" { print $4 , $1 }' file.sh` 
+        find lines where the first field does NOT contain "dir" and print the 4th and 1st words
+
+`head` equivalent - `head`
+        `sed 11q file.sh`
+        `awk  '(NR>= 0 && NR<=11){print} (NR==11){exit}' file.sh`
+        `awk  '(NR<=11){print} (NR==11){exit}' file.sh`  works fine
+        `awk  '{print $0} (NR==11){exit}' file.sh` also  works fine
+        
+
+ -case insensitive matching
+`grep -i 'dir' file.sh` 
+`sed '/[Dd]ir/!d' file.sh` - displays lines starting with Dir and dir
+
+`awk 'tolower($0) ~ "dir"' ~/.oh-my-zsh/README.md`
+`awk 'tolower($0) ~ /dir/' ~/.oh-my-zsh/README.md` - at least for this search, these seem equivalent.
+
+
+ `awk '{print $4 , $9}' ./usrbintxt'`  -  print the 4th and 9th column
+
+`awk '($10 == "->"){print $9"\t"$10"\t"$11}' ./usrbintxt `
+        this looks for lines that have the 10th col exactly eq to "->" which in this case is a symlink. and then, to format it I put "\t" into double quote.
+
+`s awk '($9 ~ /^w.*/){print $9 $10 $11}' ./usrbintxt` - looks if the 9th col starts with W then prints the 9th-11th field
+
+
+`awk '($9 ~ /^w.*/){print $9,$5}' ./usrbintxt` prints with a space.
+`awk '($9 ~ /^w.*/){print $9 $5}' ./usrbintxt` - prints without a space
+
+`awk '($9 ~ /^w.*/){print $9, $5/1024,"Kb"}' ./usrbintxt` - prints #5 divided by 1024 (kilobytes)
+
+formatted as such
+
+                awk '($9 ~ /^w.*/){print $9, $5/1024, "Kb"}' ./usrbintxt
+                w 0.0185547 Kb
+                w.procps 18.0703 Kb
+                wall 30.0781 Kb
+                watch 22.4141 Kb
+
+You can also run a program on them.
+                awk '($9 ~ /^w.*/){print toupper($9), $5/1024, "Kb"}' ./usrbintxt
+                W 0.0185547 Kb
+                W.PROCPS 18.0703 Kb
+
+
+ awk '($9 ~ /^w|^a.*/ && $10 == "->"){print toupper($9), $11, $5/1024, "Kb"}' ./usrbintxt
+
+## grep
+
+[Manual](https://www.gnu.org/software/grep/manual/grep.html)
+
+
+`grep -i 'dir' file.sh` -case insensitive matching
+
+## sed 
+
+local manual `info sed`
+
+(Manual)[https://www.gnu.org/software/sed/manual/sed.html]
+
+[sed manual](https://www.gnu.org/software/sed/manual/)
+
+   `sed 11q file.sh` -print the first 11 lines
+
+`sed '/[Dd]ir/!d' file.sh` - displays lines starting with Dir and dir
+
+## wc
+
+wc = word count 
+
+```
+➜  ALTimmons wc --help
+Usage: wc [OPTION]... [FILE]...
+  or:  wc [OPTION]... --files0-from=F
+Print newline, word, and byte counts for each FILE, and a total line if
+more than one FILE is specified.  A word is a non-zero-length sequence of
+characters delimited by white space.
+
+With no FILE, or when FILE is -, read standard input.
+
+The options below may be used to select which counts are printed, always in
+the following order: newline, word, character, byte, maximum line length.
+  -c, --bytes            print the byte counts
+  -m, --chars            print the character counts
+  -l, --lines            print the newline counts
+      --files0-from=F    read input from the files specified by
+                           NUL-terminated names in file F;
+                           If F is - then read names from standard input
+  -L, --max-line-length  print the maximum display width
+  -w, --words            print the word counts
+      --help     display this help and exit
+      --version  output version information and exit
+
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+Report wc translation bugs to <http://translationproject.org/team/>
+Full documentation at: <http://www.gnu.org/software/coreutils/wc>
+or available locally via: info '(coreutils) wc invocation'
+```
+
+
+examples:
+
+```
+➜  ALTimmons wc ~/.oh-my-zsh/README.md
+ 251 1302 9327 /home/alt/.oh-my-zsh/README.md
+```
+
+this produces` [lines] [word] [bytes]` as the result
+
+these each have options 
+- `lines` -l, --lines
+- `words` -w, --words
+- `bytes` -c, --bytes
+- `characters`  an additional option, -m, --chars
+        - too bad its not -c
+
+- `--files0-from=F` reads a list of file names to count
+-L, --max-line-length
+
+
+comparing bytes and chars.
+
+➜  ALTimmons wc --chars -c ~/.oh-my-zsh/README.md
+9318 9327 /home/alt/.oh-my-zsh/README.md
 
 
 ## pwd

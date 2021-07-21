@@ -616,6 +616,19 @@ Dec 2 21:13:44 Unraid dhcpcd[3048]: br2: pid 19408 deleted route to 192.168.1.0/
 -   ip -4 route del 192.168.0.0/16 dev br3 metric 1
 
 
+### ip route format
+
+ip route del default via 192.168.1.1 dev br1 metric 3
+
+The config files are here:
+
+/lib/dhcpcd/dhcpcd-hooks#
+
+ 
+ini=/var/local/emhttp/network.ini
+cfg=/boot/config/network.cfg
+tmp=/var/tmp/network.cfg
+
 ### More Commands 
 
  route add -net 192.168.1.0/24 gw 192.168.1.1 metric 10 dev br0

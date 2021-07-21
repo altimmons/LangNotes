@@ -199,6 +199,32 @@ Subscript surround with `~` eg.  H~2~O
 Strike out surround with `~~` eg. ~~strikeout~~ 
 
 
+Mark = `==`text`==` to make a ==highlight effect==
+
+To make a text subbox - prefix each line with `>`
+
+> this is a text
+> box that makes 
+> a quoted
+>**effect**
+
+>  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+  
+  to do this, each line needs to be tabbed over one, and the first line then prefixed with `>`
+
+```
+>  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+  Sometimes it seems only 1 `>` is needed but its inconsistent as far as I can tell.
+```
+
+A comment in markdown uses `<!--`this `-->` The text surrounded thus is not visible at all in the rendering.
+
+
+
+
 ## Markdown Include:  [^jebbs.markdown-extended]
 
 

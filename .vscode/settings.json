@@ -1,5 +1,4 @@
 {
-
   //THESE ARE THE FOLDER SETTINGS 
   "markdown.preview.fontFamily": " Pragmata Pro, 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
   "editor.snippetSuggestions": "top",
@@ -537,8 +536,8 @@
   "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true,
   "markdown.preview.breaks": true,
   "markdown.links.openLocation": "beside",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  } // {
+  // "editor.defaultFormatter": "vscode.markdown-language-features"
+} // {
 //     "python.pythonPath": "C:\\Python37\\python.exe",
 //     "workbench.colorCustomizations": {
 //         "titleBar.activeForeground": "#db9ac8",

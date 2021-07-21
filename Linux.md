@@ -635,6 +635,362 @@ or: Unsure if the `\` snuck in due to auto markdown generation
 
 ## Useful commands
 
+### Unix Utils
+
+- (Batch utilities)
+    -  **qalter** - Alter batch job
+    -  **qdel** - Delete batch jobs
+    -  **qhold** - Hold batch jobs
+    -  **qmove** - Move batch jobs
+    -  **qmsg** - Send message to batch jobs
+    -  **qrerun** - Rerun batch jobs
+    -  **qrls** - Release batch jobs
+    -  **qselect** - Select batch jobs
+    -  **qsig** - Signal batch jobs
+    -  **qstat** - Show status of batch jobs
+    -  **qsub** - Submit a script
+
+- (C programming)
+    -  **cc/c99** - Compile standard C programs
+    -  **cflow** - Generate a C-language call graph
+    -  **ctags** - Create a tags file
+    -  **cxref** - Generate a C-language program cross-reference table
+    -  **lex** - Generate programs for lexical tasks
+    -  **nm** - Write the name list of an object file
+    -  **strings** - Find printable strings in files
+    -  **strip** - Remove unnecessary information from executable files
+    -  **yacc** - Yet another compiler compiler
+
+
+- (Filesystem) 
+    -  **basename** - Return non-directory portion of a pathname; see also dirname
+    -  **cat** - Concatenate and print files
+    -  **cd** - Change the working directory
+    -  **chgrp** - Change the file group ownership
+    -  **chmod** - Change the file modes/attributes/permissions
+    -  **chown** - Change the file ownership
+    -  **cksum** - Write file checksums and sizes
+    -  **cmp** - Compare two files; see also diff
+    -  **compress** - Compress data
+    -  **cp** - Copy files
+    -  **dd** - Convert and copy a file
+    -  **df** - Report free disk space
+    -  **dirname** - Return the directory portion of a pathname; see also basename
+    -  **du** - Estimate file space usage
+    -  **file** - Determine file type
+    -  **find** - Find files
+    -  **link** - Create a hard link to a file
+    -  **ln** - Link files
+    -  **ls** - List directory contents
+    -  **mkdir** - Make directories
+    -  **mkfifo** - Make FIFO special files
+    -  **mv** - Move or rename files
+    -  **pathchk** - Check pathnames
+    -  **pwd** - Print working directory
+    -  **rm** - Remove directory entries
+    -  **rmdir** - Remove directories, if they are empty.
+    -  **touch** - Change file access and modification times
+    -  **unlink** - Call the unlink function
+ - (FORTRAN77 programming) 
+    -  **fort77** - FORTRAN compiler
+ - (Misc)
+    -  **alias** - Define or display aliases
+    -  **ar** - Create and maintain library archives
+    -  **bc** - Arbitrary-precision arithmetic language
+    -  **cal** - Print a calendar
+    -  **crontab** - Schedule periodic background work
+    -  **date** - Display the date and time
+    -  **env** - Set the environment for command invocation
+    -  **fc** - Process the command history list
+    -  **gencat** - Generate a formatted message catalog
+    -  **getconf** - Get configuration values
+    -  **grep** - Search text for a pattern
+    -  **hash** - Hash database access method
+    -  **id** - Return user identity
+    -  **ipcrm** - Remove a message queue, semaphore set, or shared memory segment identifier
+    -  **ipcs** - Report interprocess communication facilities status
+    -  **locale** - Get locale-specific information
+    -  **localedef** - Define locale environment
+    -  **logname** - Return the user's login name
+    -  **m4** - Macro processor
+    -  **mailx** - Process messages
+    -  **man** - Display system documentation
+    -  **mesg** - Permit or deny messages
+    -  **newgrp** - Change to a new group
+    -  **od** - Dump files in various formats
+    -  **pax** - Portable archive interchange
+    -  **split** - Split files into pieces
+    -  **stty** - Set the options for a terminal
+    -  **tabs** - Set terminal tabs
+    -  **talk** - Talk to another user
+    -  **tput** - Change terminal characteristics
+    -  **tty** - Return user's terminal name
+    -  **type** - Displays how a name would be interpreted if used as a command
+    -  **ulimit** - Set or report file size limit
+    -  **umask** - Get or set the file mode creation mask
+    -  **unalias** - Remove alias definitions
+    -  **uname** - Return system name
+    -  **uncompress** - Expand compressed data
+    -  **write** - Write to another user's terminal
+ - (Network) 
+    -  **uucp** - System-to-system copy
+    -  **uudecode** - Decode a binary file
+    -  **uuencode** - Encode a binary file
+    -  **uustat** - uucp status inquiry and job control
+-  (Process management)
+    -  **at** - Execute commands at a later time
+    -  **batch** - Schedule commands to be executed in a batch queue
+    -  **bg** - Run jobs in the background
+    -  **fg** - Run jobs in the foreground
+    -  **fuser** - List process IDs of all processes that have one or more files open
+    -  **jobs** - Display status of jobs in the current session
+    -  **kill** - Terminate or signal processes
+    -  **nice** - Invoke a utility with an altered nice value
+    -  **nohup** - Invoke a utility immune to hangups
+    -  **ps** - Report process status
+    -  **renice** - Set nice values of running processes
+    -  **time** - Time a simple command
+    -  **uux** - Remote command execution
+    -  **wait** - Await process completion
+ -  (Programming) 
+    -  **make** - Maintain, update, and regenerate groups of programs
+ -  (SCCS) 
+    -  **admin** - Create and administer SCCS files
+    -  **delta** - Make a delta (change) to an SCCS file
+    -  **get** - Get a version of an SCCS file
+    -  **prs** - Print an SCCS file
+    -  **rmdel** - Remove a delta from an SCCS file
+    -  **sact** - Print current SCCS file-editing activity
+    -  **sccs** - Front end for the SCCS subsystem
+    -  **unget** - Undo a previous get of an SCCS file
+    -  **val** - Validate SCCS files
+    -  **what** - Identify SCCS files
+ -  (Shell programming)
+    -  **command** - Execute a simple command
+    -  **echo** - Write arguments to standard output
+    -  **expr** - Evaluate arguments as an expression
+    -  **false** - Return false value
+    -  **getopts** - Parse utility options
+    -  **logger** - Log messages
+    -  **printf** - Write formatted output
+    -  **read** - Read a line from standard input
+    -  **sh** - Shell, the standard command language interpreter
+    -  **sleep** - Suspend execution for an interval
+    -  **tee** - Duplicate the standard output
+    -  **test** - Evaluate expression
+    -  **true** - Return true value
+    -  **xargs** - Construct argument lists and invoke utility
+ - (System administration)
+    -  **who** - Display who is on the system
+- (Text processing)
+    -  **asa** - Interpret carriage-control characters
+    -  **awk** - Pattern scanning and processing language
+    -  **comm** - Select or reject lines common to two files
+    -  **csplit** - Split files based on context
+    -  **cut** - Cut out selected fields of each line of a file
+    -  **diff** - Compare two files; see also cmp
+    -  **ed** - The standard text editor
+    -  **ex** - Text editor
+    -  **expand** - Convert tabs to spaces
+    -  **fold** - Filter for folding lines
+    -  **head** - Copy the first part of files
+    -  **iconv** - Codeset conversion
+    -  **join** - Merges two sorted text files based on the presence of a common field
+    -  **lp** - Send files to a printer
+    -  **more** - Display files on a page-by-page basis
+    -  **nl** - Line numbering filter
+    -  **paste** - Merge corresponding or subsequent lines of files
+    -  **patch** - Apply changes to files
+    -  **pr** - Print files
+    -  **sed** - Stream editor
+    -  **sort** - Sort, merge, or sequence check text files
+    -  **tail** - Copy the last part of a file
+    -  **tr** - Translate characters
+    -  **tsort** - Topological sort
+    -  **unexpand** - Convert spaces to tabs
+    -  **uniq** - Report or filter out repeated lines in a file
+    -  **vi** - Screen-oriented (visual) display editor
+    -  **wc** - Line, word and byte or character count
+    -  **zcat** - Expand and concatenate data
+
+#### Unix second list
+
+ -  Batch utilities
+    -  [`qsub`](https://en.wikipedia.org/wiki/Qsub "Qsub")  -  Submit a script 
+    -  `qalter`  -  Alter batch job 
+    -  `qdel`  -  Delete batch jobs 
+    -  `qhold`  -  Hold batch jobs 
+    -  `qmove`  -  Move batch jobs 
+    -  `qmsg`  -  Send message to batch jobs 
+    -  `qrerun`  -  Rerun batch jobs 
+    -  `qrls`  -  Release batch jobs 
+    -  `qselect`  -  Select batch jobs 
+    -  `qsig`  -  Signal batch jobs 
+    -  `qstat`  -  Show status of batch jobs 
+
+- C programming
+    -  [`cc`](https://en.wikipedia.org/wiki/C_compiler "C compiler")/[`c99`](https://en.wikipedia.org/wiki/C99 "C99")  -  [Compile](https://en.wikipedia.org/wiki/Compiler "Compiler") standard [C](https://en.wikipedia.org/wiki/C_(programming_language) "C (programming language)") programs 
+    -  [`cflow`](https://en.wikipedia.org/wiki/Cflow "Cflow")  -  Generate a C-language [call graph](https://en.wikipedia.org/wiki/Call_graph "Call graph") 
+    -  [`ctags`](https://en.wikipedia.org/wiki/Ctags "Ctags")  -  Create a tags file 
+    -  [`lex`](https://en.wikipedia.org/wiki/Lex_programming_tool "Lex programming tool")  -  Generate programs for [lexical tasks](https://en.wikipedia.org/wiki/Lexical_analyzer "Lexical analyzer") 
+    -  [`nm`](https://en.wikipedia.org/wiki/Nm_(Unix) "Nm (Unix)")  -  Write the name list of an [object file](https://en.wikipedia.org/wiki/Object_file "Object file") 
+    -  [`strings`](https://en.wikipedia.org/wiki/Strings_(Unix) "Strings (Unix)")  -  Find printable strings in files 
+    -  [`strip`](https://en.wikipedia.org/wiki/Strip_(Unix) "Strip (Unix)")  -  Remove unnecessary information from executable files 
+    -  [`yacc`](https://en.wikipedia.org/wiki/Yacc "Yacc")  -  Yet another [compiler](https://en.wikipedia.org/wiki/Compiler "Compiler") compiler 
+    -  `cxref`  -  Generate a [C-language](https://en.wikipedia.org/wiki/C_(programming_language) "C (programming language)") program cross-reference table 
+ 
+- Filesystem
+    -  [`basename`](https://en.wikipedia.org/wiki/Basename "Basename")  -  Return non-directory portion of a pathname; see also dirname 
+    -  [`cat`](https://en.wikipedia.org/wiki/Cat_(Unix) "Cat (Unix)")  -  Concatenate and print files 
+    -  [`cd`](https://en.wikipedia.org/wiki/Cd_(command) "Cd (command)")  -  Change the working directory 
+    -  [`chgrp`](https://en.wikipedia.org/wiki/Chgrp "Chgrp")  -  Change the file group ownership 
+    -  [`chmod`](https://en.wikipedia.org/wiki/Chmod "Chmod")  -  Change the file modes/attributes/permissions 
+    -  [`chown`](https://en.wikipedia.org/wiki/Chown "Chown")  -  Change the file ownership 
+    -  [`cksum`](https://en.wikipedia.org/wiki/Cksum "Cksum")  -  Write file [checksums](https://en.wikipedia.org/wiki/Checksum "Single UNIX Specification") and sizes 
+    -  [`cmp`](https://en.wikipedia.org/wiki/Cmp_(Unix) "Cmp (Unix)")  -  Compare two files; see also diff 
+    -  [`compress`](https://en.wikipedia.org/wiki/Compress "Compress")  -  Compress data nix)")  -  Run jobs in the foreground 
+    -  [`cp`](https://en.wikipedia.org/wiki/Cp_(Unix) "Cp (Unix)")  -  Copy files 
+    -  [`dd`](https://en.wikipedia.org/wiki/Dd_(Unix) "Dd (Unix)")  -  Convert and copy a file 
+    -  [`df`](https://en.wikipedia.org/wiki/Df_(Unix) "Df (Unix)")  -  Report free disk space 
+    -  [`dirname`](https://en.wikipedia.org/wiki/Dirname "Dirname")  -  Return the directory portion of a pathname; see also basename 
+    -  [`du`](https://en.wikipedia.org/wiki/Du_(Unix) "Du (Unix)")  -  Estimate file space usage 
+    -  [`file`](https://en.wikipedia.org/wiki/File_(command) "File (command)")  -  Determine file type 
+    -  [`find`](https://en.wikipedia.org/wiki/Find_(Unix) "Find (Unix)")  -  Find files 
+    -  [`link`](https://en.wikipedia.org/wiki/Link_(Unix) "Link (Unix)")  -  Create a hard link to a file 
+    -  [`ln`](https://en.wikipedia.org/wiki/Ln_(Unix) "Ln (Unix)")  -  Link files 
+    -  [`ls`](https://en.wikipedia.org/wiki/Ls "Ls")  -  List directory contents 
+    -  [`mkdir`](https://en.wikipedia.org/wiki/Mkdir "Mkdir")  -  Make directories 
+    -  [`mkfifo`](https://en.wikipedia.org/wiki/Mkfifo "Mkfifo")  -  Make [FIFO](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics) "FIFO (computing and electronics)") special files 
+    -  [`mv`](https://en.wikipedia.org/wiki/Mv "Mv")  -  Move or rename files 
+    -  [`pwd`](https://en.wikipedia.org/wiki/Pwd "Pwd")  -  Print working directory 
+    -  [`rm`](https://en.wikipedia.org/wiki/Rm_(Unix) "Rm (Unix)")  -  Remove directory entries 
+    -  [`rmdir`](https://en.wikipedia.org/wiki/Rmdir "Rmdir")  -  Remove directories, if they are empty. 
+    -  [`touch`](https://en.wikipedia.org/wiki/Touch_(command) "Touch (command)")  -  Change file access and modification times 
+    -  [`unlink`](https://en.wikipedia.org/wiki/Unlink_(Unix) "Unlink (Unix)")  -  Call the unlink function 
+    -  `pathchk`  -  Check pathnames 
+-  FORTRAN77 programming
+    -  [`fort77`](https://en.wikipedia.org/wiki/Fort77 "Fort77")  -  [FORTRAN](https://en.wikipedia.org/wiki/FORTRAN "FORTRAN") compiler 
+
+-Misc
+    -   `stty`  -  Set the options for a terminal 
+    -  [`alias`](https://en.wikipedia.org/wiki/Alias_(command) "Alias (command)")  -  Define or display aliases 
+    -  [`ar`](https://en.wikipedia.org/wiki/Ar_(Unix) "Ar (Unix)")  -  Create and maintain [library](https://en.wikipedia.org/wiki/Library_(computing) "Library (computing)") archives 
+    -  [`bc`](https://en.wikipedia.org/wiki/Bc_(programming_language) "Bc (programming language)")  -  [Arbitrary-precision arithmetic](https://en.wikipedia.org/wiki/Arbitrary-precision_arithmetic) language 
+    -  [`cal`](https://en.wikipedia.org/wiki/Cal_(Unix) "Cal (Unix)")  -  Print a calendar 
+    -  [`crontab`](https://en.wikipedia.org/wiki/Crontab "Crontab")  -  Schedule periodic background work 
+    -  [`date`](https://en.wikipedia.org/wiki/Unix_time#Command_line "Unix time")  -  Display the date and time 
+    -  [`env`](https://en.wikipedia.org/wiki/Env_(shell) "Env (shell)")  -  Set the environment for command invocation 
+    -  [`fc`](https://en.wikipedia.org/wiki/Fc_(Unix) "Fc (Unix)")  -  Process the command history list 
+    -  [`grep`](https://en.wikipedia.org/wiki/Grep "Grep")  -  Search text for a pattern 
+    -  [`hash`](https://en.wikipedia.org/wiki/Hash_(Unix) "Hash (Unix)")  -  Hash database access method 
+    -  [`id`](https://en.wikipedia.org/wiki/Id_(Unix) "Id (Unix)")  -  Return user identity 
+    -  [`ipcrm`](https://en.wikipedia.org/wiki/Ipcrm "Ipcrm")  -  Remove a message queue, semaphore set, or shared memory segment identifier 
+    -  [`ipcs`](https://en.wikipedia.org/wiki/Ipcs "Ipcs")  -  Report interprocess communication facilities status 
+    -  [`logname`](https://en.wikipedia.org/wiki/Logname "Logname")  -  Return the user's login name 
+    -  [`m4`](https://en.wikipedia.org/wiki/M4_(computer_language) "M4 (computer language)")  -  Macro processor 
+    -  [`mailx`](https://en.wikipedia.org/wiki/Mailx "Mailx")  -  Process messages 
+    -  [`man`](https://en.wikipedia.org/wiki/Man_page "Man page")  -  Display system documentation 
+    -  [`mesg`](https://en.wikipedia.org/wiki/Mesg "Mesg")  -  Permit or deny messages 
+    -  [`od`](https://en.wikipedia.org/wiki/Od_(Unix) "Od (Unix)")  -  Dump files in various formats 
+    -  [`pax`](https://en.wikipedia.org/wiki/Pax_(command) "Pax (command)")  -  Portable archive interchange 
+    -  [`split`](https://en.wikipedia.org/wiki/Split_(Unix) "Split (Unix)")  -  Split files into pieces 
+    -  [`talk`](https://en.wikipedia.org/wiki/Talk_(software) "Talk (software)")  -  Talk to another user 
+    -  [`tput`](https://en.wikipedia.org/wiki/Tput "Tput")  -  Change [terminal](https://en.wikipedia.org/wiki/Computer_terminal "Computer terminal") characteristics 
+    -  [`tty`](https://en.wikipedia.org/wiki/Tty_(unix) "Tty (unix)")  -  Return user's [terminal](https://en.wikipedia.org/wiki/Computer_terminal "Computer terminal") name 
+    -  [`type`](https://en.wikipedia.org/wiki/Type_(Unix) "Type (Unix)")  -  Displays how a name would be interpreted if used as a command 
+    -  [`umask`](https://en.wikipedia.org/wiki/Umask "Umask")  -  Get or set the file mode creation mask 
+    -  [`unalias`](https://en.wikipedia.org/wiki/Unalias "Unalias")  -  Remove alias definitions 
+    -  [`uname`](https://en.wikipedia.org/wiki/Uname "Uname")  -  Return system name 
+    -  [`uncompress`](https://en.wikipedia.org/wiki/Uncompress "Uncompress")  -  Expand compressed data 
+    -  [`write`](https://en.wikipedia.org/wiki/Write_(Unix) "Write (Unix)")  -  Write to another user's terminal 
+    -  `gencat`  -  Generate a formatted message catalog 
+    -  `getconf`  -  Get configuration values 
+    -  `locale`  -  Get locale-specific information 
+    -  `localedef`  -  Define locale environment 
+    -  `newgrp`  -  Change to a new group 
+    -  `tabs`  -  Set terminal tabs 
+    -  `ulimit`  -  Set or report file size limit 
+- Network
+    -  [`uucp`](https://en.wikipedia.org/wiki/Uucp "Uucp")  -  System-to-system copy 
+    -  [`uudecode`](https://en.wikipedia.org/wiki/Uudecode "Uudecode")  -  Decode a binary file 
+    -  [`uuencode`](https://en.wikipedia.org/wiki/Uuencode "Uuencode")  -  Encode a binary file 
+    -  [`uustat`](https://en.wikipedia.org/wiki/Uustat "Uustat")  -  [uucp](https://en.wikipedia.org/wiki/Uucp "Uucp") status inquiry and job control 
+- Process management
+    -  [`at`](https://en.wikipedia.org/wiki/At_(command) "At (command)")  -  Execute commands at a later time 
+    -  [`batch`](https://en.wikipedia.org/wiki/Batch_(Unix) "Batch (Unix)")  -  Schedule commands to be executed in a batch queue 
+    -  [`bg`](https://en.wikipedia.org/wiki/Bg_(Unix) "Bg (Unix)")  -  Run jobs in the background 
+    -  [`fg`](https://en.wikipedia.org/wiki/Fg_(Unix) "Fg (U
+    -  [`fuser`](https://en.wikipedia.org/wiki/Fuser_(Unix) "Fuser (Unix)")  -  List [process IDs](https://en.wikipedia.org/wiki/Process_identifier "Process identifier") of all processes that have one or more files open 
+    -  [`kill`](https://en.wikipedia.org/wiki/Kill_(command) "Kill (command)")  -  Terminate or signal processes 
+    -  [`nice`](https://en.wikipedia.org/wiki/Nice_(Unix) "Nice (Unix)")  -  Invoke a utility with an altered nice value 
+    -  [`nohup`](https://en.wikipedia.org/wiki/Nohup "Nohup")  -  Invoke a utility immune to [hangups](https://en.wikipedia.org/wiki/SIGHUP "SIGHUP") 
+    -  [`ps`](https://en.wikipedia.org/wiki/Ps_(Unix) "Ps (Unix)")  -  Report process status 
+    -  [`renice`](https://en.wikipedia.org/wiki/Renice "Renice")  -  Set nice values of running processes 
+    -  [`time`](https://en.wikipedia.org/wiki/Time_(Unix) "Time (Unix)")  -  Time a simple command 
+    -  [`wait`](https://en.wikipedia.org/wiki/Wait_(command) "Wait (command)")  -  Await process completion 
+    -  `jobs`  -  Display status of jobs in the current session 
+    -  `uux`  -  Remote command execution 
+- Programming
+    -  [`make`](https://en.wikipedia.org/wiki/Make_(software) "Make (software)")  -  Maintain, update, and regenerate groups of programs 
+-SCCS
+    -  `delta`  -  Make a delta (change) to an SCCS file 
+    -  `get`  -  Get a version of an SCCS file 
+    -  `prs`  -  Print an SCCS file 
+    -  `rmdel`  -  Remove a delta from an SCCS file 
+    -  `sact`  -  Print current SCCS file-editing activity 
+    -  `unget`  -  Undo a previous get of an SCCS file 
+    -  `val`  -  Validate SCCS files 
+    -   `what`  -  Identify SCCS files 
+    -  [`sccs`](https://en.wikipedia.org/wiki/Source_Code_Control_System "Source Code Control System")  -  Front end for the SCCS subsystem
+- Shell programming
+    -  [`command`](https://en.wikipedia.org/wiki/Command_(Unix) "Command (Unix)")  -  Execute a simple command 
+    -  [`echo`](https://en.wikipedia.org/wiki/Echo_(command) "Echo (command)")  -  Write arguments to standard output 
+    -  [`expr`](https://en.wikipedia.org/wiki/Expr "Expr")  -  Evaluate arguments as an expression 
+    -  [`false`](https://en.wikipedia.org/wiki/False_(Unix) "False (Unix)")  -  Return false value 
+    -  [`getopts`](https://en.wikipedia.org/wiki/Getopts "Getopts")  -  Parse utility options 
+    -  [`printf`](https://en.wikipedia.org/wiki/Printf_(Unix) "Printf (Unix)")  -  Write formatted output 
+    -  [`read`](https://en.wikipedia.org/wiki/Read_(Unix) "Read (Unix)")  -  Read a line from standard input 
+    -  [`sh`](https://en.wikipedia.org/wiki/Bourne_shell "Bourne shell")  -  [Shell](https://en.wikipedia.org/wiki/Unix_shell "Unix shell"), the standard command language interpreter 
+    -  [`sleep`](https://en.wikipedia.org/wiki/Sleep_(command) "Sleep (command)")  -  Suspend execution for an interval 
+    -  [`tee`](https://en.wikipedia.org/wiki/Tee_(command) "Tee (command)")  -  Duplicate the [standard output](https://en.wikipedia.org/wiki/Standard_streams "Standard streams") 
+    -  [`test`](https://en.wikipedia.org/wiki/Test_(Unix) "Test (Unix)")  -  Evaluate [expression](https://en.wikipedia.org/wiki/Expression_(computer_science) "Expression (computer science)") 
+    -  [`true`](https://en.wikipedia.org/wiki/True_(Unix) "True (Unix)")  -  Return true value 
+    -  [`xargs`](https://en.wikipedia.org/wiki/Xargs "Xargs")  -  Construct argument lists and invoke utility 
+    -  `logger`  -  Log messages
+- System administration
+    -  [`who`](https://en.wikipedia.org/wiki/Who_(Unix) "Who (Unix)")  -  Display who is on the system 
+-  Text processing
+    -  [`awk`](https://en.wikipedia.org/wiki/AWK "AWK")  -  Pattern scanning and processing language 
+    -  [`comm`](https://en.wikipedia.org/wiki/Comm "Comm")  -  Select or reject lines common to two files 
+    -  [`csplit`](https://en.wikipedia.org/wiki/Csplit "Csplit")  -  Split files based on context 
+    -  [`cut`](https://en.wikipedia.org/wiki/Cut_(Unix) "Cut (Unix)")  -  Cut out selected fields of each line of a file 
+    -  [`diff`](https://en.wikipedia.org/wiki/Diff "Diff")  -  Compare two files; see also cmp 
+    -  [`ed`](https://en.wikipedia.org/wiki/Ed_(text_editor) "Ed (text editor)")  -  The standard text editor 
+    -  [`ex`](https://en.wikipedia.org/wiki/Ex_(text_editor) "Ex (text editor)")  -  Text editor 
+    -  [`expand`](https://en.wikipedia.org/wiki/Expand_(Unix) "Expand (Unix)")  -  Convert tabs to spaces 
+    -  [`fold`](https://en.wikipedia.org/wiki/Fold_(Unix) "Fold (Unix)")  -  Filter for folding lines 
+    -  [`head`](https://en.wikipedia.org/wiki/Head_(Unix) "Head (Unix)")  -  Copy the first part of files 
+    -  [`iconv`](https://en.wikipedia.org/wiki/Iconv "Iconv")  -  Codeset conversion 
+    -  [`join`](https://en.wikipedia.org/wiki/Join_(Unix) "Join (Unix)")  -  Merges two sorted text files based on the presence of a common field 
+    -  [`lp`](https://en.wikipedia.org/wiki/Lp_(Unix) "Lp (Unix)")  -  Send files to a printer 
+    -  [`more`](https://en.wikipedia.org/wiki/More_(command) "More (command)")  -  Display files on a page-by-page basis 
+    -  [`nl`](https://en.wikipedia.org/wiki/Nl_(Unix) "Nl (Unix)")  -  Line numbering filter 
+    -  [`paste`](https://en.wikipedia.org/wiki/Paste_(Unix) "Paste (Unix)")  -  Merge corresponding or subsequent lines of files 
+    -  [`patch`](https://en.wikipedia.org/wiki/Patch_(Unix) "Patch (Unix)")  -  Apply changes to files 
+    -  [`pr`](https://en.wikipedia.org/wiki/Pr_(Unix) "Pr (Unix)")  -  Print files 
+    -  [`sed`](https://en.wikipedia.org/wiki/Sed "Sed")  -  Stream editor 
+    -  [`sort`](https://en.wikipedia.org/wiki/Sort_(Unix) "Sort (Unix)")  -  Sort, merge, or sequence check text files 
+    -  [`tail`](https://en.wikipedia.org/wiki/Tail_(Unix) "Tail (Unix)")  -  Copy the last part of a file 
+    -  [`tr`](https://en.wikipedia.org/wiki/Tr_(Unix) "Tr (Unix)")  -  Translate characters 
+    -  [`tsort`](https://en.wikipedia.org/wiki/Tsort_(Unix) "Tsort (Unix)")  -  Topological sort 
+    -  [`unexpand`](https://en.wikipedia.org/wiki/Unexpand "Unexpand")  -  Convert spaces to tabs 
+    -  [`uniq`](https://en.wikipedia.org/wiki/Uniq "Uniq")  -  Report or filter out repeated lines in a file 
+    -  [`vi`](https://en.wikipedia.org/wiki/Vi "Vi")  -  Screen-oriented (visual) display editor 
+    -  [`wc`](https://en.wikipedia.org/wiki/Wc_(Unix) "Wc (Unix)")  -  Line, word and byte or character count 
+    -  [`zcat`](https://en.wikipedia.org/wiki/Zcat "Zcat")  -  Expand and concatenate data 
+    -  `asa`  -  Interpret carriage-control characters 
+
+
 ### GNU Core Utils
 
 [Top (GNU Coreutils)](https://www.gnu.org/software/coreutils/manual/html_node/index.html#Top)
@@ -798,7 +1154,121 @@ or: Unsure if the `\` snuck in due to auto markdown generation
     - `numfmt`
     - `seq`,
 
-[Common options (GNU Coreutils)](https://www.gnu.org/software/coreutils/manual/html_node/Common-options.html#Common-options)
+#### Another List of Core Utils
+
+- (File utilities)
+  - chcon - Changes file security context (SELinux)
+  - chgrp - Changes file group ownership
+  - chown - Changes file ownership
+  - chmod - Changes the permissions of a file or directory
+  - cp - Copies a file or directory
+  - dd - Copies and converts a file
+  - df - Shows disk free space on file systems
+  - dir - Is exactly like "ls -C -b".
+  - dircolors - Set up color for ls
+  - install - Copies files and set attributes
+  - ln - Creates a link to a file
+  - ls - Lists the files in a directory
+  - mkdir - Creates a directory
+  - mkfifo - Makes named pipes (FIFOs)
+  - mknod - Makes block or character special files
+  - mktemp - Creates a temporary file or directory
+  - mv - Moves files or rename files
+  - realpath - Returns the resolved absolute or relative path for a file
+  - rm - Removes (deletes) files, directories, device nodes and symbolic links
+  - rmdir - Removes empty directories
+  - shred - Overwrites a file to hide its contents, and optionally deletes it
+  - sync - Flushes file system buffers
+  - touch - Changes file timestamps
+  - truncate - Shrink or extend the size of a file to the specified size
+  - vdir - Is exactly like "ls -l -b". (Files are by default listed in long format.)
+-  (Text utilities)
+    - b2sum - Computes and checks BLAKE2b message digest
+    - base32 - Encodes or decodes Base32, and prints result to standard output
+    - base64 - Encodes or decodes Base64, and prints result to standard output
+    - cat - Concatenates and prints files on the standard output
+    - cksum - Checksums (IEEE Ethernet CRC-32) and count the bytes in a file
+    - comm - Compares two sorted files line by line
+    - csplit - Splits a file into sections determined by context lines
+    - cut - Removes sections from each line of files
+    - expand - Converts tabs to spaces
+    - fmt - Simple optimal text formatter
+    - fold - Wraps each input line to fit in specified width
+    - head - Outputs the first part of files
+    - join - Joins lines of two files on a common field
+    - md5sum - Computes and checks MD5 message digest
+    - nl - Numbers lines of files
+    - numfmt - Reformat numbers
+    - od - Dumps files in octal and other formats
+    - paste - Merges lines of files
+    - ptx - Produces a permuted index of file contents
+    - pr - Converts text files for printing
+
+      - sha512sum - Computes and checks SHA-1/SHA-2 message digests
+          -  sha1sum,
+          - sha224sum,
+          - sha256sum,
+          - sha384sum,
+    - shuf - generate random permutations
+    - sort - sort lines of text files
+    - split - Splits a file into pieces
+    - sum - Checksums and counts the blocks in a file
+    - tac - Concatenates and prints files in reverse order line by line
+    - tail - Outputs the last part of files
+    - tr - Translates or deletes characters
+    - tsort - Performs a topological sort
+    - unexpand - Converts spaces to tabs
+    - uniq - Removes duplicate lines from a sorted file
+    - wc - Prints the number of bytes, words, and lines in files
+- ( Shell utilities)
+      - arch - Prints machine hardware name (same as uname -m)
+      - basename - Removes the path prefix from a given pathname
+      - chroot - Changes the root directory
+      - date - Prints or sets the system date and time
+      - dirname - Strips non-directory suffix from file name
+      - du - Shows disk usage on file systems
+      - echo - Displays a specified line of text
+      - env - Displays and modifies environment variables
+      - expr - Evaluates expressions
+      - factor - Factors numbers
+      - false - Does nothing, but exits unsuccessfully
+      - groups - Prints the groups of which the user is a member
+      - hostid - Prints the numeric identifier for the current host
+      - id - Prints real or effective UID and GID
+      - link - Creates a link to a file
+      - logname - Print the user's login name
+      - nice - Modifies scheduling priority
+      - nohup - Allows a command to continue running after logging out
+      - nproc - Queries the number of (active) processors
+      - pathchk - Checks whether file names are valid or portable
+      - pinky - A lightweight version of finger
+      - printenv - Prints environment variables
+      - printf - Formats and prints data
+      - pwd - Prints the current working directory
+      - readlink - Displays value of a symbolic link
+      - runcon - Run command with specified security context
+      - seq - Prints a sequence of numbers
+      - sleep - Delays for a specified amount of time
+      - stat - Returns data about an inode
+      - stdbuf - Controls buffering for commands that use stdio
+      - stty - Changes and prints terminal line settings
+      - tee - Sends output to multiple files
+      - test - Evaluates an expression
+      - timeout - Run a command with a time limit
+      - true - Does nothing, but exits successfully
+      - tty - Prints terminal name
+      - uname - Prints system information
+      - unlink - Removes the specified file using the unlink function
+      - uptime - Tells how long the system has been running
+      - users - Prints the user names of users currently logged into the current host
+      - who - Prints a list of all users currently logged in
+      - whoami - Prints the effective userid
+      - yes - Prints a string repeatedly
+- Other Utilities
+      - `[` 	A synonym for test; this program permits expressions like [ expression ].
+
+
+#### [Common options (GNU Coreutils)](https://www.gnu.org/software/coreutils/manual/html_node/Common-options.html#Common-options)
 
 Certain options are available in all of these programs. Rather than writing identical descriptions for each of the programs, they are described here. (In fact, every GNU program accepts (or should accept) these options.)
 
@@ -1261,6 +1731,16 @@ at
           --version  output version information and exit
 
 `cat -v` shows key scan codes, which is useful.
+
+appending to a file, can be done with
+
+`cat > file.txt`
+
+then you can start inputting data until you hit [[Ctrl]] + [[d]]
+
+to append a file already writted, use the append symbol `>>`
+
+
 
 
 ## grep
@@ -5476,3 +5956,4 @@ or
 Ctrl+C	The interrupt signal, sends SIGINT to the job running in the foreground.
 Ctrl+Y	The delayed suspend character. Causes a running process to be stopped when it attempts to read input from the terminal. Control is returned to the shell, the user can foreground, background or kill the process. Delayed suspend is only available on operating systems supporting this feature.
 Ctrl+Z	The suspend signal, sends a SIGTSTP to a running program, thus stopping it and returning control to the shell.
+

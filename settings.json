@@ -154,7 +154,7 @@
         "editor.lineHeight": 18,
         "editor.minimap.enabled": true,
         "editor.minimap.maxColumn": 120,
-        "editor.minimap.showSlider": "always",
+        "editor.minimap.showSlider": "always"
         // "editor.suggest.filteredTypes": {
             //   "keyword": true
             // }
@@ -196,7 +196,7 @@
           {
             "scope": "markup.list.unnumbered",
             "settings": {
-              "foreground": "#2989ff8b",
+              "foreground": "#2989ff8b"
               // "fontStyle": ""
             }
           },
@@ -239,7 +239,7 @@
             "scope": "markup",
             "name": "Regular Text",
             "settings": {
-              "foreground": "#ffffff",
+              "foreground": "#ffffff"
               // "fontStyle": ""
             }
           },
@@ -253,14 +253,14 @@
           {
             "scope": "markup.changed",
             "settings": {
-              "foreground": "#fbff00d5",
+              "foreground": "#fbff00d5"
               // "fontStyle": ""
             }
           },
           {
             "scope": "markup.deleted",
             "settings": {
-              "foreground": "#fbff00d5",
+              "foreground": "#fbff00d5"
               // "fontStyle": ""
             }
           },
@@ -275,7 +275,7 @@
           {
             "scope": "markup.inserted",
             "settings": {
-              "foreground": "#fbff00d5",
+              "foreground": "#fbff00d5"
               // "fontStyle": ""
             }
             // }, { "scope":"markup.heading",
@@ -287,7 +287,7 @@
           {
             "scope": "markup.other",
             "settings": {
-              "foreground": "#fbff00d5",
+              "foreground": "#fbff00d5"
               // "fontStyle": ""
             }
           }
@@ -319,7 +319,7 @@
       "markdown-preview-enhanced.enableScriptExecution": true,
       "markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
       "markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
-      "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true,
+      "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true
 
 } // {
 //     "python.pythonPath": "C:\\Python37\\python.exe",

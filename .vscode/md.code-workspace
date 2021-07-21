@@ -34,8 +34,8 @@
 						"name": "entity name erasure",
 						"scope": "entity.name.markdown",
 						"settings": {
-							"foreground": "",
-							"fontStyle": "Bold"
+							"foreground": "#999",
+							"fontStyle": "bold"
 						}
 					},
 					{

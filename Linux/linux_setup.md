@@ -8,6 +8,7 @@ alias micro="~/usrbin/micro"
 alias sagi="sudo apt-get install"
 alias sas="sudo apt search"
 alias cd..="cd .."
+alias chmod="chomd -v"
 
 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
 
