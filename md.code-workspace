@@ -484,14 +484,14 @@ Markdown Setting
 							"foreground": "#dd5ea8"
 						}
 					},
-					// 		{
-					// 			"name": "entity name erasure",
-					// 			"scope": "entity.name.markdown",
-					// 			"settings": {
-					// 				"foreground": "#777",
-					// 				"fontStyle": "bold"
-					// 			}
-					// 		},
+					{
+						"name": "entity name erasure",
+						"scope": "entity.name.markdown",
+						"settings": {
+							"foreground": "#777",
+							"fontStyle": "bold"
+						}
+					},
 					{
 						"name": "H3",
 						"scope": "Heading.3.markdown",
@@ -574,6 +574,7 @@ Markdown Setting
 		"files.associations": {
 			"*.yaml": "home-assistant"
 		},
+		"peacock.color": "#150367",
 		// "markdown-header-coloring.userDefinedHeaderColor": {
 		// 	"enabled": true,
 		// 	"Header_1": {
