@@ -311,15 +311,124 @@
   "markdown-preview-enhanced.enableCriticMarkupSyntax": true,
   "markdown-preview-enhanced.enableExtendedTableSyntax": true,
   "markdown-preview-enhanced.enableHTML5Embed": true,
-  "markdown-preview-enhanced.enableTypographer": true,
+  "  "fontStyle": "bold"
+}
+},
+{
+"scope": "markup.italic",
+"settings": {
+  "foreground": "#FF000099",
+  "fontStyle": "italic"
+}
+},
+{
+"scope": "markup.quote",
+"settings": {
+  "foreground": "#0a9a0397",
+  "fontStyle": "bold"
+}
+},
+{
+"scope": "markup.underline.link",
+"settings": {
+  "foreground": "#FF000099",
+  "fontStyle": "italic underline"
+}
+},
+{
+"scope": "markup",
+"name": "Regular Text",
+"settings": {
+  "foreground": "#ffffff"
+  // "fontStyle": ""
+}
+},
+{
+"scope": "markup.underline",
+"settings": {
+  "foreground": "#ff0b4888",
+  "fontStyle": "italic underline"
+}
+},
+{
+"scope": "markup.changed",
+"settings": {
+  "foreground": "#fbff00d5"
+  // "fontStyle": ""
+}
+},
+{
+"scope": "markup.deleted",
+"settings": {
+  "foreground": "#fbff00d5"
+  // "fontStyle": ""
+}
+},
+{
+"scope": "markup.raw",
+"name": "Blocktext",
+"settings": {
+  "foreground": "#88ff88bb",
+  "fontStyle": "italic"
+}
+},
+{
+"scope": "markup.inserted",
+"settings": {
+  "foreground": "#fbff00d5"
+  // "fontStyle": ""
+}
+// }, { "scope":"markup.heading",
+//   "settings": {
+//       "foreground": "#fbff00d5",
+//       // "fontStyle": ""
+//   }
+},
+{
+"scope": "markup.other",
+"settings": {
+  "foreground": "#fbff00d5"
+  // "fontStyle": ""
+}
+}
+// ,{ "scope":"markup.",
+//   "settings": {
+//       "foreground": "#fbff29",
+//       // "fontStyle": ""
+//    }  
+// }
+]
+// }
+},
+"cSpell.words": [
+"Imms",
+"Shan",
+"actboy",
+"blazekill",
+"lihui",
+"tyriar"
+],
+"markdown-preview-enhanced.enableCriticMarkupSyntax": true,
+"markdown-preview-enhanced.enableExtendedTableSyntax": true,
+"markdown-preview-enhanced.enableHTML5Embed": true,
+"markdown-preview-enhanced.enableTypographer": true,
+"markdown-preview-enhanced.frontMatterRenderingOption": "code block",
+"markdown-preview-enhanced.mermaidTheme": "dark",
+"markdown-preview-enhanced.printBackground": true,
+"markdown-preview-enhanced.previewTheme": "vue.css",
+"markdown-preview-enhanced.enableScriptExecution": true,
+"markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
+"markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
+"markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true
+markdown-preview-enhanced.enableTypographer": true,
   "markdown-preview-enhanced.frontMatterRenderingOption": "code block",
-  "markdown-preview-enhanced.mermaidTheme": "dark",
-  "markdown-preview-enhanced.printBackground": true,
-  "markdown-preview-enhanced.previewTheme": "vue.css",
-  "markdown-preview-enhanced.enableScriptExecution": true,
-  "markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
-  "markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
-  "markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true
+"markdown-preview-enhanced.mermaidTheme": "dark",
+"markdown-preview-enhanced.printBackground": true,
+"markdown-preview-enhanced.previewTheme": "vue.css",
+"markdown-preview-enhanced.enableScriptExecution": true,
+"markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
+"markdown-preview-enhanced.Bucket": "C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\Chrome.exe",
+"markdown-preview-enhanced.HTML5EmbedIsAllowedHttp": true
 } // {
 //     "python.pythonPath": "C:\\Python37\\python.exe",
 //     "workbench.colorCustomizations": {

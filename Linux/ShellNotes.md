@@ -2275,7 +2275,7 @@ Comparing and merging files. [[diffutils home](https://www.gnu.org/software/dif
       - `[` 	A synonym for test; this program permits expressions like [ expression ].
 
 
-## Unix **Binaries**
+## Unix Binaries
 
 ### syntax
 
