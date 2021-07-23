@@ -565,6 +565,45 @@ Markdown Setting
 				// 	// "strings": "#FF0000"
 			},
 		},
+		"files.autoSave": "onFocusChange",
+		// "editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
+		// "editor.fontFamily": "'Rec Mono Duotone', 'Fira Code Retina', RobotoMono. monospace",
+		"editor.suggest.showKeywords": false,
+		"editor.suggest.showWords": false,
+		"editor.codeLens": false,
+		"MarkdownPaste.path": "./img",
+		// "window.title": "${dirty}${rootName}-(${activeEditorShort}$)",
+		"editor.roundedSelection": true,
+		"editor.minimap.enabled": true,
+		"editor.formatOnPaste": true,
+		"editor.snippetSuggestions": "top",
+		"activeDocumentIndicator.enabled": true,
+		"activeDocumentIndicator.opacity": 70,
+		"editor.wordWrap": "bounded",
+		"editor.wordWrapColumn": 120,
+		/*
+Markdown Setting
+*/
+		//markdown prism- theme options: "tomorrow" - Default, "prism" "coy" "dark" "funky" "okaidia" "solarizedlight" "twilight
+		// "markdownPrism.theme": "coy",
+		// "markdownPrism.theme": "dark",
+		// "markdownPrism.theme": "funky",
+		// "markdownPrism.theme": "okaidia",
+		// "markdownPrism.theme": "solarizedLight",
+		// "markdownPrism.theme": "prism",
+		// "markdownShiki.theme": "dark_plus",
+		"markdownShiki.theme": "solarized_light",
+		"markdown-preview-showdown.autoPreview": false,
+		"markdown-preview-showdown.mermaidTheme": "default",
+		"markdown-preview-showdown.plantumlRenderMode": "local",
+		"markdown-preview-showdown.puppeteerWaitForTimeout": 10,
+		"markdown-preview-showdown.maxContentSize": 32768,
+		"activityBar.activeBackground": "#8e552d",
+		"tab.unfocusedActiveBorder": "#fff0",
+		"markdown-header-coloring.colormapConfig": {
+			"colormap": "hsv",
+			"nshades": 20
+		},
 		// "vscode_custom_css.imports": [
 		// "file:///O:/OneDrive/Programming/Notes/.vscode/custom.css"
 		// ],
