@@ -2973,6 +2973,9 @@ List  of Rundll32 Commands in Windows 10
 
 ### Shell:: Commands
 
+!!! attention Shortcut
+  This command can be typed in many places- e.g [[Win] + [[E]] to get an explorer then [[Alt]] + [[D]] to get to the address bar, then type `shell:appdata` or in the run dialog box
+
 | Shell Command                     | Opens                                                                  |
 | --------------------------------- | ---------------------------------------------------------------------- |
 | shell:3D Objects                  | `%UserProfile%\3D Objects`                                             |

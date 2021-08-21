@@ -2117,7 +2117,7 @@ How it works:
 
 Options are rather cryptic.  Especially cryptic ones were removed.
 
-Defaults in parentheses; comma-separated set (s) items; dash-separated ranges.
+> Defaults in parentheses; comma-separated set (s) items; dash-separated ranges.
 - `-?|-h ` - list help
 - `-a ` - AND selections (OR)
 - `-b ` - avoid kernel blocks
@@ -2194,7 +2194,7 @@ Rather important little program.  Does a TON of stuff.
 Has a large slew of options.  I think commands like route etc, just are synonyms for this.
 
 [IP](https://linux.die.net/HOWTO/Adv-Routing-HOWTO/lartc.iproute2.explore.html)
-[Advanced Routing](https://linux.die.net/HOWTO/Adv-Routing-HOWTO/index.html)
+[Advanced Routing](https://linux.AAdie.net/HOWTO/Adv-Routing-HOWTO/index.html)
 
 
 

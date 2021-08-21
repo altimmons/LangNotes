@@ -4,7 +4,7 @@
 > 
 > Terminal (control) codes are used to issue specific commands to your terminal. This can be related to switching colors or positioning the cursor, i.e. anything that can't be done by the application itself.
 > 
-> ## How it technically works[](https://wiki.bash-hackers.org/scripting/terminalcodes#how_it_technically_works)
+> ## [How it technically works](https://wiki.bash-hackers.org/scripting/terminalcodes#how_it_technically_works)
 > 
 > A terminal control code is a special sequence of characters that is printed (like any other text). If the terminal understands the code, it won't display the character-sequence, but will perform some action. You can print the codes with a simple `echo` command.
 > 

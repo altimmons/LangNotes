@@ -197,4 +197,18 @@ ${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
 		],
 		"description": "Complete Line by appending ';' to the end then going to the next."
 	},
+	"MkdnCodeQuote": {
+		"scope": "markdown",
+		"body": "\t`$TM_CURRENT_LINE`",
+		"description": "Code quote when no selection"
+	},
+	"MkdnCodeQuoteSel": {
+		"scope": "markdown",
+		"body": "\t`$TM_SELECTED_TEXT`",
+		"description": "Code quote when no selection"
+	},
+	// "ColorSelect" :{
+	// 	"scope":  "json,jsonc,code-workspace",
+	// 	"prefix": "#",
+	// }
 }

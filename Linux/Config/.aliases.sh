@@ -26,3 +26,6 @@ alias sagug=sudo apt-get upgrade
 alias sagup=sudo apt-get update
 alias sagu=sudo apt-get update
 alias sagug=sudo apt-get upgrade
+alias log=sudo tail /var/syslog (?)
+llg
+colorls

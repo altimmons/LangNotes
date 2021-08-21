@@ -2880,7 +2880,34 @@ if(![System.IO.File]::Exists($path)){
     # file with path $path doesn't exist
 }
 ```
-## Other tricks
+
+### Play Sound
+
+
+ `[Console]::Beep(20000, 2)`
+
+this is short for `[System.Console]::` 
+
+You can do tab completion through the other options
+
+[Documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console?view=net-5.0)
+
+The available methods are [Here](https://docs.microsoft.com/en-us/dotnet/api/system.console?view=net-5.0#properties)
+
+Other console class things are [Here](https://docs.microsoft.com/en-us/dotnet/api/system?view=netcore-3.1)
+
+Get more with 
+` [system.console] | Get-Member -Static -MemberType property | Format-Table name, definition -AutoSize`
+
+or minimally:
+
+`[console] | gm -Static`
+
+[Source](https://devblogs.microsoft.com/scripting/use-net-classes-to-configure-the-windows-powershell-console/)
+
+
+
+- ## Other tricks
 
 ### Get ENvironment Vars
 

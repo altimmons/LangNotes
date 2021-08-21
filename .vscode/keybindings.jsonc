@@ -1,11 +1,22 @@
 [
    /*
-
+This is a curated list of markdown keybindings (sort of)
    Add om the comment to each entry
    
 (\{)(\n\s+"key": ")([a-zA-Z0-9`' +=\-"\\,
 ]+)(",\n.*?: ")([a-zA-Z0-9._-
 ]+)(",\n.*$\n\s+\},*\n)
+"ctrl\+m .*?"
+
+Accepted scan codes:
+
+[F1]-[F19], [KeyA]-[KeyZ], [Digit0]-[Digit9]
+[Backquote], [Minus], [Equal], [BracketLeft], [BracketRight], [Backslash], [Semicolon], [Quote], [Comma], [Period], [Slash]
+[ArrowLeft], [ArrowUp], [ArrowRight], [ArrowDown], [PageUp], [PageDown], [End], [Home]
+[Tab], [Enter], [Escape], [Space], [Backspace], [Delete]
+[Pause], [CapsLock], [Insert]
+[Numpad0]-[Numpad9], [NumpadMultiply], [NumpadAdd], [NumpadComma]
+[NumpadSubtract], [NumpadDecimal], [NumpadDivide]
 
 $1 // $3 $5 $2$3$4$5$6
    */
@@ -14,8 +25,23 @@ $1 // $3 $5 $2$3$4$5$6
       "command": "markdownExtended.toggleUList",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
+   { // ctrl+m u markdownExtended.toggleUList 
+      "key": "ctrl+m -",
+      "command": "markdownExtended.toggleUList",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
    { // ctrl+m o markdownExtended.toggleOList 
       "key": "ctrl+m o",
+      "command": "markdownExtended.toggleOList",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m o markdownExtended.toggleOList 
+      "key": "ctrl+m #",
+      "command": "markdownExtended.toggleOList",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m o markdownExtended.toggleOList 
+      "key": "ctrl+m 1",
       "command": "markdownExtended.toggleOList",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
@@ -69,6 +95,18 @@ $1 // $3 $5 $2$3$4$5$6
       "command": "markdownExtended.pasteAsTable",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
+   //! duplicate
+   { // ctrl+m t markdownExtended.pasteAsTable 
+      "key": "ctrl+m alt+v",
+      "command": "markdownExtended.pasteAsTable",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m t markdownExtended.pasteAsTable 
+      "key": "ctrl+m t",
+      "command": "markdownExtended.pasteAsTable",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   //
    { // ctrl+shift+t ctrl+shift+p -markdownExtended.pasteAsTable 
       "key": "ctrl+shift+t ctrl+shift+p",
       "command": "-markdownExtended.pasteAsTable",
@@ -129,19 +167,9 @@ $1 // $3 $5 $2$3$4$5$6
       "command": "-telesoho.MarkdownRuby",
       "when": "editorTextFocus"
    },
-   { // ctrl+m ctrl+shift+left markdownExtended.addColumnLeft 
-      "key": "ctrl+m ctrl+shift+left",
-      "command": "markdownExtended.addColumnLeft",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
    { // ctrl+shift+t ctrl+shift+l -markdownExtended.addColumnLeft 
       "key": "ctrl+shift+t ctrl+shift+l",
       "command": "-markdownExtended.addColumnLeft",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+m ctrl+shift+right markdownExtended.addColumnRight 
-      "key": "ctrl+m ctrl+shift+right",
-      "command": "markdownExtended.addColumnRight",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+shift+t ctrl+shift+r -markdownExtended.addColumnRight 
@@ -149,19 +177,9 @@ $1 // $3 $5 $2$3$4$5$6
       "command": "-markdownExtended.addColumnRight",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
-   { // ctrl+m ctrl+shift+up markdownExtended.addRowAbove 
-      "key": "ctrl+m ctrl+shift+up",
-      "command": "markdownExtended.addRowAbove",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
    { // ctrl+shift+t ctrl+shift+a -markdownExtended.addRowAbove 
       "key": "ctrl+shift+t ctrl+shift+a",
       "command": "-markdownExtended.addRowAbove",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+m ctrl+shift+down markdownExtended.addRowBelow 
-      "key": "ctrl+m ctrl+shift+down",
-      "command": "markdownExtended.addRowBelow",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+shift+t ctrl+shift+b -markdownExtended.addRowBelow 
@@ -170,18 +188,68 @@ $1 // $3 $5 $2$3$4$5$6
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+m ctrl+alt+left markdownExtended.DeleteColumn 
-      "key": "ctrl+m ctrl+alt+left",
+      "key": "ctrl+m ctrl+left",
       "command": "markdownExtended.DeleteColumn",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+shift+down markdownExtended.addRowBelow 
+      "key": "ctrl+m ctrl+down",
+      "command": "markdownExtended.addRowBelow",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+shift+up markdownExtended.addRowAbove 
+      "key": "ctrl+m ctrl+up",
+      "command": "markdownExtended.addRowAbove",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+alt+down markdownExtended.DeleteRow 
+      "key": "ctrl+m ctrl+shift+down",
+      "command": "markdownExtended.DeleteRow",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+shift+left markdownExtended.addColumnLeft 
+      "key": "ctrl+m ctrl+left",
+      "command": "markdownExtended.addColumnLeft",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+shift+right markdownExtended.addColumnRight 
+      "key": "ctrl+m ctrl+right",
+      "command": "markdownExtended.addColumnRight",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m shift+left markdownExtended.MoveColumnLeft 
+      "key": "ctrl+m shift+left",
+      "command": "markdownExtended.MoveColumnLeft",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m shift+right markdownExtended.MoveColumnRight 
+      "key": "ctrl+m shift+right",
+      "command": "markdownExtended.MoveColumnRight",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m shift+right markdownExtended.MoveColumnRight 
+      "key": "ctrl+m shift+right",
+      "command": "markdownExtended.MoveColumnRight",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m shift+right markdownExtended.MoveColumnRight 
+      "key": "ctrl+m shift+right",
+      "command": "markdownExtended.MoveColumnRight",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+shift+right -markdownExtended.MoveColumnRight 
+      "key": "ctrl+shift+right",
+      "command": "-markdownExtended.MoveColumnRight",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+shift+left -markdownExtended.MoveColumnLeft 
+      "key": "ctrl+shift+left",
+      "command": "-markdownExtended.MoveColumnLeft",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+shift+d ctrl+shift+c -markdownExtended.DeleteColumn 
       "key": "ctrl+shift+d ctrl+shift+c",
       "command": "-markdownExtended.DeleteColumn",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+m ctrl+alt+down markdownExtended.DeleteRow 
-      "key": "ctrl+m ctrl+alt+down",
-      "command": "markdownExtended.DeleteRow",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+shift+d ctrl+shift+r -markdownExtended.DeleteRow 
@@ -193,11 +261,6 @@ $1 // $3 $5 $2$3$4$5$6
       "key": "ctrl+shift+v",
       "command": "-markdown-preview-enhanced.openPreview",
       "when": "editorLangId == 'markdown'"
-   },
-   { // ctrl+m shift+left markdownExtended.MoveColumnLeft 
-      "key": "ctrl+m shift+left",
-      "command": "markdownExtended.MoveColumnLeft",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // alt+left -markdownExtended.MoveColumnLeft 
       "key": "alt+left",
@@ -213,11 +276,6 @@ $1 // $3 $5 $2$3$4$5$6
       "key": "ctrl+k v",
       "command": "-markdown.showPreviewToSide",
       "when": "editorLangId == 'markdown'"
-   },
-   { // ctrl+m shift+right markdownExtended.MoveColumnRight 
-      "key": "ctrl+m shift+right",
-      "command": "markdownExtended.MoveColumnRight",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // alt+right -markdownExtended.MoveColumnRight 
       "key": "alt+right",
@@ -282,21 +340,6 @@ $1 // $3 $5 $2$3$4$5$6
    { // ctrl+m u -markdownExtended.toggleUnderLine 
       "key": "ctrl+m u",
       "command": "-markdownExtended.toggleUnderLine",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+b markdownExtended.toggleBold 
-      "key": "ctrl+b",
-      "command": "markdownExtended.toggleBold",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+m ctrl+b markdownExtended.toggleBold 
-      "key": "ctrl+m ctrl+b",
-      "command": "markdownExtended.toggleBold",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+m b markdownExtended.toggleBold 
-      "key": "ctrl+m b",
-      "command": "markdownExtended.toggleBold",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    // {
@@ -409,16 +452,6 @@ $1 // $3 $5 $2$3$4$5$6
       "command": "-markdown-preview-enhanced.runCodeChunk",
       "when": "editorLangId == 'markdown'"
    },
-   { // ctrl+shift+right -markdownExtended.MoveColumnRight 
-      "key": "ctrl+shift+right",
-      "command": "-markdownExtended.MoveColumnRight",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
-   { // ctrl+shift+left -markdownExtended.MoveColumnLeft 
-      "key": "ctrl+shift+left",
-      "command": "-markdownExtended.MoveColumnLeft",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
    { // ctrl+k -markdownExtended.toggleMark 
       "key": "ctrl+k",
       "command": "-markdownExtended.toggleMark",
@@ -430,7 +463,7 @@ $1 // $3 $5 $2$3$4$5$6
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    { // ctrl+l markdownExtended.toggleUList 
-      "key": "ctrl+l",
+      "key": "ctrl+l", //this is an L  
       "command": "markdownExtended.toggleUList",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
@@ -447,6 +480,21 @@ $1 // $3 $5 $2$3$4$5$6
    { // ctrl+j markdownExtended.toggleMark 
       "key": "ctrl+j",
       "command": "markdownExtended.toggleMark",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+b markdownExtended.toggleBold 
+      "key": "ctrl+b",
+      "command": "markdownExtended.toggleBold",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m ctrl+b markdownExtended.toggleBold 
+      "key": "ctrl+m ctrl+b",
+      "command": "markdownExtended.toggleBold",
+      "when": "editorTextFocus && editorLangId == 'markdown'"
+   },
+   { // ctrl+m b markdownExtended.toggleBold 
+      "key": "ctrl+m b",
+      "command": "markdownExtended.toggleBold",
       "when": "editorTextFocus && editorLangId == 'markdown'"
    },
    {
@@ -509,11 +557,6 @@ $1 // $3 $5 $2$3$4$5$6
    //
    //
    //ctrl + m set
-   { // ctrl+m f markdownExtended.formateTable 
-      "key": "ctrl+m f",
-      "command": "markdownExtended.formateTable",
-      "when": "editorTextFocus && editorLangId == 'markdown'"
-   },
    // ctrl m + modifier
    { // ctrl+m ctrl+p markdown-preview-enhanced.openPreview 
       "key": "ctrl+m ctrl+p",
@@ -526,3 +569,15 @@ $1 // $3 $5 $2$3$4$5$6
       "when": "editorTextFocus && editorLangId == 'markdown'"
    }
 ]
+// md-shortcut.showCommandPalette	Display all commands	ctrl+M ctrl+M
+// md-shortcut.toggleBold	Make **bold**	ctrl+B
+// md-shortcut.toggleItalic	Make _italic_	ctrl+I
+// md-shortcut.toggleStrikethrough	Make ~~strikethrough~~	
+// md-shortcut.toggleLink	Make [a hyperlink
+// ](www.example.org)	ctrl+L
+// md-shortcut.toggleImage	Make an image ![](image_url.png)	ctrl+shift+L
+// md-shortcut.toggleCodeBlock	Make ```a code block```	ctrl+M ctrl+C
+// md-shortcut.toggleInlineCode	Make `inline code`	ctrl+M ctrl+I
+// md-shortcut.toggleBullets	Make * bullet point	ctrl+M ctrl+B
+// md-shortcut.toggleNumbers	Make 1. numbered list	ctrl+M ctrl+1
+// md-shortcut.toggleCheckboxes	Make - [] check list (Github flavored markdown)	ctrl+M ctrl+X

@@ -223,7 +223,7 @@
   {
     "key": "ctrl+M ctrl+D",
     "command": "-insertSnippet",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus  && editorLangId == 'markdown'"
   },
   {
     "key": "alt+m",
@@ -258,6 +258,7 @@
     "command": "-telesoho.MarkdownPaste",
     "when": "editorTextFocus && editorLangId == 'markdown'"
   },
+  #? todo
   {
     "key": "ctrl+shift+t ctrl+shift+p",
     "command": "-markdownExtended.pasteAsTable",

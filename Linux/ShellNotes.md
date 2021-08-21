@@ -551,7 +551,7 @@ Reserved Words
     [else alternate-consequents;]
     fi
 
-case
+### case
 
     The syntax of the case command is:
 
@@ -562,6 +562,7 @@ case
 Each clause must be terminated with `;;`, `;&`, or `;;&`. 
 It’s a common idiom to use `*` as the final pattern to define the default case, matches all
 
+```sh
         echo -n "Enter the name of an animal: "
         read ANIMAL
         echo -n "The $ANIMAL has "
@@ -571,8 +572,17 @@ It’s a common idiom to use `*` as the final pattern to define the default case
         *) echo -n "an unknown number of";;
         esac
         echo " leg
+```
+### read
 
+see above 
 
+```sh
+read ANIMAL
+echo -n "the $ANIMAL has "
+```
+
+### Symbols
 
 >-  `;;` no subsequent matches are attempted after the first pattern match.
 >-  `;&` in place of `;;` causes execution to continue with the command-list associated with the next clause, if any.
@@ -580,15 +590,22 @@ It’s a common idiom to use `*` as the final pattern to define the default case
 
 >-  **return status** is zero if no pattern is matched. Otherwise, the return status is the exit status of the command-list executed.
 
+### select command
+
 > *_select_* - The select construct allows the easy generation of menus. It has almost the same syntax as the for command:
 
     select name [in words …]; do commands; done
 
+```sh
                 select fname in *;
                 do
                         echo you picked $fname \($REPLY\)
                         break;
                 done
+```
+
+This generates a numbered list of the files in the current directory.
+
 [Bash Reference Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Pipelines)
 
 > _`((…))`_ -  (( expression ))
@@ -2258,7 +2275,7 @@ Comparing and merging files. [[diffutils home](https://www.gnu.org/software/dif
       - `[` 	A synonym for test; this program permits expressions like [ expression ].
 
 
-## Unix Binaries
+## Unix **Binaries**
 
 ### syntax
 
@@ -2927,11 +2944,40 @@ Gives a table of all the processes and processes (PID).
 
 `echo *text*` == `echo "*text*"` - the double quotes are not necessary but are good form.
 
-`-e` - allows the use of escaped text using backslash.
 
-    \t - tab
-    \n - new line
-    \c - Dont do new line
+`-n` - do not output the trailing newline
+
+`-E` - disable interpretation of backslash escapes (default)
+
+`-e` - allows the use of escaped text using backslash.
+   If -e is in effect, the following sequences are recognized:
+
+\\     backslash
+
+\a     alert (BEL)
+
+\b     backspace
+
+\c     produce no further output (Dont do new line)
+
+\e     escape
+
+\f     form feed
+
+\n     new line
+
+\r     carriage return
+
+\t     horizontal tab
+
+\v     vertical tab
+
+\0NNN  byte with octal value NNN (1 to 3 digits)
+
+\xHH   byte with hexadecimal value HH (1 to 2 digits)
+
+NOTE:  your shell may have its own version of echo, which usually supersedes the version described here.  Please refer to your shell's documen‐
+tation for details about the options it supports.
 
 !!!example: Will expand a command but not execute it- can be used to see what will be executed.
                 echo rm -R *

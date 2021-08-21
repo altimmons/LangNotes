@@ -19,8 +19,7 @@
       "ojkwon.vscode-activedocumentindicator",
       "aaron-bond.better-comments",
       "lunarlimbo.banner-comments-plus",
-      "streetsidesoftware.code-spell-checker",
-      "CoenraadS.bracket-pair-colorizer-2",
+      "coenraads.bracket-pair-colorizer-2",
       "stevensona.character-count",
       "jebbs.markdown-extended",
       "jaume-ferrarons.easymarkdown",
@@ -33,9 +32,8 @@
       "bierner.markdown-prism",
       "christian-kohler.path-intellisense",
       "kamikillerto.vscode-colorize",
-      "ryanmcalister.Unotes",
-      "BLaZeKiLL.task-runner",
-      "timreilly.typewriter-sounds"
+      "ryanmcalister.unotes",
+      "blazekill.task-runner"
     ]
   },
   "settings": {
