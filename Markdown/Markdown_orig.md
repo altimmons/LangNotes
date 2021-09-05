@@ -965,14 +965,19 @@ var res = md.render(src);
  
 console.log(res)
 
+## kbd
+
 [markdown-it-kbd](https://www.npmjs.com/package/markdown-it-kbd)
 [[Ctrl+Esc]]
 Ctrl+Esc
 
+## underline
 [markdown-it-underline](https://www.npmjs.com/package/markdown-it-underline)
 _underline_
 underline
 
+
+## Container
 markdown-it-container
 ::::: container
 :::: row
@@ -1015,6 +1020,29 @@ warning text
 :::::
 
 !!!Error Definitely does not look like the example.
+
+## Blockquote
+
+Requires a `>` at the outset
+
+
+>- 1'
+- 2
+- 3
+- 4
+- 5
+
+This makes a blockquote for the single line
+
+>  - 1
+>  - 2
+    - 3
+    - 4
+    - 5
+
+
+todo= somewhere I had an example of making whole blocks as block quote
+
 
 
 ## Markdown Support for Visual Studio Code

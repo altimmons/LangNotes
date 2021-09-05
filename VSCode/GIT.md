@@ -2,6 +2,61 @@ https://andytimmons@dev.azure.com/andytimmons/VSC_md/_git/VSC_md
 git remote add origin https://andytimmons@dev.azure.com/andytimmons/VSC_md/_git/VSC_md
 git push -u origin --all
 
+## Git tutorial
+
+[Git Tutorial](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/gitcore-tutorial.html)
+
+[gittutorial](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/gittutorial.html)
+
+[the Git User Manual](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/user-manual.html)
+## Git Documentation is locally in MingW32
+
+[GIT Local](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc)
+
+[Basic Everyday Functions](file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/giteveryday.html)
+
+
+```sh
+$ git status # (1)
+    #  see what you were in the middle of doing, if anything.
+$ git branch --no-merged master # (2)
+    #  see which branches haven’t been merged into master yet. Likewise for any other integration branches e.g. maint, next and pu (potential updates).
+$ mailx # (3)
+    #  read mails, save ones that are applicable, and save others that are not quite ready (other mail readers are available).
+& s 2 3 4 5 ./+to-apply
+& s 7 8 ./+hold-linus
+& q
+$ git checkout -b topic/one master
+$ git am -3 -i -s ./+to-apply # (4)
+    #  apply them, interactively, with your sign-offs.
+$ compile/test
+$ git checkout -b hold/linus && git am -3 -i -s ./+hold-linus # (5)
+    #  create topic branch as needed and apply, again with sign-offs.
+$ git checkout topic/one && git rebase master # (6)
+    #  rebase internal topic branch that has not been merged to the master or exposed as a part of a stable branch.
+$ git checkout pu && git reset --hard next # (7)
+    #  restart pu every time from the next.
+$ git merge topic/one topic/two && git merge hold/linus # (8)
+    #  and bundle topic branches still cooking.
+$ git checkout maint
+$ git cherry-pick master~4 # (9)
+    #  backport a critical fix.
+$ compile/test
+$ git tag -s -m "GIT 0.99.9x" v0.99.9x # (10)
+    #   create a signed tag.
+$ git fetch ko && for branch in master maint next pu # (11)
+    #   make sure master was not accidentally rewound beyond that already pushed out.
+do
+git show-branch ko/$branch $branch # (12)
+    #   In the output from git show-branch, master should have everything ko/master has, and next should have everything ko/next has, etc.
+done
+$ git push --follow-tags ko # (13)
+# push out the bleeding edge, together with new tags that point into the pushed history.
+```
+
+
+
+
 
 Get packages using Visual Studio
 
@@ -109,3 +164,6 @@ Alternative:Add credentials to your user .npmrc manually
 ; end auth token
 Copy this to your npmrc now. We don't store the auth token and you won't be able to see it again.
 [How do I find my .npmrc files?](https://go.microsoft.com/fwlink/?linkid=823700)
+
+
+## GIT Commands

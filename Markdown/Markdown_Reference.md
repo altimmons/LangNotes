@@ -13,6 +13,7 @@ puppeteer:
         fullPage: true
 
 ---
+
         "markdown.styles": [
     "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 ]
@@ -23,9 +24,50 @@ Sample Exporting instructions
 
 
 # Markdown Reference
+/* Create two columns/boxes that floats next to each other */
+<style>
+nav {
+  float: left;
+  width: 30%;
+  
+  background: #ccc;
+  padding: 20px;
+}
 
-[[TOC]]
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+</style>
 
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="#">London</a></li>
+      <li><a href="#">Paris</a></li>
+      <li><a href="#">Tokyo</a></li>
+    </ul>
+  </nav>
+
+<style>
+    .floating-menu {
+    font-family: sans-serif;
+    background: yellowgreen;
+    padding: 5px;;
+    width: 130px;
+    z-index: 100;
+    position: fixed;
+  }
+  .floating-menu a, 
+  .floating-menu h3 {
+    font-size: 0.9em;
+    display: block;
+    margin: 0 0.5em;
+    color: white;
+  }
+  </style>
 
 ## Working Font List
 
@@ -39,24 +81,73 @@ Sample Exporting instructions
 
 ** New Keybindings I added
 
-- `*x*` italics   [[Ctrl]]&[[I]]
-- `**x**` bold [[Ctrl]]&[[B]]
-- `~~strikethrough~~` [[Ctrl]]&[[S]] 
-- `==mark==`
-- `:emoji`
-- `_underline`
-- `[LinkText](Link)`
+- `*x*` italics   [[Ctrl]]&[[I]]  *example*
+- `**x**` or `__x__`  bold [[Ctrl]]&[[B]]  **example** __example__
+- `_underline` _example_ 
+- `~~strikethrough~~` [[Ctrl]]&[[S]]  ~~example~~
+- `==mark==`  ==example==
+- `:emoji` 
+- `[LinkText](111Link)`
 - `[InnerLinkText](#Inner-Link-Text)`
 - `![](imagePath)`
-- `*[Abbr]: Abbreviations`
+  - `<img src="https://wiki.fysetc.com/images/TMC2208-wiring-diagram.png"  style="float:right;width:60vw;"  />`
+      - can make it cling to the right
+      -- <img src="https://wiki.fysetc.com/images/TMC2208-wiring-diagram.png"  style="float:right;width:30vw;"  />
+- `*[Abbr]: Abbreviations`   *[HTML]: Hyper Text Markup Language
+- `!!!Admonition` [^jebbs.markdown-extended] 
+    - see below
+- `~Sub~script`   ~subscript~
+- `^super^script`  [^jebbs.markdown-extended] ^superscript^  
+- `[ ]` `[x]`  checkbox  [^jebbs.markdown-extended]  - must be at the front of the line
+    - [x] example
+    - [ ] example
+- `[[Ctrl+Esc]]` Keyboard Keys  [^jebbs.markdown-extended]  [[Ctrl]] + [[Alt]]
+  -  `---` - 3 or more - [[-]] hyphens
+  ---
+  - `___` 3 or more [[_]] underscores
+  ____
+- Title Add a line underneath [[=]]
+-  seems to make sections
 
-- `!!!Admonition` [^jebbs.markdown-extended]
-- `~Sub~script`
-- `^super^script`  [^jebbs.markdown-extended]
-- `[ ] [x]`  checkbox  [^jebbs.markdown-extended]
-- `[[Ctrl+Esc]]` Keyboard Keys  [^jebbs.markdown-extended]
-- `[^footnote]:`  [^jebbs.markdown-extended]
+  -ex
+  =
+
+  --ex2
+  ==
+  
+  ---ex3
+  ===
+- blockquote
+    >- 1
+    >- 2
+    >- 3
+    >- 4
+    >- 5
+
+----
+  <blockquote>
+
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  </blockquote>
+-code block
+  ` ``` `
+- or 3 tabs
+- or `~~~`
+
+~~~
+test
+~~~
+
+
+- `[^footnote]:`  [^jebbs.markdown-extended]  [^example]
+
 - `[^referenceToFootnote]`  [^jebbs.markdown-extended]
+
 - `{style="color:red"}` Attributes [^jebbs.markdown-extended]
 - `<!-- @import "your_file" -->` [^MarkdownPreviewEnhanced]
 - `@import "your_file"`[^MarkdownPreviewEnhanced]
@@ -65,7 +156,290 @@ another ext:
 - - conflics with emoji
 - `!!!include(file.md)!!!`
 - - conflicts with Admonitions
+- Divider Line 
 
+
+---
+[^example]: test
+___
+<iframe  allowfullscreen="true" width="100%" style="border:1px solid green;background:blue";  ><p>
+
+</iframe>
+
+
+## HTML Examples
+
+### Image with click maps
+
+<html>
+<body>
+<p>Click on the computer, the phone, or the cup of coffee to go to a new page and read more about the topic:</p>
+
+<img src="..\res\HuffmanEncoding000097.png" usemap="#workmap" width="400" height="379">
+
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+  <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+  <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
+</map>
+
+</body>
+</html>
+
+
+### svg
+
+
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+
+
+### Span (simpler than style)
+> <p>My mother has <span style="color:blue">blue</span> eyes.</p>
+
+### details 
+
+<details>
+  <summary>Epcot Center</summary>
+  <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+</details>
+
+### text area
+
+<label for="w3review">Review of W3Schools:</label>
+
+<textarea id="w3review" name="w3review" rows="4" cols="50">
+At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+</textarea>
+
+<label for="w3revie2">Review of W3Schools:</label>
+
+<textarea id="w3revie2" name="w3review" rows="4" cols="50" style="color:blue; background:gray" draggable=true>
+At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+</textarea>
+
+### code 
+<code> var.property = new Object(param) </code>
+
+`var.property = new Object(param)`
+
+### Samp  - monopspace output
+<samp> Computer Output  Results </samp>
+
+
+
+### Options
+
+<label for="cars">Choose a car:</label>
+
+<select id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+</select>
+
+
+<figure>
+  <img src="../res\03\12\000007 (Small).png" alt="Trulli" style="width:100%">
+  <figcaption style=>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+</figure>
+----
+----
+
+
+
+
+### Styles
+
+[Styles Ref](https://www.w3schools.com/html/html_styles.asp)
+`<tag style="property:value;">`
+
+Use the `style` attribute for styling HTML elements
+Use `background-color` for background color
+Use `color` for text colors
+Use `font-family` for text fonts
+Use `font-size` for text sizes
+Use `text-align` for text alignment
+
+`<b>` - Bold text
+`<strong> `- Important text
+`<i> `- Italic text
+`<em>` - Emphasized text
+`<mark>`  - Marked text
+`<small>` - Smaller text
+`<del>` - Deleted text
+`<ins>` - Inserted text
+`<sub>` - Subscript text
+`<sup>` - Superscript text
+
+
+[140 standard color names](https://www.w3schools.com/colors/colors_names.asp)
+
+### CSS Styles
+
+#### Internal 
+seems like you can add it anywhere.
+
+<!-- <html> -->
+<!-- <head> -->
+<style>
+/* body {background-color: powderblue;} */
+h1   {color: blue;}
+h2    {color: red;}
+h3  {color:green;background-color:#FFFA}
+</style>
+<!-- </head> -->
+
+
+
+      <html>
+      <head>
+      <style>
+      /* body {background-color: powderblue;} */
+      h1   {color: blue;}
+      h2    {color: red;}
+      </style>
+      </head>
+
+
+
+#### External
+
+    <html>
+    <head>
+      <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+
+CSS can be added to HTML documents in 3 ways:
+
+Inline - by using the style attribute inside HTML elements
+Internal - by using a <style> element in the <head> section
+External - by using a <link> element to link to an external CSS file
+
+
+* Create two columns/boxes that floats next to each other */
+
+
+## A floating box
+<style>
+nav {
+  float: right;
+  width: 30%;
+  background: #ccc;
+  padding: 20px;
+}
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+</style>
+
+<section>
+  <nav>
+    <ul>
+    Another List
+      <li><a href="">London</a></li>
+      <li><a href="#">Paris</a></li>
+      <li><a href="#">Tokyo</a></li>
+    </ul>
+
+  </nav>
+</section>
+
+
+<section>
+<nav>
+
+```html
+    <section>
+      <nav>
+        <ul>
+        Another List
+          <li><a href="">London</a></li>
+          <li><a href="#">Paris</a></li>
+          <li><a href="#">Tokyo</a></li>
+        </ul>
+      </nav>
+    </section>
+```
+  </nav>
+</section>
+
+### Floating Menu next to it
+
+by default it appears to the right
+```html
+
+<!-- code block -->
+
+<style>
+    .floating-menu {
+    font-family: sans-serif;
+    background: purple;
+   border: 8px solid powderblue;
+    padding: 5px;
+    font-size:7pt;
+    width: 130px;
+    z-index: 100;
+    position: fixed;
+  }
+  .floating-menu a, 
+  .floating-menu h3 {
+    font-size: 0.9em;
+    display: block;
+    margin: 0 0.5em;
+    color: white;
+    float:right
+  }
+  </style>
+```
+
+<style>
+    .floating-menu {
+    font-family: sans-serif;
+    background: #F906;
+    border: 2px solid powderblue;
+    padding: 5px;;
+    font-size:7pt;
+    width: 130px;
+    z-index: 100;
+    position: fixed;
+   right: 6vw;
+   top: 20vh;
+  }
+  .floating-menu a, 
+  .floating-menu h3 {
+    font-size: 0.9em;
+    display: block;
+    margin: 0 0.5em;
+    color: white;
+    
+  }
+  </style>
+
+
+<nav class="floating-menu">
+    <h3>Floating Menu</h3>
+    <!-- vscode-markdown-toc -->
+    <a href="WorkingFontList"></a>
+    <a href="Summaryofsymbols"></a>
+    1
+    
+    2
+    
+    3
+    
+    4
+    
+    54
+
+  </nav>
+---
 Microsoft Docs uses another form for Admonitions:
 
 These (and others) Added by jebbs.markdown extended.
@@ -188,11 +562,19 @@ _**percentage**_
 
 ## Text Formatting
 
- Bold `**`
- Italic `*`
+ ### Bold `**`
 
+ ### Italic `*`
+
+ ### Superscript
  Superscript surround with `^` eg.  23^2^ * 2^1/2^
    - does not work in code blocks
+
+### Diver Line
+
+-----
+
+### Subscript
 
 Subscript surround with `~` eg.  H~2~O
 

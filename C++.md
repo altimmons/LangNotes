@@ -3773,6 +3773,7 @@ p.y = 2;
 send(&p, sizeof(POINT));
 ```
 
+
 Also as a pointer to a function:
 
 ```C
