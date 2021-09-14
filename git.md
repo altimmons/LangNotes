@@ -154,6 +154,30 @@ git submodule update --init --recursive   # Pull in ~~dependencies~~
 
 
 
+## Clone only a sub-directory
+
+!!!warning Could Not Get this to work.
+
+
+[Source](https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository/52269934#52269934)
+
+To perform- you still clone the repo.  But with `no-checkout` you start it
+
+`git clone   --depth 1   --filter=blob:none   --no-checkout   https://github.com/bigtreetech/BIGTREETECH-OCTOPUS-V1.0.git ;`
+
+then cd into it
+
+``git config core.sparseCheckout `**true**``  or `git sparse-checkout init` needs to be run
+
+git sparse-checkout set "A/B"
+# same as:
+# echo "A/B" >> .git/info/sparse-checkout
+
+git sparse-checkout list
+# same as:
+# cat .git/info/sparse-checkout
+
+The example in the link demonstrates a `sparse` option that only gives me an error.
 ## Contributing
 
 Fork it

@@ -2207,7 +2207,7 @@ ip route show
   ip route ls
 ip route list table local
 
-**ip -c address - add color, show addresses.** I quite like the color aspect.
+**`ip -c address` - add color, show addresses.** I quite like the color aspect.
 ip -c address show dev eth3 
 ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 
