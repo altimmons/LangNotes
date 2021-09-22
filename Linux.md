@@ -103,6 +103,7 @@ Links from [SS64](https://ss64.com/links/bash.html)
 
 ### Bash
 
+
 - Greg Wooledge [Bash Guide](https://mywiki.wooledge.org/BashGuide) and [FAQ](https://mywiki.wooledge.org/BashFAQ)
 - [Bash Guide for beginners](http://tldp.org/LDP/Bash-Beginners-Guide/html/index.html) - Machtelt Garrels.
 - [GNU Bash Manual](https://www.gnu.org/manual/) - gzip archives.
@@ -110,6 +111,44 @@ Links from [SS64](https://ss64.com/links/bash.html)
 - [bash tips](https://www.ukuug.org/events/linux2003/papers/bash_tips/) - Configure the bash terminal.
 - [Bash pitfalls](http://mywiki.wooledge.org/BashPitfalls) - GreyCat's wiki.
 
+
+## Fixing terminal Errors
+
+### Make sure not to use `sh`
+
+set  bash as default
+
+`chsh -s /bin/bash`
+
+
+### Set TTY Settings
+
+Such as backspace not working, etc.
+
+`stty sane` does a lot to help
+
+        sane          same as cread -ignbrk brkint -inlcr -igncr icrnl
+                      icanon iexten echo echoe echok -echonl -noflsh
+                      -ixoff -iutf8 -iuclc -ixany imaxbel -xcase -olcuc -ocrnl
+                      opost -ofill onlcr -onocr -onlret nl0 cr0 tab0 bs0 vt0 ff0
+                      isig -tostop -ofdel -echoprt echoctl echoke -extproc -flusho,
+                      all special characters to their default values
+
+use --help to see all the options
+
+
+### Change the Term Emulation
+
+check with `echo $TERM`
+
+ export TERM=gnome
+
+also seen recommended:
+   - linux
+   - xterm
+   - xterm-256color
+   - vt100
+   - gnome
 ## Useful Terminal Apps
 
 ncdu - shows du (disk usage) in a curses form

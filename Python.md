@@ -3664,6 +3664,7 @@ ____
 
             Three conversion flags are currently supported: '!s' which calls str() on the value, '!r' which calls repr() and '!a' which calls ascii().
 
+ 
  ### Templates
 
  [Template Class](https://docs.python.org/3/library/string.html#string.Template)
@@ -3676,30 +3677,32 @@ ____
 
  Template strings support $-based substitutions, using the following rules:
 
- $$ is an escape; it is replaced with a single $.
+ `$$ `is an escape; it is replaced with a single `$`.
 
- $identifier names a substitution placeholder matching a mapping key of "identifier". By default, "identifier" is restricted to any case-insensitive ASCII alphanumeric string (including underscores) that starts with an underscore or ASCII letter. The first non-identifier character after the $ character terminates this placeholder specification.
+ `$identifier` names a substitution placeholder matching a mapping key of `"identifier"`. By default, `"identifier"` is restricted to any case-insensitive ASCII alphanumeric string (including underscores) that starts with an underscore or ASCII letter. The first non-identifier character after the $ character terminates this placeholder specification.
 
- ${identifier} is equivalent to $identifier. It is required when valid identifier characters follow the placeholder but are not part of the placeholder, such as "${noun}ification".
+` ${identifier} `is equivalent to `$identifier`. It is required when valid identifier characters follow the placeholder but are not part of the placeholder, such as `"${noun}ification".`
  Here is an example of how to use a Template:
 
-        >>>
-        >>> from string import Template
-        >>> s = Template('$who likes $what')
-        >>> s.substitute(who='tim', what='kung pao')
-        'tim likes kung pao'
-        >>> d = dict(who='tim')
-        >>> Template('Give $who $100').substitute(d)
-        Traceback (most recent call last):
-        ...
-        ValueError: Invalid placeholder in string: line 1, col 11
-        >>> Template('$who likes $what').substitute(d)
-        Traceback (most recent call last):
-        ...
-        KeyError: 'what'
-        >>> Template('$who likes $what').safe_substitute(d)
-        'tim likes $what'
 
+~~~
+>
+> from string import Template
+> s = Template('$who likes $what')
+> s.substitute(who='tim', what='kung pao')
+'tim likes kung pao'
+> d = dict(who='tim')
+> Template('Give $who $100').substitute(d)
+Traceback (most recent call last):
+...
+ValueError: Invalid placeholder in string: line 1, col 11
+> Template('$who likes $what').substitute(d)
+Traceback (most recent call last):
+...
+KeyError: 'what'
+>>> Template('$who likes $what').safe_substitute(d)
+'tim likes $what'
+ ~~~
 
  ### Regular Expressions
 
@@ -3819,9 +3822,8 @@ ____
 
 ____
 ____
-## LISTS, TUPLES and DICTIONARIES
 
-____
+## LISTS, TUPLES and DICTIONARIES
 
 Python refers to the [Sequence Types — list, tuple, range](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary)
 
@@ -6967,7 +6969,103 @@ ____
 
  ### Create a tempfile
 
+<!-- TODO -->
  tempfile library
+
+
+
+
+### Getting Drive Information:
+
+The win32 api pack has 
+
+Two methods:
+
+
+```python
+
+import win32api
+
+drives = win32api.GetLogicalDriveStrings().split('\000')[:-1]
+print(drives)
+
+```
+!!!Success Result:
+    ['C:\\', 'D:\\', 'E:\\', 'F:\\', 'G:\\', 'H:\\', 'O:\\', 'R:\\', 'S:\\', 'U:\\', 'X:\\', 'Y:\\', 'Z:\\']
+
+
+Alternate Method:
+
+```py3
+def get_drives():
+    drives = []
+    bitmask = windll.kernel32.GetLogicalDrives()
+    for letter in string.ascii_uppercase:
+        if bitmask & 1:
+            drives.append(letter)
+        bitmask >>= 1
+
+    return drives
+print(get_drives())
+```
+
+We can get more info like this:
+
+```py
+for d in drives:
+    try:
+        result = win32api.GetVolumeInformation(d)
+        print(result)
+    except:
+        print(f'Unable to read {d}, likely encrypted')
+        pass
+```
+
+This gives:  ('Games', -1663998516, 255, 65472255, 'NTFS')
+        The return is a tuple of:
+1. *string* - Volume Name
+2. *long* - Volume serial number.
+3. *long* - Maximum Component Length of a file name.
+4. *long* - Sys Flags - other flags specific to the file system. See the api for details.
+5. *string* - File System Name
+
+
+
+
+
+
+
+```python
+
+import string
+from ctypes import windll
+ 
+def get_drives():
+    drives = []
+    bitmask = windll.kernel32.GetLogicalDrives()
+    for letter in string.ascii_uppercase:
+        if bitmask & 1:
+            drives.append(letter)
+        bitmask >>= 1
+
+    return drives
+
+
+print(get_drives())
+
+```
+
+!!!Success Result:
+    ['C', 'D', 'E', 'F', 'G', 'H', 'O', 'R', 'S', 'U', 'X', 'Y', 'Z']
+
+```py
+FILENAME = 'firmware.CUR'
+target = 'H:\\'
+fn = os.path.join(target, FILENAME).replace('\\', '/')
+#this doesnt work. w/w/o the replace.
+```
+
+
 
 ____
 ____
@@ -9718,6 +9816,115 @@ ____
 ____
 ~~____~~
 ## Specific Packages
+### Using the Win32 library
+
+!!!Note There is a LOT here,
+    The below list is super abbreviated, and the whole index is included in docs.  There are LOTs of methods. Its literally massive...
+
+    [Search Here](http://timgolden.me.uk/pywin32-docs/contents.html)
+    
+    
+
+!!!Success   [Win32 API](http://timgolden.me.uk/pywin32-docs/win32.html)
+      -   [Overviews](http://timgolden.me.uk/pywin32-docs/win32_overview.html)
+            -   [Recursive directory deletes and special files](http://timgolden.me.uk/pywin32-docs/Recursive_directory_deletes_and_special_files.html)
+            -   [Windows NT Eventlog](http://timgolden.me.uk/pywin32-docs/Windows_NT_Eventlog.html)
+            -   [Windows NT Eventlog and Threading](http://timgolden.me.uk/pywin32-docs/Windows_NT_Eventlog_and_Threading.html)
+            -   [Windows NT Files -- Locking](http://timgolden.me.uk/pywin32-docs/Windows_NT_Files_.2d.2d_Locking.html)
+            -   [Windows NT Security -- Impersonation](http://timgolden.me.uk/pywin32-docs/Windows_NT_Security_.2d.2d_Impersonation.html)
+            -   [Directory permissions with GetNamedSecurityInfo](http://timgolden.me.uk/pywin32-docs/html/win32/help/security_directories.html)
+            -   [Getting process info (with some COM thrown it!)](http://timgolden.me.uk/pywin32-docs/html/win32/help/process_info.html)
+            -   [Windows NT/2000 Networking with the win32net module](http://timgolden.me.uk/pywin32-docs/html/win32/help/win32net.html)
+      -   [==Modules==](http://timgolden.me.uk/pywin32-docs/win32_modules.html)
+            -   [ _**_winxptheme**_ ](http://timgolden.me.uk/pywin32-docs/_winxptheme.html) 
+            -   [ _**mmapfile**_ ](http://timgolden.me.uk/pywin32-docs/mmapfile.html) 
+            -   [ _**odbc**_ ](http://timgolden.me.uk/pywin32-docs/odbc.html) 
+            -   [ _**perfmon**_ ](http://timgolden.me.uk/pywin32-docs/perfmon.html) 
+            -   [ _**pywintypes**_ ](http://timgolden.me.uk/pywin32-docs/pywintypes.html) 
+            -   [ _**servicemanager**_ ](http://timgolden.me.uk/pywin32-docs/servicemanager.html) 
+            -   [ _**timer**_ ](http://timgolden.me.uk/pywin32-docs/timer.html) 
+            -   [ _**win2kras**_ ](http://timgolden.me.uk/pywin32-docs/win2kras.html) 
+            -   [ _**win32api**_ ](http://timgolden.me.uk/pywin32-docs/win32api.html) 
+            -   [ _**win32clipboard**_ ](http://timgolden.me.uk/pywin32-docs/win32clipboard.html) 
+            -   [ _**win32file**_ ](http://timgolden.me.uk/pywin32-docs/win32file.html) 
+            -   [ _**win32gui**_ ](http://timgolden.me.uk/pywin32-docs/win32gui.html) 
+            -   [ _**win32help**_ ](http://timgolden.me.uk/pywin32-docs/win32help.html) 
+            -   [ _**win32inet**_ ](http://timgolden.me.uk/pywin32-docs/win32inet.html) 
+            -   [ _**win32job**_ ](http://timgolden.me.uk/pywin32-docs/win32job.html) 
+            -   [ _**win32lz**_ ](http://timgolden.me.uk/pywin32-docs/win32lz.html) 
+            -   [ _**win32net**_ ](http://timgolden.me.uk/pywin32-docs/win32net.html) 
+            -   [ _**win32pdh**_ ](http://timgolden.me.uk/pywin32-docs/win32pdh.html) 
+            -   [ _**win32pipe**_ ](http://timgolden.me.uk/pywin32-docs/win32pipe.html) 
+            -   [ _**win32print**_ ](http://timgolden.me.uk/pywin32-docs/win32print.html) 
+            -   [ _**win32process**_ ](http://timgolden.me.uk/pywin32-docs/win32process.html) 
+            -   [ _**win32profile**_ ](http://timgolden.me.uk/pywin32-docs/win32profile.html) 
+            -   [ _**win32ras**_ ](http://timgolden.me.uk/pywin32-docs/win32ras.html) 
+            -   [ _**win32security**_ ](http://timgolden.me.uk/pywin32-docs/win32security.html) 
+            -   [ _**win32service**_ ](http://timgolden.me.uk/pywin32-docs/win32service.html) 
+            -   [ _**win32transaction**_ ](http://timgolden.me.uk/pywin32-docs/win32transaction.html) 
+            -   [ _**win32ts**_ ](http://timgolden.me.uk/pywin32-docs/win32ts.html) 
+            -   [ _**win32wnet**_ ](http://timgolden.me.uk/pywin32-docs/win32wnet.html) 
+            -   [ _**wincerapi**_ ](http://timgolden.me.uk/pywin32-docs/wincerapi.html) 
+
+!!! Tldr   [ ==Python COM==  ](http://timgolden.me.uk/pywin32-docs/com.html)
+      -   [Overviews](http://timgolden.me.uk/pywin32-docs/com_overview.html)
+            -   [ASP and Python](http://timgolden.me.uk/pywin32-docs/ASP_and_Python.html)
+            -   [DirectSound examples](http://timgolden.me.uk/pywin32-docs/DirectSound_examples.html)
+            -   [MTS and Python for NT](http://timgolden.me.uk/pywin32-docs/MTS_and_Python_for_NT.html)
+            -   [Python, C++, and COM](http://timgolden.me.uk/pywin32-docs/Python.2c_C.2b.2b.2c_and_COM.html)
+            -   [ADSI Python](http://timgolden.me.uk/pywin32-docs/html/com/help/adsi.html)
+            -   [Active Directory](http://timgolden.me.uk/pywin32-docs/html/com/help/active_directory.html)
+            -   [Important notes about COM currency support changes](http://timgolden.me.uk/pywin32-docs/html/com/win32com/readme.htm#currency)
+            -   [win32com documentation index](http://timgolden.me.uk/pywin32-docs/html/com/win32com/HTML/docindex.html)
+            -   [win32com readme](http://timgolden.me.uk/pywin32-docs/html/com/win32com/readme.htm)
+      -   [==Modules==](http://timgolden.me.uk/pywin32-docs/com_modules.html)
+            -   [ _**adsi**_  ](http://timgolden.me.uk/pywin32-docs/adsi.html)
+            -   [ _**axcontrol**_  ](http://timgolden.me.uk/pywin32-docs/axcontrol.html)
+            -   [ _**axdebug**_  ](http://timgolden.me.uk/pywin32-docs/axdebug.html)
+            -   [ _**axscript**_  ](http://timgolden.me.uk/pywin32-docs/axscript.html)
+            -   [ _**directsound**_  ](http://timgolden.me.uk/pywin32-docs/directsound.html)
+            -   [ _**exchange**_  ](http://timgolden.me.uk/pywin32-docs/exchange.html)
+            -   [ _**exchdapi**_  ](http://timgolden.me.uk/pywin32-docs/exchdapi.html)
+
+            -   [ _**internet**_  ](http://timgolden.me.uk/pywin32-docs/internet.html)
+
+            -   [ _**mapi**_  ](http://timgolden.me.uk/pywin32-docs/mapi.html)
+
+            -   [ _**propsys**_  ](http://timgolden.me.uk/pywin32-docs/propsys.html)
+            -   [ _**pythoncom**_  ](http://timgolden.me.uk/pywin32-docs/pythoncom.html)
+            -   [ _**shell**_  ](http://timgolden.me.uk/pywin32-docs/shell.html)
+            -   [ _**win32com.authorization.authorization**_  ](http://timgolden.me.uk/pywin32-docs/win32com.authorization.authorization.html)
+
+!!!Hint [Pythonwin and win32ui](http://timgolden.me.uk/pywin32-docs/pythonwin.html)
+                Pythonwin is implemented as a 'wrapper' for the Microsoft Foundation Class library. With it, you can use MFC in an interactive, interpreted environment, or write full blown stand-alone applications tightly coupled with the Windows environment. Over 30 MFC objects are exposed, including Common Controls, Property Pages/Sheets, Control/Toolbars, Threads, etc. 
+        It is difficult to tell if the project is alive.
+      -   [Overviews](http://timgolden.me.uk/pywin32-docs/pythonwin_overview.html)
+            -   [Keyboard Bindings](http://timgolden.me.uk/pywin32-docs/Keyboard_Bindings.html)
+            -   [Source Safe Integration](http://timgolden.me.uk/pywin32-docs/Source_Safe_Integration.html)
+            -   [Source code folding in the editor](http://timgolden.me.uk/pywin32-docs/Source_code_folding_in_the_editor.html)
+            -   [Tabs and indentation in the editor](http://timgolden.me.uk/pywin32-docs/Tabs_and_indentation_in_the_editor.html)
+            -   [Pythonwin Debugger documentation](http://timgolden.me.uk/pywin32-docs/html/pythonwin/doc/debugger/index.html)
+            -   [Pythonwin readme](http://timgolden.me.uk/pywin32-docs/html/pythonwin/readme.html)
+            -   [The Pythonwin environment](http://timgolden.me.uk/pywin32-docs/html/pythonwin/doc/guienvironment.html)
+      -   [==Modules==](http://timgolden.me.uk/pywin32-docs/pythonwin_modules.html)
+            -   [dde](http://timgolden.me.uk/pywin32-docs/dde.html)
+            -   [win32ui](http://timgolden.me.uk/pywin32-docs/win32ui.html)
+            -   [win32uiole](http://timgolden.me.uk/pywin32-docs/win32uiole.html)
+
+!!!Note: [ISAPI filters and extensions](http://timgolden.me.uk/pywin32-docs/isapi.html)
+      -   [Overviews](http://timgolden.me.uk/pywin32-docs/isapi_overview.html)
+      -   [Introduction to Python ISAPI support](http://timgolden.me.uk/pywin32-docs/html/isapi/doc/isapi.html)
+      -   [ ==Modules== ](http://timgolden.me.uk/pywin32-docs/isapi_modules.html)
+            -   [ _**isapi**_  ](http://timgolden.me.uk/pywin32-docs/isapi.html)
+            -   [ _**isapi.install**_  ](http://timgolden.me.uk/pywin32-docs/isapi.install.html)
+            -   [ _**isapi.isapicon**_  ](http://timgolden.me.uk/pywin32-docs/isapi.isapicon.html)
+            -   [ _**isapi.simple**_  ](http://timgolden.me.uk/pywin32-docs/isapi.simple.html)
+            -   [ _**isapi.threaded_extension**_  ](http://timgolden.me.uk/pywin32-docs/isapi.threaded_extension.html)
+
+Documentation [Here](http://timgolden.me.uk/pywin32-docs/contents.html)
+
+There is also more [here](http://timgolden.me.uk/pywin32-docs/PyWin32.html)
+
 
  ### NetworkX
 

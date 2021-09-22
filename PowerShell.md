@@ -12,6 +12,11 @@ Brings up the command browser in command line
 `SHOW-COMMAND`
 
 
+Non-blocking version:
+
+`Get-Command | Out-GridView`
+
+
 ## Common Examples:
 ```powershell
 # Three ways to filter sets.
@@ -2907,7 +2912,7 @@ or minimally:
 
 
 
-- ## Other tricks
+- ## Other ~~tricks~~
 
 ### Get ENvironment Vars
 

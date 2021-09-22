@@ -24,10 +24,10 @@
 - [Bash Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#SEC_Contents)
 
 
-#  http://tldp.org/LDP/abs/html/index.html
-#  http://www.caliban.org/bash
-#  http://www.shelldorado.com/scripts/categories.html
-#  http://www.dotfiles.org
+-  http://tldp.org/LDP/abs/html/index.html
+- http://www.caliban.org/bash
+-  http://www.shelldorado.com/scripts/categories.html
+-  http://www.dotfiles.org
 
 > ![](http://www.shelldorado.com/images/pixel.gif)  ![](http://www.shelldorado.com/images/pixel.gif)  
 > The location of these links' source page is [http://www.shelldorado.com/links/](http://www.shelldorado.com/links/)
@@ -294,7 +294,59 @@ alt@andylaptop-popos:~$ which bash
 <-Start File->
 ```
 
+## set
+`set -x`
+A debugging setting:
+You refer to a noisy script. You're getting verbose output from your script because of the set -x settings which are used for debugging. Once you see what is happening and have your script running the way you want it, you could comment out the set -x line by placing the # symbol in front of it.
 
+`set -e`
+This setting is telling the script to exit on a command error. For instance, if your command was to change directory to a none existing directory or to list a non-existing file, the script would terminate on the error, rather than proceeding to the next line.
+
+## Redirection Overview
+
+[Manual Entry](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
+
+
+
+File	File Descriptor
+
+- Standard Input **STDIN** `0`
+- Standard Output **STDOUT** `1`
+- Standard Error **STDERR** `2`
+
+Basically you can:
+
+- redirect stdout to a file
+    - also redirect to the void
+        `rm -f $(find / -name core) &> /dev/null `
+    - and devices
+        ` cat music.mp3 > /dev/audio`
+- redirect stderr to a file
+    `grep da * 2> grep-errors.txt` - std err to file
+- redirect stdout to a stderr
+- redirect stderr to a stdout
+- redirect stderr and stdout to a file
+- redirect stderr and stdout to stdout
+    `grep * 2>&1`
+    `ls Documents ABC> dirlist 2>&1`  STDERR redirects to the target of STDOUT (which is the file dirlist)
+- redirect stderr and stdout to stderr
+
+
+`&>` - all outputs
+`1>&2` redirect stdout to stderr
+ `grep da * 1>&2 `  - std out and err to the same file
+`2>` redirect to a file
+so the number- 1> says redirect to, then to reference one of the 3 use the `&`
+
+`>` is the output redirection operator. `>>` appends output to an existing file
+`<` is the input redirection operator
+`>&(file)` re-directs output of one file to another. Or it redirects 1 and 2 to a file, requires a target
+`>&word` is the same as above, but the former is preferred
+ This is semantically equivalent to `>word 2>&1`
+`&>>word` This is semantically equivalent to ,`>>word 2>&1`
+input redirection
+
+`/bin/bash < filecmds.txt`
 ## Path Vars:
 
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -724,9 +776,6 @@ echo $\*
 
 ```
 
-
-> # Thanks, S.C.
-
 ## Getting User input
 
 `read` - used to get User input
@@ -803,6 +852,16 @@ Can also use Zennity
 ## Heredoc
 
 <!-- Todo look up more on this for now just an example: -->
+This type of redirection instructs the shell to read input from the current source until a line containing only word (with no trailing blanks) is seen. All of the lines read up to that point are then used as the standard input (or file descriptor n if n is specified) for a command.
+
+The format of here-documents is:
+
+        [n]<<[-]word
+                here-document
+        delimiter
+
+If the redirection operator is `<<-`, then all leading tab characters are stripped from input lines and the line containing delimiter. This allows here-documents within shell scripts to be indented in a natural fashion.
+
 
 [Commands · zsh-users/antigen Wiki](https://github.com/zsh-users/antigen/wiki/Commands)
 
@@ -892,7 +951,7 @@ The delimiter token can be any value as long as it is unique enough that it won�
 
 > 3.7. Disable Block of Code Using Here Document[](https://www.baeldung.com/linux/heredoc-herestring#7-disable-block-of-code-using-here-document)
 > 
->instead of adding a prefix every line of the code with a ‘#’ to make them into comments,  we can do it much more efficiently using **heredoc** with the dummy command `‘:’.` For example, we can disable several lines of code in our shell script:
+>instead of adding a prefix every line of the code with a `#` to make them into comments,  we can do it much more efficiently using **heredoc** with the dummy command ``:`.` For example, we can disable several lines of code in our shell script:
 > 
 >     #!/bin/bash
 >     # disable-with-heredoc.sh
@@ -1119,7 +1178,7 @@ Transaction(s) Complete
 
 ____
 
-## HereString  “<<<” 
+## HereString  `<<<`
 
  much simpler version of heredoc. For that reason, here string does not need a delimiter token. It is usually preferred whenever we need a quick way to redirect some strings into a command.
 
@@ -1127,7 +1186,7 @@ ____
 
 > 4.1. Syntax[](https://www.baeldung.com/linux/heredoc-herestring#1-syntax-1)
 > 
-> To construct a here string, we use “<<<” operator to redirect a string into a command. Concretely, the syntax is:
+> To construct a here string, we use `<<<` operator to redirect a string into a command. Concretely, the syntax is:
 > 
 >     COMMAND <<< $VAR
 > 
@@ -2485,7 +2544,7 @@ version() {
 -   [14.7 Filename Expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Expansion)
     -   [14.7.1 Dynamic named directories](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Dynamic-named-directories)
     -   [14.7.2 Static named directories](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Static-named-directories)
-    -   [14.7.3 ‘=’ expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#g_t_0060_003d_0027-expansion)
+    -   [14.7.3 `=` expansion](http://zsh.sourceforge.net/Doc/Release/Expansion.html#g_t_0060_003d_0027-expansion)
     -   [14.7.4 Notes](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Notes)
 -   [14.8 Filename Generation](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation)
     -   [14.8.1 Glob Operators](http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Operators)

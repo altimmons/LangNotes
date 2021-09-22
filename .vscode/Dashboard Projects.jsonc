@@ -1,0 +1,233 @@
+[
+    // Exported 9/22/21 Not auto Updating
+    {
+        "id": "javao0cr6oycsjwcgzeus",
+        "groupName": "Java",
+        "projects": [
+            {
+                "isGitRepo": true,
+                "id": "ds38q41ypp4xjzevkh12",
+                "name": "DS3",
+                "path": "c:\\ASUSsync\\VS Code\\java\\DS3",
+                "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "dsproj321fzqj052jwch0r9a",
+                "name": "DS-Proj3",
+                "path": "c:\\ASUSsync\\VSCode\\Java\\JavaRoot\\DataStructures\\Proj3\\P3\\src\\App.java",
+                "imageFileName": null,
+                "color": "var(--vscode-gitDecoration-untrackedResourceForeground)"
+            },
+            {
+                "isGitRepo": true,
+                "id": "p3tl9t9v52rjzd9ob4s",
+                "name": "P3",
+                "path": "c:\\ASUSsync\\VS Code\\java\\P3",
+                "color": "var(--vscode-gitDecoration-conflictingResourceForeground)"
+            }
+        ]
+    },
+    {
+        "id": "notes3qm4ljohujzevlbuz",
+        "groupName": "Notes",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "mdworkspacextt4bygqsjzksoth5",
+                "name": "md Workspace (Correct)",
+                "path": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\md.code-workspace",
+                "color": "var(--vscode-gitDecoration-untrackedResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "markdownworkspacexdjq8f3jhjzksupz8",
+                "name": "markdown Workspace",
+                "path": "c:\\ASUSsync\\VS Code\\md\\.vscode\\markdown.code-workspace",
+                "color": "var(--vscode-gitDecoration-deletedResourceForeground)"
+            },
+            {
+                "isGitRepo": true,
+                "id": "notesfolderunsnu9fsxjzevmz1j",
+                "name": "Notes Folder",
+                "path": "c:\\ASUSsync\\VS Code\\md",
+                "color": "var(--vscode-gitDecoration-conflictingResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "javamdpgvujizf0jzevlyj3",
+                "name": "Java.md",
+                "path": "o:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\Java.md",
+                "color": "var(--vscode-gitDecoration-submoduleResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "powershellmd3hxteurn4jzevm80v",
+                "name": "PowerShell.md",
+                "path": "c:\\ASUSsync\\VS Code\\md\\PowerShell.md",
+                "color": "var(--vscode-gitDecoration-submoduleResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "pythonmdz5djrs37cjzevmjzj",
+                "name": "Python.md",
+                "path": "c:\\ASUSsync\\VS Code\\md\\Python.md",
+                "color": "var(--vscode-gitDecoration-submoduleResourceForeground)"
+            }
+        ]
+    },
+    {
+        "id": "ny20h8qahjzksuax2",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "homeassistantremoteihl12cxeekd6joquq",
+                "name": "HomeAssistant(Remote)",
+                "path": "v:\\.vscode\\HA-remote.code-workspace",
+                "color": "var(--vscode-gitDecoration-submoduleResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "nirlauncherworkspacekti0gcerqkdenuczz",
+                "name": "NirlauncherWorkspace",
+                "path": "c:\\Tools\\NirLauncher\\NirlauncherWorkspace.code-workspace",
+                "color": "var(--vscode-gitDecoration-deletedResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "pylightsxy7z3vojkkiku6szu",
+                "name": "PyLights",
+                "path": "o:\\OneDrive\\Programming\\HomeAutomation\\PyLights",
+                "color": "#5D4C51"
+            }
+        ]
+    },
+    {
+        "id": "3dprinterj421g1aoqkdenuzba",
+        "groupName": "3DPrinter",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "marlin2rev1xf0e47gb2kdenve2c",
+                "name": "Marlin2Rev1",
+                "path": "o:\\OneDrive\\Programming\\IOT\\Marlin2-0.rev1\\Marlin2Rev1.code-workspace",
+                "color": "linear-gradient(to right, green, orange)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "skr14_marlin7ua0dynnpksuxrdwz",
+                "name": "SKR1.4_Marlin",
+                "path": "o:\\OneDrive\\Programming\\3d Printer\\BIGTREETECH-SKR-V1.3\\BTT SKR V1.4\\Firmware\\Marlin-bugfix-2.0.x-SKR-V1.4\\SKR1.4_Marlin.code-workspace",
+                "color": "#A69279"
+            },
+            {
+                "isGitRepo": false,
+                "id": "skr_turbo_marlinhjfbzokwbksxmskoh",
+                "name": "SKR_Turbo_marlin",
+                "path": "o:\\OneDrive\\Programming\\3d Printer\\Marlin-2.0.x-SKR-V1.4-Turbo\\.vscode\\SKR_Turbo_marlincode-workspace.code-workspace",
+                "color": "linear-gradient(to right, green, white, blue)"
+            }
+        ]
+    },
+    {
+        "id": "pythonflnmi8yj8kiai80k7",
+        "groupName": "Python",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "pisnifferg8ps3u7ovkiai9kur",
+                "name": "PiSniffer",
+                "path": "o:\\OneDrive\\Programming\\IOT\\PiSniffer",
+                "color": "#0C8990"
+            },
+            {
+                "isGitRepo": false,
+                "id": "nb1dqasd21xiknixy8de",
+                "name": "NB1",
+                "path": "o:\\OneDrive\\Programming\\Python\\Jupyter\\Notebooks\\NB1\\.vscode\\NB1.code-workspace",
+                "color": "linear-gradient(to right, orange, grey)"
+            }
+        ]
+    },
+    {
+        "id": "cpp2g1f94z7rkkvnqwjv",
+        "groupName": "Cpp",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "wk294kmn2gjhkkvnrpcc",
+                "name": "Wk2",
+                "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\2",
+                "color": "#C1B7A4"
+            }
+        ]
+    },
+    {
+        "id": "remotewslq2tix56j4kndp7ocu",
+        "groupName": "Remote WSL",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "cppbn883a3awkndp8fqe",
+                "name": "cpp",
+                "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\cpp.code-workspace",
+                "color": "var(--vscode-gitDecoration-modifiedResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "unixp3n26nymbffkndp98vm",
+                "name": "UnixP3",
+                "path": "o:\\OneDrive\\Programming\\C++\\Repos\\UnixP3\\Ass3Unix\\.vscode\\workspace.code-workspace",
+                "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "unixproj2k2lrjuhubkndpb75l",
+                "name": "UnixProj2",
+                "path": "\\\\wsl$\\Ubuntu\\home\\andy\\proj1\\.vscode\\UnixProj2.code-workspace",
+                "color": "var(--vscode-gitDecoration-conflictingResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "miniproj14jdtejp5m9kndpc5s2",
+                "name": "MiniProj1.4",
+                "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\MiniProj1.4\\.vscode\\MiniProj1.4.code-workspace",
+                "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "hw2flatipda3nu49kndppdxq",
+                "name": "Hw2 flat",
+                "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\UnixClass\\Hw2 flat",
+                "color": "linear-gradient(to right, gold, orange)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "zshconfigtz5exikh9kng508v6",
+                "name": "ZSHconfig",
+                "path": "\\\\wsl$\\Ubuntu\\home\\andy\\.zshconfig\\.vscode\\ZSHconfig.code-workspace",
+                "color": "linear-gradient(to top, pink, blue)"
+            },
+            {
+                "isGitRepo": false,
+                "id": "unraidappenvx0b9q0y57krcbhr9c",
+                "name": "Unraid App Env",
+                "path": "\\\\UNRAID\\appdata\\traefik\\.vscode\\workspace.code-workspace",
+                "color": "#661010"
+            }
+        ]
+    },
+    {
+        "id": "othersa9z9plm5aknoxfztx",
+        "groupName": "Others",
+        "projects": [
+            {
+                "isGitRepo": false,
+                "id": "powershelldefaultf9fwrtpkaknoxi6p7",
+                "name": "Powershell-Default",
+                "path": "o:\\OneDrive\\Programming\\Powershell\\VSC-Workspace\\.vscode\\Powershell-Default.code-workspace",
+                "color": "#012456"
+            }
+        ]
+    }
+]
