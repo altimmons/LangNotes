@@ -102,6 +102,7 @@
             }
         ]
     },
+    /*
     {
         "id": "3dprinterj421g1aoqkdenuzba",
         "groupName": "3DPrinter",
@@ -129,105 +130,106 @@
             }
         ]
     },
-    {
-        "id": "pythonflnmi8yj8kiai80k7",
-        "groupName": "Python",
-        "projects": [
-            {
-                "isGitRepo": false,
-                "id": "pisnifferg8ps3u7ovkiai9kur",
-                "name": "PiSniffer",
-                "path": "o:\\OneDrive\\Programming\\IOT\\PiSniffer",
-                "color": "#0C8990"
-            },
-            {
-                "isGitRepo": false,
-                "id": "nb1dqasd21xiknixy8de",
-                "name": "NB1",
-                "path": "o:\\OneDrive\\Programming\\Python\\Jupyter\\Notebooks\\NB1\\.vscode\\NB1.code-workspace",
-                "color": "linear-gradient(to right, orange, grey)"
-            }
-        ]
-    },
-    {
-        "id": "cpp2g1f94z7rkkvnqwjv",
-        "groupName": "Cpp",
-        "projects": [
-            {
-                "isGitRepo": false,
-                "id": "wk294kmn2gjhkkvnrpcc",
-                "name": "Wk2",
-                "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\2",
-                "color": "#C1B7A4"
-            }
-        ]
-    },
-    {
-        "id": "remotewslq2tix56j4kndp7ocu",
-        "groupName": "Remote WSL",
-        "projects": [
-            {
-                "isGitRepo": false,
-                "id": "cppbn883a3awkndp8fqe",
-                "name": "cpp",
-                "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\cpp.code-workspace",
-                "color": "var(--vscode-gitDecoration-modifiedResourceForeground)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "unixp3n26nymbffkndp98vm",
-                "name": "UnixP3",
-                "path": "o:\\OneDrive\\Programming\\C++\\Repos\\UnixP3\\Ass3Unix\\.vscode\\workspace.code-workspace",
-                "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "unixproj2k2lrjuhubkndpb75l",
-                "name": "UnixProj2",
-                "path": "\\\\wsl$\\Ubuntu\\home\\andy\\proj1\\.vscode\\UnixProj2.code-workspace",
-                "color": "var(--vscode-gitDecoration-conflictingResourceForeground)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "miniproj14jdtejp5m9kndpc5s2",
-                "name": "MiniProj1.4",
-                "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\MiniProj1.4\\.vscode\\MiniProj1.4.code-workspace",
-                "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "hw2flatipda3nu49kndppdxq",
-                "name": "Hw2 flat",
-                "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\UnixClass\\Hw2 flat",
-                "color": "linear-gradient(to right, gold, orange)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "zshconfigtz5exikh9kng508v6",
-                "name": "ZSHconfig",
-                "path": "\\\\wsl$\\Ubuntu\\home\\andy\\.zshconfig\\.vscode\\ZSHconfig.code-workspace",
-                "color": "linear-gradient(to top, pink, blue)"
-            },
-            {
-                "isGitRepo": false,
-                "id": "unraidappenvx0b9q0y57krcbhr9c",
-                "name": "Unraid App Env",
-                "path": "\\\\UNRAID\\appdata\\traefik\\.vscode\\workspace.code-workspace",
-                "color": "#661010"
-            }
-        ]
-    },
-    {
-        "id": "othersa9z9plm5aknoxfztx",
-        "groupName": "Others",
-        "projects": [
-            {
-                "isGitRepo": false,
-                "id": "powershelldefaultf9fwrtpkaknoxi6p7",
-                "name": "Powershell-Default",
-                "path": "o:\\OneDrive\\Programming\\Powershell\\VSC-Workspace\\.vscode\\Powershell-Default.code-workspace",
-                "color": "#012456"
-            }
-        ]
-    }
+    */
+    // {
+    //     "id": "pythonflnmi8yj8kiai80k7",
+    //     "groupName": "Python",
+    //     "projects": [
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "pisnifferg8ps3u7ovkiai9kur",
+    //             "name": "PiSniffer",
+    //             "path": "o:\\OneDrive\\Programming\\IOT\\PiSniffer",
+    //             "color": "#0C8990"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "nb1dqasd21xiknixy8de",
+    //             "name": "NB1",
+    //             "path": "o:\\OneDrive\\Programming\\Python\\Jupyter\\Notebooks\\NB1\\.vscode\\NB1.code-workspace",
+    //             "color": "linear-gradient(to right, orange, grey)"
+    //         }
+    //     ]
+    // },
+    // {
+    //     "id": "cpp2g1f94z7rkkvnqwjv",
+    //     "groupName": "Cpp",
+    //     "projects": [
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "wk294kmn2gjhkkvnrpcc",
+    //             "name": "Wk2",
+    //             "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\2",
+    //             "color": "#C1B7A4"
+    //         }
+    //     ]
+    // },
+    // {
+    //     "id": "remotewslq2tix56j4kndp7ocu",
+    //     "groupName": "Remote WSL",
+    //     "projects": [
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "cppbn883a3awkndp8fqe",
+    //             "name": "cpp",
+    //             "path": "o:\\OneDrive\\Programming\\C++\\VS Code\\cpp.code-workspace",
+    //             "color": "var(--vscode-gitDecoration-modifiedResourceForeground)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "unixp3n26nymbffkndp98vm",
+    //             "name": "UnixP3",
+    //             "path": "o:\\OneDrive\\Programming\\C++\\Repos\\UnixP3\\Ass3Unix\\.vscode\\workspace.code-workspace",
+    //             "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "unixproj2k2lrjuhubkndpb75l",
+    //             "name": "UnixProj2",
+    //             "path": "\\\\wsl$\\Ubuntu\\home\\andy\\proj1\\.vscode\\UnixProj2.code-workspace",
+    //             "color": "var(--vscode-gitDecoration-conflictingResourceForeground)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "miniproj14jdtejp5m9kndpc5s2",
+    //             "name": "MiniProj1.4",
+    //             "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\MiniProj1.4\\.vscode\\MiniProj1.4.code-workspace",
+    //             "color": "var(--vscode-gitDecoration-ignoredResourceForeground)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "hw2flatipda3nu49kndppdxq",
+    //             "name": "Hw2 flat",
+    //             "path": "o:\\OneDrive\\Programming\\C++\\CLionProj\\UnixClass\\Hw2 flat",
+    //             "color": "linear-gradient(to right, gold, orange)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "zshconfigtz5exikh9kng508v6",
+    //             "name": "ZSHconfig",
+    //             "path": "\\\\wsl$\\Ubuntu\\home\\andy\\.zshconfig\\.vscode\\ZSHconfig.code-workspace",
+    //             "color": "linear-gradient(to top, pink, blue)"
+    //         },
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "unraidappenvx0b9q0y57krcbhr9c",
+    //             "name": "Unraid App Env",
+    //             "path": "\\\\UNRAID\\appdata\\traefik\\.vscode\\workspace.code-workspace",
+    //             "color": "#661010"
+    //         }
+    //     ]
+    // },
+    // {
+    //     "id": "othersa9z9plm5aknoxfztx",
+    //     "groupName": "Others",
+    //     "projects": [
+    //         {
+    //             "isGitRepo": false,
+    //             "id": "powershelldefaultf9fwrtpkaknoxi6p7",
+    //             "name": "Powershell-Default",
+    //             "path": "o:\\OneDrive\\Programming\\Powershell\\VSC-Workspace\\.vscode\\Powershell-Default.code-workspace",
+    //             "color": "#012456"
+    //         }
+    //     ]
+    // }
 ]
