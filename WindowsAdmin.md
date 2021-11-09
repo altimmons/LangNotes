@@ -7414,7 +7414,6 @@ function Takeown-Folder($path) {
     }
 }
 
-
 function Elevate-Privileges {
     param($Privilege)
     $Definition = @"

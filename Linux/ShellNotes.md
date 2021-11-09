@@ -1,4 +1,4 @@
-# Shell Notes
+# Linux Notes
 
 ## Tips, Tutorials and Documentation
 
@@ -142,13 +142,9 @@ From a character terminal [[Alt]] + [[F#]] will switch, but from a GUI [[ALT]] +
 
 Login is on [[Ctrl]]+[[Alt]]+[[F1]].  Gui is on [[Alt]][[F7]]
 
-#### chvt
-
-Change Virtual Terminal (1-6)
+### chvt
 
 can also use the command `chvt` as in `chvt 2`
-
-
 
 ## Shutting Down
 
@@ -188,8 +184,7 @@ All this must be built with ROOT as `makewhatis` (SLOW)
 
     - [[:]] (a colon) - `: [arguments]` - Do nothing beyond expanding arguments and performing redirections. The return status is zero.
     
-    - [[.]] (a period) - `. filename [arguments]` - Read and execute commands from the filename argument in the current shell context. If filename does not contain a slash, the PATH variable is used to find filename.
-    ** When Bash is not in POSIX mode, the current directory is searched
+    - [[.]] (a period) - `. filename [arguments]` - Read and execute commands from the filename argument in the current shell context. If filename does not contain a slash, the PATH variable is used to find filename. When Bash is not in POSIX mode, the current directory is searched
     
     - [[break]] - `break [n]` - Exit from a for, while, until, or select loop. If n is supplied, the nth enclosing loop is exited. n must be greater than or equal to 1. The return status is zero unless n is not greater than or equal to 1.
 
@@ -925,10 +920,10 @@ ade ace abe
 ____
 ### `~` Tilde Expavnsion
 
-Accesses the **directory stack**
+Accesses the directory stack
 
 !!!example `~` Tilde Expavnsion
-    If the characters following the tilde in the tilde-prefix consist of **a number N,** optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
+    If the characters following the tilde in the tilde-prefix consist of a number N, optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
 
     >- [[`~`]] - The value of `$HOME`
     >- [[`~/foo`]] - `$HOME/foo`
@@ -946,8 +941,6 @@ Accesses the **directory stack**
 #### Word Designators
 
 !!!cite [Using History Interactively](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Using-History-Interactively)
-
-Uses the `!` (bang symbol)
 
 Word designators are used to **select desired words** from the event.
 
@@ -984,7 +977,7 @@ If [[`x`]] is missing, it defaults to 0.
     
     For example,
 
-    - `!!` - designates the preceding command. When you type this, the preceding command is repeated in total.
+    - `!!` - designates the preceding command. When you type this, the preceding command is repeated in toto.
 
     - `!!:$` - designates the last argument of the preceding command. This may be shortened to !$.
 
@@ -2577,26 +2570,15 @@ unlike Windows, requires a space after command - `cd ..`
 lists the files in a location
 
 >-  `-l` - long
->-  `-a` - show hidden . 
+>-  `-a` - show hidden
 >-  `-d`- directories
 >-  `-F`- append symbols, such as **"*"** to executables
 >-  `-S` - sort by file/dir size
->-  `-R` - recurse
+>-  `-R` - show Dir structure
 >-  "*.html" - show only html files
 >-  `--color=auto` - shows ls in color.
->-  --group-directories-first
->- `-h`  Human values
->-  `x` sort by file ext.
->- `-p` indicate dirs with `/`
->- --hyperlink - make the files a link?
->- ` --indicator-style=WORD`  append indicator with style WORD to entry names:
-        - none (default),
-        -  slash (-p),
-        - file-type (--file-type), 
-        - classify (-F)
 
         alias ls=ls --color=auto -la
-
 
 can be added to bash.rc
 
@@ -3537,57 +3519,6 @@ this creates a user without a password.  But cannot login
 `sudo passwd` changes the current user password
 
 `passwd` changes the root password
-
-### Password Requirements
-
-On debian, at least on raspberry pi, the password requirements are in `/etc/pam.d/common-password
-```bash
-cat /etc/pam.d/common-password
-#
-# /etc/pam.d/common-password - password-related modules common to all services
-#
-# This file is included from other service-specific PAM config files,
-# and should contain a list of modules that define the services to be
-# used to change user passwords.  The default is pam_unix.
-
-# As of pam 1.0.1-6, this file is managed by pam-auth-update by default.
-# To take advantage of this, it is recommended that you configure any
-# local modules either before or after the default block, and use
-# pam-auth-update to manage selection of other modules.  See
-# pam-auth-update(8) for details.
-
-# here are the per-package modules (the "Primary" block)
-password        [success=1 default=ignore]      pam_unix.so obscure sha512
-# here's the fallback if no module succeeds
-password        requisite                       pam_deny.so
-# prime the stack with a positive return value if there isn't one already;
-# this avoids us returning an error just because nothing sets a success code
-# since the modules above will each just jump around
-password        required                        pam_permit.so
-# and here are more per-package modules (the "Additional" block)
-# end of pam-auth-update config
-```
-
-changing `password        [success=1 default=ignore]      pam_unix.so obscure sha512`  (specifically `obscure`),
-to `minlen=1` removes the password requirements.  Obviously not a great idea to do this for everything.
-
-`password        [success=1 default=ignore]      pam_unix.so minlen=1 sha512`
-
-from the file above 
-
-> "The "sha512" option enables salted SHA512 passwords.  Without this option,  the default is Unix crypt.  Prior releases used the option "md5".
-
-so sha512, md5, ?crypt (or blank?)
-
-> The "obscure" option replaces the old `OBSCURE_CHECKS_ENAB` option in ` login.defs.`
-
-`  pam_unix.so` is the module to change passwords, presumably it could be something else.
-
-
-### install SSH Key
-
-Windows; `ssh -i .\.ssh\ed25519-key-20210109 pi@fluiddpi.local`
-Linux/WSL `ssh -i .~/.ssh/ed25519-key-20210109 ~~user@hostname(.local)`~~
 
 ### userdel
 

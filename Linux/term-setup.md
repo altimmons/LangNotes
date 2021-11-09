@@ -1,5 +1,6 @@
 alias sagi='sudo apt-get install'
 alias sagu='sudo apt-get update'
+alias sas='sudo apt search'
 
 alias lc='colorls -laC --sd'
 alias ld='colorls -d --sd'

@@ -763,6 +763,7 @@ Separate a number with dashes (# digit place holder):
         PS C:\> "{0:###-##-##}" -f 1234567
         123-45-67
 
+Create a list of 100 names with a padded suffix no. (Name001 → Name100):
 
         1..100 | % { 'Name{0:d3}' -f $_ }
 
@@ -5181,31 +5182,3 @@ notepad $PROFILE
 > `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
 
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
-
-## Advanced Stuff
-
-[Blog](https://devblogs.microsoft.com/scripting/use-a-powershell-cmdlet-to-work-with-file-attributes/)
-[2](https://devblogs.microsoft.com/scripting/use-powershell-to-toggle-the-archive-bit-on-files/)
-
-
-
-
-[enum]::GetValues([io.fileattributes])
-
-or [enum]::GetValues([system.io.fileattributes])
-
-To get a certain one:
-
-[enum]::GetValues([system.io.fileattributes])::Archive
-
-
-Get the file attribute bits
-
-(Get-ItemProperty -Path C:\fso\a.txt).attributes.Value__
-
-in bits
-
-[convert]::ToString(33,2)
-1000001
-
-$arch =  [io.fileattributes]::archive.Value__
