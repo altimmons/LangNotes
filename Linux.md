@@ -149,13 +149,30 @@ also seen recommended:
    - xterm-256color
    - vt100
    - gnome
+
+
 ## Useful Terminal Apps
+
+
 
 ncdu - shows du (disk usage) in a curses form
 mc -  a curses file browser
+nnn - better file browser
+
+byobu -tmux alternatve (actually a screen alternative which is GNU proj with simpler effects)
+
+fzf -fuzzy file finder
 
 joe - alternative to nano
+micro - preferred alternative to nano
 
+```sh
+pushd /usr/local/bin
+https://getmic.ro | bash
+ln ./micro -t /usr/bin 
+#or
+PATH=$PATH:/usr/local/bin
+```
 
 ccat - highlight cat
 
@@ -526,7 +543,11 @@ When excuting a given command, the following steps are excuted, in order:
 
 ##Redirection 
 
+
 [zsh: 7 Redirection](http://zsh.sourceforge.net/Doc/Release/Redirection.html)
+
+!!!Warning Warning: Unsure of the explicit differences of  BASH and ZSH for redirection.
+
 
 The following may appear anywhere in a simple command or may precede or follow a complex command. Expansion occurs before word or digit is used except as noted below. If the result of substitution on word produces more than one filename, redirection occurs for each separate filename in turn.
 
@@ -538,27 +559,27 @@ Open file word for reading as standard input. It is an error to open a file in t
 
 Open file word for reading and writing as standard input. If the file does not exist then it is created.
 
-> word
+`> word`
 
 Open file word for writing as standard output. If the file does not exist then it is created. If the file exists, and the CLOBBER option is unset, this causes an error; otherwise, it is truncated to zero length.
 
->| word
+`>| word`
 
->! word
+`>! word`
 
 Same as >, except that the file is truncated to zero length if it exists, regardless of CLOBBER.
 
->> word
+`>> word`
 
 Open file word for writing in append mode as standard output. If the file does not exist, and the CLOBBER and APPEND\_CREATE options are both unset, this causes an error; otherwise, the file is created.
 
->>| word
+`>>| word`
 
->>! word
+`>>! word`
 
 Same as >>, except that the file is created if it does not exist, regardless of CLOBBER and APPEND\_CREATE.
 
-<<[-] word
+`<<[-] word`
 
 The shell input is read up to a line that is the same as word, or to an end-of-file. No parameter expansion, command substitution or filename generation is performed on word. The resulting document, called a _here-document_, becomes the standard input.
 
@@ -568,13 +589,13 @@ Note that word itself does not undergo shell expansion. Backquotes in word do no
 
 If <<- is used, then all leading tabs are stripped from word and from the document.
 
-<<< word
+`<<< word`
 
 Perform shell expansion on word and pass the result to standard input. This is known as a _here-string_. Compare the use of word in here-documents above, where word does not undergo shell expansion.
 
-<& number
+`<& number`
 
->& number
+`>& number`
 
 The standard input/output is duplicated from file descriptor number (see man page dup2(2)).
 

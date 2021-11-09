@@ -624,8 +624,6 @@ The config files are here:
 
 /lib/dhcpcd/dhcpcd-hooks#
 
-
-
  
 ini=/var/local/emhttp/network.ini
 cfg=/boot/config/network.cfg
