@@ -1264,6 +1264,8 @@ ____
 
   ### Importing modules
 
+
+
   [Ref on Syntax](https://docs.python.org/3/reference/simple_stmts.html#import)
 
   [Ref on Mechanics](https://docs.python.org/3/reference/import.html#importsystem)
@@ -1348,6 +1350,199 @@ ____
   ```
 
   You can also write relative imports, with the from module import name form of import statement. These imports use leading dots to indicate the current and parent packages involved in the relative import. From the surround module for example, you might use:
+
+
+[Good source on multiple methods](https://stackoverflow.com/questions/2349991/how-to-import-other-python-files) ~~below~~
+
+**Example 1, Import a python module with python interpreter:**
+
+1.  Put this in /home/el/foo/fox.py:
+
+    ```
+    def what_does_the_fox_say():
+      print("vixens cry")
+    ```
+2.  Get into the python interpreter:
+    ```
+    >>> import fox
+    >>> fox.what_does_the_fox_say()
+    vixens cry
+    ```
+
+    You imported fox through the python interpreter, invoked the python function `what_does_the_fox_say()` from within fox.py.
+
+**Example 2, Use `execfile` or ([`exec` in Python 3](https://stackoverflow.com/q/6357361/55075)) in a script to execute the other python file in place:**
+
+    ```py3
+        # 1.  Put this in /home/el/foo2/mylib.py:
+            def moobar():
+            print("hi")
+        # 2.  Put this in /home/el/foo2/main.py:
+            execfile("/home/el/foo2/mylib.py")
+            moobar()
+    ```
+
+3.  run the file:
+            el@apollo:/home/el/foo$ python main.py
+            hi
+    
+The function moobar was imported from mylib.py and made available in main.py
+
+**Example 3, Use from ... import ... functionality:**
+
+1.  Put this in /home/el/foo3/chekov.py:
+
+    ```py3
+    def question():
+      print "where are the nuclear wessels?"
+
+2.  Put this in /home/el/foo3/main.py:
+
+    ```py
+    from chekov import question
+    question()
+    ```
+
+3.  Run it like this:
+
+    ```py
+    python main.py
+    where are the nuclear wessels?
+    ```
+
+    If you defined other functions in chekov.py, they would not be available unless you `import *`
+
+**Example 4, Import riaa.py if it's in a different file location from where it is imported**
+
+1.  Put this in /home/el/foo4/stuff/riaa.py:
+
+    ```py
+    def watchout():
+      print "computers are transforming into a noose and a yoke for humans"
+    ```
+
+2.  Put this in /home/el/foo4/main.py:
+
+    ```py
+    import sys
+    import os
+    sys.path.append(os.path.abspath("/home/el/foo4/stuff"))
+    from riaa import *
+    watchout()
+
+    ```
+
+3.  Run it:
+
+    ```
+    python main.py
+    >>> Computers are transforming into a noose and a yoke for humans
+
+    ```
+
+    That imports everything in the foreign file from a different directory.
+
+**Example 5, use `os.system("python yourfile.py")`**
+
+```
+import os
+os.system("python yourfile.py")
+
+```
+
+**Example 6, import your file via piggybacking the python startuphook:**
+
+**Update:** This example used to work for both python2 and 3, but now only works for python2. python3 got rid of this user startuphook feature set because it was abused by low-skill python library writers, using it to impolitely inject their code into the global namespace, before all user-defined programs. If you want this to work for python3, you'll have to get more creative. If I tell you how to do it, python developers will disable that feature set as well, so you're on your own.
+
+See: <https://docs.python.org/2/library/user.html>
+
+Put this code into your home directory in `~/.pythonrc.py`
+
+```py
+class secretclass:
+    def secretmessage(cls, myarg):
+        return myarg + " is if.. up in the sky, the sky"
+    secretmessage = classmethod( secretmessage )
+
+    def skycake(cls):
+        return "cookie and sky pie people can't go up and "
+    skycake = classmethod( skycake )
+
+```
+
+Put this code into your main.py (can be anywhere):
+
+```py
+import user
+msg = "The only way skycake tates good"
+msg = user.secretclass.secretmessage(msg)
+msg += user.secretclass.skycake()
+print(msg + " have the sky pie! SKYCAKE!")
+
+```
+
+Run it, you should get this:
+
+```py
+$ python main.py
+The only way skycake tates good is if.. up in the sky,
+the skycookie and sky pie people can't go up and  have the sky pie!
+SKYCAKE!
+
+```
+
+If you get an error here: `ModuleNotFoundError: No module named 'user'` then it means you're using python3, startuphooks are disabled there by default.
+
+Credit for this jist goes to: <https://github.com/docwhat/homedir-examples/blob/master/python-commandline/.pythonrc.py> Send along your up-boats.
+
+**Example 7, Most Robust: Import files in python with the bare import command:**
+
+1.  Make a new directory `/home/el/foo5/`
+
+2.  Make a new directory `/home/el/foo5/herp`
+
+3.  Make an empty file named `__init__.py` under herp:
+
+```sh
+
+touch __init__.py
+
+#4.  Make a new directory /home/el/foo5/herp/derp
+
+mkdir derp
+cd derp
+
+# 5.  Under derp, make another `__init__.py` file: 
+
+touch __init__.py
+touch yolo.py
+```
+
+6.  Under /home/el/foo5/herp/derp make a new file called `yolo.py` Put this in there:
+
+    ```py
+    def skycake():
+      print "SkyCake evolves to stay just beyond the cognitive reach of " +
+      "the bulk of men. SKYCAKE!!"
+
+    ```
+
+7.  The moment of truth, Make the new file `/home/el/foo5/main.py`, put this in there;
+
+    ```
+    from herp.derp.yolo import skycake
+    skycake()
+    ```
+
+8.  Run it:
+
+    ```
+    el@apollo:/home/el/foo5$ python main.py
+    SkyCake evolves to stay just beyond the cognitive reach of the bulk
+    of men. SKYCAKE!!
+    ```
+
+    The empty `__init__.py` file communicates to the python interpreter that the developer intends this directory to be an importable package.
 
 
   ### Get the Version number of the interpreter
@@ -2203,7 +2398,6 @@ ____
  In the above example, note that the address of x initially matches that of n  as it is passed to `increment()` but changes after reassignment, while the address of n never changes.  If it was passed by value, then it should have a new address, as it was returned from increment(n).  Of note, it should also have the form of `n=increment(n)`
 
 
-### __dict__
 
 
 ____
@@ -4941,6 +5135,7 @@ but the above is a simple nested dict.
 
  #the selected answer for autovivification in perl
 
+
  class AutoVivification(dict):
     """Implementation of perl's autovivification feature."""
     def __getitem__(self, item):
@@ -5013,6 +5208,14 @@ but the above is a simple nested dict.
               'queens counyt': {}}}
  ```
 
+#### Vividict
+
+```py
+ class Vividict(dict):
+    def __missing__(self, key):
+        value = self[key] = type(self)() # retain local pointer to value
+        return value                     # faster to return than dict lookup
+```
 
 
 #### Ordered Dictionary
@@ -5109,16 +5312,62 @@ class LRU(OrderedDict):
 
  Use the following:
 
+ dict automatically returns an iterator over keys.
+
  ```py
  for k in d:
+     #this is the same as 'for k in d.keys()'
     print(k)
- ```
+    print(k, d[k])
+```
  Where k is the keys that are returned, and d is the name of a dictionary.
 
  See also the following section
 
- #### d.items()
+using d.items():
+This works because d.items() returns a **list** of **tuples** and we just assign it out.
 
+```py
+for k,v in d.items():
+    print(k, v)
+```
+
+By Values:
+
+you cant get back the keys, without a reverse lookup I think, (See below)
+
+```py
+for value in d.values():
+...     print(value)    
+```
+
+#### Testing inclusion
+
+```py
+
+d = {'a': 1, 'b': 2, 'cc': False, 'D': 'banana'}
+'a' in d.keys() #true
+'a' in d.values() #false
+
+2 in d.keys() #false
+2 in d.values() #true
+'a' in d.keys() #T
+'a' in d #T
+'banana' in d.keys() #F
+'banana' in d #F
+'banana' in d.values() #T
+```
+
+#### Dict inversion
+
+~~```py~~
+d = {'a': 1, 'b': 2, 'cc': False, 'D': 'banana'}
+new_d = {}
+for k,v in d.items()
+    new_d[v]=k
+```
+
+ #### d.items()
  returns a list of tuples for the dictionary.
 
  ```py
@@ -6467,6 +6716,8 @@ ____
 
  Some functions take arguments as a tuple. They take any number of inputs and zip them up into a single tuple. The command for this is an asterisk (*), where it looks like: `def func(*args):`
 
+NOTE:  It seems in both cases **scattering,** and **gathering,** the `*` is always _preceeding_ the var name. which makes sense? other wise its the same as multiplication
+
  example:
 
  ```py
@@ -6518,6 +6769,55 @@ ____
  The opposite is **scattering,** also done with an _. Using divmod(n,o) from above. var_
 
  This is wrong 'So it appears in gathering, the asterisk comes first _args, and in scattering it comes second- args_' it seems like its always first.
+
+Often the scattering is implicit:
+
+Note these 3 styles, and the results they produce:
+
+1- 
+
+```py
+ def p(*args):
+    for a in args:
+        print(a)
+
+#using for a in *args, or a in args* both error.
+>>> p(1,2,3,4,5)
+1
+2
+3
+4
+5
+```
+vs not scattering or indicating its scattered, acts like a tuple?
+2 
+```py
+ def p(*args):
+    print(args)
+
+>>> p(1,2,3,4,5)
+(1, 2, 3, 4, 5)
+
+#however, this does not work at all
+ def p(args):
+    print(args)
+    print(*args)
+
+>>> p(1,2,3,4,5)
+(1, 2, 3, 4, 5)
+```
+
+
+def p(*args):
+    print(*args)
+
+>>> p(1,2,3,4,5)
+1 2 3 4 5
+
+
+
+```
+
 
  ```py
  >>> t= 7,3
@@ -6924,6 +7224,54 @@ ____
  print(word_count)
  ```
 
+
+### ConfigParser
+
+The ConfigParser package lets you parse stored variables.  There are similar packages for JSON and other methods 
+
+This config file:
+
+        [server]
+        ;Set OctoPrint server address and x-api-key
+        ServerAddress = SERVER_ADDRESS_HERE
+        ApiKey = API_KEY_HERE
+
+        [preferences]
+        ;Set if the program uses colored or formatted text, this setting is turned off on windows due to cmd and powershell limitations
+        FormattedText = true
+        ;Set if the program should check for updates
+        UpdateCheck = true
+
+        [printer]
+        ;Set maximum temperature that printer can be running at
+        MaxExtruderTemp = 250
+        MaxBedTemp = 85
+
+
+is accessed like this:
+
+```py3
+    global destination
+    global key
+    destination = config['server']['ServerAddress']
+    key = config['server']['ApiKey']
+
+#and loaded like this
+
+def loadConfig(path):
+    try:
+        open(os.path.join(path))
+        config.read(os.path.join(path))
+        if config['server']['ServerAddress']:
+            pass
+        if config['server']['ApiKey']:
+            pass
+        return True
+    except KeyError:
+        return False
+    except FileNotFoundError:
+        return False
+```
  ### JSON
 
  Using the json library, opens a json file as a dictionary.
@@ -7262,7 +7610,7 @@ ____
 
   |    +-- `IndexError`
 
-  |    +-- `KeyError`
+  |    +-- `KeyError` - Raised by looking up a dictionary key that doesnt exist
 
   +-- `MemoryError`
 
@@ -7372,7 +7720,7 @@ ____
         self.expression = expression
         self.message = message
 
- class TransitionErrpr(Error):
+ class TransitionError(Error):
     """doc string
     Attributes:
         previous - state at beginning of transition
@@ -8405,7 +8753,6 @@ ____
 ____
 ____
 ## Advanced Concepts
-
 
  <!-- Move to Unittests -->
  ### Tests
