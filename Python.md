@@ -8984,6 +8984,76 @@ ____
  '''code block'''
  ```
 
+
+## Concurrent Execution
+
+[Concuurency](https://docs.python.org/3/library/concurrency.html#concurrent-execution)
+
+
+### Subprocesses 
+The subprocess module allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes. This module intends to replace several older modules and functions:
+
+[Subprocess](https://docs.python.org/3/library/subprocess.html#)
+
+
+https://docs.python.org/3/library/subprocess.html#replacing-shell-pipeline
+
+```py
+
+Replacing shell pipeline
+output=$(dmesg | grep hda)
+becomes:
+
+p1 = Popen(["dmesg"], stdout=PIPE)
+p2 = Popen(["grep", "hda"], stdin=p1.stdout, stdout=PIPE)
+p1.stdout.close()  # Allow p1 to receive a SIGPIPE if p2 exits.
+output = p2.communicate()[0]
+
+```
+
+
+Replacing os.system()
+`sts = os.system("mycmd" + " myarg")`
+# becomes
+`retcode = call("mycmd" + " myarg", shell=True)`
+Notes:
+
+Calling the program through the shell is usually not required.
+
+The call() return value is encoded differently to that of os.system().
+
+The os.system() function ignores SIGINT and SIGQUIT signals while the command is running, but the caller must do this separately when using the subprocess module.
+
+A more realistic example would look like this:
+```
+try:
+    retcode = call("mycmd" + " myarg", shell=True)
+    if retcode < 0:
+        print("Child was terminated by signal", -retcode, file=sys.stderr)
+    else:
+        print("Child returned", retcode, file=sys.stderr)
+except OSError as e:
+    print("Execution failed:", e, file=sys.stderr)
+
+```
+
+Replacing the os.spawn family
+
+#### P_NOWAIT example:
+```py
+pid = os.spawnlp(os.P_NOWAIT, "/bin/mycmd", "mycmd", "myarg")
+==>
+pid = Popen(["/bin/mycmd", "myarg"]).pid
+P_WAIT example:
+
+retcode = os.spawnlp(os.P_WAIT, "/bin/mycmd", "mycmd", "myarg")
+==>
+retcode = call(["/bin/mycmd", "myarg"])
+```
+
+
+
+
 ____
 ____
 ## Unit Testting

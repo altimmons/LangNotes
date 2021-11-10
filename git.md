@@ -1,37 +1,3 @@
-# VS Code Advanced Config
-
-
-## VS Code Tips and Tricks
-
-Right Click on bottom left to config status bar
-
-## VS Code Extension Samples
-
-[Link](https://github.com/microsoft/vscode-extension-samples)
-
-## Language Configuration
-
-[Link](https://github.com/microsoft/vscode-extension-samples/tree/master/language-configuration-sample/.vscode)
-
-## Fixing the fonts in WSL
-
-[here](https://token2shell.com/howto/x410/sharing-windows-fonts-with-wsl/)
-
-```sh
-code /etc/fonts/local.conf
-```
-
-then add
-
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-    <dir>/mnt/c/Windows/Fonts</dir>
-</fontconfig>
-```
-
-## Git Commands
 
 
 ## Configure Git to manage Line Endings
@@ -45,6 +11,95 @@ then add
 ## Environment
 
 [[F5]]
+
+[Environment Variables](https://www.tutorialspoint.com/git/git_environment.htm)
+
+[ https://git-scm.com/book/pl/v2/Git-Internals-Environment-Variables](https://www.tutorialspoint.com/git/git_environment.htm)
+
+[Source on config](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
+
+> The final creation of a Git commit object is usually done by git-commit-tree, which uses these environment variables as its primary source of information, falling back to configuration values only if these aren’t present.
+
+
+```sh
+export GIT_COMMITTER_EMAIL=15314341+altimmons@users.noreply.github.com
+export GIT_AUTHOR_EMAIL=15314341+altimmons@users.noreply.github.com
+export GIT_AUTHOR_NAME='A. Timmons'
+export GIT_COMMITTER_NAME='A. Timmons'
+export GIT_PAGER=$PAGER
+export GIT_EDITOR=$EDITOR
+export GIT_CONFIG_PARAMETERS="'color.ui=true, color.branch=auto, color.status=auto'"
+```
+
+Though this doesnt seem to work, rather run
+
+## Settings
+
+```sh
+git config --global user.name "A. Timmons"
+git config --global user.email "15314341+altimmons@users.noreply.github.com"
+
+git config --global color.ui true
+git config --global color.branch auto
+git config --global color.status auto
+git config --global branch.autosetuprebase always
+
+
+# git config --global color.branch true
+
+# git config --global color.diff true
+# git config --global color.diff.meta "blue black bold"
+# #  normal, black, red, green, yellow, blue, magenta, cyan, or white. If you want an attribute like bold in the previous example, you can choose from bold, dim, ul (underline), blink, and reverse (swap foreground and background).
+# git config --global color.interactive true
+
+# git config --global color.status true
+# git config --global merge.tool vimdiff
+# git config --global core.editor vim
+```
+
+[Source on config](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
+
+or you can edit your `~/.gitconfig` file to add these lines:
+
+```sh
+[merge]
+  tool = extMerge
+[mergetool "extMerge"]
+  cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+[diff]
+  external = extDiff
+
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+Highlight whitespace in diffs
+``` 
+
+another example
+
+```sh
+[color]
+  ui = true
+[color "diff"]
+  whitespace = red reverse
+[core]
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+```
+## Git Commands
+
 
 
 ## Git Commit

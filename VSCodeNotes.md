@@ -82,7 +82,35 @@
 
 <!-- /code_chunk_output -->
 
+~~##~~ VS Code Tips and Tricks
 
+Right Click on bottom left to config status bar
+
+## VS Code Extension Samples
+
+[Link](https://github.com/microsoft/vscode-extension-samples)
+
+## Language Configuration
+
+[Link](https://github.com/microsoft/vscode-extension-samples/tree/master/language-configuration-sample/.vscode)
+
+## Fixing the fonts in WSL
+
+[here](https://token2shell.com/howto/x410/sharing-windows-fonts-with-wsl/)
+
+```sh
+code /etc/fonts/local.conf
+```
+
+then add
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <dir>/mnt/c/Windows/Fonts</dir>
+</fontconfig>
+```
 
 [](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
   
