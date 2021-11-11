@@ -705,13 +705,13 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 
 Netmask defines how "large" a network is or if yo're configuring a rule that requires an IP address and a Netmask, the Netmask will signify to what portion or range of the Network the rule will apply to:
 
-| IP                    | NETMASK         | DESCRIPTION                        |
-| -------------- | --------------- | ----------------------------------- |
-| 192.168.55.161 | 255.255.255.255 | Only applies to 192.168.55.161  |
-| 192.168.55.0     | 255.255.255.0     | 192.168.55.0 - 192.168.55.255 range |
-| 192.168.55.240 | 255.255.255.240 | 192.168.55.240 - 192.168.55.255  |
-| 192.168.55.161 | 255.255.255.0     | 192.168.55.0 - 192.168.55.255      |
-| 192.168.0.0       | 255.255.0.0         | 192.168.0.0 - 192.168.255.255      |
+            | IP                    | NETMASK         | DESCRIPTION                        |
+            | -------------- | --------------- | ----------------------------------- |
+            | 192.168.55.161 | 255.255.255.255 | Only applies to 192.168.55.161  |
+            | 192.168.55.0     | 255.255.255.0     | 192.168.55.0 - 192.168.55.255 range |
+            | 192.168.55.240 | 255.255.255.240 | 192.168.55.240 - 192.168.55.255  |
+            | 192.168.55.161 | 255.255.255.0     | 192.168.55.0 - 192.168.55.255      |
+            | 192.168.0.0       | 255.255.0.0         | 192.168.0.0 - 192.168.255.255      |
 
 
 Sometimes you will see that a Netmask is defined by one number, e.g., 24. This number is the length of the Netmask in bits:
@@ -719,22 +719,22 @@ Sometimes you will see that a Netmask is defined by one number, e.g., 24. This n
 
 So, for example, a Netmask that is 24-bits long is 255.255.255.0:
 
-| Octet   | 1    | 2    | 3    | 4   |
-| ------- | ---- | ---- | ---- | --- |
-| NETMASK | 255. | 255. | 255. | 255 |
-| length  | 8    | 16   | 24   | 32  |
-| NETMASK | 255. | 255. | 255. | 0   |
-| length  | 8    | 16   | 24   | -   |
-| NETMASK | 255. | 255. | 0.   | 0   |
-| length  | 8    | 16   | -    | -   |
+            | Octet   | 1    | 2    | 3    | 4   |
+            | ------- | ---- | ---- | ---- | --- |
+            | NETMASK | 255. | 255. | 255. | 255 |
+            | length  | 8    | 16   | 24   | 32  |
+            | NETMASK | 255. | 255. | 255. | 0   |
+            | length  | 8    | 16   | 24   | -   |
+            | NETMASK | 255. | 255. | 0.   | 0   |
+            | length  | 8    | 16   | -    | -   |
 
 A Netmask that is 16-bits long is 255.255.0.0:
 
-| Class | network addresses           | net mask      | net mask /bits | # of subnets |
-| ----- | --------------------------- | ------------- | -------------- | ------------ |
-| A     | 10.x.x.x                    | 255.0.0.0     | /8             | 1            |
-| B     | 172.16.x.x — 172.31.x.x     | 255.255.0.0   | /16            | 16           |
-| C     | 192.168.0.x — 192.168.255.x | 255.255.255.0 | /24            | 256          |
+            | Class | network addresses           | net mask      | net mask /bits | # of subnets |
+            | ----- | --------------------------- | ------------- | -------------- | ------------ |
+            | A     | 10.x.x.x                    | 255.0.0.0     | /8             | 1            |
+            | B     | 172.16.x.x — 172.31.x.x     | 255.255.0.0   | /16            | 16           |
+            | C     | 192.168.0.x — 192.168.255.x | 255.255.255.0 | /24            | 256          |
 
 The mDNS IPv4 link-local multicast address "224.0.0.251" or its IPv6 equivalent "FF02::FB" are used to make DNS query for a name ending with ".local".
 
@@ -743,3 +743,50 @@ sudo adduser USER netdev
 
 #show devices
 ip -brief link show
+```
+
+## Services
+
+[Example from](https://docs.mainsail.xyz/setup/manual-setup/klipper#configuration--startup-service)
+
+
+> After Klipper is installed, you will need to create a startup script to define log, config & UDS service > location:
+> 
+> To edit this file type:
+> 
+> `sudo nano /etc/systemd/system/klipper.service`
+> fill in these lines:
+> ```properties
+>      #Systemd Klipper Service
+>      
+>      [Unit]
+>            Description=Starts Klipper and provides klippy Unix Domain Socket API
+>            Documentation=https://www.klipper3d.org/
+>            After=network.target
+>            Before=moonraker.service
+>           Wants=udev.target
+>      
+>      [Install]
+>            Alias=klippy
+>          WantedBy=multi-user.target
+>      
+>      [Service]
+>            Environment=KLIPPER_CONFIG=/home/pi/klipper_config/printer.cfg
+>            Environment=KLIPPER_LOG=/home/pi/klipper_logs/klippy.log
+>            Environment=KLIPPER_SOCKET=/tmp/klippy_uds
+>            Type=simple
+>            User=pi
+>            RemainAfterExit=yes
+>            ExecStart= /home/pi/klippy-env/bin/python /home/pi/klipper/klippy/klippy.py ${KLIPPER_CONFIG} -l $> {     KLIPPER_LOG} -a ${KLIPPER_SOCKET}
+>           Restart=always
+>           RestartSec=10
+> ```
+> 
+> Save the file with CTRL+O and close the editor with CTRL+X.
+> 
+> Please check and modify the username!
+> If you do not use the user pi, you must replace it in each path and in the variable user in the service > file.
+> 
+> To enable and start the Klipper service execute these commands:
+> 
+> sudo systemctl enable klipper.service

@@ -12,6 +12,8 @@
 
 [[F5]]
 
+Sources:
+
 [Environment Variables](https://www.tutorialspoint.com/git/git_environment.htm)
 
 [ https://git-scm.com/book/pl/v2/Git-Internals-Environment-Variables](https://www.tutorialspoint.com/git/git_environment.htm)
@@ -21,7 +23,7 @@
 > The final creation of a Git commit object is usually done by git-commit-tree, which uses these environment variables as its primary source of information, falling back to configuration values only if these aren’t present.
 
 
-```sh
+```r
 export GIT_COMMITTER_EMAIL=15314341+altimmons@users.noreply.github.com
 export GIT_AUTHOR_EMAIL=15314341+altimmons@users.noreply.github.com
 export GIT_AUTHOR_NAME='A. Timmons'

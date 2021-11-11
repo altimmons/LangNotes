@@ -7,7 +7,7 @@
 Brings up the command browser in command line
 `SHOW-COMMAND`
 `SHOW-COMMAND`
-`SHOW-COMMAND`
+~~`SHOW-COMMAND`~~
 `SHOW-COMMAND`
 `SHOW-COMMAND`
 
@@ -15,6 +15,316 @@ Brings up the command browser in command line
 Non-blocking version:
 
 `Get-Command | Out-GridView`
+
+
+## Tutorial Links
+
+Version - PowerShell 7.2 (LTS)
+-   [How to use this documentation](https://docs.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.2)
+-   Overview
+    -   [What is PowerShell?](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.2)
+    -   [What is a PowerShell command?](https://docs.microsoft.com/en-us/powershell/scripting/powershell-commands?view=powershell-7.2)
+-   Install
+-   Learning PowerShell
+    -   PowerShell 101
+        -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction?view=powershell-7.2)
+        -   [Getting Started with PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.2)
+        -   [The Help System](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/02-help-system?view=powershell-7.2)
+        -   [Discovering objects, properties, and methods](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/03-discovering-objects?view=powershell-7.2)
+        -   [One-liners and the pipeline](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines?view=powershell-7.2)
+        -   [Formatting, aliases, providers, comparison](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/05-formatting-aliases-providers-comparison?view=powershell-7.2)
+        -   [Flow control](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/06-flow-control?view=powershell-7.2)
+        -   [Working with WMI](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/07-working-with-wmi?view=powershell-7.2)
+        -   [PowerShell remoting](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/08-powershell-remoting?view=powershell-7.2)
+        -   [Functions](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2)
+        -   [Script modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/10-script-modules?view=powershell-7.2)
+        -   [Appendix A - Help Syntax](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/appendix-a?view=powershell-7.2)
+    -   Tutorials
+        -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/00-introduction?view=powershell-7.2)
+        -   [Discover PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/01-discover-powershell?view=powershell-7.2)
+    -   Deep dives
+        -   [Overview](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/overview?view=powershell-7.2)
+        -   Everything you want to know about ...
+            -   [Everything you want to know about arrays](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.2)
+            -   [Everything you want to know about hashtables](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.2)
+            -   [Everything you want to know about PSCustomObject](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-pscustomobject?view=powershell-7.2)
+            -   [Everything you want to know about string substitution](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-string-substitutions?view=powershell-7.2)
+            -   [Everything you want to know about if/then/else](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-if?view=powershell-7.2)
+            -   [Everything you want to know about switch](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-switch?view=powershell-7.2)
+            -   [Everything you want to know about exceptions](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-exceptions?view=powershell-7.2)
+            -   [Everything you want to know about $null](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-null?view=powershell-7.2)
+            -   [Everything you want to know about ShouldProcess](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess?view=powershell-7.2)
+        -   [Write-Progress while multithreading](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/write-progress-across-multiple-threads?view=powershell-7.2)
+        -   [Add Credential support to PowerShell functions](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/add-credentials-to-powershell-functions?view=powershell-7.2)
+    -   Sample scripts
+        -   [Sample scripts for administration](https://docs.microsoft.com/en-us/powershell/scripting/samples/sample-scripts-for-administration?view=powershell-7.2)
+        -   Working with objects
+            -   [Viewing object structure - Get-Member](https://docs.microsoft.com/en-us/powershell/scripting/samples/viewing-object-structure--get-member-?view=powershell-7.2)
+            -   [Selecting parts of object - Select-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-parts-of-objects--select-object-?view=powershell-7.2)
+            -   [Removing objects from the pipeline - Where-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/removing-objects-from-the-pipeline--where-object-?view=powershell-7.2)
+            -   [Sorting objects](https://docs.microsoft.com/en-us/powershell/scripting/samples/sorting-objects?view=powershell-7.2)
+            -   [Creating .NET and COM objects - New-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-7.2)
+            -   [Using static classes and methods](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-static-classes-and-methods?view=powershell-7.2)
+            -   [Getting WMI objects - Get-CimInstance](https://docs.microsoft.com/en-us/powershell/scripting/samples/getting-wmi-objects--get-ciminstance-?view=powershell-7.2)
+            -   [Manipulating items directly](https://docs.microsoft.com/en-us/powershell/scripting/samples/manipulating-items-directly?view=powershell-7.2)
+        -   Managing computers
+        -   Managing processes & services
+        -   Working with output
+            -   [Redirecting data with Out-* cmdlets](https://docs.microsoft.com/en-us/powershell/scripting/samples/redirecting-data-with-out---cmdlets?view=powershell-7.2)
+            -   [Using format commands to change output view](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view?view=powershell-7.2)
+        -   Manage drives & files
+            -   [Managing current location](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-current-location?view=powershell-7.2)
+            -   [Working with files and folders](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-and-folders?view=powershell-7.2)
+            -   [Working with files folders and registry keys](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-folders-and-registry-keys?view=powershell-7.2)
+            -   [Working with registry entries](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-entries?view=powershell-7.2)
+            -   [Working with registry keys](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-keys?view=powershell-7.2)
+        -   Creating UI elements
+            -   [Creating a custom input box](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-a-custom-input-box?view=powershell-7.2)
+            -   [Creating a graphical date picker](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-a-graphical-date-picker?view=powershell-7.2)
+            -   [Multiple selection list boxes](https://docs.microsoft.com/en-us/powershell/scripting/samples/multiple-selection-list-boxes?view=powershell-7.2)
+            -   [Selecting items from a list box](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-items-from-a-list-box?view=powershell-7.2)
+    -   PowerShell remoting
+    -   [PowerShell security features](https://docs.microsoft.com/en-us/powershell/scripting/learn/security-features?view=powershell-7.2)
+    -   [Using Experimental Features](https://docs.microsoft.com/en-us/powershell/scripting/learn/experimental-features?view=powershell-7.2)
+    -   [Compatibility aliases](https://docs.microsoft.com/en-us/powershell/scripting/learn/compatibility-aliases?view=powershell-7.2)
+    -   [Additional resources](https://docs.microsoft.com/en-us/powershell/scripting/learn/more-powershell-learning?view=powershell-7.2)
+    -   [Glossary](https://docs.microsoft.com/en-us/powershell/scripting/learn/glossary?view=powershell-7.2)
+
+## Links on Basics
+
+-   [Microsoft.PowerShell.Core](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-7.2)
+-   About
+    -   [About](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.2)
+    -   [about_Aliases](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases?view=powershell-7.2)
+    -   [about_Alias_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_alias_provider?view=powershell-7.2)
+    -   [about_ANSI_Terminals](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_ansi_terminals?view=powershell-7.2)
+    -   [about_Arithmetic_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators?view=powershell-7.2)
+    -   [about_Arrays](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays?view=powershell-7.2)
+    -   [about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-7.2)
+    -   [about_Automatic_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.2)
+    -   [about_Booleans](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_booleans?view=powershell-7.2)
+    -   [about_Break](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_break?view=powershell-7.2)
+    -   [about_Calculated_Properties](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_calculated_properties?view=powershell-7.2)
+    -   [about_Character_Encoding](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding?view=powershell-7.2)
+    -   [about_CimSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_cimsession?view=powershell-7.2)
+    -   [about_Classes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_classes?view=powershell-7.2)
+    -   [about_Command_Precedence](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence?view=powershell-7.2)
+    -   [about_Command_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_syntax?view=powershell-7.2)
+    -   [about_Comment_Based_Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-7.2)
+    -   [about_CommonParameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.2)
+    -   [about_Comparison_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-7.2)
+    -   [about_Continue](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_continue?view=powershell-7.2)
+    -   [about_Core_Commands](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_core_commands?view=powershell-7.2)
+    -   [about_Data_Sections](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_data_sections?view=powershell-7.2)
+    -   [about_Debuggers](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_debuggers?view=powershell-7.2)
+    -   [about_Do](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_do?view=powershell-7.2)
+    -   [about_Enum](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_enum?view=powershell-7.2)
+    -   [about_Environment_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_provider?view=powershell-7.2)
+    -   [about_Environment_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.2)
+    -   [about_Execution_Policies](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.2)
+    -   [about_Experimental_Features](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_experimental_features?view=powershell-7.2)
+    -   [about_FileSystem_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_filesystem_provider?view=powershell-7.2)
+    -   [about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-7.2)
+    -   [about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-7.2)
+    -   [about_Format.ps1xml](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_format.ps1xml?view=powershell-7.2)
+    -   [about_Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+    -   [about_Functions_Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+    -   [about_Functions_Advanced_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_methods?view=powershell-7.2)
+    -   [about_Functions_Advanced_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+    -   [about_Functions_Argument_Completion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2)
+    -   [about_Functions_CmdletBindingAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+    -   [about_Functions_OutputTypeAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute?view=powershell-7.2)
+    -   [about_Function_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_function_provider?view=powershell-7.2)
+    -   [about_Group_Policy_Settings](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_group_policy_settings?view=powershell-7.2)
+    -   [about_Hash_Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-7.2)
+    -   [about_Hidden](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hidden?view=powershell-7.2)
+    -   [about_History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_history?view=powershell-7.2)
+    -   [about_If](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_if?view=powershell-7.2)
+    -   [about_Intrinsic_Members](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_intrinsic_members?view=powershell-7.2)
+    -   [about_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_jobs?view=powershell-7.2)
+    -   [about_Job_Details](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_job_details?view=powershell-7.2)
+    -   [about_Join](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_join?view=powershell-7.2)
+    -   [about_Language_Keywords](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_keywords?view=powershell-7.2)
+    -   [about_Language_Modes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_modes?view=powershell-7.2)
+    -   [about_Line_Editing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_line_editing?view=powershell-7.2)
+    -   [about_Locations](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_locations?view=powershell-7.2)
+    -   [about_Logging_Non-Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_non-windows?view=powershell-7.2)
+    -   [about_Logging_Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows?view=powershell-7.2)
+    -   [about_Logical_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators?view=powershell-7.2)
+    -   [about_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_methods?view=powershell-7.2)
+    -   [about_Modules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.2)
+    -   [about_Numeric_Literals](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_numeric_literals?view=powershell-7.2)
+    -   [about_Objects](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_objects?view=powershell-7.2)
+    -   [about_Object_Creation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_object_creation?view=powershell-7.2)
+    -   [about_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators?view=powershell-7.2)
+    -   [about_Operator_Precedence](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operator_precedence?view=powershell-7.2)
+    -   [about_Output_Streams](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_output_streams?view=powershell-7.2)
+    -   [about_PackageManagement](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_packagemanagement?view=powershell-7.2)
+    -   [about_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+    -   [about_Parameters_Default_Values](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters_default_values?view=powershell-7.2)
+    -   [about_Parameter_Sets](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.2)
+    -   [about_Parsing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing?view=powershell-7.2)
+    -   [about_Path_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_path_syntax?view=powershell-7.2)
+    -   [about_Pipelines](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines?view=powershell-7.2)
+    -   [about_Pipeline_Chain_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipeline_chain_operators?view=powershell-7.2)
+    -   [about_PowerShell_Config](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_config?view=powershell-7.2)
+    -   [about_PowerShell_Editions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_editions?view=powershell-7.2)
+    -   [about_Preference_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-7.2)
+    -   [about_Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.2)
+    -   [about_Prompts](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts?view=powershell-7.2)
+    -   [about_Properties](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_properties?view=powershell-7.2)
+    -   [about_Providers](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_providers?view=powershell-7.2)
+    -   [about_PSConsoleHostReadLine](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psconsolehostreadline?view=powershell-7.2)
+    -   [about_PSCustomObject](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pscustomobject?view=powershell-7.2)
+    -   [about_PSModulePath](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath?view=powershell-7.2)
+    -   [about_PSSessions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssessions?view=powershell-7.2)
+    -   [about_PSSession_Details](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssession_details?view=powershell-7.2)
+    -   [about_Pwsh](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh?view=powershell-7.2)
+    -   [about_Quoting_Rules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules?view=powershell-7.2)
+    -   [about_Redirection](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection?view=powershell-7.2)
+    -   [about_Ref](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_ref?view=powershell-7.2)
+    -   [about_Registry_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_registry_provider?view=powershell-7.2)
+    -   [about_Regular_Expressions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions?view=powershell-7.2)
+    -   [about_Remote](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote?view=powershell-7.2)
+    -   [about_Remote_Disconnected_Sessions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_disconnected_sessions?view=powershell-7.2)
+    -   [about_Remote_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_jobs?view=powershell-7.2)
+    -   [about_Remote_Output](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_output?view=powershell-7.2)
+    -   [about_Remote_Requirements](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_requirements?view=powershell-7.2)
+    -   [about_Remote_Troubleshooting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_troubleshooting?view=powershell-7.2)
+    -   [about_Remote_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_variables?view=powershell-7.2)
+    -   [about_Requires](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires?view=powershell-7.2)
+    -   [about_Reserved_Words](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_reserved_words?view=powershell-7.2)
+    -   [about_Return](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_return?view=powershell-7.2)
+    -   [about_Run_With_PowerShell](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_run_with_powershell?view=powershell-7.2)
+    -   [about_Scopes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scopes?view=powershell-7.2)
+    -   [about_Scripts](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.2)
+    -   [about_Script_Blocks](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks?view=powershell-7.2)
+    -   [about_Script_Internationalization](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_internationalization?view=powershell-7.2)
+    -   [about_Session_Configurations](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_session_configurations?view=powershell-7.2)
+    -   [about_Session_Configuration_Files](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_session_configuration_files?view=powershell-7.2)
+    -   [about_Signing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing?view=powershell-7.2)
+    -   [about_Simplified_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_simplified_syntax?view=powershell-7.2)
+    -   [about_Special_Characters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_special_characters?view=powershell-7.2)
+    -   [about_Splatting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.2)
+    -   [about_Split](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_split?view=powershell-7.2)
+    -   [about_Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.2)
+    -   [about_Tab_Expansion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_tab_expansion?view=powershell-7.2)
+    -   [about_Telemetry](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_telemetry?view=powershell-7.2)
+    -   [about_Thread_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_thread_jobs?view=powershell-7.2)
+    -   [about_Throw](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_throw?view=powershell-7.2)
+    -   [about_Trap](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_trap?view=powershell-7.2)
+    -   [about_Try_Catch_Finally](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_try_catch_finally?view=powershell-7.2)
+    -   [about_Types.ps1xml](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_types.ps1xml?view=powershell-7.2)
+    -   [about_Type_Accelerators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_accelerators?view=powershell-7.2)
+    -   [about_Type_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_operators?view=powershell-7.2)
+    -   [about_Updatable_Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_updatable_help?view=powershell-7.2)
+    -   [about_Update_Notifications](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_update_notifications?view=powershell-7.2)
+    -   [about_Using](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_using?view=powershell-7.2)
+    -   [about_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7.2)
+    -   [about_Variable_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variable_provider?view=powershell-7.2)
+    -   [about_While](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_while?view=powershell-7.2)
+    -   [about_Wildcards](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards?view=powershell-7.2)
+    -   [about_Windows_PowerShell_Compatibility](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_windows_powershell_compatibility?view=powershell-7.2)
+-   [Add-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/add-history?view=powershell-7.2)
+-   [Clear-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-history?view=powershell-7.2)
+-   [Clear-Host](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-host?view=powershell-7.2)
+-   [Connect-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/connect-pssession?view=powershell-7.2)
+-   [Debug-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/debug-job?view=powershell-7.2)
+-   [Disable-PSRemoting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disable-psremoting?view=powershell-7.2)
+-   [Disable-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disable-pssessionconfiguration?view=powershell-7.2)
+-   [Disconnect-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disconnect-pssession?view=powershell-7.2)
+-   [Enable-PSRemoting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enable-psremoting?view=powershell-7.2)
+-   [Enable-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enable-pssessionconfiguration?view=powershell-7.2)
+-   [Enter-PSHostProcess](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enter-pshostprocess?view=powershell-7.2)
+-   [Enter-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enter-pssession?view=powershell-7.2)
+-   [Exit-PSHostProcess](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/exit-pshostprocess?view=powershell-7.2)
+-   [Exit-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/exit-pssession?view=powershell-7.2)
+-   [ForEach-Object](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-7.2)
+-   [Get-Command](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.2)
+-   [Get-ExperimentalFeature](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-experimentalfeature?view=powershell-7.2)
+-   [Get-Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-help?view=powershell-7.2)
+-   [Get-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-history?view=powershell-7.2)
+-   [Get-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-job?view=powershell-7.2)
+-   [Get-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.2)
+-   [Get-PSHostProcessInfo](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pshostprocessinfo?view=powershell-7.2)
+-   [Get-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssession?view=powershell-7.2)
+-   [Get-PSSessionCapability](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssessioncapability?view=powershell-7.2)
+-   [Get-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssessionconfiguration?view=powershell-7.2)
+-   [Get-PSSubsystem](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssubsystem?view=powershell-7.2)
+-   [Import-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/import-module?view=powershell-7.2)
+-   [Invoke-Command](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-command?view=powershell-7.2)
+-   [Invoke-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-history?view=powershell-7.2)
+-   [New-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-module?view=powershell-7.2)
+-   [New-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssession?view=powershell-7.2)
+-   [New-PSSessionConfigurationFile](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssessionconfigurationfile?view=powershell-7.2)
+-   [New-PSSessionOption](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssessionoption?view=powershell-7.2)
+-   [Out-Default](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-default?view=powershell-7.2)
+-   [Out-Host](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-host?view=powershell-7.2)
+-   [Out-Null](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-null?view=powershell-7.2)
+-   [Receive-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/receive-job?view=powershell-7.2)
+-   [Receive-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/receive-pssession?view=powershell-7.2)
+-   [Register-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-pssessionconfiguration?view=powershell-7.2)
+-   [Remove-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-job?view=powershell-7.2)
+-   [Remove-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-module?view=powershell-7.2)
+-   [Remove-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-pssession?view=powershell-7.2)
+-   [Set-PSDebug](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-psdebug?view=powershell-7.2)
+-   [Set-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-pssessionconfiguration?view=powershell-7.2)
+-   [Set-StrictMode](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode?view=powershell-7.2)
+-   [Start-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.2)
+-   [Stop-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/stop-job?view=powershell-7.2)
+-   [Update-Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/update-help?view=powershell-7.2)
+-   [Wait-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/wait-job?view=powershell-7.2)
+-   [Where-Object](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.2)
+
+
+I removed some oddballs
+
+## Powershell Get and new modules
+
+
+-   [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget/?view=powershell-7.2)
+-   [Find-Command](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-command?view=powershell-7.2)
+-   [Find-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-module?view=powershell-7.2)
+-   [Find-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-script?view=powershell-7.2)
+-   [Get-InstalledModule](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedmodule?view=powershell-7.2)
+-   [Get-InstalledScript](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedscript?view=powershell-7.2)
+-   [Get-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-psrepository?view=powershell-7.2)
+-   [Install-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module?view=powershell-7.2)
+-   [Install-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-script?view=powershell-7.2)
+-   [Register-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/register-psrepository?view=powershell-7.2)
+-   [Set-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/set-psrepository?view=powershell-7.2)
+-   [Uninstall-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-module?view=powershell-7.2)
+-   [Uninstall-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-script?view=powershell-7.2)
+-   [Unregister-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/unregister-psrepository?view=powershell-7.2)
+-   [Update-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-module?view=powershell-7.2)
+-   [Update-ModuleManifest](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-modulemanifest?view=powershell-7.2)
+-   [Update-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-script?view=powershell-7.2)
+-   [Find-Command](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-command?view=powershell-7.2)
+-   [Find-DscResource](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-dscresource?view=powershell-7.2)
+-   [Find-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-module?view=powershell-7.2)
+-   [Find-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-script?view=powershell-7.2)
+-   [Get-InstalledModule](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedmodule?view=powershell-7.2)
+-   [Get-InstalledScript](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedscript?view=powershell-7.2)
+-   [Get-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-psrepository?view=powershell-7.2)
+-   [Install-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module?view=powershell-7.2)
+-   [Install-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-script?view=powershell-7.2)
+-   [Register-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/register-psrepository?view=powershell-7.2)
+-   [Save-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-7.2)
+-   [Save-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-script?view=powershell-7.2)
+-   [Set-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/set-psrepository?view=powershell-7.2)
+-   [Test-ScriptFileInfo](https://docs.microsoft.com/en-us/powershell/module/powershellget/test-scriptfileinfo?view=powershell-7.2)
+-   [Uninstall-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-module?view=powershell-7.2)
+-   [Uninstall-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-script?view=powershell-7.2)
+-   [Unregister-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/unregister-psrepository?view=powershell-7.2)
+-   [Update-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-module?view=powershell-7.2)
+-   [Update-ModuleManifest](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-modulemanifest?view=powershell-7.2)
+-   [Update-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-script?view=powershell-7.2)
+-   [Update-ScriptFileInfo](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-scriptfileinfo?view=powershell-7.2)
+
+## VS Code instead of ISE
+
+[Using Visual Studio Code for PowerShell Development
+](https://docs.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/using-vscode?view=powershell-7.2)
 
 
 ## Common Examples:
@@ -1556,6 +1866,100 @@ Double Quotes - Evaluated, Single Quotes - Literal
 
 `Measure-Object`
 
+### Break, Exit and Return
+
+[Source](https://jorgecandeias.github.io/2014/11/27/the-difference-between-break-return-and-exit-in-powershell/)
+
+`Break` terminates execution of a loop or switch statement and hands over control to next statement after it.
+
+`Return` terminates execution of the current function and passes control to the statement immediately after the function call.
+
+`Exit` terminates the current execution session altogether. It also closes the console window and may or may not close ISE depending on what direction the wind is facing.
+#### Break 
+
+Example 
+
+```ps1
+$i = 1;
+
+Write-Host "Starting the loop...";
+while ($true)
+{
+    Write-Host "Loop iteration $i";
+    if (($i += 1) -ge 3)
+    {
+        break; # exit the loop
+    }
+}
+Write-Host "Finished the loop!";
+```
+
+#### Return
+
+Example 
+
+```ps1
+
+# declare the function
+Function Make-Pumpkins
+{
+    $i = 1;
+
+    Write-Host "Making pumpkins...";
+    while ($true)
+    {
+        Write-Host "Pumpkin $i";
+        if (($i += 1) -ge 3)
+        {
+            return; # exit the function
+        }
+    }
+    Write-Host "Finished making pumpkins!";
+}
+
+# call the function
+Write-Host "Calling the function...";
+Make-Pumpkins;
+Write-Host "Finished running the function!";
+
+```
+
+#### Exit 
+
+The `Exit` statement is an internal command of PowerShell that instructs it to terminate the session altogether. Interestingly, this has slightly different effects, depending on what context and tool it is executed on.
+
+**Console:** If we run this command straight on the PowerShell Console window, the window itself will close outright, no questions asked. It works just like the exit command in the Command Prompt.
+
+**Script:** If we run this command from a save script file, while on the console, it’s another matter.
+
+It usually exits the script, though there appear to be bugs regarding it in ISE (see Source)
+
+Use the command `Exit $LASTEXITCODE` at the **end** of the powershell script to return the error codes from the powershell script.
+
+`$LASTEXITCODE` holds the last error code in the powershell script. It is in form of boolean values, with 0 for success and 1 for failure.
+
+Example :
+
+```ps1
+$dest ="C: est"
+New-Item $dest -type directory -force
+$source ="c:samplefile.txt"
+Copy-Item $source $dest
+exit $LASTEXITCODE
+```
+
+The env value `%errorlevel%` holds the result
+
+```ps1
+C:\>powershell -command "& { if($(Invoke-Expression hostname) -eq 'wrongname'){ exit 0 } else { exit 1 }  } "
+C:\>echo %errorlevel%
+1
+
+C:\>powershell -command "& { if($(Invoke-Expression hostname) -eq 'rightname'){ exit 0 } else { exit 1 }  } "
+C:\>echo %errorlevel%
+0
+```
+
 ## Arrays
 
 To create an array named $A that contains the seven numeric (int) values of 22, 5, 10, 8, 12, 9, and 80, type:
@@ -1788,7 +2192,7 @@ for ($i = 0; $i -le ($a.length - 1); $i += 2) {
 }
 ```
 
-### While, Do-While, Do-Until
+### While, Do-While, Do-Until, Break
 
  `While` and `Do-While` loops are both used to perform an action while the condition evaluates to `$true`, and differ only in their syntax. `Do-Until` loops have similar syntax to `Do-While`, but stop processing once the condition statement is met.
 
@@ -1835,6 +2239,8 @@ While ($true) #infinate loop
         }
     }
 ```
+
+See also [Break](#Break)
 
 ### ForEach-Object
 
@@ -2507,6 +2913,83 @@ For more information, see about_Remote_Variables.
 A block of code may be contained within a function for easy re-use.
 To create a function, call the function keyword followed by a name for the function, then include your code inside a pair of curly braces.
 
+Generally :
+
+[Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+[Advanced Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+
+[CmdletBinding](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+
+
+
+[Doc on Basic Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+
+[Documentation on Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+[ByRef](https://ss64.com/ps/syntax-ref.html)
+
+-   [about_Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+-   [about_Functions_Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+-   [about_Functions_Advanced_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_methods?view=powershell-7.2)
+-   [about_Functions_Advanced_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+-   [about_Functions_Argument_Completion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2)
+-   [about_Functions_CmdletBindingAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+-   [about_Functions_OutputTypeAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute?view=powershell-7.2)
+-   [about_Function_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_function_provider?view=powershell-7.2)
+-   [about_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+-   [about_Parameters_Default_Values](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters_default_values?view=powershell-7.2)
+-   [about_Parameter_Sets](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.2)
+-   [about_Pipelines](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines?view=powershell-7.2)
+-   [about_Pipeline_Chain_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipeline_chain_operators?view=powershell-7.2)
+-   [about_Scopes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scopes?view=powershell-7.2)
+```ps1
+Function Verb-Noun {
+      [OutputType([<Type>])]
+      params(
+          [Parameter(attributes=1,attribute=2)][Validation][Type]$name=default
+      )
+}
+```
+
+or:
+
+```ps1
+function [<scope:>]<name> [([type]$parameter1[,[type]$parameter2])]
+{
+  begin {<statement list>}
+  process {<statement list>}
+  end {<statement list>}
+}
+
+or
+
+```ps1
+function [<scope:>]<name>
+{
+  param([type]$parameter1 [,[type]$parameter2])
+  dynamicparam {<statement list>}
+  begin {<statement list>}
+  process {<statement list>}
+  end {<statement list>}
+}
+```
+
+and with Cmdlet Binding:
+```ps
+function name{
+    [CmdletBinding(ConfirmImpact=<String>,
+    DefaultParameterSetName=<String>,
+    HelpURI=<URI>,
+    SupportsPaging=<Boolean>,
+    SupportsShouldProcess=<Boolean>,
+    PositionalBinding=<Boolean>)]
+
+    Param ($Parameter1)
+    Begin{}
+    Process{}
+    End{}
+}
+```
+
 ```powershell
 function Add-Numbers {
  $args[0] + $args[1]
@@ -2549,6 +3032,24 @@ $result = Add-Numbers (5, 10) --Wrong!
 $result = Add-Numbers 5 10    --Right
 ```
 
+```ps1
+### Output Type
+
+ [OutputType([System.Void])]
+
+
+function Get-Time
+{
+  [OutputType([DateTime])]
+  Param (
+    [parameter(Mandatory=$true)]
+    [Datetime]$DateTime
+  )
+
+  $DateTime.ToShortTimeString()
+}
+```
+
 ### Pass by Reference
 
 Using the `[ref]` flag
@@ -2577,6 +3078,229 @@ PS> function add5minus5([ref]$add,[ref]$minus)
 >> $minus.value = $minus.value - 5
 >> }
 ```
+
+### Parameters
+
+
+[Doc on Basic Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+
+[Documentation on Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+
+Much of this example comes from my Make-Montage Script which was laboriously worked on
+
+You can explore parameters with `Get-Help`
+
+
+```ps1
+Get-Help Get-Member -Parameter *
+
+-Path <string[]>
+    Specifies a path of one or more locations. Wildcard characters are
+    permitted. The default location is the current directory (.).
+
+Required?                    false
+Position?                    0
+Default value                Current directory
+Accept pipeline input?       true (ByValue, ByPropertyName)
+Accept wildcard characters?  true
+```
+Note this only works for offical or very well documented things.
+
+
+
+```ps1
+Function Make-Montage{
+    [CmdletBinding()]
+    param (
+
+
+    
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [String][AllowNull()]$path = $null,
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [ValidateRange(0,5000)][Int]$MAX_SIZE=1000,
+        [Parameter(Position=2, Mandatory=$false)] [Switch]$SVG,
+        [Parameter(Position=3, Mandatory=$false)] [Switch]$PNG,
+        [Parameter(Position=4, Mandatory=$false)] [Switch]$NoRecursion,
+        [Parameter(Position=5, Mandatory=$false)] [Switch]$ChooseBG,
+        [Parameter(Position=6, Mandatory=$false)] [Switch]$SelectPath,
+        [Parameter(Position=7, Mandatory=$false)] [Switch]$SelectSavePath,
+        [Parameter(Position=8, Mandatory=$false, ValueFromPipelineByPropertyName=$false)]
+        [String][AllowNull()]$savepath = $null
+               # [Parameter(Position=9, Mandatory=$false)] [Switch]$Debug,
+       # [Parameter(Position=10, Mandatory=$false)] [Switch]$Verbse
+        #,[Parameter(Position=11, Mandatory=$false)] [Switch]$UniqueNames 
+
+#        [Parameter(Position=4, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+#    ,
+#        #make Svg and png a flag. Not sure if I got this to work
+#        [Parameter(Mandatory=$false)][ValidateSet("SVG", "PNG", "Both" )] [String]$type,
+    )
+```
+
+Another example:
+
+```ps1
+    Param(
+        [Parameter()]
+        [IO.FileInfo]$File,
+        [int]$SleepInterval=500
+    )
+```
+
+
+
+ basically in a param block, each param has flags that can be used.
+
+#### The `[Parameter]` flag
+
+[Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-attribute)
+
+
+has the following syntax 
+
+        Param(
+            [Parameter(Argument1=value1,
+            Argument2=value2)]
+        )
+
+Even blank, still requires the parentheses
+
+    [Parameter()]
+
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=5, Mandatory=$false)]
+
+this contains the position if flags arent used and values are just passed.
+
+The [Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-attribute) attribute can contain the following
+- [Mandatory](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#mandatory-argument)
+- [Position=](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#position-argument)
+- [SetName=""](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parametersetname-argument)
+- [ValueFromPipeline](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefrompipeline-argument)
+- [ValueFromPipelineByPropertyName argument](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefrompipelinebypropertyname-argument)
+- [ValueFromRemainingArguments](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefromremainingarguments-argument)
+- [HelpMessage](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#helpmessage-argument)
+- [Alias](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#alias-attribute)
+    - The Alias attribute establishes an alternate name for the parameter. There's no limit to the number of aliases that you can assign to a parameter.
+- [SupportsWildcards](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#supportswildcards-attribute)
+
+#### The Argument Completion Attribute
+
+[Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#argumentcompletions-attribute)
+
+
+
+```ps1
+function Test-ArgumentCompletions {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)]
+        [ArgumentCompletions('Fruits', 'Vegetables')]
+        $Type,
+
+        [Parameter()]
+        [ArgumentCompletions('Apple', 'Banana', 'Orange')]
+        $Fruit,
+
+        [Parameter()]
+        [ArgumentCompletions('Tomato', 'Corn', 'Squash')]
+        $Vegetable
+    )
+}
+```
+
+There is also the Argument Completer which is a dynamic process, a function runs that suggests values
+
+See the [Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#argumentcompleter-attribute ) as its rather complicated
+There are some interesting examples, [such as ClassBasedCompleters,](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#class-based-argument-completers) but this requires code.
+
+
+```ps1
+function MyArgumentCompleter {
+    Param(
+        [Parameter(Mandatory)]
+        [ArgumentCompleter( {
+            param ( $commandName,
+                    $parameterName,
+                    $wordToComplete,
+                    $commandAst,
+                    $fakeBoundParameters )
+            # Perform calculation of tab completed values here.
+        } )]
+        $ParamName
+    )
+}
+```
+
+
+
+#### The `[type]` flag
+    
+    [String]
+    [Switch]
+    [Int]
+
+etc. any type.  The [Switch] one is special because it returns a boolean $true if it is added, and $false if not, but doesnt take input.
+
+
+```ps1
+$f = gci -Recurse -Include "*$studio*" -File -Exclude "$destpath"
+```
+
+where above, `-File` is a switch.
+
+#### Modifier tags
+
+[Validation attributes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-and-variable-validation-attributes)
+
+
+
+        [AllowNull()]
+        [ValidateNotNull()]
+         [ValidateNotNullOrEmpty()]
+        [ValidateRange(0,5000)` 
+        [ValidateCount(1,5)]
+        [AllowEmptyString()]
+        [ValidateLength(1,10)]
+        [ValidatePattern("[0-9][0-9][0-9][0-9]")]
+        [AllowEmptyCollection()]
+        [ValidateSet('Fruits', 'Vegetables')]
+        [ValidateSet("Low", "Average", "High")]
+        [ValidateScript({$_ -ge (Get-Date)})]
+        [ValidateDrive("C", "D", "Variable", "Function")]
+[Dynamic Validation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#dynamic-validateset-values-using-classes)
+
+
+other attributes Ive come across but havent used - 
+*Accepts Multiple Values*
+*ValidateSet* attribute and the *ValidatePattern* a
+
+#### CmdletBinding
+
+>Advanced functions use the CmdletBinding attribute to identify them as functions that act like cmdlets. The CmdletBinding attribute is similar to the Cmdlet attribute that is used in compiled cmdlet classes to identify the class as a cmdlet. For more information about this attribute, see about_Functions_CmdletBindingAttribute.
+
+
+[CmdLet Binding Attribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+    
+    
+```ps1
+{
+    [CmdletBinding(ConfirmImpact=<String>,
+    DefaultParameterSetName=<String>,
+    HelpURI=<URI>,
+    SupportsPaging=<Boolean>,
+    SupportsShouldProcess=<Boolean>,
+    PositionalBinding=<Boolean>)]
+
+    Param ($Parameter1)
+    Begin{}
+    Process{}
+    End{}
+}
+```
+
+
 ### Filter Functions
 
 e.g. stream functions, defined with the word `filter` rather than function.

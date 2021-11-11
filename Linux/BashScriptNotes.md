@@ -989,7 +989,7 @@ Can also use Zennity
         ```
 
         to pass the values automatically.
-        - To append to a dile:
+        - To append to a file:
             `tee <<-CODEWORD -a ./dest >/dev/null` works
             `cat <<-CODEWORD >> dest`
             - though the dash does not.
@@ -1013,6 +1013,7 @@ Can also use Zennity
     2
     3
     HERE
+    #normally ends above
     ; else
     cat << HERE
     $OUTST
