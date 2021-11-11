@@ -30,14 +30,14 @@ Version - PowerShell 7.2 (LTS)
         -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction?view=powershell-7.2)
         -   [Getting Started with PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.2)
         -   [The Help System](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/02-help-system?view=powershell-7.2)
-        -   [Discovering objects, properties, and methods](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/03-discovering-objects?view=powershell-7.2)
+        -   [ ==Discovering objects, properties, and methods == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/03-discovering-objects?view=powershell-7.2)
         -   [One-liners and the pipeline](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines?view=powershell-7.2)
         -   [Formatting, aliases, providers, comparison](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/05-formatting-aliases-providers-comparison?view=powershell-7.2)
         -   [Flow control](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/06-flow-control?view=powershell-7.2)
         -   [Working with WMI](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/07-working-with-wmi?view=powershell-7.2)
         -   [PowerShell remoting](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/08-powershell-remoting?view=powershell-7.2)
-        -   [Functions](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2)
-        -   [Script modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/10-script-modules?view=powershell-7.2)
+        -   [ ==Functions == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2)
+        -   [ ==Script modules == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/10-script-modules?view=powershell-7.2)
         -   [Appendix A - Help Syntax](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/appendix-a?view=powershell-7.2)
     -   Tutorials
         -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/00-introduction?view=powershell-7.2)
@@ -45,37 +45,47 @@ Version - PowerShell 7.2 (LTS)
     -   Deep dives
         -   [Overview](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/overview?view=powershell-7.2)
         -   Everything you want to know about ...
-            -   [Everything you want to know about arrays](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.2)
-            -   [Everything you want to know about hashtables](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.2)
-            -   [Everything you want to know about PSCustomObject](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-pscustomobject?view=powershell-7.2)
-            -   [Everything you want to know about string substitution](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-string-substitutions?view=powershell-7.2)
-            -   [Everything you want to know about if/then/else](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-if?view=powershell-7.2)
-            -   [Everything you want to know about switch](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-switch?view=powershell-7.2)
-            -   [Everything you want to know about exceptions](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-exceptions?view=powershell-7.2)
-            -   [Everything you want to know about $null](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-null?view=powershell-7.2)
-            -   [Everything you want to know about ShouldProcess](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess?view=powershell-7.2)
+            -  [ ==Everything you want to know about arrays == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.2)
+            -   [ ==Everything you want to know about hashtables == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.2)
+            -   [ ==Everything you want to know about PSCustomObject == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-pscustomobject?view=powershell-7.2)
+            -   [ ==Everything you want to know about string substitution == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-string-substitutions?view=powershell-7.2)
+            -   [ ==Everything you want to know about if/then/else == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-if?view=powershell-7.2)
+            -   [ ==Everything you want to know about switch == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-switch?view=powershell-7.2)
+            -   [ ==Everything you want to know about exceptions == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-exceptions?view=powershell-7.2)
+            -   [ ==Everything you want to know about $null == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-null?view=powershell-7.2)
+            -   [ ==Everything you want to know about ShouldProcess == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess?view=powershell-7.2)
         -   [Write-Progress while multithreading](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/write-progress-across-multiple-threads?view=powershell-7.2)
         -   [Add Credential support to PowerShell functions](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/add-credentials-to-powershell-functions?view=powershell-7.2)
     -   Sample scripts
         -   [Sample scripts for administration](https://docs.microsoft.com/en-us/powershell/scripting/samples/sample-scripts-for-administration?view=powershell-7.2)
         -   Working with objects
-            -   [Viewing object structure - Get-Member](https://docs.microsoft.com/en-us/powershell/scripting/samples/viewing-object-structure--get-member-?view=powershell-7.2)
-            -   [Selecting parts of object - Select-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-parts-of-objects--select-object-?view=powershell-7.2)
+            -   [ ==Viewing object structure - Get-Member == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/viewing-object-structure--get-member-?view=powershell-7.2)
+            -   [ ==Selecting parts of object - Select-Object == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-parts-of-objects--select-object-?view=powershell-7.2)
             -   [Removing objects from the pipeline - Where-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/removing-objects-from-the-pipeline--where-object-?view=powershell-7.2)
-            -   [Sorting objects](https://docs.microsoft.com/en-us/powershell/scripting/samples/sorting-objects?view=powershell-7.2)
+            -   [ ==Sorting objects == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/sorting-objects?view=powershell-7.2)
             -   [Creating .NET and COM objects - New-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-7.2)
             -   [Using static classes and methods](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-static-classes-and-methods?view=powershell-7.2)
             -   [Getting WMI objects - Get-CimInstance](https://docs.microsoft.com/en-us/powershell/scripting/samples/getting-wmi-objects--get-ciminstance-?view=powershell-7.2)
             -   [Manipulating items directly](https://docs.microsoft.com/en-us/powershell/scripting/samples/manipulating-items-directly?view=powershell-7.2)
         -   Managing computers
+            -   [Changing computer state](https://docs.microsoft.com/en-us/powershell/scripting/samples/changing-computer-state?view=powershell-7.2)
+            -   [Collecting information about computers](https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-7.2)
+            -   [Creating Get-WinEvent queries with FilterHashtable](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-get-winevent-queries-with-filterhashtable?view=powershell-7.2)
         -   Managing processes & services
+            -   [ ==Managing processes with process cmdlets == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-processes-with-process-cmdlets?view=powershell-7.2)
+            -   [Managing services](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-services?view=powershell-7.2)
+            -   [Managing PowerShell drives](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-windows-powershell-drives?view=powershell-7.2)
+            -   [Working with printers](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-printers?view=powershell-7.2)
+            -   [ ==Performing networking tasks == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/performing-networking-tasks?view=powershell-7.2)
+            -   [Working with software installations](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-software-installations?view=powershell-7.2)
+            -   [Decode a PowerShell command from a running process](https://docs.microsoft.com/en-us/powershell/scripting/samples/decode-powershell-command-from-a-running-process?view=powershell-7.2)
         -   Working with output
-            -   [Redirecting data with Out-* cmdlets](https://docs.microsoft.com/en-us/powershell/scripting/samples/redirecting-data-with-out---cmdlets?view=powershell-7.2)
-            -   [Using format commands to change output view](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view?view=powershell-7.2)
+            -   [ ==Redirecting data with Out-* cmdlets == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/redirecting-data-with-out---cmdlets?view=powershell-7.2)
+            -   [ ==Using format commands to change output view == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view?view=powershell-7.2)
         -   Manage drives & files
             -   [Managing current location](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-current-location?view=powershell-7.2)
-            -   [Working with files and folders](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-and-folders?view=powershell-7.2)
-            -   [Working with files folders and registry keys](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-folders-and-registry-keys?view=powershell-7.2)
+            -   [ ==Working with files and folders == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-and-folders?view=powershell-7.2)
+            -   [ ==Working with files folders and registry keys == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-folders-and-registry-keys?view=powershell-7.2)
             -   [Working with registry entries](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-entries?view=powershell-7.2)
             -   [Working with registry keys](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-keys?view=powershell-7.2)
         -   Creating UI elements
@@ -89,6 +99,15 @@ Version - PowerShell 7.2 (LTS)
     -   [Compatibility aliases](https://docs.microsoft.com/en-us/powershell/scripting/learn/compatibility-aliases?view=powershell-7.2)
     -   [Additional resources](https://docs.microsoft.com/en-us/powershell/scripting/learn/more-powershell-learning?view=powershell-7.2)
     -   [Glossary](https://docs.microsoft.com/en-us/powershell/scripting/learn/glossary?view=powershell-7.2)
+
+-   What's New
+-   Windows PowerShell
+-   Desired State Configuration (DSC)
+-   Community
+-   PowerShell Gallery
+-   Scripting and development
+    -   Visual Studio Code
+    -Version
 
 ## Links on Basics
 
