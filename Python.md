@@ -71,7 +71,7 @@ ____
   Welcome! This is the documentation for Python 3.9.2.
 
   [What's new in Python 3.9?](https://docs.python.org/3/whatsnew/3.9.html)\
-  or [all "What's new" documents](https://docs.python.org/3/whatsnew/index.html) since 2.0
+  or [all "What's new" documents](https://docs.python.org/3/whatsnew/index.html) since 2.0
 
   [Tutorial](https://docs.python.org/3/tutorial/index.html)
 
@@ -597,13 +597,13 @@ ____
   #-*-coding: encoding-*-
   ```
 
-  ### Installation
+### Installation
 
   [Source Here](https://www.tutorialspoint.com/python/python_environment.htm)
 
 
 
-  #### Unix and Linux Installation
+#### Unix and Linux Installation
     
     > - Open a Web browser and go to https://www.python.org/downloads/.
     > - Follow the link to download zipped source code available for Unix/Linux.
@@ -618,18 +618,18 @@ ____
     > 
     > This installs Python at standard location /usr/local/bin and its libraries at /usr/local/lib/pythonXX where XX is the version of Python.
 
-  #### Windows Installation
+#### Windows Installation
 
     > - Open a Web browser and go to https://www.python.org/downloads/.
     > - Follow the link for the Windows installer python-XYZ.msi file where XYZ is the version you need to install.
     > - To use this installer python-XYZ.msi, the Windows system must support Microsoft Installer 2.0. Save the installer file to your local machine and then run it to find out if your machine supports MSI.
     > - Run the downloaded file. This brings up the Python install wizard, which is really easy to use. Just accept the default settings, wait until the install is finished, and you are done.
 
-  ### Path 
+### Path 
 
   The path variable is named as `PATH` in **Unix** or `Path` in **Windows** (Unix is case sensitive; Windows is not).
 
-  #### Setting path at Unix/Linux
+#### Setting path at Unix/Linux
 
     > To add the Python directory to the path for a particular session in Unix −
     > 
@@ -641,7 +641,7 @@ ____
     > 
     > Note − `/usr/local/bin/python` is the path of the Python directory
     > 
-    > #### Setting path at Windows
+    >#### Setting path at Windows
     > 
     > To add the Python directory to the path for a particular session in Windows −
     > 
@@ -651,7 +651,7 @@ ____
     > 
 
 
-  #### Python Environment Variables
+#### Python Environment Variables
 
 
     >==PYTHONPATH== - It has a role similar to `PATH`. This variable **tells the Python interpreter where to locate the module files imported into a program.** It should include the Python source library directory and the directories containing Python source code. `PYTHONPATH` is sometimes preset by the Python installer.
@@ -663,7 +663,7 @@ ____
     >==PYTHONHOME== - It is **an alternative module search path.** It is usually embedded in the `PYTHONSTARTUP` or `PYTHONPATH` directories to make switching module libraries easy.
 
 
-  ### CLI Flags
+### CLI Flags
 
     >- `-d` - It provides debug output.
     >- `-O` - It generates optimized bytecode (resulting in .pyo files).
@@ -673,9 +673,9 @@ ____
     >- `file` - run Python script from given file
 
 
-  ### Python 2 vs Python 3
+### Python 2 vs Python 3
 
-  #### py.exe
+#### py.exe
 
   As long as Python 3.3 or greater is instanlled in C:\Windows two files are copied py.exe and pyw.exe
 
@@ -723,7 +723,7 @@ ____
 
   Sp, using `RapidEnivronmentEditor` RapidEE, add to path `D:\Visual Studio\Shared\Python36_64\Scripts` so that you can then call pip3.exe
 
-  #### Differences
+#### Differences
 
   iteritems() vs. items()
 
@@ -741,7 +741,7 @@ ____
   -python 3 has the floor operator to match this output- `5//2 = 2`
 
 
-  ### Default Python
+### Default Python
 
   To see if the conda installation of Python is in your PATH variable:
   - On Windows, open an Anaconda Prompt and run---echo %PATH%.
@@ -753,7 +753,7 @@ ____
   - On macOS and Linux, open the terminal and run---which python.
   ____
 
-  ### Install Packages
+### Install Packages
 
     The package library is at [PyPi](https://pypi.org) and [Text Only](https://pypi.org/simple/)
 
@@ -787,7 +787,7 @@ ____
       `-r`, `--requirement <file>`    Uninstall all the packages listed in the given requirements file.  This option can be used multiple times.
       `-y`, `--yes`                   Don't ask for confirmation of uninstall deletions.
 
-  ### Find out where something is installed
+### Find out where something is installed
 
   `pip show sympy`
 
@@ -797,51 +797,51 @@ ____
 
 
 
-  ### Environments
+### Environments
 
-  #### Virtualenv
+#### Virtualenv
 
   Syntax to make a virtual env in the current directory.
 
   `virtualenv --python="c:/Python37/python.exe" .\`
 
-  #### virtualenv
-    > 
-    > Virtualenv package - creates a new environment where you can add packages for the program.
-    > 
-    > !!!code start with ` 
-        - cant recall what I meant by this anymore.
-    > 
-    > `virtualenv [OPTIONS] ENV_DIR`- Where ENV_DIR is an absolute or relative path to a directory to create the virtual environment in.
-    > 
-    > __Options__ for venv
-    > 
-    > - `--version` - show program’s version number and exit
-    > - `-h`, `--help` - how this help message and exit
-    > - `-v`, `--verbose` - Increase verbosity.
-    > - `-q`, `--quiet` - Decrease verbosity.
-    > - `-p PYTHON_EXE`, `--python=PYTHON_EXE` - The Python interpreter to use, e.g., `–python=python2.5` will use the python2.5 interpreter to create the new environment. The default is the interpreter that `virtualenv` was installed with (like `/usr/bin/python`)
-    > - `--clear` - Clear out the non-root install and start from scratch.
-    > - `--system-site-packages` - Give the virtual environment access to the global site-packages.
-    > - `--always-copy` - Always copy files rather than symlinking.
-    > - `--relocatable` - Make an EXISTING virtualenv environment relocatable. This fixes up scripts and makes all .pth files relative.
-    > - `--unzip-setuptools` - Unzip Setuptools when installing it.
-    > - `--no-setuptools` - Do not install setuptools in the new virtualenv.
-    > - `--no-pip` - Do not install pip in the new virtualenv.
-    > - `--no-wheel` - Do not install wheel in the new virtualenv.
-    > - `--extra-search-dir=DIR` - Directory to look for setuptools/pip distributions in. This option can be specified multiple times.
-    > - `--prompt=PROMPT` - Provides an alternative prompt prefix for this environment.
-    > - `--download` - Download preinstalled packages from PyPI.
-    > - `--no-download` - Do not download preinstalled packages from PyPI.
-    > - `--no-site-packages` - DEPRECATED. Retained only for backward compatibility. Not having access to global site-packages is now the default behavior.
-    > - `--distribute`
-    > - `--setuptools` - Legacy; now have no effect.
+#### virtualenv
+> 
+> Virtualenv package - creates a new environment where you can add packages for the program.
+> 
+> !!!code start with ` 
+    - cant recall what I meant by this anymore.
+> 
+> `virtualenv [OPTIONS] ENV_DIR`- Where ENV_DIR is an absolute or relative path to a directory to create the virtual environment in.
+> 
+> __Options__ for venv
+> 
+> - `--version` - show program's version number and exit
+> - `-h`, `--help` - how this help message and exit
+> - `-v`, `--verbose` - Increase verbosity.
+> - `-q`, `--quiet` - Decrease verbosity.
+> - `-p PYTHON_EXE`, `--python=PYTHON_EXE` - The Python interpreter to use, e.g., `–python=python2.5` will use the python2.5 interpreter to create the new environment. The default is the interpreter that `virtualenv` was installed with (like `/usr/bin/python`)
+> - `--clear` - Clear out the non-root install and start from scratch.
+> - `--system-site-packages` - Give the virtual environment access to the global site-packages.
+> - `--always-copy` - Always copy files rather than symlinking.
+> - `--relocatable` - Make an EXISTING virtualenv environment relocatable. This fixes up scripts and makes all .pth files relative.
+> - `--unzip-setuptools` - Unzip Setuptools when installing it.
+> - `--no-setuptools` - Do not install setuptools in the new virtualenv.
+> - `--no-pip` - Do not install pip in the new virtualenv.
+> - `--no-wheel` - Do not install wheel in the new virtualenv.
+> - `--extra-search-dir=DIR` - Directory to look for setuptools/pip distributions in. This option can be specified multiple times.
+> - `--prompt=PROMPT` - Provides an alternative prompt prefix for this environment.
+> - `--download` - Download preinstalled packages from PyPI.
+> - `--no-download` - Do not download preinstalled packages from PyPI.
+> - `--no-site-packages` - DEPRECATED. Retained only for backward compatibility. Not having access to global site-packages is now the default behavior.
+> - `--distribute`
+> - `--setuptools` - Legacy; now have no effect.
 
 ____
 ____
 ## Anaconda and Jupyter
 
-  ### Anaconda
+### Anaconda
 
   You dont have to get the full thing
 
@@ -927,7 +927,7 @@ ____
 
 
 
-  ### Jupyter
+### Jupyter
 
   [Documentation](https://jupyter.readthedocs.io/en/latest/projects/content-projects.html#content-projects)
 
@@ -938,24 +938,24 @@ ____
   `JUPYTER_CONFIG_DIR`
   Set this environment variable to use a particular directory, other than the default, for Jupyter config files.
 
-  #### Installing Kernals
+#### Installing Kernals
 
-    [All Kernals Link](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels)
-    [VPython](https://pypi.org/project/IVisual/)
-    [ApacheToree (ApacheSpark) Scala, R, Python](https://github.com/apache/incubator-toree)
-    [SciJava](https://github.com/scijava/scijava-jupyter-kernel)
-    [BeakerX](http://beakerx.com/)
-    [BeakerX iBinder](https://hub.mybinder.org/user/twosigma-beakerx-7t846vvm/notebooks/StartHere.ipynb)
-    [Micropython](https://github.com/goatchurchprime/jupyter_micropython_kernel/)
-    [IJava](https://github.com/SpencerPark/IJava)
+   [All Kernals Link](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels)
+   [VPython](https://pypi.org/project/IVisual/)
+   [ApacheToree (ApacheSpark) Scala, R, Python](https://github.com/apache/incubator-toree)
+   [SciJava](https://github.com/scijava/scijava-jupyter-kernel)
+   [BeakerX](http://beakerx.com/)
+   [BeakerX iBinder](https://hub.mybinder.org/user/twosigma-beakerx-7t846vvm/notebooks/StartHere.ipynb)
+   [Micropython](https://github.com/goatchurchprime/jupyter_micropython_kernel/)
+   [IJava](https://github.com/SpencerPark/IJava)
 
 
-    ##### BeakerX
+##### BeakerX
 
-    conda install -c conda-forge ipywidgets beakerx
+   conda install -c conda-forge ipywidgets beakerx
 
-    Installation with Conda
-    We recommend conda to install Jupyter and BeakerX, and to manage your Python environments. BeakerX works with Python 3.4 and above. Conda forge hosts the lastest version.
+   Installation with Conda
+   We recommend conda to install Jupyter and BeakerX, and to manage your Python environments. BeakerX works with Python 3.4 and above. Conda forge hosts the lastest version.
 
     ```sh
     conda create -y -n beakerx 'python>=3'
@@ -964,8 +964,8 @@ ____
     conda install -y -c conda-forge ipywidgets beakerx
     ```
 
-    Installation for Jupyter Lab
-    You can try it as follows. Note that installing Lab extensions requires npm.
+   Installation for Jupyter Lab
+   You can try it as follows. Note that installing Lab extensions requires npm.
 
     ```
     conda create -y -n labx 'python>=3'
@@ -976,19 +976,19 @@ ____
     jupyter labextension install beakerx-jupyterlab
     ```
 
-    Upgrading
-    If you have an environment with a previous version of BeakerX, to upgrade to the latest version use:
+Upgrading
+If you have an environment with a previous version of BeakerX, to upgrade to the latest version use:
 
     conda update -c conda-forge beakerx
-    Running BeakerX
-    Start it with
+Running BeakerX
+Start it with
 
     jupyter notebook
-    or just
+or just
 
     beakerx
-    Installation with Pip
-    You can also install BeakerX with pip.
+Installation with Pip
+You can also install BeakerX with pip.
 
     pip install beakerx
     beakerx install
@@ -997,67 +997,67 @@ ____
     pip uninstall beakerx
 
 
-    ##### Bash
+##### Bash
 
-    A Jupyter kernel for bash
+A Jupyter kernel for bash
 
-    This requires IPython 3.
+This requires IPython 3.
 
-    To install:
+To install:
 
             pip install bash_kernel
             python -m bash_kernel.install
-    To use it, run one of:
+To use it, run one of:
 
             jupyter notebook
-    In the notebook interface, select Bash from the 'New' menu
+In the notebook interface, select Bash from the 'New' menu
             jupyter qtconsole --kernel bash
             jupyter console --kernel bash
 
-    Anaconda can manage multiple python installs as well. Now that I've finally figured out how py.exe works.
+Anaconda can manage multiple python installs as well. Now that I've finally figured out how py.exe works.
 
-    See here: [Conda Environment](https://conda.io/docs/user-guide/tasks/manage-python.html).
+See here: [Conda Environment](https://conda.io/docs/user-guide/tasks/manage-python.html).
 
-    ##### Javascript
+##### Javascript
 
-    Ubuntu
+Ubuntu
     To install IJavascript in Ubuntu 16.04 LTS, run:
 
             sudo apt-get install nodejs-legacy npm ipython ipython-notebook
             sudo npm install -g ijavascript
             ijsinstall
 
-    Windows (Official Python Distribution) In the command line:
+Windows (Official Python Distribution) In the command line:
 
             pip3 install --upgrade pip
             pip3 install jupyter
             npm install -g ijavascript
             ijsinstall
 
-    Or run:
+Or run:
 
             %appdata%\npm\ijsinstall
 
-    Then you can run jupyter notebook in your terminal to load Jupyter Notebook. When you create a new Jupyter Notebook, you should see the Javascript (Node) kernel available.
+Then you can run jupyter notebook in your terminal to load Jupyter Notebook. When you create a new Jupyter Notebook, you should see the Javascript (Node) kernel available.
 
-    Windows (Anaconda Distribution)  Open the Anaconda prompt and run:
+Windows (Anaconda Distribution)  Open the Anaconda prompt and run:
 
             conda install nodejs
             npm install -g ijavascript
             ijsinstall
 
-    ###### Scala
+###### Scala
 
-        [Scala Git](https://github.com/mattpap/IScala)
+[Scala Git](https://github.com/mattpap/IScala)
 
-    To start IPython with IScala backend manually, issue:
+To start IPython with IScala backend manually, issue:
 
     ipython console --KernelManager.kernel_cmd='["java", "-jar", "lib/IScala.jar", "--connection-file", "{connection_file}", "--parent"]'
 
-    ##### GO
-    [Gophernotes](https://github.com/gopherdata/gophernotes#windows)
+##### GO
+[Gophernotes](https://github.com/gopherdata/gophernotes#windows)
 
-    build and install gophernotes (using the pre-built binaries and zmq-win\build.bat):
+build and install gophernotes (using the pre-built binaries and zmq-win\build.bat):
 
             REM Download w/o building.
             go get -d -u github.com/gopherdata/gophernotes
@@ -1073,12 +1073,12 @@ ____
             move gophernotes.exe %GOPATH%\bin
             copy lib-386\libzmq.dll %GOPATH%\bin
 
-    Copy the kernel config:
+Copy the kernel config:
 
             mkdir %APPDATA%\jupyter\kernels\gophernotes
             xcopy %GOPATH%\src\github.com\gopherdata\gophernotes\kernel %APPDATA%\jupyter\kernels\gophernotes /s
 
-    Note, if you have the JUPYTER_PATH environmental variable set or if you are using an older version of Jupyter, you may need to copy this kernel config to another directory. You can check which directories will be searched by executing:
+Note, if you have the JUPYTER_PATH environmental variable set or if you are using an older version of Jupyter, you may need to copy this kernel config to another directory. You can check which directories will be searched by executing:
 
     jupyter --data-dir
     Update %APPDATA%\jupyter\kernels\gophernotes\kernel.json with the FULL PATH to your gophernotes.exe (in %GOPATH%\bin), unless it's already on the PATH. For example:
@@ -1093,39 +1093,40 @@ ____
                 "name": "go"
             }
 
-    Docker
-    You can try out or run Jupyter + gophernotes without installing anything using Docker. To run a Go notebook that only needs things from the standard library, run:
+##### Docker
+    
+You can try out or run Jupyter + gophernotes without installing anything using Docker. To run a Go notebook that only needs things from the standard library, run:
 
         $ docker run -it -p 8888:8888 gopherdata/gophernotes
 
-    Or to run a Go notebook with access to common Go data science packages (gonum, gota, golearn, etc.), run:
+Or to run a Go notebook with access to common Go data science packages (gonum, gota, golearn, etc.), run:
 
             $    docker run -it -p 8888:8888 gopherdata/gophernotes:latest-ds
 
-    In either case, running this command should output a link that you can follow to access Jupyter in a browser. Also, to save notebooks to and/or load notebooks from a location outside of the Docker image, you should utilize a volume mount. For example:
+In either case, running this command should output a link that you can follow to access Jupyter in a browser. Also, to save notebooks to and/or load notebooks from a location outside of the Docker image, you should utilize a volume mount. For example:
 
             $ docker run -it -p 8888:8888 -v /path/to/local/notebooks:/path/to/notebooks/in/docker gopherdata/gophernotes
 
-    ##### C#
+##### C#
 
     [Link for C#](https://github.com/zabirauf/icsharp/wiki/Installation)
 
- ## Basic Principles and Setup
+## Basic Principles and Setup
 
-  ### Errors (relating to Version)
+### Errors (relating to Version)
 
   The cryptic error:  `print '(WARNING: importing distutils, not setuptools!)'`.
 
   Seems to be caused in at least 2 cases of running pip install on a Py package for 2.7 but not 3.x.
 
 
-  #### Viewing a list of available Python versions
+#### Viewing a list of available Python versions
 
   To list the versions of Python that are available to install, in your Terminal window or an Anaconda Prompt, run: `conda search python` This lists all packages whose names contain the text python.
 
   To list only the packages whose full name is exactly python, add the --full-name option. In your Terminal window or an Anaconda Prompt, run: `conda search --full-name python`
 
-  #### Installing a different version of Python
+#### Installing a different version of Python
 
   To install a different version of Python without overwriting the current version, create a new environment and install the second Python version into it:
 
@@ -1151,7 +1152,7 @@ ____
           python --version
 
 
-  ### Compile Code
+### Compile Code
 
   pyinstaller is simple.  Pip install pyinstaller, then check it by test running it.  Then just feed it the path and file.  It packs it up and you're done.
 
@@ -1197,25 +1198,25 @@ ____
 
   People recomment numba jit and numba vectorize
 
-  #### Python Byte Code
+#### Python Byte Code
 
   Some tips for experts:
 
-  - You can use the -O or -OO switches on the Python command to reduce the size of a compiled module. The -O switch removes assert statements, the -OO switch removes both assert statements and __doc__ strings. Since some programs may rely on having these available, you should only use this option if you know what you’re doing. “Optimized” modules have an opt- tag and are usually smaller. Future releases may change the effects of optimization.
-  - A program doesn’t run any faster when it is read from a .pyc file ; only the speed with which they are loaded is faster
+  - You can use the -O or -OO switches on the Python command to reduce the size of a compiled module. The -O switch removes assert statements, the -OO switch removes both assert statements and __doc__ strings. Since some programs may rely on having these available, you should only use this option if you know what you're doing. “Optimized” modules have an opt- tag and are usually smaller. Future releases may change the effects of optimization.
+  - A program doesn't run any faster when it is read from a .pyc file ; only the speed with which they are loaded is faster
   - The module `compileall` can create .pyc files for all modules in a directory.
   There is more detail on this process, including a flow chart of the decisions, in PEP 3147.
 
 
 
 
-  ### Measuring Performance
+### Measuring Performance
 
   Theres not a great section for this, but frequently you want to test the performance of something. 
 
   perf stat -r 1000 python3.7 import_typing.py
 
-  ### Interrupt
+### Interrupt
 
   interrupt key (normally [[Ctrl]] + [[C]] or [[Delete]])
 
@@ -1225,7 +1226,7 @@ ____
 ____
 ## Files, Modules, Packages and Libraries
 
-  ### Directory Structure
+### Directory Structure
 
   [SourceInfo](https://packaging.python.org/guides/distributing-packages-using-setuptools/#setup-py)
 
@@ -1262,7 +1263,7 @@ ____
 
   `__init__.py` code defines a list named __all__, it is taken to be the list of module names that should be imported when from package import * is encountered. It is up to the package author to keep this list up-to-date when a new version of the package is released. Package authors may also decide not to support it
 
-  ### Importing modules
+### Importing modules
 
 
 
@@ -1315,7 +1316,7 @@ ____
   ```
   If you intend to use a function often you can assign it to a local name:
 
-  **Each module has its own private symbol table, which is used as the global symbol table by all functions defined in the module.** Thus, the author of a module can use global variables in the module without worrying about accidental clashes with a user’s global variables. On the other hand, if you know what you are doing you can touch a module’s global variables with the same notation used to refer to its functions, modname.itemname.
+  **Each module has its own private symbol table, which is used as the global symbol table by all functions defined in the module.** Thus, the author of a module can use global variables in the module without worrying about accidental clashes with a user's global variables. On the other hand, if you know what you are doing you can touch a module's global variables with the same notation used to refer to its functions, modname.itemname.
   And a variant to import all names that a module defines:
   ```py
   >>> from fibo import fib, fib2
@@ -1369,9 +1370,9 @@ ____
     vixens cry
     ```
 
-    You imported fox through the python interpreter, invoked the python function `what_does_the_fox_say()` from within fox.py.
+    You imported fox through the python interpreter, invoked the python function `what_does_the_fox_say()` from within fox.py.
 
-**Example 2, Use `execfile` or ([`exec` in Python 3](https://stackoverflow.com/q/6357361/55075)) in a script to execute the other python file in place:**
+**Example 2, Use `execfile` or ([`exec` in Python 3](https://stackoverflow.com/q/6357361/55075)) in a script to execute the other python file in place:**
 
     ```py3
         # 1.  Put this in /home/el/foo2/mylib.py:
@@ -1410,7 +1411,7 @@ The function moobar was imported from mylib.py and made available in main.py
     where are the nuclear wessels?
     ```
 
-    If you defined other functions in chekov.py, they would not be available unless you `import *`
+    If you defined other functions in chekov.py, they would not be available unless you `import *`
 
 **Example 4, Import riaa.py if it's in a different file location from where it is imported**
 
@@ -1442,7 +1443,7 @@ The function moobar was imported from mylib.py and made available in main.py
 
     That imports everything in the foreign file from a different directory.
 
-**Example 5, use `os.system("python yourfile.py")`**
+**Example 5, use `os.system("python yourfile.py")`**
 
 ```
 import os
@@ -1452,11 +1453,11 @@ os.system("python yourfile.py")
 
 **Example 6, import your file via piggybacking the python startuphook:**
 
-**Update:** This example used to work for both python2 and 3, but now only works for python2. python3 got rid of this user startuphook feature set because it was abused by low-skill python library writers, using it to impolitely inject their code into the global namespace, before all user-defined programs. If you want this to work for python3, you'll have to get more creative. If I tell you how to do it, python developers will disable that feature set as well, so you're on your own.
+**Update:** This example used to work for both python2 and 3, but now only works for python2. python3 got rid of this user startuphook feature set because it was abused by low-skill python library writers, using it to impolitely inject their code into the global namespace, before all user-defined programs. If you want this to work for python3, you'll have to get more creative. If I tell you how to do it, python developers will disable that feature set as well, so you're on your own.
 
-See: <https://docs.python.org/2/library/user.html>
+See: <https://docs.python.org/2/library/user.html>
 
-Put this code into your home directory in `~/.pythonrc.py`
+Put this code into your home directory in `~/.pythonrc.py`
 
 ```py
 class secretclass:
@@ -1491,34 +1492,34 @@ SKYCAKE!
 
 ```
 
-If you get an error here: `ModuleNotFoundError: No module named 'user'` then it means you're using python3, startuphooks are disabled there by default.
+If you get an error here: `ModuleNotFoundError: No module named 'user'` then it means you're using python3, startuphooks are disabled there by default.
 
-Credit for this jist goes to: <https://github.com/docwhat/homedir-examples/blob/master/python-commandline/.pythonrc.py> Send along your up-boats.
+Credit for this jist goes to: <https://github.com/docwhat/homedir-examples/blob/master/python-commandline/.pythonrc.py> Send along your up-boats.
 
 **Example 7, Most Robust: Import files in python with the bare import command:**
 
-1.  Make a new directory `/home/el/foo5/`
+1.  Make a new directory `/home/el/foo5/`
 
-2.  Make a new directory `/home/el/foo5/herp`
+2.  Make a new directory `/home/el/foo5/herp`
 
-3.  Make an empty file named `__init__.py` under herp:
+3.  Make an empty file named `__init__.py` under herp:
 
 ```sh
 
 touch __init__.py
 
-#4.  Make a new directory /home/el/foo5/herp/derp
+ #4.  Make a new directory /home/el/foo5/herp/derp
 
 mkdir derp
 cd derp
 
-# 5.  Under derp, make another `__init__.py` file: 
+ #5.  Under derp, make another `__init__.py` file: 
 
 touch __init__.py
 touch yolo.py
 ```
 
-6.  Under /home/el/foo5/herp/derp make a new file called `yolo.py` Put this in there:
+6.  Under /home/el/foo5/herp/derp make a new file called `yolo.py` Put this in there:
 
     ```py
     def skycake():
@@ -1527,7 +1528,7 @@ touch yolo.py
 
     ```
 
-7.  The moment of truth, Make the new file `/home/el/foo5/main.py`, put this in there;
+7.  The moment of truth, Make the new file `/home/el/foo5/main.py`, put this in there;
 
     ```
     from herp.derp.yolo import skycake
@@ -1542,10 +1543,10 @@ touch yolo.py
     of men. SKYCAKE!!
     ```
 
-    The empty `__init__.py` file communicates to the python interpreter that the developer intends this directory to be an importable package.
+    The empty `__init__.py` file communicates to the python interpreter that the developer intends this directory to be an importable package.
 
 
-  ### Get the Version number of the interpreter
+### Get the Version number of the interpreter
 
   ```py
   M, m = sys.version_info[0:2]
@@ -1555,7 +1556,7 @@ touch yolo.py
 
   Note: `sys.version_info` is not a function. Calling `sys.version_info()` leads to an error
 
-  #### __main__
+#### __main__
 
   ```py
   if __name__ == '__main__' :
@@ -1565,7 +1566,7 @@ touch yolo.py
 
   Determines if the current file is the main file that is executed.
 
-  #### USEFUL MODULES
+#### USEFUL MODULES
 
   See [Packages](#Packages) for notes on useful 3rd party, and at least less core, modules that are useful and have specific notes...
 
@@ -1583,7 +1584,7 @@ touch yolo.py
 
 
 
-  ### print()
+### print()
 
   see (Strings- Print)[#### Print]
 
@@ -1591,7 +1592,7 @@ ____
 ____
 ## Language Basics
 
- ### [Keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
+### [Keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
 
 
   False await else import pass
@@ -1647,7 +1648,7 @@ ____
  >  - assert
  >  - async
 
- ### Special Symbols
+### Special Symbols
 
  `_` in interactive mode, `_` means the last result. 
 
@@ -1663,11 +1664,11 @@ ____
  `__*` - is a Class-private name
 
 
-  #### NONE
+#### NONE
 
   `NONE` - special return value- no return. Print(None) does not print.
 
-  #### Specification Statement
+#### Specification Statement
 
   Is used to help define a function- user written.
 
@@ -1678,7 +1679,7 @@ ____
 
   This is a **specification statement**. Tbe statement in a **multiline quote just under a `def` statement** becomes the definition or help statement for that function.
 
-  ### Escape Characters
+### Escape Characters
 
   | Escape Sequence | Meaning                                      | Note                       |
   | --------------- | -------------------------------------------- | -------------------------- |
@@ -1708,7 +1709,7 @@ ____
   5.- Exactly four hex digits are required.
   6.- Any Unicode character can be encoded this way. Exactly eight hex digits are required.
 
-  ### Literals
+### Literals
 
   - `b` | `B` - Byte
   - `rb` | `br` - Raw Byte ( "br" | "Br" | "bR" | "BR" | "rb" | "rB" | "Rb" | "RB")
@@ -1747,7 +1748,7 @@ ____
   '0x400'
   ```
 
-  ### global and nonlocal keywords
+### global and nonlocal keywords
 
   !!!Note Note:This may just be in Python 3.  There is no equivalent `nonlocal` for sure in Python 2.
 
@@ -1817,7 +1818,7 @@ ____
 
 
 
-  ### Built-in Functions
+### Built-in Functions
 
   Python has a few built in functions:
 
@@ -1926,7 +1927,7 @@ ____
  >'__spec__',
 
 
-  ### help()
+### help()
 
   `help()` - calling help(obj) gets the help file for that object.
 
@@ -1937,11 +1938,11 @@ ____
 
   ```
 
-  ### str()
+### str()
 
   str() returns a string representation of an object.  Equivalent to the Java `.toString()` method.
 
-  ### DIR (dir())
+### DIR (dir())
 
   dir() -briefly returns all the methods associated with an object- "attributes" etc.
 
@@ -1959,7 +1960,7 @@ ____
 
       help(str.__add__) #Works to get the specific help lines for obj.method.
 
-  ### Exit() vs Quit()
+### Exit() vs Quit()
 
   To exit the command line python you can use exit() or quit()
 
@@ -1967,11 +1968,11 @@ ____
 
   `exit()` says when the interpreter gets a chance to exit
 
-  ### print()
+### print()
 
   see (Strings- Print)[#### Print]
 
-  ### filter()
+### filter()
 
   The `filter()` function in Python takes in a function and a list as arguments.
 
@@ -2004,7 +2005,7 @@ ____
   [0, 2 4, 6, 8]
   ```
 
-  ### enumerate()
+### enumerate()
 
   `enumerate(iter, start=0)` counts off the elements in the iterable returning 2-tuples containing the count (from start) and each element.
 
@@ -2026,9 +2027,9 @@ ____
           print('Blank line at line #%i' % i)
   ```
 
-  ### Sorted()
+### Sorted()
 
-  `sorted(iterable, key=None, reverse=False)` collects all the elements of the iterable into a list, sorts the list, and returns the sorted result. The key and reverse arguments are passed through to the constructed list’s sort() method.
+  `sorted(iterable, key=None, reverse=False)` collects all the elements of the iterable into a list, sorts the list, and returns the sorted result. The key and reverse arguments are passed through to the constructed list's sort() method.
 
   ```py
   >>>
@@ -2045,9 +2046,9 @@ ____
 
   (For a more detailed discussion of sorting, see the Sorting HOW TO.)
 
-  ### any() & all()
+### any() & all()
 
-  The `any(iter)` and `all(iter)` built-ins look at the truth values of an iterable’s contents. any() returns True if any element in the iterable is a true value, and all() returns True if all of the elements are true values:
+  The `any(iter)` and `all(iter)` built-ins look at the truth values of an iterable's contents. any() returns True if any element in the iterable is a true value, and all() returns True if all of the elements are true values:
 
   ```py
   >>> any([0, 1, 0])
@@ -2083,7 +2084,7 @@ ____
  [From](https://realpython.com/python-map-function/)
 
 
- ### map()
+### map()
 
  [Doc](https://docs.python.org/3/library/functions.html#map)
 
@@ -2098,9 +2099,9 @@ ____
 
  Note: The first argument to `map()` is a **function object,** which means that you need to pass a function without calling it. That is, without using a pair of parentheses.
 
- This first argument to `map()` is a **transformation function.** In other words, it’s the function that transforms each original item into a new (transformed) item. Even though the Python documentation calls this argument function, *it can be any Python callable.* This includes *built-in functions, classes, methods, lambda functions, and user-defined functions.*
+ This first argument to `map()` is a **transformation function.** In other words, it's the function that transforms each original item into a new (transformed) item. Even though the Python documentation calls this argument function, *it can be any Python callable.* This includes *built-in functions, classes, methods, lambda functions, and user-defined functions.*
 
- !!!note Note: In Python 2.x, map() returns a list. This behavior changed in Python 3.x. Now, map() returns a map object, which is an iterator that yields items on demand. That’s why you need to call list() to create the desired list object.
+ !!!note Note: In Python 2.x, map() returns a list. This behavior changed in Python 3.x. Now, map() returns a map object, which is an iterator that yields items on demand. That's why you need to call list() to create the desired list object.
 
  Here is an example use of `map()` function to double all the items in a list.
 
@@ -2142,7 +2143,7 @@ ____
 
  You can of course achieve the same effect with a list comprehension.
 
- #### Processing Multiple Input Iterables With map()
+#### Processing Multiple Input Iterables With map()
  If you supply multiple iterables to map(), then the transformation function must take as many arguments as iterables you pass in. Each iteration of map() will pass one value from each iterable as an argument to function. The iteration stops at the end of the shortest iterable.
 
  Consider the following example that uses pow():
@@ -2156,9 +2157,9 @@ ____
  ```
 
 
- #### Transforming Iterables of Strings With Python’s map()
+#### Transforming Iterables of Strings With Python's map()
 
- When you’re working with iterables of string objects, you might be interested in transforming all the objects using some kind of transformation function. Python’s map() can be your ally in these situations. The following sections will walk you through some examples of how to use map() to transform iterables of string objects.
+ When you're working with iterables of string objects, you might be interested in transforming all the objects using some kind of transformation function. Python's map() can be your ally in these situations. The following sections will walk you through some examples of how to use map() to transform iterables of string objects.
 
  ```py
  >>> string_it = ["processing", "strings", "with", "map"]
@@ -2175,7 +2176,7 @@ ____
 
  If you need to supply arguments rather than rely on the default value, then you can use a lambda function.
 
- Here’s an example that uses str.strip() to remove dots rather than the default whitespace:
+ Here's an example that uses str.strip() to remove dots rather than the default whitespace:
 
  ```py
  >>> with_dots = ["processing..", "...strings", "with....", "..map.."]
@@ -2211,22 +2212,22 @@ ____
         [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]]
 
 
- #### Combining `map()` With Other Functional Tools
+#### Combining `map()` With Other Functional Tools
 
- So far, you’ve covered how to use `map()` to accomplish different tasks involving iterables. However, if you use `map()` along with other functional tools like `filter()` and `reduce()`, then you can perform more complex transformations on your iterables. That’s what you’re going to cover in the following two sections.
+ So far, you've covered how to use `map()` to accomplish different tasks involving iterables. However, if you use `map()` along with other functional tools like `filter()` and `reduce()`, then you can perform more complex transformations on your iterables. That's what you're going to cover in the following two sections.
 
  `map()` and `filter()`
 
- Sometimes you need to process an input iterable and return another iterable that results from filtering out unwanted values in the input iterable. In that case, Python’s `filter()` can be a good option for you. `filter()` is a built-in function that takes two positional arguments:
+ Sometimes you need to process an input iterable and return another iterable that results from filtering out unwanted values in the input iterable. In that case, Python's `filter()` can be a good option for you. `filter()` is a built-in function that takes two positional arguments:
 
  *function* will be a predicate or Boolean-valued function, a function that returns True or False according to the input data.
 
  *iterable* will be any Python iterable.
 
 
- ### filter()
+### filter()
 
- To illustrate how you can use map() along with filter(), say you need to calculate the square root of all the values in a list. Since your list can contain negative values, you’ll get an error because the square root isn’t defined for negative numbers:
+ To illustrate how you can use map() along with filter(), say you need to calculate the square root of all the values in a list. Since your list can contain negative values, you'll get an error because the square root isn't defined for negative numbers:
 
  ```py
  >>> import math
@@ -2253,15 +2254,15 @@ ____
 
  ```
 
- ### reduce()
+### reduce()
 
- Python’s `reduce()`  is a function that lives in a module called functools in the Python standard library. `reduce()`  is another core functional tool in Python that is useful when you need to apply a function to an iterable and reduce it to a single cumulative value. This kind of operation is commonly known as reduction or folding. `reduce()`  takes two required arguments:
+ Python's `reduce()`  is a function that lives in a module called functools in the Python standard library. `reduce()`  is another core functional tool in Python that is useful when you need to apply a function to an iterable and reduce it to a single cumulative value. This kind of operation is commonly known as reduction or folding. `reduce()`  takes two required arguments:
 
  function can be any Python callable that accepts two arguments and returns a value.
  iterable can be any Python iterable.
  `reduce()`  will apply function to all the items in iterable and cumulatively compute a final value.
 
- Here’s an example that combines map() and `reduce()`  to calculate the total size of all the files that live in your home directory cumulatively:
+ Here's an example that combines map() and `reduce()`  to calculate the total size of all the files that live in your home directory cumulatively:
 
  >>> import functools
  >>> import operator
@@ -2273,7 +2274,7 @@ ____
  >>> functools.reduce(operator.add, map(os.path.getsize, files))
  4377381
 
- ### lambda
+### lambda
 
  [Examples and Explination](https://realpython.com/python-lambda/)
 
@@ -2327,7 +2328,7 @@ ____
 ____
 ## Basics and Useful bits
 
- ### Assignment Expressions 
+### Assignment Expressions 
 
  New in Python 3.8, using the `:=` 'Walrus Operator'.  [Discussion](https://realpython.com/python38-new-features/#the-walrus-in-the-room-assignment-expressions)
 
@@ -2341,7 +2342,7 @@ ____
  ```
 
 
- Assignment expressions allow you to assign and return a value in the same expression. For example, if you want to assign to a variable and print its value, then you typically do something like [[1]] while in  Python 3.8, you’re allowed to combine these two statements into one, using the walrus operator: [[2]]
+ Assignment expressions allow you to assign and return a value in the same expression. For example, if you want to assign to a variable and print its value, then you typically do something like [[1]] while in  Python 3.8, you're allowed to combine these two statements into one, using the walrus operator: [[2]]
 
 
 
@@ -2358,7 +2359,7 @@ ____
 
  ```
 
- ### By Reference or By Value
+### By Reference or By Value
 
 
  [Ref](https://realpython.com/python-pass-by-reference/)
@@ -2366,7 +2367,7 @@ ____
 
  Python neither passes by reference or by value, but rather 'by assignment' (Though in truth, this acts much more like pass by value, and is perhaps another attempt of python to be different.)
 
- ### id
+### id
 
  The `id()` function, is similar to the `&` operator in C++ aa it returns an address.
 
@@ -2431,7 +2432,7 @@ ____
 
 
 
- ### int()
+### int()
 
  has a slew of dunder methods, but the named methods are as follows:
 
@@ -2447,7 +2448,7 @@ ____
 
  See Type Conversion -> from binary  in this section for some usages of int.
 
- ### float() 
+### float() 
 
  - `as_integer_ratio` - 
  - `conjugate` - 
@@ -2457,14 +2458,14 @@ ____
  - `is_integer` - 
  - `real` - 
 
- ### bool()
+### bool()
 
  'as_integer_ratio', 'bit_length', 'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator', 'real', 'to_bytes',
 
 
- ### Type conversion
+### Type conversion
 
- #### from binary
+#### from binary
 
  `int('001001',2)` > 9
  `print( int('00100001', 2))` > 33
@@ -2563,7 +2564,7 @@ ____
 
 !!!Note The above is only "generic" types, there are other collections, just havent found a comprehensive list yet.
 
- ### Type() commmand
+### Type() commmand
 
  Type can be checked with the `type(`**var**`)` command
 
@@ -2582,13 +2583,13 @@ ____
 
 
 
- ### Expected Types
+### Expected Types
 
  def rotate(_s:list):-> list
     return _s[1:] + [_s[0]]
 
 
- ### Type Hints
+### Type Hints
 
  [Src](https://realpython.com/python-type-checking/)
 
@@ -2682,7 +2683,7 @@ class Component(NamedTuple):
 
 The Null Object[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#the-null-object )
 
-This object is returned by functions that don’t explicitly return a value. It supports no special operations. There is exactly one null object, named `None` (a built-in name). `type(None)()` produces the same singleton.
+This object is returned by functions that don't explicitly return a value. It supports no special operations. There is exactly one null object, named `None` (a built-in name). `type(None)()` produces the same singleton.
 
 It is written as `None`.
 
@@ -2702,7 +2703,7 @@ It is written as `Ellipsis` or `...`.
 
 The NotImplemented Object[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#the-notimplemented-object )
 
-This object is returned from comparisons and binary operations when they are asked to operate on types they don’t support. See [Comparisons](https://docs.python.org/3/reference/expressions.html#comparisons) for more information. There is exactly one `NotImplemented` object. `type(NotImplemented)()` produces the singleton instance.
+This object is returned from comparisons and binary operations when they are asked to operate on types they don't support. See [Comparisons](https://docs.python.org/3/reference/expressions.html#comparisons) for more information. There is exactly one `NotImplemented` object. `type(NotImplemented)()` produces the singleton instance.
 
 It is written as `NotImplemented`.
 
@@ -2728,7 +2729,7 @@ The implementation adds a few special read-only attributes to several object typ
 
 `object.``__dict__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ )
 
-A dictionary or other mapping object used to store an object’s (writable) attributes.
+A dictionary or other mapping object used to store an object's (writable) attributes.
 
 `instance.``__class__`[~[link]~](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#instance.__class__ )
 
@@ -2773,9 +2774,9 @@ Each class keeps a list of weak references to its immediate subclasses. This met
 
 > [Modules](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#modules "Permalink to this headline")
 > 
-> The only special operation on a module is attribute access: `m.name`, where _m_ is a module and _name_ accesses a name defined in _m_’s symbol table. Module attributes can be assigned to. (Note that the [`import`](https://docs.python.org/3/reference/simple_stmts.html#import) statement is not, strictly speaking, an operation on a module object; `import foo` does not require a module object named _foo_ to exist, rather it requires an (external) _definition_ for a module named _foo_ somewhere.)
+> The only special operation on a module is attribute access: `m.name`, where _m_ is a module and _name_ accesses a name defined in _m_'s symbol table. Module attributes can be assigned to. (Note that the [`import`](https://docs.python.org/3/reference/simple_stmts.html#import) statement is not, strictly speaking, an operation on a module object; `import foo` does not require a module object named _foo_ to exist, rather it requires an (external) _definition_ for a module named _foo_ somewhere.)
 > 
-> A special attribute of every module is [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__"). This is the dictionary containing the module’s symbol table. Modifying this dictionary will actually change the module’s symbol table, but direct assignment to the [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") attribute is not possible (you can write `m.__dict__['a'] = 1`, which defines `m.a` to be `1`, but you can’t write `m.__dict__ = {}`). Modifying [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") directly is not recommended.
+> A special attribute of every module is [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__"). This is the dictionary containing the module's symbol table. Modifying this dictionary will actually change the module's symbol table, but direct assignment to the [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") attribute is not possible (you can write `m.__dict__['a'] = 1`, which defines `m.a` to be `1`, but you can't write `m.__dict__ = {}`). Modifying [`__dict__`](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#object.__dict__ "object.__dict__") directly is not recommended.
 > 
 > Modules built into the interpreter are written like this: `<module 'sys' (built-in)>`. If loaded from a file, they are written as `<module 'os' from '/usr/local/lib/pythonX.Y/os.pyc'>`.
 
@@ -2799,14 +2800,14 @@ ____
  print(name)
  ```
 
- ### Operators
+### Operators
 
  *Increment* and *decrement* operators do not work in Python. E.g `i++` or `count--` have no meaning.
 
  Apparently, there may exist compound operators- e.g. `+=`
 
 
- ### Assignment
+### Assignment
 
  ```py
  x = 1                   #Integer
@@ -2835,9 +2836,9 @@ ____
 
  Expect 2 here, not 2L. Since 2 is no longer "long". Once you become Long data type, you stay L. This is Integer Division.
 
- ### NUMERICAL
+### NUMERICAL
 
- #### types
+#### types
 
  integer v float are the predominant types.
 
@@ -2849,7 +2850,7 @@ ____
 
  `complex` - `complex(re, im)` and conjugate- `c.conjugate()` - find the conjugate of the complex number c.
 
- ### Mathematical Operations
+### Mathematical Operations
 
  The arithmetic operators +, -, \*, /, %, \*\*, //
 
@@ -2890,7 +2891,7 @@ ____
  - `round(x[, n])`
  - `math.trunc(x)` - truncate x to Integral
 
- ### Bitwise  Operators
+### Bitwise  Operators
 
  - `x << y` shift left 
 
@@ -2921,7 +2922,7 @@ ____
 
     relevant libraries include:
 
- -   [ctypes --- A foreign function library for Python --- Python v2.7.3 documentation](http://docs.python.org/library/ctypes.html) - part of the standard library
+ -   [ctypes --- A foreign function library for Python --- Python v2.7.3 documentation](http://docs.python.org/library/ctypes.html) - part of the standard library
 
  -   [bitarray - efficient arrays of booleans -- C extension](http://pypi.python.org/pypi/bitarray/)
 
@@ -2974,13 +2975,13 @@ ____
  {   v &= v - 1;  }       //clear the least significant bit set
  ```
 
- ### Complex Operations
+### Complex Operations
 
  module `cmath` - always available.
 
  [Complex Operations Reference](https://docs.python.org/3/library/cmath.html#module-cmath)
 
- ### Constants
+### Constants
 
  - $\pi$- `math.`\ `cmath.pi` - The mathematical constant π, as a float.
  - *e*- `math.`\ `cmath.e` - The mathematical constant e, as a float.
@@ -2994,7 +2995,7 @@ ____
 
 
 
- ### Boolean
+### Boolean
 
  ```py
  True
@@ -3007,14 +3008,14 @@ ____
 
  In the context of Boolean operations, and also when expressions are used by control flow statements, the following values are interpreted as false: `False`, `None`, **numeric zero of all types,** and **empty strings and containers** (including **strings,** **tuples,** **lists,** **dictionaries,** **sets** and **frozensets).** All other values are interpreted as true. (See the **nonzero**() special method for a way to change this.)
 
- ### A note on comparison
+### A note on comparison
 
  !!!Warning WARNING Only Immutable Objects are hashable. ANd thus comprable. (Tuples)
     Mutable objects will be un-equal unless they are the same object, because comparisons are based upon a hash.
 
 
 
- ### Strings - see following
+### Strings - see following
 
 
 ## Math
@@ -3144,7 +3145,7 @@ ____
  print(long_string[:4] + " be there")  #Concatenate part of a string to another
  ```
 
- ### String Constants:
+### String Constants:
 
  - `string.ascii_letters` - The concatenation of the ascii_lowercase and ascii_uppercase constants described below. This value is not locale-dependent.
 
@@ -3164,7 +3165,7 @@ ____
 
  - `string.whitespace` - A string containing all ASCII characters that are considered whitespace. This includes the characters space, tab, linefeed, return, formfeed, and vertical tab.
 
- ### PRINT()
+### PRINT()
 
  print() outputs data to the screen
 
@@ -3182,7 +3183,7 @@ ____
  print(a,b,c)
  ```
 
- #### To keep from printing newlines use end=""
+#### To keep from printing newlines use end=""
 
  ```python
  print("I don't like ",end="")
@@ -3192,7 +3193,7 @@ ____
  print('\n' * 5)
  ```
 
- #### Escape
+#### Escape
 
  See more in [Basics - Escape Characters](### Escape Characters) for all
 
@@ -3211,7 +3212,7 @@ ____
  ```
 
 
- ### PPrint
+### PPrint
 
  [PPrint Doc](https://docs.python.org/3/library/pprint.html)
 
@@ -3228,7 +3229,7 @@ ____
  `.pprint(object)`
  Print the formatted representation of object on the configured stream, followed by a newline.
 
- The following methods provide the implementations for the corresponding functions of the same names. Using these methods on an instance is slightly more efficient since new PrettyPrinter objects don’t need to be created.
+ The following methods provide the implementations for the corresponding functions of the same names. Using these methods on an instance is slightly more efficient since new PrettyPrinter objects don't need to be created.
 
  `.isreadable(object)`
  Determine if the formatted representation of the object is “readable,” or can be used to reconstruct the value using eval(). Note that this returns False for recursive objects. If the depth parameter of the PrettyPrinter is set and the object is deeper than allowed, this returns False.
@@ -3255,7 +3256,7 @@ ____
     - Recursive calls to the format() method should add additional entries for containers to this dictionary. 
 
  - The fourth argument, level, gives the current level; recursive calls should be passed a value less than that of the current call.
- ### Substring
+### Substring
 
  Squarebrackets after the string or variable subset. 0 indexed and non-inclusive.
 
@@ -3296,7 +3297,7 @@ ____
  ```
 
 
- ### Split
+### Split
 
  Use split to split at a particular character. Returns a tuple.
 
@@ -3309,7 +3310,7 @@ ____
  'domain.com'
  ```
 
- ### Other string Functions
+### Other string Functions
 
  !!!Note Note: All string methods returns new values. They do not change the original string. 
     This contrasts with List and perhaps the other object types.
@@ -3475,7 +3476,7 @@ ____
  print(sumDigits)
  ```
 
- ### STRING FORMATTING
+### STRING FORMATTING
 
  ```
  "First, thou shalt count to {0}"  # References first positional argument
@@ -3574,9 +3575,9 @@ ____
  ```
 
  [Reference for formatted Printing](https://www.python-course.eu/python3_formatted_output.php)
- See more in the [Basics-Literals Section](# ### Literals)
+ See more in the [Basics-Literals Section](#### Literals)
 
- ### Print integer with commas (1,000,000)
+### Print integer with commas (1,000,000)
 
  This has a simple format:
 
@@ -3602,7 +3603,7 @@ ____
             conversion        ::=  "r" | "s" | "a"
             format_spec       ::=  <described in the next section>
 
- The field_name itself begins with an arg_name that is either a number or a keyword. If it’s a number, it refers to a positional argument, and if it’s a keyword, it refers to a named keyword argument. If the numerical arg_names in a format string are 0, 1, 2, … in sequence, they can all be omitted (not just some) and the numbers 0, 1, 2, … will be automatically inserted in that order. Because arg_name is not quote-delimited, it is not possible to specify arbitrary dictionary keys (e.g., the strings '10' or ':-]') within a format string. The arg_name can be followed by any number of index or attribute expressions. An expression of the form '.name' selects the named attribute using getattr(), while an expression of the form '[index]' does an index lookup using __getitem__()
+ The field_name itself begins with an arg_name that is either a number or a keyword. If it's a number, it refers to a positional argument, and if it's a keyword, it refers to a named keyword argument. If the numerical arg_names in a format string are 0, 1, 2, … in sequence, they can all be omitted (not just some) and the numbers 0, 1, 2, … will be automatically inserted in that order. Because arg_name is not quote-delimited, it is not possible to specify arbitrary dictionary keys (e.g., the strings '10' or ':-]') within a format string. The arg_name can be followed by any number of index or attribute expressions. An expression of the form '.name' selects the named attribute using getattr(), while an expression of the form '[index]' does an index lookup using __getitem__()
 
  The conversion field causes a type coercion before formatting. Normally, the job of formatting a value is done by the __format__() method of the value itself. However, in some cases it is desirable to force a type to be formatted as a string, overriding its own definition of formatting. By converting the value to a string before calling __format__(), the normal formatting logic is bypassed.
 
@@ -3629,14 +3630,14 @@ ____
         precision       ::=  digit+
         type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
 
- ##### Align
+##### Align
 
  **[[<]]** - Forces the field to be left-aligned within the available space (this is the default for most objects).
  **[[>]]** - Forces the field to be right-aligned within the available space (this is the default for numbers).
- **[[=]]** - Forces the padding to be placed after the sign (if any) but before the digits. This is used for printing fields in the form ‘+000000120’. This alignment option is only valid for numeric types. It becomes the default when ‘0’ immediately precedes the field width.
+ **[[=]]** - Forces the padding to be placed after the sign (if any) but before the digits. This is used for printing fields in the form '+000000120'. This alignment option is only valid for numeric types. It becomes the default when '0' immediately precedes the field width.
  **[[^]]** - Forces the field to be centered within the available space.
 
- ##### Sign
+##### Sign
 
  __Numbers Only__
  **[[+]]** - indicates that a sign should be used for both positive as well as negative numbers.
@@ -3645,7 +3646,7 @@ ____
 
  **[[#]]** - option causes the “alternate form” to be used for the conversion
 
- ##### Grouping Option
+##### Grouping Option
 
  **[[,]]** - option signals the use of a comma for a thousands separator. For a locale aware separator, use the **[[n]]** - integer presentation type instead.
  **[[_]]** - option signals the use of an underscore for a thousands separator for floating point presentation types and for integer presentation type 'd'. For integer presentation types 'b', 'o', 'x', and 'X', underscores will be inserted every 4 digits (3.6+)
@@ -3655,7 +3656,7 @@ ____
  [[None]] - The same as 's'.
 
 
- ##### Type
+##### Type
 
  **The available integer presentation types are:**
 
@@ -3671,8 +3672,8 @@ ____
  **The available presentation types for floating point and decimal values are:**
 
 
- **[[e]]** - Exponent notation. Prints the number in scientific notation using the letter ‘e’ to indicate the exponent. The default precision is 6.
- **[[E]]** - Exponent notation. Same as **[[e]]** - except it uses an upper case ‘E’ as the separator character.
+ **[[e]]** - Exponent notation. Prints the number in scientific notation using the letter 'e' to indicate the exponent. The default precision is 6.
+ **[[E]]** - Exponent notation. Same as **[[e]]** - except it uses an upper case 'E' as the separator character.
  **[[f]]** - Fixed-point notation. Displays the number as a fixed-point number. The default precision is 6.
  **[[F]]** - Fixed-point notation. Same as 'f', but converts nan to NAN and inf to INF.
  **[[g]]** - General format. For a given precision p >= 1, this rounds the number to p significant digits and then formats the result in either fixed-point format or in scientific notation, depending on its magnitude.
@@ -3721,7 +3722,7 @@ ____
  'Coordinates: 37.24N, -115.81W'
 
 
- #Accessing arguments’ attributes:
+ #Accessing arguments' attributes:
  >>>
  >>> c = 3-5j
  >>> ('The complex number {0} is formed from the real part {0.real} '
@@ -3737,7 +3738,7 @@ ____
  'Point(4, 2)'
 
 
- #Accessing arguments’ items:
+ #Accessing arguments' items:
  >>>
  >>> coord = (3, 5)
  >>> 'X: {0[0]};  Y: {0[1]}'.format(coord)
@@ -3825,7 +3826,7 @@ ____
    10     A    12  1010
    11     B    13  1011
  ```
- ### My Examples
+### My Examples
 
 
  ```py
@@ -3835,7 +3836,7 @@ ____
 
  ```
 
- ### f Strings
+### f Strings
 
  In python 3.8+
 
@@ -3859,7 +3860,7 @@ ____
             Three conversion flags are currently supported: '!s' which calls str() on the value, '!r' which calls repr() and '!a' which calls ascii().
 
  
- ### Templates
+### Templates
 
  [Template Class](https://docs.python.org/3/library/string.html#string.Template)
 
@@ -3898,7 +3899,7 @@ KeyError: 'what'
 'tim likes $what'
  ~~~
 
- ### Regular Expressions
+### Regular Expressions
 
  [RE class](https://docs.python.org/3/library/re.html#module-re)
 
@@ -4001,17 +4002,17 @@ KeyError: 'what'
 - ` IGNORECASE, I` - Do case-insensitive matches.
 - ` LOCALE, L` - Do a locale-aware match.
 - ` MULTILINE, M` - Multi-line matching, affecting ^ and $.
-- ` VERBOSE, X (for ‘extended’)` - Enable verbose REs, which can be organized more cleanly and understandably.
+- ` VERBOSE, X (for 'extended')` - Enable verbose REs, which can be organized more cleanly and understandably.
 
 
  Lookahead Assertions
  Another zero-width assertion is the lookahead assertion. Lookahead assertions are available in both positive and negative form, and look like this:
 
 
-- ` (?=...)` - Positive lookahead assertion. This succeeds if the contained regular expression, represented here by ..., successfully matches at the current location, and fails otherwise. But, once the contained expression has been tried, the matching engine doesn’t advance at all; the rest of the pattern is tried right where the assertion started.
+- ` (?=...)` - Positive lookahead assertion. This succeeds if the contained regular expression, represented here by ..., successfully matches at the current location, and fails otherwise. But, once the contained expression has been tried, the matching engine doesn't advance at all; the rest of the pattern is tried right where the assertion started.
 
 
-- ` (?!...)` - Negative lookahead assertion. This is the opposite of the positive assertion; it succeeds if the contained expression doesn’t match at the current position in the string. ___
+- ` (?!...)` - Negative lookahead assertion. This is the opposite of the positive assertion; it succeeds if the contained expression doesn't match at the current position in the string. ___
  ___
 
 ____
@@ -4124,7 +4125,7 @@ List,
 
  ___
 
- ### [LISTS]
+### [LISTS]
 
  ___
 
@@ -4141,7 +4142,7 @@ List,
  Lists can have **named values**  -- see:
 
  ```py
- ###actually no I dont think so.
+###actually no I dont think so.
  >>> import sys
  >>> sys.version_info
  sys.version_info(major=2, minor=7, micro=17, releaselevel='final', serial=0)
@@ -4248,7 +4249,7 @@ List,
  print(min(to_do_list))
  ```
 
- #### List store with step
+#### List store with step
 
  ```py
  l = [1, 2, 3, 4]
@@ -4268,7 +4269,7 @@ List,
  >>>[0, 1, 2, 3, 20]
  ```
 
- #### List vs. Tuples - MIT Class Example
+#### List vs. Tuples - MIT Class Example
 
  ```py
  Ivies = ['Harvard', 'Yale', 'Brown']
@@ -4290,7 +4291,7 @@ List,
 
  Because when you appended the list, you didnt append the elements of the list, you appended the lists to the lists. A list can have any data type
 
- #### Flattening or Concatenating a List
+#### Flattening or Concatenating a List
 
  You can also concatenate or _flatten the list_
 
@@ -4305,7 +4306,7 @@ List,
  Univs.remove('Harvard')
  ```
 
- #### Mutation
+#### Mutation
 
  Changing the list cause mutation- eg. the change of the variable in place rather than the creation of an entirely new variable (a la Tuples).
 
@@ -4332,7 +4333,7 @@ List,
  This is because L2 was bound to the same object as L1. This doesnt occur in the lower object because its not a mutable object. It reassigns A to another object. In the first case its a list, that then refers to n objects, its the lists reference to the nth object that is replaced.
  [n1, n2, n3, ...] -> its n1 that is replaced the reference, not the references myList1 and myList2 still refer to the same list.
 
- #### List Comprehension
+#### List Comprehension
 
  List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.
 
@@ -4364,7 +4365,7 @@ List,
  [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
  ```
 
- and it’s equivalent to:
+ and it's equivalent to:
 
  ```py
  >>> combs = []
@@ -4434,7 +4435,7 @@ List,
                  if line != ""]
  ```
 
- ##### Nested Comprehension
+##### Nested Comprehension
 
  The initial expression in a list comprehension can be any arbitrary expression, including another list comprehension.
 
@@ -4486,7 +4487,7 @@ List,
 
 
 
- #### zip()
+#### zip()
 
 
  zip() takes a set of iterables, and iterates through them pairing them up until one list ends.
@@ -4502,7 +4503,7 @@ List,
  [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
  ```
 
- #### del
+#### del
 
  There is a way to remove an item from a list given its index instead of its value: the del statement. This differs from the pop() method which returns a value. The del statement can also be used to remove slices from a list or clear the entire list (which we did earlier by assignment of an empty list to the slice). For example:
 
@@ -4519,11 +4520,11 @@ List,
  []
  ```
 
- del can also be used to delete entire variables: `del a`. Referencing the name `a` hereafter is an error (at least until another value is assigned to it). We’ll find other uses for del later.
+ del can also be used to delete entire variables: `del a`. Referencing the name `a` hereafter is an error (at least until another value is assigned to it). We'll find other uses for del later.
 
  ___
 
- ### (TUPLES)
+### (TUPLES)
 
  ___
 
@@ -4587,7 +4588,7 @@ List,
  mylist[0:5:2] #gets all and using a step of 2, we now need 3 values.
  ```
 
- #### Tuples of 0 or 1 length
+#### Tuples of 0 or 1 length
 
  !!!Important Important- it is not sufficient to enclose a single value in parentheses, to make a tuple of lenth=1.
 
@@ -4608,15 +4609,15 @@ List,
  >>> singleton
  ('hello',)
 
- #### Convert tuple into a list
+#### Convert tuple into a list
 
  `new_list = list(my_tuple)`
 
- #### Convert a list into a tuple
+#### Convert a list into a tuple
 
  `new_tuple = tuple(grocery_list)`
 
- #### Other Methods
+#### Other Methods
 
  ```py
  len(tuple)
@@ -4646,7 +4647,7 @@ List,
  <type 'tuple'>
  ```
 
- #### Tuple Packing and Unpacking
+#### Tuple Packing and Unpacking
 
  The statement` '` is an example of tuple `packing`: the values 12345, 54321 and 'hello!' are packed together in a tuple. The reverse operation is also possible:
 
@@ -4667,7 +4668,7 @@ List,
 
  Sequence unpacking requires that there are as many variables on the left side of the equals sign as there are elements in the sequence. Note that multiple assignment is really just a combination of tuple packing and sequence unpacking.
 
- #### Gathering and Scattering
+#### Gathering and Scattering
 
  Variable Length Inputs and Outputs
 
@@ -4678,13 +4679,13 @@ List,
  ```py
  def printall(*args):
     print args
- The gather parameter can have any name you like, but args is conventional. Here’s how the function works:
+ The gather parameter can have any name you like, but args is conventional. Here's how the function works:
 
  >>> printall(1, 2.0, '3')
  (1, 2.0, '3')
  ```
 
- The complement of gather is scatter. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the \* operator. For example, divmod takes exactly two arguments; it doesn’t work with a tuple:
+ The complement of gather is scatter. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the \* operator. For example, divmod takes exactly two arguments; it doesn't work with a tuple:
 
  ```py
  >>> t = (7, 3)
@@ -4699,20 +4700,20 @@ List,
  (2, 1)
  ```
 
- #### Sequence Type
+#### Sequence Type
 
  As a [sequence](####Sequential Operations) (sequential?) data type, there are some specific operations available
 
  [Main Article](#Sequence-Specific-Operations)
 
 
- #### Swap
+#### Swap
 
  Tuples can be used to quickly swap two variables via tuple assignment:
 
  `a,b = b,a`
 
- #### Assignment
+#### Assignment
 
  A series of variables and expressions as tuples will be assigned to each other as long as their numbers match:
 
@@ -4735,7 +4736,7 @@ List,
 
  ```
 
- #### zip()
+#### zip()
 
  -works similarly to assignment style above taking two sequences and combining them. Taking one from each, until it hits whatever ends first. This may be more tolerant of inequal lengths?
 
@@ -4760,7 +4761,7 @@ List,
 
  **Book says this creates a zip object, that then has to be turned into a list with `list(zip(*args))`, however, I get a list at the outset.** This may be a difference with python 2 and 3.
 
- #### Create a Dict from Tuples
+#### Create a Dict from Tuples
 
  You can quickly create a dictionary using `dict()` and `zip()- D = dict(zip(range(4), 'abcd'))`
 
@@ -4829,7 +4830,7 @@ assert employee.id == ~~3~~
 
  ___
 
- ### {DICTIONARY}
+### {DICTIONARY}
 
 [Mapping Types — dict](https://docs.python.org/3/library/stdtypes.html?highlight=dictionary#dict)
 
@@ -4894,7 +4895,7 @@ True
 
 A mapping object maps hashable values to arbitrary objects. Mappings are mutable objects. There is currently only one standard mapping type, the dictionary. (For other containers see the built-in list, set, and tuple classes, and the collections module.)
 
-A dictionary’s keys are almost arbitrary values. Values that are not hashable, that is, values containing lists, dictionaries or other mutable types (that are compared by value rather than by object identity) may not be used as keys.
+A dictionary's keys are almost arbitrary values. Values that are not hashable, that is, values containing lists, dictionaries or other mutable types (that are compared by value rather than by object identity) may not be used as keys.
 
  As of 3.7 dictionaries have a stable order, as opposed to a random order in prior versions.
 
@@ -4912,7 +4913,7 @@ Dictionaries preserve insertion order. Note that updating a key does not affect 
  - `update()` - Updates the dictionary with the specified key-value pairs
  - `values()` - Returns a list of all the values in the dictionary
 
-The objects returned by `dict.keys(), dict.values()` and `dict.items()` are view objects. They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.
+The objects returned by `dict.keys(), dict.values()` and `dict.items()` are view objects. They provide a dynamic view on the dictionary's entries, which means that when the dictionary changes, the view reflects these changes.
 
 
  Accessing the dictionary and setting: Like
@@ -5000,7 +5001,7 @@ d `|=` other - Update the dictionary d with keys and values from other, which ma
 `==` Dictionaries compare equal if and only if they have the same (key, value) pairs (regardless of ordering). 
 
 
-Order comparisons `(‘<’, ‘<=’, ‘>=’, ‘>’)` raise TypeError.
+Order comparisons `('<', '<=', '>=', '>')` raise TypeError.
 
 #### Dictionary Comprehension 
 
@@ -5022,10 +5023,10 @@ comp_if       ::=  "if" or_test [comp_iter]
 
 ```py
 dict1 = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-# Put all keys of `dict1` in a list and returns the list
+        # Put all keys of `dict1` in a list and returns the list
 dict1.keys()
 dict_keys(['c', 'd', 'a', 'b'])
-# Put all values saved in `dict1` in a list and returns the list
+    # Put all values saved in `dict1` in a list and returns the list
 dict1.values()
 dict_values([3, 4, 1, 2])
 So, now that you know how to access all the keys and their values in a dictionary. You can also access each key-value pair within a dictionary using the items() method:
@@ -5043,13 +5044,13 @@ Let's start off with a simple dictionary comprehension:
 
 Let's look at the lambda function along with the map() function:
 ```py
-# Initialize `fahrenheit` dictionary 
+    # Initialize `fahrenheit` dictionary 
 fahrenheit = {'t1':-30, 't2':-20, 't3':-10, 't4':0}
 
-#Get the corresponding `celsius` values
+ #Get the corresponding `celsius` values
 celsius = list(map(lambda x: (float(5)/9)*(x-32), fahrenheit.values()))
 
-#Create the `celsius` dictionary
+ #Create the `celsius` dictionary
 celsius_dict = dict(zip(fahrenheit.keys(), celsius))
 
 print(celsius_dict)
@@ -5059,7 +5060,7 @@ print(celsius_dict)
 
 
 
- #### Nesting dictionaries
+#### Nesting dictionaries
 
  I was trying to make a nested dict as follows:
 
@@ -5068,10 +5069,10 @@ print(celsius_dict)
 from random import randint
 c = 10
 random_fake = randint(0, c-1)
-# coins = [_ for _ in range(c)]
+    # coins = [_ for _ in range(c)]
 V, F = "Value", "Fake"  # So we can use descriptive names, but access easily.
 d = {V: None, F: False}
-# create the default values.  V = value (for + or -) F for fake.
+    # create the default values.  V = value (for + or -) F for fake.
 coins = [{_: d} for _ in range(c)]
 
 ```
@@ -5308,7 +5309,7 @@ class LRU(OrderedDict):
 
 
 
- #### Iterate Through a dictionary
+#### Iterate Through a dictionary
 
  Use the following:
 
@@ -5367,7 +5368,7 @@ for k,v in d.items()
     new_d[v]=k
 ```
 
- #### d.items()
+#### d.items()
  returns a list of tuples for the dictionary.
 
  ```py
@@ -5383,7 +5384,7 @@ for k,v in d.items()
  {1: 'blue', 2: 'blue', 3: 'brown', 4: 'brown'}
  ```
 
- #### Reverse Lookup
+#### Reverse Lookup
 
  Reverse lookup is difficult. Can use some code:
 
@@ -5423,20 +5424,20 @@ for k,v in d.items()
  print(super_villains['Captain Cold'])
  ```
 
- #### Delete an entry
+#### Delete an entry
 
  ```python
  del super_villains['Fiddler']
  print(super_villains)
  ```
 
- #### Replace a value
+#### Replace a value
 
  ```python
  super_villains['Pied Piper'] = 'Hartley Rathaway'
  ```
 
- #### `in` and `not in`
+#### `in` and `not in`
 
  `x in d` returns true or false respectively
 
@@ -5449,19 +5450,19 @@ for k,v in d.items()
  True
  ```
 
- #### Print the number of items in the dictionary
+#### Print the number of items in the dictionary
 
  ```python
  print(len(super_villains))
  ```
 
- #### Get the value for the passed key
+#### Get the value for the passed key
 
  ```python
  print(super_villains.get("Pied Piper"))
  ```
 
- #### Get a list of dictionary keys
+#### Get a list of dictionary keys
 
  ```python
  print(super_villains.keys())
@@ -5470,13 +5471,13 @@ for k,v in d.items()
  list(iter(super_villains))
  ```
 
- #### Get a list of dictionary values
+#### Get a list of dictionary values
 
  ```python
  print(super_villains.values())
  ```
 
- #### List the Key Value pairs
+#### List the Key Value pairs
 
  ```py
  for i in d:
@@ -5497,7 +5498,7 @@ for k,v in d.items()
     print(k, v)
  ```
 
- #### Return a Default Value if not present
+#### Return a Default Value if not present
 
  ```py
  d={'a':'apple','b':'ball'}
@@ -5507,7 +5508,7 @@ for k,v in d.items()
  #'Cat'
  ```
 
- #### Sort a Dictionary
+#### Sort a Dictionary
 
  If you want to sort the output by dict key you can use the collection package.
 
@@ -5521,7 +5522,7 @@ for k,v in d.items()
 
  ___
 
- ### SETS SET(()) or {}
+### SETS SET(()) or {}
 
  [Sets Doc](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
 
@@ -5585,11 +5586,11 @@ for k,v in d.items()
 
  thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
  ```
- #### Frozensets
+#### Frozensets
 
  Dont know what these are yet
 
- ### RANGES
+### RANGES
 
  See the section on Ranges in [Iterables](#Iterables).
 
@@ -5597,11 +5598,11 @@ for k,v in d.items()
 
 
 
- #### Sequence Specific Operations
+#### Sequence Specific Operations
 
  [Doc on Sequence Types](https://docs.python.org/3/library/stdtypes.html#typesseq)
 
- #### RANGE
+#### RANGE
 
  `range(int, int, int)`
 
@@ -5621,7 +5622,7 @@ for k,v in d.items()
  
 
 
- ##### Methods for Float Range
+##### Methods for Float Range
 
  [frange recipe](https://code.activestate.com/recipes/577068/)
 
@@ -5679,7 +5680,7 @@ for k,v in d.items()
  [5, 4, 3, 2, 1]
  ```
 
- ### Collections
+### Collections
 
  import collections.abc
 
@@ -5799,7 +5800,7 @@ ____
 > Iterables can be used in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop and in many other places where a sequence is needed ([`zip()`](https://docs.python.org/3/library/functions.html#zip "zip"), [`map()`](https://docs.python.org/3/library/functions.html#map "map"), …). When an iterable object is passed as an argument to the built-in function [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter"), it returns an iterator for the object. This iterator is good for one pass over the set of values. When using iterables, it is usually not necessary to call [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") or deal with iterator objects yourself. The `for` statement does that automatically for you, creating a temporary unnamed variable to hold the iterator for the duration of the loop. See also [iterator](https://docs.python.org/3/glossary.html#term-iterator), [sequence](https://docs.python.org/3/glossary.html#term-sequence), and [generator](https://docs.python.org/3/glossary.html#term-generator).
 > 
 !!!quote [Iterator](https://docs.python.org/3/glossary.html#term-iterator)
-    > An object representing a stream of data. Repeated calls to the iterator’s [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
+    > An object representing a stream of data. Repeated calls to the iterator's [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
 > 
 > More information can be found in [Iterator Types](https://docs.python.org/3/library/stdtypes.html#typeiter).)
 
@@ -5817,7 +5818,7 @@ ____
 > 
 > ==iterator==
 > 
-> An object representing a stream of data. Repeated calls to the iterator’s [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
+> An object representing a stream of data. Repeated calls to the iterator's [`__next__()`](https://docs.python.org/3/library/stdtypes.html#iterator.__next__ "iterator.__next__") method (or passing it to the built-in function [`next()`](https://docs.python.org/3/library/functions.html#next "next")) return successive items in the stream. When no more data are available a [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") exception is raised instead. At this point, the iterator object is exhausted and any further calls to its `__next__()` method just raise [`StopIteration`](https://docs.python.org/3/library/exceptions.html#StopIteration "StopIteration") again. Iterators are required to have an [`__iter__()`](https://docs.python.org/3/reference/datamodel.html#object.__iter__ "object.__iter__") method that returns the iterator object itself so every iterator is also iterable and may be used in most places where other iterables are accepted. One notable exception is code which attempts multiple iteration passes. A container object (such as a [`list`](https://docs.python.org/3/library/stdtypes.html#list "list")) produces a fresh new iterator each time you pass it to the [`iter()`](https://docs.python.org/3/library/functions.html#iter "iter") function or use it in a [`for`](https://docs.python.org/3/reference/compound_stmts.html#for) loop. Attempting this with an iterator will just return the same exhausted iterator object used in the previous iteration pass, making it appear like an empty container.
 > 
 > More information can be found in [Iterator Types](https://docs.python.org/3/library/stdtypes.html#typeiter).
 
@@ -5863,7 +5864,7 @@ ____
 
  ____
 
- ### FOR LOOPS
+### FOR LOOPS
 
  object of type iterative
 
@@ -5958,7 +5959,7 @@ ____
             pass
 
 
- #### comprehensions
+#### comprehensions
 
  See the longer section under lists.
 
@@ -5976,7 +5977,7 @@ ____
                  if line != ""]
  ```
 
- #### Generators
+#### Generators
 
  Any function containing a `yield` keyword is a generator function;
 
@@ -6003,7 +6004,7 @@ ____
   File "stdin", line 2, in generate_ints
  StopIteration
  ```
- The test suite included with Python’s library, [Lib/test/test_generators.py](https://github.com/python/cpython/tree/3.7/Lib/test/test_generators.py), contains a number of more interesting examples.
+ The test suite included with Python's library, [Lib/test/test_generators.py](https://github.com/python/cpython/tree/3.7/Lib/test/test_generators.py), contains a number of more interesting examples.
 
  A recursive generator that generates Tree leaves in in-order.
 
@@ -6019,7 +6020,7 @@ ____
             yield x
  ```
 
- Here’s a simple counter that increments by 1 and allows changing the value of the internal counter.
+ Here's a simple counter that increments by 1 and allows changing the value of the internal counter.
  ```py
  def counter(maximum):
     i = 0
@@ -6030,7 +6031,7 @@ ____
             i = val
         else:
             i += 1
- #And here’s an example of changing the counter:
+ #And here's an example of changing the counter:
 
  >>> it = counter(10)  #doctest: +SKIP
  >>> next(it)  #doctest: +SKIP
@@ -6048,12 +6049,12 @@ ____
  StopIteration
  ```
 
- Because yield will often be returning None, you should always check for this case. Don’t just use its value in expressions unless you’re sure that the send() method will be the only method used to resume your generator function.
+ Because yield will often be returning None, you should always check for this case. Don't just use its value in expressions unless you're sure that the send() method will be the only method used to resume your generator function.
 
  In addition to send(), there are two other methods on generators:
 
- - throw(type, value=None, traceback=None) is used to raise an exception inside the generator; the exception is raised by the yield expression where the generator’s execution is paused.
- - close() raises a GeneratorExit exception inside the generator to terminate the iteration. On receiving this exception, the generator’s code must either raise GeneratorExit or StopIteration; catching the exception and doing anything else is illegal and will trigger a RuntimeError. close() will also be called by Python’s garbage collector when the generator is garbage-collected.
+ - throw(type, value=None, traceback=None) is used to raise an exception inside the generator; the exception is raised by the yield expression where the generator's execution is paused.
+ - close() raises a GeneratorExit exception inside the generator to terminate the iteration. On receiving this exception, the generator's code must either raise GeneratorExit or StopIteration; catching the exception and doing anything else is illegal and will trigger a RuntimeError. close() will also be called by Python's garbage collector when the generator is garbage-collected.
 
  If you need to run cleanup code when a GeneratorExit occurs, I suggest using a try: ... finally: suite instead of catching GeneratorExit.
 
@@ -6066,7 +6067,7 @@ ____
  ```
 
 
- ### WHILE Loops
+### WHILE Loops
 
  - While loops are used when you don't know ahead of time how many times you'll have to loop
 
@@ -6105,7 +6106,7 @@ ____
     i += 1
  ```
 
- ### Do While (equivalents)
+### Do While (equivalents)
 
  A do-While list does not exist in python,
 
@@ -6122,7 +6123,7 @@ ____
 
  [More](https://stackoverflow.com/questions/743164/emulate-a-do-while-loop-in-python)
 
- ### Case / Switch Statement
+### Case / Switch Statement
 
  A Case statement, as implemented in Java (below), this doesn't explicitly exist in Python.
 
@@ -6253,7 +6254,7 @@ ____
     print func()
  ```
 
- In fact, if you’re calling methods on objects, you can even use a dispatch method to dynamically determine which function needs to be called during runtime.
+ In fact, if you're calling methods on objects, you can even use a dispatch method to dynamically determine which function needs to be called during runtime.
 
  ```py
  class Switcher(object):
@@ -6285,7 +6286,7 @@ ____
  #>>> January
  ```
 
- Since you can alter Python dictionaries during runtime (add, remove or update key-value pairs), you can easily change your very switch statement on the fly. Here’s an example,
+ Since you can alter Python dictionaries during runtime (add, remove or update key-value pairs), you can easily change your very switch statement on the fly. Here's an example,
 
  ```py
  def zero():
@@ -6317,7 +6318,7 @@ ____
  #>>> Two
  ```
 
- ### Range, Break, Continue, Pass, Enumerate, and Iter, and others
+### Range, Break, Continue, Pass, Enumerate, and Iter, and others
 
  - range([start], stop, [step])
  - `break` break out of a loop, typically with an internal conditional statement
@@ -6326,7 +6327,7 @@ ____
  - `enumerate(x)` - create a for loop that iterates over the keys and the values
 
 
- #### BREAK
+#### BREAK
 
  `break` break out of a loop, typically with an internal conditional statement
 
@@ -6347,7 +6348,7 @@ ____
  #gets to 5 and then stops
  ```
 
- #### CONTINUE
+#### CONTINUE
 
  `continue` -continue the loop -just stop the current iteration
 
@@ -6375,11 +6376,11 @@ ____
  Out of loop
  ```
 
- #### PASS
+#### PASS
 
  `pass` - handle the condition without the loop being impacted in any way;
 
- e.g. `pass` statement- in this program, we notice that the program runs exactly as it would if there were no conditional statement in the program. The pass statement tells the program to disregard that condition and continue to run the program as usual.
+ e.g. `pass` statement- in this program, we notice that the program runs exactly as it would if there were no conditional statement in the program. The pass statement tells the program to disregard that condition and continue to run the program as usual.
 
  ```py
  number = 0
@@ -6414,7 +6415,7 @@ ____
  class C: pass       #a class with no methods (yet)
  ```
 
- #### enumerate(x)
+#### enumerate(x)
 
  `enumerate(x)` - create a for loop that iterates over the keys and the values
 
@@ -6440,7 +6441,7 @@ ____
     else:
  ```
 
- #### Other iterable Functions
+#### Other iterable Functions
 
  Some example things that turn collections into iterable items
 
@@ -6494,7 +6495,7 @@ ____
  My Stack() class as a generator:
 
 
- ### Generators
+### Generators
 
  [Generator Info](https://wiki.python.org/moin/Generators)
 
@@ -6537,7 +6538,7 @@ ____
         yield 1
  ```
 
- #### Empty Generator
+#### Empty Generator
 
  ```py
     def __iter__(self):
@@ -6687,7 +6688,7 @@ ____
     solve2(legs, heads)
  ```
 
- ### Recursion
+### Recursion
 
  A problem is broken into a
 
@@ -6708,9 +6709,9 @@ ____
     else: return str[0] == str[1] and isPalindrome(str[1:-1])
  ```
 
- ### Gathering and Scattering
+### Gathering and Scattering
 
- #### Gathering
+#### Gathering
 
  Variable Length Arguments using Tuples:
 
@@ -6764,7 +6765,7 @@ NOTE:  It seems in both cases **scattering,** and **gathering,** the `*` is alwa
  (2, 1)
  ```
 
- #### Scattering
+#### Scattering
 
  The opposite is **scattering,** also done with an _. Using divmod(n,o) from above. var_
 
@@ -6781,7 +6782,7 @@ Note these 3 styles, and the results they produce:
     for a in args:
         print(a)
 
-#using for a in *args, or a in args* both error.
+ #sing for a in *args, or a in args* both error.
 >>> p(1,2,3,4,5)
 1
 2
@@ -6798,7 +6799,7 @@ vs not scattering or indicating its scattered, acts like a tuple?
 >>> p(1,2,3,4,5)
 (1, 2, 3, 4, 5)
 
-#however, this does not work at all
+ #however, this does not work at all
  def p(args):
     print(args)
     print(*args)
@@ -6834,7 +6835,7 @@ def p(*args):
  (2, 1)
  ```
 
- ### Lambda Calculus
+### Lambda Calculus
 
  Lambda calculus is an abstract "throwaway" function, designed to relate a value to another.
 
@@ -6899,25 +6900,25 @@ ____
 ____
 ## FILE I/O
 
- -   [`pathlib` --- Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
- -   [`os.path` --- Common pathname manipulations](https://docs.python.org/3/library/os.path.html)
- -   [`fileinput` --- Iterate over lines from multiple input streams](https://docs.python.org/3/library/fileinput.html)
- -   [`stat` --- Interpreting `stat()` results](https://docs.python.org/3/library/stat.html)
- -   [`filecmp` --- File and Directory Comparisons](https://docs.python.org/3/library/filecmp.html)
-    -   [The `dircmp` class](https://docs.python.org/3/library/filecmp.html#the-dircmp-class)
- -   [`tempfile` --- Generate temporary files and directories](https://docs.python.org/3/library/tempfile.html)
+ -   [`pathlib` --- Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
+ -   [`os.path` --- Common pathname manipulations](https://docs.python.org/3/library/os.path.html)
+ -   [`fileinput` --- Iterate over lines from multiple input streams](https://docs.python.org/3/library/fileinput.html)
+ -   [`stat` --- Interpreting `stat()` results](https://docs.python.org/3/library/stat.html)
+ -   [`filecmp` --- File and Directory Comparisons](https://docs.python.org/3/library/filecmp.html)
+    -   [The `dircmp` class](https://docs.python.org/3/library/filecmp.html#the-dircmp-class)
+ -   [`tempfile` --- Generate temporary files and directories](https://docs.python.org/3/library/tempfile.html)
 
- -   [`glob` --- Unix style pathname pattern expansion](https://docs.python.org/3/library/glob.html)
- -   [`fnmatch` --- Unix filename pattern matching](https://docs.python.org/3/library/fnmatch.html)
- -   [`linecache` --- Random access to text lines](https://docs.python.org/3/library/linecache.html)
- -   [`shutil` --- High-level file operations](https://docs.python.org/3/library/shutil.html)
+ -   [`glob` --- Unix style pathname pattern expansion](https://docs.python.org/3/library/glob.html)
+ -   [`fnmatch` --- Unix filename pattern matching](https://docs.python.org/3/library/fnmatch.html)
+ -   [`linecache` --- Random access to text lines](https://docs.python.org/3/library/linecache.html)
+ -   [`shutil` --- High-level file operations](https://docs.python.org/3/library/shutil.html)
     -   [Directory and files operations](https://docs.python.org/3/library/shutil.html#directory-and-files-operations)
         -   [Platform-dependent efficient copy operations](https://docs.python.org/3/library/shutil.html#platform-dependent-efficient-copy-operations)
         -   [copytree example](https://docs.python.org/3/library/shutil.html#copytree-example)
         -   [rmtree example](https://docs.python.org/3/library/shutil.html#rmtree-example)
     -   [Archiving operations](https://docs.python.org/3/library/shutil.html#archiving-operations)
         -   [Archiving example](https://docs.python.org/3/library/shutil.html#archiving-example)
-        -   [Archiving example with *base_dir*](https://docs.python.org/3/library/shutil.html#archiving-example-with-base-dir)
+        -   [Archiving example with *base_dir*](https://docs.python.org/3/library/shutil.html#archiving-example-with-base-dir)
     -   [Querying the size of the output terminal](https://docs.python.org/3/library/shutil.html#querying-the-size-of-the-output-terminal)
 
  Class IO
@@ -7043,7 +7044,7 @@ ____
         print argv[1], '- some other error'
  ```
 
- ### Using Paths
+### Using Paths
 
  Cant use relative paths outright.  Use `Os` to manipulate filesystem
 
@@ -7053,7 +7054,7 @@ ____
  fullpath = os.getcwd() + subpath + filename
  ```
 
- #### Check if a file exists
+#### Check if a file exists
 
  `Pathlib` is good and `fileinput`
 
@@ -7155,7 +7156,7 @@ ____
  ```
 
 
- ### Tarfile
+### Tarfile
 
  see also Zipfile library and also shutils library in 3.8+
 
@@ -7211,7 +7212,7 @@ ____
 
 
 
- ### Resource Managers
+### Resource Managers
 
  The better way to open files.  Has something to do with minimizing resources.
 
@@ -7256,7 +7257,7 @@ is accessed like this:
     destination = config['server']['ServerAddress']
     key = config['server']['ApiKey']
 
-#and loaded like this
+ #nd loaded like this
 
 def loadConfig(path):
     try:
@@ -7272,7 +7273,7 @@ def loadConfig(path):
     except FileNotFoundError:
         return False
 ```
- ### JSON
+### JSON
 
  Using the json library, opens a json file as a dictionary.
 
@@ -7315,7 +7316,7 @@ def loadConfig(path):
  ```
 
 
- ### Create a tempfile
+### Create a tempfile
 
 <!-- TODO -->
  tempfile library
@@ -7410,7 +7411,7 @@ print(get_drives())
 FILENAME = 'firmware.CUR'
 target = 'H:\\'
 fn = os.path.join(target, FILENAME).replace('\\', '/')
-#this doesnt work. w/w/o the replace.
+ #his doesnt work. w/w/o the replace.
 ```
 
 
@@ -7425,7 +7426,7 @@ ____
 
  Syntax is similar to Java, and probably other languages.
 
- ### Try Catch Syntax
+### Try Catch Syntax
 
  ```py
  while True:
@@ -7485,7 +7486,7 @@ ____
 
  `as e` - just gives an alias, shorter.
 
- ### Error Types
+### Error Types
 
  - `BaseException` - the most base class
   - `Exception`
@@ -7568,7 +7569,7 @@ ____
                 +-- BytesWarning
                 +-- ResourceWarning
 
- #### Notes on Each...
+#### Notes on Each...
 
  `BaseException`
 
@@ -7582,7 +7583,7 @@ ____
 
   +-- **User Errors** -
 
-  +-- `StopIteration` - Raised by built-in function `next()` and an iterator’s `__next__()` method to signal that there are no further items produced by the iterator.
+  +-- `StopIteration` - Raised by built-in function `next()` and an iterator's `__next__()` method to signal that there are no further items produced by the iterator.
 
   +-- `StopAsyncIteration` - Must be raised by `__anext__()` method of an asynchronous iterator object to stop the iteration.
 
@@ -7652,7 +7653,7 @@ ____
 
   +-- `ReferenceError` This exception is raised when a weak reference proxy, created by the weakref.proxy() function, is used to access an attribute of the referent after it has been garbage collected. (see https://docs.python.org/3/library/weakref.html#module-weakref)
 
-  +-- `RuntimeError` Raised when an error is detected that **doesn’t fall in any of the other categories.** The associated value is a string indicating what precisely went wrong.
+  +-- `RuntimeError` Raised when an error is detected that **doesn't fall in any of the other categories.** The associated value is a string indicating what precisely went wrong.
 
   |    +-- `NotImplementedError`
 
@@ -7694,7 +7695,7 @@ ____
         +-- `BytesWarning`
         +-- `ResourceWarning`
 
- #### Retrieving a List
+#### Retrieving a List
 
  You can get a list of all the current errors that are present- e.g. list all the subclasses of `Exception` with this code- adapted from [here](https://stackoverflow.com/questions/3862310/how-to-find-all-the-subclasses-of-a-class-given-its-name):
 
@@ -7707,7 +7708,7 @@ ____
 
  in the above list, the ones prefixed with a module are implemented in a module.  Only the ones without periods are found in Base.  Comparing this list with the doc produces an exact match.
 
- #### Cystom Error Types
+#### Cystom Error Types
 
  ```py
  class Error(Exception):
@@ -7734,7 +7735,7 @@ ____
         self.message = message
  ```
 
- ### Errno
+### Errno
 
  errno.errorcode
  Dictionary providing a mapping from the errno value to the string name in the underlying system. For instance, errno.errorcode[errno.EPERM] maps to 'EPERM'.
@@ -7866,7 +7867,7 @@ ____
  - errno.EREMOTEIO - Remote I/O error
  - errno.EDQUOT - Quota exceeded
 
- ### Traceback
+### Traceback
 
  Traceback Examples
  This simple example implements a basic read-eval-print loop, similar to (but less useful than) the standard Python interactive interpreter loop. For a more complete implementation of the interpreter loop, refer to the code module.
@@ -8033,7 +8034,7 @@ ____
  - ntpath (Windows)
  - macpath (MacOs)
 
- ### Proxies
+### Proxies
 
  With URL Lib
 
@@ -8058,11 +8059,11 @@ ____
  r = s.get(gurl,  proxies=prox)
  ```
 
- ### Requests package
+### Requests package
 
  [Requests](http://docs.python-requests.org/en/master/)
 
- ### HTTP Response Codes
+### HTTP Response Codes
 
  100-continue
  101 Switching Protocol
@@ -8196,7 +8197,7 @@ ____
  print(cat.__name)
  ```
 
- ### Class and Instance Variables
+### Class and Instance Variables
 
  Generally speaking, instance variables are for data unique to each instance and class variables are for attributes and methods shared by all instances of the class:
 
@@ -8242,7 +8243,7 @@ ____
 
  The only difference between the two seems to be the declaration as a `field`, e.g. at the top.
 
- ### INHERITANCE
+### INHERITANCE
 
  You can inherit all of the variables and methods from another class
 
@@ -8291,10 +8292,10 @@ ____
 
  Python has two built-in functions that work with inheritance:
 
- Use `isinstance()` to check an instance’s type: `isinstance(obj, int)` will be True only if `obj.__class__` is `int` or some class derived from `int`.
+ Use `isinstance()` to check an instance's type: `isinstance(obj, int)` will be True only if `obj.__class__` is `int` or some class derived from `int`.
  Use `issubclass()` to check class inheritance: `issubclass(bool, int)` is `True` since bool is a subclass of int. However, `issubclass(float, int)` is `False` since `float` is not a subclass of `int`.
 
- ### Polymorphism
+### Polymorphism
 
  Polymorphism allows use to refer to objects as their super class and the correct functions are called automatically
 
@@ -8311,14 +8312,14 @@ ____
  spot.multiple_sounds(4)
  ```
 
- ### METHODS
+### METHODS
 
  Methods are a function basically with different syntax.
 
  List1.append(List2)
  Append(List1, List2)
 
- #### Dunder Methods (Double Underline)
+#### Dunder Methods (Double Underline)
 
  aka data model methods. see [here](https://docs.python.org/3/reference/datamodel.html)
 
@@ -8396,19 +8397,19 @@ ____
  sys.modules[__name__].__class__ = VerboseModule
  ```
 
- __doc__ - The function’s documentation string, or None if unavailable; not inherited by subclasses. - Writable
- __name__ - The function’s name. - Writable
- __qualname__ - The function’s qualified name. Writable
+ __doc__ - The function's documentation string, or None if unavailable; not inherited by subclasses. - Writable
+ __name__ - The function's name. - Writable
+ __qualname__ - The function's qualified name. Writable
  __module__ - The name of the module the function was defined in, or None if unavailable. - Writable
  __defaults__ - A tuple containing default argument values for those arguments that have defaults, or None if no arguments have a default value. - Writable
  __code__ - The code object representing the compiled function body. - Writable
- __globals__ - A reference to the dictionary that holds the function’s global variables — the global namespace of the module in which the function was defined. - Read-only
+ __globals__ - A reference to the dictionary that holds the function's global variables — the global namespace of the module in which the function was defined. - Read-only
  __dict__ - The namespace supporting arbitrary function attributes. - Writable
- __closure__ - None or a tuple of cells that contain bindings for the function’s free variables. See below for information on the cell_contents attribute. - Read-only
+ __closure__ - None or a tuple of cells that contain bindings for the function's free variables. See below for information on the cell_contents attribute. - Read-only
  __annotations__ - A dict containing annotations of parameters. The keys of the dict are the parameter names, and 'return' for the return annotation, if provided. - Writable
  __kwdefaults__ - A dict containing defaults for keyword-only parameters. - Writable
 
- #### Functional Methods
+#### Functional Methods
 
  Having seen the mechanics behind the iterator protocol, it is easy to add iterator behavior to your classes. Define an __iter__() method which returns an object with a __next__() method. If the class defines __next__(), then __iter__() can just return self:
 
@@ -8429,7 +8430,7 @@ ____
         return self.data[self.index]
  ```
 
- ### Classes
+### Classes
 
  Defining a class, the parentheses are not obligatory.  They are just used if you want to use inheritance. `class Rabbit:` would not throw an error. `class Rabbit(object):`
 
@@ -8487,7 +8488,7 @@ ____
 
  Extending a base class is shown above.  the first line, usese the keyword class, followed by then Name, the followed by the name of the object its extending.
 
- ### Method types:
+### Method types:
 
  [Reference](https://realpython.com/instance-class-and-static-methods-demystified/)
 
@@ -8499,7 +8500,7 @@ ____
 
 
 
- Therefore a static method can neither modify object state nor class state. Static methods are restricted in what data they can access - and they’re primarily a way to namespace your methods.
+ Therefore a static method can neither modify object state nor class state. Static methods are restricted in what data they can access - and they're primarily a way to namespace your methods.
 
  ```py
  class MyClass:
@@ -8568,7 +8569,7 @@ ____
 
  ```
 
- #### Inbuilt methods
+#### Inbuilt methods
 
  Dunder methods-
  - `__init__` = constructor
@@ -8592,7 +8593,7 @@ ____
     - `__sub__`
     - `__rsub__`
 
- ##### Descriptors 
+##### Descriptors 
 
  descriptor is Any object which defines the methods __get__(), __set__(), or __delete__().
 
@@ -8645,13 +8646,13 @@ ____
     def __lt__(self, other):
         return self.balance < other.balance
  ```
- ##### Iteration Dunder classes
+##### Iteration Dunder classes
 
  - `__len__` - return the length of an item
  - `__getitem__` - return the next item
  - `__reversed__` -  return the seq. reversed
 
- ##### Context Manager Dunder Classes
+##### Context Manager Dunder Classes
 
  This is a complex topic- see [here](https://dbader.org/blog/python-context-managers-and-with-statement) and [here, from which this example comes:](https://dbader.org/blog/python-dunder-methods)
 
@@ -8718,7 +8719,7 @@ ____
  # Balance end: 10
  ```
 
- ### Class Decorators
+### Class Decorators
 
  `@classmethod` 
 
@@ -8728,9 +8729,9 @@ ____
 
  `@property`
 
- ### Object oriented Python
+### Object oriented Python
 
- “Private” instance variables that cannot be accessed except from inside an object don’t exist in Python. However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member).
+ “Private” instance variables that cannot be accessed except from inside an object don't exist in Python. However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member).
 
  **name mangling** Any identifier of the form __spam (at least two leading underscores, at most one trailing underscore) is textually replaced with _classname__spam, where classname is the current class name with leading underscore(s) stripped.
 
@@ -8755,11 +8756,11 @@ ____
 ## Advanced Concepts
 
  <!-- Move to Unittests -->
- ### Tests
+### Tests
 
  `assert hasattr(Base, 'foo'), "You broke it you fool"` - this is an assertion that foo is an attribute of Base (the example class in this case.)
 
- ### Patch into Python Architecture
+### Patch into Python Architecture
 
  [Source](https://www.youtube.com/watch?v=cKPlPJyQrt4&t=4606s)
  ```py
@@ -8788,7 +8789,7 @@ ____
  builtins.__build_class__ = my_bc #redirect the current __build_class__ to your function
  ```
 
- ### Metaclass
+### Metaclass
 
  Classes that derive from type
 
@@ -8817,7 +8818,7 @@ ____
         return 'bar'
  ```
 
- ### Inspect Module
+### Inspect Module
 
  ```py
  from inspect import getsource
@@ -8829,7 +8830,7 @@ ____
 
  ```
 
- ### Decorators
+### Decorators
 
  Decorators `@timer` or `@a.b.c` enable easier syntax for wrapper functions, basically where we want to have some function with some enclosing behaviour before and after.  `@timer / def func(*args)` really calls `func = timer(func)` where `*args` is passed as part of the object.
 
@@ -9013,19 +9014,24 @@ output = p2.communicate()[0]
 
 
 Replacing os.system()
+
 `sts = os.system("mycmd" + " myarg")`
-# becomes
+
+becomes
+
 `retcode = call("mycmd" + " myarg", shell=True)`
+
 Notes:
 
-Calling the program through the shell is usually not required.
+    Calling the program through the shell is usually not required.
 
-The call() return value is encoded differently to that of os.system().
+    The call() return value is encoded differently to that of os.system().
 
-The os.system() function ignores SIGINT and SIGQUIT signals while the command is running, but the caller must do this separately when using the subprocess module.
+    The os.system() function ignores SIGINT and SIGQUIT signals while the command is running, but the caller must do this separately when using the subprocess module.
 
 A more realistic example would look like this:
-```
+
+```py
 try:
     retcode = call("mycmd" + " myarg", shell=True)
     if retcode < 0:
@@ -9034,12 +9040,12 @@ try:
         print("Child returned", retcode, file=sys.stderr)
 except OSError as e:
     print("Execution failed:", e, file=sys.stderr)
-
 ```
 
 Replacing the os.spawn family
 
 #### P_NOWAIT example:
+
 ```py
 pid = os.spawnlp(os.P_NOWAIT, "/bin/mycmd", "mycmd", "myarg")
 ==>
@@ -9065,10 +9071,10 @@ ____
 
 
  ____
- ### Type safety
+### Type safety
 
 
- ### Python Native Typing
+### Python Native Typing
 
  [Typing Doc](https://docs.python.org/3/library/typing.html)
 
@@ -9191,7 +9197,7 @@ ____
  - _ValuesView_ - 
  - _WrapperDescriptorType_ - 
 
- ### MyPy
+### MyPy
 
  [Doc](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
 
@@ -9237,9 +9243,9 @@ ____
     -   [`tkinter.tix` --- Extension widgets for Tk](https://docs.python.org/3/library/tkinter.tix.html)
     -   [IDLE](https://docs.python.org/3/library/idle.html)
     -   [Other Graphical User Interface Packages](https://docs.python.org/3/library/othergui.html)
- ### Curses
+### Curses
 
- !!!warn Warn: The Windows version of Python doesn’t include the curses module. A ported version called UniCurses is available. You could also try the Console module written by Fredrik Lundh, which doesn’t use the same API as curses but provides cursor-addressable text output and full support for mouse and keyboard input.
+ !!!warn Warn: The Windows version of Python doesn't include the curses module. A ported version called UniCurses is available. You could also try the Console module written by Fredrik Lundh, which doesn't use the same API as curses but provides cursor-addressable text output and full support for mouse and keyboard input.
 
  THe basic outline of a curses program
 
@@ -9282,11 +9288,11 @@ ____
  wrapper(main)
  ```
 
- #### Windows-curses
+#### Windows-curses
 
 
 
- ### tKinter
+### tKinter
 
  Tkinter is a python wrapper for Tcl/Tk
 
@@ -9360,7 +9366,7 @@ ____
 
  The above is a baseline for tkinter code.
 
- #### Adding Buttons
+#### Adding Buttons
 
  ```py
  #Reuse the code from above above this line.
@@ -9391,7 +9397,7 @@ ____
  app.mainloop()
  ```
 
- #### Adding Pages
+#### Adding Pages
 
  ```py
  #Reuse the code from above above this line.
@@ -9439,11 +9445,11 @@ ____
  app.mainloop()
  ```
 
- ### wxPyton
+### wxPyton
 
- ### Kivy
+### Kivy
 
- ### PyQt
+### PyQt
 
  [Tutorial](https://www.youtube.com/watch?annotation_id=annotation_3865470925&feature=iv&index=2&list=PLQVvvaa0QuDdVpDFNq4FwY9APZPGSUyR4&src_vid=JBME1ZyHiP8&v=DF_44sWnAsk)
 
@@ -9512,7 +9518,7 @@ ____
  `window.setWindowTitle("Some String As the Title")`
 
 
- #### Basic App With Icons
+#### Basic App With Icons
 
  ```py
 
@@ -9535,7 +9541,7 @@ ____
  sys.exit(app.exec_())
  ```
 
- #### Adding a button
+#### Adding a button
 
  ```py
  import sys
@@ -9572,7 +9578,7 @@ ____
 
  ```
 
- #### Defining custom button functions
+#### Defining custom button functions
 
  Custom Event Handling
 
@@ -9617,7 +9623,7 @@ ____
  run()
  ```
 
- #### Adding a main menu
+#### Adding a main menu
 
  ```py
  import sys
@@ -9677,7 +9683,7 @@ ____
  run()
  ```
 
- #### Adding A Toolbar
+#### Adding A Toolbar
 
  The toolbar module creates a toolbar that can be dragged around the window, or even dragged off the screen to a stand alone method.
 
@@ -9751,7 +9757,7 @@ ____
 
  ```
 
- #### Popup Windows
+#### Popup Windows
 
  ```py
 
@@ -9771,7 +9777,7 @@ ____
 ____
 ## Packages
 
- ### Timeit
+### Timeit
 
  ```py
  import timeit
@@ -9782,12 +9788,12 @@ ____
 
  also logtimer, time_benchmark
 
- ### Twill
+### Twill
 
  Python 3 version is twill3.
 
 
- ### Generate a progress bar automatically
+### Generate a progress bar automatically
 
  ```py
  from time import sleep
@@ -9797,7 +9803,7 @@ ____
     sleep(0.01)
  ```
 
- ### argparse
+### argparse
  ```py
  import argparse
 
@@ -9843,7 +9849,7 @@ ____
   - class argparse.RawTextHelpFormatter
   - class argparse.ArgumentDefaultsHelpFormatter
   - class argparse.MetavarTypeHelpFormatter
- - `prefix_chars` - The set of characters that prefix optional arguments (default: ‘-‘)
+ - `prefix_chars` - The set of characters that prefix optional arguments (default: '-')
  - `fromfile_prefix_chars` - The set of characters that prefix files from which additional arguments should be read (default: None)
  - `argument_default` - The global default value for arguments (default: None)
  - `conflict_handler` - The strategy for resolving conflicting optionals (usually unnecessary)
@@ -9869,7 +9875,7 @@ ____
 
  - `name` or flags - Either a name or a list of option strings, e.g. foo or -f, --foo.
  - `action` - The basic type of action to be taken when this argument is encountered at the command line.
-  - `'store'`- just stores the argument’s value. This is the default action.
+  - `'store'`- just stores the argument's value. This is the default action.
   - `'store_const'` - This stores the value specified by the const keyword argument. The 'store_const' action is usually a flag - e.g.
     - `'store_true'`
     - `'store_false'`
@@ -9979,7 +9985,7 @@ ____
  $ python3 prog.py 4 -vvvv
  ```
 
- Remember that by default, if an optional argument isn’t specified, it gets the None value, and that cannot be compared to an int value (hence the TypeError exception).
+ Remember that by default, if an optional argument isn't specified, it gets the None value, and that cannot be compared to an int value (hence the TypeError exception).
 
  **groups**
 
@@ -10004,7 +10010,7 @@ ____
  else:
     print("{}^{} == {}".format(args.x, args.y, answer))
 
- ##out
+##out
  $ python3 prog.py --help
  usage: prog.py [-h] [-v | -q] x y
 
@@ -10020,7 +10026,7 @@ ____
   -q, --quiet
  ```
 
- ### Windows Modules
+### Windows Modules
 
  the idea is to collect modules that would provide AHK like functionality
 
@@ -10343,7 +10349,7 @@ Documentation [Here](http://timgolden.me.uk/pywin32-docs/contents.html)
 There is also more [here](http://timgolden.me.uk/pywin32-docs/PyWin32.html)
 
 
- ### NetworkX
+### NetworkX
 
 [Current Doc](https://networkx.org/documentation/stable/reference/index.html)
 
@@ -10382,10 +10388,7 @@ Then we add a layout algorithm from the list below.  `nx.spring_layout()` is pro
 
 A simple example
 
-```
-
-
-
+```py
 n = 3
 G2 = nx.complete_graph(3)
 pos = nx.spring_layout(G2)
@@ -10399,12 +10402,10 @@ options = {
     "font_size": 22
 }
 nodes = [_n for _n in range(n)]
-# edgelist = list(zip(range(0, n), range(1, n)))  # might need list
+ # edgelist = list(zip(range(0, n), range(1, n)))  # might need list
 G2.add_edges_from(makeedge(nodes))
 nx.draw(
     G, pos, **options)
-
-
 ```
 
 
@@ -10469,7 +10470,7 @@ pygraphviz
 - `draw_shell(G, **kwargs) ` -*Draw networkx graph with shell layout.*
 - `draw_graphviz(G[, prog]) ` -*Draw networkx graph with graphviz layout.*
 
- #### Attributes
+#### Attributes
 
  --------
 
@@ -10809,7 +10810,7 @@ https://networkx.org/documentation/networkx-1.10/reference/classes.digraph.html#
 - Graph`.subgraph(nbunch) ` -*Return the subgraph induced on nodes in nbunch.*
 
 
-Members of G
+*Members of G*
 
 'add_edge',
  'add_edges_from',

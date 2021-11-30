@@ -364,7 +364,7 @@ Markdown Setting
 			"nshades": 20
 		},
 		"vscode_custom_css.imports": [
-		"file:///O:/OneDrive/Programming/Notes/.vscode/custom.css"
+			"file:///O:/OneDrive/Programming/Notes/.vscode/custom.css"
 		],
 		// "markdown-header-coloring.userDefinedHeaderColor": {
 		// 	"enabled": true,
@@ -450,24 +450,7 @@ Markdown Setting
 				"foreground": "#EEFFFF"
 			}
 		},
-		{
-			"name": "Markdown - Markup Raw Inline",
-			"scope": [
-				"text.html.markdown markup.inline.raw.markdown"
-			],
-			"settings": {
-				"foreground": "#ffc977"
-			}
-		},
-		{
-			"name": "Markdown - Markup Raw Inline Punctuation",
-			"scope": [
-				"text.html.markdown markup.inline.raw.markdown punctuation.definition.raw.markdown"
-			],
-			"settings": {
-				"foreground": "#73c48f"
-			}
-		},
+
 		{
 			"name": "Markdown - Line Break",
 			"scope": [
@@ -477,17 +460,7 @@ Markdown Setting
 				//"foreground": ""
 			}
 		},
-		{
-			"name": "Markdown - Heading",
-			"scope": [
-				"markdown.heading",
-				"markup.heading | markup.heading entity.name",
-				"markup.heading.markdown punctuation.definition.heading.markdown"
-			],
-			"settings": {
-				"foreground": "#73c48f"
-			}
-		},
+
 		{
 			"name": "Markup - Italic",
 			"scope": [
@@ -544,16 +517,7 @@ Markdown Setting
 				//"foreground": ""
 			}
 		},
-		{
-			"name": "Markdown - Blockquote",
-			"scope": [
-				"markup.quote punctuation.definition.blockquote.markdown"
-			],
-			"settings": {
-				//"background": "#73c48f",
-				"foreground": "#73c48f"
-			}
-		},
+
 		{
 			"name": "Markup - Quote",
 			"scope": [
@@ -629,26 +593,7 @@ Markdown Setting
 				"foreground": "#EEFFFF"
 			}
 		},
-		{
-			"name": "Markdown - Fenced Language",
-			"scope": [
-				"variable.language.fenced.markdown"
-			],
-			"settings": {
-				"foreground": "#73c48f"
-			}
-		},
-		{
-			"name": "Markdown - Separator",
-			"scope": [
-				"meta.separator"
-			],
-			"settings": {
-				"fontStyle": "bold",
-				//"background": "#00000050",
-				"foreground": "#73c48f"
-			}
-		},
+
 		{
 			"name": "Markup - Table",
 			"scope": [
