@@ -108,7 +108,6 @@ Version - PowerShell 7.2 (LTS)
 -   Scripting and development
     -   Visual Studio Code
     -Version
-
 ## Links on Basics
 
 -   [Microsoft.PowerShell.Core](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-7.2)
@@ -300,24 +299,6 @@ I removed some oddballs
 
 ## Powershell Get and new modules
 
-
--   [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget/?view=powershell-7.2)
--   [Find-Command](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-command?view=powershell-7.2)
--   [Find-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-module?view=powershell-7.2)
--   [Find-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-script?view=powershell-7.2)
--   [Get-InstalledModule](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedmodule?view=powershell-7.2)
--   [Get-InstalledScript](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedscript?view=powershell-7.2)
--   [Get-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-psrepository?view=powershell-7.2)
--   [Install-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module?view=powershell-7.2)
--   [Install-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-script?view=powershell-7.2)
--   [Register-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/register-psrepository?view=powershell-7.2)
--   [Set-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/set-psrepository?view=powershell-7.2)
--   [Uninstall-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-module?view=powershell-7.2)
--   [Uninstall-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-script?view=powershell-7.2)
--   [Unregister-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/unregister-psrepository?view=powershell-7.2)
--   [Update-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-module?view=powershell-7.2)
--   [Update-ModuleManifest](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-modulemanifest?view=powershell-7.2)
--   [Update-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-script?view=powershell-7.2)
 -   [Find-Command](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-command?view=powershell-7.2)
 -   [Find-DscResource](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-dscresource?view=powershell-7.2)
 -   [Find-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-module?view=powershell-7.2)
@@ -327,6 +308,7 @@ I removed some oddballs
 -   [Get-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-psrepository?view=powershell-7.2)
 -   [Install-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module?view=powershell-7.2)
 -   [Install-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-script?view=powershell-7.2)
+-   [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget/?view=powershell-7.2)
 -   [Register-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/register-psrepository?view=powershell-7.2)
 -   [Save-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-7.2)
 -   [Save-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-script?view=powershell-7.2)

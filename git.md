@@ -30,7 +30,7 @@ export GIT_AUTHOR_NAME='A. Timmons'
 export GIT_COMMITTER_NAME='A. Timmons'
 export GIT_PAGER=$PAGER
 export GIT_EDITOR=$EDITOR
-export GIT_CONFIG_PARAMETERS="'color.ui=true, color.branch=auto, color.status=auto'"
+#export GIT_CONFIG_PARAMETERS="'color.ui=true, color.branch=auto, color.status=auto'"
 ```
 
 Though this doesnt seem to work, rather run

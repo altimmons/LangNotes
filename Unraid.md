@@ -2028,3 +2028,131 @@ Sync the files database:
 Search for a package containing a file, e.g.:
 
 $ pacman -F pacman
+
+
+
+##  Docker
+
+docker run  --network macvlan3 --name=alptest --ip 192.168.1.43 --dns 1.1.1.1,9.9.9.9 -h alpinetest -it --rm alpine /bin/sh
+ -it instructs Docker to allocate a pseudo-TTY connected to the
+
+ --ip assigns a static ip- dhcp doesnt work
+ --dns should assign dns servers,
+ -- rm removes upon exit
+ --net assigns the network
+ -h sets the hostname
+
+ So in Unraid, additional parameters would be this:
+
+ -net macvlan3 --ip 192.168.1.xx --dns 1.1.1.1 -h hostname -name ?
+ -net macvlan3 --ip 192.168.1.xx --dns 1.1.1.1 -h hostname -name hostname -l hostname --net-alias hostname --device USB -- dns-search local  Timmons Family --domainname Timmons..Family
+
+ also consider:
+ --expose  Expose a port or a range of ports
+--gpus		API 1.40+
+GPU devices to add to the container ('all' to pass all GPUs)
+--label , -l		Set meta data on a container
+--link-local-ip		Container IPv4/IPv6 link-local addresses
+--link		Add link to another container
+--mount		Attach a filesystem mount to the container
+--net-alias		Add network-scoped alias for the container
+-env VAR1=value1 --env VAR2=value2 
+--publish , -p		Publish a container's port(s) to the host
+--publish-all , -P		Publish all exposed ports to random ports
+--device		Add a host device to the container
+
+                  --device=/dev/sdc:/dev/xvdc \
+             --device=/dev/sdd --device=/dev/zero:/dev/nulo \
+             -i -t \
+             ubuntu ls -l /dev/{xvdc,sdd,nulo}
+--dns-search		Set custom DNS search domains  
+--domainname		Container NIS domain name
+--dns add dns servers
+            Syntax for multiple  --dns="1.0.0.1" --dns="1.1.1.1" 
+ ** Your container will use the same DNS servers as the host by default, but you can override this with --dns.
+Add entries to container hosts file (--add-host)
+
+--add-host=docker:93.184.216.34
+
+!!!Note Note: On options above- with multiple values
+                        
+                        `--dns` -The IP address of a DNS server. To specify multiple DNS servers, use multiple --dns flags. If the container cannot reach any of the IP addresses you specify, Google’s public DNS server 8.8.8.8 is added, so that your container can resolve internet domains.
+                        `--dns-search` -> A DNS search domain to search non-fully-qualified hostnames. To specify multiple DNS search prefixes, use multiple --dns-search flags.
+                        `--dns-opt` -> A key-value pair representing a DNS option and its value. See your operating system’s documentation for resolv.conf for valid options.
+                        `--hostname` -> The hostname a container uses for itself. Defaults to the container’s ID if not specified.
+      
+
+
+
+
+The flags you pass to ip addr show depend on whether you are using IPv4 or IPv6 networking in your containers. Use the following flags for IPv4 address retrieval for a network device named eth0:
+
+ HOSTIP=`ip -4 addr show scope global dev eth0 | grep inet | awk '{print $2}' | cut -d / -f 1 | sed -n 1p`
+ docker run  --add-host=docker:${HOSTIP} --rm -it debian
+
+
+[](https://docs.docker.com/engine/reference/run/)
+
+
+#### Network: host
+
+With the network set to `host` a container will share the host's network stack and all interfaces from the host will be available to the container. The container's hostname will match the hostname on the host system. Note that `--mac-address` is invalid in `host` netmode. Even in `host` network mode a container has its own UTS namespace by default. As such `--hostname` and `--domainname` are allowed in `host` network mode and will only change the hostname and domain name inside the container. Similar to `--hostname`, the `--add-host`, `--dns`, `--dns-search`, and `--dns-option` options can be used in `host` network mode. These options update `/etc/hosts` or `/etc/resolv.conf` inside the container. No change are made to `/etc/hosts` and `/etc/resolv.conf` on the host.
+
+Compared to the default `bridge` mode, the `host` mode gives *significantly* better networking performance since it uses the host's native networking stack whereas the bridge has to go through one level of virtualization through the docker daemon. It is recommended to run containers in this mode when their networking performance is critical, for example, a production Load Balancer or a High Performance Web Server.
+
+> Note
+>
+> `--network="host"` gives the container full access to local system services such as D-bus and is therefore considered insecure.
+
+#### Network: container
+
+With the network set to `container` a container will share the network stack of another container. The other container's name must be provided in the format of `--network container:<name|id>`. Note that `--add-host` `--hostname` `--dns` `--dns-search` `--dns-option` and `--mac-address` are invalid in `container` netmode, and `--publish` `--publish-all` `--expose` are also invalid in `container` netmode.
+
+Example running a Redis container with Redis binding to `localhost` then running the `redis-cli` command and connecting to the Redis server over the `localhost` interface.
+
+```
+$ docker run -d --name redis example/redis --bind 127.0.0.1
+$ # use the redis container's network stack to access localhost
+$ docker run --rm -it --network container:redis example/redis-cli -h 127.0.0.1
+
+```
+
+#### User-defined network
+
+You can create a network using a Docker network driver or an external network driver plugin. You can connect multiple containers to the same network. Once connected to a user-defined network, the containers can communicate easily using only another container's IP address or name.
+
+For `overlay` networks or custom plugins that support multi-host connectivity, containers connected to the same multi-host network but launched from different Engines can also communicate in this way.
+
+The following example creates a network using the built-in `bridge` network driver and running a container in the created network
+
+```
+$ docker network create -d bridge my-net
+$ docker run --network=my-net -itd --name=container3 busybox
+
+```
+
+### Managing /etc/hosts[](https://docs.docker.com/engine/reference/run/#managing-etchosts)
+
+Your container will have lines in `/etc/hosts` which define the hostname of the container itself as well as `localhost` and a few other common things. The `--add-host` flag can be used to add additional lines to `/etc/hosts`.
+
+```
+$ docker run -it --add-host db-static:86.75.30.9 ubuntu cat /etc/hosts
+
+172.17.0.22     09d03f76bf2c
+fe00::0         ip6-localnet
+ff00::0         ip6-mcastprefix
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+127.0.0.1       localhost
+::1	            localhost ip6-localhost ip6-loopback
+86.75.30.9      db-static
+
+```
+
+If a container is connected to the default bridge network and `linked` with other containers, then the container's `/etc/hosts` file is updated with the linked container's name.
+
+> Note
+>
+> Since Docker may live update the container's `/etc/hosts` file, there may be situations when processes inside the container can end up reading an empty or incomplete `/etc/hosts` file. In most cases, retrying the read again should fix the problem.
+>
+>
