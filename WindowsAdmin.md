@@ -2796,6 +2796,15 @@ Examples:
     TASKLIST /S system /U username /P password /FO TABLE /NH
     TASKLIST /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
 ```
+
+
+#### SHOW SVCHOST Fikes using TASKLIST
+
+Running this:
+
+ `tasklist /svc /fi "imagename eq svchost.exe"`
+
+
 ### CHM Files and HTML HELP
 
 Can be decompiled Using Powershell
@@ -3755,7 +3764,81 @@ Examples:
 - `REG ADD HKLM\Software\MyCo /v MRU /t REG_MULTI_SZ /d fax\0mail` - Adds a value (name: MRU, type: REG_MULTI_SZ, data: fax\0mail\0\0)
 - `REG ADD HKLM\Software\MyCo /v Path /t REG_EXPAND_SZ /d ^%systemroot^%` - Adds a value (name: Path, type: REG_EXPAND_SZ, data: %systemroot%)   Notice:  Use the caret symbol ( ^ ) inside the expand string
 
+>        REG QUERY /?
+>    **==REG QUERY==** *KeyName* [/v `[ValueName]` | /ve] `[/s]`
+>            [/f Data `[/k]` `[/d]` `[/c]` `[/e]`] _[/t Type]_ `[/z]` _[/se Separator]_
+>            [/reg:32 | /reg:64]
+>
+>    KeyName  [\\Machine\]FullKey
+>           
+>    **Machine** - Name of remote machine, omitting defaults to the
+>                        current machine. Only HKLM and HKU are available on
+>                        remote machines
+>     **FullKey** - in the form of `ROOTKEY\SubKey` name
+>>   -   _ROOTKEY_ - `[ HKLM | HKCU | HKCR | HKU | HKCC ]`
+> >  -    SubKey  - The full name of a registry key under the
+>                            selected ROOTKEY
+>
+>    `/v`       Queries for a specific registry key values.
+>            If omitted, all values for the key are queried.
+>
+>      !!!Note Argument to this switch can be optional only when specified along with /f switch. This specifies to search in valuenames only.
+>
+>   ` /ve`      Queries for the default value or empty value name (Default).
+>
+>    `/s`       Queries all subkeys and values recursively (like dir /s).
+>
+>   `/se`      Specifies the separator (length of 1 character only) in
+>            data string for REG_MULTI_SZ. Defaults to "\0" as the separator.
+>
+>    `/f`       Specifies the data or pattern to search for.
+>            Use double quotes if a string contains spaces. Default is "*".
+>
+>    `/k`       Specifies to search in key names only.
+>
+>    `/d`       Specifies the search in data only.
+>
+>    `/c`       Specifies that the search is case sensitive.
+>            The default search is case insensitive.
+>
+>    `/e`       Specifies to return only exact matches.
+>            By default all the matches are returned.
+>
+>    `/t`       Specifies registry value data type.
+>            Valid types are:
+>                REG_SZ, REG_MULTI_SZ, REG_EXPAND_SZ,
+>                REG_DWORD, REG_QWORD, REG_BINARY, REG_NONE
+>            Defaults to all types.
+>
+>    `/z`       Verbose: Shows the numeric equivalent for the type of the valuename.
+>
+>    `/reg:32`  Specifies the key should be accessed using the 32-bit registry view.
+>
+>    `/reg:64`  Specifies the key should be accessed using the 64-bit registry view.
+>
+>-----
+>         Examples:
+>
+>>    `REG QUERY HKLM\Software\Microsoft\ResKit /v Version`
+>>>   Displays the value of the registry value Version
+>>
+>>    `REG QUERY \\ABC\HKLM\Software\Microsoft\ResKit\Nt\Setup /s`
+>>>    Displays all subkeys and values under the registry key Setup on remote machine ABC
+>>
+>>    `REG QUERY HKLM\Software\Microsoft\ResKit\Nt\Setup /se #`
+>>>    Displays all the subkeys and values with "#" as the seperator for all valuenames whose type is REG_MULTI_SZ.
+>>
+>>    `REG QUERY HKLM /f SYSTEM /t REG_SZ /c /e`
+>>>  Displays Key, Value and Data with case sensitive and exact occurrences of "SYSTEM" under HKLM root for the data type REG_SZ
+>>
+>>    `REG QUERY HKCU /f 0F /d /t REG_BINARY`
+>>>  Displays Key, Value and Data for the occurrences of "0F" in data under HKCU root for the data type REG_BINARY
+>>
+>>    `REG QUERY HKLM\SOFTWARE /ve`
+>>>  Displays Value and Data for the empty value (Default) under HKLM\SOFTWARE
 
+`REG QUERY HKLM\SYSTEM\CurrentControlSet\Services /s /v ServiceDll`   Lists all the DLLs in svc host that are run as services
+`REG QUERY HKLM\SYSTEM\CurrentControlSet\Enum\USB /s`  Get all the USB Devices/
 #### PKTMON
 
 [Doc from ss64](https://ss64.com/nt/pktmon.html)
