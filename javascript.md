@@ -500,6 +500,14 @@ The following statements call the padZeros function.
     result = padZeros(42,2); // returns "42"
     result = padZeros(5,4);  // returns "0005"
 
+### String Formatting
+
+`${var}` will add a variable in place:
+  
+ ``console.log(`Server running at http://${hostname}:${port}/`);``
+
+!!!Note Note: Substitution uses backticks [[\`]]
+
 
 ## Conditionals
 
@@ -836,3 +844,476 @@ get10(function(num1){
   }):
 });
 ```
+
+
+## Node.js
+
+### Built In Modules
+
+[Source](https://www.w3schools.com/nodejs/ref_modules.asp)
+
+
+
+- **assert** -> Provides a set of assertion tests
+- **buffer** -> To handle binary data
+- **child_process** -> To run a child process
+- **cluster** -> To split a single Node process into multiple processes
+- **crypto** -> To handle OpenSSL cryptographic functions
+- **dgram** -> Provides implementation of UDP datagram sockets
+- **dns** -> To do DNS lookups and name resolution functions
+- **domain** -> Deprecated. To handle unhandled errors
+- **events** -> To handle events
+- **fs** -> To handle the file system
+- **http** -> To make Node.js act as an HTTP server
+- **https** -> To make Node.js act as an HTTPS server.
+- **net** -> To create servers and clients
+- **os** -> Provides information about the operation system
+- **path** -> To handle file paths
+- **punycode** -> Deprecated. A character encoding scheme
+- **querystring** -> To handle URL query strings
+- **readline** -> To handle readable streams one line at the time
+- **stream** -> To handle streaming data
+- **string_decoder** -> To decode buffer objects into strings
+- **timers** -> To execute a function after a given number of milliseconds
+- **tls** -> To implement TLS and SSL protocols
+- **tty** -> Provides classes used by a text terminal
+- **url** -> To parse URL strings
+- **util** -> To access utility functions
+- **v8** -> To access information about V8 (the JavaScript engine)
+- **vm** -> To compile JavaScript code in a virtual machine
+- **zlib** -> To compress or decompress files
+
+### Server Example
+
+```js
+const http = require('http');
+const hostname = '127.0.0.1';
+const port = 3000;
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    //If the response from the HTTP server is supposed to be displayed as HTML, you should include an HTTP header with the correct content type:
+    //res.setHeader('Content Type', 'text/plain');
+    res.end('Hello World\n'); 
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/n`);
+});
+//or we can append ths to the server declaration
+const server = http.createServer((req, res) => {
+   ...
+}).listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/n`);
+});
+
+// or simply 
+}).listen(8080);
+```
+
+```js
+const server = http.createServer((req, res) => {
+```
+
+The function passed into the `http.createServer()` has a `req` argument that represents the request from the client, as an object (http.IncomingMessage object).
+
+`res` here is the response
+
+#### Header
+
+  ```js
+res.setHeader('Content-Type', 'text/html');
+   res.setHeader('Content-Type', 'text/plain');
+
+   //or
+   res.writeHead(404, {'Content-Type': 'text/html'});
+```
+
+alternatively you can say `res.writeHead(404, {'Content-Type': 'text/html'});`
+
+#### getting URL Data
+
+```js
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write(req.url);
+  res.end();
+}).listen(8080);
+```
+
+This example outputs the address 
+
+e.g. `http://localhost:8080/summer` returns summer and http://localhost:8080/fall returns fall.
+
+This way you can get information on the target. 
+
+#### Spltting the URL
+
+[Source](https://www.w3schools.com/nodejs/nodejs_http.asp)
+
+querying:
+`http://localhost:8080/?year=2017&month=July`
+
+```js
+var http = require('http');
+var url = require('url');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  var q = url.parse(req.url, true).query;
+  var txt = q.year + " " + q.month;
+  res.end(txt);
+}).listen(8080);
+```
+
+Will produce this result:
+
+2017 July
+  
+summer.html
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Summer</h1>
+<p>I love the sun!</p>
+</body>
+</html>
+
+winter.html
+
+```
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Winter</h1>
+<p>I love the snow!</p>
+</body>
+</html>
+```
+
+```js
+var http = require('http');
+var url = require('url');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  var q = url.parse(req.url, true);
+  var filename = "." + q.pathname;
+  fs.readFile(filename, function(err, data) {
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    } 
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080);
+```
+
+### File Server
+
+`var fs = require('fs');`
+
+Read files
+Create files
+Update files
+Delete files
+Rename files
+
+ fs.readFile() method is used to read files on your computer.
+
+ Read Files
+The `fs.readFile()` method is used to read files on your computer.
+
+Assume we have the following HTML file (located in the same folder as Node.js):
+
+demofile1.html
+
+```html
+<html>
+<body>
+<h1>My Header</h1>
+<p>My paragraph.</p>
+</body>
+</html>
+```
+
+Create a Node.js file that reads the HTML file, and return the content:
+
+```js
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+  fs.readFile('demofile1.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080);
+```
+
+### Creating Files
+
+The File System module has methods for creating new files:
+
+  fs.appendFile()
+  fs.open()
+  fs.writeFile()
+
+```js
+var fs = require('fs');
+
+fs.appendFile('mynewfile1.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+```
+
+
+The fs.open() method takes a "flag" as the second argument, if the flag is "w" for "writing", the specified file is opened for writing. If the file does not exist, an empty file is created:
+
+Create a new, empty file using the open() method:
+
+```js
+var fs = require('fs');
+
+fs.open('mynewfile2.txt', 'w', function (err, file) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+```
+##### Write File
+
+The fs.writeFile() method replaces the specified file and content if it exists. If the file does not exist, a new file, containing the specified content, will be created:
+
+Create a new file using the writeFile() method:
+
+```js
+var fs = require('fs');
+
+fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+```
+
+##### Delete Files
+
+To delete a file with the File System module,  use the fs.unlink() method.
+
+The fs.unlink() method deletes the specified file:
+
+Delete "mynewfile2.txt":
+
+```js
+var fs = require('fs');
+
+fs.unlink('mynewfile2.txt', function (err) {
+  if (err) throw err;
+  console.log('File deleted!');
+});
+```
+
+### Events
+
+Every action on a computer is an event. Like when a connection is made or a file is opened.
+
+Objects in Node.js can fire events, like the readStream object fires events when opening and closing a file:
+
+```js
+var fs = require('fs');
+var rs = fs.createReadStream('./demofile.txt');
+rs.on('open', function () {
+  console.log('The file is open');
+});
+```
+
+#### EventEmitter
+
+Node.js has a built-in module, called "Events", where you can create-, fire-, and listen for- your own events.
+
+To include the built-in Events module use the require() method. In addition, all event properties and methods are an instance of an EventEmitter object. To be able to access these properties and methods, create an EventEmitter object:
+
+```js
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+```
+
+You can assign event handlers to your own events with the EventEmitter object.
+
+In the example below we have created a function that will be executed when a "scream" event is fired.
+
+To fire an event, use the `emit()` method.
+
+```js
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+//Create an event handler:
+var myEventHandler = function () {
+  console.log('I hear a scream!');
+}
+
+//Assign the event handler to an event:
+eventEmitter.on('scream', myEventHandler);
+
+//Fire the 'scream' event:
+eventEmitter.emit('scream');
+
+```
+
+### Forms
+
+[Source](https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp)
+
+
+```js
+var http = require('http');
+var formidable = require('formidable');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  if (req.url == '/fileupload') {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      var oldpath = files.filetoupload.filepath;
+      var newpath = 'C:/Users/Your Name/' + files.filetoupload.originalFilename;
+      fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+        res.write('File uploaded and moved!');
+        res.end();
+      });
+ });
+  } else {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    //the action is here-- in formaction=fileupload opens ./fileupload
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+}).listen(8080);
+```
+
+#### Send an email
+
+```js
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'youremail@gmail.com',
+    pass: 'yourpassword'
+  }
+});
+
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+```
+
+## NPM
+
+
+download 'upper-case'
+
+>npm install upper-case
+
+project now has a folder structure like this:
+
+.\node_modules\upper-case
+
+and creats `package-lock.json`:
+
+```json
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "tslib": {
+      "version": "2.3.1",
+      "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz",
+      "integrity": "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
+    },
+    "upper-case": {
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/upper-case/-/upper-case-2.0.2.tgz",
+      "integrity": "sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==",
+      "requires": {
+        "tslib": "^2.0.3"
+      }
+    }
+  }
+}
+```
+
+just use it with `var uc = require('upper-case');`
+
+### npm install
+
+Without an argument, will install the files in package-lock.
+
+## Starting from a template
+
+[Source](https://morioh.com/p/d5c46313b141)
+
+
+IN VSCODE open new window-
+say create from git.  https://github.com/chriswells0/node-typescript-template.git
+then select target,
+it will clone and then you can open it.
+
+Then run the commands 3-5
+
+    $ git clone https://github.com/chriswells0/node-typescript-template.git <your project directory>
+    $ cd <your project directory>
+    $ rm -rf ./.git/
+    $ git init
+    $ npm install
+
+
+Author Instructions
+
+
+- Replace my name with yours: Chris Wells
+  -   `find . -type f -exec sed -i 's/foo/bar/g' {} +`
+If you are using zsh: ` sed -i -- 's/foo/bar/g' **/*(D.)`
+[Source](https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files)
+` sed -i -- 's/Chris Wells/Andy Timmons/g' **/*(D.)`
+
+- Replace my website URL with yours: https://chriswells.io
+  -
+- Replace my GitHub username and project name with yours: chriswells0/node-typescript-template
+  -
+- Replace my NPM project name with yours: typescript-template
+  -
+- Update package.json:
+  -
+- Change description to suit your project.
+  -
+- Update the keywords list.
+  -
+- In the author section, add email if you want to include yours.
+  -
+- If you prefer something other than the BSD 3-Clause License, replace the entire contents of LICENSE as appropriate.
+  -
+- Update this README.md file to describe your project.
+  -
+

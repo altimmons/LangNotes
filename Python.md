@@ -625,10 +625,6 @@ ____
     > - To use this installer python-XYZ.msi, the Windows system must support Microsoft Installer 2.0. Save the installer file to your local machine and then run it to find out if your machine supports MSI.
     > - Run the downloaded file. This brings up the Python install wizard, which is really easy to use. Just accept the default settings, wait until the install is finished, and you are done.
 
-### Path 
-
-  The path variable is named as `PATH` in **Unix** or `Path` in **Windows** (Unix is case sensitive; Windows is not).
-
 #### Setting path at Unix/Linux
 
     > To add the Python directory to the path for a particular session in Unix −
@@ -651,17 +647,31 @@ ____
     > 
 
 
+### Path 
+
 #### Python Environment Variables
 
 
-    >==PYTHONPATH== - It has a role similar to `PATH`. This variable **tells the Python interpreter where to locate the module files imported into a program.** It should include the Python source library directory and the directories containing Python source code. `PYTHONPATH` is sometimes preset by the Python installer.
+  The path variable is named as `PATH` in **Unix** or `Path` in **Windows** (Unix is case sensitive; Windows is not).
 
-    >==PYTHONSTARTUP== - It contains the path of an initialization file containing Python source code. It is executed every time you start the interpreter. It is named as .pythonrc.py in Unix and it contains commands that load utilities or modify PYTHONPATH.
-    >
-    >==PYTHONCASEOK== - It is used in Windows to instruct Python to find the **first case-insensitive match in an import statement. Set this variable to any value to activate it.**
-    >
-    >==PYTHONHOME== - It is **an alternative module search path.** It is usually embedded in the `PYTHONSTARTUP` or `PYTHONPATH` directories to make switching module libraries easy.
+  __PYTHONPATH__=C:\Python39;C:\Python37;C:\Python27
 
+  also Scripts should be in path:
+  Path=C:\Python39\Scripts;C:\Python39;C:\Users\ALTimmons\AppData\Roaming\Python\Python37\Scripts;c:\Python37;C:\Python27;C:\tools\symenu\ProgramFiles\SPSSuite\WinAero_Suite;...
+__PYTHONUSERBASE__=/path/to/install/to pip install --user
+
+Though as seen above- updating is a pain.
+__PYTHONUSERBASE__=/path/to/install/to pip install --user
+
+    >==PYTHONPATH== - It has a role similar to `**PATH**`. This variable **tells the Python interpreter where to locate the module files imported into a program.** It should include the Python source library directory and the directories containing Python source code. `__PYTHONPATH__` is sometimes preset by the Python installer.
+
+    >==__PYTHONSTARTUP__== - It contains the path of an initialization file containing Python source code. It is executed every time you start the interpreter. It is named as .pythonrc.py in Unix and it contains commands that load utilities or modify __PYTHONPATH__.
+    >
+    >==__PYTHONCASEOK__== - It is used in Windows to instruct Python to find the **first case-insensitive match in an import statement. Set this variable to any value to activate it.**
+    >
+    >==__PYTHONHOME__== - It is **an alternative module search path.** It is usually embedded in the `__PYTHONSTARTUP__` or `__PYTHONPATH__` directories to make switching module libraries easy.
+
+!!! Note several more flags listed below.
 
 ### CLI Flags
 
@@ -672,6 +682,99 @@ ____
     >- `-c cmd` - run Python script sent in as cmd string
     >- `file` - run Python script from given file
 
+(output of python3 --help)
+
+usage: C:\Python39\python.exe [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Options and arguments (and corresponding environment variables):
+`-b` - issue warnings about str(bytes_instance), str(bytearray_instance) and comparing bytes/bytearray with str. (-bb: issue errors)      
+`-B` - don't write .pyc files on import; also __PYTHONDONTWRITEBYTECODE__=x 
+`-c cmd` - program passed in as string (terminates option list)
+`-d` - turn on parser debugging output (for experts only, only works on debug builds); also __PYTHONDEBUG__=x
+`-E` - ignore PYTHON* environment variables (such as __PYTHONPATH__)
+`-h` - print this help message and exit (also --help)
+`-i` - inspect interactively after running script; forces a prompt even
+         if stdin does not appear to be a terminal; also __PYTHONINSPECT__=x
+`-I` - isolate Python from the user's environment (implies -E and -s)
+`-m mod` - run library module as a script (terminates option list)
+`-O` - remove assert and __debug__-dependent statements; add .opt-1 before
+         .pyc extension; also __PYTHONOPTIMIZE__=x
+`-OO` - do -O changes and also discard docstrings; add .opt-2 before
+         .pyc extension
+`-q` - don't print version and copyright messages on interactive startup
+`-s` - don't add user site directory to sys.path; also __PYTHONNOUSERSITE__
+`-S` - don't imply 'import site' on initialization
+`-u` - force the stdout and stderr streams to be unbuffered;
+         this option has no effect on stdin; also __PYTHONUNBUFFERED__=x
+`-v` - verbose (trace import statements); also __PYTHONVERBOSE__=x
+         can be supplied multiple times to increase verbosity
+`-V` - print the Python version number and exit (also --version)
+         when given twice, print more information about the build
+`-W arg` - warning control; arg is action:message:category:module:lineno
+         also __PYTHONWARNINGS__=arg
+`-x` - skip first line of source, allowing use of non-Unix forms of #!cmd
+`-X opt` - set implementation-specific option. The following options are available:
+
+
+         -X faulthandler: enable faulthandler
+         -X oldparser: enable the traditional LL(1) parser; also __PYTHONOLDPARSER__
+         -X showrefcount: output the total reference count and number of used
+             memory blocks when the program finishes or after each statement in the
+             interactive interpreter. This only works on debug builds
+         -X tracemalloc: start tracing Python memory allocations using the
+             tracemalloc module. By default, only the most recent frame is stored in a
+             traceback of a trace. Use -X tracemalloc=NFRAME to start tracing with a
+             traceback limit of NFRAME frames
+         -X importtime: show how long each import takes. It shows module name,
+             cumulative time (including nested imports) and self time (excluding
+             nested imports). Note that its output may be broken in multi-threaded
+             application. Typical usage is python3 -X importtime -c 'import asyncio'
+         -X dev: enable CPython's "development mode", introducing additional runtime
+             checks which are too expensive to be enabled by default. Effect of the
+             developer mode:
+                * Add default warning filter, as -W default
+                * Install debug hooks on memory allocators: see the PyMem_SetupDebugHooks() C function
+                * Enable the faulthandler module to dump the Python traceback on a crash
+                * Enable asyncio debug mode
+                * Set the dev_mode attribute of sys.flags to True
+                * io.IOBase destructor logs close() exceptions
+         -X utf8: enable UTF-8 mode for operating system interfaces, overriding the default
+             locale-aware mode. -X utf8=0 explicitly disables UTF-8 mode (even when it would
+             otherwise activate automatically)
+         -X pycache_prefix=PATH: enable writing .pyc files to a parallel tree rooted at the
+             given directory instead of to the code tree
+
+--check-hash-based-pycs always|default|never:
+    control how Python invalidates hash-based .pyc files
+file   : program read from script file
+-      : program read from stdin (default; interactive mode if a tty)
+arg ...: arguments passed to program in sys.argv[1:]
+
+Other environment variables:
+__PYTHONSTARTUP__: file executed on interactive startup (no default)
+__PYTHONPATH__   : ';'-separated list of directories prefixed to the
+               default module search path.  The result is sys.path.
+__PYTHONHOME__   : alternate <prefix> directory (or <prefix>;<exec_prefix>).
+               The default module search path uses <prefix>\python{major}{minor}.
+__PYTHONPLATLIBDIR__ : override sys.platlibdir.
+__PYTHONCASEOK__ : ignore case in 'import' statements (Windows).
+__PYTHONUTF8__: if set to 1, enable the UTF-8 mode.
+__PYTHONIOENCODING__: Encoding[:errors] used for stdin/stdout/stderr.
+__PYTHONFAULTHANDLER__: dump the Python traceback on fatal errors.
+__PYTHONHASHSEED__: if this variable is set to 'random', a random value is used
+   to seed the hashes of str and bytes objects.  It can also be set to an
+   integer in the range [0,4294967295] to get hash values with a
+   predictable seed.
+__PYTHONMALLOC__: set the Python memory allocators and/or install debug hooks
+   on Python memory allocators. Use __PYTHONMALLOC__=debug to install debug
+   hooks.
+__PYTHONCOERCECLOCALE__: if this variable is set to 0, it disables the locale
+   coercion behavior. Use __PYTHONCOERCECLOCALE__=warn to request display of
+   locale coercion and locale compatibility warnings on stderr.
+__PYTHONBREAKPOINT__: if this variable is set to 0, it disables the default
+   debugger. It can be set to the callable of your debugger of choice.
+__PYTHONDEVMODE__: enable the development mode.
+__PYTHONPYCACHEPREFIX__: root directory for bytecode cache (pyc) files.
+PS C:\Python39\Scripts>
 
 ### Python 2 vs Python 3
 
@@ -1329,7 +1432,7 @@ ____
   Importing searches for a file named `spam.py` in a list of directories given by the variable `sys.path`. `sys.path` is initialized from these locations:
 
   - The directory containing the input script (or the current directory when no file is specified).
-  - PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).
+  - __PYTHONPATH__ (a list of directory names, with the same syntax as the shell variable PATH).
   - The installation-dependent default.
 
 

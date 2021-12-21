@@ -3636,12 +3636,40 @@ or minimally:
 
 
 
-- ## Other ~~tricks~~
+- ## Other  TRICKS and ACTIONS
 
 ### Get ENvironment Vars
 
 `Get-childitem $env:`
 
+### Create a symbolic link
+
+
+```ps1
+ New-Item -ItemType SymbolicLink -Path "./Javascrpt.md" -Target "O:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\javascript.md"
+
+ New-Item -ItemType SymbolicLink -Path "Link" -Target "Target"
+```
+
+Where LINK is the new symbolic link, and TARGET is the file it refers to.
+
+`-ItemType` can be: **Directory**, **File**, **SymbolicLink**, **Junction**, **HardLink**
+
+###  Create a Directory Junction
+
+```ps1
+
+New-Item -ItemType HardLink -Path "Link" -Target "Target"
+
+```
+
+What is the difference between a directory symbolic link and a directory junction
+A **Directory Junction** is an older type of symbolic link, which does not support UNC paths (network paths that begin with \\) and relative paths. Directory junctions are supported in Windows 2000 and later NT-based Windows systems. A **directory symbolic** link on the other hand also supports UNC and relative paths. However, they require at least Windows Vista. So, in most cases today, __the directory symbolic link is the preferred option.__
+
+
+A **hard link** can be created only for files, not folders. You cannot create a hard link for directories. So, it has more limitations than a Directory Junction and also does not support UNC paths.
+
+>In Windows Vista and later, directory junctions are used to link older file folder paths like C:\Documents and Settings to newer paths like C:\Users. Symbolic links are also used to redirect C:\Users\All Users to C:\ProgramData.
 
 ### Debug
 

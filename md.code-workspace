@@ -36,7 +36,7 @@
 		"terminal.integrated.copyOnSelection": true,
 		"terminal.integrated.fontWeight": "600",
 		"terminal.integrated.fontWeightBold": "400",
-		"editor.fontFamily": "Operator Mono Lig",
+		"editor.fontFamily": "\"RecMonoCasual  Nerd Font\", Hasklig, 'Operator Mono Lig NF'",
 		"workbench.editor.highlightModifiedTabs": true,
 		"editor.highlightActiveIndentGuide": true,
 		"editor.lineNumbers": "on",

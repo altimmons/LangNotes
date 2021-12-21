@@ -15,47 +15,47 @@ pktmon comp list -i -- observe internet and packet data flow *internally*
 
 nvspinfo - related internal network stuff.
 
-net stop winnat
-net start winnat
+`net stop winnat`
+`net start winnat`
 
-netsh
+    netsh
 
-iexpress
+    iexpress
 
-logman - check if any etl counters are running
+`logman` - check if any etl counters are running
 
- winrs.exe Windows Remote Shell - unknown if usefull
+ `winrs.`exe Windows Remote Shell - unknown if usefull
 
- Tasklist
+    Tasklist
 
-Taskkill
+    Taskkill
 
-Qprocess - similar to tasklist but no services,
+`Qprocess` - similar to tasklist but no services,
 qwinsta
 
-Route
+    Route
 
-hcsdiag
+    hcsdiag
 
-DPIScaling.exe
+    DPIScaling.exe
 
-nvspinfo 
+    nvspinfo 
 
-Driverquery
+    Driverquery
+    
 
+    sfc /scannow
+    Netdiag
 
-sfc /scannow
-Netdiag
+`repair-bde <root> <target> -rk | rp <root> `- can sometiems get data of a dying drive
 
-repair-bde <root> <target> -rk | rp <root> - can sometiems get data of a dying drive
+`Comp` - compare files
 
-Comp - compare files
+`bcdboot C:\Windows`
 
-bcdboot C:\Windows
+`fsutil file findbysid myfile d:\hello`
 
-fsutil file findbysid myfile d:\hello
-
-fsutil lots of file settings
+`fsutil` lots of file settings
 
 
 ## Root
@@ -1616,7 +1616,49 @@ Hidden dir parameter - shows all files (hidden, system, etc) without have to spe
 
 "mklink" is a good use of "cmd". I prefer symbolic links to shortcuts. I haven't seen a way to make symbolic links in the file manager.
 
+`MKLINK [[/D] | [/H] | [/J]] Link Target`
 
+    /D - Creates a directory symbolic link. Default is a file symbolic link.
+    /H - Creates a hard link instead of a symbolic link.
+    /J - Creates a Directory Junction.
+    Link - Specifies the new symbolic link name.
+    Target - Specifies the path (relative or absolute) that the new link refers to.
+
+```bat
+mklink /d "c:\users\winaero\desktop\directory symbolic link" "c:\users\winaero\desktop\winaero"
+
+mklink /j "c:\users\winaero\desktop\directory junction" "c:\users\winaero\desktop\winaero"
+```
+### action type
+
+A **Directory Junction** is an older type of symbolic link, which does not support UNC paths (network paths that begin with \\) and relative paths. Directory junctions are supported in Windows 2000 and later NT-based Windows systems. A **directory symbolic** link on the other hand also supports UNC and relative paths. However, they require at least Windows Vista. So, in most cases today, __the directory symbolic link is the preferred option.__
+
+
+A **hard link** can be created only for files, not folders. You cannot create a hard link for directories. So, it has more limitations than a Directory Junction and also does not support UNC paths.
+
+
+#### Create a symbolic link in PowerShell
+
+
+```ps1
+ New-Item -ItemType SymbolicLink -Path "./Javascrpt.md" -Target "O:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\javascript.md"
+
+ New-Item -ItemType SymbolicLink -Path "Link" -Target "Target"
+```
+
+Where LINK is the new symbolic link, and TARGET is the file it refers to.
+
+`-ItemType` can be: **Directory**, **File**, **SymbolicLink**, **Junction**, **HardLink**
+
+###  Create a Directory Junction, Hardlnk, etc.
+
+
+
+```ps1
+
+New-Item -ItemType HardLink -Path "Link" -Target "Target"
+
+```
 #### Hidden Data
 
 Try this on command line on NTFS drive:
@@ -2487,7 +2529,7 @@ C:\temp$ fsutil
   - removeWim           Remove a WIM from backing files
   - queryFile           Query the origin of a specific file
 
-
+fsutil hardlink list 'DIR' - lists any symbolic links etc.
 ### findstr
 
 Searches for strings in files.
@@ -2875,7 +2917,7 @@ Special CLSID folders may be opened via Run. For example:
         Run ::{645ff040-5081-101b-9f08-00aa002f954e}  ; Opens the Recycle Bin.
 
 
-### RunDll Commands
+## RunDll Commands
 
 List  of Rundll32 Commands in Windows 10
 
@@ -2980,7 +3022,7 @@ List  of Rundll32 Commands in Windows 10
 |                                         | (...)ShowPortableWorkspaceLauncherConfigurationUX                     |
 
 
-### Shell:: Commands
+## Shell:: Commands
 
 !!! attention Shortcut
   This command can be typed in many places- e.g [[Win] + [[E]] to get an explorer then [[Alt]] + [[D]] to get to the address bar, then type `shell:appdata` or in the run dialog box
@@ -3103,6 +3145,33 @@ List  of Rundll32 Commands in Windows 10
 | shell:VideosLibrary               | `Libraries\Videos`                                                     |
 | shell:Windows                     | `%WinDir%`                                                             |
 
+
+## Classid Folders
+
+| ------------------------ | ---------------------------------------- | --- |
+| CLSID                    | Location                                 | Run |
+| ------------------------ | ---------------------------------------- | --- |
+| Administrative Tools     | ::{d20ea4e1-3957-11d2-a40b-0c5020524153} |     |
+| Briefcase                | ::{85bbd920-42a0-1069-a2e4-08002b30309d} |     |
+| Control Panel            | ::{21ec2020-3aea-1069-a2dd-08002b30309d} |     |
+| Fonts                    | ::{d20ea4e1-3957-11d2-a40b-0c5020524152} |     |
+| History                  | ::{ff393560-c2a7-11cf-bff4-444553540000} |     |
+| Inbox                    | ::{00020d75-0000-0000-c000-000000000046} |     |
+| Microsoft Network        | ::{00028b00-0000-0000-c000-000000000046} |     |
+| My Computer              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
+| My Documents             | ::{450d8fba-ad25-11d0-98a8-0800361b1103} | Yes |
+| My Network Places        | ::{208d2c60-3aea-1069-a2d7-08002b30309d} | Yes |
+| Network Computers        | ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} | Yes |
+| Network Connections      | ::{7007acc7-3202-11d1-aad2-00805fc1270e} | Yes |
+| Printers and Faxes       | ::{2227a280-3aea-1069-a2de-08002b30309d} | Yes |
+| Programs Folder          | ::{7be9d83c-a729-4d97-b5a7-1b7313c39e0a} |     |
+| Recycle Bin              | ::{645ff040-5081-101b-9f08-00aa002f954e} | Yes |
+| Scanners and Cameras     | ::{e211b736-43fd-11d1-9efb-0000f8757fcd} |     |
+| Scheduled Tasks          | ::{d6277990-4c6a-11cf-8d87-00aa0060f5bf} | Yes |
+| Start Menu Folder        | ::{48e7caab-b918-4e58-a94d-505519c795dc} |     |
+| Temporary Internet Files | ::{7bd29e00-76c1-11cf-9dd0-00a0c9034933} |     |
+| Web Folders              | ::{bdeadf00-c265-11d0-bced-00a0c90ab50f} |     |
+| ------------------------ | ---------------------------------------- | --- |
 
 ### MMC Syntax
 

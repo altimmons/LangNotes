@@ -51,6 +51,16 @@ Links from [SS64](https://ss64.com/links/bash.html)
 
 [The Advanced Bash Scripting Guide](https://tldp.org/LDP/abs/html/index.html)
 
+### Korn Shell
+
+[Source](https://www.computerhope.com/unix/uksh.htm)
+
+### C Shell  
+
+[Source](https://www.computerhope.com/unix/ucsh.htm)
+
+
+
 Shell Fmt
 
 [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
@@ -1923,7 +1933,15 @@ example from a repository
 
 Download the Fedora.iso
 https://getfedora.org/en/workstation/download/
-Open Virtual Box
+Open Virtual B
+
+
+## Free Software Foundation Index
+
+16,000 packages
+
+[Search Here](https://directory.fsf.org/wiki/Category/All)
+
 
 
 ---
@@ -2118,56 +2136,19 @@ Comparing and merging files. [[diffutils home](https://www.gnu.org/software/dif
 - [TeXmacs](https://www.gnu.org/software/texmacs/) - Editing platform with special features for scientists. [[texmacs home](https://www.gnu.org/software/texmacs/)]
 - [UnRTF](https://www.gnu.org/software/unrtf/) - Convert Rich Text Format documents to other formats. [[unrtf home](https://www.gnu.org/software/unrtf/)]
 - [Wdiff](https://www.gnu.org/software/wdiff/manual/) - Word difference finder. [[wdiff home](https://www.gnu.org/software/wdiff/)]
-## awk
 
-
-                        Usage: awk [POSIX or GNU style options] -f progfile [--] file ...
-                        Usage: awk [POSIX or GNU style options] [--] 'program' file ...
-                        POSIX options:          GNU long options: (standard)
-                                -f progfile             --file=progfile
-                                -F fs                   --field-separator=fs
-                                -v var=val              --assign=var=val
-                        Short options:          GNU long options: (extensions)
-                                -b                      --characters-as-bytes
-                                -c                      --traditional
-                                -C                      --copyright
-                                -d[file]                --dump-variables[=file]
-                                -D[file]                --debug[=file]
-                                -e 'program-text'       --source='program-text'
-                                -E file                 --exec=file
-                                -g                      --gen-pot
-                                -h                      --help
-                                -i includefile          --include=includefile
-                                -l library              --load=library
-                                -L[fatal|invalid]       --lint[=fatal|invalid]
-                                -M                      --bignum
-                                -N                      --use-lc-numeric
-                                -n                      --non-decimal-data
-                                -o[file]                --pretty-print[=file]
-                                -O                      --optimize
-                                -p[file]                --profile[=file]
-                                -P                      --posix
-                                -r                      --re-interval
-                                -S                      --sandbox
-                                -t                      --lint-old
-                                -V                      --version
-
-                        To report bugs, see node `Bugs' in `gawk.info', which is
-                        section `Reporting Problems and Bugs' in the printed version.
-
-                        gawk is a pattern scanning and processing language.
-                        By default it reads standard input and writes standard output.
-
-                        Examples:
-                                gawk '{ sum += $1 }; END { print sum }' file
-                                gawk -F: '{ print $1 }' /etc/passwd
-
-
-[Documentation](https://www.tutorialspoint.com/awk/index.htm)
-[Manual](https://www.gnu.org/software/gawk/manual/gawk.html)
 
 
 ## CoreUtils
+
+!!!Note DOCUMENTATION 
+        [Source](https://www.gnu.org/software/coreutils/manual/coreutils.html)
+        [PDF](https://www.gnu.org/software/coreutils/manual/coreutils.pdf)
+        
+        
+        
+
+## Unix Binaries
 
 
 - (File utilities)
@@ -2282,7 +2263,55 @@ Comparing and merging files. [[diffutils home](https://www.gnu.org/software/dif
       - `[` 	A synonym for test; this program permits expressions like [ expression ].
 
 
-## Unix Binaries
+## awk
+
+
+                        Usage: awk [POSIX or GNU style options] -f progfile [--] file ...
+                        Usage: awk [POSIX or GNU style options] [--] 'program' file ...
+                        POSIX options:          GNU long options: (standard)
+                                -f progfile             --file=progfile
+                                -F fs                   --field-separator=fs
+                                -v var=val              --assign=var=val
+                        Short options:          GNU long options: (extensions)
+                                -b                      --characters-as-bytes
+                                -c                      --traditional
+                                -C                      --copyright
+                                -d[file]                --dump-variables[=file]
+                                -D[file]                --debug[=file]
+                                -e 'program-text'       --source='program-text'
+                                -E file                 --exec=file
+                                -g                      --gen-pot
+                                -h                      --help
+                                -i includefile          --include=includefile
+                                -l library              --load=library
+                                -L[fatal|invalid]       --lint[=fatal|invalid]
+                                -M                      --bignum
+                                -N                      --use-lc-numeric
+                                -n                      --non-decimal-data
+                                -o[file]                --pretty-print[=file]
+                                -O                      --optimize
+                                -p[file]                --profile[=file]
+                                -P                      --posix
+                                -r                      --re-interval
+                                -S                      --sandbox
+                                -t                      --lint-old
+                                -V                      --version
+
+                        To report bugs, see node `Bugs' in `gawk.info', which is
+                        section `Reporting Problems and Bugs' in the printed version.
+
+                        gawk is a pattern scanning and processing language.
+                        By default it reads standard input and writes standard output.
+
+                        Examples:
+                                gawk '{ sum += $1 }; END { print sum }' file
+                                gawk -F: '{ print $1 }' /etc/passwd
+
+
+[Documentation](https://www.tutorialspoint.com/awk/index.htm)
+[Manual](https://www.gnu.org/software/gawk/manual/gawk.html)
+
+
 
 ### syntax
 
@@ -2387,6 +2416,64 @@ You can also run a program on them.
 
 `grep -i 'dir' file.sh` -case insensitive matching
 
+## agrep
+
+[Source](https://www.computerhope.com/unix/agrep.htm)
+
+agrep is a version of the grep utility that also matches approximate patterns.
+agrep searches the input file names (standard input is the default) for records containing strings which either exactly or approximately match a pattern.
+
+A record is by default a single line, but it can be defined differently using the -d option (see below). Normally, each record found is copied to the standard output. Approximate matching allows finding records that contain the pattern with several errors including substitutions, insertions, and deletions.
+
+For example, "Massechusets" matches "Massachusetts" with two errors (one substitution and one insertion). Running `agrep -2 Massechusets foo` outputs all lines in the file foo containing any string with (at most) 2 errors from "Massechusets".
+
+agrep supports many kinds of queries including arbitrary wildcards, sets of patterns, and in general, all regular expressions. It supports most of the options supported by the grep family plus several more (but it is not 100% compatible with grep).
+
+As with the rest of the grep family, the characters `$, ^, *, [, ], ^, |, (, ), !, and \ `can cause unexpected results when included in the pattern, as these special characters are also meaningful to the shell. To avoid these problems, one should always enclose the entire  pattern argument in single quotes, i.e., 'pattern'.** Do not use double quotes (").**
+
+When agrep is applied to more than one input file, the name of the file is displayed at the beginning of each line which matches the pattern. (The file name is not displayed when processing a single file, but in that case if the user wants the file name to appear, they should use /dev/null as a second file in the list, and then the file name will be displayed).
+
+Syntax
+                agrep [ -#cdehiklnpstvwxBDGIS ] pattern [ -f patternfile ] [ filename... ]
+
+Options
+
+`-#` - # is a non-negative integer (at most 8) specifying the maximum number of errors permitted in finding the approximate matches. It defaults to zero. Generally, each insertion, deletion, or substitution counts as one error. It is possible to adjust the relative cost of insertions, deletions, and substitutions; see -I -D and -S options.
+`-c` - Display only the count (number of occurrences) of matching records.
+`-d 'delim'` - Define delim to be the separator between two records. The default value is '$', which matches the end of a line; therefore, by default, a record is a single line. The delim is a string of up to eight characters (with possible use of ^ and $).
+
+Text between two delim's, before the first delim, and after the last delim is considered as one record.
+
+For example, -d '$$' defines paragraphs as records (if a paragraph is represented by two newlines) and -d '^From ' defines mail messages as records. agrep matches each record separately.
+
+This option does work with regular expressions, but delim itself cannot be a regular expression.
+`-e pattern` - Same as providing a simple pattern argument, but using -e is useful when the pattern begins with a '-'.
+`-f patternfile` - Match the patterns in patternfile. The output is all lines that match at least one of the patterns in patternfile.
+
+Currently, the -f option works only for exact match and for simple patterns (any meta symbol is interpreted as a regular character).
+
+It is compatible only with -c, -h, -i, -l, -s, -v, -w, and -x options.
+`-h` - Do not display file names.
+`-i` - Case-insensitive search; e.g., "A" and "a" are considered equivalent.
+`-k` - Use simple pattern matching, i.e., treat no symbols in the pattern as a meta character.
+
+For example, agrep -k 'a(b|c)*d' foo finds the occurrences of the literal string "a(b|c)*d" in foo, whereas agrep 'a(b|c)*d' foo finds substrings in foo that match the regular expression 'a(b|c)*d'.
+`-l` - List only the names of the files that contain a match. For example, agrep -l 'wonderful' * lists the names of those files in current directory that contain the word wonderful.
+`-n` - Each line that is printed is prefixed by its record number in the file.
+`-p` - Find records in the text that contain a supersequence of the pattern. For example, agrep -p DCS foo will match "Department of Computer Science".
+`-s` - Work silently; that is, display nothing except error messages.
+`-t` - Output the record starting from the end of delim to (and including) the next delim. This is useful for cases where delim should come at the end of the record.
+`-v` - Inverse mode — display only those records that do not contain the pattern.
+`-w` - Search for the pattern as a word only — i.e., only match patterns if they are surrounded by non-alphanumeric characters, such as a space or a dash. The non-alphanumeric must surround the match; they cannot be counted as errors. For example, agrep -w -1 car will match "cars", but not "characters".
+`-x` - The pattern must match the whole line.
+`-y` - Used with -B option. When -y is on, agrep always outputs the best matches without giving a prompt.
+`-B` - Best match mode. When -B is specified and no exact matches are found, agrep continues to search until the closest matches (i.e., the ones with minimum number of errors) are found, at which point the following message will be shown: "the best match contains x errors, there are y matches, output them? (y/n)".
+
+The best match mode is not supported for standard input, e.g., pipeline input. When the -#, -c, or -l options are specified, the -B option is ignored. In general, -B may be slower than -#, but not by very much.
+`-Dk` - Set the cost of a deletion to k (k is a positive integer). This option does not currently work with regular expressions.
+`-G` - Output the files that contain a match.
+`-Ik` - Set the cost of an insertion to k (k is a positive integer). This option does not currently work with regular expressions.
+`-Sk` - Set the cost of a substitution to k (k is a positive integer). This option does not currently work with regular expressions.
 ## sed 
 
 local manual `info sed`
@@ -2886,6 +2973,276 @@ Looking at Privledges
         >>- rw-rw-r-- 1 user user 0 Tod 00 00:00 test.sh
 
     `touch` creates priviledges that are rw for user and group, and r for others, but not at all execute, in the case of an *.sh (shell script file)
+
+## set
+
+On Unix-like operating systems, the set command is a built-in function of the Bourne shell (sh), C shell (csh), and Korn shell (ksh), which is used to define and determine the values of the system environment.
+
+
+
+## shopt
+
+Shell Options
+
+[Source](https://www.computerhope.com/unix/bash/shopt.htm)
+
+
+Use shopt to change any of the Options listed below.
+
+`shopt` is similar to, but different than, the `set` builtin. If you want to change the behavior of bash as if it had been invoked with different command line options, use set.
+
+Syntax
+                shopt [-o] [-p] [-q] [-s] [-u] [optname...]
+
+**-o** 
+	> Restrict the values of optname to those known by the set builtin command.
+
+**-p** 
+	> Print all shell options, and their current values. This is the default behavior if no options are given.Syntax
+
+Bourne shell (sh):
+
+        set [--aefhkntuvx[argument]]...
+
+C shell (csh):
+
+        set [var[=value]]
+        set var [n] = word
+
+Korn shell (ksh):
+
+        set [+-aefhkmnopstuvx] [+-o option]... [+-A name] [arg...]
+
+### Set Options: Bourne Shell (sh)
+In sh, the set built-in command has the following options:
+
+`--` - An option of a double-dash ("--") signifies the end of an option list. This option is primarily useful when values listed after the options start with a dash themselves.
+`-a` - Mark variables that are modified or created for "export"; environment variables set in this way will be passed on to the environments of any subsequent commands.
+`-e` - Exit immediately if a command exits with a non-zero exit status.
+`-f` - Disable file name generation (globbing).
+`-h` - Locate and remember function commands as functions are defined (function commands are normally located when the function is executed).
+`-k` - All keyword arguments are placed in the environment for a command, not only those that precede the command name.
+`-n` - Read commands but do not execute them.
+`-t` - Exit after reading and executing one command.
+`-u` - Treat unset variables as an error when substituting.
+`-v` - Print shell input lines as they are read.
+`-x` - Print commands and their arguments as they are executed.
+Using + rather than - causes these flags to be turned off. These flags can also be used upon invocation of the shell itself. The current set of flags are found in the variable $-. The remaining arguments are positional parameters and are assigned, in order, to $1, $2, etc. If no arguments are given the values of all names are printed.
+
+For each name, the unset command removes the corresponding variable or function value. The special variables PATH, PS1, PS2, MAILCHECK, and IF cannot be unset.
+
+With the export built-in command, the given names are marked for automatic export to the environment of subsequently executed commands. If no arguments are given, variable names that are marked for export during the current shell's execution are listed. Function names are not exported.
+
+### Set Options: C Shell (csh)
+In csh, If no arguments are specified, set displays the values of all shell variables. Multiword values are displayed as a parenthesized list. With the var argument alone, set assigns an empty (null) value to the variable var. With arguments of the form var = value, set assigns value to var, where value is one of:
+
+`word` - A single word (or quoted string).
+`(wordlist)` - A space-separated list of words enclosed in parentheses.
+Values are command and file name expanded before being assigned. The form set var[n]=word replaces the n'th word in a multiword value with word.
+
+unset removes variables whose names match (using file name substitution) pattern. All variables are removed by "unset *"; this is a very bad idea if you don't know what you're doing, though.
+
+### Set Options: K Shell (ksh)
+In ksh, the set command takes the following options:
+
+`-A` - Array assignment. Unset the variable name and assign values sequentially from the list arg. If +A is used, the variable name is not unset first.
+`-a` - All subsequent variables that are defined are automatically exported.
+`-e` - If a command has a non-zero exit status, execute the ERR trap (if set), and exit. This mode is disabled while reading profiles.
+`-f` - Disables file name generation (globbing).
+`-h` - Each command becomes a tracked alias when first encountered.
+`-k` - All variable assignment arguments are placed in the environment for a command, not only those preceding the command name.
+`-m` - Background jobs run in a separate process group and a line prints upon completion. The exit status of background jobs is reported in a completion message. On systems with job control, this flag is turned on automatically for interactive shells.
+`-n` - Read commands and check them for syntax errors, but do not execute them. Ignored for interactive shells.
+`-o option` - The option argument can be one of the following:
+`allexport` - Same as -a.
+`errexit` - Same as -e.
+`bgnice` - All background jobs are run at a lower priority, which is the default mode.
+`emacs` - Puts you in an emacs-style in-line editor for command entry.
+`emacs` - Puts you in a gmacs-style in-line editor for command entry.
+`ignoreeof` - The shell will not exit on end-of-file. The command exit must be used.
+`keyword` - Same as -k.
+`markdirs` - All directory names resulting from file name generation have a trailing "/" appended.
+`monitor` - Same as -m.
+`noclobber` - Prevents redirection ">" from truncating existing files. Require ">|" to truncate a file when turned on.
+`noexec` - Same as -n.
+`noglob` - Same as -f.
+`nolog` - Do not save function definitions in history file.
+`nounset` - Same as -u.
+`privileged` - Same as -p.
+`verbose` - Same as -v.
+`trackall` - Same as -h.
+`vi` - Puts you in insert mode of a vi-style in-line editor until you hit escape. This option argument puts you in control mode. A return sends the line.
+`viraw` - Each character is processed as it is typed in vi mode.
+`xtrace` - Same as -x.
+If no option name is supplied then the current option settings are printed.
+`-p` - Disables processing of the $HOME/.profile file and uses the file /etc/suid_profile instead of the ENV file. This mode is on whenever the effective uid (user ID) is not equal to the real uid, or when the effective gid (group ID) is not equal to the real gid. Turning this off causes the effective uid and gid to be set to the real uid and gid.
+`-s` - Sort the positional parameters lexicographically.
+`-t` - Exit after reading and executing one command.
+`-u` - Treat unset parameters as an error when substituting.
+`-v` - Print shell input lines as they are read.
+`-x` - Print commands and their arguments as they are executed.
+`-` - Turns off -x and -v flags and stops examining arguments for flags.
+`-` - Do not change any of the flags; useful in setting $1 to a value beginning with -. If no arguments follow this flag, then the positional parameters are unset.
+Using + rather than - causes these flags to be turned off. These flags can also be used upon invocation of the shell. The current set of flags are found in $-. Unless -A is specified, the remaining arguments are positional parameters and are assigned, in order, to "$1 $2 ...". If no arguments are given, then the names and values of all variables are printed on the standard output.
+
+The variables given by the list of names are automatically unassigned: their values and attributes are erased. Readonly variables cannot be unset. If the -f flag is set, then the names refer to function names. Unsetting ERRNO, LINENO, MAILCHECK, OPTARG, OPTIND, RANDOM, SECONDS, TMOUT, and _ removes their special meaning even if they are subsequently assigned.
+
+When using unset, the variables given by the list of names are similarly unassigned: their values and attributes are erased. Readonly variables cannot be unset. If the -f, flag is set, then the names refer to function names. Unsetting ERRNO, LINENO, MAILCHECK, OPTARG, OPTIND, RANDOM, SECONDS, TMOUT, and _ removes their special meaning even if they are subsequently assigned.
+
+With the export built-in command, the given names are marked for automatic export to the environment of subsequently-executed commands. ksh commands that are preceded by one or two "*" characters (asterisks) are treated specially in the following ways:
+
+Variable assignment lists preceding the command remain in effect when the command completes.
+I/O redirections are processed after variable assignments.
+Errors cause a script containing them to abort.
+Words, following a command preceded by ** that are in the format of a variable assignment, are expanded with the same rules as a variable assignment. This assignment means that tilde substitution is performed after the = sign and word splitting and file name generation are not performed.
+Examples
+set PATH="/bin:/usr/bin:/usr/sbin:usr/local/bin"
+In csh, this command sets the environment variable PATH, such that the shell searches for files in the /bin, /usr/bin, /usr/sbin and /usr/local/bin directories, in that order.
+
+**-q** 
+	> Quiet mode. Provide no output, but return an error status.
+
+
+For a single optname, the error status is TRUE (0) if the option is set, otherwise the error status is FALSE (non-zero).
+
+For multiple optnames, the error status is TRUE if all options are set, and FALSE if any of the options are not set.
+**-s** 
+	> If optnames are specified, set those options. If no optnames are specified, list all options that are currently set.
+
+**-u** 
+	> Unset optnames.
+
+Options
+The following options modify the behavior of bash, and can be set or unset using shopt.
+
+`Option name` - Description
+**autocd** 
+	> If set, a command name that is a directory name is executed as if it were the cd command's argument. This option is only used by interactive shells. For more information about interactive shells, see invoking the bash shell.
+
+**cdable_vars** 
+	> If set, a cd command's argument that is not a directory is assumed to be the variable's name whose value is the directory to change to.
+
+**cdspell** 
+	> If set, minor errors in the spelling of a directory component in a cd command are corrected. The errors checked for are transposed characters, a missing character, and one character too many. If a correction is found, the corrected file name is printed, and the command proceeds. This option is only used by interactive shells.
+
+**checkhash** 
+	> If set, bash checks that a command found in the hash table of remembered commands actually exists before trying to execute it. If a hashed command no longer exists, a normal path search is performed. For more information about the hash table maintained by bash, see the hash builtin command.
+
+**checkjobs** 
+	> If set, bash lists the status of any stopped and running jobs before exiting an interactive shell. If any jobs are running, this causes the exit to be deferred until a second exit is attempted without an intervening command. The shell always postpones exiting if any jobs are stopped. For more information about jobs, see bash job control.
+
+**checkwinsize** 
+	> If set, bash checks the window size of the current terminal window after each command, and, if necessary, updates the values of the LINES and COLUMNS shell variables.
+
+**cmdhist** 
+	> If set, bash attempts to save all lines of a multiple-line command in the same history entry. This allows easy re-editing of multi-line commands. For more information about how the bash command history works, see history in bash.
+
+**compat31** 
+	> If set, bash changes its behavior to that of bash version 3.1 with respect to quoted arguments to [[ conditional command's =~ operator.
+
+**compat32** 
+	> If set, bash changes its behavior to that of bash version 3.2 with respect to locale-specific string comparison when using [[ conditional command's < and > operators. Bash versions before bash-4.1 use ASCII collation and strcmp; bash-4.1 and later use the current locale's collation sequence and strcoll.
+
+**compat40** 
+	> If set, bash changes its behavior to that of bash version 4.0 with respect to locale-specific string comparison when using [[ conditional command's < and > operators (see previous item) and the effect of interrupting a command list.
+
+**compat41** 
+	> If set, bash, when in POSIX mode, treats a single quote in a double-quoted parameter expansion as a special character. The single quotes must match (an even number) and the characters between the single quotes are considered quoted. This is the behavior of POSIX mode through bash version 4.1. The default bash behavior remains as in previous versions. For more information about using bash in POSIX mode, see invoking bash.
+
+**direxpand** 
+	> If set, bash replaces directory names with the results of word expansion when performing file name completion. This changes the contents of the readline editing buffer. If not set, bash attempts to preserve what the user typed.
+
+**dirspell** 
+	> If set, bash attempts spelling correction on directory names during word completion if the directory name initially supplied does not exist.
+
+**dotglob** 
+	> If set, bash includes file names beginning with a '.' in the results of path name globbing.
+
+**execfail** 
+	> If set, a non-interactive shell does not exit if it cannot execute the file specified as an argument to the exec builtin command. An interactive shell does not exit if exec fails.
+
+**expand_aliases** 
+	> If set, aliases are expanded as described in bash aliases. This option is enabled by default for interactive shells.
+
+**extdebug** 
+	> If set, behavior intended for use by debuggers is enabled:
+
+
+> >   The -F option to the declare builtin displays the source file name and line number corresponding to each function name supplied as an argument.
+>>       If the command run by the `DEBUG` trap returns a non-zero value, the next command is skipped and not executed.`       
+>> If the `DEBUG` trap's command returns a value of 2, and the shell is executing in a subroutine, a call to return is simulated.
+>> `BASH_ARGC` and `BASH_ARGV` are updated as described in their descriptions.
+>> Function tracing is enabled: command substitution, shell functions, and subshells invoked with ( command ) inherit the `DEBUG` and `RETURN` traps.
+>>vError tracing is enabled: command substitution, shell functions, and subshells invoked with ( command ) inherit the `ERR` trap.
+
+**extglob** 
+	> If set, the extended pattern matching features offered by bash path name expansion are enabled.
+
+**extquote** 
+	> If set, $'string' and $"string" quoting is performed within ${parameter} expansions enclosed in double quotes. This option is enabled by default.
+
+**failglob** 
+	> If set, patterns which fail to match file names during path name expansion result in an expansion error.
+
+**force_fignore** 
+	> If set, the suffixes specified by the FIGNORE shell variable cause words to be ignored when performing word completion even if the ignored words are the only possible completions. See bash shell variables for a description of FIGNORE. This option is enabled by default.
+
+**globstar** 
+	> If set, the pattern ** used in a path name expansion context matches all files and zero or more directories and subdirectories. If the pattern is followed by a /, only directories and subdirectories match.
+
+**gnu_errfmt** 
+	> If set, shell error messages are written in the standard GNU error message format.
+
+**histappend** 
+	> If set, the history list is appended to the file named by the HISTFILE variable's value when the shell exits, rather than overwriting the file.
+
+**histreedit** 
+	> If set, and readline is used, a user is given the opportunity to re-edit a failed history substitution. For more information about history substitution, see bash event designators.
+
+**histverify** 
+	> If set, and readline is used, the results of history substitution are not immediately passed to the shell parser. Instead, the resulting line is loaded into the readline editing buffer, allowing further modification.
+
+**hostcomplete** 
+	> If set, and readline is used, bash attempts to perform hostname completion when a word containing a @ is completed. This is enabled by default. (see bash readline completion for more information.)
+
+**huponexit** 
+	> If set, bash sends the SIGHUP signal to all jobs when an interactive login shell exits.
+
+**interactive_comments** 
+	> If set, allow a word beginning with # to cause that word and all remaining characters on that line to be ignored in an interactive shell. This option is enabled by default. (See bash comments for more information.)
+
+**lastpipe** 
+	> If set, and job control is not active, the shell runs the last command of a pipeline not executed in the background in the current shell environment.
+
+**lithist** 
+	> If set, and the cmdhist option is enabled, multi-line commands are saved to the history with embedded newlines rather than using semicolon separators where possible.
+
+**mailwarn** 
+	> If set, and a file that bash is checking for mail was accessed after last checked, the message "The mail in mailfile has been read" is displayed.
+
+**no_empty_cmd_completion** 
+	> If set, and readline is used, bash does not attempt to search the PATH for possible completions when completion is attempted on an empty line.
+
+**nocaseglob** 
+	> If set, bash matches file names in a case-insensitive fashion when performing path name expansion.
+
+**nocasematch** 
+	> If set, bash matches patterns in a case-insensitive fashion when performing matching while executing case or [[ conditional commands.
+
+**nullglob** 
+	> If set, bash allows patterns which match no files to expand to a null string, rather than themselves.
+
+**progcomp** 
+	> If set, the programmable completion facilities are enabled. For more information, see programmable completion in bash. This option is enabled by default.
+
+**promptvars** 
+	> If set, prompt strings undergo parameter expansion, command substitution, arithmetic expansion, and quote removal after being expanded. For more information, see bash prompting. This option is enabled by default.
+
+**shift_verbose** 
+	> If set, the shift builtin prints an error message when the shift count exceeds the number of positional parameters.
+
+**sourcepath** 
+	> If set, the source builtin uses the value of the shell variable PATH to find the directory containing the file supplied as an argument. This option is enabled by default. 
 
 ## split
 
