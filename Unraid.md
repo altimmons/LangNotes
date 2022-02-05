@@ -2164,6 +2164,7 @@ If a container is connected to the default bridge network and `linked` with ot
 ```sh
 cryptsetup luksOpen /dev/sdag1 Removed
 # should ask for password PID
+# cryptsetup luksOpen mountpoint+partition# Name/Handlels
 
 #should now show up here
 ls /dev/mapper
@@ -2176,6 +2177,12 @@ mount /dev/mapper/Removed /mnt/Removed
 udisksctl unlock -b /dev/sdb5
 udisksctl mount -b /dev/mapper/ubuntu--vg-root
 ```
+
+
+`mount` lists mounted drives
+`column` breaks output into readable columns
+
+`mount | column -t` gives a table of mounted devices
 
 
 
@@ -2313,3 +2320,342 @@ tmpfs           4.0G  2.5G  1.5G  63% /var/log
 0       /var/log/tmp
 0       /var/log/vfio-pci
 1       /var/log/wtmp
+
+
+lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE,MIN-IO,LOG-SEC,ROTA,HCTL,REV,WWN --include 8,65,66
+lsblk --sort NAME -d -o NAME,TRAN,VENDOR,MODEL,SERIAL,SIZE,MAJ:MIN --include 8,65,66
+lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE,MIN-IO,LOG-SEC,ROTA,HCTL,REV,WWN | grep  ^sd
+
+
+## CryptSetup
+
+            cryptsetup 2.3.4
+            Usage: cryptsetup [OPTION...] <action> <action-specific>
+            -v, --verbose                         Shows more detailed error messages
+                  --debug                           Show debug messages
+                  --debug-json                      Show debug messages including JSON metadata
+            -c, --cipher=STRING                   The cipher used to encrypt the disk (see /proc/crypto)
+            -h, --hash=STRING                     The hash used to create the encryption key from the passphrase
+            -y, --verify-passphrase               Verifies the passphrase by asking for it twice
+            -d, --key-file=STRING                 Read the key from a file
+                  --master-key-file=STRING          Read the volume (master) key from file.
+                  --dump-master-key                 Dump volume (master) key instead of keyslots info
+            -s, --key-size=BITS                   The size of the encryption key
+            -l, --keyfile-size=bytes              Limits the read from keyfile
+                  --keyfile-offset=bytes            Number of bytes to skip in keyfile
+                  --new-keyfile-size=bytes          Limits the read from newly added keyfile
+                  --new-keyfile-offset=bytes        Number of bytes to skip in newly added keyfile
+            -S, --key-slot=INT                    Slot number for new key (default is first free)
+            -b, --size=SECTORS                    The size of the device
+                  --device-size=bytes               Use only specified device size (ignore rest of device). DANGEROUS!
+            -o, --offset=SECTORS                  The start offset in the backend device
+            -p, --skip=SECTORS                    How many sectors of the encrypted data to skip at the beginning
+            -r, --readonly                        Create a readonly mapping
+            -q, --batch-mode                      Do not ask for confirmation
+            -t, --timeout=secs                    Timeout for interactive passphrase prompt (in seconds)
+                  --progress-frequency=secs         Progress line update (in seconds)
+            -T, --tries=INT                       How often the input of the passphrase can be retried
+                  --align-payload=SECTORS           Align payload at <n> sector boundaries - for luksFormat
+                  --header-backup-file=STRING       File with LUKS header and keyslots backup
+                  --use-random                      Use /dev/random for generating volume key
+                  --use-urandom                     Use /dev/urandom for generating volume key
+                  --shared                          Share device with another non-overlapping crypt segment
+                  --uuid=STRING                     UUID for device to use
+                  --allow-discards                  Allow discards (aka TRIM) requests for device
+                  --header=STRING                   Device or file with separated LUKS header
+                  --test-passphrase                 Do not activate device, just check passphrase
+                  --tcrypt-hidden                   Use hidden header (hidden TCRYPT device)
+                  --tcrypt-system                   Device is system TCRYPT drive (with bootloader)
+                  --tcrypt-backup                   Use backup (secondary) TCRYPT header
+                  --veracrypt                       Scan also for VeraCrypt compatible device
+                  --veracrypt-pim=INT               Personal Iteration Multiplier for VeraCrypt compatible device
+                  --veracrypt-query-pim             Query Personal Iteration Multiplier for VeraCrypt compatible device
+            -M, --type=STRING                     Type of device metadata: luks, luks1, luks2, plain, loopaes, tcrypt, bitlk
+                  --force-password                  Disable password quality check (if enabled)
+                  --perf-same_cpu_crypt             Use dm-crypt same_cpu_crypt performance compatibility option
+                  --perf-submit_from_crypt_cpus     Use dm-crypt submit_from_crypt_cpus performance compatibility option
+                  --perf-no_read_workqueue          Bypass dm-crypt workqueue and process read requests synchronously
+                  --perf-no_write_workqueue         Bypass dm-crypt workqueue and process write requests synchronously
+                  --deferred                        Device removal is deferred until the last user closes it
+                  --serialize-memory-hard-pbkdf     Use global lock to serialize memory hard PBKDF (OOM workaround)
+            -i, --iter-time=msecs                 PBKDF iteration time for LUKS (in ms)
+                  --pbkdf=STRING                    PBKDF algorithm (for LUKS2): argon2i, argon2id, pbkdf2
+                  --pbkdf-memory=kilobytes          PBKDF memory cost limit
+                  --pbkdf-parallel=threads          PBKDF parallel cost
+                  --pbkdf-force-iterations=LONG     PBKDF iterations cost (forced, disables benchmark)
+                  --priority=STRING                 Keyslot priority: ignore, normal, prefer
+                  --disable-locks                   Disable locking of on-disk metadata
+                  --disable-keyring                 Disable loading volume keys via kernel keyring
+            -I, --integrity=STRING                Data integrity algorithm (LUKS2 only)
+                  --integrity-no-journal            Disable journal for integrity device
+                  --integrity-no-wipe               Do not wipe device after format
+                  --integrity-legacy-padding        Use inefficient legacy padding (old kernels)
+                  --token-only                      Do not ask for passphrase if activation by token fails
+                  --token-id=INT                    Token number (default: any)
+                  --key-description=STRING          Key description
+                  --sector-size=INT                 Encryption sector size (default: 512 bytes)
+                  --iv-large-sectors                Use IV counted in sector size (not in 512 bytes)
+                  --persistent                      Set activation flags persistent for device
+                  --label=STRING                    Set label for the LUKS2 device
+                  --subsystem=STRING                Set subsystem label for the LUKS2 device
+                  --unbound                         Create or dump unbound (no assigned data segment) LUKS2 keyslot
+                  --json-file=STRING                Read or write the json from or to a file
+                  --luks2-metadata-size=bytes       LUKS2 header metadata area size
+                  --luks2-keyslots-size=bytes       LUKS2 header keyslots area size
+                  --refresh                         Refresh (reactivate) device with new parameters
+                  --keyslot-key-size=BITS           LUKS2 keyslot: The size of the encryption key
+                  --keyslot-cipher=STRING           LUKS2 keyslot: The cipher used for keyslot encryption
+                  --encrypt                         Encrypt LUKS2 device (in-place encryption).
+                  --decrypt                         Decrypt LUKS2 device (remove encryption).
+                  --init-only                       Initialize LUKS2 reencryption in metadata only.
+                  --resume-only                     Resume initialized LUKS2 reencryption only.
+                  --reduce-device-size=bytes        Reduce data device size (move data offset). DANGEROUS!
+                  --hotzone-size=bytes              Maximal reencryption hotzone size.
+                  --resilience=STRING               Reencryption hotzone resilience type (checksum,journal,none)
+                  --resilience-hash=STRING          Reencryption hotzone checksums hash
+                  --active-name=STRING              Override device autodetection of dm device to be reencrypted
+
+            Help options:
+            -?, --help                            Show this help message
+                  --usage                           Display brief usage
+            -V, --version                         Print package version
+
+            <action> is one of:
+                  open <device> [--type <type>] [<name>] - open device as <name>
+                  close <name> - close device (remove mapping)
+                  resize <name> - resize active device
+                  status <name> - show device status
+                  benchmark [--cipher <cipher>] - benchmark cipher
+                  repair <device> - try to repair on-disk metadata
+                  reencrypt <device> - reencrypt LUKS2 device
+                  erase <device> - erase all keyslots (remove encryption key)
+                  convert <device> - convert LUKS from/to LUKS2 format
+                  config <device> - set permanent configuration options for LUKS2
+                  luksFormat <device> [<new key file>] - formats a LUKS device
+                  luksAddKey <device> [<new key file>] - add key to LUKS device
+                  luksRemoveKey <device> [<key file>] - removes supplied key or key file from LUKS device
+                  luksChangeKey <device> [<key file>] - changes supplied key or key file of LUKS device
+                  luksConvertKey <device> [<key file>] - converts a key to new pbkdf parameters
+                  luksKillSlot <device> <key slot> - wipes key with number <key slot> from LUKS device
+                  luksUUID <device> - print UUID of LUKS device
+                  isLuks <device> - tests <device> for LUKS partition header
+                  luksDump <device> - dump LUKS partition information
+                  tcryptDump <device> - dump TCRYPT device information
+                  bitlkDump <device> - dump BITLK device information
+                  luksSuspend <device> - Suspend LUKS device and wipe key (all IOs are frozen)
+                  luksResume <device> - Resume suspended LUKS device
+                  luksHeaderBackup <device> - Backup LUKS device header and keyslots
+                  luksHeaderRestore <device> - Restore LUKS device header and keyslots
+                  token <add|remove|import|export> <device> - Manipulate LUKS2 tokens
+
+            You can also use old <action> syntax aliases:
+                  open: create (plainOpen), luksOpen, loopaesOpen, tcryptOpen, bitlkOpen
+                  close: remove (plainClose), luksClose, loopaesClose, tcryptClose, bitlkClose
+
+            <name> is the device to create under /dev/mapper
+            <device> is the encrypted device
+            <key slot> is the LUKS key slot number to modify
+            <key file> optional key file for the new key for luksAddKey action
+
+            Default compiled-in metadata format is LUKS2 (for luksFormat action).
+
+            Default compiled-in key and passphrase parameters:
+                  Maximum keyfile size: 8192kB, Maximum interactive passphrase length 512 (characters)
+            Default PBKDF for LUKS1: pbkdf2, iteration time: 2000 (ms)
+            Default PBKDF for LUKS2: argon2i
+                  Iteration time: 2000, Memory required: 1048576kB, Parallel threads: 4
+
+            Default compiled-in device cipher parameters:
+                  loop-AES: aes, Key 256 bits
+                  plain: aes-cbc-essiv:sha256, Key: 256 bits, Password hashing: ripemd160
+                  LUKS: aes-xts-plain64, Key: 256 bits, LUKS header hashing: sha256, RNG: /dev/urandom
+                  LUKS: Default keysize with XTS mode (two internal keys) will be doubled.
+
+
+none of these work
+
+```
+root@Unraid:~# cryptsetup isLuks /dev/sdae
+root@Unraid:~# cryptsetup isLuks /dev/sdae1
+root@Unraid:~# cryptsetup isLuks /dev/mapper/md
+md1   md11  md12  md13  md14  md15  md16  md17  md2   md3   md4   md5   md6   md8   md9   
+root@Unraid:~# cryptsetup isLuks /dev/mapper/md1
+```
+
+
+~# cryptsetup luksDump /dev/sdaf1
+
+root@Unraid:~# cryptsetup luksDump /dev/sdaf1
+LUKS header information
+Version:        2
+Epoch:          3
+Metadata area:  16384 [bytes]
+Keyslots area:  16744448 [bytes]
+UUID:           7d6d47f9-f860-401d-a35a-4bd0ff85a4a7
+Label:          (no label)
+Subsystem:      (no subsystem)
+Flags:          (no flags)
+
+Data segments:
+  0: crypt
+        offset: 16777216 [bytes]
+        length: (whole device)
+        cipher: aes-xts-plain64
+        sector: 512 [bytes]
+
+Keyslots:
+  0: luks2
+        Key:        512 bits
+        Priority:   normal
+        Cipher:     aes-xts-plain64
+        Cipher key: 512 bits
+        PBKDF:      argon2i
+        Time cost:  4
+        Memory:     886326
+        Threads:    4
+        Salt:       33 72 29 e1 b3 11 17 5d de 13 b6 5b fd 56 c7 b6 
+                    41 68 1f 7c 84 7e 89 f7 8b 3a 7f 85 1e db 7e 07 
+        AF stripes: 4000
+        AF hash:    sha256
+        Area offset:32768 [bytes]
+        Area length:258048 [bytes]
+        Digest ID:  0
+Tokens:
+Digests:
+  0: pbkdf2
+        Hash:       sha256
+        Iterations: 44582
+        Salt:       84 be d9 d3 65 5e 95 2a c8 37 40 00 e5 8c bb 17 
+                    82 02 a6 12 ca f5 f3 56 43 80 5d 4f 50 1b d8 d7 
+        Digest:     3a e6 21 d0 80 88 e6 c8 42 1d 97 b8 69 aa f7 d9 
+                    48 77 29 a3 bb 44 77 85 e2 ec e6 5d 99 6e e7 28
+                    
+
+cryptsetup luksDump /dev/sdh1 > t2
+cryptsetup luksDump /dev/sdo1 > t1
+cryptsetup luksDump /dev/sdaf1 > t3
+cryptsetup luksDump /dev/sdr1 > t4
+colordiff t1 t3
+colordiff t1 t4
+
+
+
+for VAR in {1..17} ; do btrfs balance status -v /mnt/disk$VAR; done
+No balance found on '/mnt/disk1'
+No balance found on '/mnt/disk2'
+No balance found on '/mnt/disk3'
+No balance found on '/mnt/disk4'
+No balance found on '/mnt/disk5'
+No balance found on '/mnt/disk6'
+No balance found on '/mnt/disk7'
+No balance found on '/mnt/disk8'
+No balance found on '/mnt/disk9'
+No balance found on '/mnt/disk10'
+No balance found on '/mnt/disk11'
+No balance found on '/mnt/disk12'
+No balance found on '/mnt/disk13'
+No balance found on '/mnt/disk14'
+No balance found on '/mnt/disk15'
+No balance found on '/mnt/disk16'
+No balance found on '/mnt/disk17'
+
+
+nOT A BALANCE, MAYBE A SCRUB
+
+
+root@Unraid:~# for VAR in {1..17} ; do btrfs scrub status /mnt/disk$VAR; done
+                  UUID:             4feb617c-e1e5-4b48-9999-0e5002f77a4e
+                        no stats available
+                  Total to scrub:   5.32TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             3ab2af0a-3ebe-4172-b4db-51a4b9abf355
+                        no stats available
+                  Total to scrub:   5.25TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             2f27ac4b-8270-427c-a31c-53e13fd33843
+                        no stats available
+                  Total to scrub:   3.46TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             e57057df-e1f4-4637-9cbd-2721dbf74e29
+                  Scrub started:    Wed Feb  9 11:02:05 2022
+                  Status:           running
+                  Duration:         4:25:10
+                  Time left:        4:37:04
+                  ETA:              Wed Feb  9 20:04:19 2022
+                  Total to scrub:   3.64TiB
+                  Bytes scrubbed:   1.78TiB  (48.90%)
+                  Rate:             117.20MiB/s
+                  Error summary:    no errors found
+                  UUID:             2a4d6174-f4c8-4dfd-a8d0-9115b7fc37ac
+                        no stats available
+                  Total to scrub:   3.41TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             2d3bc7db-9949-45fc-ad90-2ec46618514b
+                        no stats available
+                  Total to scrub:   3.45TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             2ec5b57a-04ba-4990-ba44-115c8a45234c
+                        no stats available
+                  Total to scrub:   7.02TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             bd6fc8b4-d44c-4bce-b444-fc9d8881474f
+                        no stats available
+                  Total to scrub:   6.07TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             d8d1f4d9-2840-4363-83de-513b376db609
+                        no stats available
+                  Total to scrub:   5.68TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             c65d1de0-6a59-4c09-b023-c23d9ffdc511
+                        no stats available
+                  Total to scrub:   288.00KiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             d8f68959-89f0-4c97-bc3e-2e79c6224e48
+                        no stats available
+                  Total to scrub:   6.92TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             ee130c07-e740-4ee6-bf33-0e376ede251c
+                        no stats available
+                  Total to scrub:   7.95TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             8e903c20-ed05-43f5-8a56-4add337d3cfe
+                        no stats available
+                  Total to scrub:   2.59TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             e8421b41-a64a-4e11-b173-998bb2a5867b
+                        no stats available
+                  Total to scrub:   2.37TiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             f573adb4-6321-48b0-b052-8641c6cbf20d
+                        no stats available
+                  Total to scrub:   288.00KiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             373dcd33-62aa-44a3-84a7-dc614eadc534
+                        no stats available
+                  Total to scrub:   288.00KiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+                  UUID:             5e5031ab-60b6-454b-b4bf-c0754fcc0c47
+                        no stats available
+                  Total to scrub:   288.00KiB
+                  Rate:             0.00B/s
+                  Error summary:    no errors found
+
+NEED TO FIND WHICH DISK IS IN OPERATION
+
+root@Unraid:~# `blkid | grep  2f27ac4b-8270-427c-a31c-53e13fd33843`
+/dev/mapper/md3: UUID="2f27ac4b-8270-427c-a31c-53e13fd33843" UUID_SUB="42838760-29b9-4349-bb88-5f78fdb7acf2" BLOCK_SIZE="4096" TYPE="btrfs"
