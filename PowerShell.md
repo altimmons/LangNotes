@@ -1073,7 +1073,7 @@ Separate a number with dashes (# digit place holder):
 
         PS C:\> "{0:###-##-##}" -f 1234567
         123-45-67
-
+Create a list of 100 names with a padded suffix no. (Name001 → Name100):
 
         1..100 | % { 'Name{0:d3}' -f $_ }
 

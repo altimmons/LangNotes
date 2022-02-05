@@ -2156,3 +2156,160 @@ If a container is connected to the default bridge network and `linked` with ot
 > Since Docker may live update the container's `/etc/hosts` file, there may be situations when processes inside the container can end up reading an empty or incomplete `/etc/hosts` file. In most cases, retrying the read again should fix the problem.
 >
 >
+
+
+
+## Mount luks Volume
+
+```sh
+cryptsetup luksOpen /dev/sdag1 Removed
+# should ask for password PID
+
+#should now show up here
+ls /dev/mapper
+# create a place to mount it
+mkdir /mnt/Removed
+mount /dev/mapper/Removed /mnt/Removed
+```
+
+```
+udisksctl unlock -b /dev/sdb5
+udisksctl mount -b /dev/mapper/ubuntu--vg-root
+```
+
+
+
+
+## Fixing Log Issues
+
+
+log is full
+
+`# df -h /var/log`
+
+            Filesystem      Size  Used Avail Use% Mounted on
+            tmpfs           384M  384M     0 100% /var/log    
+
+!!!note Note: This command is pretty useful
+            `# du -sm /var/log/*`
+
+
+`# du -sm /var/log/*`
+
+            0       /var/log/apcupsd.events
+            28      /var/log/atop
+            0       /var/log/btmp
+            0       /var/log/cron
+            0       /var/log/debug
+            1       /var/log/diskinfo.log
+            1       /var/log/dmesg
+            1       /var/log/docker.log
+            0       /var/log/faillog
+            0       /var/log/lastlog
+            1       /var/log/libvirt
+            0       /var/log/maillog
+            0       /var/log/messages
+            0       /var/log/nfsd
+            1       /var/log/nginx
+            0       /var/log/packages
+            1       /var/log/pkgtools
+            1       /var/log/plugins
+            0       /var/log/preclear.disk.log
+            0       /var/log/pwfail
+            0       /var/log/removed_packages
+            0       /var/log/removed_scripts
+            0       /var/log/removed_uninstall_scripts
+            1       /var/log/samba
+            0       /var/log/scripts
+            0       /var/log/secure
+            0       /var/log/setup
+            0       /var/log/spooler
+            0       /var/log/swtpm
+            353     /var/log/syslog
+            2       /var/log/syslog.1
+            2       /var/log/syslog.2
+            0       /var/log/tmp
+            0       /var/log/vfio-pci
+            1       /var/log/wtmp
+
+This shows 353MB in  /var/log/syslog
+tried:
+
+`mount -o remount, size=512m  /var/log `
+`mount -o remount, size=770m  /var/log ` since I wanted at least double the size
+
+usage immedietly shoots to 770m
+changed it to 2048 and in less than a second its alread 796 (generating 26MB a second or so)
+
+root@Unraid:/var/log# wc -l /var/log/syslog
+5135382 /var/log/syslog
+
+
+Then 
+```
+root@Unraid:/var/log# gawk '!/ Unraid kernel: md: disk13 read error, sector=/' /var/log/syslog | wc -l
+9877
+root@Unraid:/var/log# wc -l /var/log/syslog
+5135382 /var/log/syslog
+```
+
+            Bad drives are 13, 17, and 4
+
+`gawk -i inplace '!/ Unraid kernel: md: disk13 read error, sector=/' /var/log/syslog `
+
+
+gawk '!/ Unraid kernel: md: disk17 read error, sector=/' /var/log/syslog  |wc -l
+2619666
+mount -o remount,size=4048m /var/log
+
+`root@Unraid:/var/log# gawk -i inplace '!/ Unraid kernel: md: disk17 read error, sector=/' /var/log/syslog `
+gawk: cmd. line:1: (FILENAME=/var/log/syslog FNR=1) fatal: print to "standard output" failed (No space left on device)
+`root@Unraid:/var/log# gawk -i inplace '!/ Unraid kernel: md: disk17 read error, sector=/' /var/log/syslog `
+`root@Unraid:/var/log# wc -l ./syslog`
+2619666 ./syslog
+
+`root@Unraid:~# mount -o remount,size=4048m /var/log`
+`root@Unraid:~# df -h /var/log `
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           4.0G  2.3G  1.8G  57% /var/log
+
+
+`root@Unraid:~# df -h /var/log `
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           4.0G  2.5G  1.5G  63% /var/log
+`root@Unraid:~# du -sm /var/log/*`
+0       /var/log/apcupsd.events
+28      /var/log/atop
+0       /var/log/btmp
+0       /var/log/cron
+0       /var/log/debug
+1       /var/log/diskinfo.log
+1       /var/log/dmesg
+1       /var/log/docker.log
+0       /var/log/faillog
+0       /var/log/lastlog
+1       /var/log/libvirt
+0       /var/log/maillog
+0       /var/log/messages
+0       /var/log/nfsd
+1       /var/log/nginx
+0       /var/log/packages
+1       /var/log/pkgtools
+1       /var/log/plugins
+0       /var/log/preclear.disk.log
+0       /var/log/pwfail
+0       /var/log/removed_packages
+0       /var/log/removed_scripts
+0       /var/log/removed_uninstall_scripts
+1       /var/log/samba
+0       /var/log/scripts
+0       /var/log/secure
+0       /var/log/setup
+0       /var/log/spooler
+0       /var/log/swtpm
+2       /var/log/syslog
+2       /var/log/syslog.1
+2       /var/log/syslog.2
+0       /var/log/tmp
+0       /var/log/vfio-pci
+1       /var/log/wtmp

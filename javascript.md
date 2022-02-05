@@ -1291,7 +1291,7 @@ Then run the commands 3-5
 
 Author Instructions
 
-
+  
 - Replace my name with yours: Chris Wells
   -   `find . -type f -exec sed -i 's/foo/bar/g' {} +`
 If you are using zsh: ` sed -i -- 's/foo/bar/g' **/*(D.)`
