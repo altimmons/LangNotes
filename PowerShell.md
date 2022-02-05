@@ -919,9 +919,9 @@ In Powershell True must be given as `$True` and False as `$False`
 ```ps1
 PS>  function test ($VALUE) {
 >> if ($VALUE) {
->>     Write-Host -ForegroundColor GREEN “TRUE”
+>>     Write-Host -ForegroundColor GREEN "TRUE"
 >> } else {
->>     Write-Host -ForegroundColor RED   “FALSE”
+>>     Write-Host -ForegroundColor RED   "FALSE"
 >> }
 >> }
 >>
@@ -935,14 +935,15 @@ PS> test FALSE
 TRUE
 ```
 
-The question a lot of PowerShell newbies ask is:  ‘Why is “FALSE” TRUE?”   In PowerShell, Strings can be evaluated as Booleans.  If a string is ZERO length – it is false, otherwise it is TRUE.  “FALSE” has 5 characters so it is TRUE.
+The question a lot of PowerShell newbies ask is:  'Why is "FALSE" TRUE?"   In PowerShell, Strings can be evaluated as Booleans.  If a string is ZERO length
+- it is false, otherwise it is TRUE.  "FALSE" has 5 characters so it is TRUE.
 
 So any value string (non-NULL) evaluates true.
 
 Also, `"0"` evaluates to $True, since its a string, but only exactly numerical 0 is $false
 
 ```ps1
-PS> test “0”
+PS> test "0"
 TRUE
 PS> test 0
 FALSE
@@ -963,7 +964,7 @@ TRUE
 PS>
 ```
 
-“0” is TRUE because it is a STRING and it has a length of 1.  0 is FALSE because it is a number and that number is 0.  In PowerShell, any number which evaluates to 0 is FALSE and every non-zero number is TRUE.  The example shows you a floating point zero, a hexadecimal zero, 0 megs, 0 kilos, 0 decimal, there are all sorts of zeros but to PowerShell, they all evaluate to FALSE.
+"0" is TRUE because it is a STRING and it has a length of 1.  0 is FALSE because it is a number and that number is 0.  In PowerShell, any number which evaluates to 0 is FALSE and every non-zero number is TRUE.  The example shows you a floating point zero, a hexadecimal zero, 0 megs, 0 kilos, 0 decimal, there are all sorts of zeros but to PowerShell, they all evaluate to FALSE.
 
 
 #### Math
@@ -1931,7 +1932,7 @@ The `Exit` statement is an internal command of PowerShell that instructs it to t
 
 **Console:** If we run this command straight on the PowerShell Console window, the window itself will close outright, no questions asked. It works just like the exit command in the Command Prompt.
 
-**Script:** If we run this command from a save script file, while on the console, it’s another matter.
+**Script:** If we run this command from a save script file, while on the console, it's another matter.
 
 It usually exits the script, though there appear to be bugs regarding it in ISE (see Source)
 
@@ -4055,7 +4056,7 @@ Also same as above.
 This mostly works.
 Function Get-Directory($InitialDir){
 
-[System.Reflection.Assembly]::LoadWithPartialName(“System.windows.forms”) | Out-Null
+[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 #OutNull to hide the success dialogue
 $OpenDirDialogue = New-Object System.Windows.Forms.FolderBrowserDialog
 $OpenDirDialogue.ShowNewFolderButton = $true
@@ -5522,9 +5523,9 @@ False
 ### Check if a process exists
 
 ```ps1
-PS> test (get-Process |where {$_.name -eq “PowerShell”})
+PS> test (get-Process |where {$_.name -eq "PowerShell"})
 TRUE
-PS> test (get-Process |where {$_.name -eq “NoSuchProcess”})
+PS> test (get-Process |where {$_.name -eq "NoSuchProcess"})
 FALSE
 ```
 
