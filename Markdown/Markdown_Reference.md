@@ -916,12 +916,13 @@ Also, [CSS Syntax](https://www.w3schools.com/css/css_syntax.asp) May also be rel
 - unstyled **style sample**{..green}
 - `$ npm install --save markdown-it-attrs`{style="color:cyan"}
 - _title_{style="color:cyan"}
-- title{style="color:purple"} - so it doesnt need a delimiter if its on its own line, as below
+- title{style="color:purple"} - so it doesnt need a delimiter if its on its own line, as below eg it ends with the style
 - title{style="color:purple"} 
 - unstyled *style sample*{style="color:red"} - so it still renders the bold and italics normally
-- unstyled **styled sample**{style="font-family:fantasy"}
-- unstyled `styled sample`{style="font-style:italic; font-size:2.5em"}
-- unstyled `styled sample`{style="font-style:italic; font-size:12vw; color:purple; font-weight:bold; font-variant:small-caps"}
+- unstyled **styled sample2**{style="font-family:fantasy";color:CornflowerBlue}
+- unstyled styled sample3c{style="font-style:italic; font-size:1.5em";color:CornflowerBlue}
+- unstyled styled sample3c{style="font-style:bold; font-size:1.5em";color:CornflowerBlue}
+- unstyled `styled sample4`{style="font-style:italic; font-size:12vw; color:purple; font-weight:bold; font-variant:small-caps"}
 
 styled sample{style="text-align:center"}
 

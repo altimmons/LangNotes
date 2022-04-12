@@ -309,17 +309,6 @@ Markdown Setting
 						},
 					},
 					{
-						//a block that is just tabbed over...
-						"name": "Markup - Raw Block",
-						"scope": [
-							"markup.raw.block"
-						],
-						"settings": {
-							"foreground": "#FFCA40",
-							"fontStyle": ""
-						}
-					},
-					{
 						"name": "Markdown - Line Break",
 						"scope": [
 							"text.html.markdown meta.dummy.line-break",
@@ -544,6 +533,17 @@ Markdown Setting
 							"fontStyle": "",
 						}
 					},
+					// {
+					// 	//a block that is just tabbed over...
+					// 	"name": "Markup - Raw Block",
+					// 	"scope": [
+					// 		"markup.raw.block"
+					// 	],
+					// 	"settings": {
+					// 		"foreground": "#FFCA40",
+					// 		"fontStyle": ""
+					// 	}
+					// },
 					// 		{
 					// 			"scope": "markup.bold.markdown",
 					// 			"settings": {

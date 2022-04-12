@@ -2,6 +2,17 @@
 
 [[TOC]]
 
+
+
+
+#### _Example {style="font-style:bold; font-size:1.2em";color:orangered}_
+----
+
+
+(^#{4} )(.*?$)
+improved so it doesnt double
+(^#{4} )([^_].*?$)
+\n$1$2 {style="font-style:bold; font-size:1.2em";color:orangered}\n----
 ## Settings
 
 Brings up the command browser in command line
@@ -382,7 +393,9 @@ Microsoft.Powershell.
 [Microsoft Modules](https://docs.microsoft.com/en-us/powershell/module/?view=win10-ps)
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)
 
-### Basic Commands
+
+### **_Basic Commands_**
+----
 
 `Get-Command | Format-List *`
 
@@ -407,9 +420,13 @@ Import-Module PowerShellGet
 Import-Module ISEModuleBrowserAddon
 ```
 
-### Profile
 
-### Common Parameters (Global)
+### **_Profile_**
+----
+
+
+### **_Common Parameters (Global)_**
+----
 
 SHORT DESCRIPTION
     Describes the parameters that Windows PowerShell Workflow adds to activities.
@@ -445,7 +462,9 @@ See more with : `Get-Help about_WorkflowCommonParameters -online`
 
 
 
-### My Profiles
+
+### **_My Profiles_**
+----
 
 
 
@@ -478,7 +497,9 @@ New-Alias -Name WO -Value "Where-Object" -Scope Global
 Start-Transcript -OutputDirectory $($env:OneDrive | join-path -ChildPath \Programming\Powershell\Transcipts)
 ```
 
-#### Setting the directories to look for modules
+
+#### _Setting the directories to look for modules_
+----
 
 
 ```ps1
@@ -616,7 +637,9 @@ Others:  Found [here](https://docs.microsoft.com/en-us/powershell/module/microso
 - `$switch`
 
 
-### Settings
+
+### **_Settings_**
+----
 
 These are the built in variables for powershell.  There uses are unknown in many cases, but esp. those at the end seem like they could be powerful.
 These are worth further investigation
@@ -826,7 +849,9 @@ PowerShell includes a set of built-in providers that you can use to access the d
 | WSMan       | WSMan:       | WS-Management configuration information    |
 
 
-### Syntax
+
+### **_Syntax_**
+----
 
 Things take the general format `verb-noun`.
 
@@ -840,12 +865,16 @@ $A = 6
 $a
 > 6
 ```
-#### Hash Tables
+
+#### _Hash Tables_
+----
 
 [Hash Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-6)
 
 
-### Data Types
+
+### **_Data Types_**
+----
 
 Encountered so far
 
@@ -876,7 +905,9 @@ Encountered so far
         ([int32]::minvalue + [uint32]::maxvalue).gettype().fullname
              System.Int64
 
-#### Casting Types
+
+#### _Casting Types_
+----
 
 Cast with [Type] or as (obj).method()
 
@@ -910,7 +941,9 @@ Check they type with obj.GetType()
 
 Plus there are Objects
 
-#### Boolean
+
+#### _Boolean_
+----
 
 !!!note -confirm looks like this `-Confirm:$false`
 
@@ -967,11 +1000,15 @@ PS>
 "0" is TRUE because it is a STRING and it has a length of 1.  0 is FALSE because it is a number and that number is 0.  In PowerShell, any number which evaluates to 0 is FALSE and every non-zero number is TRUE.  The example shows you a floating point zero, a hexadecimal zero, 0 megs, 0 kilos, 0 decimal, there are all sorts of zeros but to PowerShell, they all evaluate to FALSE.
 
 
-#### Math
+
+#### _Math_
+----
 
 [Math Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators?view=powershell-6)
 
-#### Strings
+
+#### _Strings_
+----
 
 Backtick is the escape character:
 
@@ -1495,7 +1532,9 @@ Message                        Look in c:\Windows\System32
 ```
 
 
-### Operators
+
+### **_Operators_**
+----
 
 [about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-6)
 
@@ -1572,7 +1611,9 @@ The following examples demonstrate this principle:
         At line:1 char:1
         + 16 + "file"`
 
-### Comparison Operators and Comparing Objects
+
+### **_Comparison Operators and Comparing Objects_**
+----
 
 !!!Note -  (merged Sections) Same topic **Comparison Operators** and **Comparing Objects**
 
@@ -1609,7 +1650,9 @@ Containment comparison operators determine whether a test value appears in a ref
 
 Bitwise comparison operators (`-bAND`, `-bOR`, `-bXOR`, `-bNOT`) manipulate the bit patterns in values.
 
-#### Examples of Comparisons
+
+#### _Examples of Comparisons_
+----
 
 ```powershell
 [PS]> $property.Name
@@ -1636,7 +1679,9 @@ An object has implicit methods as well.
         $pmsg = $msg[$i]|  ConvertFrom-String -PropertyNames $propertynames | Select-Object -Property $propertySelect
 ```
 
-### Other Operators
+
+### **_Other Operators_**
+----
 
 - `( )` - Grouping Expression operator
 - `$( )` - SubExpression operator
@@ -1666,7 +1711,9 @@ An object has implicit methods as well.
 
 
 
-#### Grouping Expression operator `( )`
+
+#### _Grouping Expression operator `( )`_
+----
 
 `( )`
 
@@ -1688,7 +1735,9 @@ for example:
         ($msg = "Hello World")
 
 
-#### SubExpression operator `$( )` 
+
+#### _SubExpression operator `$( )` _
+----
 
 `$( )` 
 
@@ -1706,7 +1755,9 @@ Subexpressions allow you to evaluate and act on the results of an expression in 
         PS C:\> "The result of 2 + 3 = $(2+3)"
         PS C:\> $(Get-WMIObject win32_Directory)
 
-#### `@( )` - Array SubExpression operator.
+
+#### _`@( )` - Array SubExpression operator._
+----
 
 `@( )`
 
@@ -1731,14 +1782,18 @@ To find the static properties and methods of an object, use the -Static paramete
         [datetime]::now
         [datetime]::Utcnow
 
-#### `,` - Comma operator
+
+#### _`,` - Comma operator_
+----
 
 - As a _binary_ operator, the comma creates an array.
 - As a _unary_ operator, the comma creates an array with one member. Place the comma before the member.
 
 [See Arrays](#arrays)
 
-#### `&` - Call operator
+
+#### _**_`&` - Call operator_**_
+----
 
 Run a command, script, or script block. The call operator, also known as the "invocation operator," lets you run commands that are stored in variables and represented by strings. **Because the call operator does not parse the command, it cannot interpret command parameters.**
 
@@ -1748,7 +1803,9 @@ Run a command, script, or script block. The call operator, also known as the "in
         C:\PS> & $c
         AllSigned
 
-#### `.` Dot sourcing operator
+
+#### _`.` Dot sourcing operator_
+----
 
 Run a script in the current scope so that any functions, aliases, and variables that the script creates are added to the current scope. (**without dot sourcing, the variables created within a script will all disappear when the script finishes.**)
 
@@ -1757,7 +1814,9 @@ Run a script in the current scope so that any functions, aliases, and variables 
 
 !!!Note: The dot sourcing operator is followed by a space. Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.
 
-#### `-f` Format operator
+
+#### _The `-f` Format operator_
+----
 
 [Format a string expression](#String-Formatting).
 
@@ -1773,13 +1832,18 @@ Optional format string(s) can be included to add padding/alignment and display d
         10..20
         5..25
 
-#### `..` Range Operator
+
+#### _`..` _Range Operator__
+----
 
 `$B = 5..8` - $B contains: 5, 6, 7, and 8.   [See Arrays](#arrays)
 
 
-#### Others
 
+#### _Others_
+----
+
+nothing here
 ##### `$` Variable Indicator or Symbol Indicator
 
 ##### `$_` placeHolder Symbol 
@@ -1821,7 +1885,9 @@ This list includes external commands in your search path so it can contain thous
 
     See [Casting Types](#Casting-Types)
 
-#### `%` The ForEach Alias
+
+#### _`%` The ForEach Alias_
+----
 
 see `Get-Alias`
 
@@ -1868,7 +1934,9 @@ Double Quotes - Evaluated, Single Quotes - Literal
 
 `Measure-Object`
 
-### Break, Exit and Return
+
+### **_Break, Exit and Return_**
+----
 
 [Source](https://jorgecandeias.github.io/2014/11/27/the-difference-between-break-return-and-exit-in-powershell/)
 
@@ -1877,7 +1945,9 @@ Double Quotes - Evaluated, Single Quotes - Literal
 `Return` terminates execution of the current function and passes control to the statement immediately after the function call.
 
 `Exit` terminates the current execution session altogether. It also closes the console window and may or may not close ISE depending on what direction the wind is facing.
-#### Break 
+
+#### _Break _
+----
 
 Example 
 
@@ -1896,7 +1966,9 @@ while ($true)
 Write-Host "Finished the loop!";
 ```
 
-#### Return
+
+#### _Return_
+----
 
 Example 
 
@@ -1926,7 +1998,9 @@ Write-Host "Finished running the function!";
 
 ```
 
-#### Exit 
+
+#### _Exit _
+----
 
 The `Exit` statement is an internal command of PowerShell that instructs it to terminate the session altogether. Interestingly, this has slightly different effects, depending on what context and tool it is executed on.
 
@@ -1994,7 +2068,9 @@ You can use the _array operator_ to create an array of zero or one object.
         PS> $b.Count
     0
 
-#### Arrays of zero or one
+
+#### _Arrays of zero or one_
+----
 
 Beginning in Windows PowerShell 3.0, a collection of zero or one object has the Count and Length property. Also, you can index into an array of one object. This feature helps you to avoid scripting errors that occur when a command that expects a collection gets fewer than two items.
 
@@ -2021,7 +2097,9 @@ Beginning in Windows PowerShell 3.0, a collection of zero or one object has the 
 
         $p = @(Get-Process Notepad)
 
-#### Properties of arrays
+
+#### _Properties of arrays_
+----
 
 
 `Count` - which is really an alias of `Length` or `LongLength` if the array contains more than **2,147,483,647** elements.
@@ -2075,7 +2153,9 @@ True
 0
 
 ```
-#### Reading an Array
+
+#### _Reading an Array_
+----
 
 0 indexed
 
@@ -2132,7 +2212,9 @@ You can use the plus operator (+) to combine a ranges with a list of elements in
     0, 1, 2, 4, 5, 6, 8
 ```
 
-#### Iterations over array elements
+
+#### _Iterations over array elements_
+----
 
 (and) [For Each](#ForEach-Object)
 
@@ -2148,7 +2230,9 @@ You can use the plus operator (+) to combine a ranges with a list of elements in
 
 
 
-### For Loop
+
+### **_For Loop_**
+----
 
 [Source](https://www.business.com/articles/powershell-for-loop/)
 
@@ -2194,7 +2278,9 @@ for ($i = 0; $i -le ($a.length - 1); $i += 2) {
 }
 ```
 
-### While, Do-While, Do-Until, Break
+
+### **_While, Do-While, Do-Until, Break_**
+----
 
  `While` and `Do-While` loops are both used to perform an action while the condition evaluates to `$true`, and differ only in their syntax. `Do-Until` loops have similar syntax to `Do-While`, but stop processing once the condition statement is met.
 
@@ -2244,7 +2330,9 @@ While ($true) #infinate loop
 
 See also [Break](#Break)
 
-### ForEach-Object
+
+### **_ForEach-Object_**
+----
 
 This example shows Get-ChildItem, A For-EachObject loop, and an if statement example.
 
@@ -2307,7 +2395,9 @@ foreach ($file in $files)
 
 
 
-#### ForEach
+
+#### _ForEach_
+----
 
 [about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
 
@@ -2532,7 +2622,9 @@ function Get-FunctionPosition {
 }
 ```
 
-#### For Loops
+
+#### _For Loops_
+----
 
 [about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
 
@@ -2542,7 +2634,9 @@ function Get-FunctionPosition {
         $a[$i]
     }
 ```
-#### Other Methods
+
+#### _Other Methods_
+----
 
 ##### Where
 
@@ -2659,7 +2753,9 @@ Stopped  AppIDSvc           Application Identity
 ...
 ```
 
-#### Get the members of an array
+
+#### _Get the members of an array_
+----
 
 To get the properties and methods of an array, such as the `Length` property and the `SetValue` method, use the `InputObject` parameter of the `Get-Member` cmdlet.
 
@@ -2680,7 +2776,9 @@ For example, the following command gets the members of the $a array variable.
 
 You can also get the members of an array by typing a comma (,) before the value that is piped to the Get-Member cmdlet. The comma makes the array the second item in an array of arrays. Windows PowerShell pipes the arrays one at a time and Get-Member returns the members of the array. Like the next two examples.
 
-#### Manipulating an array
+
+#### _Manipulating an array_
+----
 
 You can change the elements in an array, add an element to an array, and combine the values from two arrays into a third array.
 
@@ -2726,7 +2824,9 @@ You can also use the `Remove-Item` cmdlet, but assigning a value of $null is fas
 
 
 
-### Comments
+
+### **_Comments_**
+----
 
 Comments are marked with `#`.
 
@@ -2735,7 +2835,9 @@ Block comments start with `<#` and end with `#>`.
 
 ## Commands
 
-### Get-Help
+
+### **_Get-Help_**
+----
 
 `Get-Help [ModuleName] -examples -online`
 
@@ -2744,7 +2846,9 @@ Find the available commands with `Get-Command`
 !!! Note Note - Something that works well is `Get-Help about_` and then just hit [[Tab]] until you get to the one you want.  Has lots of basic info.
 
 
-#### Get-Command
+
+#### _Get-Command_
+----
 
 ```ps1
 Get-Command -CommandType Alias
@@ -2766,7 +2870,9 @@ Install-Module -Name ISEScriptingGeek -Force -Verbose
 
 ```
 
-### Set-Alias
+
+### **_Set-Alias_**
+----
 
 Create a bit of shorthand for yourself
 
@@ -2775,7 +2881,9 @@ Set-Alias immo import-module
 >immo ISESteroids
 ```
 
-### Get-Member
+
+### **_Get-Member_**
+----
 
 Investigate whats in an object
 
@@ -2784,7 +2892,9 @@ Investigate whats in an object
 (gl | gci | member).Name - lists the available sub routines
 ((gl | gci | measure)|member) -gets all the things available from measure
 
-### Output (Print)
+
+### **_Output (Print)_**
+----
 
 `Write-Host`
 
@@ -2813,7 +2923,9 @@ the relationship between scopes.
 
 - _Numbered Scopes:_ - You can refer to scopes by name or by a number that describes the relative position of one scope to another. Scope 0 represents the current, or local, scope. Scope 1 indicates the immediate parent scope. Scope 2 indicates the parent of the parent scope, and so on. Numbered scopes are useful if you have created many recursive scopes.
 
-### Parent and Child Scopes
+
+### **_Parent and Child Scopes_**
+----
 
 You can create a new scope by running a script or function, by creating a session, or by starting a new instance of Windows PowerShell. When you create a new scope, the result is a parent scope (the original scope) and a child scope (the scope that you created).
 
@@ -2824,13 +2936,17 @@ In Windows PowerShell, all scopes are child scopes of the global scope, but you 
 Unless you explicitly make the items private, the items in the parent scope are available to the child scope. However, items that you create and change in the child scope do not affect the parent scope, unless you explicitly specify the scope when you create the items.
 
 
-### Inheritance
+
+### **_Inheritance_**
+----
 
 A child scope does not inherit the variables, aliases, and functions from the parent scope. Unless an item is private, the child scope can view the items in the parent scope. And, it can change the items by explicitly specifying the parent scope, but the items are not part of the child scope.
 
 However, a child scope is created with a set of items. Typically, it includes all the aliases that have the AllScope option. This option is discussed later in this topic. It includes all the variables that have the AllScope option, plus some variables that can be used to customize the scope, such as `MaximumFunctionCount`.
 
-### Checking Scope
+
+### **_Checking Scope_**
+----
 
 To find the items in a particular scope, use the `Scope` parameter of  `Get-Variable` or `Get-Alias`.
 
@@ -2849,7 +2965,9 @@ To get all the variables in the global scope, type:
 
 
 
-### Scope Modifiers
+
+### **_Scope Modifiers_**
+----
 
 To specify the scope of a new variable, alias, or function, use a scope modifier. The valid values of a modifier are Global, Local, Private, and Script.
 
@@ -2865,7 +2983,9 @@ The syntax for a scope modifier in a function is:
 The default scope for scripts is the script scope. The default scope for functions and aliases is the local scope, even if they are defined in a
 script.
 
-#### The Standard Case (local / unspecified)
+
+#### _The Standard Case (local / unspecified)_
+----
 The following command, which does not use a scope modifier, creates a variable in the current or local scope:
 
     $a = "one"
@@ -3035,7 +3155,9 @@ $result = Add-Numbers 5 10    --Right
 ```
 
 ```ps1
-### Output Type
+
+### **_Output Type_**
+----
 
  [OutputType([System.Void])]
 
@@ -3052,7 +3174,9 @@ function Get-Time
 }
 ```
 
-### Pass by Reference
+
+### **_Pass by Reference_**
+----
 
 Using the `[ref]` flag
 
@@ -3081,7 +3205,9 @@ PS> function add5minus5([ref]$add,[ref]$minus)
 >> }
 ```
 
-### Parameters
+
+### **_Parameters_**
+----
 
 
 [Doc on Basic Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
@@ -3154,7 +3280,9 @@ Another example:
 
  basically in a param block, each param has flags that can be used.
 
-#### The `[Parameter]` flag
+
+#### _The `[Parameter]` flag_
+----
 
 [Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-attribute)
 
@@ -3187,7 +3315,9 @@ The [Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.pow
     - The Alias attribute establishes an alternate name for the parameter. There's no limit to the number of aliases that you can assign to a parameter.
 - [SupportsWildcards](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#supportswildcards-attribute)
 
-#### The Argument Completion Attribute
+
+#### _The Argument Completion Attribute_
+----
 
 [Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#argumentcompletions-attribute)
 
@@ -3237,7 +3367,9 @@ function MyArgumentCompleter {
 
 
 
-#### The `[type]` flag
+
+#### _The `[type]` flag_
+----
     
     [String]
     [Switch]
@@ -3252,7 +3384,9 @@ $f = gci -Recurse -Include "*$studio*" -File -Exclude "$destpath"
 
 where above, `-File` is a switch.
 
-#### Modifier tags
+
+#### _Modifier tags_
+----
 
 [Validation attributes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-and-variable-validation-attributes)
 
@@ -3278,7 +3412,9 @@ other attributes Ive come across but havent used -
 *Accepts Multiple Values*
 *ValidateSet* attribute and the *ValidatePattern* a
 
-#### CmdletBinding
+
+#### _CmdletBinding_
+----
 
 >Advanced functions use the CmdletBinding attribute to identify them as functions that act like cmdlets. The CmdletBinding attribute is similar to the Cmdlet attribute that is used in compiled cmdlet classes to identify the class as a cmdlet. For more information about this attribute, see about_Functions_CmdletBindingAttribute.
 
@@ -3303,7 +3439,9 @@ other attributes Ive come across but havent used -
 ```
 
 
-### Filter Functions
+
+### **_Filter Functions_**
+----
 
 e.g. stream functions, defined with the word `filter` rather than function.
 
@@ -3332,7 +3470,9 @@ With a filter function, data is processes while it is being received, without wa
 The `param_list` is an optional list of comma separated parameter names, these may also be preceded by their data types in brackets. This makes the function more readable than using `$args` and also gives you the option to supply default values.
 
 
-### Advanced function
+
+### **_Advanced function_**
+----
 
 An Advanced PowerShell function contains the `[cmdletbinding()]` attribute (or the `Parameter` attribute). This adds several capabilities such as additional parameter checking, and the ability to easily use `Write-Verbose.`
 
@@ -3357,7 +3497,9 @@ PS C:\> Get-ByOwner JackFrost
  }
  ```
 
-### Variable Scope
+
+### **_Variable Scope_**
+----
 
 By default, all variables created in functions are local, they only exist within the function, though they are still visible if you call a second function from within the first one.
 
@@ -3365,7 +3507,9 @@ To persist a variable, so the function can be called repeatedly and the variable
 
 To make a variable global prepend `$global:` to the variable name, e.g. `$global:myvar`
 
-### Splatting
+
+### **_Splatting_**
+----
 
 [Splatting Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-5.1)
 
@@ -3440,7 +3584,9 @@ Output
 
 ## Profiles
 
-### Userfiles
+
+### **_Userfiles_**
+----
 
 ```powershell
 notepad.exe $Profile.currentusercurrenthost
@@ -3478,7 +3624,9 @@ C:\Users\s163837\Documents\WindowsPowerShell\profile.ps1
 PS C:\Windows\system32> $profile.CurrentUserCurrentHost
 C:\Users\s163837\Documents\WindowsPowerShell\Microsoft.PowerShellISE_profile.ps1
 
-#### CurrentUserAllHosts:
+
+#### _CurrentUserAllHosts:_
+----
 
 ```ps
 #General?
@@ -3553,7 +3701,9 @@ function cddash {
 Set-Alias -Name cd -value cddash -Option AllScope`
 ```
 
-#### AllUsersCurrentHost
+
+#### _AllUsersCurrentHost_
+----
 
 C:\Users\Andy> more $profile.AllUsersCurrentHost
 #$profile.AllUsersCurrentHost
@@ -3567,7 +3717,9 @@ function prompt {
     & $GitPromptScriptBlock
 }
 
-#### CurrentUserCurrentHost
+
+#### _CurrentUserCurrentHost_
+----
 
 ```ps
 Import-Module getChildItemColor
@@ -3582,7 +3734,9 @@ function prompt {
 ```
 
 
-### Desktop CurrentUserCurrentHost
+
+### **_Desktop CurrentUserCurrentHost_**
+----
 
 ```powershell
 #Microsoft.PowerShellISE_profile.ps1
@@ -3611,7 +3765,9 @@ if(![System.IO.File]::Exists($path)){
 }
 ```
 
-### Play Sound
+
+### **_Play Sound_**
+----
 
 
  `[Console]::Beep(20000, 2)`
@@ -3639,11 +3795,15 @@ or minimally:
 
 - ## Other  TRICKS and ACTIONS
 
-### Get ENvironment Vars
+
+### **_Get ENvironment Vars_**
+----
 
 `Get-childitem $env:`
 
-### Create a symbolic link
+
+### **_Create a symbolic link_**
+----
 
 
 ```ps1
@@ -3656,7 +3816,9 @@ Where LINK is the new symbolic link, and TARGET is the file it refers to.
 
 `-ItemType` can be: **Directory**, **File**, **SymbolicLink**, **Junction**, **HardLink**
 
-###  Create a Directory Junction
+
+### **_ Create a Directory Junction_**
+----
 
 ```ps1
 
@@ -3672,7 +3834,9 @@ A **hard link** can be created only for files, not folders. You cannot create a 
 
 >In Windows Vista and later, directory junctions are used to link older file folder paths like C:\Documents and Settings to newer paths like C:\Users. Symbolic links are also used to redirect C:\Users\All Users to C:\ProgramData.
 
-### Debug
+
+### **_Debug_**
+----
 
 ```powershell
 Set-PSDebug -Trace 1 #| 2
@@ -3680,7 +3844,9 @@ Set-PSDebug -Trace 1 #| 2
 Get-PSDepth  #Just a sample function?
 Set-PSDebug -Off
 ```
-### -OutVariable | -PipelineVariable
+
+### **_-OutVariable | -PipelineVariable_**
+----
 
 Takes a string and loads the result into a variable
 
@@ -3690,7 +3856,9 @@ Get-PackageSource -OutVariable Name
 
 Produces the result.  But also loads result into `$Name`.  Variables have to be prefixed with `$` when getting value.
 
-### Get-Item, Get-ItemProperty, Get-ItemPropertyValue, Get-ChildItem
+
+### **_Get-Item, Get-ItemProperty, Get-ItemPropertyValue, Get-ChildItem_**
+----
 
 `Get-ChildItem -Path C:\`
 Gets the subfolders for C:\
@@ -3721,7 +3889,9 @@ PS C:\Windows\system32> Get-ItemPropertyValue -Path C:\ -Name CreationTime
 
         Wednesday, April 11, 2018 4:04:33 PM
 ```
-### Measure a value
+
+### **_Measure a value_**
+----
 
 You should use `Measure-Object` to count things. In this case it would look like:
 
@@ -3740,7 +3910,9 @@ even: but the problem is, that if I have 1 or 0 items, the command does not work
 
 (Get-Location | gci | measure).Count
 
-### Get a Property
+
+### **_Get a Property_**
+----
 
 Get-ItemProperty
 
@@ -3764,17 +3936,23 @@ You can access an item by forcing PS to re-eval an item with `$` as in `$(<expr>
         PS A:\icons\scraping> $(GCI .\100.zip).FullName
         A:\icons\scraping\100.zip
 
-### Get services format as table
+
+### **_Get services format as table_**
+----
 
  get-service | group-object -property status | format-table -wrap
 
 
-### Formatting methods
+
+### **_Formatting methods_**
+----
 
 Out-GridView
 format-table -wrap
 
-### Test a path
+
+### **_Test a path_**
+----
 
 if (Test-Path $path) { ... }
 
@@ -3823,7 +4001,9 @@ As you've already shown yourself, the opposite is quite easy, just alias exists 
     PS C:\> exists -Path "C:\Windows"
     True
 ```
-### Get a particular value
+
+### **_Get a particular value_**
+----
 
 ```powershell
 $someVar = Get-PackageSouce
@@ -3854,7 +4034,9 @@ Running `$property.GetType()`  would probably return different things- objects f
 
 
 
-### Setup
+
+### **_Setup_**
+----
 
  PSRepository -> PackageSource -> PackageProviders-> Package -> Modules
 
@@ -3902,18 +4084,24 @@ Install-Package ISEScriptAnalyzerAddOn -Source PSGallery
 Install-Package ISESteroids -Source PSGallery
 ```
 
-### Security
+
+### **_Security_**
+----
 
 `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
 
 
-### Install Windows Feature (WSL)
+
+### **_Install Windows Feature (WSL)_**
+----
 
 ```ps
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
-### Get a web file (like curl)
+
+### **_Get a web file (like curl)_**
+----
 
 Invoke-WebRequest
 
@@ -3969,7 +4157,9 @@ param([Int32]$MajorStart, [Int32]$MajorStop, [Int32]$MinorStart0, [Int32]$MinorS
 
 ```
 
-#### Example
+
+#### _Example_
+----
 
 Some Random [Source](https://gist.github.com/guitarrapc/79d31b8cd02649075642b77c4ae796ab)
 
@@ -3978,7 +4168,9 @@ Some Random [Source](https://gist.github.com/guitarrapc/79d31b8cd02649075642b77c
 
         [system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('http://[YourProxyDNS]:[yourProxyPort]') [system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials [system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
 
-### Find a command
+
+### **_Find a command_**
+----
 
 ```powershell
 Get-Command -Noun PackageProvider
@@ -3996,7 +4188,9 @@ function Add-Function
 }
 ```
 
-### Get Help
+
+### **_Get Help_**
+----
 
 ```powershell
 Get-Help Find-Command -examples
@@ -4016,7 +4210,9 @@ PS C:\> Get-Help2 -command set-acl
 
 The built-in PowerShell alias names will take precedence over a function (or script) with the same name. To avoid conflicts always check if the name is already in use with help name. Choosing a good descriptive name for your function will help with this
 
-### Show a file open dialogue
+
+### **_Show a file open dialogue_**
+----
 
 [Source](https://blogs.technet.microsoft.com/heyscriptingguy/2009/09/01/hey-scripting-guy-can-i-open-a-file-dialog-box-with-windows-powershell/)
 
@@ -4042,7 +4238,9 @@ Get-FileName -initialDirectory "c:fso"
 
 ```
 
-### Open Folder Dialog
+
+### **_Open Folder Dialog_**
+----
 
 [Sources](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.folderbrowserdialog?view=netframework-4.8)
 
@@ -4080,7 +4278,9 @@ $InitialDir doesnt do anything.
 
 
 
-### Prompt for input
+
+### **_Prompt for input_**
+----
 
 ```ps1
 $Server = Read-Host -Prompt 'Input your server  name'
@@ -4089,7 +4289,9 @@ $Date = Get-Date
 Write-Host "You input server '$Servers' and '$User' on '$Date'"
 ```
 
-### Get Windows Events
+
+### **_Get Windows Events_**
+----
 
 
 ```ps1
@@ -4126,7 +4328,9 @@ $msg[4] | ConvertFrom-String | Get-Member
 
 
 ```
-### File Methods Available
+
+### **_File Methods Available_**
+----
 
         PS A:\icons\scraping\166\1> Get-ChildItem .\scrape166.svg | Get-Member
 
@@ -4185,6 +4389,26 @@ $msg[4] | ConvertFrom-String | Get-Member
         Name                      Property       string Name {get;}
         BaseName                  ScriptProperty System.Object BaseName {get=if ($this.Extension.Length -gt 0){$this.Name.Remove($this.Name.Length - $this.Extension.Length)}else{$this.Name};}
         VersionInfo               ScriptProperty System.Object VersionInfo {get=[System.Diagnostics.FileVersionInfo]::GetVersionInfo($this.FullName);}
+
+
+
+### **_Run Script as Admin_**
+----
+
+[windows 10 - Launch powershell as admin when double click on ps1 file - Super User](https://superuser.com/questions/1293170/launch-powershell-as-admin-when-double-click-on-ps1-file)
+
+This will not execute the script when you double-click on it, but this will execute itself as elevated when you run it. You can try this:
+
+```ps1
+$principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+if($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # code here...
+}
+else {
+    Start-Process -FilePath "powershell" -ArgumentList "$('-File ""')$(Get-Location)$('\')$($MyInvocation.MyCommand.Name)$('""')" -Verb runAs
+}
+
+```
 
 ## Aliases
 Alias           % -> ForEach-Object
@@ -4428,7 +4652,9 @@ These commands are in common with Unix or cmd
 
 [Modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/writing-portable-modules?view=powershell-6)
 
-### Scripts
+
+### **_Scripts_**
+----
 
 Scripts have a Data Section:
 
@@ -4451,9 +4677,13 @@ The $MyNotebook variable contains the name of the user's private notebook.
 Variables are not allowed here.
 
 
-### Writing Scripts
 
-#### Passing Values into scripts
+### **_Writing Scripts_**
+----
+
+
+#### _Passing Values into scripts_
+----
 
 The first command in a .PS1 file must be Param()
 
@@ -4532,9 +4762,13 @@ Class SoundNames : System.Management.Automation.IValidateSetValuesGenerator {
 }
 ```
 
-### Modules (Writing)
 
-#### Storing and Installing a Module
+### **_Modules (Writing)_**
+----
+
+
+#### _Storing and Installing a Module_
+----
 
 Once you have created a **script,** **binary,** or **manifest** module, you can save your work in a location that others may access it. For example, your module can be stored in the system folder where Windows PowerShell is installed, or it can be stored in a user folder.
 
@@ -4555,7 +4789,9 @@ Regardless, the path of the folder is referred to as the base of the module (Mod
 
 [Write a Manifest Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest?view=powershell-7.1)
 
-#### Module Manifests
+
+#### _Module Manifests_
+----
 
 A module manifest is a .psd1 file that contains a hash table. The keys and values in the hash table do the following things:
 
@@ -4651,7 +4887,9 @@ New-Object provides the most commonly-used functionality of the VBScript CreateO
 
 New-Object expands upon the functionality available in the Windows Script Host environment by making it easy to work with .NET Framework objects from the command line and within scripts.
 
-### Creating Objects
+
+### **_Creating Objects_**
+----
 
 The .NET Framework Class Library includes a class named `System.Diagnostics.EventLog` that can be used to manage event logs. You can create a new instance of a .NET Framework class by using the `New-Object` cmdlet with the `TypeName` parameter.
 
@@ -4672,7 +4910,9 @@ Max(K) Retain OverflowAction        Entries Name
 16,384      7 OverwriteOlder          2,160 Application
 ```
 
-### Known Objects
+
+### **_Known Objects_**
+----
 
 Since most of the .NET Framework core classes are contained in the System namespace, Windows PowerShell will automatically attempt to find classes you specify in the System namespace if it cannot find a match for the typename you specify. This means that you can specify Diagnostics.EventLog instead of System.Diagnostics.EventLog.
 
@@ -4752,7 +4992,9 @@ Get-CimInstance -ClassName Win32_Desktop -ComputerName .
 
 It seems that specifying Computer Name triggers it as a remote operation.
 
-### WMI Objects within Win32_OperatingSystem
+
+### **_WMI Objects within Win32_OperatingSystem_**
+----
 
 `PS R:\Icons> Get-CimInstance -Class Win32_OperatingSystem | Get-Member -MemberType Property | Select -Property "Name"`
 
@@ -4826,7 +5068,9 @@ TotalVirtualMemorySize
 TotalVisibleMemorySize                   
 Version             
 
-### Listing All WMI-Objects
+
+### **_Listing All WMI-Objects_**
+----
 
 ```ps1
 PS> Get-WmiObject -List
@@ -4851,7 +5095,9 @@ Get-WmiObject -List -ComputerName localhost
 
 Get-WmiObject uses the root/cimv2 namespace by default. If you want to specify another WMI namespace, use the Namespace parameter and specify the corresponding namespace path:
 
-### Get ComObject
+
+### **_Get ComObject_**
+----
 
 [Source](https://www.powershellmagazine.com/2013/06/27/pstip-get-a-list-of-all-com-objects-available/)
 
@@ -4892,9 +5138,13 @@ function Get-ComObject {
 
 
 
-### Set Network Properties
 
-#### Get-NetConnectionProfile
+### **_Set Network Properties_**
+----
+
+
+#### _Get-NetConnectionProfile_
+----
 
 returns the following info:
 
@@ -4917,9 +5167,13 @@ Can set Networks to Domain, Private and Public.  Esp. Useful when there is more 
 
 `Get-WmiObject` addresses this problem by making WMI discoverable. You can get a list of the WMI classes available on the local computer by typing:
 
-### Get Computer Properties
 
-#### Listing BIOS Information
+### **_Get Computer Properties_**
+----
+
+
+#### _Listing BIOS Information_
+----
 
 The WMI Win32_BIOS class returns fairly compact and complete information about the system BIOS on the local computer:
 
@@ -4932,7 +5186,9 @@ The WMI Win32_BIOS class returns fairly compact and complete information about t
             Version           : ALASKA - 1072009
             PSComputerName    : .
 
-#### Listing Processor Information
+
+#### _Listing Processor Information_
+----
 
         Get-CimInstance -ClassName Win32_Processor -ComputerName . | Select-Object -ExcludeProperty "CIM*"
         Get-CimInstance -ClassName Win32_Processor
@@ -4940,14 +5196,18 @@ The WMI Win32_BIOS class returns fairly compact and complete information about t
         #For a generic string of the processor family -  this works:
         Get-CimInstance -ClassName Win32_ComputerSystem -ComputerName . | Select-Object -Property SystemType
 
-#### Listing Computer Manufacturer and Model
+
+#### _Listing Computer Manufacturer and Model_
+----
 
 Computer model information is also available from Win32_ComputerSystem. The standard displayed output will not need any filtering to provide OEM data:
 
 
 `Get-CimInstance -ClassName Win32_ComputerSystem`
 
-#### Listing Installed Hotfixes
+
+#### _Listing Installed Hotfixes_
+----
 You can list all installed hotfixes by using Win32_QuickFixEngineering:
 
 `Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName`
@@ -4956,7 +5216,9 @@ Although you can use the Get-CimInstance's Property parameter to choose only the
 
 `Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName . -Property HotFixID`
 
-#### Listing Operating System Version Information
+
+#### _Listing Operating System Version Information_
+----
 
 `Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property BuildNumber,BuildType,OSType,ServicePackMajorVersion,ServicePackMinorVersion`
 
@@ -4964,7 +5226,9 @@ You can also use wildcards with the Select-Object's Property parameter. Because 
 
         `Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property Build*,OSType,ServicePack*`
 
-#### Listing Local Users and Owner
+
+#### _Listing Local Users and Owner_
+----
 Local general user information — number of licensed users, current number of users, and owner name — can be found with a selection of Win32_OperatingSystem class' properties. You can explicitly select the properties to display like this:
 
 		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property NumberOfLicensedUsers,NumberOfUsers,RegisteredUser`
@@ -4972,7 +5236,9 @@ A more succinct version using wildcards is:
 
 		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property *user*`
 
-#### Getting Available Disk Space
+
+#### _Getting Available Disk Space_
+----
 
 To see the disk space and free space for local drives, you can use the Win32_LogicalDisk WMI class. You need to see only instances with a DriveType of 3 — the value WMI uses for fixed hard disks.
 
@@ -4992,19 +5258,25 @@ FreeSpace 109839607808
 Size      326846914560
 ```
 
-#### Getting Logon Session Information
+
+#### _Getting Logon Session Information_
+----
 
 You can get general information about logon sessions associated with users through the `Win32_LogonSession` WMI class:
 
 		Get-CimInstance -ClassName Win32_LogonSession -ComputerName .
 
-#### Getting the User Logged on to a Computer
+
+#### _Getting the User Logged on to a Computer_
+----
 
 You can display the user logged on to a particular computer system using Win32_ComputerSystem. This command returns only the user logged on to the system desktop:
 
 		Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName -ComputerName .
 
-#### Getting Local Time from a Computer
+
+#### _Getting Local Time from a Computer_
+----
 
 You can retrieve the current local time on a specific computer by using the Win32_LocalTime WMI class.
 
@@ -5024,7 +5296,9 @@ Year         : 2017
 PSComputerName : .
 ```
 
-#### Displaying Service Status
+
+#### _Displaying Service Status_
+----
 
 To view the status of all services on a specific computer, you can locally use the `Get-Service` cmdlet. For remote systems, you can use the `Win32_Service` WMI class. If you also use Select-Object to filter the results to Status, Name, and DisplayName, the output format will be almost identical to that from Get-Service:
 
@@ -5035,14 +5309,20 @@ To allow the complete display of names for the occasional services with extremel
 		Get-CimInstance -ClassName Win32_Service -ComputerName . | Format-Table -Property Status,Name,DisplayName -AutoSize -Wrap
 
 
-### Actions
+
+### **_Actions_**
+----
 
 
-#### Locking a Computer
+
+#### _Locking a Computer_
+----
 
 [Was there supposed to be something here?]
 
-#### Calling User32.dll functions
+
+#### _Calling User32.dll functions_
+----
 
 !!!Note This should (at least in the old windows I grew up with)- expose lots of useful methods.
 
@@ -5057,7 +5337,9 @@ When you lock a workstation while Fast User Switching is enabled, such as on Win
 
 To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` command-line tool.
 
-#### Logging Off the Current Session
+
+#### _Logging Off the Current Session_
+----
 
 You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
 
@@ -5072,7 +5354,9 @@ A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32S
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
-#### Shutting Down or Restarting a Computer
+
+#### _Shutting Down or Restarting a Computer_
+----
 
 Shutting down and restarting computers are generally the same types of task. Tools that shut down a computer will generally restart it as well—and vice versa. There are two straightforward options for restarting a computer from Windows PowerShell. Use either `Tsshutdn.exe` or `Shutdown.exe` with appropriate arguments. You can get detailed usage information from `tsshutdn.exe /?` or `shutdown.exe /?`.
 
@@ -5086,11 +5370,15 @@ To force an immediate restart, use the -Force parameter. `Restart-Computer -Forc
 
 
 
-### Performing Networking Tasks
+
+### **_Performing Networking Tasks_**
+----
 
 Because TCP/IP is the most commonly used network protocol, most low-level network protocol administration tasks involve TCP/IP. In this section, we use Windows PowerShell and WMI to do these tasks.
 
-#### Listing IP Addresses for a Computer
+
+#### _Listing IP Addresses for a Computer_
+----
 To get all IP addresses in use on the local computer, use the following command:
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true -ComputerName . | Format-Table -Property IPAddress
@@ -5117,7 +5405,9 @@ To understand why the braces appear, use the `Get-Member` cmdlet to examine the 
 
 The IPAddress property for each network adapter is actually an array. The braces in the definition indicate that IPAddress is not a *System.String* value, but an *array of System.String* values.
 
-#### Listing IP Configuration Data
+
+#### _Listing IP Configuration Data_
+----
 
 To display detailed IP configuration data for each network adapter, use the following command:
 
@@ -5131,7 +5421,9 @@ If you are not interested in **IPX** or **WINS** properties—probably the case 
 
 This command returns detailed information about *DHCP, DNS, routing*, and other minor IP configuration properties.
 
-#### Pinging Computers
+
+#### _Pinging Computers_
+----
 
 You can perform a simple ping against a computer using by `Win32_PingStatus`. The following command performs the ping, but returns lengthy output:
 
@@ -5161,7 +5453,9 @@ Note that this technique for generating a range of addresses can be used elsewhe
 
 		$ips = 1..254 | ForEach-Object -Process {'192.168.1.' + $_}
 
-#### Retrieving Network Adapter Properties
+
+#### _Retrieving Network Adapter Properties_
+----
 
 Earlier in this user's guide, we mentioned that you could retrieve general configuration properties by using `Win32_NetworkAdapterConfiguration`. Although not strictly TCP/IP information, network adapter information such as MAC addresses and adapter types can be useful for understanding what is going on with a computer. To get a summary of this information, use the following command:
 
@@ -5170,7 +5464,9 @@ Earlier in this user's guide, we mentioned that you could retrieve general confi
         Get-NetAdapter
 
 
-#### Assigning the DNS Domain for a Network Adapter
+
+#### _Assigning the DNS Domain for a Network Adapter_
+----
 
 To assign the DNS domain for automatic name resolution, use the Win32_NetworkAdapterConfiguration SetDNSDomain method. Because you assign the DNS domain for each network adapter configuration independently, you need to use a ForEach-Object statement to assign the domain to each adapter:
 
@@ -5183,11 +5479,15 @@ You can filter the command by using the `Where-Object` cmdlet, instead of using 
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName . | Where-Object -FilterScript {$_.IPEnabled} | ForEach-Object -Process {$_.SetDNSDomain('fabrikam.com')}
 
-#### Performing DHCP Configuration Tasks
+
+#### _Performing DHCP Configuration Tasks_
+----
 
 Modifying DHCP details involves working with a set of network adapters, just as the DNS configuration does. There are several distinct actions you can perform by using WMI, and we will step through a few of the common ones.
 
-#### Determining DHCP-Enabled Adapters
+
+#### _Determining DHCP-Enabled Adapters_
+----
 
 To find the DHCP-enabled adapters on a computer, use the following command:
 
@@ -5197,13 +5497,17 @@ To exclude adapters with IP configuration problems, you can retrieve only IP-ena
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter "IPEnabled=$true and DHCPEnabled=$true" -ComputerName .
 
-#### Retrieving DHCP Properties
+
+#### _Retrieving DHCP Properties_
+----
 
 Because DHCP-related properties for an adapter generally begin with "DHCP," you can use the Property parameter of Format-Table to display only those properties:
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter "DHCPEnabled=$true" -ComputerName . | Format-Table -Property DHCP*
 
-#### Enabling DHCP on Each Adapter
+
+#### _Enabling DHCP on Each Adapter_
+----
 
 To enable DHCP on all adapters, use the following command:
 
@@ -5211,7 +5515,9 @@ To enable DHCP on all adapters, use the following command:
 
 You can use the Filter statement `"IPEnabled=$true and DHCPEnabled=$false"` to avoid enabling DHCP where it is already enabled, but omitting this step will not cause errors.
 
-#### Releasing and Renewing DHCP Leases on Specific Adapters
+
+#### _Releasing and Renewing DHCP Leases on Specific Adapters_
+----
 
 The `Win32_NetworkAdapterConfiguration` class has `ReleaseDHCPLease` and `RenewDHCPLease` methods. Both are used in the same way. The easiest way to filter adapters on a subnet is to choose only the adapter configurations that use the gateway for that subnet. For example, the following command releases all DHCP leases on adapters on the local computer that are obtaining DHCP leases from `192.168.1.254`:
 
@@ -5223,7 +5529,9 @@ The only change for renewing a DHCP lease is to use the `RenewDHCPLease` method 
 
 !!!Warning  When using these methods on a remote computer, be aware that you can lose access to the remote system if you are connected to it through the adapter with the released or renewed lease.
 
-#### Releasing and Renewing DHCP Leases on All Adapters
+
+#### _Releasing and Renewing DHCP Leases on All Adapters_
+----
 
 You can perform global DHCP address releases or renewals on all adapters by using the `Win32_NetworkAdapterConfiguration` methods, `ReleaseDHCPLeaseAll` and `RenewDHCPLeaseAll`. However, the command must apply to the WMI class, rather than a particular adapter, because releasing and renewing leases globally is performed on the class, not on a specific adapter.
 
@@ -5239,7 +5547,9 @@ You can use the same command format to invoke the `RenewDHCPLeaseAll` method:
 
 		( Get-WmiObject -List | Where-Object -FilterScript {$_.Name -eq 'Win32_NetworkAdapterConfiguration'} ).RenewDHCPLeaseAll()
 
-### Creating a Network Share
+
+### **_Creating a Network Share_**
+----
 
 To create a network share, use the Win32_Share Create method:
 
@@ -5249,7 +5559,9 @@ You can also create the share by using net share in Windows PowerShell:
 
 		net share tempshare=c:\temp /users:25 /remark:"test share of the temp folder"
 
-#### Removing a Network Share
+
+#### _Removing a Network Share_
+----
 
 You can remove a network share with Win32_Share, but the process is slightly different from creating a share, because you need to retrieve the specific share to be removed, rather than the Win32_Share class. The following statement deletes the share "TempShare":
 
@@ -5259,7 +5571,9 @@ You can remove a network share with Win32_Share, but the process is slightly dif
 
         tempshare was deleted successfully.
 
-### Connecting a Windows Accessible Network Drive
+
+### **_Connecting a Windows Accessible Network Drive_**
+----
 
 The `New-PSDrive` cmdlets creates a Windows PowerShell drive, but drives created this way are available only to Windows PowerShell. To create a new networked drive, you can use the `WScript.Network` COM object. The following command maps the share `\\FPS01\users` to local drive B:
 
@@ -5275,7 +5589,9 @@ Drives mapped with either WScript.Network or net use are immediately available t
 
 ## Useful things to do
 
-### Get Environment Vars
+
+### **_Get Environment Vars_**
+----
 
 You can navigate to the environment like a directory.
 
@@ -5291,7 +5607,9 @@ Get-Item -path Env:* | Get-Member
 `$` is required when you get to directly referencing it `$Env:windir`
 
 
-#### Append values to path (in Powershell)
+
+#### _Append values to path (in Powershell)_
+----
 
 To append ";c:\temp" to the value of the Path environment variable, use the following syntax:
 
@@ -5322,7 +5640,9 @@ On Linux or MacOS, to add the "/usr/local/Fabrikam/Modules" directory to the val
 
         $Env:PSModulePath += ":/usr/local/Fabrikam/Modules"
 
-### Search for files
+
+### **_Search for files_**
+----
 
 Better than Windows Search
 
@@ -5338,7 +5658,9 @@ The comparison operators also include operators that find or replace patterns in
 
 Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
 
-### Loading Modules
+
+### **_Loading Modules_**
+----
 
 [Online Module Browser](https://docs.microsoft.com/en-us/powershell/module/)
 [Special Modules?](https://docs.microsoft.com/en-us/powershell/module/dataprotectionmanager/?view=systemcenter-ps-2016)
@@ -5389,7 +5711,9 @@ New-ModuleManifest
 Test-ModuleManifest
 Update-ModuleManifest
 
-### Get Commands
+
+### **_Get Commands_**
+----
 
 
 
@@ -5402,7 +5726,9 @@ Get-Command -Module ISEScriptingGeek | Select-Object -Property Name | Format-Wid
 1
 Install-Module -Name ISEScriptingGeek -Force -Verbose
 
-### Write Lines
+
+### **_Write Lines_**
+----
 
 Add-Content c:\scripts\test.txt "The End"
 By default, data is appended after the last character. If you want to append the data on a new line in the text document, use 'n. are some other special characters that can be used with add-content cmdlet.
@@ -5419,7 +5745,9 @@ Here are some other special characters that can be used with the add-content cmd
 `" -- Double quote
 
 
-### Turn off the screen
+
+### **_Turn off the screen_**
+----
 
 `(Add-Type '[DllImport("user32.dll")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
 
@@ -5427,7 +5755,9 @@ or in Command prompt:
 
 `powershell (Add-Type '[DllImport(\"user32.dll\")]^public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
 
-### Get Module Properties
+
+### **_Get Module Properties_**
+----
 
 ```powershell
 #Example
@@ -5443,7 +5773,9 @@ Get-Module -Name ISESteroids | Format-Table -Property Name, Moduletype, Path -Gr
 
 ```
 
-### Get The Commands in a Module
+
+### **_Get The Commands in a Module_**
+----
 
 - **Example 1: Get cmdlets, functions, and aliases** `PS C:\>Get-Command` This command gets the Windows PowerShell cmdlets, functions, and aliases that are installed on
 the computer.
@@ -5481,7 +5813,9 @@ Application     notepad.exe    C:\WINDOWS\system32\notepad.exe
 Application     NOTEPAD.EXE    C:\WINDOWS\NOTEPAD.EXE
 ```
 
-### Set the default output as verbose
+
+### **_Set the default output as verbose_**
+----
 
 By default Powershell doesn't show Verbose output.  This is in a preference variable.  It can be changed by changing the value of the variable `$VerbosePreference`.  Simply calling `$VerbosePreference` will get the current setting.  Must be one of: `[SilentlyContinue], Stop, Continue, Inquire, Ignore, Suspend`.
 
@@ -5493,7 +5827,9 @@ It is not recommended to set this in your profile simply.
 $VerbosePreference = "Continue"  # "Silently Continue" [Default],
 ```
 
-### Fix DICOM Errors
+
+### **_Fix DICOM Errors_**
+----
 
 Need [Grant, Revoke, Get DCOM permissions using PowerShell](https://gallery.technet.microsoft.com/Grant-Revoke-Get-DCOM-22da5b96)
 It can be installed via ScriptBrowser
@@ -5504,14 +5840,18 @@ Import-Module .\DCOMPermissions.psm1
 Grant-DComPermission -ApplicationID "{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}" -Account "SYSTEM" -Type Launch -Permissions LocalLaunch,LocalActivation -OverrideConfigurationPermissions
 ```
 
-### Check if a directory exists and create it if not
+
+### **_Check if a directory exists and create it if not_**
+----
 
 THis was designed to work with VS-Code, it might not be universal
 
 
 try{ Test-Path  -EA Stop ~\md; cd md\} catch {mkdir ~\md\; cd md\}
 
-### Check if a file exists
+
+### **_Check if a file exists_**
+----
 
 PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMFile
 True
@@ -5520,7 +5860,9 @@ PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $D
 False
 
 
-### Check if a process exists
+
+### **_Check if a process exists_**
+----
 
 ```ps1
 PS> test (get-Process |where {$_.name -eq "PowerShell"})
@@ -5529,7 +5871,9 @@ PS> test (get-Process |where {$_.name -eq "NoSuchProcess"})
 FALSE
 ```
 
-### Customize the Windows PowerShell prompt
+
+### **_Customize the Windows PowerShell prompt_**
+----
 
 ```powershell
 PS C:\>
@@ -5550,7 +5894,9 @@ The command begins with the function keyword followed by the function name, prom
 This command defines a new prompt that begins with the string PowerShell: . To append the current location, it uses a Get-Location command, which runs when the prompt function is
 called. The prompt ends with the string "> ".
 
-### Get Files
+
+### **_Get Files_**
+----
 
 Get the files in a directory
 
@@ -5564,7 +5910,9 @@ the first.
 
 `get-childitem -name`   This command retrieves only the names of items in the current directory
 
-### VHDs
+
+### **_VHDs_**
+----
 
 ```ps1
 Set-Location -Path 'O:\Portable'
@@ -5589,17 +5937,23 @@ Get-Command -Noun *VHD*
 
 
 
-### Count Folder Items
+
+### **_Count Folder Items_**
+----
 
 (gl|gci|measure).Count  count folder items
 
 
-### Copy all of a type somewhere else
+
+### **_Copy all of a type somewhere else_**
+----
 
 gci -Recurse -File -Include "*.ttf" -Name | copy-item -Destination .\^
 
 
-### Install Fonts
+
+### **_Install Fonts_**
+----
 
 ```ps1
 param(
@@ -5651,7 +6005,9 @@ else
 }
 ```
 
-### Registry Export and Import
+
+### **_Registry Export and Import_**
+----
 
 
 
@@ -5665,7 +6021,9 @@ reg import putty-sessions.reg
 reg import putty.reg
 ```
 
-### Reference Folders
+
+### **_Reference Folders_**
+----
 
 ```
 ([Environment]::GetFolderPath("Desktop") 
@@ -5701,7 +6059,9 @@ Show-Markdown
 ```
 
 
-### Description
+
+### **_Description_**
+----
 The Show-Markdown cmdlet is used to render Markdown in a human readable format either in a terminal or in a browser.
 
 `Show-Markdown` can return a string that includes the VT100 escape sequences which the terminal renders (if it supports VT100 escape sequences). This is primarily used for viewing Markdown files in a terminal. You can also get this string via the ConvertFrom-Markdown by specifying the AsVT100EncodedString parameter.
@@ -5736,7 +6096,9 @@ __underlines__
 Show-Markdown -Path ./README.md -UseBrowser
 ```
 
-### Parameters
+
+### **_Parameters_**
+----
 - `-InputObject`
  - A Markdown string that will be shown in the terminal. If you do not pass in a supported format, Show-Markdown will emit an error.
     - Type: - [[*PSObject*]]
@@ -5765,7 +6127,9 @@ Show-Markdown -Path ./README.md -UseBrowser
     - Accept wildcard characters: - **False**
 
 
-###   Set-MarkdownOption
+
+### **_  Set-MarkdownOption_**
+----
 
 [Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-markdownoption?view=powershell-7)
 
@@ -5774,7 +6138,9 @@ Module: Microsoft.PowerShell.Utility
 
 Sets the colors and styles used for rendering Markdown content in the console.
 
-#### Syntax
+
+#### _Syntax_
+----
 
 ```ps1
 Set-MarkdownOption
@@ -5803,18 +6169,24 @@ Set-MarkdownOption
    [<CommonParameters>]
 ```
 
-#### Description
+
+#### _Description_
+----
 
 Sets the colors and styles used for rendering Markdown content in the console. These styles are defined using ANSI escape codes that change the color and style of the Markdown text being rendered.
 
 
 For more information about Markdown, see the CommonMark website.
 
-#### Note
+
+#### _Note_
+----
 
 The string values used in the settings are the characters that follow the Escape character ([char]0x1B) for the ANSI escape sequence. Do not include the Escape character in the string. For more information about ANSI escape codes work, see ANSI_escape_code.
 
-#### Examples
+
+#### _Examples_
+----
 
 ```ps1
 # Example 1 - Switch to the Light Theme
@@ -5919,7 +6291,9 @@ notepad $PROFILE
 > 
 >       `Start-Service Docker`
 
-### For Windows 10 they offer:
+
+### **_For Windows 10 they offer:_**
+----
 
 [Prep Windows operating system containers | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10)
 

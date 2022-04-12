@@ -1317,3 +1317,93 @@ If you are using zsh: ` sed -i -- 's/foo/bar/g' **/*(D.)`
 - Update this README.md file to describe your project.
   -
 
+## NPM
+
+`npm init` to start a directory
+
+Follow the commands to generate something like this.  Enter to accept defaults.
+
+
+    {
+      "name": "test_react",
+      "version": "1.0.0",
+      "description": "tutorial",
+      "main": "index.js",
+      "dependencies": {
+        "create-react-app": "^5.0.0"
+      },
+      "devDependencies": {},
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "ALT",
+      "license": "ISC"
+    }
+
+npm install /i [package]
+
+
+Need to install nodejs - package in Debian is `nodejs`
+
+### Need to add NodeSource PPA
+sudo apt-get install curl software-properties-common 
+curl -sL https://deb.nodesource.com/setup_17.x | sudo bash - 
+sudo apt-get install nodejs 
+
+A more elaborate *package.json*
+
+    {
+      "name": "myreactapp",
+      "version": "0.1.0",
+      "private": true,
+      "dependencies": {
+        "@testing-library/jest-dom": "^5.16.3",
+        "@testing-library/react": "^12.1.4",
+        "@testing-library/user-event": "^13.5.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-scripts": "5.0.0",
+        "web-vitals": "^2.1.4"
+      },
+      "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+      },
+      "eslintConfig": {
+        "extends": [
+          "react-app",
+          "react-app/jest"
+        ]
+      },
+      "browserslist": {
+        "production": [
+          ">0.2%",
+          "not dead",
+          "not op_mini all"
+        ],
+        "development": [
+          "last 1 chrome version",
+          "last 1 firefox version",
+          "last 1 safari version"
+        ]
+      }
+    }
+
+
+`npm start` runs this app.  this is React.
+
+$ sudo npm install -g bower yarn
+
+
+
+### Angular
+
+
+[angular.io](https://angular.io/guide/setup-local#prerequisites)
+
+    npm install angular
+    npm i -g @angular/cli
+    npm i angular-seed
+    ng new my-app

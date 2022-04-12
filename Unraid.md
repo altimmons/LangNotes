@@ -64,6 +64,52 @@ Then
 `>route -p add 192.168.99.2 192.168.99.1 IF 37`
 
 
+### On Windows, DC Setup
+
+```ps
+Get-NetRoute 
+# lists all windows routes
+
+Get-NetAdapter
+# lists the following columns Name- InterfaceDescription- ifIndex Status- MacAddress- LinkSpeed
+```
+Ethernet 5                Intel(R) Ethernet Server Adapter X...#3      33 Disconnected 90-E2-BA-48-4B-F0          0 bps
+
+I removed the vEthernets that covered the Server Adapters.
+To do this I went to device manager, network adapters, then uninstalled the ones that that had *vEthernet (Ethernet 5)* for the example above.
+
+For convienence I renamed the Names
+
+ `Rename-NetAdapter -Name "Ethernet 5" -NewName IntelX520_10Gbs#1`
+
+I removed the Routes that applied to the interfaces that were server cards, 21, 33
+
+`Remove-NetRoute -InterfaceIndex 21 -DestinationPrefix 169.254.0.0/16`
+
+Eventaually `Remove-NetRoute -InterfaceIndex 21`
+
+`Get-NetRoute -InterfaceIndex 33` to get all the routes for that adapter
+
+Added a new route
+
+`New-NetRoute -DestinationPrefix 169.254.0.0/16 -InterfaceIndex 33 -AddressFamily IPv4 -NextHop 169.254.0.2 -PolicyStore ActiveStore -RouteMetric 10 -Publish Yes`
+
+` New-NetRoute -DestinationPrefix 169.254.0.0/16 -InterfaceIndex 21 -AddressFamily IPv4 -NextHop 169.254.0.2 -PolicyStore ActiveStore -RouteMetric 10 -Publish Yes`
+
+
+Then I neeeded to raise the metric of this card.
+
+`Get-NetIPInterface`
+
+ifIndex InterfaceAlias   AddressFamily NlMtu(Bytes) InterfaceMetric Dhcp     ConnectionState PolicyStore
+------- --------------   ------------- ------------ --------------- ----     --------------- -----------
+113     vEthernet (WSL)   IPv6           1500              15       Enabled  Connected       ActiveStore
+
+
+`Set-NetIPInterface -InterfaceIndex 33 -AddressFamily IPv4 -NlMtuBytes 9014  `
+
+Tried the above to set the MTU, but didnt work. So I went to the device, in Network Adapters and Enabled Jumbo Frames 9014.
+
 ## Nice to know commands
 
 
@@ -82,12 +128,12 @@ Available commands: `start stop restart pasue logs`
 Print all container names:
 
 
-`docker ps --format ‘{{.Names}}’`
+`docker ps --format '{{.Names}}'`
 
 Print all container images:
 
 
-`docker ps --format ‘{{.Image}}’`
+`docker ps --format '{{.Image}}'`
 
 ### Nginx
 
@@ -236,12 +282,15 @@ nginx: [emerg] still could not bind()
 
 ## Sharing error
 
-[More on NFS](https://wiki.archlinux.org/index.php/NFS#Server)
+[More on NFS](https://wiki.
+rchlinux.org/index.php/NFS#Server)
 
 
-initially `/etc/exports` was 
+initially `/etc/exports` wa
+ 
 
-         #"/mnt/user/rA" -async,no_subtree_check,fsid=100 *(sec=sys,rw,insecure,anongid=100,anonuid=99,all_squash)
+         #"/mnt/user/rA" -a
+         ync,no_subtree_check,fsid=100 *(sec=sys,rw,insecure,anongid=100,anonuid=99,all_squash)
 
 Which gave
 
@@ -660,6 +709,32 @@ default via 192.168.1.1 dev br0 proto dhcp src 192.168.1.240 metric 220
       root@Unraid:~# ping -c 1 1.1.1.1
 
 
+### Check Port Binding
+
+[Source](https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
+
+
+Any of the following
+
+
+`sudo lsof -i -P -n | grep LISTEN2`
+
+`sudo netstat -tulpn | grep LISTEN2`
+The netstat command deprecated for some time on Linux. Therefore, you need to use the ss command as follows:
+
+      sudo ss -tulw
+      sudo ss -tulwn
+      sudo ss -tulwn | grep LISTEN
+
+`sudo ss -tulpn | grep LISTEN2`
+
+`sudo lsof -i:22 ## see a specific port such as 22 ##2`
+
+`sudo nmap -sTU -O IP-address-Here2`
+
+Viewing the Internet network services list
+The /etc/services is a text file mapping between human-friendly textual names for internet services and their underlying assigned port numbers and protocol types. Use the cat command or more command/less command to view it:
+`less /etc/services`
 
 ### Domain 
 
@@ -1014,7 +1089,7 @@ When used with the -e option the echo command interprets the backslash-escaped c
 
 `echo "this is a new line"  | tee -a file.txt`
 
-If you don’t want tee to write to the standard output, redirect it to /dev/null:
+If you don't want tee to write to the standard output, redirect it to /dev/null:
 
 `echo "this is a new line"  | tee -a file.txt >/dev/null`
 
@@ -1300,8 +1375,9 @@ Arrange panes in one of the five preset layouts: even-horizontal, even-vertical,
 - [[CTRL]] -[[Up]], [[CTRL]] -[[Down]], [[CTRL]] -[[Left]], [[CTRL]] -[[Right]] - Resize the current pane in steps of one cell.
 - [[ALT]] -[[Up]], [[ALT]] -[[Down]], [[ALT]] -[[Left]], [[ALT]] -[[Right]] - Resize the current pane in steps of five cells. 
 
+20-45  49-53 56-155 211
 
-
+1-18 
 detach-client [-P] [-s target-session] [-t target-client]
 (alias: detach) Detach the current client if bound to a key, the client specified with -t, or all clients currently attached to to the session specified by -s. If -P is given, send SIGHUP to the parent process of the client, typically causing it to exit.
 
@@ -2045,7 +2121,7 @@ docker run  --network macvlan3 --name=alptest --ip 192.168.1.43 --dns 1.1.1.1,9.
  So in Unraid, additional parameters would be this:
 
  -net macvlan3 --ip 192.168.1.xx --dns 1.1.1.1 -h hostname -name ?
- -net macvlan3 --ip 192.168.1.xx --dns 1.1.1.1 -h hostname -name hostname -l hostname --net-alias hostname --device USB -- dns-search local  Timmons Family --domainname Timmons..Family
+--net macvlan3 --ip 192.168.1.xx --dns 1.1.1.1 -h hostname --name hostname -l hostname --net-alias hostname --device USB -- dns-search local  Timmons Family --domainname Timmons..Family
 
  also consider:
  --expose  Expose a port or a range of ports
@@ -2076,10 +2152,10 @@ Add entries to container hosts file (--add-host)
 
 !!!Note Note: On options above- with multiple values
                         
-                        `--dns` -The IP address of a DNS server. To specify multiple DNS servers, use multiple --dns flags. If the container cannot reach any of the IP addresses you specify, Google’s public DNS server 8.8.8.8 is added, so that your container can resolve internet domains.
+                        `--dns` -The IP address of a DNS server. To specify multiple DNS servers, use multiple --dns flags. If the container cannot reach any of the IP addresses you specify, Google's public DNS server 8.8.8.8 is added, so that your container can resolve internet domains.
                         `--dns-search` -> A DNS search domain to search non-fully-qualified hostnames. To specify multiple DNS search prefixes, use multiple --dns-search flags.
-                        `--dns-opt` -> A key-value pair representing a DNS option and its value. See your operating system’s documentation for resolv.conf for valid options.
-                        `--hostname` -> The hostname a container uses for itself. Defaults to the container’s ID if not specified.
+                        `--dns-opt` -> A key-value pair representing a DNS option and its value. See your operating system's documentation for resolv.conf for valid options.
+                        `--hostname` -> The hostname a container uses for itself. Defaults to the container's ID if not specified.
       
 
 
@@ -2184,8 +2260,29 @@ udisksctl mount -b /dev/mapper/ubuntu--vg-root
 
 `mount | column -t` gives a table of mounted devices
 
+### fix 'BTRFS error (device dm-5): parent transid verify failed on 7138349416448 wanted 41114 found 41104'
+____
 
+[souce stack overflow](https://stackoverflow.com/questions/46472439/fix-btrfs-btrfs-parent-transid-verify-failed-on)
 
+BTRFS warning (device dm-0): 'usebackuproot' is deprecated, use 'rescue=usebackuproot' instead
+
+```
+cryptsetup luksOpen /dev/sdx1 sdx
+mkdir /mnt/sdx
+ cd /dev/mapper/
+mount -t btrfs -o ro usebackuproot /dev/mapper/sdx /mnt/sdx
+ pushd /mnt/sdx
+cryptsetup luksOpen /dev/sdh1 target
+ls /dev/mapper
+ mkdir /mnt/target
+btrfs scrub start /mnt/sdx
+
+mount -t btrfs /dev/mapper/target /mnt/target
+
+du -d 1 -h /mnt/target
+
+```
 
 ## Fixing Log Issues
 
@@ -2659,3 +2756,260 @@ NEED TO FIND WHICH DISK IS IN OPERATION
 
 root@Unraid:~# `blkid | grep  2f27ac4b-8270-427c-a31c-53e13fd33843`
 /dev/mapper/md3: UUID="2f27ac4b-8270-427c-a31c-53e13fd33843" UUID_SUB="42838760-29b9-4349-bb88-5f78fdb7acf2" BLOCK_SIZE="4096" TYPE="btrfs"
+
+#drive check
+
+
+Command used: badblocks -wsv -b 4096 /dev/sde
+
+SMART short test showed no errors after badblocks
+
+Command used: fio --filename=/dev/sde --name=randwrite --ioengine=sync --iodepth=1 --rw=randrw --rwmixread=50 --rwmixwrite=50 --bs=4k --direct=0 --numjobs=8 --size=300G --runtime=7200 --group_reporting
+
+
+### Errors
+
+Mar 4 12:54:45 Unraid kernel: BTRFS error (device dm-2): parent transid verify failed on 7138349907968 wanted 41053 found 41047 
+
+
+/dev/mapper/md*
+
+`dmsetup ls`  to see whats behind it. `dmsetup info /dev/dm-2`
+ 
+      #> dmsetup ls
+      md5     (254:4)
+      md16    (254:14)
+      md4     (254:3)
+      md15    (254:13)
+      md3     (254:2)
+      md14    (254:12)
+      md2     (254:1)
+      md13    (254:11)
+      md1     (254:0)
+      md12    (254:10)
+      md11    (254:9)
+      md10    (254:8)
+      md9     (254:7)
+      WD-WCC7K5DSLFPY (254:17)
+      md8     (254:6)
+      md6     (254:5)
+      md17    (254:15)
+
+
+
+LVM Logical Volume Management
+`sudo lvdisplay|awk  '/LV Name/{n=$3} /Block device/{d=$3; sub(".*:","dm-",d); print d,n;}'`
+
+This doesnt work for me.
+
+`lsd -l` maps *dm-x* to *md-x*, they dont correlate.  However, md-x generally correlates where x is a disk number in the array.  E.g. md-7 is the disk mounted at /mnt/disk7/  which you can get from `lsblk`
+
+       control              Mon Mar 14 00:57:51 2022 0B root root crw-------
+       md1@ ⇒ ../dm-0       Tue Mar 22 21:00:52 2022 7B root root lrwxrwxrwx
+       md10@ ⇒ ../dm-7      Tue Mar 22 21:01:03 2022 7B root root lrwxrwxrwx
+       md11@ ⇒ ../dm-8      Tue Mar 22 21:01:04 2022 7B root root lrwxrwxrwx
+       md12@ ⇒ ../dm-9      Tue Mar 22 21:01:06 2022 7B root root lrwxrwxrwx
+       md13@ ⇒ ../dm-10     Tue Mar 22 21:01:07 2022 8B root root lrwxrwxrwx
+       md14@ ⇒ ../dm-11     Tue Mar 22 21:01:09 2022 8B root root lrwxrwxrwx
+       md2@ ⇒ ../dm-1       Tue Mar 22 21:00:54 2022 7B root root lrwxrwxrwx
+       md3@ ⇒ ../dm-2       Tue Mar 22 21:00:55 2022 7B root root lrwxrwxrwx
+       md4@ ⇒ ../dm-3       Tue Mar 22 21:00:57 2022 7B root root lrwxrwxrwx
+       md6@ ⇒ ../dm-4       Tue Mar 22 21:00:59 2022 7B root root lrwxrwxrwx
+       md8@ ⇒ ../dm-5       Tue Mar 22 21:01:00 2022 7B root root lrwxrwxrwx
+       md9@ ⇒ ../dm-6       Tue Mar 22 21:01:02 2022 7B root root lrwxrwxrwx
+       PCG8ZT1S@ ⇒ ../dm-13 Fri Mar 18 16:31:26 2022 8B root root lrwxrwxrwx
+
+
+`lsblk` will convert *md-x* values to Array disk numbers.  But still not on back to devices *sdX*
+
+This is more succinct than ls -l:
+
+`for x in /dev/mapper/*; do echo "$(realpath $x) -> $x"; done;`
+
+            /dev/mapper/control -> /dev/mapper/control
+            /dev/dm-0 -> /dev/mapper/md1
+            /dev/dm-7 -> /dev/mapper/md10
+            /dev/dm-8 -> /dev/mapper/md11
+            /dev/dm-9 -> /dev/mapper/md12
+            /dev/dm-10 -> /dev/mapper/md13
+            /dev/dm-11 -> /dev/mapper/md14
+            /dev/dm-1 -> /dev/mapper/md2
+
+
+`dmsetup ls --tree -o blkdevname`
+
+            md4 <dm-3> (254:3)
+            └─ <md4> (9:4)
+            md3 <dm-2> (254:2)
+            └─ <md3> (9:3)
+            md14 <dm-11> (254:11)
+            └─ <md14> (9:14)
+
+
+
+## DD
+
+
+Create 10GB file with random data
+dd if=/dev/random of="/mnt/cache/DiskSpeed_fq9.junk" bs=1MB count=10000 conv=noerror status=progress 2> /boot/cache_write.txt
+
+
+
+### Mount a VDisk
+
+`modprobe nbd max_part=8`  This is Network Block Device, and the maximum likely partitions on each VDisk.
+
+`qemu-nbd --format=raw --connect=/dev/nbd0 /mnt/address/to/vm.img`
+ Raw = .img, other is qcow2
+
+ `                                                     `
+            get the partition # for # below
+
+`mkdir /mnt/disks/vdiskmount`
+
+`mount /dev/nbd0p# /mnt/dsks/vdiskmount`
+
+if you get a dirty drive error -shut down correctly or 
+      run `ntfsfix /dev/nbd0p#`
+
+`ls /mnt/dsks/vdiskmount`
+
+`umount  /mnt/disks/vdiskmount`
+
+`qemu-nbd --disconnect /dev/nbd0`
+
+`rmmod nbd`
+
+
+## Delete a Disk
+
+parted and fdisk can be used.  fdisk seems easier
+
+fdisk /dev/sdai 
+
+
+## BTRFS Guide
+
+[Source](https://www.christitus.com/btrfs-guide)
+
+
+**Creating a BTRFS Filesystem**
+
+Create the file system on an empty btrfs partition
+
+> `mkfs.btrfs /dev/sda1`  
+> _Note: You will need to mount this file system after_
+
+Now we need to make a subvolume _before_ we add data to the device
+
+> btrfs subvolume create /mnt/sda1 _/mnt/subvolumelabel is the mount point!_
+
+After this is complete you can now write data to your BTRFS volume and use all it capabilities. I recommend the label `@` as that is the required label for Timeshift snapshot restores.
+
+
+### List Subvolumes
+
+`btrfs subv list /`
+
+> root@Unraid:# btrfs subv list /
+> ERROR: not a btrfs filesystem: /
+> ERROR: can't access '/'
+> root@Unraid:# btrfs subv list /mnt/
+> ERROR: not a btrfs filesystem: /mnt/
+> ERROR: can't access '/mnt/'
+> root@Unraid:# btrfs subv list /mnt/disk1
+
+sudo btrfs subv list /home
+      will list all the sub-volumes in home.
+
+      To replace a snapshot, relpace in */etc/fstab* in the options `rw,exec,subvolid=###` with the number of the subvolume listed by the above subv list command.
+
+      Flipping back to the last subvolume, by changing the subvolumeid and reboot
+
+
+To mount a subvol -  `sudo mount -o subvolid=321 /dev/sde /mnt`
+ -  to undo - `sudo umount /mnt`
+
+
+To get the view in the array details--
+      `sudo btrfs fi df /home -h`
+
+      `sudo btrfs fi show`
+
+
+**Disk Usage**
+`sudo btrfs fi du /` Note: you can make / any other mount point
+
+Size of btrfs -  `df -h` but for disk usage, the `-s` command in 
+      `sudo btrfs fi du /home -s`
+To get the view in the array details--
+      `sudo btrfs fi df /home -h`
+
+**Scrub SubVolume** Recommended running every week!
+`sudo btrfs scrub start /`
+*Balance Subvolume* for Performance
+`sudo btrfs balance start -musage=50 -dusage=50 /`
+Note: Use the *musgae* and *dusage* filters to only balance used blocks above 50 percent utilization
+`sudo btrfs balance cancel /` **Stops running balance**
+**List Subvolumes** based on mountpoint
+``sudo btrfs subv list /home``
+
+
+**Snapshots**
+
+Snapshots are one of the best things about BTRFS and I absolutely love them. They are incredible powerful and beneficial.
+
+So Lets run through some scenarios when you use Snapshots.
+
+#### Create Snapshot
+`sudo btrfs subv snapshop /home /home/.snapshots/2020-01-13`
+Using this you can revert the snapshop by simply editing the /etc/fstab and changing the `subvol=2020-01-13` or the corresponding _subvolid_ you get from `sudo btrfs subv list /home`
+
+#### Restore Snapshot
+
+Restore Snapshop after reboot and successful rollback
+
+`sudo btrfs subv delete /home`
+`sudo btrfs subv snapshot /home/.snapshots/2020-01-13 /home`
+
+### Must know commands for multiple disks:
+
+Add Disks before creating subvolume: `sudo btrfs device add /dev/sda1 /dev/sdb1`
+
+Add Disk to existing subvolume: `sudo btrfs device add /dev/sdb1 /home`
+
+Delete Disk from subvolume: `sudo btrfs device delete /dev/sdb1 /home`
+
+Creating the RAID File System:
+
+**RAID 1:** `sudo btrfs -m raid1 -d raid1 /dev/sda1 /dev/sdb1`
+**RAID 10:** `sudo btrfs -m raid10 -d raid10 /dev/sda1 /dev/sdb1 /dev/sdc1 /dev/sdd1`
+**Convert to to RAID 1 after adding disk to existing subvolume**
+`btrfs balance start -mconvert=raid1 -dconvert=raid1 /home`
+
+I could put RAID 0 here… but honestly you should just use EXT4 or XFS if you are looking for performance. It would be better than using BTRFS!
+
+
+reverse lookup, from file offset to inode, `btrfs inspect-internal logical-resolve`
+
+resolve inode number to list of name, `btrfs inspect-internal inode-resolve`
+
+informative, about devices, space allocation or the whole filesystem, many of which is also exported in /sys/fs/btrfs
+
+
+`tree /sys/fs/btrfs/*/devices/` lists UUID to devices.
+
+
+### Balance
+
+The primary purpose of the balance feature is to spread block groups across all devices so they match constraints defined by the respective profiles. See mkfs.btrfs(8) section PROFILES for more details. The scope of the balancing process can be further tuned by use of filters that can select the block groups to process. Balance works only on a mounted filesystem. Extent sharing is preserved and reflinks are not broken. Files are not defragmented nor recompressed, file extents are preserved but the physical location on devices will change.
+
+!!!Warning Balance
+      Running balance without filters will take a lot of time as it basically move data/metadata from the whole filesystem and needs to update all block pointers.
+
+### How to enable compression
+
+
+Typically the compression can be enabled on the whole filesystem, specified for the mount point. Note that the compression mount options are shared among all mounts of the same filesystem, either bind mounts or subvolume mounts. Please refer to section MOUNT OPTIONS.
+
+$ mount -o compress=zstd /dev/sdx /mnt

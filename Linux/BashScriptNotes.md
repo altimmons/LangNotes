@@ -716,7 +716,24 @@ middle_col=$(( ($cols / 2) - $half_input_length ))
 ```
 
 
-#### System variable (Environment Var)
+## System variable (Environment Var)
+
+!!!note `environment variables` and `shell variables` are not the same thing.  
+    Then, you should know that shells have _attributes_ which govern how it works. These attributes are not environment nor shell variables.
+  >1.  `env`: without any options, shows current _environment variables_ with their values; However can be used to set environment variable for a single command with the `-i` flag
+  >2.  `set`: without options, the name and value of each _shell variable_ are displayed* ~ from running `man set` in rhel; can also be used to set _shell attribute_. This command **DOES NOT** set _environment nor shell variable_.
+  >3.  `declare`: without any options, the same as `env`; can also be used to set _shell variable_
+  >4.  `export`: makes _shell variables_ _environment variables_
+  >
+  >In short:
+  >
+  >1.  `set` doesn't set shell nor environment variables
+  >2.  `env` can set environment variables for a single command
+  >3.  `declare` sets shell variables
+  >4.  `export` makes shell variables environment variables
+  >
+  >**NOTE** `declare -x VAR=VAL` creates the shell variable and also exports it, making it environment variable.
+  >
 
 `export ZSH="/home/alt/.oh-my-zsh"`
 
@@ -725,6 +742,353 @@ Reference (substitute) with `$` eg
 `source $ZSH/oh-my-zsh.sh`
 
 
+### `let`, `declare`, `export`, `local`, `set`, `env`
+----
+#### declare 
+----
+
+!!!help declare: declare [-aAfFgilnrtux] [-p] [name[=value] ...]
+    Set variable values and attributes.
+
+    Declare variables and give them attributes.  If no NAMEs are given,
+    display the attributes and values of all variables.
+
+    Options:
+      `-f`        restrict action or display to function names and definitions
+      `-F`        restrict display to function names only (plus line number and
+                source file when debugging)
+      `-g`        create global variables when used in a shell function; otherwise
+                ignored
+      `-p`        display the attributes and value of each NAME
+
+    Options which set attributes:
+      `-a`        to make NAMEs indexed arrays (if supported)
+      `-A`        to make NAMEs associative arrays (if supported)
+      `-i`        to make NAMEs have the `integer' attribute
+      `-l`        to convert the value of each NAME to lower case on assignment
+      `-n`        make NAME a reference to the variable named by its value
+      `-r`        to make NAMEs readonly
+      `-t`        to make NAMEs have the `trace' attribute
+      `-u`        to convert the value of each NAME to upper case on assignment
+      `-x`        to make NAMEs export
+
+    Using '+' instead of '-' turns off the given attribute.
+
+    Variables with the integer attribute have arithmetic evaluation (see
+    the `let' command) performed when the variable is assigned a value.
+
+    When used in a function, `declare' makes NAMEs local, as with the `local'
+    command.  The `-g` option suppresses this behavior.
+
+    Exit Status:
+    Returns success unless an invalid option is supplied or a variable
+    assignment error **occurs.**
+
+#### typeset
+
+!!!help typeset: typeset [-aAfFgilnrtux] [-p] name[=value] ...
+    Set variable values and attributes.
+
+    A synonym for `declare'.  See `help declare'.
+#### local
+
+!!!help local: local [option] name[=value] ...
+    Define local variables.
+
+    Create a local variable called NAME, and give it VALUE.  **OPTION can
+    be any option accepted by `declare'.**
+
+    Local variables can only be used within a function; they are visible
+    only to the function where they are defined and its children.
+
+    Exit Status:
+    Returns success unless an invalid option is supplied, a variable
+    assignment error occurs, or the shell is not executing a function.
+#### let 
+
+!!!help let
+    let: let arg [arg ...]
+        Evaluate arithmetic expressions.
+
+    Evaluate each ARG as an arithmetic expression.  Evaluation is done in
+    fixed-width integers with no check for overflow, though division by 0
+    is trapped and flagged as an error.  The following list of operators is
+    grouped into levels of equal-precedence operators.  The levels are listed
+    in order of decreasing precedence.
+
+        id++, id--      variable post-increment, post-decrement
+        ++id, --id      variable pre-increment, pre-decrement
+        -, +            unary minus, plus
+        !, ~            logical and bitwise negation
+        **              exponentiation
+        *, /, %         multiplication, division, remainder
+        +, -            addition, subtraction
+        <<, >>          left and right bitwise shifts
+        <=, >=, <, >    comparison
+        ==, !=          equality, inequality
+        &               bitwise AND
+        ^               bitwise XOR
+        |               bitwise OR
+        &&              logical AND
+        ||              logical OR
+        expr ? expr : expr
+                        conditional operator
+        =, *=, /=, %=,
+        +=, -=, <<=, >>=,
+        &=, ^=, |=      assignment
+
+    Shell variables are allowed as operands.  The name of the variable
+    is replaced by its value (coerced to a fixed-width integer) within
+    an expression.  The variable need not have its integer attribute
+    turned on to be used in an expression.
+
+    Operators are evaluated in order of precedence.  Sub-expressions in
+    parentheses are evaluated first and may override the precedence
+    rules above.
+
+    Exit Status:
+    If the last ARG evaluates to 0, let returns 1; let returns 0 otherwise.
+
+
+#### export
+
+~~~bash
+root@linux ~# x=5                <= here variable is set without export command
+root@linux ~# echo $x
+5
+root@linux ~# bash               <= subshell creation
+root@linux ~# echo $x            <= subshell doesnt know $x variable value
+root@linux ~# exit               <= exit from subshell
+exit
+root@linux ~# echo $x            <= parent shell still knows $x variable
+5
+root@linux ~# export x=5         <= specify $x variable value using export command
+root@linux ~# echo $x            <= parent shell doesn't see any difference from the first declaration
+5
+root@linux ~# bash               <= create subshell again
+root@linux ~# echo $x            <= now the subshell knows $x variable value
+5
+root@linux ~#
+~~~
+
+!!!help export: export [-fn] [name[=value] ...] or export -p
+    Set export attribute for shell variables.
+
+    Marks each NAME for automatic export to the environment of subsequently
+    executed commands.  If VALUE is supplied, assign VALUE before exporting.
+
+    Options:
+      `-f`        refer to shell functions
+      `-n`        remove the export property from each NAME
+      `-p`        display a list of all exported variables and functions
+
+    An argument of `--` disables further option processing.
+
+    Exit Status:
+    Returns success unless an invalid option is given or NAME is invalid.
+
+#### set
+
+!!!help set: set [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg ...]
+    Set or unset values of shell options and positional parameters.
+
+    Change the value of shell attributes and positional parameters, or
+    display the names and values of shell variables.
+
+    Options:
+
+    `-a`  Mark variables which are modified or created for export.
+    `-b`  Notify of job termination immediately.
+    `-e`  Exit immediately if a command exits with a non`-zero` status.
+    `-f`  Disable file name generation (globbing).
+    `-h`  Remember the location of commands as they are looked up.
+    `-k`  All assignment arguments are placed in the environment for a
+        command, not just those that precede the command name.
+    `-m`  Job control is enabled.
+    `-n`  Read commands but do not execute them.
+    `-o` option-name  ==Set the variable corresponding to option-name:==
+    > - `allexport`    same as -a
+    > - `braceexpand`  same as -B
+    > - `emacs`        use an emacs-style line editing interface
+    > - `errexit`      same as -e
+    > - `errtrace`     same as -E
+    > - `functrace`    same as -T
+    > - `hashall`      same as -h
+    > - `histexpand`   same as -H
+    > - `history`      enable command history
+    > - `ignoreeof`    the shell will not exit upon reading EOF
+    > - `interactive-comments` - allow comments to appear in interactive commands
+    > - `keyword`      same as -k
+    > - `monitor`      same as -m
+    > - `noclobber`    same as -C
+    > - `noexec`       same as -n
+    > - `noglob`       same as -f
+    > - `nolog`        currently accepted but ignored
+    > - `notify`       same as -b
+    > - `nounset`      same as -u
+    > - `onecmd`       same as -t
+    > - `physical`     same as -P
+    > - `pipefail`     the return value of a pipeline is the status of the last command to exit with a non-zero status, or zero if no command exited with a non-zero status
+    > - `posix`        change the behavior of bash where the default operation differs from the Posix standard to match the standard
+    > - `privileged`   same as -p
+    > - `verbose`      same as -v
+    > - `vi`           use a vi-style line editing interface
+    > - `xtrace`       same as -x
+
+    - `-p`  Turned on whenever the real and effective user ids do not match. Disables processing of the $ENV file and importing of shell functions.  Turning this option off causes the effective uid and gid to be set to the real uid and gid.
+    - `-t`  Exit after reading and executing one command.
+    - `-u`  Treat unset variables as an error when substituting.
+    - `-v`  Print shell input lines as they are read.
+    - `-x`  Print commands and their arguments as they are executed.
+    - `-B`  the shell will perform brace expansion
+    - `-C`  If set, disallow existing regular files to be overwritten by redirection of output.
+    - `-E`  If set, the ERR trap is inherited by shell functions.
+    - `-H`  Enable ! style history substitution.  This flag is on by default when the shell is interactive.
+    - `-P`  If set, do not resolve symbolic links when executing commands such as cd which change the current directory.
+    - `-T`  If set, the DEBUG and RETURN traps are inherited by shell functions.
+    - `--`  Assign any remaining arguments to the positional parameters.  If there are no remaining arguments, the positional parameters are unset.
+    - `-`   Assign any remaining arguments to the positional parameters.
+    - The `-x` and `-v` options are turned off.
+    Using `+` rather than `-` causes these flags to be turned off.  The flags can also be used upon invocation of the shell.  The current set of flags may be found in `$-`.  The remaining n ARGs are positional parameters and are assigned, in order, to $1, $2, .. $n.  If no ARGs are given, all shell variables are printed.
+
+    Exit Status:
+        
+        Returns success unless an invalid option is given.
+`$set -o` lists all the options that are set.
+
+set +o allexport
+set -o braceexpand
+set -o emacs
+set +o errexit
+set +o errtrace
+set +o functrace
+set -o hashall
+set -o histexpand
+set -o history
+set +o ignoreeof
+set -o interactive-comments
+set +o keyword
+set -o monitor
+set +o noclobber
+set +o noexec
+set +o noglob
+set +o nolog
+set +o notify
+set +o nounset
+set +o onecmd
+set +o physical
+set +o pipefail
+set +o posix
+set +o privileged
+set +o verbose
+set +o vi
+set +o xtrace
+
+
+Store the current config with  `state=$(set +o;shopt -p)`
+##### typeset 
+
+`typeset -fp` to also include all currently declared shell functions. 
+#### shopt
+
+!!!help shopt: shopt [-pqsu] [-o] [optname ...]
+    Set and unset shell options.
+
+    Change the setting of each shell option OPTNAME.  Without any option
+    arguments, list each supplied OPTNAME, or all shell options if no
+    OPTNAMEs are given, with an indication of whether or not each is set.
+
+    Options:
+      -o        restrict OPTNAMEs to those defined for use with `set -o'
+      -p        print each shell option with an indication of its status
+      -q        suppress output
+      -s        enable (set) each OPTNAME
+      -u        disable (unset) each OPTNAME
+
+    Exit Status:
+    Returns success if OPTNAME is enabled; fails if an invalid option is
+    given or OPTNAME is disabled.
+    
+        $set
+        autocd          off
+        assoc_expand_once       off
+        cdable_vars     off
+        cdspell         off
+        checkhash       off
+        checkjobs       off
+        checkwinsize    on
+        cmdhist         on
+        compat31        off
+        compat32        off
+        compat40        off
+        compat41        off
+        compat42        off
+        compat43        off
+        compat44        off
+        complete_fullquote      on
+        direxpand       off
+        dirspell        off
+        dotglob         off
+        execfail        off
+        expand_aliases  on
+        extdebug        off
+        extglob         on
+        extquote        on
+        failglob        off
+        force_fignore   on
+        globasciiranges on
+        globstar        off
+        gnu_errfmt      off
+        histappend      off
+        histreedit      off
+        histverify      off
+        hostcomplete    off
+        huponexit       off
+        inherit_errexit off
+        interactive_comments    on
+        lastpipe        off
+        lithist         off
+        localvar_inherit        off
+        localvar_unset  off
+        login_shell     on
+        mailwarn        off
+        no_empty_cmd_completion off
+        nocaseglob      off
+        nocasematch     off
+        nullglob        off
+        progcomp        on
+        progcomp_alias  off
+        promptvars      on
+        restricted_shell        off
+        shift_verbose   off
+        sourcepath      on
+        xpg_echo        off
+
+#### env 
+
+!!!help `env [OPTION]... [`-`] [NAME=VALUE]... [COMMAND [ARG]...]`
+    Set each NAME to VALUE in the environment and run COMMAND.
+
+    Mandatory arguments to long options are mandatory for short options too.
+    `-i`, `--ignore-environment`  start with an empty environment
+    `-0`, `--null`           end each output line with NUL, not newline
+    `-u`, `--unset=NAME`     remove variable from the environment
+    `-C`, `--chdir=DIR`      change working directory to DIR
+    `-S`, `--split-string=S`  process and split S into separate arguments;
+                            used to pass multiple arguments on shebang lines
+        `--block-signal[=SIG]`    block delivery of SIG signal(s) to COMMAND
+        `--default-signal[=SIG]`  reset handling of SIG signal(s) to the default
+        `--ignore-signal[=SIG]`   set handling of SIG signals(s) to do nothing
+        `--list-signal-handling`  list non default signal handling to stderr
+    `-v`, `--debug`          print verbose information for each processing step
+        `--help`     display this help and exit
+        `--version`  output version information and exit
+
+    A mere - implies -i.  If no COMMAND, print the resulting environment.
+
+    SIG may be a signal name like 'PIPE', or a signal number like '13'.
+    Without SIG, all known signals are included.  Multiple signals can be
+    comma-separated.
 ## Files
 
 [Bash Guide for Beginners](https://tldp.org/LDP/Bash-Beginners-Guide/html/Bash-Beginners-Guide.html#sect_08_02_04)

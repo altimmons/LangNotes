@@ -315,11 +315,32 @@ End Sub
 ```
 
 
+## Keywords
+
+`Let` - Assign value.
+`Const, Dim, Private, Public, New, Static` - Declare variables or constants.
+`Option Private Module` - Declare module as private.
+`IsArray, IsDate, IsEmpty, IsError, IsMissing, IsNull, IsNumeric, IsObject, TypeName, VarType` - Get information about a variant.
+`Me` - Refer to current object.
+`Option Explicit` - Require explicit variable declarations.
+`Deftype` - Set default data type.
+
+
+
 
 ## Types
 
 Boolean, Byte, Integer, Long, Currency, Single, Double, Date, String (for variable-length strings), String * length (for fixed-length strings), Object, or Variant
 
+!!!Note Shorthand
+    The shorthand for the types is: 
+
+     `%` -integer; 
+     `&` -long; 
+    `@` -currency; 
+    `#` -double; 
+    `!` -single; 
+    `$` -string
 
 The shorthand for the types is: % -integer; & -long; @ -currency; # -double; ! -single; $ -string
 
@@ -375,7 +396,7 @@ When you use the `Static` statement instead of a Dim statement to declare a vari
 	 - *Same range as for variable-length String*
 **User-defined (using Type)** (Number required by elements)  
 	 - *The range of each element is the same as the range of its data type.*
-
+ 
 ### Type Conversion
 
 - `CBool` Returns: (Boolean) 
@@ -404,3 +425,34 @@ When you use the `Static` statement instead of a Dim statement to declare a vari
 	  - Input: *Returns for CStr depend on the expression argument.*
 - `CVar` Returns: (Variant) 
 	  - Input: *Same range as Double for numerics. Same range as String for non-numerics.*
+
+
+To verify data types, see the following functions:
+
+IsArray
+IsDate
+IsEmpty
+IsError
+IsMissing
+IsNull
+IsNumeric
+IsObject
+
+
+
+## Events
+
+'
+'When a form opens: Open (form) >Load (form) >Resize (form) >Activate (form) > Current (form) >Enter (control) >GotFocus (control)
+'When a form closes: Exit (control) ? LostFocus (control) ? Unload (form) ? Deactivate (form) ? Close (form)
+'Skip straight to creating a new record?
+
+
+
+'When you first open a form, the following events occur in this order:
+'
+'Open ? Load ? Resize ? Activate ? Current
+'
+'When you close a form, the following events occur in this order:
+'
+'Unload ? Deactivate ? Close

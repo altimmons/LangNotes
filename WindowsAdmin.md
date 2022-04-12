@@ -507,194 +507,364 @@ Left Windows + ...
 [Alt] + [Esc] = Cycle Between Apps
 [Alt] + [Left] = Go Back
 [Alt] + [Right] = Go Forward
+[Src](https://ss64.com/nt/run.html)
+
+[[Alt]]+[[Ctrl]]+[[Delete]] - Task Manager/Halt
+[[Alt]]+[[Ctrl]]+[[F11]]
+[[Alt]]+[[Ctrl]]+[[F12]]
+[[Alt]]+[[Ctrl]]+[[F6]]
+[[Alt]]+[[Ctrl]]+[[F8]]
+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Q]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[D]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[L]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[N]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[O]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[P]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Space]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[T]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[W]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[X]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Y]]
+[[Alt]]+[[[[F4]]]]
+[[Alt]]+[[R]] NVIDIA Monitor
+[[Win]]+[[Alt]]+[[Shift]]+[[F21]]
+
+[[Win]]+[[Alt]]+[[B]] Turn HDR on or off.
+[[Win]]+[[Alt]]+[[D]]
+[[Win]]+[[Alt]]+[[Down]] Snap window in focus to bottom half of screen. New with Windows 11.
+[[Win]]+[[Alt]]+[[F]]
+[[Win]]+[[Alt]]+[[F23]]
+[[Win]]+[[Alt]]+[[G]]
+[[Win]]+[[Alt]]+[[M]]
+[[Win]]+[[Alt]]+[[Print Screen]]  Save screenshot of game window in focus to file (using Xbox Game Bar).
+[[Win]]+[[Alt]]+[[R]] Record video of game window in focus (using Xbox Game Bar).
+[[Win]]+[[Alt]]+[[T]]
+[[Win]]+[[Alt]]+[[W]]
+[[Win]]+[[Alt]]+[[Y]]
+[[Win]]+[[Alt]]+[[Up]] Snap window in focus to top half of screen. New with Windows 11.
+
+[[Win]]+[[Ctrl]]+[[Shift]]+[[B]]  Wake PC from blank or black screen.
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Down]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F21]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F22]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F24]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[L]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Left]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Right]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Space]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Up]]
+
+[[Win]]+[[Ctrl]]+[[Backspace]]
+[[Win]]+[[Ctrl]]+[[C]] Turn on color filters (enable this shortcut first in Color Filter settings).
+[[Win]]+[[Ctrl]]+[[D]] Add a virtual desktop.
+[[Win]]+[[Ctrl]]+[[Down]]
+[[Win]]+[[Ctrl]]+[[E]]
+[[Win]]+[[Ctrl]]+[[Enter]] Turn on Narrator.
+[[Win]]+[[Ctrl]]+[[F]] Search for PCs (if you're on a network).
+[[Win]]+[[Ctrl]]+[[F14]]
+[[Win]]+[[Ctrl]]+[[F21]]
+[[Win]]+[[Ctrl]]+[[F22]]
+[[Win]]+[[Ctrl]]+[[F23]]
+[[Win]]+[[Ctrl]]+[[F24]]
+[[Win]]+[[Ctrl]]+[[F4]]  Close the virtual desktop you're using.
+[[Win]]+[[Ctrl]]+[[Left]] Move To Prev Virtual Desktop
+[[Win]]+[[Ctrl]]+[[M]]
+[[Win]]+[[Ctrl]]+[[N]]
+[[Win]]+[[Ctrl]]+[[O]]
+[[Win]]+[[Ctrl]]+[[P]]
+[[Win]]+[[Ctrl]]+[[Q]] Open Quick Assist.
+[[Win]]+[[Ctrl]]+[[Right]] Move to Next Desktop
+[[Win]]+[[Ctrl]]+[[S]]
+[[Win]]+[[Ctrl]]+[[Space]] Change to a previously selected input.
+[[Win]]+[[Ctrl]]+[[T]]
+[[Win]]+[[Ctrl]]+[[Up]]
+[[Win]]+[[Ctrl]]+[[V]]
+
+[[Win]]+[[Shift]]+[[C]] Open the charms menu.
+[[Win]]+[[Shift]]+[[Down]] Restore/minimize active desktop windows vertically, maintaining width.
+[[Win]]+[[Shift]]+[[Enter]]
+[[Win]]+[[Shift]]+[[F21]]
+[[Win]]+[[Shift]]+[[F22]]
+[[Win]]+[[Shift]]+[[Left]] Move an app or window in the desktop from one monitor to another.
+[[Win]]+[[Shift]]+[[M]] Restore minimized windows on the desktop.
+[[Win]]+[[Shift]]+[[P]]
+[[Win]]+[[Shift]]+[[Right]] Move an app or window in the desktop from one monitor to another.
+[[Win]]+[[Shift]]+[[S]] Snipping Tool
+[[Win]]+[[Shift]]+[[Space]] Cycle backwards through language and keyboard layout.
+[[Win]]+[[Shift]]+[[T]]
+[[Win]]+[[Shift]]+[[Up]] Stretch the desktop window to the top and bottom of the screen.
+[[Win]]+[[Shift]]+[[V]] 	
+Set focus to a notification.
+[[Win]]+[[Shift]]+[[W]]
+[[Win]]+[[Shift]]+[[Z]]
+[[Win]]+[[+]] Open Magnifier and zoom in.
+[[Win]]+[[-]] Zoom out in Magnifier.
+[[Win]]+[[,]]Temporarily peek at the desktop.
+[[Win]]+[[.]] Open emoji panel.
+ 
+[[Win]]+[[;]] Open emoji panel.
+[[Win]]+[[=]]
+[[Win]]+[[`]]
+[[Win]]+[[/]] Begin IME reconversion.
+[[Win]]+[[A]] Quick Settings
+[[Win]]+[[B]] Focus on First Icon in Taskbar Corner
+[[Win]]+[[Backspace]]
+[[Win]]+[[C]] Open Chat from Microsoft Teams.
+[[Win]]+[[D]] Display and hide the desktop.
+[[Win]]+[[Down]] Remove current app from screen or minimize the desktop window.
+[[Win]]+[[E]] Open File Explorer.
+[[Win]]+[[Enter]]
+[[Win]]+[[Esc]] Close Magnifier.
+[[Win]]+[[F]] Open Feedback Hub and take a screenshot.
+[[Win]]+[[F1]]
+[[Win]]+[[F14]]
+[[Win]]+[[F15]]
+[[Win]]+[[F16]]
+[[Win]]+[[F21]]
+[[Win]]+[[F22]]
+[[Win]]+[[F24]]
+[[Win]]+[[G]] Open Xbox Game Bar when a game is open.
+[[Win]]+[[H]] Launch voice typing.
+[[Win]]+[[Home]] Minimize all except the active desktop window (restores all windows on second stroke).
+[[Win]]+[[I]] Open Settings.
+[[Win]]+[[J]] Set focus to a Windows tip when one is available.
+[[Win]]+[[K]] Open Cast from Quick Settings.(Bluetooth))
+[[Win]]+[[L]] Lock your PC or switch accounts.
+[[Win]]+[[Left]] Move Virt Desktop Left One
+[[Win]]+[[M]] Minimize all windows.
+[[Win]]+[[N]] Open notification center and calendar. (Win11)
+[[Win]]+[[O]] Lock device orientation.
+[[Win]]+[[P]] Choose a presentation display mode.
+[[Win]]+[[Page Down]]
+[[Win]]+[[Pause]] Opens Settings  > System   > About.
+[[Win]]+[[Page Up]]
+[[Win]]+[[Print Screen]] Save full screen screenshot to file.
+[[Win]]+[[Q]]
+[[Win]]+[[R]]Open the Run dialog box.
+[[Win]]+[[Right]] Snap Window to Right, or next Pan
+[[Win]]+[[S]] Open search.
+[[Win]]+[[Space]]   Switch input language and keyboard layout.
+[[Win]]+[[T]] 	
+[[Win]]+[[Tab]] Open Task view.	
+Cycle through apps on the taskbar.
+[[Win]]+[[U]] 	
+Open Accessibility Settings.
+[[Win]]+[[Up]] Window Snap or Maximize
+[[Win]]+[[V]] 	
+Open the clipboard history. 
+[[Win]]+[[W]] 	
+Open Widgets. Updated in Windows 11.
+[[Win]]+[[X]] Open the Quick Link menu.
+[[Win]]+[[Y]] Switch input between Windows Mixed Reality and your desktop.
+[[Win]]+[[Z]] Open the snap layouts. Updated in Windows 11.
+
+#### File Explorer keyboard shortcuts
+
+[[Alt]]+[[D]] = Select the address bar.
+[[Ctrl]]+[[E]] = Select the search box.
+[[Ctrl]]+[[F]] = Select the search box.
+[[Ctrl]]+[[N]] = Open a new window.
+[[Ctrl]]+[[W]] = Close the active window.
+[[Ctrl]] + `mouse scroll wheel` Change the size and appearance of file and folder icons.
+[[Ctrl]]+[[Shift]]+[[E]] = Display all folders above the selected folder.
+[[Ctrl]]+[[Shift]]+[[N]] = Create a new folder.
+[[NumLock]] + asterisk ([[*]]) Display all subfolders under the selected folder.
+[[NumLock]] + plus ([[+]]) Display the contents of the selected folder.
+[[NumLock]] + minus ([[-]]) Collapse the selected folder.
+[[Alt]]+[[P]] = Display the preview panel.
+[[Alt]]+[[Enter]] = Open the Properties dialog box for the selected item.
+[[Alt]] + [[Right]] arrow  View the next folder.
+[[Alt]] + [[Up]] arrow View the folder that the folder was in.
+[[Alt]] + [[Left]] arrow View the previous folder.
+[[Backspace]] View the previous folder.
+[[Right]] arrow  Display the current selection (if it's collapsed), or select the first subfolder.
+[[Left]] arrow   Collapse the current selection (if it's expanded), or select the folder that the folder was in.
+[[End]] Display the bottom of the active window.
+[[Home]] Display the top of the active window.
+[[F11]]  Maximize or minimize the active window.
+[[F2]] Rename the selected item.
+[[F3]] Search for a file or folder in File Explorer.
+[[F4]] Display the address bar list in File Explorer.
+[[F5]] ~~Refresh~~ the active window.
+#### The number keys
+
+Correspond to positions on the task bar.
+
+[[Win]]+[[1]]->[[0]] Open or start the app in this position
+[[Win]]+[[Shift]]+[[1]]->[[0]] Open the desktop and start a **new instance** of the app 
+[[Win]]+[[Ctrl]]+[[1]]->[[0]]  Open the desktop and switch to the **last active window /instance**
+[[Win]]+[[Alt]]+[[1]]->[[0]]  Open the desktop and open the Jump List for the app
+[[Win]]+[[Ctrl]]+[[Shift]]+[[1]]->[[0]] Open the desktop and open a new instance of the app located at the given position on the taskbar **as an administrator.**
+
+[Source](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec)
+Also Source Nirsoft HotKeyList
 
 ### Start + Run Shortcuts
 
-[Src](https://ss64.com/nt/run.html)
-
-
-
-Accessibility Options 	utilman
-or
-control access.cpl
-Add Hardware Wizard 	hdwwiz
+Accessibility Options  - `utilman` & `control access.cpl`
+Add Hardware Wizard  - `hdwwiz`
 Programs and Features
 (Add New Programs)
 (Add Remove Windows Components)
-(Set Program Access & Defaults ) 	appwiz.cpl
+(Set Program Access & Defaults )  - `appwiz.cpl`
 control appwiz.cpl,,1
 control appwiz.cpl,,2
 control appwiz.cpl,,3
-Administrative Tools 	control admintools
-Advanced User Accounts Control Panel 	netplwiz
-Authorization Manager 	azman.msc
-Automatic Update 	control wuaucpl.cpl
-Backup and Restore Utility 	sdclt
-Bluetooth Transfer Wizard 	fsquirt
-Calculator 	calc
-Certificate Manager 	certmgr.msc
-Character Map 	charmap
-Check Disk Utility 	chkdsk
-Clear Type (tune or turn off) 	cttune
-Color Management 	colorcpl.exe
-Command Prompt 	cmd
-Component Services 	dcomcnfg
-or
+Administrative Tools  - `control admintools`
+Advanced User Accounts Control Panel  - `netplwiz`
+Authorization Manager  - `azman.msc`
+Automatic Update  - `control wuaucpl.cpl`
+Backup and Restore Utility  - `sdclt`
+Bluetooth Transfer Wizard  - `fsquirt`
+Calculator  - `calc`
+Certificate Manager  - `certmgr.msc`
+Character Map  - `charmap`
+Check Disk Utility  - `chkdsk`
+Clear Type (tune or turn off)  - `cttune`
+Color Management  - `colorcpl.exe`
+Command Prompt  - `cmd`
+Component Services  - `dcomcnfg` or
 comexp.msc
-Computer Management 	CompMgmtLauncher.exe
-or
-compmgmt.msc
-Control Panel 	control
-Credential (passwords) Backup and Restore Wizard 	credwiz
-Data Execution Prevention 	SystemPropertiesDataExecutionPrevention
-Date and Time Properties 	timedate.cpl
-Device Manager 	hdwwiz
-or
-devmgmt.msc
-Device Pairing Wizard 	DevicePairingWizard
-Digitizer Calibration Tool (Tablets/Touch screens) 	tabcal
-Direct X Control Panel (if installed) 	directx.cpl
-Direct X Troubleshooter 	dxdiag
-Disk Cleanup Utility 	cleanmgr
-Disk Defragmenter 	dfrgui
+Computer Management  - `CompMgmtLauncher.exe` & `compmgmt.msc`
+Control Panel  - `control`
+Credential (passwords) Backup and Restore Wizard  - `credwiz`
+Data Execution Prevention  - `SystemPropertiesDataExecutionPrevention`
+Date and Time Properties  - `timedate.cpl`
+Device Manager  - `hdwwiz` & `devmgmt.msc`
+Device Pairing Wizard  - `DevicePairingWizard`
+Digitizer Calibration Tool (Tablets/Touch screens)  - `tabcal`
+Direct X Control Panel (if installed)  - `directx.cpl`
+Direct X Troubleshooter  - `dxdiag`
+Disk Cleanup Utility  - `cleanmgr`
+Disk Defragmenter  - `dfrgui`
 defrag
-Disk Management 	diskmgmt.msc
-Disk Partition Manager 	diskpart
-Display Color Calibration 	dccw
-Display DPI / Text size 	dpiscaling
-Display Properties (Themes, Desktop, Screensaver) 	control desktop
-Display Properties (Resolution, Orientation) 	desk.cpl
-Display Properties (Color & Appearance) 	control color
-Documents (open 'My Documents' folder) 	documents
-Downloads (open 'Downloads' folder) 	downloads
-Driver Verifier Utility 	verifier
-DVD Player 	dvdplay
-Edit Environment Variables 	rundll32.exe sysdm.cpl,EditEnvironmentVariables
-Encrypting File System Wizard (EFS) 	rekeywiz
-Event Viewer 	eventvwr.msc
-File Signature Verification Tool (Device drivers) 	sigverif
-Files and Settings Transfer Tool 	%systemroot%\system32\migwiz\migwiz.exe
-Firewall Control Panel 	firewall.cpl
-Folders Properties 	control folders
+Disk Management  - `diskmgmt.msc`
+Disk Partition Manager  - `diskpart`
+Display Color Calibration  - `dccw`
+Display DPI / Text size  - `dpiscaling`
+Display Properties (Themes, Desktop, Screensaver)  - `control desktop`
+Display Properties (Resolution, Orientation)  - `desk.cpl`
+Display Properties (Color & Appearance)  - `control color`
+Documents (open 'My Documents' folder)  - `documents`
+Downloads (open 'Downloads' folder)  - `downloads`
+Driver Verifier Utility  - `verifier`
+DVD Player  - `dvdplay`
+Edit Environment Variables  - `rundll32.exe sysdm.cpl,EditEnvironmentVariables`
+Encrypting File System Wizard (EFS)  - `rekeywiz`
+Event Viewer  - `eventvwr.msc`
+File Signature Verification Tool (Device drivers)  - `sigverif`
+Files and Settings Transfer Tool  - `%systemroot%\system32\migwiz\migwiz.exe`
+Firewall Control Panel  - `firewall.cpl`
+Folders Properties  - `control folders`
 Fonts list
-	control fonts
-Font preview 	fontview arial.ttf
-Game Controllers 	joy.cpl
-Local Group Policy Editor 	gpedit.msc
-Internet Properties 	inetcpl.cpl
-IP Configuration 	ipconfig
-iSCSI Initiator configuration 	iscsicpl
-Keyboard Properties 	control keyboard
-Language Pack Installer 	lpksetup
-Local Security Policy 	secpol.msc
-Local Users and Groups 	lusrmgr.msc
-Log out 	logoff
-Microsoft Malicious Software Removal Tool 	mrt
-Microsoft Management Console 	mmc
-Access (Microsoft Office) 	msaccess
-Excel (Microsoft Office) 	Excel
-Powerpoint (Microsoft Office) 	powerpnt
-Word (Microsoft Office) 	winword
-Microsoft Paint 	mspaint
-Microsoft Support Diagnostic Tool 	msdt
-Mouse Properties 	control mouse
-or
-main.cpl
-Network Connections 	control netconnections
-or
-ncpa.cpl
+ - `control fonts`
+Font preview  - `fontview arial.ttf`
+Game Controllers  - `joy.cpl`
+Local Group Policy Editor  - `gpedit.msc`
+Internet Properties  - `inetcpl.cpl`
+IP Configuration  - `ipconfig`
+iSCSI Initiator configuration  - `iscsicpl`
+Keyboard Properties  - `control keyboard`
+Language Pack Installer  - `lpksetup`
+Local Security Policy  - `secpol.msc`
+Local Users and Groups  - `lusrmgr.msc`
+Log out  - `logoff`
+Microsoft Malicious Software Removal Tool  - `mrt`
+Microsoft Management Console  - `mmc`
+Access (Microsoft Office)  - `msaccess`
+Excel (Microsoft Office)  - `Excel`
+Powerpoint (Microsoft Office)  - `powerpnt`
+Word (Microsoft Office)  - `winword`
+Microsoft Paint  - `mspaint`
+Microsoft Support Diagnostic Tool  - `msdt`
+Mouse Properties  - `control mouse` & `main.cpl`
+Network Connections  - `control netconnections` & `ncpa.cpl`
 Projector:
 Connect to Network Projector
-Switch projector display 	netproj
+Switch projector display  - `netproj`
 
-displayswitch
-Notepad 	notepad
+`displayswitch`
+Notepad  - `notepad`
 ODBC Data Source Admin
 Default ODBC driver:
 32-bit ODBC driver under 64-bit platform:
-	
-C:\windows\system32\odbcad32.exe
-C:\windows\sysWOW64\odbcad32.exe
-ODBC configuration - Install/configure MDAC drivers 	odbcconf
-On Screen Keyboard 	osk
-OOB Getting Started 	gettingstarted
-Password - Create a Windows Password Reset Disk (USB) 	"C:\Windows\system32\rundll32.exe" keymgr.dll,PRShowSaveWizardExW
-Pen and Touch (Tablet/Pen input configuration) 	tabletpc.cpl
-Performance Monitor 	perfmon.msc
-Phone and Modem Options 	telephon.cpl
-Phone Dialer 	dialer
-Power Configuration 	powercfg.cpl and powercfg.exe
-Presentation Settings 	PresentationSettings
-Problem Steps Recorder 	psr
-Program Access and Computer Defaults - browser / email / media 	computerdefaults
-Printers and Faxes 	control printers
-Print Management (.msc) 	PrintManagement
-Printer Migration (backup/restore) 	printbrmui and printbrm.exe
-Printer user interface (List all printui.dll options) 	printui
-Private Character Editor 	eudcedit
-Regional Settings - Language, Date/Time format, keyboard locale. 	intl.cpl
-Registry Editor 	regedit
-Remote Assistance 	msra
-Remote Desktop 	mstsc
-Resource Monitor 	resmon
-Resultant Set of Policy 	rsop.msc
-Settings (Windows 10) 	ms-settings:
-Scheduled Tasks 	control schedtasks
-Screenshot Snipping Tool 	snippingtool
-Security Center 	wscui.cpl
-Services 	services.msc
-Shared Folder Wizard 	shrpubw
-Shared Folders 	fsmgmt.msc
-Shut Down Windows 	shutdown
-Software Licensing/Activation 	slui
-Sounds and Audio 	mmsys.cpl
-Sound Recorder 	soundrecorder
-Sound Volume 	sndvol
-Syncronization Tool (Offline files) 	mobsync
-System Configuration Utility 	msconfig
-System File Checker Utility (Scan/Purge) 	sfc
-System Information 	msinfo32
-System Properties
-	
+    C:\windows\system32\odbcad32.exe
+    C:\windows\sysWOW64\odbcad32.exe
+ODBC configuration - Install/configure MDAC drivers  - `odbcconf`
+On Screen Keyboard  - `osk`
+OOB Getting Started  - `gettingstarted`
+Password - Create a Windows Password Reset Disk (USB)  - `"C:\Windows\system32\rundll32.exe" keymgr.dll,PRShowSaveWizardExW`
+Pen and Touch (Tablet/Pen input configuration)  - `tabletpc.cpl`
+Performance Monitor  - `perfmon.msc`
+Phone and Modem Options  - `telephon.cpl`
+Phone Dialer  - `dialer`
+Power Configuration  - `powercfg.cpl and powercfg.exe`
+Presentation Settings  - `PresentationSettings``powercfg.cpl
+Problem Steps Recorder  - `psr`
+Program Access and Computer Defaults - browser / email / media  - `computerdefaults`
+Printers and Faxes  - `control printers`
+Print Management (.msc)  - `PrintManagement`
+Printer Migration (backup/restore)  - `printbrmui and printbrm.exe`
+Printer user interface (List all printui.dll options)  - `printui`
+Private Character Editor  - `eudcedit`
+Regional Settings - Language, Date/Time format, keyboard locale.  - `intl.cpl`
+Registry Editor  - `regedit`
+Remote Assistance  - `msra`
+Remote Desktop  - `mstsc`
+Resource Monitor  - `resmon`
+Resultant Set of Policy  - `rsop.msc`
+Settings (Windows 10)  - `ms-settings:`
+Scheduled Tasks  - `control schedtasks`
+Screenshot Snipping Tool  - `snippingtool`
+Security Center  - `wscui.cpl`
+Services  - `services.msc`
+Shared Folder Wizard  - `shrpubw`
+Shared Folders  - `fsmgmt.msc`
+Shut Down Windows  - `shutdown`
+Software Licensing/Activation  - `slui`
+Sounds and Audio  - `mmsys.cpl`
+Sound Recorder  - `soundrecorder`
+Sound Volume  - `sndvol`
+Syncronization Tool (Offline files)  - `mobsync`
+System Configuration Utility  - `msconfig`
+System File Checker Utility (Scan/Purge)  - `sfc`
+System Information  - `msinfo32`
+System Properties `sysdm.cpl SystemProperties`  & `sysdm.cpl DisplaySYSDMCPL`
+System Properties - Performance  - `SystemPropertiesPerformance`
+System Properties - Hardware  - `SystemPropertiesHardware`
+System Properties - Advanced  - `SystemPropertiesAdvanced`
+System Repair - Create a System Repair Disc  - `recdisc`
+System Restore  - `rstrui`
+Task Manager  - `taskmgr`
+Task Scheduler  - `taskschd.msc`
+Telnet Client  - `telnet`
+Trusted Platform Module Initialization Wizard  - `tpmInit`
 
-sysdm.cpl SystemProperties
-or
-sysdm.cpl DisplaySYSDMCPL
-System Properties - Performance 	SystemPropertiesPerformance
-System Properties - Hardware 	SystemPropertiesHardware
-System Properties - Advanced 	SystemPropertiesAdvanced
-System Repair - Create a System Repair Disc 	recdisc
-System Restore 	rstrui
-Task Manager 	taskmgr
-Task Scheduler 	taskschd.msc
-Telnet Client 	telnet
-Trusted Platform Module Initialization Wizard 	tpmInit
-
-User Accounts (Autologon) 	control userpasswords2
-User Account Control (UAC) Settings 	UserAccountControlSettings
-User Profiles - Edit/Change type 	C:\Windows\System32\rundll32.exe sysdm.cpl,EditUserProfiles
-Windows Disc Image Burning Tool 	isoburn C:\movies\madmax.iso
-Windows Explorer 	explorer.exe
+User Accounts (Autologon)  - `control userpasswords2`
+User Account Control (UAC) Settings  - `UserAccountControlSettings`
+User Profiles - Edit/Change type  - `C:\Windows\System32\rundll32.exe sysdm.cpl,EditUserProfiles`
+Windows Disc Image Burning Tool  - `isoburn C:\movies\madmax.iso`
+Windows Explorer  - `explorer.exe`
 explorer.exe .  Will open at the current directory
-Windows Features 	optionalfeatures
-Windows Firewall
-Windows Firewall with Advanced Security 	firewall.cpl
-wf.msc
-Windows Image Acquisition (scanner) 	wiaacmgr
-Windows Magnifier 	magnify
-Windows Management Infrastructure 	wmimgmt.msc
-Windows Memory Diagnostic Scheduler 	mdsched
-Windows Mobility Center (Mobile PCs only) 	mblctr
-Windows PowerShell 	powershell
-Windows PowerShell ISE 	powershell_ise
-Windows Security Action Center 	wscui.cpl
-Windows Script Host(VBScript) 	wscript NAME_OF_SCRIPT.VBS
+Windows Features  - `optionalfeatures`
+Windows Firewall `wf.msc`
+Windows Firewall with Advanced Security  - `firewall.cpl`
+
+Windows Image Acquisition (scanner)  - `wiaacmgr`
+Windows Magnifier  - `magnify`
+Windows Management Infrastructure  - `wmimgmt.msc`
+Windows Memory Diagnostic Scheduler  - `mdsched`
+Windows Mobility Center (Mobile PCs only)  - `mblctr`
+Windows PowerShell  - `powershell`
+Windows PowerShell ISE  - `powershell_ise`
+Windows Security Action Center  - `wscui.cpl`
+Windows Script Host(VBScript)  - `wscript NAME_OF_SCRIPT.VBS`
 Windows System Security Tool. Encrypt the SAM database.
-(boot password.) 	syskey
-Windows Update 	wuapp
-Windows Update Standalone Installer 	wusa
-Windows Version (About Windows) 	winver
-WordPad 	write
+(boot password.)  - `syskey`
+Windows Update  - `wuapp`
+Windows Update Standalone Installer  - `wusa`
+Windows Version (About Windows)  - `winver`
+WordPad  - `write`
 
 
 ## Browsers 
@@ -1100,7 +1270,6 @@ Now defunct source but found on internet archive (http://web.archive.org/web/201
 
 
 
-
 ### List COM interfaces
 
 Where can I find all of the COM objects that can be created in Powershell?
@@ -1417,8 +1586,8 @@ Examples:
 
    (TYPE logfile.txt >> newfile.txt) 2>nul
 
-“Stupidity, outrage, vanity, cruelty, iniquity, bad faith, falsehood,
-we fail to see the whole array when it is facing in the same direction as we” ~ Jean Rostand (French Historian)
+"Stupidity, outrage, vanity, cruelty, iniquity, bad faith, falsehood,
+we fail to see the whole array when it is facing in the same direction as we" ~ Jean Rostand (French Historian)
 
 Related:
 
@@ -5349,6 +5518,37 @@ Microsoft r TypePerf.exe (10.0.18362.1)
         typeperf -qx PhysicalDisk -o counters.txt
 
 
+### PowerCfg
+
+You **must** disable fast boot in windows.
+Google how to do that, but here is the fastest way- in a Admin terminal (Win + R, type cmd, then hit [Ctrl]+[Shift]+[Enter] which means run command as admin.)
+
+[Doc for Powercfg](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options)
+
+```
+powercfg /L
+```
+
+You need the long number with the * at the end. Your current one.
+
+then run the following:
+
+```
+powercfg /Q c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP
+
+```
+
+#Where the string of numbers is yours.  The commands are shorthand for other long GUID numbers, see powercfg /ALIASES
+
+```
+powercfg /SETACVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP 0
+powercfg /SETDCVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP 0
+```
+
+This is actually the wonderfully simple:
+`powercfg /SETACVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 0x00000000`
+
+
 ### BCDEdit
 
 [Referencce](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcdboot-command-line-options-techref-di)
@@ -6634,6 +6834,26 @@ WDK - Windows Driver Kit
 
 [WDK Tools](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/index-of-windows-driver-kit-tools)
 
+[WCT Windows Community Toolkit Documentation](https://docs.microsoft.com/en-us/windows/communitytoolkit/)
+
+!!!Tip WCT Toolkit Packages
+     - **Microsoft.Toolkit** - .NET Standard NuGet package containing common code
+     - **Microsoft.Toolkit.HighPerformance** - .NET Standard and .NET Core NuGet package with performance oriented helpers, extensions, etc.
+     - **Microsoft.Toolkit.Parsers** - .NET Standard NuGet package containing cross-platform parsers, such as Markdown and RSS
+     - **Microsoft.Toolkit.Services** - .NET Standard NuGet package containing cross-platform services
+     - **Microsoft.Toolkit.Uwp** - Main NuGet package includes code only helpers such as Colors conversion tool, Storage file handling, a Stream helper class, etc.
+     - **Microsoft.Toolkit.Uwp.Notifications** - Notifications Package - Generate tile, toast, and badge notifications for Windows 10 via code. Includes intellisense support to avoid having to use the XML syntax
+     - **Microsoft.Toolkit.Uwp.Notifications.Javascript** - Notification Packages for JavaScript
+     - **Microsoft.Toolkit.Uwp.Services** - Services Package - This NuGet package includes the service helpers for Facebook, LinkedIn, Microsoft Graph, Twitter and more
+     - **Microsoft.Toolkit.Uwp.UI** - UI Packages - XAML converters, Visual tree extensions, and other extensions and helpers for your XAML UI
+     - **Microsoft.Toolkit.Uwp.UI.Animations** - Animations and Composition behaviors such as Blur, Fade, Rotate, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls** - XAML Controls such as RadialGauge, RangeSelector, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls.DataGrid** - XAML DataGrid control
+     - **Microsoft.Toolkit.Uwp.UI.Controls.Layout** - XAML layout controls such as WrapLayout, StaggeredLayout, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Lottie** - Library for rendering Adobe AfterEffects animations natively in Windows apps
+     - **Microsoft.Toolkit.Uwp.UI.Media** - Brushes, Win2D/Composition effects, and helpers to create visual effects
+     - **Microsoft.Toolkit.Uwp.Connectivity** - API helpers such as BluetoothLEHelper and Networking
+     - **Microsoft.Toolkit.Uwp.DeveloperTools** - XAML user controls and services to help developer building their app
 
 [HLK Tools List](https://docs.microsoft.com/en-us/windows-hardware/test/hlk/user/hlk-tools-technical-reference)
 
@@ -6642,7 +6862,32 @@ WDK - Windows Driver Kit
 
 [SDK](https://developer.microsoft.com/windows/downloads/sdk-archive)
 
+!!!Tip New Windows App SDK
+    [Windows App SDK](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/)
+    [Downloads](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)
+    [Build desktop apps for Windows | Microsoft Docs](https://docs.microsoft.com/en-us/windows/apps/desktop/)
+
+    
 [Community Toolkit (UWP)](https://docs.microsoft.com/windows/communitytoolkit/)
+
+!!!Tip UWP Packages
+     - **Microsoft.Toolkit** - .NET Standard NuGet package containing common code
+     - **Microsoft.Toolkit.HighPerformance** - .NET Standard and .NET Core NuGet package with performance oriented helpers, extensions, etc.
+     - **Microsoft.Toolkit.Parsers** - .NET Standard NuGet package containing cross-platform parsers, such as Markdown and RSS
+     - **Microsoft.Toolkit.Services** - .NET Standard NuGet package containing cross-platform services
+     - **Microsoft.Toolkit.Uwp** - Main NuGet package includes code only helpers such as Colors conversion tool, Storage file handling, a Stream helper class, etc.
+     - **Microsoft.Toolkit.Uwp.Notifications** - Notifications Package - Generate tile, toast, and badge notifications for Windows 10 via code. Includes intellisense support to avoid having to use the XML syntax
+     - **Microsoft.Toolkit.Uwp.Notifications.Javascript** - Notification Packages for JavaScript
+     - **Microsoft.Toolkit.Uwp.Services** - Services Package - This NuGet package includes the service helpers for Facebook, LinkedIn, Microsoft Graph, Twitter and more
+     - **Microsoft.Toolkit.Uwp.UI** - UI Packages - XAML converters, Visual tree extensions, and other extensions and helpers for your XAML UI
+     - **Microsoft.Toolkit.Uwp.UI.Animations** - Animations and Composition behaviors such as Blur, Fade, Rotate, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls** - XAML Controls such as RadialGauge, RangeSelector, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls.DataGrid** - XAML DataGrid control
+     - **Microsoft.Toolkit.Uwp.UI.Controls.Layout** - XAML layout controls such as WrapLayout, StaggeredLayout, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Lottie** - Library for rendering Adobe AfterEffects animations natively in Windows apps
+     - **Microsoft.Toolkit.Uwp.UI.Media** - Brushes, Win2D/Composition effects, and helpers to create visual effects
+     - **Microsoft.Toolkit.Uwp.Connectivity** - API helpers such as BluetoothLEHelper and Networking
+     - **Microsoft.Toolkit.Uwp.DeveloperTools** - XAML user controls and services to help developer building their app
 
 [Design Toolkit](https://docs.microsoft.com/windows/uwp/design/downloads/)
 
@@ -6655,7 +6900,8 @@ WDK - Windows Driver Kit
 
 
 
-Interesting onesL
+Interesting ones
+
 Sensor Diagnostic Tool (sensordiagnostictool.exe)
 WDK tool: Yes 	%WindowsSdkDir%\tools\x64
 %WindowsSdkDir%\tools\x86 	Tests the driver, firmware, and hardware for sensor and location functionality. The tool invokes the sensor and location API to test data retrieval, event handling, report intervals, change sensitivity, property retrieval.
