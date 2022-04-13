@@ -62,6 +62,326 @@ NICE FTP
 - [Fuzzy Finder](https://github.com/junegunn/fzf)
 
 
+## Quick Look
+
+!!!attention Overview
+
+    - `/` - root
+    - `~` - home
+    - `..` - one step up in tree
+    - `.` - cwd
+    - `<`, `>` - pipe stream
+    - `2>` redirects StdErr (instead of StdOut)
+            make someFile 2> /dev/null
+
+    squelches error output
+    - `&>` - Redirects both stderr and stdout to another destination.
+            make &> /dev/null
+    - `>>` - append stream
+    - `<<` - starts std input to take in information.  Exit with [[CTRL]] + [[D]].
+        - `<<WORD` - Starts StdInput until *WORD* is typed.  The result is sent without word. e.g.:
+                    $echo <<WORLD
+                    $HELLO WORLD
+                    >HELLO
+    - `|` pipe character
+        - e.g. `set | less`
+        - e.g. `cat file1.txt file2.txt | less`
+    - `|&` - pipe char- only this pipes stdout  AND stderr.
+    - `tee` - sends output to a file AND StdOut. Like a `Y` or `T` exchange.
+            ls /home/user | tee my_directories.txt
+    - `&&` combines commands
+            - on error does not continue
+            - logical and, works on the basis of return code being 0.
+    - `||` - logical or
+            - e.g. `ls || pwd`
+            - if the first command is successful, the second command does not execute.  Only executes if prior command failed.
+    - `;` line break, combines commands,
+            - e.g `ls ; cal ; date`
+            - on error - continues
+    - `!` - bang character.
+            - `!n` = execute the nth prior command
+                    e.g. `!2`
+            - `!!` - last command
+            - `!-n` - execute the command n times before
+                    - `!-1` == `!!`
+            - `!STRING` - executes the last command starting with 'STRING'
+                    - e.g `!cd` runs the last command starting with 'cd'
+            - `!?STRING?` - executes the last command containing
+            - `COMMAND !*` - executes "COMMAND" with the last command's arguments
+            - `!:^` -== `!:0` - first arg
+            - `!:$` - last arg
+            - `!:2-3` the second and third arg.
+            - `!-2:3-$` combining the two.
+    Starting with ! accesses history
+            COM1 -Opt1 -Opt2 -Opt3
+            COM2 !* == COM2 -Opt1 -Opt2 -Opt3
+
+
+
+Starting with @ accesses Partameters [Positional Parameters](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Positional-Parameters)
+
+
+[Shell Expansions](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions)
+
+
+### `$` Positional Access
+
+!!!tip `$` Parameter Recall
+    >- `$N`
+    >- `${N}`
+    >- `*` - `$*` -  Expands to the positional parameters, starting from one. When the expansion is not within double quotes, each positional parameter expands to a separate word.
+    >-  `@` - (`$@`)Expands to the positional parameters, starting from one. I
+    > 
+    >-  `#` - ($#) Expands to the number of positional parameters in decimal.
+    > 
+    >-  `?` -    ($?) Expands to the exit status of the most recently executed foreground pipeline.
+    > 
+    >-  `-` - ($-, a hyphen.) Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the -i option).
+    > 
+    >-  `$` - ($$) Expands to the process ID of the shell. In a () subshell, it expands to the process ID of the invoking shell, not the subshell.
+    > 
+    >-  `!` - ($!) Expands to the process ID of the job most recently placed into the background, whether executed as an asynchronous command or using the bg builtin (see Job Control Builtins).
+    >-  `0` - ($0) Expands to the name of the shell or shell script. This is set at shell initialization. If Bash is invoked with a file of commands (see Shell Scripts), $0 is set to the name of that file.
+    > 
+    you can void the "closing the terminal kills all spawned programs" issue by launching the program with the
+
+
+### Brace Expansion
+
+[Bash Reference Manual](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Shell-Expansions)
+
+Patterns to be brace expanded take the form of an ==optional preamble,== followed by either ==a series of comma-separated strings or a sequence expression between a pair of braces,== followed by an ==optional postscript.== The preamble is prefixed to each string contained within the braces, and the postscript is then appended to each resulting string, expanding left to right. 
+
+bash$ echo a{d,c,b}e
+ade ace abe
+
+!!!tip A sequence expression takes the form `{x..y[..incr]}`, where x and y are either integers or single characters, and `incr`, an optional increment, is an integer. 
+    - When integers are supplied, the expression expands to each number between x and y, inclusive.
+    - Supplied integers may be prefixed with ‘0’ to force each term to have the same width
+    - When either x or y begins with a zero, the shell attempts to force all generated terms to contain the same number of digits, zero-padding where necessary.
+    - When characters are supplied, the expression expands to each character lexicographically between x and y, **inclusive,** using the default C locale.
+    - x and y must be of the same type.
+    - When the increment is supplied, it is used as the difference between each term. The default increment is 1 or -1 as appropriate.
+    - Brace expansion is performed before any other expansions, and any characters special to other expansions are preserved in the result. 
+    - Any incorrectly formed brace expansion is left unchanged.
+
+!!!faq Similarity with `Parameter Expansion`:
+    -   A `{` or ‘`,`’ may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string ‘[[${]]’ is not considered eligible for brace expansion, and inhibits brace expansion until the closing ‘[[}]]’. 
+____
+### `~` Tilde Expavnsion
+
+Accesses the **directory stack**
+
+!!!example `~` Tilde Expavnsion
+    If the characters following the tilde in the tilde-prefix consist of **a number N,** optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
+
+    >- [[`~`]] - The value of `$HOME`
+    >- [[`~/foo`]] - `$HOME/foo`
+    >- [[`~fred/foo`]] - The subdirectory *foo* of the home directory of the user **fred**
+    >- [[`~+/foo`]] - `$PWD/foo`
+    >- [[`~-/foo`]] - `${OLDPWD-'~-'}/foo`
+    >- [[`~N`]] -  The string that would be displayed by `‘dirs +N’`
+    >- [[`~+N`]] - The string that would be displayed by `‘dirs +N’`
+    >- [[`~-N`]] - The string that would be displayed by `‘dirs -N’` 
+
+
+
+-----
+
+#### Word Designators
+
+!!!cite [Using History Interactively](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Using-History-Interactively)
+
+Uses the `!` (bang symbol)
+
+Word designators are used to **select desired words** from the event.
+
+A [[:]] separates the event specification from the word designator.
+
+It may be omitted if the word designator begins with a [[^]], [[$]], [[*]], [[-]],
+or [[%]].  
+
+Words are numbered from the beginning of the line, with the
+first word being denoted by [[0]] (zero).  
+
+Words are inserted into the current line separated by single spaces.
+
+Here are the word designators:
+
+>- [[0]] *(zero)* The zeroth word.  For the shell, this is the command word.
+>- [[n]]      The nth word.
+>- [[^]]      The first argument.  That is, word 1.
+>- [[$]]      The last argument.
+>- [[%]]      The word matched by the most recent `?string?` search.
+>- [[x-y]]    A range of words; `-y` abbreviates `0-y`.
+>- [[*]]      All of the words but the zeroth.
+>   >- This is a synonym for `1-$`.
+>   >- It is not an error to use `*` if there is just one word in the event; the empty string is returned in that case.
+>- [[x*]]     Abbreviates `x-$`.
+>- [[x-]]     Abbreviates `x-$` like `x*`, but omits the last word.
+
+If [[`x`]] is missing, it defaults to 0.
+
+   If a word designator is supplied without an event specification, the previous command is used as the event.
+
+!!!example Example: 
+    recall -A [[`:`]] separates the event specification from the **word designator** unless the **word designator** begins with a [[`^`]], [[`$`]], [[`*`]], [[`-`]], or [[`%`]].
+    
+    For example,
+
+    - `!!` - designates the preceding command. When you type this, the preceding command is repeated in total.
+
+    - `!!:$` - designates the last argument of the preceding command. This may be shortened to !$.
+
+    - `!fi:2` - designates the second argument of the most recent command starting with the letters fi.
+
+
+----
+
+### 9.3.1 Event Designators
+
+An event designator is a reference to a command line entry in the history list. Unless the reference is absolute, events are relative to the current position in the history list.
+
+- [[`!`]] - Start a history substitution, except when followed by a space, tab, the end of the line, [[`=`]] or [[`(`]] 
+                - (when the extglob shell option is enabled using the shopt builtin).
+
+- [[`!n`]] - Refer to command line n.
+
+- [[`!-n`]] - Refer to the command n lines back.
+
+- [[`!!`]] - Refer to the previous command. This is a synonym for [[`!-1`]].
+
+- [[`!string`]] - Refer to the most recent command preceding the current position in the history list starting with string.
+
+- [[`!?string[?]`]] - Refer to the most recent command preceding the current position in the history list containing string. The trailing [[`?`]] may be omitted if the string is followed immediately by a newline. If string is missing, the string from the most recent search is used; it is an error if there is no previous search string.
+
+- [[`^string1^string2^`]] - Quick Substitution. Repeat the last command, replacing string1 with string2. Equivalent to !!:s^string1^string2^.
+
+- [[`!#`]] - The entire command line typed so far.
+
+
+9.3.3 Modifiers
+
+After the optional word designator, you can add a sequence of one or more of the following modifiers, each preceded by a [[`:`]]. These modify, or edit, the word or words selected from the history event.
+
+>- [[`h`]] - Remove a trailing pathname component, leaving only the head.
+>- [[`t`]] - Remove all leading pathname components, leaving the tail.
+>- [[`r`]] - Remove a trailing suffix of the form [[`.suffix`]], leaving the basename.
+>- [[`e`]] - Remove all but the trailing suffix.
+>- [[`p`]] - Print the new command but do not execute it.
+>- [[`q`]] - Quote the substituted words, escaping further substitutions.
+>- [[`x`]] - Quote the substituted words as with [[`q`]], but break into words at spaces, tabs, and newlines. The [[`q`]] and [[`x`]] modifiers are mutually exclusive; the last one supplied is used.
+>- [[`s/old/new/`]] - Substitute new for the first occurrence of old in the event line. Any character may be used as the delimiter in place of [[`/`]]. The delimiter may be quoted in old and new with a single backslash. If [[`&`]] appears in new, it is replaced by old. A single backslash will quote the [[`&`]]. If old is null, it is set to the last old substituted, or, if no previous history substitutions took place, the last string in a !?string[?] search. If new is is null, each matching old is deleted. The final delimiter is optional if it is the last character on the input line.
+>- [[`&`]] - Repeat the previous substitution.
+>- [[`a`]] | [[`g`]]  - Cause changes to be applied over the entire event line. Used in conjunction with [[`s`]], as in gs/old/new/, or with [[`&`]].
+>- [[`G`]] - Apply the following [[`s`]] or [[`&`]] modifier once to each word in the event.
+----
+
+### Keyboard Shortcuts for Substitutions
+
+Tested on Ubuntu 18.04
+To insert previous arguments:
+
+    [[`Alt+.`]] [[Alt]]+[[.]]: insert last argument from last command.
+    [[`Alt+#+.`]] [[Alt]]+[[#]]+[[.]]: insert #nth last argument from last command.
+[[`Alt+-`]] , `#` , `Alt+.` **bash:** [[Alt]]+[[-]] , [[#]] , [[Alt]]+[[.]]
+`Alt+-#+.` ** zsh:** [[Alt]]+[[-]]+ [[#]]{style="color:black; } +[[.]]
+         insert #nth first argument from last command. 
+
+In Linux you can repeat commands to go back in history
+Example:
+
+Last command is:
+
+mv foo bar
+
+`Alt+0+.` [[Alt]]+[[0]]+[[.]]: insert first argument of last command = mv
+`Alt+2+.` [[Alt]]+[[2]]+[[.]]: insert last 2nd argument of last command = foo
+    up , [[Ctrl]]+[[w]]: last command without the last word = mv foo
+
+General shortcuts
+
+
+`Ctrl+w`
+    [[Ctrl]]+[[w]]: removes last word from cursor
+`Alt+d`
+    [[Alt]]+[[d]]: removes next word from cursor
+`Ctrl+k`
+    [[Ctrl]]+[[k]]: cuts everything after cursor
+`Ctrl+u`, zsh: `Alt+w`
+    [[Ctrl]]+[[u]], zsh: [[Alt]]+[[w]]: cuts everything before cursor
+    zsh: [[Ctrl]]+[[u]]: cuts the entire command (In bash you can combine [[Ctrl]]+[[u]] , [[Ctrl]]+[[k]])
+`Ctrl+k`
+`Ctrl+u`
+`Ctrl+y`
+    [[Ctrl]]+[[y]]: paste characters previously cut with [[Ctrl]]+[[u]] and [[Ctrl]]+[[k]]
+`Ctrl+_`
+    [[Ctrl]]+[[_]]: undo last edit (very useful when exceeding [[Ctrl]]+[[w]])
+`Ctrl+left`
+    [[Ctrl]]+[[left]]: move to last word
+`Ctrl+right`
+    [[Ctrl]]+[[right]]: move to next word
+`home or Ctrl+a`
+    home or [[Ctrl]]+[[a]]: move to start of line
+`end or Ctrl+e`
+    end or [[Ctrl]]+[[e]]: move to end of li
+
+
+### Disown `&` and Redirection
+
+!!!!!Attention Attention: Important `&`
+- `&` suffix so that it runs as a background process and then issuing `disown %1` in bash or whatever job number the program is. Then you can safely close the terminal. So, it could be something like: `sudo my-program &;disown %1;exit;`
+
+### `!` Bang Substitution
+
+[Source](https://stackoverflow.com/questions/3371294/how-can-i-recall-the-argument-of-the-previous-bash-command)
+
+
+
+The shell command [[!]] recalls an old command from the history buffer.
+[[!1]] - this starts from the beginning of the history.  In this case- there are 1500 entries, and this is the very first.
+[[!2]] etc
+[[!-1]] - start from the most recent.
+
+`cat .zsh_history | wc -l`
+running [[!$]] gives the last arguement `-l`  juist like reg-ex
+running [[!^]] gives the first arguments - here .zsh_history.  Note the command isnt included.
+
+`!2^` gives another item- .zshrc.  Its adjacent alphabeticallty but thats it...
+`!-1^` try to get the negatives of the value. Running `!5` without the hat, it does whats show above.   `zsh: no such word in event`
+`!^3` just puts the number at the end of the `!^` value.
+
+`$_` the last argument.  Similar to `!$`.  
+
+
+[[Alt]]+[[.]] ALT and period, Allegedly does as well but not working on the current machine I am on. 
+[[Esc]]+[[.]] Esc + period is also supposed to do the same.
+
+For items other than the first or last `!^` vs `!$` & `$_` you can do `!:1` to get a specific one.  Starts numbering after the command.
+
+`!:0` works as expected, annd gives the first word in the last command.
+
+`!!:0` - this actually does the same thing.
+
+Can even do ranges!
+`!:0-3`
+
+`!:^-$` the values `^` and `$` are just variables, and can be substituted.
+
+More advanced stuff
+
+`!pattern` - most recent command matching pattern
+
+`!!:s/find/replace` - last command, substitute find with replace
+
+you can also `^find^replace`.
+
+`!*` - all arguments from the previous command (after the program/built-in/script). e.g.: ls *.tmp *.cache rm !* 
+
+You can even combine the two methods- running the commands vertically, and the arguments horizontally.
+`!-2:3` - the command run 2 cmds prev. and the 3 argument.
+
+
 
 ## Basics
 
