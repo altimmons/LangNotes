@@ -2661,6 +2661,7 @@ nOT A BALANCE, MAYBE A SCRUB
 
 
 root@Unraid:~# for VAR in {1..17} ; do btrfs scrub status /mnt/disk$VAR; done
+                  
                   UUID:             4feb617c-e1e5-4b48-9999-0e5002f77a4e
                         no stats available
                   Total to scrub:   5.32TiB
@@ -2934,7 +2935,7 @@ To mount a subvol -  `sudo mount -o subvolid=321 /dev/sde /mnt`
 To get the view in the array details--
       `sudo btrfs fi df /home -h`
 
-      `sudo btrfs fi show`
+      `sudo btrfs f i show`
 
 
 **Disk Usage**
@@ -3012,4 +3013,107 @@ The primary purpose of the balance feature is to spread block groups across all 
 
 Typically the compression can be enabled on the whole filesystem, specified for the mount point. Note that the compression mount options are shared among all mounts of the same filesystem, either bind mounts or subvolume mounts. Please refer to section MOUNT OPTIONS.
 
-$ mount -o compress=zstd /dev/sdx /mnt
+`$ mount -o compress=zstd /dev/sdx /mnt`
+
+
+## BTRFS Repair
+
+
+[Source Example](https://btrfs.wiki.kernel.org/index.php/Restore)
+
+
+`/dev/mapper# btrfsck -p /dev/mapper/md7`
+
+If mounted, would have to use `--force` 
+
+This is read only unless `--repair`
+
+as in `root@Unraid:/dev/mapper# btrfsck --repair --force -p /dev/mapper/md7`
+
+      root@Unraid:/dev/mapper# btrfsck -p /dev/mapper/md7
+            Opening filesystem to check...
+            Checking filesystem on /dev/mapper/md7
+            UUID: 2f27ac4b-8270-427c-a31c-53e13fd33843
+            parent transid verify failed on 7138349432832 wanted 41006 found 40982items checked)
+            parent transid verify failed on 7138349432832 wanted 41006 found 40982
+            parent transid verify failed on 7138349432832 wanted 41006 found 40982
+            Ignoring transid failure
+            [1/7] checking root items                      (0:00:03 elapsed, 367579 items checked)
+            parent transid verify failed on 7138349432832 wanted 41006 found 40982
+            Ignoring transid failure
+            leaf parent key incorrect 7138349432832
+            bad block 7138349432832
+            [2/7] checking extents                         (0:00:00 elapsed, 123 items checked)
+            ERROR: errors found in extent allocation tree or chunk allocation
+            cache and super generation don't match, space cache will be invalidated
+            [3/7] checking free space tree                 (0:00:00 elapsed)
+            [4/7] checking fs roots                        (0:02:24 elapsed, 932 items checked)
+            [5/7] checking csums (without verifying data)  (0:00:00 elapsed, 290611 items checked)
+            [6/7] checking root refs                       (0:00:00 elapsed, 3 items checked)
+            [7/7] checking quota groups skipped (not enabled on this FS)
+            ERROR: transid errors in file system
+            found 39097171968 bytes used, error(s) found
+            total csum bytes: 0
+            total tree bytes: 1966080
+            total fs tree bytes: 0
+            total extent tree bytes: 557056
+            btree space waste bytes: 255924
+            file data blocks allocated: 0
+            referenced 0
+
+root@Unraid:/dev/mapper# mkdir /mnt/md7temp
+root@Unraid:/dev/mapper# mount -t btrfs -o usebackuproot /dev/mapper/md7 /mnt/md7temp/
+root@Unraid:/dev/mapper# btrfsck --repair -p /mnt/md7temp/
+
+
+btrfs scrub start -B /dev/mapper/md7
+
+
+`btrfs restore`
+btrfs restore: not enough arguments: 0 but at least 2 expected
+usage: btrfs restore [options] <device> <path> | -l <device>
+
+    Try to restore files from a damaged filesystem (unmounted)
+
+    -s|--snapshots       get snapshots
+    -x|--xattr           restore extended attributes
+    -m|--metadata        restore owner, mode and times
+    -S|--symlink         restore symbolic links
+    -i|--ignore-errors   ignore errors
+    -o|--overwrite       overwrite
+    -t <bytenr>          tree location
+    -f <bytenr>          filesystem location
+    -u|--super <mirror>  super mirror
+    -r|--root <rootid>   root objectid
+    -d                   find dir
+    -l|--list-roots      list tree roots
+    -D|--dry-run         dry run (only list files that would be recovered)
+    --path-regex <regex>
+                         restore only filenames matching regex,
+                         you have to use following syntax (possibly quoted):
+                         ^/(|home(|/username(|/Desktop(|/.*))))$
+    -c                   ignore case (--path-regex only)
+    -v|--verbose         deprecated, alias for global -v option
+
+    Global options:
+    -v|--verbose       increase output verbosity
+
+
+root@Unraid:/mnt# btrfs-find-root /dev/mapper/md7
+Superblock thinks the generation is 41166
+Superblock thinks the level is 1
+Found tree root at 7138339700736 gen 41166 level 1
+Well block **7138266349568** (gen: *41165* level: 1) seems good, but generation/level doesn't match, want gen: *41166* level: 1
+Well block **7138339094528** (gen: *41164* level: 1) seems good, but generation/level doesn't match, want gen: *41166* level: 1
+Well block **7138266398720** (gen: *40951* level: 0) seems good, but generation/level doesn't match, want gen: *41166* level: 1
+
+
+root@Unraid:/mnt# btrfs-find-root /dev/mapper/md7
+Superblock thinks the generation is 41167
+Superblock thinks the level is 1
+Found tree root at **7138338799616** gen 41167 level 1
+Well block **7138266398720** (gen: *40951* level: 0) seems good, but generation/level doesn't match, want gen: 41167 level: 1
+
+Try `7138339094528` which is gen 41164 (want 41166)
+Running it a second time found only `7138266398720(gen: 40951 level: 0)`
+

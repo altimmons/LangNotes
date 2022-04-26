@@ -6,6 +6,7 @@
 		}
 	],
 	"settings": {
+		//! DOCUMENT SETTINGS
 		"workbench.colorTheme": "Pop Dark",
 		"workbench.colorCustomizations": {
 			"[Pop Dark]": {
@@ -37,6 +38,8 @@
 		"terminal.integrated.fontWeight": "600",
 		"terminal.integrated.fontWeightBold": "400",
 		"editor.fontFamily": "\"RecMonoCasual  Nerd Font\", Hasklig, 'Operator Mono Lig NF'",
+		// "editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
+		// "editor.fontFamily": "'Rec Mono Duotone', 'Fira Code Retina', RobotoMono. monospace",
 		"workbench.editor.highlightModifiedTabs": true,
 		"editor.highlightActiveIndentGuide": true,
 		"editor.lineNumbers": "on",
@@ -57,6 +60,7 @@
 		"editor.snippetSuggestions": "top",
 		"activeDocumentIndicator.enabled": true,
 		"activeDocumentIndicator.opacity": 70,
+		// "window.title": "${dirty}${rootName}-(${activeEditorShort}$)",
 		"editor.wordWrap": "bounded",
 		"editor.wordWrapColumn": 120,
 		"[json]": {
@@ -66,6 +70,7 @@
 				"strings": false
 			}
 		},
+		//@ JSONC SETTINGS
 		"[jsonc]": {
 			"editor.quickSuggestions": {
 				"strings": true
@@ -259,37 +264,92 @@ Markdown Setting
 			}
 		},
 		"editor.tokenColorCustomizations": {
-			//                 "markup.heading",
 			"[Pop Dark]": {
 				"textMateRules": [
-					{
-						"scope": [
-							"markup.heading.markdown",
-							"entity.name.section.markdown"
-						],
-						"settings": {
-							"fontStyle": "italic bold underline",
-							"foreground": "#00ffc8"
-						}
-					},
-					{
-						"scope": [
-							"punctuation.definition.heading.markdown",
-							"markup.heading.markdown"
-						],
-						"settings": {
-							"fontStyle": "bold underline",
-							"foreground": "#eb0adf"
-						}
-					},
+					// {
+					// 	"scope": [
+					// 		"markup.heading.markdown",
+					// 		"entity.name.section.markdown"
+					// 	],
+					// 	"settings": {
+					// 		"fontStyle": "italic bold underline",
+					// 		"foreground": "#00ffc8"
+					// 	}
+					// },
 					{
 						"name": "Markdown - Plain",
 						"scope": [
 							"text.html.markdown",
 						],
 						"settings": {
-							"foreground": "#dfd5d5"
+							"foreground": "#dfd5d5db"
 							// "foreground": "#EEFFFF"
+						}
+					},
+					{
+						"scope": "entity.name.section.markdown",
+						"settings": {
+							"foreground": "#ff00a2",
+							"fontStyle": "bold italic underline"
+						}
+					},
+					{ //This does not lets me combine 2 scopess
+						"scope": "entity.name.section.markdown heading.5.markdown",
+						"settings": {
+							"foreground": "#a601ff",
+							"fontStyle": "bold underline"
+						}
+					},
+					{ //This does let me combine 2 scopess
+						"scope": "entity.name.section.markdown markup.inline.raw.string.markdown",
+						"settings": {
+							"foreground": "#aa00ff",
+							"fontStyle": "bold underline"
+						}
+					},
+					// {
+					// 	"name": "Headings",
+					// 	"scope": [
+					// 		"markup.heading entity.name.section.markdown heading.3.markdown",
+					// 		"entity.name.section.markdown heading.3.markdown ",
+					// 		"markup.heading.markdown",
+					// 		// "entity.name.section.markdown"
+					// 	],
+					// 	"settings": {
+					// 		"foreground": "#01ffae",
+					// 		"fontStyle": "bold"
+					// 	}
+					// },
+					// {
+					// 	"name": "Headings",
+					// 	"scope": [
+					// 		"heading.4.markdown",
+					// 		// "entity.name.section.markdown",
+					// 		"markup.heading.markdown",
+					// 		// "entity.name.section.markdown"
+					// 	],
+					// 	"settings": {
+					// 		"foreground": "#ff9501",
+					// 		"fontStyle": "bold"
+					// 	}
+					// },
+					// {
+					// 	"name": "",
+					// 	"scope": "entity.name.section.markdown",
+					// 	"settings": {
+					// 		"foreground": "#FF0000",
+					// 		"fontStyle": "bold"
+					// 	}
+					// },
+					{
+						"scope": [
+							// "markdown.heading",
+							// "markup.heading | markup.heading entity.name",
+							"markup.heading.markdown punctuation.definition.heading.markdown"
+						],
+						"settings": {
+							"fontStyle": "bold",
+							"foreground": "#ffffff"
 						}
 					},
 					{
@@ -329,17 +389,17 @@ Markdown Setting
 					// 				"foreground": "#f15d22"
 					// 			}
 					// 		},
-					{
-						"name": "Markup - Bold",
-						"scope": [
-							"markup.bold",
-							"markup.bold string"
-						],
-						"settings": {
-							"fontStyle": "bold",
-							"foreground": "#FFF4F4"
-						}
-					},
+					// {
+					// 	"name": "Markup - Bold",
+					// 	"scope": [
+					// 		"markup.bold",
+					// 		"markup.bold string"
+					// 	],
+					// 	"settings": {
+					// 		"fontStyle": "bold",
+					// 		"foreground": "#c79a46"
+					// 	}
+					// },
 					// 		{
 					// 			"name": "Markup - Bold-Italic",
 					// 			"scope": [
@@ -355,16 +415,16 @@ Markdown Setting
 					// 				"foreground": "#f15d22"
 					// 			}
 					// 		},
-					// 		{
-					// 			"name": "Markup - Underline",
-					// 			"scope": [
-					// 				"markup.underline"
-					// 			],
-					// 			"settings": {
-					// 				"fontStyle": "underline",
-					// 				"foreground": "#F78C6C"
-					// 			}
-					// 		},
+					{
+						"name": "Markup - Underline",
+						"scope": [
+							"markup.underline"
+						],
+						"settings": {
+							"fontStyle": "underline",
+							"foreground": "#F78C6C"
+						}
+					},
 					// 		{
 					// 			"name": "Markup - Strike",
 					// 			"scope": [
@@ -409,14 +469,14 @@ Markdown Setting
 							"fontStyle": "italic"
 						}
 					},
-					{
-						"name": "paren link colors",
-						"scope": "punctuation.definition.metadata.markdown",
-						"settings": {
-							"foreground": "#ff00002c",
-							"fontStyle": "bold"
-						}
-					},
+					// {
+					// 	"name": "paren link colors",
+					// 	"scope": "punctuation.definition.metadata.markdown",
+					// 	"settings": {
+					// 		"foreground": "#ff00002c",
+					// 		"fontStyle": "bold"
+					// 	}
+					// },
 					{
 						//affects the '-' and '1' in ordered and unordered lists
 						"scope": [
@@ -451,16 +511,9 @@ Markdown Setting
 						"scope": "markup.inline.raw.string.markdown",
 						"settings": {
 							// "foreground": "#72e911d0",
-							"foreground": "#F07A44",
-							"fontStyle": ""
-						}
-					},
-					{
-						//this is to hide most the punctuation, often markdown to make it fade back.
-						"name": "punctuation modifier",
-						"scope": "punctuation.definition.raw.markdown",
-						"settings": {
-							"foreground": "#acf50233"
+							// "foreground": "#F07A44",
+							"foreground": "#07ff5ee1",
+							"fontStyle": "italic"
 						}
 					},
 					//quoted blocks (2)
@@ -481,20 +534,11 @@ Markdown Setting
 							"fontStyle": "italic",
 						}
 					},
-					{
-						//hide the ** marks
-						"scope": "punctuation.definition.bold.markdown",
-						"settings": {
-							// "foreground": "#fa738975",
-							"foreground": "#3E3B3B",
-							"fontStyle": "bold",
-						}
-					},
 					{ //this hides the <'u'> in an underline tag
 						"scope": "entity.name.tag.html",
 						"name": "html blocks fade",
 						"settings": {
-							"foreground": "#3E3B3B",
+							"foreground": "#3e3b3b28",
 							// "foreground": "#5999dd52",
 							"fontStyle": "italic"
 						}
@@ -513,44 +557,43 @@ Markdown Setting
 						}
 					},
 					{
+						//a block that is just tabbed over...
+						"name": "Markup - Raw Block",
+						"scope": [
+							"markup.raw.block"
+						],
+						"settings": {
+							"foreground": "#72a8e1",
+							"fontStyle": "italic"
+						}
+					},
+					{
+						"scope": "markup.bold.markdown",
+						"settings": {
+							"foreground": "#ffffff",
+							"fontStyle": "bold",
+						}
+					},
+					{
 						"scope": "markup.italic.markdown",
 						"settings": {
-							"foreground": "#D9D0D0",
-							"fontStyle": "italic",
-						}
-					},
-					{
-						"scope": "punctuation.definition.italic.markdown",
-						"settings": {
-							"foreground": "#89deff44",
+							"foreground": "#fbff00",
 							"fontStyle": "",
 						}
 					},
 					{
-						"scope": "punctuation.definition.bold.markdown",
+						"name": "dim symbols",
+						"scope": [
+							"punctuation.definition.italic.markdown",
+							"punctuation.definition.bold.markdown",
+							"punctuation.definition.raw.markdown", //this is for code
+							"punctuation.definition.metadata.markdown"
+						],
 						"settings": {
-							"foreground": "#ff552236",
+							"foreground": "#00000027",
 							"fontStyle": "",
 						}
 					},
-					// {
-					// 	//a block that is just tabbed over...
-					// 	"name": "Markup - Raw Block",
-					// 	"scope": [
-					// 		"markup.raw.block"
-					// 	],
-					// 	"settings": {
-					// 		"foreground": "#FFCA40",
-					// 		"fontStyle": ""
-					// 	}
-					// },
-					// 		{
-					// 			"scope": "markup.bold.markdown",
-					// 			"settings": {
-					// 				"foreground": "#74e255",
-					// 				"fontStyle": "bold",
-					// 			}
-					// 		},
 					// 		//^  Good
 					// 		{
 					// 			"name": "Markdown - Link Anchor",
@@ -621,22 +664,6 @@ Markdown Setting
 				// 	// "strings": "#FF0000"
 			},
 		},
-		"files.autoSave": "onFocusChange",
-		// "editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
-		// "editor.fontFamily": "'Rec Mono Duotone', 'Fira Code Retina', RobotoMono. monospace",
-		"editor.suggest.showKeywords": false,
-		"editor.suggest.showWords": false,
-		"editor.codeLens": false,
-		"MarkdownPaste.path": "./img",
-		// "window.title": "${dirty}${rootName}-(${activeEditorShort}$)",
-		"editor.roundedSelection": true,
-		"editor.minimap.enabled": true,
-		"editor.formatOnPaste": true,
-		"editor.snippetSuggestions": "top",
-		"activeDocumentIndicator.enabled": true,
-		"activeDocumentIndicator.opacity": 70,
-		"editor.wordWrap": "bounded",
-		"editor.wordWrapColumn": 120,
 		/*
 Markdown Setting
 */
@@ -648,12 +675,6 @@ Markdown Setting
 		// "markdownPrism.theme": "solarizedLight",
 		// "markdownPrism.theme": "prism",
 		// "markdownShiki.theme": "dark_plus",
-		"markdownShiki.theme": "solarized_light",
-		"markdown-preview-showdown.autoPreview": false,
-		"markdown-preview-showdown.mermaidTheme": "default",
-		"markdown-preview-showdown.plantumlRenderMode": "local",
-		"markdown-preview-showdown.puppeteerWaitForTimeout": 10,
-		"markdown-preview-showdown.maxContentSize": 32768,
 		"activityBar.activeBackground": "#8e552d",
 		"tab.unfocusedActiveBorder": "#fff0",
 		"markdown-header-coloring.colormapConfig": {
@@ -704,14 +725,6 @@ Markdown Setting
 		// 	}
 		// },
 	},
-	// "snippets": {
-	// 	// Place your md workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// 	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// 	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// 	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// 	// Placeholders with the same ids are connected.
-	// 	// Example:
 	// 	// "Print to console": {
 	// 	// 	"scope": "javascript,typescript",
 	// 	// 	"prefix": "log",

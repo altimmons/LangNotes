@@ -551,7 +551,7 @@ echo value is $val
 
 #### Preserving Whitespace (Quoted Variables)
 
- The quoted variable preserves whitespace. Unquoted, however, it removes tabs and newlines.
+ The quoted variable **preserves** whitespace. Unquoted, however, it removes tabs and newlines. [s](test)
 
         echo $a
         echo "$a"
@@ -716,7 +716,7 @@ middle_col=$(( ($cols / 2) - $half_input_length ))
 ```
 
 
-## System variable (Environment Var)
+## System variables (Environment Var)
 
 !!!note `environment variables` and `shell variables` are not the same thing.  
     Then, you should know that shells have _attributes_ which govern how it works. These attributes are not environment nor shell variables.
@@ -890,7 +890,7 @@ root@linux ~#
 #### set
 
 !!!help set: set [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg ...]
-    Set or unset values of shell options and positional parameters.
+    Set or **unset** values of shell options and positional parameters.
 
     Change the value of shell attributes and positional parameters, or
     display the names and values of shell variables.

@@ -37,6 +37,13 @@ Block devices vs Char devices
 
 `md` lists array devices\
 
+Legacy Names:
+
+            Type of disk	Disk names	Commonly used disk names
+            IDE	/dev/hd[a-h]	/dev/hda, /dev/hdb
+            SCSI	/dev/sd[a-p]	/dev/sda, /dev/sdb
+            ESDI	/dev/ed[a-d]	/dev/eda
+            XT	/dev/xd[ab]	      /dev/xda
 
 
 
@@ -135,8 +142,59 @@ Layers of LVM
 
 5. [logical extent (LE)](https://tldp.org/HOWTO/LVM-HOWTO/le.html)
 
-![](https://www.brainupdaters.net/wp-content/uploads/LVM-intro/LogicalVolumenManager.jpg)]
+![](https://www.brainupdaters.net/wp-content/uploads/LVM-intro/LogicalVolumenManager.jpg)
 
+
+The Linux Filesystem architecture
+
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/The_Linux_Storage_Stack_Diagram.svg/1920px-The_Linux_Storage_Stack_Diagram.svg.png" style="background-color: white;" >
+
+
+Functions provided by the device mapper include linear, striped and error mappings, as well as crypt and multipath targets. For example, two disks may be concatenated into one logical volume with a pair of linear mappings, one for each disk. As another example, crypt target encrypts the data passing through the specified device, by using the Linux kernel's Crypto API.[1]
+
+As of 2014, the following mapping targets are available:[1][5]
+
+- `cache` - allows creation of hybrid volumes, by using solid-state drives (SSDs) as caches for hard disk drives (HDDs)
+- `clone` - will permit usage before a transfer is complete.
+- `crypt` - provides data encryption, by using the Linux kernel's Crypto API
+- `delay` - delays reads and/or writes to different devices (used for testing)
+- `era` - behaves in a way similar to the linear target, while it keeps track of blocks that were written to within a user-defined period of time[9]
+- `error` - simulates I/O errors for all mapped blocks (used for testing)
+- `flakey` - simulates periodic unreliable behaviour (used for testing)
+- `linear` - maps a continuous range of blocks onto another block device
+- `mirror` - maps a mirrored logical device, while providing data redundancy
+- `multipath` - supports the mapping of multipathed devices, through usage of their path groups
+- `raid` - offers an interface to the Linux kernel's software RAID driver (md)
+- `snapshot and snapshot-origin` - used for creation of LVM snapshots, as part of the underlying copy-on-write scheme
+- `striped` - stripes the data across physical devices, with the number of stripes and the striping chunk size as parameters
+- `thin` - allows creation of devices larger than the underlying physical device, physical space is allocated only when written to
+- `zero` - an equivalent of /dev/zero, all reads return blocks of zeros, and writes are discarded
+
+### Applications
+
+Linux kernel features and projects built on top of the device mapper include the following:
+
+- `cryptsetup` - utility used to conveniently setup disk encryption based on dm-crypt
+- `dm-crypt/LUKS` - mapping target that provides volume encryption
+- `dm-cache` - mapping target that allows creation of hybrid volumes
+- `dm-integrity` - mapping target that provides data integrity, either using checksumming or cryptographic verification,[10][11] also used with LUKS[12]
+- `dm-log-writes` - mapping target that uses two devices, passing through the first device and logging the write operations performed to it on the second device[13]
+- `dm-verity` - validates the data blocks contained in a file system against a list of cryptographic hash values, developed as part of the Chromium OS project[14]
+- `dmraid`(8) - provides access to "fake" RAID configurations via the device mapper
+- `DM Multipath` - provides I/O failover and load-balancing of block devices within the Linux kernel
+- `Docker` - uses device mapper to create copy-on-write storage for software containers
+- `DRBD` (Distributed Replicated Block Device)
+- `EVMS` (deprecated)
+- `kpartx`(8) - utility called from hotplug upon device maps creation and deletion
+- `LVM2` - logical volume manager for the Linux kernel
+Linux version of `TrueCrypt`
+`VDO` - Virtual Data Optimizer
+
+![](https://i.stack.imgur.com/l1Ikx.png)
+
+![](http://www.brendangregg.com/Perf/linux_perf_tools_full.png?w=144)
+
+![](https://www.brendangregg.com/blog/images/2019/bpf_performance_tools.png)
 ## Linux Networking
 
 
