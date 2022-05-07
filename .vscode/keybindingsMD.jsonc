@@ -212,4 +212,37 @@
         "command": "markdown-preview-enhanced.openPreviewToTheSide",
         "when": "editorTextFocus && editorLangId == 'markdown'"
     },
+    // special add a block section
+    {
+        "key": "ctrl+b",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "**$1** $0"
+        }
+    },
+    {
+        "key": "ctrl+`",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "`$1` $0"
+        }
+    },
+    {
+        "key": "ctrl+i",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "*$1* $0"
+        }
+    },
+    {
+        "key": "ctrl+u",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "_$1_ $0"
+        }
+    }
 ]

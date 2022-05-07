@@ -2426,7 +2426,8 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
 
 ## CryptSetup
 
-            cryptsetup 2.3.4
+  !!! Abstract cryptsetup 2.3.4;
+
             Usage: cryptsetup [OPTION...] <action> <action-specific>
             -v, --verbose                         Shows more detailed error messages
                   --debug                           Show debug messages
@@ -2567,6 +2568,184 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
                   plain: aes-cbc-essiv:sha256, Key: 256 bits, Password hashing: ripemd160
                   LUKS: aes-xts-plain64, Key: 256 bits, LUKS header hashing: sha256, RNG: /dev/urandom
                   LUKS: Default keysize with XTS mode (two internal keys) will be doubled.
+
+!!! Abstract dmsetup
+
+            dmsetup
+                  [--version] [-h|--help [-c|-C|--columns]]
+                  [-v|--verbose [-v|--verbose ...]] [-f|--force]
+                  [--checks] [--manglename {none|hex|auto}]
+                  [-r|--readonly] [--noopencount] [--noflush] [--nolockfs] [--inactive]
+                  [--udevcookie <cookie>] [--noudevrules] [--noudevsync] [--verifyudev]
+                  [-y|--yes] [--readahead {[+]<sectors>|auto|none}] [--retry]
+                  [-c|-C|--columns] [-o <fields>] [-O|--sort <sort_fields>]
+                  [-S|--select <selection>] [--nameprefixes] [--noheadings]
+                  [--separator <separator>]
+
+                  help [-c|-C|--columns]
+                  create <dev_name>
+                        [-j|--major <major> -m|--minor <minor>]
+                        [-U|--uid <uid>] [-G|--gid <gid>] [-M|--mode <octal_mode>]
+                        [-u|--uuid <uuid>] [--addnodeonresume|--addnodeoncreate]
+                        [--readahead {[+]<sectors>|auto|none}]
+                        [-n|--notable|--table {<table>|<table_file>}]
+                  create --concise [<concise_device_spec_list>]
+                  remove [--deferred] [-f|--force] [--retry] <device>...
+                  remove_all [-f|--force]
+                  suspend [--noflush] [--nolockfs] <device>...
+                  resume [--noflush] [--nolockfs] <device>...
+                        [--addnodeonresume|--addnodeoncreate]
+                        [--readahead {[+]<sectors>|auto|none}]
+                  load <device> [<table>|<table_file>]
+                  clear <device>
+                  reload <device> [<table>|<table_file>]
+                  wipe_table [-f|--force] [--noflush] [--nolockfs] <device>...
+                  rename <device> [--setuuid] <new_name_or_uuid>
+                  message <device> <sector> <message>
+                  ls [--target <target_type>] [--exec <command>] [-o <options>] [--tree]
+                  info [<device>...]
+                  deps [-o <options>] [<device>...]
+                  stats <command> [<options>] [<device>...]
+                  status [<device>...] [--noflush] [--target <target_type>]
+                  table [<device>...] [--concise] [--target <target_type>] [--showkeys]
+                  wait <device> [<event_nr>] [--noflush]
+                  mknodes [<device>...]
+                  mangle [<device>...]
+                  udevcreatecookie
+                  udevreleasecookie [<cookie>]
+                  udevflags <cookie>
+                  udevcomplete <cookie>
+                  udevcomplete_all [<age_in_minutes>]
+                  udevcookies
+                  target-version [<target>...]
+                  targets
+                  version
+                  setgeometry <device> <cyl> <head> <sect> <start>
+                  splitname <device> [<subsystem>]
+
+            <device> may be device name or (if only one) -u <uuid> or -j <major> -m <minor>
+            <mangling_mode> is one of 'none', 'auto' and 'hex'.
+            <fields> are comma-separated.  Use 'help -c' for list.
+            <concise_device_specification> has single-device entries separated by semi-colons:
+            <name>,<uuid>,<minor>,<flags>,<table>
+                  where <flags> is 'ro' or 'rw' (the default) and any of <uuid>, <minor>
+                  and <flags> may be empty. Separate extra table lines with commas.
+            E.g.: dev1,,,,0 100 linear 253:1 0,100 100 error;dev2,,,ro,0 1 error
+            Table_file contents may be supplied on stdin.
+            Options are: devno, devname, blkdevname.
+            Tree specific options are: ascii, utf, vt100; compact, inverted, notrunc;
+                                    blkdevname, [no]device, active, open, rw and uuid.
+
+            Mapped Device Name Fields
+      -------------------------
+      name_all              - All fields in this section.
+      name                  - Name of mapped device.
+      mangled_name          - Mangled name of mapped device.
+      unmangled_name        - Unmangled name of mapped device.
+      uuid                  - Unique (optional) identifier for mapped device.
+      mangled_uuid          - Mangled unique (optional) identifier for mapped device.
+      unmangled_uuid        - Unmangled unique (optional) identifier for mapped device.
+      read_ahead            - Read ahead value.
+
+      Mapped Device Information Fields
+      --------------------------------
+      info_all              - All fields in this section.
+      blkdevname            - Name of block device.
+      attr                  - (L)ive, (I)nactive, (s)uspended, (r)ead-only, read-(w)rite.
+      tables_loaded         - Which of the live and inactive table slots are filled.
+      suspended             - Whether the device is suspended.
+      readonly              - Whether the device is read-only or writeable.
+      devno                 - Device major and minor numbers
+      major                 - Block device major number.
+      minor                 - Block device minor number.
+      open                  - Number of references to open device, if requested.
+      segments              - Number of segments in live table, if present.
+      events                - Number of most recent event.
+
+      Mapped Device Relationship Information Fields
+      ---------------------------------------------
+      deps_all              - All fields in this section.
+      device_count          - Number of devices used by this one.
+      devs_used             - List of names of mapped devices used by this one.
+      devnos_used           - List of device numbers of devices used by this one.
+      blkdevs_used          - List of names of block devices used by this one.
+      device_ref_count      - Number of mapped devices referencing this one.
+      names_using_dev       - List of names of mapped devices using this one.
+      devnos_using_dev      - List of device numbers of mapped devices using this one.
+
+      Mapped Device Name Components Fields
+      ------------------------------------
+      splitname_all         - All fields in this section.
+      subsystem             - Userspace subsystem responsible for this device.
+      vg_name               - LVM Volume Group name.
+      lv_name               - LVM Logical Volume name.
+      lv_layer              - LVM device layer.
+
+      Mapped Device Statistics Fields
+      -------------------------------
+      stats_all             - All fields in this section.
+      read_count            - Count of reads completed.
+      reads_merged_count    - Count of read requests merged.
+      read_sector_count     - Count of sectors read.
+      read_time             - Accumulated duration of all read requests (ns).
+      write_count           - Count of writes completed.
+      writes_merged_count   - Count of write requests merged.
+      write_sector_count    - Count of sectors written.
+      write_time            - Accumulated duration of all writes (ns).
+      in_progress_count     - Count of requests currently in progress.
+      io_ticks              - Nanoseconds spent servicing requests.
+      queue_ticks           - Total nanoseconds spent in queue.
+      read_ticks            - Nanoseconds spent servicing reads.
+      write_ticks           - Nanoseconds spent servicing writes.
+      reads_merged_per_sec  - Read requests merged per second.
+      writes_merged_per_sec - Write requests merged per second.
+      reads_per_sec         - Reads per second.
+      writes_per_sec        - Writes per second.
+      read_size_per_sec     - Size of data read per second.
+      write_size_per_sec    - Size of data written per second.
+      avg_request_size      - Average request size.
+      queue_size            - Average queue size.
+      await                 - Averate wait time.
+      read_await            - Averate read wait time.
+      write_await           - Averate write wait time.
+      throughput            - Throughput.
+      service_time          - Service time.
+      util                  - Utilization.
+      hist_count            - Latency histogram counts.
+      hist_count_bounds     - Latency histogram counts with bin boundaries.
+      hist_count_ranges     - Latency histogram counts with bin ranges.
+      hist_percent          - Relative latency histogram.
+      hist_percent_bounds   - Relative latency histogram with bin boundaries.
+      hist_percent_ranges   - Relative latency histogram with bin ranges.
+      interval_ns           - Sampling interval in nanoseconds.
+      interval              - Sampling interval.
+
+      Mapped Device Statistics Region Information Fields
+      --------------------------------------------------
+      region_all            - All fields in this section.
+      region_id             - Region ID.
+      region_start          - Region start.
+      region_len            - Region length.
+      area_id               - Area ID.
+      area_start            - Area offset from start of device.
+      area_len              - Area length.
+      area_offset           - Area offset from start of region.
+      area_count            - Area count.
+      group_id              - Group ID.
+      program_id            - Program ID.
+      user_data             - Auxiliary data.
+      precise               - Set if nanosecond precision counters are enabled.
+      hist_bins             - The number of histogram bins configured.
+      hist_bounds           - Latency histogram bin boundaries.
+      hist_ranges           - Latency histogram bin ranges.
+      stats_name            - Stats name of current object.
+      obj_type              - Type of stats object being reported.
+
+      Special Fields
+      --------------
+      selected              - Set if item passes selection criteria.
+      help                  - Show help.
+      ?                     - Show help.
 
 
 none of these work
@@ -2846,6 +3025,16 @@ This is more succinct than ls -l:
             md14 <dm-11> (254:11)
             └─ <md14> (9:14)
 
+When I mount it myself:
+
+            md2 <dm-2> (254:2)
+            └─ <md2> (9:2)
+            md1 <dm-1> (254:1)
+            └─ <md1> (9:1)
+            disk4 <dm-0> (254:0)
+            └─ <sdk1> (8:161)
+            md7 <dm-6> (254:6)
+            └─ <md7> (9:7)
 
 
 ## DD
@@ -3018,7 +3207,7 @@ Typically the compression can be enabled on the whole filesystem, specified for 
 
 ## BTRFS Repair
 
-
+ 
 [Source Example](https://btrfs.wiki.kernel.org/index.php/Restore)
 
 
@@ -3069,6 +3258,154 @@ root@Unraid:/dev/mapper# btrfsck --repair -p /mnt/md7temp/
 btrfs scrub start -B /dev/mapper/md7
 
 
+I ran the below and it ran for literal days.  I figured out that the output was counting up, and each time by a multiple of 4096.  Using that, I calculated the number of sectors.  Since it seemed to move sequentially, it seemed it was 35% after 4 days.  I stopped it early
+
+` btrfs -v check --repair --init-extent-tree /dev/mapper/disk4`
+
+>     ref mismatch on [4964993294336 12288] extent item 0, found 1
+>     data backref 4964993294336 parent 8669857120256 owner 0 offset 0 >    num_refs 0 not found in extent tree
+>     incorrect local backref count on 4964993294336 parent 8669857120256 >owner 0 offset 0 found 1 wanted 0 back 0x3674cf0
+>     backpointer mismatch on [4964993294336 12288]
+>     adding new data backref on 4964993294336 parent 8669857120256 owner 0 > offset 0 found 1
+>     Repaired extent references for 4964993294336
+>     ref mismatch on [4964993306624 12288] extent item 0, found 1
+>     data backref 4964993306624 parent 8669857120256 owner 0 offset 0 >    num_refs 0 not found in extent tree
+>     incorrect local backref count on 4964993306624 parent 8669857120256 >owner 0 offset 0 found 1 wanted 0 back 0x3674e20
+>     backpointer mismatch on [4964993306624 12288]
+>     adding new data backref on 4964993306624 parent 8669857120256 owner 0 >offset 0 found 1
+>     Repaired extent references for 4964993306624
+
+Prior to that I had run: this should have been v2 though
+
+      btrfs -v check -b --repair -p /dev/mapper/disk4
+      btrfs -v check --clear-space-cache v1 /dev/mapper/disk4
+      btrfs -v check -b --repair --init-extent-tree /dev/mapper/disk4
+      btrfs -v check --repair --clear-space-cache v1 /dev/mapper/disk4
+      btrfs -v check --repair --init-extent-tree /dev/mapper/disk4
+
+per my logs.  This means the extent tree took forever after clearing the space cache.  Space cache is `V2`
+
+running this:
+
+`btrfs -v check --repair /dev/mapper/disk4`
+a second time made it start up the same thing. Only now its *much* faster for some reason.
+
+>		data backref 5009034027008 parent 8507116109824 owner 0 offset 0 num_refs 0 not found in extent tree
+>		incorrect local backref count on 5009034027008 parent 8507116109824 owner 0 offset 0 found 1 wanted 0 back 0x13957d0
+>		backpointer mismatch on [5009034027008 4096]
+>		adding new data backref on 5009034027008 parent 8507116109824 owner 0 offset 0 found 1
+>		Repaired extent references for 5009034027008
+>		ref mismatch on [5009034031104 12288] extent item 0, found 1
+>		data backref 5009034031104 parent 8507116109824 owner 0 offset 0 num_refs 0 not found in extent tree
+>		incorrect local backref count on 5009034031104 parent 8507116109824 owner 0 offset 0 found 1 wanted 0 back 0x1395900
+>		backpointer mismatch on [5009034031104 12288]
+>		adding new data backref on 5009034031104 parent 8507116109824 owner 0 offset 0 found 1
+>		Repaired extent references for 5009034031104
+
+So perhaps it still needs to run this, output looks the same, but at least its going faster
+
+ md: unRAID driver removed
+>	 md: unRAID driver 2.9.17 installed
+>	 mdcmd (1): import 0 sdf 64 13672382412 0 ST14000NM001G-2KJ103_ZTM0CGQ0
+>	 md: import disk0: (sdf) ST14000NM001G-2KJ103_ZTM0CGQ0 size: 13672382412 
+>	 mdcmd (2): import 1 sdg 64 13672382412 0 WDC_WD140EDFZ-11A0VA0_Y5J1E95C
+>	 md: import disk1: (sdg) WDC_WD140EDFZ-11A0VA0_Y5J1E95C size: 13672382412 
+>	 mdcmd (3): import 2 sdh 64 13672382412 0 WDC_WD140EDFZ-11A0VA0_9MG7WPVJ
+>	 md: import disk2: (sdh) WDC_WD140EDFZ-11A0VA0_9MG7WPVJ size: 13672382412 
+
+... does that for each *array* disk
+
+>	 mdcmd (9): import 8
+>	 mdcmd (10): import 9
+>	 mdcmd (11): import 10
+
+...does this for other disks?
+
+>	 mdcmd (30): import 29 sde 64 13672382412 0 ST14000NM001G-2KJ103_ZTM0C8M7
+>	 md: import disk29: (sde) ST14000NM001G-2KJ103_ZTM0C8M7 size: 13672382412 
+>	 mdcmd (5): import 4
+>	 md: import_slot: 4 missing
+
+>	 mdcmd (5): import 4 sdv 64 13672382412 1 WDC_WUH721414ALE6L4_9MGHM3LU
+>	 md: import disk4: (sdv) WDC_WUH721414ALE6L4_9MGHM3LU size: 13672382412 erased
+>	 md: import_slot: 4 wrong
+>	 mdcmd (9): import 8
+... 8-29
+>	 mdcmd (30): import 29 sde 64 13672382412 0 ST14000NM001G-2KJ103_ZTM0C8M7
+>	 md: import disk29: (sde) ST14000NM001G-2KJ103_ZTM0C8M7 size: 13672382412 
+>	 mdcmd (31): set md_num_stripes 1280
+>	 mdcmd (32): set md_queue_limit 80
+>	 mdcmd (33): set md_sync_limit 5
+>	 mdcmd (34): set md_write_method
+>	 mdcmd (35): start RECON_DISK
+>	 unraid: allocating 46470K for 1280 stripes (9 disks)
+>	 md1: running, size: 13672382412 blocks
+>	 md2: running, size: 13672382412 blocks
+>	 md3: running, size: 13672382412 blocks
+>	 md4: running, size: 13672382412 blocks
+>	 md5: running, size: 13672382412 blocks
+>	 md6: running, size: 11718885324 blocks
+>	 md7: running, size: 9766436812 blocks
+>	  sdv: sdv1
+>	  sdv: sdv1
+>	  sdv: sdv1
+>	  sdv: sdv1
+>	 BTRFS info (device dm-1): using free space tree
+>	 BTRFS info (device dm-1): has skinny extents
+>	 BTRFS info (device dm-2): using free space tree
+>	 BTRFS info (device dm-2): has skinny extents
+>	 BTRFS info (device dm-3): using free space tree
+>	 BTRFS info (device dm-3): has skinny extents
+>	 XFS (md5): Mounting V5 Filesystem
+>	 XFS (md5): Ending clean mount
+>	 xfs filesystem being mounted at /mnt/disk5 supports timestamps until 2038 (0x7fffffff)
+>	 BTRFS info (device dm-5): using free space tree
+>	 BTRFS info (device dm-5): has skinny extents
+>	 BTRFS info (device dm-6): using free space tree
+>	 BTRFS info (device dm-6): has skinny extents
+>	 BTRFS info (device sdal1): turning on async discard
+>	 BTRFS info (device sdal1): allowing degraded mounts
+>	 BTRFS info (device sdal1): using free space tree
+>	 BTRFS info (device sdal1): has skinny extents
+>	 BTRFS info (device sdal1): bdev /dev/sdbk1 errs: wr 103, rd 9, flush 3, corrupt 0, gen 0
+>	 BUG: kernel NULL pointer dereference, address: 0000000000000000
+>	 #PF: supervisor read access in kernel mode
+>	 #PF: error_code(0x0000) - not-present page
+>	 PGD 80000015bbc0f067 P4D 80000015bbc0f067 PUD df445d067 PMD 0 
+>	 Oops: 0000 [#1] SMP PTI
+>	 CPU: 17 PID: 20713 Comm: btrfs Tainted: P        W  O      5.10.28-Unraid #1
+>	 Hardware name: ASUSTeK Computer INC. Z9PR-D12 Series/Z9PR-D12 Series, BIOS 6002 04/18/2018
+>	 RIP: 0010:strcmp+0x2/0x1a
+>	 Code: ef 4c 89 c0 c3 48 89 f8 48 89 fa 8a 0a 48 89 d7 48 8d 52 01 84 c9 75 f3 31 d2 8a 0c 16 88 0c 17 48 ff c2 84 c9 75 f3 c3 31 c0 <8a> 14 07 3a 14 06 74 06 19 c0 83 c8 01 c3 48 ff c0 84 d2 75 eb 31
+>	 RSP: 0018:ffffc90020d9fd78 EFLAGS: 00010246
+>	 RAX: 0000000000000000 RBX: ffff888132202a00 RCX: 0000000000000000
+>	 RDX: 0000000000000001 RSI: ffffffff81d92a5e RDI: 0000000000000000
+>	 RBP: fffffffffffffffe R08: 0000000000000001 R09: 0000000000004000
+>	 R10: ffffc90020d9ff08 R11: 0000000000000000 R12: 0000000000000006
+>	 R13: ffff888385f3c000 R14: 0000000000000000 R15: 000000000000a0ed
+>	 FS:  0000154d1faead40(0000) GS:ffff88981fc40000(0000) knlGS:0000000000000000
+>	 CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>	 CR2: 0000000000000000 CR3: 00000017bcccc006 CR4: 00000000000606e0
+>	 Call Trace:
+>	  btrfs_rm_device+0x10b/0x4ad
+>	  btrfs_ioctl+0xced/0x2c28
+>	  ? getname_flags+0x44/0x146
+>	  ? vfs_statx+0x72/0x105
+>	  ? vfs_ioctl+0x19/0x26
+>	  vfs_ioctl+0x19/0x26
+>	  __do_sys_ioctl+0x51/0x74
+>	  do_syscall_64+0x5d/0x6a
+>	  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>	 RIP: 0033:0x154d1fc02417
+>	 Code: 00 00 90 48 8b 05 79 2a 0d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 49 2a 0d 00 f7 d8 64 89 01 48
+>	 RSP: 002b:00007ffc85502878 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+>	 RAX: ffffffffffffffda RBX: 00007ffc85504a30 RCX: 0000154d1fc02417
+>	 RDX: 00007ffc855038a0 RSI: 000000005000943a RDI: 0000000000000004
+>	 RBP: 0000000000000001 R08: 1999999999999999 R09: 0000000000000000
+>	 R10: 0000154d1fc84ac0 R11: 0000000000000246 R12: 0000000000000002
+>	 R13: 00007ffc855038a0 R14: 0000000000000004 R15: 00007ffc85504a78
+
+
 `btrfs restore`
 btrfs restore: not enough arguments: 0 but at least 2 expected
 usage: btrfs restore [options] <device> <path> | -l <device>
@@ -3117,3 +3454,860 @@ Well block **7138266398720** (gen: *40951* level: 0) seems good, but generation/
 Try `7138339094528` which is gen 41164 (want 41166)
 Running it a second time found only `7138266398720(gen: 40951 level: 0)`
 
+Update- the original disk seems  toast.  Rebuilding the array seems to have created a copy-- with the exact issue.
+
+Nothing works, and it will not mount, but doing 
+
+`btrfs restore /dev/dm-0 /ztst/ds1/dm0`
+
+into my zfs pool is writing a TON of data.  Hard to tell if its  working yet. but its doing something.
+
+I tried recover before without benefit.
+
+I do get these errors: It slowed down the writes and then asked:
+
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)332.adi, do you want to keep going on ? (y/N/a): N
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)336.adi, do you want to keep going on ? (y/N/a): N
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)337.adi, do you want to keep going on ? (y/N/a): N\
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)338.adi, do you want to keep going on ? (y/N/a): n
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)339.adi, do you want to keep going on ? (y/N/a):
+            We seem to be looping a lot on /ztst/ds1/dm0/rDriveA/Seagate_Expansion_Drive/My Backup(1)/My Backup(1)34.adi, do you want to keep going on ? (y/N/a):
+
+## BTRFS
+
+[Examples](https://unixsheikh.com/articles/battle-testing-zfs-btrfs-and-mdadm-dm.html#btrfs-raid-5)
+
+
+
+!!!Info Info: BTRFS Commands
+    usage: btrfs [--help] [--version] [--format <format>] [-v|--verbose] [-q|--quiet] <group> [<group>...] <command> [<args>]
+    - **balance**
+       - `btrfs balance start [options] <path>` ) Balance chunks across the device
+       - `btrfs balance pause <path>` ) Pause running balance
+       - `btrfs balance cancel <path>` ) Cancel running or paused balance
+       - `btrfs balance resume <path>` ) Resume interrupted balance
+       - `btrfs balance status [-v] <path>` ) Show status of running or paused balance
+    - **check**
+        - `btrfs check [options] <device>` ) Check structural integrity of a filesystem (unmounted).
+    - **device**
+        - `btrfs device add [options] <device> [<device>...] <path>` ) Add one or more devices to a mounted filesystem.
+        -``btrfs device delete <device>|<devid> [<device>|<devid>...] <path>```
+        - `btrfs device remove <device>|<devid> [<device>|<devid>...] <path>` ) Remove a device from a filesystem
+        - `btrfs device scan [-d|--all-devices] <device> [<device>...]` ) 
+        - `btrfs device scan -u|--forget [<device>...]` ) Scan or forget (unregister) devices of btrfs filesystems
+        - `btrfs device ready <device>` ) Check and wait until a group of devices of a filesystem is ready for mount
+        - `btrfs device stats [options] <path>|<device>` ) Show device IO error statistics
+        - `btrfs device usage [options] <path> [<path>..]` ) Show detailed information about internal allocations in    devices.
+    - **filesystem**
+        - `btrfs filesystem df [options] <path>` ) Show space usage information for a mount point
+        - `btrfs filesystem du [options] <path> [<path>..]` ) Summarize disk usage of each file.
+        - `btrfs filesystem show [options] [<path>|<uuid>|<device>|label]` ) Show the structure of a filesystem
+        - `btrfs filesystem sync <path>` ) Force a sync on a filesystem
+        - `btrfs filesystem defragment [options] <file>|<dir> [<file>|<dir>...]` ) Defragment a file or a directory
+        - `btrfs filesystem resize [options] [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>` ) Resize a    filesystem
+        - `btrfs filesystem label [<device>|<mount_point>] [<newlabel>]` ) Get or change the label of a filesystem
+        - `btrfs filesystem usage [options] <path> [<path>..]` ) Show detailed information about internal filesystem    usage .
+    - **inspect-internal**
+        - `btrfs inspect-internal inode-resolve [-v] <inode> <path>` ) Get file system paths for the given inode
+        - `btrfs inspect-internal logical-resolve [-Pvo] [-s bufsize] <logical> <path>` ) Get file system paths for   the  given logical address
+      - `btrfs inspect-internal subvolid-resolve <subvolid> <path>` ) Get file system paths for the given subvolume  ID.
+      - `btrfs inspect-internal rootid <path>` ) Get tree ID of the containing subvolume of path.
+      - `btrfs inspect-internal min-dev-size [options] <path>` ) Get the minimum size the device can be shrunk to. The
+      - `btrfs inspect-internal dump-tree [options] <device> [<device> ..]` ) Dump tree structures from a given device
+      - `btrfs inspect-internal dump-super [options] device [device...]` ) Dump superblock from a device in a textual  form
+      - `btrfs inspect-internal tree-stats [options] <device>` ) Print various stats for trees
+    - **property**
+      - `btrfs property get [-t <type>] <object> [<name>]` ) Get a property value of a btrfs object
+      - `btrfs property set [-t <type>] <object> <name> <value>` ) Set a property on a btrfs object
+      - `btrfs property list [-t <type>] <object>` ) Lists available properties with their descriptions for the given  object
+    - **qgroup**
+      - `btrfs qgroup assign [options] <src> <dst> <path>` ) Assign SRC as the child qgroup of DST
+      - `btrfs qgroup remove [options] <src> <dst> <path>` ) Remove a child qgroup SRC from DST.
+      - `btrfs qgroup create <qgroupid> <path>` ) Create a subvolume quota group.
+      - `btrfs qgroup destroy <qgroupid> <path>` ) Destroy a quota group.
+      - `btrfs qgroup show [options] <path>` ) Show subvolume quota groups.
+      - `btrfs qgroup limit [options] <size>|none [<qgroupid>] <path>` ) Set the limits a subvolume quota group.
+    - **quota**
+      - `btrfs quota enable <path>` ) Enable subvolume quota support for a filesystem.
+      - `btrfs quota disable <path>` ) Disable subvolume quota support for a filesystem.
+      - `btrfs quota rescan [-sw] <path>` ) Trash all qgroup numbers and scan the metadata again with the current  config.
+    -  **restore**
+       - `btrfs receive [options] <mount>` ) 
+       - `btrfs receive --dump [options]` ) Receive subvolumes from a stream
+    - **replace**
+      - `btrfs replace start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>` ) Replace device of a btrfs  filesystem.
+      - `btrfs replace status [-1] <mount_point>` ) Print status and progress information of a running device replace  operation
+      - `btrfs replace cancel <mount_point>` ) Cancel a running device replace operation.
+    - **rescue**
+      - `btrfs rescue chunk-recover [options] <device>` ) Recover the chunk tree by scanning the devices one by one.
+      - `btrfs rescue super-recover [options] <device>` ) Recover bad superblocks from good copies
+      - `btrfs rescue zero-log <device>` ) Clear the tree log. Usable if it's corrupted and prevents mount.
+      - `btrfs rescue fix-device-size <device>` ) Re-align device and super block sizes. Usable if newer kernel  refuse to mount it due to mismatch super size
+    - **restore**
+      - `btrfs restore [options] <device> <path> | -l <device>` ) Try to restore files from a damaged filesystem  (unmounted)
+    - **restore**
+      - `btrfs scrub start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>` ) Start a new scrub. If a  scrub is already running, the new one fails.
+      - `btrfs scrub cancel <path>|<device>` ) Cancel a running scrub
+      - `btrfs scrub resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>` ) Resume previously  canceled or interrupted scrub
+      - `btrfs scrub status [-dR] <path>|<device>` ) Show status of running or finished scrub
+    - **send**  
+      - `btrfs send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]` ) Send the subvolume (s) to stdout.
+    - **subvolume** 
+      - `btrfs subvolume create [-i <qgroupid>] [<dest>/]<name>` ) Create a subvolume
+      - `btrfs subvolume delete [options] <subvolume> [<subvolume>...]` ) 
+      - `btrfs subvolume delete [options] -i|--subvolid <subvolid> <path>` ) Delete subvolume(s)
+      - `btrfs subvolume list [options] <path>` ) List subvolumes and snapshots in the filesystem.
+      - `btrfs subvolume snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>` ) Create a snapshot of the  subvolume
+      - `btrfs subvolume get-default <path>` ) Get the default subvolume of a filesystem
+      - `btrfs subvolume set-default <subvolume>` ) 
+      - `btrfs subvolume set-default <subvolid> <path>` ) Set the default subvolume of the filesystem mounted as  default.
+      - `btrfs subvolume find-new <path> <lastgen>` ) List the recently modified files in a filesystem
+      - `btrfs subvolume show [options] <path>` ) Show more information about the subvolume (UUIDs, generations,  times, snapshots)
+      - `btrfs subvolume sync <path> [<subvol-id>...]` ) Wait until given subvolume(s) are completely removed from  the filesystem.
+    - `btrfs help [--full] [--box]` ) Display help information
+    - `btrfs version` ) Display btrfs-progs version
+
+usage: btrfs [--help] [--version] [--format <format>] [-v|--verbose] [-q|--quiet] <group> [<group>...] <command> [<args>]
+
+- btrfs
+  - **balance**
+    - `start [options] <path>`
+        Balance chunks across the devices
+    - `pause <path>`
+        Pause running balance
+    - `cancel <path>`
+        Cancel running or paused balance
+    - `resume <path>`
+        Resume interrupted balance
+    - `status [-v] <path>`
+        Show status of running or paused balance
+  - ` check [options] <device>` 
+      - Check structural integrity of a filesystem (unmounted).
+  - **device**
+    - ` add [options] <device> [<device>...] <path>`
+      - Add one or more devices to a mounted filesystem.- 
+    - `delete <device>|<devid> [<device>|<devid>...] <path>`
+    - ` remove <device>|<devid> [<device>|<devid>...] <path>`
+      - Remove a device from a filesystem- 
+    - `scan [-d|--all-devices] <device> [<device>...]`
+    - ` scan -u|--forget [<device>...]`
+      - Scan or forget (unregister) devices of btrfs filesystems- 
+    - ` ready <device>`
+      - Check and wait until a group of devices of a filesystem is ready for mount- 
+    - ` stats [options] <path>|<device>`
+      - Show device IO error statistics- 
+    - ` usage [options] <path> [<path>..]`
+      - Show detailed information about internal allocations in devices.- 
+  - **filesystem** 
+    - ` df [options] <path>`
+      - Show space usage information for a mount point- 
+    - ` du [options] <path> [<path>..]`
+      - Summarize disk usage of each file.- 
+    - ` show [options] [<path>|<uuid>|<device>|label]`
+      - Show the structure of a filesystem- 
+    - ` sync <path>`
+      - Force a sync on a filesystem- 
+    - ` defragment [options] <file>|<dir> [<file>|<dir>...]`
+      - Defragment a file or a directory- 
+    - ` resize [options] [devid:][+/-]<newsize>[kKmMgGtTpPeE]|[devid:]max <path>`
+      - Resize a filesystem- 
+    - ` label [<device>|<mount_point>] [<newlabel>]`
+      - Get or change the label of a filesystem- 
+    - ` usage [options] <path> [<path>..]`
+      - Show detailed information about internal filesystem usage .- 
+
+  - **inspect-internal** 
+    - ` inode-resolve [-v] <inode> <path>`
+      - Get file system paths for the given inode- 
+    - ` logical-resolve [-Pvo] [-s bufsize] <logical> <path>`
+      - Get file system paths for the given logical address- 
+    - ` subvolid-resolve <subvolid> <path>`
+      - Get file system paths for the given subvolume ID.- 
+    - ` rootid <path>`
+      - Get tree ID of the containing subvolume of path.- 
+    - ` min-dev-size [options] <path>`
+      - Get the minimum size the device can be shrunk to. The- 
+    - ` dump-tree [options] <device> [<device> ..]`
+      - Dump tree structures from a given device- 
+    - ` dump-super [options] device [device...]`
+      - Dump superblock from a device in a textual form- 
+    - ` tree-stats [options] <device>`
+      - Print various stats for trees- 
+
+  - **property** 
+    - `get [-t <type>] <object> [<name>]`
+      - Get a property value of a btrfs object- 
+    - `set [-t <type>] <object> <name> <value>`
+      - Set a property on a btrfs object- 
+    - `list [-t <type>] <object>`
+      - Lists available properties with their descriptions for the given object- 
+  - **qgroup** 
+    - `assign [options] <src> <dst> <path>`
+      - Assign SRC as the child qgroup of DST- 
+    - `remove [options] <src> <dst> <path>`
+      - Remove a child qgroup SRC from DST.- 
+    - `create <qgroupid> <path>`
+      - Create a subvolume quota group.- 
+    - `destroy <qgroupid> <path>`
+      - Destroy a quota group.- 
+    - `show [options] <path>`
+      - Show subvolume quota groups.- 
+    - `limit [options] <size>|none [<qgroupid>] <path>`
+      - Set the limits a subvolume quota group.- 
+  - **quota** 
+    - `enable <path>`
+      - Enable subvolume quota support for a filesystem.- 
+    - `disable <path>`
+      - Disable subvolume quota support for a filesystem.- 
+    - `rescan [-sw] <path>`
+      - Trash all qgroup numbers and scan the metadata again with the current config
+  - **receive** 
+    btrfs receive [options] <mount>
+    - `--dump [options]`
+      - Receive subvolumes from a stream- 
+  - **replace** 
+    - `start [-Bfr] <srcdev>|<devid> <targetdev> <mount_point>`
+      - Replace device of a btrfs filesystem.- 
+    - `status [-1] <mount_point>`
+      - Print status and progress information of a running device replace operation- 
+    - `cancel <mount_point>`
+      - Cancel a running device replace operation.- 
+  - **rescue** 
+    - `chunk-recover [options] <device>`
+      - Recover the chunk tree by scanning the devices one by one.- 
+    - `super-recover [options] <device>`
+      - Recover bad superblocks from good copies- 
+    - `zero-log <device>`
+      - Clear the tree log. Usable if it's corrupted and prevents mount.- 
+    - `fix-device-size <device>`
+      - Re-align device and super block sizes. Usable if newer kernel refuse to mount it due to mismatch super size- 
+
+  - `restore [options] <device> <path> | -l <device>` 
+        Try to restore files from a damaged filesystem (unmounted)
+  - **scrub** 
+    - `start [-BdqrRf] [-c ioprio_class -n ioprio_classdata] <path>|<device>`
+      - Start a new scrub. If a scrub is already running, the new one fails.- 
+    - `cancel <path>|<device>`
+      - Cancel a running scrub- 
+    - `resume [-BdqrR] [-c ioprio_class -n ioprio_classdata] <path>|<device>`
+      - Resume previously canceled or interrupted scrub- 
+    - `status [-dR] <path>|<device>`
+      - Show status of running or finished scrub- 
+
+  - `send [-ve] [-p <parent>] [-c <clone-src>] [-f <outfile>] <subvol> [<subvol>...]`
+      - Send the subvolume(s) to stdout.- 
+  - **subvolume** 
+    - `create [-i <qgroupid>] [<dest>/]<name>`
+      - Create a subvolume- 
+    - `subvolume delete [options] <subvolume> [<subvolume>...]`
+    - `delete [options] -i|--subvolid <subvolid> <path>`
+      - Delete subvolume(s)- 
+    - `list [options] <path>`
+      - List subvolumes and snapshots in the filesystem.- 
+    - `snapshot [-r] [-i <qgroupid>] <source> <dest>|[<dest>/]<name>`
+      - Create a snapshot of the subvolume- 
+    - `get-default <path>`
+      - Get the default subvolume of a filesystem- 
+    - `subvolume set-default <subvolume>`
+    - `set-default <subvolid> <path>`
+      - Set the default subvolume of the filesystem mounted as default.- 
+    - `find-new <path> <lastgen>`
+      - List the recently modified files in a filesystem- 
+    - `show [options] <path>`
+      - Show more information about the subvolume (UUIDs, generations, times, snapshots)- 
+    - `sync <path> [<subvol-id>...]`
+      - Wait until given subvolume(s) are completely removed from the filesystem.- 
+
+  - `help [--full] [--box]`
+        Display help information
+  - `btrfs version`
+        Display btrfs-progs version
+
+
+        usage: btrfstune [options] device
+Tune settings of filesystem features on an unmounted device
+
+Options:
+  change feature status:
+        -r          enable extended inode refs (mkfs: extref, for hardlink limits)
+        -x          enable skinny metadata extent refs (mkfs: skinny-metadata)
+        -n          enable no-holes feature (mkfs: no-holes, more efficient sparse file representation)
+        -S <0|1>    set/unset seeding status of a device
+  uuid changes:
+        -u          rewrite fsid, use a random one
+        -U UUID     rewrite fsid to UUID
+        -m          change fsid in metadata_uuid to a random UUID
+                    (incompat change, more lightweight than -u|-U)
+        -M UUID     change fsid in metadata_uuid to UUID
+  general:
+        -f          allow dangerous operations, make sure that you are aware of the dangers
+        --help      print this help
+
+### BTRFS Example
+
+### Find BTRFS Drives
+
+`btrfs -v  device scan -d`
+
+            Scanning for Btrfs filesystems
+            registered: /dev/nvme1n1p1
+            registered: /dev/nvme2n1p1
+            registered: /dev/nvme3n1p1
+            registered: /dev/nvme0n1p1
+            registered: /dev/sdl1
+            registered: /dev/sdn1
+            registered: /dev/sdo1
+            registered: /dev/sdq1
+            registered: /dev/sdr1
+            registered: /dev/sds1
+            registered: /dev/sdal1
+            registered: /dev/sdu1
+            registered: /dev/sday1
+            registered: /dev/sdbf1
+            registered: /dev/sdar1
+            registered: /dev/sdau1
+            registered: /dev/sdm1
+            registered: /dev/sdbk1
+            registered: /dev/sdp1
+
+
+## ZFS
+
+[Source](https://klarasystems.com/articles/choosing-the-right-zfs-pool-layout/)
+
+!!! Abstract  Abstract:  zfs
+    usage: zfs command args ...
+    where 'command' is one of the following:
+
+        version
+
+        create [-Pnpuv] [-o property=value] ... <filesystem>
+        create [-Pnpsv] [-b blocksize] [-o property=value] ... -V <size> <volume>
+        destroy [-fnpRrv] <filesystem|volume>
+        destroy [-dnpRrv] <filesystem|volume>@<snap>[%<snap>][,...]
+        destroy <filesystem|volume>#<bookmark>
+
+        snapshot [-r] [-o property=value] ... <filesystem|volume>@<snap> ...
+        rollback [-rRf] <snapshot>
+        clone [-p] [-o property=value] ... <snapshot> <filesystem|volume>
+        promote <clone-filesystem>
+        rename [-f] <filesystem|volume|snapshot> <filesystem|volume|snapshot>
+        rename -p [-f] <filesystem|volume> <filesystem|volume>
+        rename -u [-f] <filesystem> <filesystem>
+        rename -r <snapshot> <snapshot>
+        bookmark <snapshot|bookmark> <newbookmark>
+        program [-jn] [-t <instruction limit>] [-m <memory limit (b)>]
+            <pool> <program file> [lua args...]
+
+        list [-Hp] [-r|-d max] [-o property[,...]] [-s property]...
+            [-S property]... [-t type[,...]] [filesystem|volume|snapshot] ...
+
+        set <property=value> ... <filesystem|volume|snapshot> ...
+        get [-rHp] [-d max] [-o "all" | field[,...]]
+            [-t type[,...]] [-s source[,...]]
+            <"all" | property[,...]> [filesystem|volume|snapshot|bookmark] ...
+        inherit [-rS] <property> <filesystem|volume|snapshot> ...
+        upgrade [-v]
+        upgrade [-r] [-V version] <-a | filesystem ...>
+
+        userspace [-Hinp] [-o field[,...]] [-s field] ...
+            [-S field] ... [-t type[,...]] <filesystem|snapshot|path>
+        groupspace [-Hinp] [-o field[,...]] [-s field] ...
+            [-S field] ... [-t type[,...]] <filesystem|snapshot|path>
+        projectspace [-Hp] [-o field[,...]] [-s field] ...
+            [-S field] ... <filesystem|snapshot|path>
+
+        project [-d|-r] <directory|file ...>
+        project -c [-0] [-d|-r] [-p id] <directory|file ...>
+        project -C [-k] [-r] <directory ...>
+        project [-p id] [-r] [-s] <directory ...>
+
+        mount
+        mount [-flvO] [-o opts] <-a | filesystem>
+        unmount [-fu] <-a | filesystem|mountpoint>
+        share [-l] <-a [nfs|smb] | filesystem>
+        unshare <-a [nfs|smb] | filesystem|mountpoint>
+
+        send [-DnPpRvLecwhb] [-[i|I] snapshot] <snapshot>
+        send [-DnvPLecw] [-i snapshot|bookmark] <filesystem|volume|snapshot>
+        send [-DnPpvLec] [-i bookmark|snapshot] --redact <bookmark> <snapshot>
+        send [-nvPe] -t <receive_resume_token>
+        send [-Pnv] --saved filesystem
+        receive [-vMnsFhu] [-o <property>=<value>] ... [-x <property>] ...
+            <filesystem|volume|snapshot>
+        receive [-vMnsFhu] [-o <property>=<value>] ... [-x <property>] ...
+            [-d | -e] <filesystem>
+        receive -A <filesystem|volume>
+
+        allow <filesystem|volume>
+        allow [-ldug] <"everyone"|user|group>[,...] <perm|@setname>[,...]
+            <filesystem|volume>
+        allow [-ld] -e <perm|@setname>[,...] <filesystem|volume>
+        allow -c <perm|@setname>[,...] <filesystem|volume>
+        allow -s @setname <perm|@setname>[,...] <filesystem|volume>
+
+        unallow [-rldug] <"everyone"|user|group>[,...]
+            [<perm|@setname>[,...]] <filesystem|volume>
+        unallow [-rld] -e [<perm|@setname>[,...]] <filesystem|volume>
+        unallow [-r] -c [<perm|@setname>[,...]] <filesystem|volume>
+        unallow [-r] -s @setname [<perm|@setname>[,...]] <filesystem|volume>
+
+        hold [-r] <tag> <snapshot> ...
+        holds [-rH] <snapshot> ...
+        release [-r] <tag> <snapshot> ...
+        diff [-FHt] <snapshot> [snapshot|filesystem]
+        load-key [-rn] [-L <keylocation>] <-a | filesystem|volume>
+        unload-key [-r] <-a | filesystem|volume>
+        change-key [-l] [-o keyformat=<value>]
+            [-o keylocation=<value>] [-o pbkdf2iters=<value>]
+            <filesystem|volume>
+        change-key -i [-l] <filesystem|volume>
+        redact <snapshot> <bookmark> <redaction_snapshot> ...
+        wait [-t <activity>] <filesystem>
+
+    Each dataset is of the form: pool/[dataset/]*dataset[@name]
+
+    For the property list, run: zfs set|get
+
+    For the delegated permission list, run: zfs allow|unallow
+
+    
+!!! Abstract zpool
+    where 'command' is one of the following:
+
+        version
+
+        create [-fnd] [-o property=value] ...
+            [-O file-system-property=value] ...
+            [-m mountpoint] [-R root] <pool> <vdev> ...
+        destroy [-f] <pool>
+
+        add [-fgLnP] [-o property=value] <pool> <vdev> ...
+        remove [-npsw] <pool> <device> ...
+
+        labelclear [-f] <vdev>
+
+        checkpoint [-d [-w]] <pool> ...
+
+        list [-gHLpPv] [-o property[,...]] [-T d|u] [pool] ...
+            [interval [count]]
+        iostat [[[-c [script1,script2,...][-lq]]|[-rw]] [-T d | u] [-ghHLpPvy]
+            [[pool ...]|[pool vdev ...]|[vdev ...]] [[-n] interval [count]]
+        status [-c [script1,script2,...]] [-igLpPstvxD]  [-T d|u] [pool] ...
+            [interval [count]]
+
+        online [-e] <pool> <device> ...
+        offline [-f] [-t] <pool> <device> ...
+        clear [-nF] <pool> [device]
+        reopen [-n] <pool>
+
+        attach [-fsw] [-o property=value] <pool> <device> <new-device>
+        detach <pool> <device>
+        replace [-fsw] [-o property=value] <pool> <device> [new-device]
+        split [-gLnPl] [-R altroot] [-o mntopts]
+            [-o property=value] <pool> <newpool> [<device> ...]
+
+        initialize [-c | -s] [-w] <pool> [<device> ...]
+        resilver <pool> ...
+        scrub [-s | -p] [-w] <pool> ...
+        trim [-dw] [-r <rate>] [-c | -s] <pool> [<device> ...]
+
+        import [-d dir] [-D]
+        import [-o mntopts] [-o property=value] ...
+            [-d dir | -c cachefile] [-D] [-l] [-f] [-m] [-N] [-R root] [-F [-n]] -a
+        import [-o mntopts] [-o property=value] ...
+            [-d dir | -c cachefile] [-D] [-l] [-f] [-m] [-N] [-R root] [-F [-n]]
+            [--rewind-to-checkpoint] <pool | id> [newpool]
+        export [-af] <pool> ...
+        upgrade
+        upgrade -v
+        upgrade [-V version] <-a | pool ...>
+        reguid <pool>
+
+        history [-il] [<pool>] ...
+        events [-vHf [pool] | -c]
+
+        get [-Hp] [-o "all" | field[,...]] <"all" | property[,...]> <pool> ...
+        set <property=value> <pool>
+        sync [pool] ...
+
+        wait [-Hp] [-T d|u] [-t <activity>[,...]] <pool> [interval]
+
+!!!Abstract  ztest --help
+    Usage: ztest [OPTIONS...]
+
+        -v --vdevs=INTEGER                    Number of vdevs (default: 5)
+        -s --vdev-size=INTEGER                Size of each vdev (default: 256M)
+        -a --alignment-shift=INTEGER          Alignment shift; use 0 for random (default: 9)
+        -m --mirror-copies=INTEGER            Number of mirror copies (default: 2)
+        -r --raid-disks=INTEGER               Number of raidz/draid disks (default: 4)
+        -R --raid-parity=INTEGER              Raid parity (default: 1)
+        -K --raid-kind=raidz|draid|random     Raid kind (default: random)
+        -D --draid-data=INTEGER               Number of draid data drives (default: 4)
+        -S --draid-spares=INTEGER             Number of draid spares (default: 1)
+        -d --datasets=INTEGER                 Number of datasets (default: 7)
+        -t --threads=INTEGER                  Number of ztest threads (default: 23)
+        -g --gang-block-threshold=INTEGER     Metaslab gang block threshold (default: 64K)
+        -i --init-count=INTEGER               Number of times to initialize pool (default: 1)
+        -k --kill-percentage=INTEGER          Kill percentage (default: 70%)
+        -p --pool-name=STRING                 Pool name (default: ztest)
+        -f --vdev-file-directory=PATH         File directory for vdev files (default: /tmp)
+        -M --multi-host                       Multi-host; simulate pool imported on remote host
+        -E --use-existing-pool                Use existing pool instead of creating new one
+        -T --run-time=INTEGER                 Total run time (default: 300 sec)
+        -P --pass-time=INTEGER                Time per pass (default: 60 sec)
+        -F --freeze-loops=INTEGER             Max loops in spa_freeze() (default: 50)
+        -B --alt-ztest=PATH                   Alternate ztest path
+        -C --vdev-class-state=on|off|random   vdev class state (default: random)
+        -o --option="OPTION=INTEGER"          Set global variable to an unsigned 32-bit integer value
+        -G --dump-debug-msg                   Dump zfs_dbgmsg buffer before exiting due to an error
+        -V --verbose                          Verbose (use multiple times for ever more verbosity)
+        -h --help                             Show this help
+
+
+!!!Summary zfs_ids_to_path `[-v] <pool> <objset id> <object id>`
+
+!!!Summary zhack
+    Usage: zhack [-c cachefile] [-d dir] <subcommand> <args> ...
+    where <subcommand> <args> is one of the following:
+
+        feature stat <pool>
+            print information about enabled features
+        feature enable [-r] [-d desc] <pool> <feature>
+            add a new enabled feature to the pool
+            -d <desc> sets the feature's description
+            -r set read-only compatible flag for feature
+        feature ref [-md] <pool> <feature>
+            change the refcount on the given feature
+            -d decrease instead of increase the refcount
+            -m add the feature to the label if increasing refcount
+
+        <feature> : should be a feature guid
+    
+!!!Summary zdb --help
+        
+        Usage:  zdb [-AbcdDFGhikLMPsvXy] [-e [-V] [-p <path> ...]] [-I <inflight I/Os>]
+                [-o <var>=<value>]... [-t <txg>] [-U <cache>] [-x <dumpdir>]
+                [<poolname>[/<dataset | objset id>] [<object | range> ...]]
+        zdb [-AdiPv] [-e [-V] [-p <path> ...]] [-U <cache>]
+                [<poolname>[/<dataset | objset id>] [<object | range> ...]
+        zdb [-v] <bookmark>
+        zdb -C [-A] [-U <cache>]
+        zdb -l [-Aqu] <device>
+        zdb -m [-AFLPX] [-e [-V] [-p <path> ...]] [-t <txg>] [-U <cache>]
+                <poolname> [<vdev> [<metaslab> ...]]
+        zdb -O <dataset> <path>
+        zdb -r <dataset> <path> <destination>
+        zdb -R [-A] [-e [-V] [-p <path> ...]] [-U <cache>]
+                <poolname> <vdev>:<offset>:<size>[:<flags>]
+        zdb -E [-A] word0:word1:...:word15
+        zdb -S [-AP] [-e [-V] [-p <path> ...]] [-U <cache>] <poolname>
+
+    Dataset name must include at least one separator character '/' or '@'
+    If dataset name is specified, only that dataset is dumped
+    If object numbers or object number ranges are specified, only those
+    objects or ranges are dumped.
+
+    Object ranges take the form `<start>:<end>[:<flags>]`
+
+        start    Starting object number
+        end      Ending object number, or -1 for no upper bound
+        flags    Optional flags to select object types:
+            A     All objects (this is the default)
+            d     ZFS directories
+            f     ZFS files
+            m     SPA space maps
+            z     ZAPs
+            -     Negate effect of next flag
+
+    Options to control amount of output:
+
+        -b block statistics
+        -c checksum all metadata (twice for all data) blocks
+        -C config (or cachefile if alone)
+        -d dataset(s)
+        -D dedup statistics
+        -E decode and display block from an embedded block pointer
+        -h pool history
+        -i intent logs
+        -l read label contents
+        -k examine the checkpointed state of the pool
+        -L disable leak tracking (do not load spacemaps)
+        -m metaslabs
+        -M metaslab groups
+        -O perform object lookups by path
+        -r copy an object by path to file
+        -R read and display block from a device
+        -s report stats on zdb's I/O
+        -S simulate dedup to measure effect
+        -v verbose (applies to all others)
+        -y perform livelist and metaslab validation on any livelists being deleted
+
+    Below options are intended for use with other options:
+
+        -A ignore assertions (-A), enable panic recovery (-AA) or both (-AAA)
+        -e pool is exported/destroyed/has altroot/not in a cachefile
+        -F attempt automatic rewind within safe range of transaction groups
+        -G dump zfs_dbgmsg buffer before exiting
+        -I <number of inflight I/Os> -- specify the maximum number of
+           checksumming I/Os [default is 200]
+        -o <variable>=<value> set global variable to an unsigned 32-bit integer
+        -p <path> -- use one or more with -e to specify path to vdev dir
+        -P print numbers in parseable form
+        -q don't print label contents
+        -t <txg> -- highest txg to use when searching for uberblocks
+        -u uberblock
+        -U <cachefile_path> -- use alternate cachefile
+        -V do verbatim import
+        -x <dumpdir> -- dump all read blocks into specified directory
+        -X attempt extreme rewind (does not work with dataset)
+        -Y attempt all reconstruction combinations for split blocks
+        -Z show ZSTD headers
+
+        Specify an option more than once (e.g. -bb) to make only that option verbose
+        Default is to dump everything non-verbosely
+    
+
+
+
+
+Add aliases through - `/etc/zfs/vdev_id.conf`
+
+
+        alias ztest0  /dev/disk/by-id/ata-HUA722010CLA330_J835T27L
+        alias ztest1  /dev/disk/by-id/ata-HUA722010CLA330_J82TMSTV
+        alias ztest2  /dev/disk/by-id/ata-HUA722010CLA330_J82TVRXV
+        alias ztest3  /dev/disk/by-id/ata-HUA722010CLA330_J83577EL
+        alias ztest4  /dev/disk/by-id/ata-HUA722010CLA330_HZ2GSA4L
+        alias ztest5  /dev/disk/by-id/ata-HUA722010CLA330_J82TNXPV
+        alias ztest6  /dev/disk/by-id/ata-HUA722010CLA330_HZ2GLJZL
+        alias ztest7  /dev/disk/by-id/ata-HUA722010CLA330_J82TNKYV
+        alias ztest8  /dev/disk/by-id/ata-HUA722010CLA330_J82TVSVV
+        alias ztest9  /dev/disk/by-id/ata-HUA722010CLA330_J82TJ3YV
+
+
+This will print only disks and not partitions.
+
+                  ❯ ls -1 /dev/disk/by-id | grep -E -i -v '([\.\/]{6}[a-z]{3,4}([0-9]+))'    
+
+
+
+Then run ` zpool create -f ztestpool mirror ztest{0..4} mirror ztest{5..9}`
+need to echo this and then run it, brace expansion doesnt work in zfs commands[Source]()
+
+
+The above command actully creates 5 mirrors x2 e.g. 0,1,2,3,4 are all a mirror of each other. And the only the two are raided
+
+ ~#> zpool create testpool mirror da0 da1
+If we need more space, we just add more pairs of disks:
+
+~#> zpool add testpool mirror da2 da3
+
+
+Let’s decode the nomenclature that describes the geometry of a dRAID vdev. A string such as “dRAID2:3d:14c:1s” encodes the following about a dRAID vdev.
+
+            -dRAID[<parity>][:<data>d][:<children>c][:<spares>s]
+                 -dRAID[<parity>][:<data>d][:<children>c][:<spares>s]
+
+            -parity: Required, the number of spindles to use to store parity information. Eg: A dRAID3 can survive until a fourth disk failure without losing data. Parity may be 1,2 or 3.
+
+            -[d] data: (spindles per RAID group): Determines the width of the data stripe, 8 is the default. Larger values will increase the stripe width and reduce total parity.
+
+            -[c] children: This parameter should match the number of device entries that you feed to the vdev. A helpful check will warn you if you don’t get the right number of disks named correctly: “invalid number of dRAID children; 14 required but 13 provided”
+
+            -[s] spares: The number of disk areas to mix in as distributed spares. No spares are created by default, a maximum of four are welcome. Each spare will remove a fraction of space from every disk.
+
+
+Mirror
+
+[Source](https://klarasystems.com/articles/choosing-the-right-zfs-pool-layout/)
+
+>Let’s see some practical examples; first we create a simple pool with 2 disks:
+
+`# zpool create testpool mirror da0 da1`
+
+>If we need more space, we just add more pairs of disks:
+
+`# zpool add testpool mirror da2 da3`
+
+>Now the pool looks like this:
+
+`~#> zpool status testpool`
+
+        pool: testpool
+        state: ONLINE
+        config:
+            NAME        STATE     READ WRITE CKSUM
+            testpool    ONLINE       0     0     0
+            mirror-0    ONLINE       0     0     0
+                da0     ONLINE       0     0     0
+                da1     ONLINE       0     0     0
+            mirror-1    ONLINE       0     0     0
+                da2     ONLINE       0     0     0
+                da3     ONLINE       0     0     0
+
+
+>It is also possible to add additional disks to a mirror increasing the IOPS (mostly the reading performance):
+
+`~#> zpool attach testpool da1 da4`
+
+`~#> zpool attach testpool da3 da5`
+
+`~#> zpool status testpool`
+
+        pool: testpool
+        state: ONLINE
+        status: One or more devices is currently being resilvered.  The pool will
+                continue to function, possibly in a degraded state.
+        action: Wait for the resilver to complete.
+        scan: resilver in progress since [...]
+        config:
+        NAME        STATE     READ WRITE CKSUM
+        testpool    ONLINE       0     0     0
+        mirror-0    ONLINE       0     0     0
+            da0     ONLINE       0     0     0
+            da1     ONLINE       0     0     0
+            da4     ONLINE       0     0     0  (resilvering)
+        mirror-1    ONLINE       0     0     0
+            da2     ONLINE       0     0     0
+            da3     ONLINE       0     0     0
+            da5     ONLINE       0     0     0  (resilvering)
+
+>If for some reason our needs change, we can easily remove a mirror vdev from the pool:
+
+`~#> zpool remove testpool mirror-1`
+
+`~#> zpool status testpool`
+
+        pool: testpool
+        state: ONLINE
+        scan: resilvered 60K in 00:00:02 with 0 errors on Mon May 17 13:10:34 2021
+        remove: Removal of vdev 1 copied 39.5K in 0h0m, completed on Mon May 17 13:20:11 2021
+            264 memory used for removed device mappings config:
+        NAME          STATE     READ WRITE CKSUM
+        testpool      ONLINE       0     0     0
+          mirror-0    ONLINE       0     0     0
+            da0       ONLINE       0     0     0
+            da1       ONLINE       0     0     0
+            da4       ONLINE       0     0     0
+
+> We could also remove the third disk from the above mirror:
+
+`~#> zpool detach testpool da4` 
+
+### Another ZFS Example
+
+
+I'm going to create a pool using the `-f` option because ZFS will detect that the attached drives used to belong to an old pool and will not allow for it to be used in a new pool unless forced to do so (I have used the drives in a previous setup).
+
+```
+# zpool create -f -O xattr=sa -O dnodesize=auto -O atime=off -o ashift=12 pool1 raidz ata-ST31000340NS_9QJ0F2YQ ata-ST31000340NS_9QJ0EQ1V ata-ST31000340NS_9QJ089LF
+```
+
+I'm then going to create a ZFS dataset on the pool with [lz4](https://lz4.github.io/lz4/) compression enabled.
+
+```
+# zfs create -o compress=lz4 pool1/pub
+# zfs list
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+pool1       575K  1.75T   128K  /pool1
+pool1/pub   128K  1.75T   128K  /pool1/pub
+```
+
+### ZFS working commands
+
+`zpool create -f ztst mirror ztest8 ztest9 ` gives an error
+
+So we create it by device id-
+
+ `zpool create -f ztst mirror /dev/sdbt /dev/sdbs`
+
+ Then migrate to UUID
+
+` $ sudo zpool export ztst`
+`$ sudo zpool import -d /dev/disk/by-id ztst`
+That will switch all /dev/sdx drives to the full ID.
+
+Then to add more
+
+`❯ zpool add ztst mirror ztest7 ztest6`
+`❯ zfs list`
+
+            NAME   USED  AVAIL     REFER  MOUNTPOINT
+            ztst   156K  1.76T       24K  /ztst
+`❯ zpool status ztst`
+
+            pool: ztst
+            state: ONLINE
+            config:
+
+                  NAME                              STATE     READ WRITE CKSUM
+                  ztst                              ONLINE       0     0     0
+                  mirror-0                        ONLINE       0     0     0
+                        ata-HUA722010CLA330_J82TJ3YV  ONLINE       0     0     0
+                        ata-HUA722010CLA330_J82TVSVV  ONLINE       0     0     0
+                  mirror-1                        ONLINE       0     0     0
+                        ztest7                        ONLINE       0     0     0
+                        ztest6                        ONLINE       0     0     0
+
+            errors: No known data errors
+
+Then repeat the export/import cycle
+
+
+`❯ zpool export ztst`                                                                                                                                                             
+`❯ zpool import -d /dev/disk/by-id ztst`
+`❯ zpool status ztst`
+
+      pool: ztst
+      state: ONLINE
+      config:
+
+            NAME                              STATE     READ WRITE CKSUM
+            ztst                              ONLINE       0     0     0
+            mirror-0                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TJ3YV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TVSVV  ONLINE       0     0     0
+            mirror-1                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TNKYV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_HZ2GLJZL  ONLINE       0     0     0
+
+      errors: No known data errors
+
+      Then do the remainder.
+
+`❯ zpool add ztst mirror ztest5 ztest4`
+`❯ zpool add ztst mirror ztest3 ztest2`
+`❯ zpool add ztst mirror ztest1 ztest0`
+`❯ zpool export ztst`
+`❯ zpool import -d /dev/disk/by-id ztst`
+`❯ zpool status ztst`
+
+      pool: ztst
+      state: ONLINE
+      config:
+
+            NAME                              STATE     READ WRITE CKSUM
+            ztst                              ONLINE       0     0     0
+            mirror-0                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TJ3YV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TVSVV  ONLINE       0     0     0
+            mirror-1                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TNKYV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_HZ2GLJZL  ONLINE       0     0     0
+            mirror-2                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TNXPV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_HZ2GSA4L  ONLINE       0     0     0
+            mirror-3                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J83577EL  ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TVRXV  ONLINE       0     0     0
+            mirror-4                        ONLINE       0     0     0
+                  ata-HUA722010CLA330_J82TMSTV  ONLINE       0     0     0
+                  ata-HUA722010CLA330_J835T27L  ONLINE       0     0     0
+
+
+## XFS Repair
+
+[Info](https://serverfault.com/questions/777299/proper-way-to-deal-with-corrupt-xfs-filesystems)
+
+fsck.xfs does nothing buy say to run xfs_repair

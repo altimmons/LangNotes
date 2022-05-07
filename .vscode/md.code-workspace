@@ -425,7 +425,17 @@ Markdown Setting
 				"$2"
 			],
 			"description": "Log output to console"
-		}
+		},
+		"Admonition": {
+			"prefix": "!!!",
+			"body": [
+				"!!!${1|Note,Summary, Abstract, Tldr,Info, Todo,Tip, Hint,Success, Check, Done,Question, Help, Faq,Warning, Caution,Attention,Failure, Fail, Missing,Error,Bug,Danger,Example, Snippet,Quote, Cite|} ${1}: $2",
+				"\t$3",
+				"",
+				"$0"
+			],
+			"description": "Note (Blue Pencil), Summary/Abstract/Tldr (Lt. Blue Paragraph), Todo/Info (Light Blue circled i), Tip/Hint (Teal Flame), Success/Check/Done (Green Check), Question/Help/FAQ (Green Question Mark), Warning/Caution (Orange Triange Exclaim Mark), Attention (Orange Eye Exclaim Mark), Red Bug, Danger- Red Lightning Admonition, Failure, Fail, Missing, Error (Red X), Example, Snippet (Num List Blue), Quote/Cite (Grey Quote)"
+		},
 	},
 	"tasks": {
 		"version": "2.0.0",
@@ -436,7 +446,6 @@ Markdown Setting
 		"compounds": []
 	},
 	"extensions": {},
-	"keybindings": []
 }
 /* 
 

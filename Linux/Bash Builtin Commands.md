@@ -1312,7 +1312,7 @@ This section describes builtin commands which are unique to or have been extende
 	 - This environment variable expands to the full pathname to the shell. If it is not set when the shell starts, Bash assigns to it the full pathname of the current user’s login shell.
  
 #### `SHELLOPTS`
-	 - A colon-separated list of enabled shell options. Each word in the list is a valid argument for the \-o option to the `set` builtin command (see [The Set Builtin](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#The-Set-Builtin)). The options appearing in `SHELLOPTS` are those reported as ‘on’ by ‘set -o’. If this variable is in the environment when Bash starts up, each shell option in the list will be enabled before reading any startup files. This variable is readonly.
+	 - A colon-separated list of enabled shell options. Each word in the list is a valid argument for the \-o option to the `set` builtin command (see [The Set Builtin](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#The-Set-Builtin)). The options appearing in `SHELL` are those reported as ‘on’ by ‘set -o’. If this variable is in the environment when Bash starts up, each shell option in the list will be enabled before reading any startup files. This variable is readonly.
  
 #### `SHLVL`
 	 - Incremented by one each time a new instance of Bash is started. This is intended to be a count of how deeply your Bash shells are nested.

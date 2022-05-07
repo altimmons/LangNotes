@@ -210,10 +210,10 @@ All this must be built with ROOT as `makewhatis` (SLOW)
      Change the current working directory to directory. 
         >- If directory is not supplied, the value of the `HOME` shell variable is used.
         >- Any additional arguments following directory are ignored. 
-        >- If the shell variable `CDPATH` exists, it is used as a search path: each directory name in CDPATH is searched for directory, with alternative directory names in CDPATH separated by a colon (‘:’). 
+        >- If the shell variable `CDPATH` exists, it is used as a search path: each directory name in CDPATH is searched for directory, with alternative directory names in CDPATH separated by a colon (':'). 
         >- If directory begins with a slash, `CDPATH` is not used.
         >-  [[-P]] means to not follow symbolic links
-        >- [[-L]] **(default)** option is supplied, symbolic links in directory are resolved after cd processes an instance of ‘..’ in directory.
+        >- [[-L]] **(default)** option is supplied, symbolic links in directory are resolved after cd processes an instance of '..' in directory.
         >- other options are `-e`, `..`, `-`, and `-@`  
     
 [[continue]]
@@ -237,7 +237,7 @@ exit
 
   `exit [n]`
 
-    Exit the shell, returning a status of n to the shell’s parent. If n is omitted, the exit status is that of the last command executed. Any trap on EXIT is executed before the shell terminates.
+    Exit the shell, returning a status of n to the shell's parent. If n is omitted, the exit status is that of the last command executed. Any trap on EXIT is executed before the shell terminates.
 export
 
   `export [-fn] [-p] [name[=value]`]
@@ -251,7 +251,7 @@ getopts
 
     `getopts optstring name [arg …]`
 
-    getopts is used by shell scripts to parse positional parameters. optstring contains the option characters to be recognized; if a character is followed by a colon, the option is expected to have an argument, which should be separated from it by whitespace. The colon (‘:’) and question mark (‘?’) may not be used as option characters. Each time it is invoked, getopts places the next option in the shell variable name, initializing name if it does not exist, and the index of the next argument to be processed into the variable OPTIND. 
+    getopts is used by shell scripts to parse positional parameters. optstring contains the option characters to be recognized; if a character is followed by a colon, the option is expected to have an argument, which should be separated from it by whitespace. The colon (':') and question mark ('?') may not be used as option characters. Each time it is invoked, getopts places the next option in the shell variable name, initializing name if it does not exist, and the index of the next argument to be processed into the variable OPTIND. 
      
 
 hash
@@ -274,42 +274,46 @@ shift
 
     shift [n]
 
-    Shift the positional parameters to the left by n. The positional parameters from n+1 … $# are renamed to $1 … $#-n. Parameters represented by the numbers $# down to $#-n+1 are unset. n must be a non-negative number less than or equal to $#. If n is zero or greater than $#, the positional parameters are not changed. If n is not supplied, it is assumed to be 1. The return status is zero unless n is greater than $# or less than zero, non-zero otherwise.
+Shift the positional parameters to the left by n. The positional parameters from `n+1 … $#` are renamed to `$1 … $#-n`. Parameters represented by the numbers `$#` down to `$#-n+1` are unset. `n` must be a non-negative number less than or equal to `$#`. If `n` is zero or greater than `$#`, the positional parameters are not changed. If `n` is not supplied, it is assumed to be `1`. The return status is zero unless n is greater than `$#` or less than zero, non-zero otherwise.
+
+     >-  `#` - ($#) Expands to the number of positional parameters in decimal
 test
 [
 
     test expr
 
-    Evaluate a conditional expression expr and return a status of 0 (true) or 1 (false). Each operator and operand must be a separate argument. 
+  Evaluate a conditional expression expr and return a status of 0 (true) or 1 (false). Each operator and operand must be a separate argument. 
         
    ` expr` True if expr is false.
    ` ( expr )` Returns the value of expr. This may be used to override the normal precedence of operators.
     `expr1 -a expr2` True if both expr1 and expr2 are true.
     `expr1 -o expr2` True if either expr1 or expr2 is true. 
 
-    The test and [ builtins evaluate conditional expressions using a set of rules based on the number of arguments. 
+  The test and [ builtins evaluate conditional expressions using a set of rules based on the number of arguments. 
 
 times
 
     times
 
-    Print out the user and system times used by the shell and its children. The return status is zero.
+  Print out the user and system times used by the shell and its children. The return status is zero.
+
 trap
 
     trap [-lp] [arg] [sigspec …]
 
-    The commands in arg are to be read and executed when the shell receives signal sigspec. If arg is absent (and there is a single sigspec) or equal to ‘-’, each specified signal’s disposition is reset to the value it had when the shell was started. 
+  The commands in arg are to be read and executed when the shell receives signal sigspec. If arg is absent (and there is a single sigspec) or equal to '-', each specified signal's disposition is reset to the value it had when the shell was started. 
+
 umask
 
     umask [-p] [-S] [mode]
 
-    Set the shell process’s file creation mask to mode. If mode begins with a digit, it is interpreted as an octal number; if not, it is interpreted as a symbolic mode mask similar to that accepted by the chmod command. 
+  Set the shell process's file creation mask to mode. If mode begins with a digit, it is interpreted as an octal number; if not, it is interpreted as a symbolic mode mask similar to that accepted by the chmod command. 
 
 unset
 
     unset [-fnv] [name]
 
-    Remove each variable or function name. If the -v option is given, each name refers to a shell variable and that variable is removed. I
+  Remove each variable or function name. If the -v option is given, each name refers to a shell variable and that variable is removed. I
 
 
     
@@ -575,7 +579,7 @@ Reserved Words
     esac
 
 Each clause must be terminated with `;;`, `;&`, or `;;&`. 
-It’s a common idiom to use `*` as the final pattern to define the default case, matches all
+It's a common idiom to use `*` as the final pattern to define the default case, matches all
 
 ```sh
         echo -n "Enter the name of an animal: "
@@ -922,7 +926,7 @@ ade ace abe
 
 !!!tip A sequence expression takes the form `{x..y[..incr]}`, where x and y are either integers or single characters, and `incr`, an optional increment, is an integer. 
     - When integers are supplied, the expression expands to each number between x and y, inclusive.
-    - Supplied integers may be prefixed with ‘0’ to force each term to have the same width
+    - Supplied integers may be prefixed with '0' to force each term to have the same width
     - When either x or y begins with a zero, the shell attempts to force all generated terms to contain the same number of digits, zero-padding where necessary.
     - When characters are supplied, the expression expands to each character lexicographically between x and y, **inclusive,** using the default C locale.
     - x and y must be of the same type.
@@ -931,7 +935,7 @@ ade ace abe
     - Any incorrectly formed brace expansion is left unchanged.
 
 !!!faq Similarity with `Parameter Expansion`:
-    -   A `{` or ‘`,`’ may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string ‘[[${]]’ is not considered eligible for brace expansion, and inhibits brace expansion until the closing ‘[[}]]’. 
+    -   A `{` or '`,`' may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string '[[${]]' is not considered eligible for brace expansion, and inhibits brace expansion until the closing '[[}]]'. 
 ____
 ### `~` Tilde Expavnsion
 
@@ -945,9 +949,9 @@ Accesses the **directory stack**
     >- [[`~fred/foo`]] - The subdirectory *foo* of the home directory of the user **fred**
     >- [[`~+/foo`]] - `$PWD/foo`
     >- [[`~-/foo`]] - `${OLDPWD-'~-'}/foo`
-    >- [[`~N`]] -  The string that would be displayed by `‘dirs +N’`
-    >- [[`~+N`]] - The string that would be displayed by `‘dirs +N’`
-    >- [[`~-N`]] - The string that would be displayed by `‘dirs -N’` 
+    >- [[`~N`]] -  The string that would be displayed by `'dirs +N'`
+    >- [[`~+N`]] - The string that would be displayed by `'dirs +N'`
+    >- [[`~-N`]] - The string that would be displayed by `'dirs -N'` 
 
 
 
@@ -1482,7 +1486,7 @@ ${parameter@operator}
 
 - `K` - Produces a possibly-quoted version of the value of parameter, except that it prints the values of indexed and associative arrays as a sequence of quoted key-value pairs (see Arrays). 
 
-- `a` - The expansion is a string consisting of flag values representing parameter’s attributes. 
+- `a` - The expansion is a string consisting of flag values representing parameter's attributes. 
 
 
 
@@ -1524,7 +1528,7 @@ Arithmetic expansion allows the evaluation of an arithmetic expression and the s
 ___
 ### Process Substitution
 
-Process substitution allows a process’s input or output to be referred to using a filename. It takes the form of
+Process substitution allows a process's input or output to be referred to using a filename. It takes the form of
 
       <(list)
 or
@@ -1683,7 +1687,7 @@ contains commands that may be used by both the system administrator and by users
 | **dmesg**    | Utility to print or control the kernel message buffer |
 | **echo**     | Utility to display a line of text                     |
 | **false**    | Utility to do nothing, unsuccessfully                 |
-| **hostname** | Utility to show or set the system’s host name         |
+| **hostname** | Utility to show or set the system's host name         |
 | **kill**     | Utility to send signals to processes                  |
 | **ln**       | Utility to make links between files                   |
 | **login**    | Utility to begin a session on the system              |
@@ -1956,143 +1960,143 @@ Below is a list of all the *coreutils* applications, there are many other useful
 
 -   [2 Common options](https://www.gnu.org/software/coreutils/manual/coreutils.html#Common-options)
     -   [2.6 `chown`, `chgrp`, `chroot`, `id`: Disambiguating user names and IDs](https://www.gnu.org/software/coreutils/manual/coreutils.html#Disambiguating-names-and-IDs)
-    -   [2.14 `coreutils`: Multi-call program](https://www.gnu.org/software/coreutils/manual/coreutils.html#Multi_002dcall-invocation)
+    -   [2.14 - `coreutils`: Multi-call program](https://www.gnu.org/software/coreutils/manual/coreutils.html#Multi_002dcall-invocation)
 -   [3 Output of entire files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-entire-files)
-    -   [3.1 `cat`: Concatenate and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation)
-    -   [3.2 `tac`: Concatenate and write files in reverse](https://www.gnu.org/software/coreutils/manual/coreutils.html#tac-invocation)
-    -   [3.3 `nl`: Number lines and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#nl-invocation)
-    -   [3.4 `od`: Write files in octal or other formats](https://www.gnu.org/software/coreutils/manual/coreutils.html#od-invocation)
-    -   [3.5 `base32`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base32-invocation)
-    -   [3.6 `base64`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base64-invocation)
-    -   [3.7 `basenc`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#basenc-invocation)
+    -   [3.1 - `cat`: Concatenate and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation)
+    -   [3.2 - `tac`: Concatenate and write files in reverse](https://www.gnu.org/software/coreutils/manual/coreutils.html#tac-invocation)
+    -   [3.3 - `nl`: Number lines and write files](https://www.gnu.org/software/coreutils/manual/coreutils.html#nl-invocation)
+    -   [3.4 - `od`: Write files in octal or other formats](https://www.gnu.org/software/coreutils/manual/coreutils.html#od-invocation)
+    -   [3.5 - `base32`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base32-invocation)
+    -   [3.6 - `base64`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#base64-invocation)
+    -   [3.7 - `basenc`: Transform data into printable data](https://www.gnu.org/software/coreutils/manual/coreutils.html#basenc-invocation)
 -   [4 Formatting file contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-contents)
-    -   [4.1 `fmt`: Reformat paragraph text](https://www.gnu.org/software/coreutils/manual/coreutils.html#fmt-invocation)
-    -   [4.2 `pr`: Paginate or columnate files for printing](https://www.gnu.org/software/coreutils/manual/coreutils.html#pr-invocation)
-    -   [4.3 `fold`: Wrap input lines to fit in specified width](https://www.gnu.org/software/coreutils/manual/coreutils.html#fold-invocation)
+    -   [4.1 - `fmt`: Reformat paragraph text](https://www.gnu.org/software/coreutils/manual/coreutils.html#fmt-invocation)
+    -   [4.2 - `pr`: Paginate or columnate files for printing](https://www.gnu.org/software/coreutils/manual/coreutils.html#pr-invocation)
+    -   [4.3 - `fold`: Wrap input lines to fit in specified width](https://www.gnu.org/software/coreutils/manual/coreutils.html#fold-invocation)
 -   [5 Output of parts of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-parts-of-files)
-    -   [5.1 `head`: Output the first part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#head-invocation)
-    -   [5.2 `tail`: Output the last part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#tail-invocation)
-    -   [5.3 `split`: Split a file into pieces.](https://www.gnu.org/software/coreutils/manual/coreutils.html#split-invocation)
-    -   [5.4 `csplit`: Split a file into context-determined pieces](https://www.gnu.org/software/coreutils/manual/coreutils.html#csplit-invocation)
+    -   [5.1 - `head`: Output the first part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#head-invocation)
+    -   [5.2 - `tail`: Output the last part of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#tail-invocation)
+    -   [5.3 - `split`: Split a file into pieces.](https://www.gnu.org/software/coreutils/manual/coreutils.html#split-invocation)
+    -   [5.4 - `csplit`: Split a file into context-determined pieces](https://www.gnu.org/software/coreutils/manual/coreutils.html#csplit-invocation)
 -   [6 Summarizing files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Summarizing-files)
-    -   [6.1 `wc`: Print newline, word, and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#wc-invocation)
-    -   [6.2 `sum`: Print checksum and block counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#sum-invocation)
-    -   [6.3 `cksum`: Print CRC checksum and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-invocation)
-    -   [6.4 `b2sum`: Print or check BLAKE2 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#b2sum-invocation)
-    -   [6.5 `md5sum`: Print or check MD5 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#md5sum-invocation)
-    -   [6.6 `sha1sum`: Print or check SHA-1 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#sha1sum-invocation)
+    -   [6.1 - `wc`: Print newline, word, and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#wc-invocation)
+    -   [6.2 - `sum`: Print checksum and block counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#sum-invocation)
+    -   [6.3 - `cksum`: Print CRC checksum and byte counts](https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-invocation)
+    -   [6.4 - `b2sum`: Print or check BLAKE2 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#b2sum-invocation)
+    -   [6.5 - `md5sum`: Print or check MD5 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#md5sum-invocation)
+    -   [6.6 - `sha1sum`: Print or check SHA-1 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#sha1sum-invocation)
     -   [6.7 `sha2` utilities: Print or check SHA-2 digests](https://www.gnu.org/software/coreutils/manual/coreutils.html#sha2-utilities)
 -   [7 Operating on sorted files](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-sorted-files)
-    -   [7.1 `sort`: Sort text files](https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation)
-    -   [7.2 `shuf`: Shuffling text](https://www.gnu.org/software/coreutils/manual/coreutils.html#shuf-invocation)
-    -   [7.3 `uniq`: Uniquify files](https://www.gnu.org/software/coreutils/manual/coreutils.html#uniq-invocation)
-    -   [7.4 `comm`: Compare two sorted files line by line](https://www.gnu.org/software/coreutils/manual/coreutils.html#comm-invocation)
-    -   [7.5 `ptx`: Produce permuted indexes](https://www.gnu.org/software/coreutils/manual/coreutils.html#ptx-invocation)
-    -   [7.6 `tsort`: Topological sort](https://www.gnu.org/software/coreutils/manual/coreutils.html#tsort-invocation)
+    -   [7.1 - `sort`: Sort text files](https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation)
+    -   [7.2 - `shuf`: Shuffling text](https://www.gnu.org/software/coreutils/manual/coreutils.html#shuf-invocation)
+    -   [7.3 - `uniq`: Uniquify files](https://www.gnu.org/software/coreutils/manual/coreutils.html#uniq-invocation)
+    -   [7.4 - `comm`: Compare two sorted files line by line](https://www.gnu.org/software/coreutils/manual/coreutils.html#comm-invocation)
+    -   [7.5 - `ptx`: Produce permuted indexes](https://www.gnu.org/software/coreutils/manual/coreutils.html#ptx-invocation)
+    -   [7.6 - `tsort`: Topological sort](https://www.gnu.org/software/coreutils/manual/coreutils.html#tsort-invocation)
 -   [8 Operating on fields](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-fields)
-    -   [8.1 `cut`: Print selected parts of lines](https://www.gnu.org/software/coreutils/manual/coreutils.html#cut-invocation)
-    -   [8.2 `paste`: Merge lines of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#paste-invocation)
-    -   [8.3 `join`: Join lines on a common field](https://www.gnu.org/software/coreutils/manual/coreutils.html#join-invocation)
+    -   [8.1 - `cut`: Print selected parts of lines](https://www.gnu.org/software/coreutils/manual/coreutils.html#cut-invocation)
+    -   [8.2 - `paste`: Merge lines of files](https://www.gnu.org/software/coreutils/manual/coreutils.html#paste-invocation)
+    -   [8.3 - `join`: Join lines on a common field](https://www.gnu.org/software/coreutils/manual/coreutils.html#join-invocation)
 -   [9 Operating on characters](https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-characters)
-    -   [9.1 `tr`: Translate, squeeze, and/or delete characters](https://www.gnu.org/software/coreutils/manual/coreutils.html#tr-invocation)
-    -   [9.2 `expand`: Convert tabs to spaces](https://www.gnu.org/software/coreutils/manual/coreutils.html#expand-invocation)
-    -   [9.3 `unexpand`: Convert spaces to tabs](https://www.gnu.org/software/coreutils/manual/coreutils.html#unexpand-invocation)
+    -   [9.1 - `tr`: Translate, squeeze, and/or delete characters](https://www.gnu.org/software/coreutils/manual/coreutils.html#tr-invocation)
+    -   [9.2 - `expand`: Convert tabs to spaces](https://www.gnu.org/software/coreutils/manual/coreutils.html#expand-invocation)
+    -   [9.3 - `unexpand`: Convert spaces to tabs](https://www.gnu.org/software/coreutils/manual/coreutils.html#unexpand-invocation)
 -   [10 Directory listing](https://www.gnu.org/software/coreutils/manual/coreutils.html#Directory-listing)
-    -   [10.1 `ls`: List directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation)
-    -   [10.2 `dir`: Briefly list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#dir-invocation)
-    -   [10.3 `vdir`: Verbosely list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#vdir-invocation)
-    -   [10.4 `dircolors`: Color setup for `ls`](https://www.gnu.org/software/coreutils/manual/coreutils.html#dircolors-invocation)
+    -   [10.1 - `ls`: List directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation)
+    -   [10.2 - `dir`: Briefly list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#dir-invocation)
+    -   [10.3 - `vdir`: Verbosely list directory contents](https://www.gnu.org/software/coreutils/manual/coreutils.html#vdir-invocation)
+    -   [10.4 - `dircolors`: Color setup for - `ls`](https://www.gnu.org/software/coreutils/manual/coreutils.html#dircolors-invocation)
 -   [11 Basic operations](https://www.gnu.org/software/coreutils/manual/coreutils.html#Basic-operations)
-    -   [11.1 `cp`: Copy files and directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#cp-invocation)
-    -   [11.2 `dd`: Convert and copy a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation)
-    -   [11.3 `install`: Copy files and set attributes](https://www.gnu.org/software/coreutils/manual/coreutils.html#install-invocation)
-    -   [11.4 `mv`: Move (rename) files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mv-invocation)
-    -   [11.5 `rm`: Remove files or directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rm-invocation)
-    -   [11.6 `shred`: Remove files more securely](https://www.gnu.org/software/coreutils/manual/coreutils.html#shred-invocation)
+    -   [11.1 - `cp`: Copy files and directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#cp-invocation)
+    -   [11.2 - `dd`: Convert and copy a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation)
+    -   [11.3 - `install`: Copy files and set attributes](https://www.gnu.org/software/coreutils/manual/coreutils.html#install-invocation)
+    -   [11.4 - `mv`: Move (rename) files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mv-invocation)
+    -   [11.5 - `rm`: Remove files or directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rm-invocation)
+    -   [11.6 - `shred`: Remove files more securely](https://www.gnu.org/software/coreutils/manual/coreutils.html#shred-invocation)
 -   [12 Special file types](https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-file-types)
-    -   [12.1 `link`: Make a hard link via the link syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#link-invocation)
-    -   [12.2 `ln`: Make links between files](https://www.gnu.org/software/coreutils/manual/coreutils.html#ln-invocation)
-    -   [12.3 `mkdir`: Make directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkdir-invocation)
-    -   [12.4 `mkfifo`: Make FIFOs (named pipes)](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkfifo-invocation)
-    -   [12.5 `mknod`: Make block or character special files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mknod-invocation)
-    -   [12.6 `readlink`: Print value of a symlink or canonical file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#readlink-invocation)
-    -   [12.7 `rmdir`: Remove empty directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rmdir-invocation)
-    -   [12.8 `unlink`: Remove files via the unlink syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#unlink-invocation)
+    -   [12.1 - `link`: Make a hard link via the link syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#link-invocation)
+    -   [12.2 - `ln`: Make links between files](https://www.gnu.org/software/coreutils/manual/coreutils.html#ln-invocation)
+    -   [12.3 - `mkdir`: Make directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkdir-invocation)
+    -   [12.4 - `mkfifo`: Make FIFOs (named pipes)](https://www.gnu.org/software/coreutils/manual/coreutils.html#mkfifo-invocation)
+    -   [12.5 - `mknod`: Make block or character special files](https://www.gnu.org/software/coreutils/manual/coreutils.html#mknod-invocation)
+    -   [12.6 - `readlink`: Print value of a symlink or canonical file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#readlink-invocation)
+    -   [12.7 - `rmdir`: Remove empty directories](https://www.gnu.org/software/coreutils/manual/coreutils.html#rmdir-invocation)
+    -   [12.8 - `unlink`: Remove files via the unlink syscall](https://www.gnu.org/software/coreutils/manual/coreutils.html#unlink-invocation)
 -   [13 Changing file attributes](https://www.gnu.org/software/coreutils/manual/coreutils.html#Changing-file-attributes)
-    -   [13.1 `chown`: Change file owner and group](https://www.gnu.org/software/coreutils/manual/coreutils.html#chown-invocation)
-    -   [13.2 `chgrp`: Change group ownership](https://www.gnu.org/software/coreutils/manual/coreutils.html#chgrp-invocation)
-    -   [13.3 `chmod`: Change access permissions](https://www.gnu.org/software/coreutils/manual/coreutils.html#chmod-invocation)
-    -   [13.4 `touch`: Change file timestamps](https://www.gnu.org/software/coreutils/manual/coreutils.html#touch-invocation)
+    -   [13.1 - `chown`: Change file owner and group](https://www.gnu.org/software/coreutils/manual/coreutils.html#chown-invocation)
+    -   [13.2 - `chgrp`: Change group ownership](https://www.gnu.org/software/coreutils/manual/coreutils.html#chgrp-invocation)
+    -   [13.3 - `chmod`: Change access permissions](https://www.gnu.org/software/coreutils/manual/coreutils.html#chmod-invocation)
+    -   [13.4 - `touch`: Change file timestamps](https://www.gnu.org/software/coreutils/manual/coreutils.html#touch-invocation)
 -   [14 Disk usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#Disk-usage)
-    -   [14.1 `df`: Report file system disk space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#df-invocation)
-    -   [14.2 `du`: Estimate file space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#du-invocation)
-    -   [14.3 `stat`: Report file or file system status](https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation)
-    -   [14.4 `sync`: Synchronize cached writes to persistent storage](https://www.gnu.org/software/coreutils/manual/coreutils.html#sync-invocation)
-    -   [14.5 `truncate`: Shrink or extend the size of a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#truncate-invocation)
+    -   [14.1 - `df`: Report file system disk space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#df-invocation)
+    -   [14.2 - `du`: Estimate file space usage](https://www.gnu.org/software/coreutils/manual/coreutils.html#du-invocation)
+    -   [14.3 - `stat`: Report file or file system status](https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation)
+    -   [14.4 - `sync`: Synchronize cached writes to persistent storage](https://www.gnu.org/software/coreutils/manual/coreutils.html#sync-invocation)
+    -   [14.5 - `truncate`: Shrink or extend the size of a file](https://www.gnu.org/software/coreutils/manual/coreutils.html#truncate-invocation)
 -   [15 Printing text](https://www.gnu.org/software/coreutils/manual/coreutils.html#Printing-text)
-    -   [15.1 `echo`: Print a line of text](https://www.gnu.org/software/coreutils/manual/coreutils.html#echo-invocation)
-    -   [15.2 `printf`: Format and print data](https://www.gnu.org/software/coreutils/manual/coreutils.html#printf-invocation)
-    -   [15.3 `yes`: Print a string until interrupted](https://www.gnu.org/software/coreutils/manual/coreutils.html#yes-invocation)
+    -   [15.1 - `echo`: Print a line of text](https://www.gnu.org/software/coreutils/manual/coreutils.html#echo-invocation)
+    -   [15.2 - `printf`: Format and print data](https://www.gnu.org/software/coreutils/manual/coreutils.html#printf-invocation)
+    -   [15.3 - `yes`: Print a string until interrupted](https://www.gnu.org/software/coreutils/manual/coreutils.html#yes-invocation)
 -   [16 Conditions](https://www.gnu.org/software/coreutils/manual/coreutils.html#Conditions)
-    -   [16.1 `false`: Do nothing, unsuccessfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#false-invocation)
-    -   [16.2 `true`: Do nothing, successfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#true-invocation)
-    -   [16.3 `test`: Check file types and compare values](https://www.gnu.org/software/coreutils/manual/coreutils.html#test-invocation)
-    -   [16.4 `expr`: Evaluate expressions](https://www.gnu.org/software/coreutils/manual/coreutils.html#expr-invocation)
+    -   [16.1 - `false`: Do nothing, unsuccessfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#false-invocation)
+    -   [16.2 - `true`: Do nothing, successfully](https://www.gnu.org/software/coreutils/manual/coreutils.html#true-invocation)
+    -   [16.3 - `test`: Check file types and compare values](https://www.gnu.org/software/coreutils/manual/coreutils.html#test-invocation)
+    -   [16.4 - `expr`: Evaluate expressions](https://www.gnu.org/software/coreutils/manual/coreutils.html#expr-invocation)
 -   [17 Redirection](https://www.gnu.org/software/coreutils/manual/coreutils.html#Redirection)
-    -   [17.1 `tee`: Redirect output to multiple files or processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#tee-invocation)
+    -   [17.1 - `tee`: Redirect output to multiple files or processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#tee-invocation)
 -   [18 File name manipulation](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-name-manipulation)
-    -   [18.1 `basename`: Strip directory and suffix from a file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#basename-invocation)
-    -   [18.2 `dirname`: Strip last file name component](https://www.gnu.org/software/coreutils/manual/coreutils.html#dirname-invocation)
-    -   [18.3 `pathchk`: Check file name validity and portability](https://www.gnu.org/software/coreutils/manual/coreutils.html#pathchk-invocation)
-    -   [18.4 `mktemp`: Create temporary file or directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#mktemp-invocation)
-    -   [18.5 `realpath`: Print the resolved file name.](https://www.gnu.org/software/coreutils/manual/coreutils.html#realpath-invocation)
+    -   [18.1 - `basename`: Strip directory and suffix from a file name](https://www.gnu.org/software/coreutils/manual/coreutils.html#basename-invocation)
+    -   [18.2 - `dirname`: Strip last file name component](https://www.gnu.org/software/coreutils/manual/coreutils.html#dirname-invocation)
+    -   [18.3 - `pathchk`: Check file name validity and portability](https://www.gnu.org/software/coreutils/manual/coreutils.html#pathchk-invocation)
+    -   [18.4 - `mktemp`: Create temporary file or directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#mktemp-invocation)
+    -   [18.5 - `realpath`: Print the resolved file name.](https://www.gnu.org/software/coreutils/manual/coreutils.html#realpath-invocation)
 -   [19 Working context](https://www.gnu.org/software/coreutils/manual/coreutils.html#Working-context)
-    -   [19.1 `pwd`: Print working directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#pwd-invocation)
-    -   [19.2 `stty`: Print or change terminal characteristics](https://www.gnu.org/software/coreutils/manual/coreutils.html#stty-invocation)
-    -   [19.3 `printenv`: Print all or some environment variables](https://www.gnu.org/software/coreutils/manual/coreutils.html#printenv-invocation)
-    -   [19.4 `tty`: Print file name of terminal on standard input](https://www.gnu.org/software/coreutils/manual/coreutils.html#tty-invocation)
+    -   [19.1 - `pwd`: Print working directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#pwd-invocation)
+    -   [19.2 - `stty`: Print or change terminal characteristics](https://www.gnu.org/software/coreutils/manual/coreutils.html#stty-invocation)
+    -   [19.3 - `printenv`: Print all or some environment variables](https://www.gnu.org/software/coreutils/manual/coreutils.html#printenv-invocation)
+    -   [19.4 - `tty`: Print file name of terminal on standard input](https://www.gnu.org/software/coreutils/manual/coreutils.html#tty-invocation)
 -   [20 User information](https://www.gnu.org/software/coreutils/manual/coreutils.html#User-information)
-    -   [20.1 `id`: Print user identity](https://www.gnu.org/software/coreutils/manual/coreutils.html#id-invocation)
-    -   [20.2 `logname`: Print current login name](https://www.gnu.org/software/coreutils/manual/coreutils.html#logname-invocation)
-    -   [20.3 `whoami`: Print effective user ID](https://www.gnu.org/software/coreutils/manual/coreutils.html#whoami-invocation)
-    -   [20.4 `groups`: Print group names a user is in](https://www.gnu.org/software/coreutils/manual/coreutils.html#groups-invocation)
-    -   [20.5 `users`: Print login names of users currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#users-invocation)
-    -   [20.6 `who`: Print who is currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#who-invocation)
+    -   [20.1 - `id`: Print user identity](https://www.gnu.org/software/coreutils/manual/coreutils.html#id-invocation)
+    -   [20.2 - `logname`: Print current login name](https://www.gnu.org/software/coreutils/manual/coreutils.html#logname-invocation)
+    -   [20.3 - `whoami`: Print effective user ID](https://www.gnu.org/software/coreutils/manual/coreutils.html#whoami-invocation)
+    -   [20.4 - `groups`: Print group names a user is in](https://www.gnu.org/software/coreutils/manual/coreutils.html#groups-invocation)
+    -   [20.5 - `users`: Print login names of users currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#users-invocation)
+    -   [20.6 - `who`: Print who is currently logged in](https://www.gnu.org/software/coreutils/manual/coreutils.html#who-invocation)
 -   [21 System context](https://www.gnu.org/software/coreutils/manual/coreutils.html#System-context)
-    -   [21.1 `date`: Print or set system date and time](https://www.gnu.org/software/coreutils/manual/coreutils.html#date-invocation)
-    -   [21.2 `arch`: Print machine hardware name](https://www.gnu.org/software/coreutils/manual/coreutils.html#arch-invocation)
-    -   [21.3 `nproc`: Print the number of available processors](https://www.gnu.org/software/coreutils/manual/coreutils.html#nproc-invocation)
-    -   [21.4 `uname`: Print system information](https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation)
-    -   [21.5 `hostname`: Print or set system name](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostname-invocation)
-    -   [21.6 `hostid`: Print numeric host identifier](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostid-invocation)
-    -   [21.7 `uptime`: Print system uptime and load](https://www.gnu.org/software/coreutils/manual/coreutils.html#uptime-invocation)
+    -   [21.1 - `date`: Print or set system date and time](https://www.gnu.org/software/coreutils/manual/coreutils.html#date-invocation)
+    -   [21.2 - `arch`: Print machine hardware name](https://www.gnu.org/software/coreutils/manual/coreutils.html#arch-invocation)
+    -   [21.3 - `nproc`: Print the number of available processors](https://www.gnu.org/software/coreutils/manual/coreutils.html#nproc-invocation)
+    -   [21.4 - `uname`: Print system information](https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation)
+    -   [21.5 - `hostname`: Print or set system name](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostname-invocation)
+    -   [21.6 - `hostid`: Print numeric host identifier](https://www.gnu.org/software/coreutils/manual/coreutils.html#hostid-invocation)
+    -   [21.7 - `uptime`: Print system uptime and load](https://www.gnu.org/software/coreutils/manual/coreutils.html#uptime-invocation)
 -   [22 SELinux context](https://www.gnu.org/software/coreutils/manual/coreutils.html#SELinux-context)
-    -   [22.1 `chcon`: Change SELinux context of file](https://www.gnu.org/software/coreutils/manual/coreutils.html#chcon-invocation)
-    -   [22.2 `runcon`: Run a command in specified SELinux context](https://www.gnu.org/software/coreutils/manual/coreutils.html#runcon-invocation)
+    -   [22.1 - `chcon`: Change SELinux context of file](https://www.gnu.org/software/coreutils/manual/coreutils.html#chcon-invocation)
+    -   [22.2 - `runcon`: Run a command in specified SELinux context](https://www.gnu.org/software/coreutils/manual/coreutils.html#runcon-invocation)
 -   [23 Modified command invocation](https://www.gnu.org/software/coreutils/manual/coreutils.html#Modified-command-invocation)
-    -   [23.1 `chroot`: Run a command with a different root directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#chroot-invocation)
-    -   [23.2 `env`: Run a command in a modified environment](https://www.gnu.org/software/coreutils/manual/coreutils.html#env-invocation)
-    -   [23.3 `nice`: Run a command with modified niceness](https://www.gnu.org/software/coreutils/manual/coreutils.html#nice-invocation)
-    -   [23.4 `nohup`: Run a command immune to hangups](https://www.gnu.org/software/coreutils/manual/coreutils.html#nohup-invocation)
-    -   [23.5 `stdbuf`: Run a command with modified I/O stream buffering](https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation)
-    -   [23.6 `timeout`: Run a command with a time limit](https://www.gnu.org/software/coreutils/manual/coreutils.html#timeout-invocation)
+    -   [23.1 - `chroot`: Run a command with a different root directory](https://www.gnu.org/software/coreutils/manual/coreutils.html#chroot-invocation)
+    -   [23.2 - `env`: Run a command in a modified environment](https://www.gnu.org/software/coreutils/manual/coreutils.html#env-invocation)
+    -   [23.3 - `nice`: Run a command with modified niceness](https://www.gnu.org/software/coreutils/manual/coreutils.html#nice-invocation)
+    -   [23.4 - `nohup`: Run a command immune to hangups](https://www.gnu.org/software/coreutils/manual/coreutils.html#nohup-invocation)
+    -   [23.5 - `stdbuf`: Run a command with modified I/O stream buffering](https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation)
+    -   [23.6 - `timeout`: Run a command with a time limit](https://www.gnu.org/software/coreutils/manual/coreutils.html#timeout-invocation)
 -   [24 Process control](https://www.gnu.org/software/coreutils/manual/coreutils.html#Process-control)
-    -   [24.1 `kill`: Send a signal to processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#kill-invocation)
+    -   [24.1 - `kill`: Send a signal to processes](https://www.gnu.org/software/coreutils/manual/coreutils.html#kill-invocation)
 -   [25 Delaying](https://www.gnu.org/software/coreutils/manual/coreutils.html#Delaying)
-    -   [25.1 `sleep`: Delay for a specified time](https://www.gnu.org/software/coreutils/manual/coreutils.html#sleep-invocation)
+    -   [25.1 - `sleep`: Delay for a specified time](https://www.gnu.org/software/coreutils/manual/coreutils.html#sleep-invocation)
 -   [26 Numeric operations](https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-operations)
-    -   [26.1 `factor`: Print prime factors](https://www.gnu.org/software/coreutils/manual/coreutils.html#factor-invocation)
-    -   [26.2 `numfmt`: Reformat numbers](https://www.gnu.org/software/coreutils/manual/coreutils.html#numfmt-invocation)
-    -   [26.3 `seq`: Print numeric sequences](https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation)
+    -   [26.1 - `factor`: Print prime factors](https://www.gnu.org/software/coreutils/manual/coreutils.html#factor-invocation)
+    -   [26.2 - `numfmt`: Reformat numbers](https://www.gnu.org/software/coreutils/manual/coreutils.html#numfmt-invocation)
+    -   [26.3 - `seq`: Print numeric sequences](https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation)
 -   [27 File permissions](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-permissions)
 -   [28 File timestamps](https://www.gnu.org/software/coreutils/manual/coreutils.html#File-timestamps)
 -   [29 Date input formats](https://www.gnu.org/software/coreutils/manual/coreutils.html#Date-input-formats)
-    -   [29.11 Authors of `parse_datetime`](https://www.gnu.org/software/coreutils/manual/coreutils.html#Authors-of-parse_005fdatetime)
+    -   [29.11 Authors of - `parse_datetime`](https://www.gnu.org/software/coreutils/manual/coreutils.html#Authors-of-parse_005fdatetime)
 -   [31 Opening the Software Toolbox](https://www.gnu.org/software/coreutils/manual/coreutils.html#Opening-the-software-toolbox)
-    -   [The `who` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-who-command)
-    -   [The `cut` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-cut-command)
-    -   [The `sort` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-sort-command)
-    -   [The `uniq` Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-uniq-command)
+    -   [The - `who` - Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-who-command)
+    -   [The - `cut` - Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-cut-command)
+    -   [The - `sort` - Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-sort-command)
+    -   [The - `uniq` - Command](https://www.gnu.org/software/coreutils/manual/coreutils.html#The-uniq-command)
 -   [Appendix A GNU Free Documentation License](https://www.gnu.org/software/coreutils/manual/coreutils.html#GNU-Free-Documentation-License)
 -   [Index](https://www.gnu.org/software/coreutils/manual/coreutils.html#Concept-index)
 
@@ -2102,40 +2106,40 @@ Below is a list of all the *coreutils* applications, there are many other useful
 
 [Other Manuals](https://www.gnu.org/manual/manual.html)
 
-[Aspell](http://aspell.net/man-html/index.html) - Spell checker. [[aspell home](https://www.gnu.org/software/aspell/)]
+[Aspell](http://aspell.net/man-html/index.html) - Spell checker. [[aspell - home](https://www.gnu.org/software/aspell/)]
 
-[AUCTeX](https://www.gnu.org/software/auctex/manual/) - Emacs environment for editing (all flavors of) TeX files. [[auctex home](https://www.gnu.org/software/auctex/)]
+[AUCTeX](https://www.gnu.org/software/auctex/manual/) - Emacs environment for editing (all flavors of) TeX files. [[auctex - home](https://www.gnu.org/software/auctex/)]
 
-[Bool](https://www.gnu.org/software/bool/) - Finding text and HTML files that match boolean expressions. [[bool home](https://www.gnu.org/software/bool/)]
+[Bool](https://www.gnu.org/software/bool/) - Finding text and HTML files that match boolean expressions. [[bool - home](https://www.gnu.org/software/bool/)]
 
-[Combine](https://www.gnu.org/software/combine/manual/) Extensible file matching and filtering. [[combine home](https://www.gnu.org/software/combine/)]
+[Combine](https://www.gnu.org/software/combine/manual/) Extensible file matching and filtering. [[combine - home](https://www.gnu.org/software/combine/)]
 
-[Diction](https://www.gnu.org/software/diction/) -Identifies wordy and commonly misused phrases. [[diction home](https://www.gnu.org/software/diction/)]
+[Diction](https://www.gnu.org/software/diction/) -Identifies wordy and commonly misused phrases. [[diction - home](https://www.gnu.org/software/diction/)]
 
 [Diffutils](https://www.gnu.org/software/diffutils/manual/html_node/) -
-Comparing and merging files. [[diffutils home](https://www.gnu.org/software/diffutils/)]
+Comparing and merging files. [[diffutils - home](https://www.gnu.org/software/diffutils/)]
 
-- [Ed](https://www.gnu.org/software/ed/manual/ed_manual.html) - Line-oriented text editor. [[ed home](https://www.gnu.org/software/ed/)]
-- [Gawk](https://www.gnu.org/software/gawk/manual/)  ([gawkinet](https://www.gnu.org/software/gawk/manual/gawkinet/html_node/)  [gawk](https://www.gnu.org/software/gawk/manual/html_node/)) - Text scanning and processing language. [[gawk home](https://www.gnu.org/software/gawk/)]
-- [Grep](https://www.gnu.org/software/grep/manual/) - Print lines matching a pattern. [[grep home](https://www.gnu.org/software/grep/)]
-- [Groff](https://www.gnu.org/software/groff/manual/html_node/) - Typesetting from plain text mixed with formatting commands. [[groff home](https://www.gnu.org/software/groff/)]
-- [Help2man](https://www.gnu.org/software/help2man/) - Automatically generate man pages from program --help. [[help2man home](https://www.gnu.org/software/help2man/)]
-- [Html-info](https://www.gnu.org/software/html-info/) - HTML-Info viewer and tools. [[html-info home](https://www.gnu.org/software/html-info/)]
-- [Hyperbole](https://www.gnu.org/software/hyperbole/) - Emacs hypertext system via customizable buttons. [[hyperbole home](https://www.gnu.org/software/hyperbole/)]
-- [Less](https://www.gnu.org/software/less/) - Paginator for terminals. [[less home](https://www.gnu.org/software/less/)]
-- [M4](https://www.gnu.org/software/m4/manual/) - Macro processor. [[m4 home](https://www.gnu.org/software/m4/)]
-- [Miscfiles](https://www.gnu.org/software/miscfiles/) - Data files for airport codes, zip codes, a dictionary, and more. [[miscfiles home](https://www.gnu.org/software/miscfiles/)]
-- [Ocrad](https://www.gnu.org/software/ocrad/manual/ocrad_manual.html) - Optical character recognition based on feature extraction. [[ocrad home](https://www.gnu.org/software/ocrad/)]
-- [OrgaDoc](https://www.gnu.org/software/orgadoc/manual/) - Eiffel program to maintain and query documents across machines. [[orgadoc home](https://www.gnu.org/software/orgadoc/)]
-- [Reftex](https://www.gnu.org/software/auctex/manual/reftex.index.html) - Emacs support for LaTeX cross-references of all kinds. [[reftex home](https://www.gnu.org/software/reftex/)]
-- [Sed](https://www.gnu.org/software/sed/manual/) - Stream editor. [[sed home](https://www.gnu.org/software/sed/)]
-- [Spell](https://www.gnu.org/software/spell/) - Spell checking. [[spell home](https://www.gnu.org/software/spell/)]
-- [Src-highlite](https://www.gnu.org/software/src-highlite/source-highlight.html) - Produce a document with syntax highlighting from a source file. [[src-highlite home](https://www.gnu.org/software/src-highlite/)]
-- [TeX for the Impatient](https://www.gnu.org/software/teximpatient/) - Book on TeX, plain TeX, and Eplain. [[teximpatient home](https://www.gnu.org/software/teximpatient/)]
-- [Texinfo](https://www.gnu.org/software/texinfo/manual/)  ([info-stnd](https://www.gnu.org/software/texinfo/manual/info-stnd/html_node/)  [texinfo](https://www.gnu.org/software/texinfo/manual/texinfo/html_node/)) - The GNU documentation format. [[texinfo home](https://www.gnu.org/software/texinfo/)]
-- [TeXmacs](https://www.gnu.org/software/texmacs/) - Editing platform with special features for scientists. [[texmacs home](https://www.gnu.org/software/texmacs/)]
-- [UnRTF](https://www.gnu.org/software/unrtf/) - Convert Rich Text Format documents to other formats. [[unrtf home](https://www.gnu.org/software/unrtf/)]
-- [Wdiff](https://www.gnu.org/software/wdiff/manual/) - Word difference finder. [[wdiff home](https://www.gnu.org/software/wdiff/)]
+- [Ed](https://www.gnu.org/software/ed/manual/ed_manual.html) - Line-oriented text editor. [[ed - home](https://www.gnu.org/software/ed/)]
+- [Gawk](https://www.gnu.org/software/gawk/manual/) -  - ([gawkinet](https://www.gnu.org/software/gawk/manual/gawkinet/html_node/) -  - [gawk](https://www.gnu.org/software/gawk/manual/html_node/)) - Text scanning and processing language. [[gawk - home](https://www.gnu.org/software/gawk/)]
+- [Grep](https://www.gnu.org/software/grep/manual/) - Print lines matching a pattern. [[grep - home](https://www.gnu.org/software/grep/)]
+- [Groff](https://www.gnu.org/software/groff/manual/html_node/) - Typesetting from plain text mixed with formatting commands. [[groff - home](https://www.gnu.org/software/groff/)]
+- [Help2man](https://www.gnu.org/software/help2man/) - Automatically generate man pages from program --help. [[help2man - home](https://www.gnu.org/software/help2man/)]
+- [Html-info](https://www.gnu.org/software/html-info/) - HTML-Info viewer and tools. [[html-info - home](https://www.gnu.org/software/html-info/)]
+- [Hyperbole](https://www.gnu.org/software/hyperbole/) - Emacs hypertext system via customizable buttons. [[hyperbole - home](https://www.gnu.org/software/hyperbole/)]
+- [Less](https://www.gnu.org/software/less/) - Paginator for terminals. [[less - home](https://www.gnu.org/software/less/)]
+- [M4](https://www.gnu.org/software/m4/manual/) - Macro processor. [[m4 - home](https://www.gnu.org/software/m4/)]
+- [Miscfiles](https://www.gnu.org/software/miscfiles/) - Data files for airport codes, zip codes, a dictionary, and more. [[miscfiles - home](https://www.gnu.org/software/miscfiles/)]
+- [Ocrad](https://www.gnu.org/software/ocrad/manual/ocrad_manual.html) - Optical character recognition based on feature extraction. [[ocrad - home](https://www.gnu.org/software/ocrad/)]
+- [OrgaDoc](https://www.gnu.org/software/orgadoc/manual/) - Eiffel program to maintain and query documents across machines. [[orgadoc - home](https://www.gnu.org/software/orgadoc/)]
+- [Reftex](https://www.gnu.org/software/auctex/manual/reftex.index.html) - Emacs support for LaTeX cross-references of all kinds. [[reftex - home](https://www.gnu.org/software/reftex/)]
+- [Sed](https://www.gnu.org/software/sed/manual/) - Stream editor. [[sed - home](https://www.gnu.org/software/sed/)]
+- [Spell](https://www.gnu.org/software/spell/) - Spell checking. [[spell - home](https://www.gnu.org/software/spell/)]
+- [Src-highlite](https://www.gnu.org/software/src-highlite/source-highlight.html) - Produce a document with syntax highlighting from a source file. [[src-highlite - home](https://www.gnu.org/software/src-highlite/)]
+- [TeX for the Impatient](https://www.gnu.org/software/teximpatient/) - Book on TeX, plain TeX, and Eplain. [[teximpatient - home](https://www.gnu.org/software/teximpatient/)]
+- [Texinfo](https://www.gnu.org/software/texinfo/manual/) -  - ([info-stnd](https://www.gnu.org/software/texinfo/manual/info-stnd/html_node/) -  - [texinfo](https://www.gnu.org/software/texinfo/manual/texinfo/html_node/)) - The GNU documentation format. [[texinfo - home](https://www.gnu.org/software/texinfo/)]
+- [TeXmacs](https://www.gnu.org/software/texmacs/) - Editing platform with special features for scientists. [[texmacs - home](https://www.gnu.org/software/texmacs/)]
+- [UnRTF](https://www.gnu.org/software/unrtf/) - Convert Rich Text Format documents to other formats. [[unrtf - home](https://www.gnu.org/software/unrtf/)]
+- [Wdiff](https://www.gnu.org/software/wdiff/manual/) - Word difference finder. [[wdiff - home](https://www.gnu.org/software/wdiff/)]
 
 
 
@@ -3396,13 +3400,13 @@ In addition, the following table describes the special characters which can appe
 
 - `\e` - An escape character. 
 
-- `\h` - The hostname, up to the first ‘.’. 
+- `\h` - The hostname, up to the first '.'. 
 
 - `\H` - The hostname. 
 
 - `\j` - The number of jobs currently managed by the shell. 
 
-- `\l` - The basename of the shell’s terminal device name. 
+- `\l` - The basename of the shell's terminal device name. 
 
 - `\n` - A newline. 
 
@@ -5623,12 +5627,12 @@ bash$ **./history.sh**
 (no output)
 ```
 
-[Advancing in the Bash Shell – ${me:-whatever}](http://samrowe.com/wordpress/advancing-in-the-bash-shell/)
+[Advancing in the Bash Shell = ${me:-whatever}](http://samrowe.com/wordpress/advancing-in-the-bash-shell/)
 
 
 
 > 
-> Here’s an example of history output:
+> Here's an example of history output:
 > 
 > [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 > 
@@ -5651,22 +5655,22 @@ bash$ **./history.sh**
 
 !xyz will allow you to run the last command beginning with xyz that you typed. 
 
-> ### :p isn’t just an emoticon
+> ### :p isn't just an emoticon
 > 
-> If you need to be very sure of the command you’re targeting, :p can be a huge help.
+> If you need to be very sure of the command you're targeting, :p can be a huge help.
 
- !xyz:p will print the command that would be executed rather than executing it. :p is also clever enough to add the printed command to your history list as the last command executed (even though it didn’t execute it) so that, if you decide that you like what was printed, a !! is all you need to make it happen,
+ !xyz:p will print the command that would be executed rather than executing it. :p is also clever enough to add the printed command to your history list as the last command executed (even though it didn't execute it) so that, if you decide that you like what was printed, a !! is all you need to make it happen,
 
 
 > Bash provides a couple of methods for searching the command history. Both are useful in different situations. The first method is to simply type
 
  `history`, find the number of the command you want and then type
  
-`!N` where "N" is the number of the command you’d like to execute. (`:p` works here too.)
+`!N` where "N" is the number of the command you'd like to execute. (`:p` works here too.)
 
  The other method is a tad more complex but also adds flexibilty. 
  
- `^r` ([[ctrl]]-[[r]]) followed by whatever you type will search the command history for that string. The bonus here is that you’re able to edit the command line you’ve searched for before you send it down the line.
+ `^r` ([[ctrl]]-[[r]]) followed by whatever you type will search the command history for that string. The bonus here is that you're able to edit the command line you've searched for before you send it down the line.
  
 > ### Bang dollar-sign
 > 
@@ -5688,9 +5692,9 @@ bash$ **./history.sh**
 
 Another thing to keep in mind when using !$ is that if the previous command had no agruments, `!$` will expand to the previous command rather than the most recent argument.
 
- This can be handy if, for example, you forget to type vi and you just type the filename. A simple `vi !$ `and you’re in.
+ This can be handy if, for example, you forget to type vi and you just type the filename. A simple `vi !$ `and you're in.
 
-Similar to `!$` is `!*`. `!*` is _all_ of the arguments to the previous command rather than just the last one. As usual, this is useful in many situations. Here’s a simple example:
+Similar to `!$` is `!*`. `!*` is _all_ of the arguments to the previous command rather than just the last one. As usual, this is useful in many situations. Here's a simple example:
 
 >$ vi cd /stuff #(oops!)
 
@@ -5711,7 +5715,7 @@ Have you ever typed a command, hit return and a micro-second later realized that
 1.  $ mroe filename
 
 
-Luckily, the folks who wrote bash weren’t the greatest typists either. In bash, you can fix typos in the previous command with a circumflex (^) or "hat." Consider the following:
+Luckily, the folks who wrote bash weren't the greatest typists either. In bash, you can fix typos in the previous command with a circumflex (^) or "hat." Consider the following:
 
 $ vi /etc/Somefile.conf #(oops!)
 
@@ -5724,9 +5728,9 @@ Which bash turns into:
 
 What happened there? The name of the file that I was trying to edit was /etc/SomeFile.conf (note the capital "F.") I typed a lower-case "f" and vi saw my error as a request for a new file. Once I closed out of vi I was able to fix my mistake with the following formula: `^error^correction`. Also notice that it only changed the first instance of "f" and not the second.
 
-If you need a global replacement, you’ll need to use a different kind of history modifier that’s discussed in the Word Modifiers section below.
+If you need a global replacement, you'll need to use a different kind of history modifier that's discussed in the Word Modifiers section below.
 
-Hats needn’t be only used for errors… Let’s say you have a few redundant commands that can’t be handled with a wildcard, hats will work great for you. For example:
+Hats needn't be only used for errors… Let's say you have a few redundant commands that can't be handled with a wildcard, hats will work great for you. For example:
 
 $ dd if\=kern.flp of\=/dev/fd0
 
@@ -5741,7 +5745,7 @@ Which bash turns into:
 
 ### A few handy movement commands
 
-Sometimes a mistake is noticed before the enter key is pressed. We’ve already talked about terminals that don’t translate cursor-keys properly, so how do you fix a mistake? To make matters worse, sometimes the backspace key gets mapped to `^H` or even worse something like `^[[~`. Now how do you fix your mistake before hitting the enter key?
+Sometimes a mistake is noticed before the enter key is pressed. We've already talked about terminals that don't translate cursor-keys properly, so how do you fix a mistake? To make matters worse, sometimes the backspace key gets mapped to `^H` or even worse something like `^[[~`. Now how do you fix your mistake before hitting the enter key?
 
 Once again, bash comes through for us. Here are some of the movement keystrokes that I use most often:
 
@@ -5750,11 +5754,11 @@ Once again, bash comes through for us. Here are some of the movement keystrokes 
 -   ^a move the cursor to the beginning of the line
 -   ^e move the curor to the end of the line
 
-There are more of course, but those are the ones you simply can’t live without. For those who don’t know the ^N notation means ctrl+N, don’t confuse it with hats mentioned above.
+There are more of course, but those are the ones you simply can't live without. For those who don't know the ^N notation means ctrl+N, don't confuse it with hats mentioned above.
 
 ### tab-tab
 
-One of my favorite features of bash is tab-completion. Tab-completion works in a couple of ways, it can complete filenames in the current directory or in your $PATH. Like the !commands above, you just need to give bash enough of the filename to make it unique and hit the tab key — bash will do the rest for you. Let’s say you have a file in your home directory called ransom.note, consider the following:
+One of my favorite features of bash is tab-completion. Tab-completion works in a couple of ways, it can complete filenames in the current directory or in your $PATH. Like the !commands above, you just need to give bash enough of the filename to make it unique and hit the tab key — bash will do the rest for you. Let's say you have a file in your home directory called ransom.note, consider the following:
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5768,20 +5772,20 @@ Will expand to
 1.  $ more ransom.note
 
 
-Let’s say you also have a file named _random_ in your home directory. ran above is no longer enough to be unique, but you’re in luck. If you hit tab twice, bash will print the list of matching files to the screen so that you can see what you need to add to make your shortcut unique.
+Let's say you also have a file named _random_ in your home directory. ran above is no longer enough to be unique, but you're in luck. If you hit tab twice, bash will print the list of matching files to the screen so that you can see what you need to add to make your shortcut unique.
 
 ### Aliases
 
-Using aliases is sort of like creating your own commands. You decide what you want to type _and_ what happens when you type that. Aliases can live in a few of different places, ~/.bashrc ~/.bash\_profile ~/.profile and ~/.aliases are some, but not all. In fact, you’re not really limited to keeping them all in one place. Those different files behave differently based upon what kind of shell you’re running, but that’s beyond the scope of this document. For the purposes of this discussion, we’ll settle on ~/.bash\_profile (used for login shells.)
+Using aliases is sort of like creating your own commands. You decide what you want to type _and_ what happens when you type that. Aliases can live in a few of different places, ~/.bashrc ~/.bash\_profile ~/.profile and ~/.aliases are some, but not all. In fact, you're not really limited to keeping them all in one place. Those different files behave differently based upon what kind of shell you're running, but that's beyond the scope of this document. For the purposes of this discussion, we'll settle on ~/.bash\_profile (used for login shells.)
 
-In that file, usually at the bottom, I assemble my aliases. Here’s some examples:
+In that file, usually at the bottom, I assemble my aliases. Here's some examples:
 
--   alias ud=’aptitude update && aptitude dist-upgrade’
--   alias ls=’ls –color=auto’
--   alias mroe=’less’
--   alias H=’kill -HUP’
--   alias ssh=’ssh -AX’
--   alias webshare=’python -c “import SimpleHTTPServer;SimpleHTTPServer.test()”‘
+-   alias ud='aptitude update && aptitude dist-upgrade'
+-   alias ls='ls –color=auto'
+-   alias mroe='less'
+-   alias H='kill -HUP'
+-   alias ssh='ssh -AX'
+-   alias webshare='python -c “import SimpleHTTPServer;SimpleHTTPServer.test()”'
 
 The bottom one will probably wrap, but it provides a great example of why aliases are great. A whole string of commands has been reduced to something short and easy to remember.
 
@@ -5796,7 +5800,7 @@ Everyone has done one of the following to make a quick backup of a file:
 2.  $ cp filename-old filename
 
 
-These seem fairly straightforward, what could possibly make them more efficient? Let’s look at an example:
+These seem fairly straightforward, what could possibly make them more efficient? Let's look at an example:
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5807,9 +5811,9 @@ These seem fairly straightforward, what could possibly make them more efficient?
 3.  $ cp filename{-v1,-v2}
 
 
-In the first two examples, I’m doing exactly the same thing as I did in the previous set of examples, but with far less typing. The first example takes a file named filename and copies it to filename-old The second example takes a file named filename-old and copies it to simply filename.
+In the first two examples, I'm doing exactly the same thing as I did in the previous set of examples, but with far less typing. The first example takes a file named filename and copies it to filename-old The second example takes a file named filename-old and copies it to simply filename.
 
-The third example might give us a clearer picture of what’s actually occuring in the first two. In the third example, I’m copying a file called filename-v1 to a file called filename-v2 The curly brace ({) in this context, tells bash that "brace expansion" is taking place. The _preamble_ (in our case filename,) is prepended to each of the strings in the comma-separated _list_ found within the curly braces, creating a new word for each string. So the third example above expands to:
+The third example might give us a clearer picture of what's actually occuring in the first two. In the third example, I'm copying a file called filename-v1 to a file called filename-v2 The curly brace ({) in this context, tells bash that "brace expansion" is taking place. The _preamble_ (in our case filename,) is prepended to each of the strings in the comma-separated _list_ found within the curly braces, creating a new word for each string. So the third example above expands to:
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5854,7 +5858,7 @@ For more on brace expansion, including examples of nesting, read the bash man pa
 
 ### Word Modifiers
 
-In the first installment of Advancing in the Bash Shell, we learned about :p which is used to print a command, but not execute it. :p is an example of a "word modifier" and it has several siblings. Here’s a shortened list from the bash man page:
+In the first installment of Advancing in the Bash Shell, we learned about :p which is used to print a command, but not execute it. :p is an example of a "word modifier" and it has several siblings. Here's a shortened list from the bash man page:
 
 h
 
@@ -5872,7 +5876,7 @@ e
 
 Remove all but the trailing suffix.
 
-Let’s say I’m reading a file nested deeply in a directory structure. When I finish editing the file, I realize that there are some other operations I want to do in that directory and that they would be more easily accomplished if I were _in_ that directory. I can use :h to help get me there.
+Let's say I'm reading a file nested deeply in a directory structure. When I finish editing the file, I realize that there are some other operations I want to do in that directory and that they would be more easily accomplished if I were _in_ that directory. I can use :h to help get me there.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5887,7 +5891,7 @@ Our old friend !$ is back and is being modified by :h. The second command tells 
 
 The third command looks pretty crazy, but it is acutally quite simple. !-2 means _the command **N**_(in this case 2) _commands ago_. $ means _the last argument of that command_ and the :t means modify that argument to remove the path from it. So, all told: run links using the last argument of the command preceding the most recent one, trimming the path from that argument, or links 3DM\_help.html. No big deal, right?
 
-In our next example, we’ve downloaded a tar ball from the Internet. We check to see if it is going to create a directory for its files and find out that it will not. Rather than clutter up the current directory, we’ll make a directory for it.
+In our next example, we've downloaded a tar ball from the Internet. We check to see if it is going to create a directory for its files and find out that it will not. Rather than clutter up the current directory, we'll make a directory for it.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5900,9 +5904,9 @@ In our next example, we’ve downloaded a tar ball from the Internet. We check t
 4.  $ mkdir !$:r
 
 
-The third command will create a directory called ‘jubby’.
+The third command will create a directory called 'jubby'.
 
-Word modifiers can be stacked as well. In the next example, we’ll download a file to /tmp, and then create a directory for the contents of that tar file in /usr/local/src.
+Word modifiers can be stacked as well. In the next example, we'll download a file to /tmp, and then create a directory for the contents of that tar file in /usr/local/src.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5921,9 +5925,9 @@ Word modifiers can be stacked as well. In the next example, we’ll download a f
 7.  $ tar xvzf /tmp/!-4$:t
 
 
-The first three commands are fairly common and use no substitution. The fourth command, however, seems like gibberish. We know !-2 means _the command prior to the most recent one_ and that $ indicates the last argument of that command. We even know that :t will strip off the path portion of that argument (in this case, even the "http://".) We even know that :r will remove the file-extension to that argument, but here we call it twice, because there are two extensions (.gz is removed by the first :r and .tar is removed by the second.) We then cd into that directory (!$, again, is the argument to the previous command, in this case the argument to mkdir, which is ‘KickassApplicationSuite’.) We then untar the file. !-4$ is the last argument to the command four commands ago, which is then modified by :t to remove the path, because we added the path as /tmp/. So the last command becomes tar xvzf /tmp/KickassApplicationSuite.tar.gz.
+The first three commands are fairly common and use no substitution. The fourth command, however, seems like gibberish. We know !-2 means _the command prior to the most recent one_ and that $ indicates the last argument of that command. We even know that :t will strip off the path portion of that argument (in this case, even the "http://".) We even know that :r will remove the file-extension to that argument, but here we call it twice, because there are two extensions (.gz is removed by the first :r and .tar is removed by the second.) We then cd into that directory (!$, again, is the argument to the previous command, in this case the argument to mkdir, which is 'KickassApplicationSuite'.) We then untar the file. !-4$ is the last argument to the command four commands ago, which is then modified by :t to remove the path, because we added the path as /tmp/. So the last command becomes tar xvzf /tmp/KickassApplicationSuite.tar.gz.
 
-There’s even a word modifier for substitution. :s can be used similarly to circumflex hats to do simple line substitution.
+There's even a word modifier for substitution. :s can be used similarly to circumflex hats to do simple line substitution.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5932,7 +5936,7 @@ There’s even a word modifier for substitution. :s can be used similarly to cir
 2.  $ !!:s/config/Config-4/
 
 
-We know that !! means the previous command string. :s modifies the previous command, substituting the first argument to :s with the second argument to :s. My example used / to delimit the two arguments, but any non-whitespace character can be used. It’s also important to note that, just like circumflex hat substitution, the substitution will only take place on the first instance of the string to be substituted. If you want to affect every instance of the substitution string, you must use the :g word modifier along with :s.
+We know that !! means the previous command string. :s modifies the previous command, substituting the first argument to :s with the second argument to :s. My example used / to delimit the two arguments, but any non-whitespace character can be used. It's also important to note that, just like circumflex hat substitution, the substitution will only take place on the first instance of the string to be substituted. If you want to affect every instance of the substitution string, you must use the :g word modifier along with :s.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5943,7 +5947,7 @@ We know that !! means the previous command string. :s modifies the previous comm
 
 The second command substitutes (:s) more for all (:g) instances of mroe. Hint: :g can be used with circumflex hats too!
 
-The final word modifer we’ll look at in this tutorial is &. & means _repeat the previous substitution._ Let’s say we’re examining file attributes with the ls command.
+The final word modifer we'll look at in this tutorial is - &. & - means _repeat the previous substitution._ Let's say we're examining file attributes with the ls command.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5952,7 +5956,7 @@ The final word modifer we’ll look at in this tutorial is &. & means _repeat 
 2.  $ !!:s/myfile/myfile.old/
 
 
-Seems simple enough. :s steps in and changes myfile to myfile.old so we end up with ls -lh myfile.old myfile2 myfile3. & is just a shortcut that we can use to represent the first argument to :s The following example is equivalent to the example above:
+Seems simple enough. :s steps in and changes myfile to myfile.old so we end up with ls -lh myfile.old myfile2 myfile3. & - is just a shortcut that we can use to represent the first argument to :s The following example is equivalent to the example above:
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -5965,20 +5969,20 @@ Seems simple enough. :s steps in and changes myfile to myfile.old so we end up w
 
 ### Bash Functions
 
-Earlier, we learned a bit about aliases. Aliases are simple, static, substitutions. This isn’t to say that one can’t have a very advanced and complex alias, but rather to say that no matter how complex the alias, the shell is simply substituting _^x_ for _^y_. Shell functions are like aliases, but they have the ability to contain logic and positional arguments, making them quite powerful.
+Earlier, we learned a bit about aliases. Aliases are simple, static, substitutions. This isn't to say that one can't have a very advanced and complex alias, but rather to say that no matter how complex the alias, the shell is simply substituting _^x_ for _^y_. Shell functions are like aliases, but they have the ability to contain logic and positional arguments, making them quite powerful.
 
-What is a positional argument? I’m glad you asked. A positional argument is an argument whose _position_ is important. For example, in the following function the directory containing the data to be copied _must_ come first and the destination directory _must_ come second.
+What is a positional argument? I'm glad you asked. A positional argument is an argument whose _position_ is important. For example, in the following function the directory containing the data to be copied _must_ come first and the destination directory _must_ come second.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
 1.  function treecp { tar cf - "${1}" | (cd "${2}" ; tar xpf -) ; };
 
 
-It’s certainly possible (and easy) to write functions that can accept their arguments in any order, but in many cases, it just doesn’t make sense to do so. Imagine if cp could take its arguments in any order and you had to use switches to designate which file was which!
+It's certainly possible (and easy) to write functions that can accept their arguments in any order, but in many cases, it just doesn't make sense to do so. Imagine if cp could take its arguments in any order and you had to use switches to designate which file was which!
 
-Let’s look at the example function above. To let bash know that you’re declaring a function, you start your function with the word function. The first argument to function is the name of the function you want to declare. In this case, treecp. The next character, {, as above, indicates a list to the shell. The list, in this case, is a list of commands. After the curly brace, the logic of the function is defined until the function is closed with a semi-colon followed by a closing curly brace (}.)
+Let's look at the example function above. To let bash know that you're declaring a function, you start your function with the word function. The first argument to function is the name of the function you want to declare. In this case, treecp. The next character, {, as above, indicates a list to the shell. The list, in this case, is a list of commands. After the curly brace, the logic of the function is defined until the function is closed with a semi-colon followed by a closing curly brace (}.)
 
-The logic of this function is fairly simple, once you understand the two variables that it is using. "${1}" is _the first argument to a given command_. "${2}" is the second, and so on.These are positional arguments. Their number indicates their position. You might think that, "${0}" is the name of the command itself, but it’s actually the name of the current "environment". In a shell script, it will be the name of the shell script. In your interactive shell, it’ll be the shell name with arguments. If you want the name of the function you’re in, you can use ${FUNCNAME}.
+The logic of this function is fairly simple, once you understand the two variables that it is using. "${1}" is _the first argument to a given command_. "${2}" is the second, and so on.These are positional arguments. Their number indicates their position. You might think that, "${0}" is the name of the command itself, but it's actually the name of the current "environment". In a shell script, it will be the name of the shell script. In your interactive shell, it'll be the shell name with arguments. If you want the name of the function you're in, you can use ${FUNCNAME}.
 
 So, in order to use our treecp function, we must supply it with two arguments, the source tree and the destination tree:
 
@@ -5989,7 +5993,7 @@ So, in order to use our treecp function, we must supply it with two arguments, t
 
 dmr becomes "${1}", and ~/public\_html is expanded to /home/whomever/public\_html which then becomes "${2}".
 
-What happens if the user forgets to add either or both arguments? How can the function know that it shouldn’t continue? The function, as above, doesn’t. It’ll just continue on its merry way no matter how few arguments it receives. Let’s add some logic to make sure things are as we expect them before proceeding.
+What happens if the user forgets to add either or both arguments? How can the function know that it shouldn't continue? The function, as above, doesn't. It'll just continue on its merry way no matter how few arguments it receives. Let's add some logic to make sure things are as we expect them before proceeding.
 
 Before we can do that, we need to learn about another variable that is set, (like "${1}",) when a command is run. The "${#}" variable is equal to the number of arguments given to a command. For example:
 
@@ -6010,7 +6014,7 @@ Before we can do that, we need to learn about another variable that is set, (lik
 7.  [output is '0']
 
 
-So now that we can discover how many arguments were passed to our command, (in this case a function,) we can determine if we’ve received the two arguments necessary to make our command work. There’s still a chance that these arguments are garbage, containing typos or directories that don’t exist, but unfortunately the function can’t think for you. :)
+So now that we can discover how many arguments were passed to our command, (in this case a function,) we can determine if we've received the two arguments necessary to make our command work. There's still a chance that these arguments are garbage, containing typos or directories that don't exist, but unfortunately the function can't think for you. :)
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -6031,9 +6035,9 @@ So now that we can discover how many arguments were passed to our command, (in t
 8.  };
 
 
-I’ve made use of the [ (aka test) application to see if the number of arugments is other than the expected two. If there are more or less than two arguments, the function willl echo a usage statement and set the value of "${?}" to 1. "${?}" is called a _return code_. I’ll discuss return codes in a little bit. If there _are_ two arguments, the command runs using the first argument as an argument to tar cf – and the second command as an argument to cd. For more information on [ read its man page (man [.)
+I've made use of the [ (aka test) application to see if the number of arugments is other than the expected two. If there are more or less than two arguments, the function willl echo a usage statement and set the value of "${?}" to 1. "${?}" is called a _return code_. I'll discuss return codes in a little bit. If there _are_ two arguments, the command runs using the first argument as an argument to tar cf – and the second command as an argument to cd. For more information on [ read its man page (man [.)
 
-Ok, so positional parameters are fun, but what if I don’t care about placement and I need to pass _all_ arguments to a command within my function? "${*}" is just what you’re looking for.
+Ok, so positional parameters are fun, but what if I don't care about placement and I need to pass _all_ arguments to a command within my function? "${*}" is just what you're looking for.
 
 [View Raw Code](http://samrowe.com/wordpress/advancing-in-the-bash-shell/#)[?](http://www.oriontransfer.co.nz/software/jquery-syntax)
 
@@ -6042,11 +6046,11 @@ Ok, so positional parameters are fun, but what if I don’t care about placement
 2.  $ n do the dumb things I gotta do, touch the puppet head.
 
 
-No matter how many words are passed to n they’ll all end up concatenated to the end of notes in my home directory. Be careful to avoid shell-special characters when entering notes in this manner!
+No matter how many words are passed to n they'll all end up concatenated to the end of notes in my home directory. Be careful to avoid shell-special characters when entering notes in this manner!
 
 Above, we designated 1 as a return code for an error state. There are no rules about what number should be returned in what case, but there are some commonly used return codes that you may want to use or at least be aware of. 0 (zero) is commonly used to denote successful completion of a task. 1 (one), (or any non-zero number,) is commonly used to denote an error state.
 
-If an function or shell script is quite complex, the author may choose to use any number of error codes to mean different things went wrong. For example, return code _28_ might mean your script was unable to create a file in a certain directory, whereas return code _29_ might mean that the script received an error code from wget when it tried to download a file. Return codes are more helpful to logic than to people. Don’t forget to include good error messages for the humans trying to figure out what’s going wrong.
+If an function or shell script is quite complex, the author may choose to use any number of error codes to mean different things went wrong. For example, return code _28_ might mean your script was unable to create a file in a certain directory, whereas return code _29_ might mean that the script received an error code from wget when it tried to download a file. Return codes are more helpful to logic than to people. Don't forget to include good error messages for the humans trying to figure out what's going wrong.
 
 The following is an example of checking a return code:
 
@@ -6065,8 +6069,8 @@ The following is an example of checking a return code:
 6.  };
 
 
-grep will return non-zero if no match was found. We then call test again (as [) to see if the return code from grep was other than zero. If [‘s expression evaluates to true, in this case if a non-zero number was returned, the command after then will be run. If grep returns 0, it will output the files/lines that match the expression passed to it, [‘s expression will evaluate false and the command after then will **not** run.
+grep will return non-zero if no match was found. We then call test again (as [) to see if the return code from grep was other than zero. If ['s expression evaluates to true, in this case if a non-zero number was returned, the command after then will be run. If grep returns 0, it will output the files/lines that match the expression passed to it, ['s expression will evaluate false and the command after then will **not** run.
 
-This is just the tip of the bash iceberg. If you’re interested in learning more about the programming aspects of Bash, don’t miss Mike G’s [BASH Programming – Introduction HOW-TO](http://en.tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html). [Greg’s Bash Wiki](http://mywiki.wooledge.org/BashFAQ) are also an excellent resources.
+This is just the tip of the bash iceberg. If you're interested in learning more about the programming aspects of Bash, don't miss Mike - G's [BASH Programming – Introduction HOW-TO](http://en.tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html). [Greg's Bash Wiki](http://mywiki.wooledge.org/BashFAQ) are also an excellent resources.
 
-I hope this tutorial has been useful to you. The most difficult hurdle here is not the learning curve, but simply becoming accustomed to using these built-ins. Just like learning vi, once you get good with these, you’ll be amazed you ever lived without them.
+I hope this tutorial has been useful to you. The most difficult hurdle here is not the learning curve, but simply becoming accustomed to using these built-ins. Just like learning vi, once you get good with these, you'll be amazed you ever lived without them.
