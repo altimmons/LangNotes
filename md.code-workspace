@@ -41,7 +41,6 @@
 		// "editor.fontFamily": "'OperatorMono', 'Fira Code Retina', RobotoMono. monospace",
 		// "editor.fontFamily": "'Rec Mono Duotone', 'Fira Code Retina', RobotoMono. monospace",
 		"workbench.editor.highlightModifiedTabs": true,
-		"editor.highlightActiveIndentGuide": true,
 		"editor.lineNumbers": "on",
 		"editor.emptySelectionClipboard": true,
 		"editor.cursorStyle": "block-outline",
@@ -691,6 +690,7 @@ Markdown Setting
 			"*.yaml": "home-assistant"
 		},
 		"peacock.color": "#150367",
+		"editor.guides.highlightActiveIndentation": true,
 		// "markdown-header-coloring.userDefinedHeaderColor": {
 		// 	"enabled": true,
 		// 	"Header_1": {

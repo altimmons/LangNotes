@@ -868,6 +868,11 @@ ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF
 	- nexthop
 
 
+## Getting 10gb connection up
+
+            ip route add 169.254.0.1 scope host metric 1 dev eth4
+            ip route del default dev eth4
+
    ## interesting
 
 This DOES NOT WORK on Unraid, but has some interesting commands and bash examples./
@@ -3724,6 +3729,8 @@ usage: btrfs [--help] [--version] [--format <format>] [-v|--verbose] [-q|--quiet
         Display btrfs-progs version
 
 
+
+
         usage: btrfstune [options] device
 Tune settings of filesystem features on an unmounted device
 
@@ -3744,6 +3751,14 @@ Options:
         --help      print this help
 
 ### BTRFS Example
+
+#### add a label
+            btrfs filesystem label [<device>|<mount_point>] [<newlabel>]
+                  Get or change the label of a filesystem
+
+` btrfs fi label /mnt/ssds  ssds` 
+
+
 
 ### Find BTRFS Drives
 
