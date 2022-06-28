@@ -6966,9 +6966,106 @@ Computer\HKEY_CURRENT_USER\Control Panel\Mouse
 Computer\HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys
 Computer\HKEY_CURRENT_USER\Control Panel\Personalization\Desktop Slideshow
 Computer\HKEY_CURRENT_USER\Control Panel\Quick Actions\Pinned
+
+
 ### Registry Changes
 
-Syntax of .Reg Files
+!!!cite Cited: https://www.computerhope.com/issues/ch000848.htm 
+
+#### Regedit in the console or terminal.
+
+    Note: Does not work wih powershell
+
+!!!info Regedit command syntax
+    `REGEDIT \[/L:system\] \[/R:user\] \[/C\] \[/R\] \[/E\] \[/S\] [/C\] FILE \[registry\_key\]`
+
+    Most the switches are deprecated
+    Powershell can do a bit more.
+
+  ` /S /s -s` = Auto Approve
+
+        The /s or -s Regedit commands can be added to the command to suppress the confirmation box "Are you sure want to add the information in hope.reg to the registry?" when running the command at the command line. For example, using the same command used earlier, you can type: **Regedit /s hope.reg** and have that registry file immediately imported into the registry.
+
+   ` /E (/e -e)` = Export Everything
+
+        Export the full registry to a file. For example, typing: **Regedit /e full.reg** would export the full registry to the full.reg file.  
+  
+        This switch can also be used to export individual registry keys. For example, typing:
+        **Regedit /e software.reg "HKEY\_LOCAL\_MACHINE\\Software* would export all the values in this folder to the software.reg file.
+        A  
+  `  /D`    ==Deprecated==
+        
+  ^[\2] users can delete registry keys using this switch. For example, typing: **Regedit /d "<registry\_key>"** where _registry\_key_ is replaced with the registry key you want to delete would delete that registry key.
+
+  `/L:System`=  
+  
+  ^[1]^ ==Deprecated== Specify System Unmounted hives (*.dat*)
+
+      Specify the location of the **system.dat** registry file. For example, 
+        
+   `Regedit /L:c:\\windows\\system.dat c:\\system.dat`
+
+   `/R:user` ==Deprecated==
+
+  ^1^ Specify the location of the **user.dat** registry file under Microsoft Windows 95, 98, and ME. For example, **Regedit /L:c:\\windows\\system.dat c:\\system.dat**
+
+   `/C` ^2^ ==Deprecated==
+        Compress registry file. 
+
+ ^[[1.]]^ under Microsoft Windows 95, 98, and ME
+ ^2^ Microsoft Windows 95, 98, and ME users can delete (use /d)
+ ^3^ This switch only works in Windows 98. Use /C  
+
+####  .reg files can be used to import or export
+
+
+##### Remove keys
+
+To delete a **registry *key*** with a .reg file, put a hyphen (-) in front of the RegistryPath in the .reg file. For example, to delete the Test subkey from the following registry **key:**
+
+`HKEY_LOCAL_MACHINE\Software`
+
+put a hyphen in front of the following registry **key** in the .reg file:
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+The following example has a .reg file that can perform this task.
+
+`[-HKEY_LOCAL_MACHINE\Software\Test]`
+
+##### Remove Values
+
+To delete a **registry value** with a .reg file, put a hyphen (-) after the equals sign following the DataItemName in the .reg file. For example, to delete the TestValue registry value from the following ==registry key==:
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+put a hyphen after the "TestValue"= in the .reg file. The following example has a .reg file that can perform this task.
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+    "TestValue"=-`
+
+To **delete the folder and all its continents,** create a .reg file similar to the following example.  And edit into the front of the Location a hyphem/minus.
+         [-HKEY_LOCAL_MACHINE\SOFTWARE\ComputerHope]
+
+
+`"TestValue"=-`
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+!!!tip  
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+To export use the GUI-- via *.reg
+
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+
+#### Syntax of .Reg Files
+
+**RegistryPathx** is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:        
+
+    [HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+
 A .reg file has the following syntax:
 
 ```txt
@@ -6984,18 +7081,15 @@ Blank line
 "DataItemName3"="DataType3:DataValue3"
 ```
 
-where:
+Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents
 
-`RegistryEditorVersion` is either `"Windows Registry Editor Version 5.00"` for Windows 2000, Windows XP, and Windows Server 2003, or `"REGEDIT4"` for Windows 98 and Windows NT 4.0. The "REGEDIT4" header also works on Windows 2000-based, Windows XP-based, and Windows Server 2003-based computers.
+If the bottom of the hierarchy in the path statement **does not exist** in the registry, **a new subkey** is created.
 
-Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents.
-RegistryPathx is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:
-[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
-A .reg file can contain several registry paths. If the bottom of the hierarchy in the path statement does not exist in the registry, a new subkey is created. The contents of the registry files are sent to the registry in the order you enter them. Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
+ The contents of the registry files are **sent to the registry in the order you enter them.** Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
 
-DataItemNamex is the name of the data item that you want to import. If a data item in your file does not exist in the registry, the .reg file adds it (with the value of the data item). If a data item does exist, the value in your .reg file overwrites the existing value. Quotation marks enclose the name of the data item. An equal sign (=) immediately follows the name of the data item.
+**DataItemNamex** is the name of the data item that you want to import. If a data item in your file does not exist in the registry, the .reg file adds it (with the value of the data item). If a data item does exist, the value in your .reg file overwrites the existing value. Quotation marks enclose the name of the data item. An equal sign (=) immediately follows the name of the data item.
 
-DataTypex is the data type for the registry value and immediately follows the equal sign. For all the data types other than REG_SZ (a string value), a colon immediately follows the data type. If the data type is REG_SZ , do not include the data type value or colon. In this case, Regedit.exe assumes REG_SZ for the data type. The following table lists the typical registry data types:
+**DataTypex** is the data type for the registry value and immediately follows the equal sign. For all the data types other than REG_SZ (a string value), a colon immediately follows the data type. If the data type is REG_SZ , do not include the data type value or colon. In this case, Regedit.exe assumes REG_SZ for the data type. The following table lists the typical registry data types:
 
 - REG_BINARY - hexadecimal
 - REG_DWORD - dword
@@ -7017,25 +7111,6 @@ This step backs up the subkey before you make any changes. You can import this f
 In the right pane, add or modify the registry items you want.
 Repeat steps 3 and 4 to export the subkey again, but use a different file name for the .reg file. You can use this .reg file to make your registry changes on another computer.
 Test your changes on the local computer. If they cause a problem, double-click the file that holds the backup of the original registry data to return the registry to its original state. If the changes work as expected, you can distribute the .reg you created in step 6 to other computers by using the methods in the "Distributing Registry Changes" section of this article.
-
-### Deleting Registry Keys and Values
-
-To delete a registry key with a .reg file, put a hyphen (-) in front of the RegistryPath in the .reg file. For example, to delete the Test subkey from the following registry key:
-`HKEY_LOCAL_MACHINE\Software`
-put a hyphen in front of the following registry key in the .reg file:
-`HKEY_LOCAL_MACHINE\Software\Test`
-The following example has a .reg file that can perform this task.
-`[-HKEY_LOCAL_MACHINE\Software\Test]`
-To delete a registry value with a .reg file, put a hyphen (-) after the equals sign following the DataItemName in the .reg file. For example, to delete the TestValue registry value from the following registry key:
-`HKEY_LOCAL_MACHINE\Software\Test`
-put a hyphen after the "TestValue"= in the .reg file. The following example has a .reg file that can perform this task.
-`HKEY_LOCAL_MACHINE\Software\Test`
-
-`"TestValue"=-`
-To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
-
-Renaming Registry Keys and Values
-To rename a key or value, delete the key or value, and then create a new key or value with the new name.
 
 ### Setting Explorer to My PC not Quick Access
 
