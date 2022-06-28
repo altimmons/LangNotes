@@ -434,7 +434,7 @@ When you write a query with optional criteria, you use the following syntax:
         file kind:value
         property:value
 
-Content = Led Zeppelin + file kind = music + length = short (1 – 5 minutes)
+Content = Led Zeppelin + file kind = music + length = short (1 - 5 minutes)
 
 
 
@@ -1021,24 +1021,24 @@ Mozilla Firefox
 
 This seems to apply to chrome
 
-  - about:`blank` – the empty page
-  - about:`cache` – disk and memory cache information
-  - about:`net-internals` – network information including Proxy, HostResolver, URLRequest, HTTPCache and SocketStream
-  - about:`crash` – the page shown when a tab process crashes
-  - about:`credits` – list of libraries and other code used in Chrome, with links
-  - about:`hang` – this seems to kill a tab for me (I haven’t linked for that reason – use at your own risk)
-  - about:`memory` – memory usage of the various processes
-  - about:`shorthang` – see   - about:`hang` above
-  - about:`terms` – Google Chrome Terms of Service
-  - about:`inducebrowsercrashforrealz` – not many lolz here
+  - about:`blank` - the empty page
+  - about:`cache` - disk and memory cache information
+  - about:`net-internals` - network information including Proxy, HostResolver, URLRequest, HTTPCache and SocketStream
+  - about:`crash` - the page shown when a tab process crashes
+  - about:`credits` - list of libraries and other code used in Chrome, with links
+  - about:`hang` - this seems to kill a tab for me (I haven’t linked for that reason - use at your own risk)
+  - about:`memory` - memory usage of the various processes
+  - about:`shorthang` - see   - about:`hang` above
+  - about:`terms` - Google Chrome Terms of Service
+  - about:`inducebrowsercrashforrealz` - not many lolz here
 
 
-  - chrome://`extensions`/ – installed extensions
-  - chrome://`history`/ – your browsing history
-  - chrome://`newtab` – the new tab page
-  - chrome://`thumb`/http://www.google.com/ – thumbnail for a page you’ve visited
-  - chrome://`favicon`/http://www.google.com/ – favicon for a page you’ve visited
-view-source:http://www.santiagolizardo.com – view the source of a web page
+  - chrome://`extensions`/ - installed extensions
+  - chrome://`history`/ - your browsing history
+  - chrome://`newtab` - the new tab page
+  - chrome://`thumb`/http://www.google.com/ - thumbnail for a page you’ve visited
+  - chrome://`favicon`/http://www.google.com/ - favicon for a page you’ve visited
+view-source:http://www.santiagolizardo.com - view the source of a web page
 
 See https://code.google.com/p/chromium/codesearch#chromium/src/chrome/common/url_constants.cc 
 or http://src.chromium.org/svn/trunk/src/chrome/common/url_constants.cc 
@@ -4391,9 +4391,9 @@ Syntax
 The CERTREQ command can be utilized to get certificates from a certification authority (CA), to regain a reply to a prior request from a CA, to build a new request. The .cer file users get from the Certificate Authority can simply be fixed by keeping the file on the server they created the CSR on, for example as cert.cer, and by performing the subsequent command at the prompt:
 
 Syntax
-`certreq –submit certrequest.req certnew.cer certnew.pfx C:\>certreq -accept cert.cer`
+`certreq -submit certrequest.req certnew.cer certnew.pfx C:\>certreq -accept cert.cer`
 
-This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the –submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
+This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the -submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
 
 ### reg
 
@@ -7179,21 +7179,21 @@ Enable Remote desktop related rules.  Unclear which these are.
 
 | Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
 | ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 0.0.0.0/8          | 0.0.0.0–0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
-| 10.0.0.0/8         | 10.0.0.0–10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
-| 100.64.0.0/10      | 100.64.0.0–100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
-| 127.0.0.0/8        | 127.0.0.0–127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
-| 169.254.0.0/16     | 169.254.0.0–169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
-| 172.16.0.0/12      | 172.16.0.0–172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
-| 192.0.0.0/24       | 192.0.0.0–192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
-| 192.0.2.0/24       | 192.0.2.0–192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
-| 192.88.99.0/24     | 192.88.99.0–192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
-| 192.168.0.0/16     | 192.168.0.0–192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
-| 198.18.0.0/15      | 198.18.0.0–198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
-| 198.51.100.0/24    | 198.51.100.0–198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
-| 203.0.113.0/24     | 203.0.113.0–203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
-| 224.0.0.0/4        | 224.0.0.0–239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
-| 240.0.0.0/4        | 240.0.0.0–255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
+| 0.0.0.0/8          | 0.0.0.0-0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
+| 10.0.0.0/8         | 10.0.0.0-10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
+| 100.64.0.0/10      | 100.64.0.0-100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
+| 127.0.0.0/8        | 127.0.0.0-127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
+| 169.254.0.0/16     | 169.254.0.0-169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
+| 172.16.0.0/12      | 172.16.0.0-172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
+| 192.0.0.0/24       | 192.0.0.0-192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
+| 192.0.2.0/24       | 192.0.2.0-192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
+| 192.88.99.0/24     | 192.88.99.0-192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
+| 192.168.0.0/16     | 192.168.0.0-192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
+| 198.18.0.0/15      | 198.18.0.0-198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
+| 198.51.100.0/24    | 198.51.100.0-198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
+| 203.0.113.0/24     | 203.0.113.0-203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
+| 224.0.0.0/4        | 224.0.0.0-239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
+| 240.0.0.0/4        | 240.0.0.0-255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
 | 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
 
 such as would have normally been retrieved from a DHCP server.
@@ -7224,9 +7224,9 @@ The Internet Engineering Task Force (IETF) has directed the Internet Assigned Nu
 
 | RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
 | ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
-| 24-bit block | 10.0.0.0 – 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
-| 20-bit block | 172.16.0.0 – 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
-| 16-bit block | 192.168.0.0 – 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
+| 24-bit block | 10.0.0.0 - 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
+| 20-bit block | 172.16.0.0 - 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
+| 16-bit block | 192.168.0.0 - 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
 
 
 Also note the 169.254 address
@@ -8894,11 +8894,11 @@ The CERTREQ command can be utilized to get certificates from a certification aut
 
 For example,
 
-certreq –submit certrequest.req certnew.cer certnew.pfx
+certreq -submit certrequest.req certnew.cer certnew.pfx
 
 C:\>certreq -accept cert.cer
 
-This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the –submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
+This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the -submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
 
 
 26. Fsutil
