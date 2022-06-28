@@ -67,44 +67,6 @@ Windows does have a `/` like linux its just entirely hidden from the user
 \Device\Null ~= /Dev/Null
 \Device\TCP
 \Registry
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Good and Useful Links
 
 - [Windows Command Line](https://www.windows-commandline.com/)
@@ -1278,31 +1240,31 @@ gci HKLM:\Software\Classes -ea 0| ? {$_.PSChildName -match '^\w+\.\w+$' -and
 From <https://stackoverflow.com/questions/660319/where-can-i-find-all-of-the-com-objects-that-can-be-created-in-powershell>
 
 How to get a list of COM objects via WMI & PowerShell
-Posted: October 26th, 2013 | Tags: COM, wmi | Category: PowerShell | § 
-Let’s see what WMI can tell us about COM objects on the system.
-Get a list of all WMI classes with the word “COM” in them (doing a case sensitive match to avoid entries like “computer”).
+Posted: October 26th, 2013 | Tags: COM, wmi | Category: PowerShell | § 
+Let's see what WMI can tell us about COM objects on the system.
+Get a list of all WMI classes with the word "COM" in them (doing a case sensitive match to avoid entries like “computer”).
 
 ```ps1
 1   PS> gwmi -list | ?{ $_.Name -cmatch "COM" }
-2    
-3      NameSpace: ROOT\cimv2
-4    
-5   Name                                Methods              Properties
-6   ----                                -------              ----------
-7   MSFT_WMI_GenericNonCOMEvent         {}                   {ProcessId, PropertyNames, PropertyValues, ProviderName...}
-8   Win32_COMApplication                {}                   {Caption, Description, InstallDate, Name...}
-9   Win32_DCOMApplication               {}                   {AppID, Caption, Description, InstallDate...}
-10  Win32_COMClass                      {}                   {Caption, Description, InstallDate, Name...}
-11  Win32_ClassicCOMClass               {}                   {Caption, ComponentId, Description, InstallDate...}
-12  Win32_COMSetting                    {}                   {Caption, Description, SettingID}
-13  Win32_ClassicCOMClassSetting        {}                   {AppID, AutoConvertToClsid, AutoTreatAsClsid, Caption...}
-14  Win32_DCOMApplicationSetting        {GetLaunchSecurit... {AppID, AuthenticationLevel, Caption, CustomSurrogate...}
-15  Win32_ClassicCOMClassSettings       {}                   {Element, Setting}
-16  Win32_COMApplicationSettings        {}                   {Element, Setting}
-17  Win32_DCOMApplicationAccessAllow... {}                   {Element, Setting}
-18  Win32_COMApplicationClasses         {}                   {GroupComponent, PartComponent}
-19  Win32_ClassicCOMApplicationClasses  {}                   {GroupComponent, PartComponent}
-20  Win32_DCOMApplicationLaunchAllow... {}                   {Element, Setting}
+2    
+3      NameSpace: ROOT\cimv2
+4    
+5   Name                                Methods              Properties
+6   ----                                -------              ----------
+7   MSFT_WMI_GenericNonCOMEvent         {}                   {ProcessId, PropertyNames, PropertyValues, ProviderName...}
+8   Win32_COMApplication                {}                   {Caption, Description, InstallDate, Name...}
+9   Win32_DCOMApplication               {}                   {AppID, Caption, Description, InstallDate...}
+10  Win32_COMClass                      {}                   {Caption, Description, InstallDate, Name...}
+11  Win32_ClassicCOMClass               {}                   {Caption, ComponentId, Description, InstallDate...}
+12  Win32_COMSetting                    {}                   {Caption, Description, SettingID}
+13  Win32_ClassicCOMClassSetting        {}                   {AppID, AutoConvertToClsid, AutoTreatAsClsid, Caption...}
+14  Win32_DCOMApplicationSetting        {GetLaunchSecurit... {AppID, AuthenticationLevel, Caption, CustomSurrogate...}
+15  Win32_ClassicCOMClassSettings       {}                   {Element, Setting}
+16  Win32_COMApplicationSettings        {}                   {Element, Setting}
+17  Win32_DCOMApplicationAccessAllow... {}                   {Element, Setting}
+18  Win32_COMApplicationClasses         {}                   {GroupComponent, PartComponent}
+19  Win32_ClassicCOMApplicationClasses  {}                   {GroupComponent, PartComponent}
+20  Win32_DCOMApplicationLaunchAllow... {}                   {Element, Setting}
 ```
 
 ## Command Line
@@ -3330,7 +3292,7 @@ List  of Rundll32 Commands in Windows 10
 | History                  | ::{ff393560-c2a7-11cf-bff4-444553540000} |     |
 | Inbox                    | ::{00020d75-0000-0000-c000-000000000046} |     |
 | Microsoft Network        | ::{00028b00-0000-0000-c000-000000000046} |     |
-| My Computer              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
+| My Com`1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
 | My Documents             | ::{450d8fba-ad25-11d0-98a8-0800361b1103} | Yes |
 | My Network Places        | ::{208d2c60-3aea-1069-a2d7-08002b30309d} | Yes |
 | Network Computers        | ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} | Yes |
@@ -3772,7 +3734,7 @@ For example, command below to open the About Settings page (System category) in 
 | Failover cluster Manager                  | Cluadmin.exe                   |
 | Storage Mgmt                              | StorageMgmt.msc                |
 | Win Server Backup (Local+Rem)             | WBadmin.msc                    |
-| Disk Defragmenter                         | Defrag.exe (formerly Dfrg.msc) |
+| Disk Defragmenter                         | Defrag.exe (formerly Dfrg.msc) |
 | Distributed File Service Mgmt             | DFSmgmt.msc                    |
 | Shared Folders open files                 | FSmgmt.msc                     |
 | File Server Resource manager              | FSRM.msc                       |
@@ -4396,8 +4358,8 @@ After this one-time setup, one can create and manipulate files from both Windows
 
 
 Here we assume:
-	• networked storage is already showing in Windows under \\server\share
-	• we want to access this network storage from WSL as /mnt/share
+	• networked storage is already showing in Windows under \\server\share
+	• we want to access this network storage from WSL as /mnt/share
 Create a mount location in WSL:
     
     mkdir /mnt/share
@@ -7082,6 +7044,10 @@ Blank line
 ```
 
 Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents
+Can also be used in the command prompt here:
+
+Examine and to troubleshoot the contents.
+**RegistryPathx** is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash.
 
 If the bottom of the hierarchy in the path statement **does not exist** in the registry, **a new subkey** is created.
 
@@ -7238,15 +7204,15 @@ such as would have normally been retrieved from a DHCP server.
 | -------------------- | --------------- | ---------------- | --------------------------------------- | ------------- | --------------- | -------------------------------------------------------- |
 |                      | ::/0            | ::               | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2128          | Routing         | Default route.                                           |
 |                      | ::/128          | ::               |                                         | 1             | Software        | Unspecified address.                                     |
-|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
-|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
+|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
+|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
 |                      | ::ffff:0:0:0/96 | ::ffff:0:0.0.0.0 | ::ffff:0:255.255.255.255                | 232           | Software        | IPv4 translated addresses.                               |
 |                      | 64:ff9b::/96    | 64:ff9b::0.0.0.0 | 64:ff9b::255.255.255.255                | 232           | Global Internet | IPv4/IPv6 translation.                                   |
 |                      | 100::/64        | 100::            | 100::ffff:ffff:ffff:ffff                | 264           | Routing         | Discard prefix.                                          |
 |                      | 2001::/32       | 2001::           | 2001::ffff:ffff:ffff:ffff:ffff:ffff     | 296           | Global Internet | Teredo tunneling.                                        |
 |                      | 2001:20::/28    | 2001:20::        | 2001:2f:ffff:ffff:ffff:ffff:ffff:ffff   | 2100          | Software        | ORCHIDv2.                                                |
 |                      | 2001:db8::/32   | 2001:db8::       | 2001:db8:ffff:ffff:ffff:ffff:ffff:ffff  | 296           | Documentation   | Addresses used in documentation and example source code. |
-|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
+|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
 |                      | fc00::/7        | fc00::           | fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2121          | Private network | Unique local address.                                    |
 |                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
 |                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |

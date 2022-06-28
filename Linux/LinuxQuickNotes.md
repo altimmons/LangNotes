@@ -1324,4 +1324,4 @@ printf %s\\n "${patharr[@]}"
 
 for dir in "${patharr[@]}"; do
     echo "$dir"
-done
+done 
