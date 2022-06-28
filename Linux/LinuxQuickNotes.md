@@ -1250,3 +1250,78 @@ true if string1 and string2 are identical
 string1 != string2 
 true if string1 and string2 are not identical
 Note:If the specified file does not exist, test checks each extension in the PATHEXT environment variable (in the order listed) to see if a file exists with the specified name plus that extension. If such a file does exist and it is executable, -x returns true.
+
+
+## Networking
+
+
+Important commnds
+- ip
+- route
+- ifconfig
+- ping
+ 
+
+Unorganized Commansa from History TODO
+
+ ```sh
+ ping 169.254.0.1
+ ping -I 169.254.0.2 169.254.0.1
+ ping -I eth4 169.254.0.1
+
+ ping -c 4 -d -I eth4 169.254.0.2
+
+ ip addr show
+ ip -c route show
+
+
+ ip route del 169.254.0.0/16 metric 105 dev br5
+ route del default dev eth4
+ ip -c route show to match 169.254.0.1
+ ip -c route show to match 169.254.0.2
+ ip -c route delete help
+ ip route show
+ ip route del
+ ip route del -net 0/0 dev eth4
+ ip route del  0/0 dev eth4                                                                          
+
+
+ ip -c route del default dev br5
+ ip -c route delete 169.254.0.0/16 dev br5
+ ip -c route delete 169.254.0.0/16 gw 169.254.99.20 dev br5
+ ip -c route delete 169.254.0.0/16 via 169.254.99.20 dev br5
+ ip -c route delete gw 169.254.99.20 dev br5
+ ip -c route delete 169.254.99.20 dev br5
+ip rule show
+ ip route get 169.254.0.1
+ ip route get 192.168.1.25
+ ip route get 8.8.8.8
+
+ ifconfig 
+
+ ip route show
+ route 
+ route help
+ route del
+ route add
+ route add -host 169.254.0.1 metric 1 dev eth4
+ route add -net 169.254.0.1/24 metric 1 dev eth4
+ route add -net 169.254.0.0/24 metric 1 dev eth4                                                        
+ route del 169.254.0.0/16 dev br5
+
+ iptables -nvL
+ iptables -nvL -t nat
+
+ ```
+
+ ### SPLIT $PATH into parts
+
+
+ IFS=: read -r -a patharr <<<"$PATH"
+
+ IFS=: read -r -a patharr <<<"$PATH"
+printf %s\\n "${patharr[@]}"
+
+for dir in "${patharr[@]}"; do
+    echo "$dir"
+done

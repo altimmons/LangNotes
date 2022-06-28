@@ -901,6 +901,18 @@ more
 
       ip route get 1.1.1.1
 
+      ip route get 8.8.8.8
+8.8.8.8 via 192.168.1.1 dev br0 src 192.168.1.240 uid 0
+ip route get 169.254.0.1
+169.254.0.1 dev eth4 src 169.254.0.2 uid 0
+    cache
+     ip route get 192.168.1.25
+192.168.1.25 dev shim-br1 src 192.168.1.241 uid 0
+    cache
+
+### Matching a route
+
+ip -c route show to match 169.222.0.1
 
 ### Ping 
 

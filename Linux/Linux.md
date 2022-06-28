@@ -201,6 +201,12 @@ Linux version of `TrueCrypt`
 ###   Show ip address
 
 `ip address show`
+ifconfig
+### Routing
+
+
+ip route show
+
 
 ### Check Port Binding
 

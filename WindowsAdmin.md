@@ -781,9 +781,7 @@ Mouse Properties  - `control mouse` & `main.cpl`
 Network Connections  - `control netconnections` & `ncpa.cpl`
 Projector:
 Connect to Network Projector
-Switch projector display  - `netproj`
-
-`displayswitch`
+Switch projector display  - `netproj &  displayswitch`
 Notepad  - `notepad`
 ODBC Data Source Admin
 Default ODBC driver:
@@ -3190,10 +3188,17 @@ List  of Rundll32 Commands in Windows 10
 |                                         | (...)ShowPortableWorkspaceLauncherConfigurationUX                     |
 
 
-## Shell:: Commands
+## `Shell:` Commands
 
 !!! attention Shortcut
   This command can be typed in many places- e.g [[Win] + [[E]] to get an explorer then [[Alt]] + [[D]] to get to the address bar, then type `shell:appdata` or in the run dialog box
+
+  !!!tldr Most relevant ones:
+        shell:AppData
+        shell:ProgramFiles
+        shell:ProgramFilesX86
+        shell:Common AppData 
+
 
 | Shell Command                     | Opens                                                                  |
 | --------------------------------- | ---------------------------------------------------------------------- |
@@ -3269,10 +3274,10 @@ List  of Rundll32 Commands in Windows 10
 | shell:Profile                     | `%UserProfile%`                                                        |
 | shell:ProgramFiles                | `%ProgramFiles%`                                                       |
 | shell:ProgramFilesCommon          | `%ProgramFiles%\Common Files`                                          |
-| shell:ProgramFilesCommonX64       | `%ProgramFiles%\Common Files (64-bit Windows only)`                    |
-| shell:ProgramFilesCommonX86       | `%ProgramFiles(x86)%\Common Files (64-bit Windows only)`               |
-| shell:ProgramFilesX64             | `%ProgramFiles% (64-bit Windows only)`                                 |
-| shell:ProgramFilesX86             | `%ProgramFiles(x86)% (64-bit Windows only)`                            |
+| shell:ProgramFilesCommonX64       | `%ProgramFiles%\Common Files (64-bit Windows only)`                    |
+| shell:ProgramFilesCommonX86       | `%ProgramFiles(x86)%\Common Files (64-bit Windows only)`               |
+| shell:ProgramFilesX64             | `%ProgramFiles% (64-bit Windows only)`                                 |
+| shell:ProgramFilesX86             | `%ProgramFiles(x86)% (64-bit Windows only)`                            |
 | shell:Programs                    | `%AppData%\Microsoft\Windows\Start Menu\Programs`                      |
 | shell:Public                      | `%Public%`                                                             |
 | shell:PublicAccountPictures       | `%Public%\AccountPictures`                                             |
