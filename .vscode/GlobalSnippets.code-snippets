@@ -64,6 +64,7 @@ ${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
 
 	*/
 	// }
+<<<<<<< HEAD
 	"Link": {
 		"scope": "markdown",
 		"prefix": ".addlink",
@@ -167,7 +168,6 @@ ${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
 			"$0"
 		]
 	},
-
 	"Link from Clipboard": {
 		"scope": "markdown",
 		"prefix": [
@@ -273,6 +273,116 @@ ${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
 		],
 		"description": "Note (Blue Pencil), Summary/Abstract/Tldr (Lt. Blue Paragraph), Todo/Info (Light Blue circled i), Tip/Hint (Teal Flame), Success/Check/Done (Green Check), Question/Help/FAQ (Green Question Mark), Warning/Caution (Orange Triange Exclaim Mark), Attention (Orange Eye Exclaim Mark), Red Bug, Danger- Red Lightning Admonition, Failure, Fail, Missing, Error (Red X), Example, Snippet (Num List Blue), Quote/Cite (Grey Quote)"
 	},
+=======
+	// "Link": {
+	// 	"scope": "markdown",
+	// 	"prefix": ".addlink",
+	// 	"body": [
+	// 		"[${TM_SELECTED_TEXT}]($2)",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Insert a link"
+	// },
+	// "ConvertLink": {
+	// 	"scope": "markdown",
+	// 	"prefix": ".linktitle",
+	// 	"body": [
+	// 		"[$1](${TM_SELECTED_TEXT})",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Take a site and make it into a link"
+	// },
+	// "SelectToLink": {
+	// 	"scope": "markdown",
+	// 	"prefix": ".selectedTextToHyperlink",
+	// 	"body": [
+	// 		"[${1:${TM_SELECTED_TEXT}}](${CLIPBOARD})",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Take a site and make it into a link"
+	// },
+	// "ClipboardLink": {
+	// 	"prefix": ".clipLink",
+	// 	"body": [
+	// 		"[$(1:${TM_SELECTED_TEXT})](${CLIPBOARD})",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"scope": "markdown",
+	// 	"description": "Take a site and make it into a link"
+	// },
+	// "_Code Block": {
+	// 	"prefix": "cb",
+	// 	"scope": "markdown",
+	// 	"body": [
+	// 		"",
+	// 		"```${lang:LangName}",
+	// 		"$1",
+	// 		"```",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Produce a Code Block"
+	// },
+	// "_Code Block with Choices": {
+	// 	"prefix": "_CodeBlockSelectLanguage",
+	// 	"scope": "markdown",
+	// 	"body": [
+	// 		"",
+	// 		"```${1|java, python, cmd, bash, R, js, json, C#, ps1, py3, py2, css, html, css|}",
+	// 		"$2",
+	// 		"```",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Produce a Code Block"
+	// },
+	// "Code From Selected": {
+	// 	"scope": "markdown",
+	// 	"prefix": "_ConvertSelectedToCodeBlock",
+	// 	"body": [
+	// 		"```${TM_FILENAME_BASE/(.*)/${1:/downcase}/}",
+	// 		"${TM_SELECTED_TEXT}",
+	// 		"```",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "Converts the selected text to a code block."
+	// "CodeBlock from Clipboard": {
+	// 	"scope": "markdown",
+	// 	"prefix": "\\code",
+	// 	"body": [
+	// 		"```${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
+	// 		"    ${CLIPBOARD}",
+	// 		"```",
+	// 		"",
+	// 		"$0"
+	// 	]
+	// },
+	// "Link from Clipboard": {
+	// 	"scope": "markdown",
+	// 	"prefix": [
+	// 		"_link-clip",
+	// 	],
+	// 	"body": [
+	// 		// "[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD:?{^{http:,ftp:,file:}$3})",
+	// 		"[${1:${TM_SELECTED_TEXT}}](${2:${CLIPBOARD}})",
+	// 		"",
+	// 		"$0"
+	// 	],
+	// 	"description": "insert a link from the clipboard"
+	// },
+	// "test Choices (Not working)": {
+	// 	"prefix": "test",
+	// 	"body": [
+	// 		"${1| red, blue, green |}"
+	// 	],
+	// 	"description": "Test Choices"
+	// },
+>>>>>>> 71a74ba0156089293a873304c3ea24fe420fc88e
 	"Make a new Snippet": {
 		"prefix": ".snip",
 		"scope": "json, code-snippets, *.code-snippets *.json",
@@ -289,17 +399,38 @@ ${2:${1|java, bash, cmd, ps1, js, xml, json, r, py |}} ",
 		],
 		"description": "insert a New Snippet"
 	},
-
-		"Complete Line": {
-			"scope" : "javascript, java",
-			"prefix": "complete",
-			"body": [
-				"$TM_CURRENT_LINE;",
-				"$0"
-			],
-			"description": "Complete Line"
-		},
-
-
+	"Complete Line": {
+		"scope": "javascript, java",
+		"prefix": "complete",
+		"body": [
+			"$TM_CURRENT_LINE;",
+			"$0"
+		],
+		"description": "Complete Line"
+	},
 }
 
+	"Complete Line": {
+	"scope": "javascript, java cpp",
+	"prefix": "complete",
+	"body": [
+		"$TM_CURRENT_LINE;",
+		"$0"
+	],
+	"description": "Complete Line by appending ';' to the end then going to the next."
+},
+"MkdnCodeQuote": {
+	"scope": "markdown",
+	"body": "\t`$TM_CURRENT_LINE`",
+	"description": "Code quote when no selection"
+},
+"MkdnCodeQuoteSel": {
+	"scope": "markdown",
+	"body": "\t`$TM_SELECTED_TEXT`",
+	"description": "Code quote when no selection"
+},
+// "ColorSelect" :{
+// 	"scope":  "json,jsonc,code-workspace",
+// 	"prefix": "#",
+// }
+}

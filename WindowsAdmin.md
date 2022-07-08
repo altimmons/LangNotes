@@ -5,12 +5,73 @@
 ["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
 
 
+## Critical CMD Line Programs I always forget about
+
+sc 
+sc query  SC is a command line program used for communicating with the
+        Service Control Manager and services.
+
+pktmon comp list -i -- observe internet and packet data flow *internally*
+
+nvspinfo - related internal network stuff.
+
+`net stop winnat`
+`net start winnat`
+
+    netsh
+
+    iexpress
+
+`logman` - check if any etl counters are running
+
+ `winrs.`exe Windows Remote Shell - unknown if usefull
+
+    Tasklist
+
+    Taskkill
+
+`Qprocess` - similar to tasklist but no services,
+qwinsta
+
+    Route
+
+    hcsdiag
+
+    DPIScaling.exe
+
+    nvspinfo 
+
+    Driverquery
+    
+
+    sfc /scannow
+    Netdiag
+
+`repair-bde <root> <target> -rk | rp <root> `- can sometiems get data of a dying drive
+
+`Comp` - compare files
+
+`bcdboot C:\Windows`
+
+`fsutil file findbysid myfile d:\hello`
+
+`fsutil` lots of file settings
+
+
+## Root
+
+Windows does have a `/` like linux its just entirely hidden from the user
+
+`C:\` is actually \DosDevices\C:\Windows
+
+\Device\Null ~= /Dev/Null
+\Device\TCP
+\Registry
 ## Good and Useful Links
 
 - [Windows Command Line](https://www.windows-commandline.com/)
 - [SS64](https://ss64.com/nt/)
-
-
+- [Win10 Tutorials](https://www.tenforums.com/tutorials/1977-windows-10-tutorial-index.html)
 
 
 ## Notes
@@ -40,6 +101,12 @@ Every directory has 2 members by default - its links in the linked graph. `.` or
 #### Environment Vars
 
 see with `gci env:` in Powershell,
+
+#### Font file
+
+especially user fonts are now in user space:
+
+`C:\Users\andyt\AppData\Local\Microsoft\Windows\Fonts`
 
 #### Start Menu Location
 
@@ -113,12 +180,18 @@ Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome
 
 ## Notes to Be Placed
 
+https://bytescout.com/blog/windows-command-prompt-commands.html
+
 ### Changing Startup OPTIONS
 
 [[Windows]] + [[Pause/Break]] - then "Advanced Settings" -> Then Under Advanced "Startup and Recovery"-
 Disable Memory Dump.  You cxan also change Boot Options.
 
 ### Stopping Just In Time debugging
+
+[JIT Debugging](https://www.vioreliftode.com/index.php/annoyed-by-visual-studio-just-in-time-debugger/)
+
+
 
 To Stop Debugging Queries (An uncaught exception occured do you want to debug?) - Go to services
 
@@ -129,11 +202,23 @@ In the Registry Editor window, locate and delete the following registry entries:
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\DbgManagedDebugger
 
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\DbgManagedDebugger
+
+> The DbgJITDebugLaunchSetting value at this key sets the behavior of the just-in-time dialog box. There are three possible values.
+
+> A value of **zero** requests that the Microsoft Error Reporting dialog box is displayed for JIT debugging. In the Microsoft Error Reporting dialog box, click the Don't Send button to launch the JIT debugging dialog box. Both the Microsoft Error Reporting and the JIT debugging dialog boxes are shown in Figures 13-1 and 13-2. 
+
+>A value of **1 causes** the Microsoft Error Reporting dialog box to be suppressed.
+
+>A value **of 2** forces the JIT debugging dialog box to be displayed when JIT debugging occurs. However, the Microsoft Error Reporting dialog box is not shown. The default value for DbgJITDebugLaunchSetting is zero. In addition to the DbgJITDebugLaunchSetting value, you can name the managed JIT debugger in the DbgManagedDebugger value. Figure 13-3 has the managed debugging key and value
+
+[Source](http://etutorials.org/Programming/programming+microsoft+visual+c+sharp+2005/Part+IV+Debugging/Chapter+13+Advanced+Debugging/Just-In-Time+JIT+Debugging/)
+
+
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
 
 If your computer is running a 64-bit operating system, also delete the following registry entries:
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\DbgManagedDebugger
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug\Debugger
 
@@ -142,6 +227,50 @@ Try setting
 HKCU\Software\Microsoft\Windows\Windows Error Reporting\DontShowUI
 
 to 1.
+
+
+[Made Easy by Viorel Iftode ](https://www.vioreliftode.com/index.php/annoyed-by-visual-studio-just-in-time-debugger/)
+
+
+Disable JIT
+
+
+        Windows Registry Editor Version 5.00
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework]
+        "DbgManagedDebugger"=-
+        "DbgJITDebugLaunchSetting"=dword:00000001
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"=-
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework]
+        "DbgManagedDebugger"=-
+        "DbgJITDebugLaunchSetting"=dword:00000001
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"=-
+
+
+Enable JIT
+
+        Windows Registry Editor Version 5.00
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework]
+        "DbgManagedDebugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" PID %d APPDOM %d EXTEXT \"%s\" EVTHDL %d"
+        "DbgJITDebugLaunchSetting"=dword:00000010
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" -p %ld -e %ld"
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework]
+        "DbgManagedDebugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" PID %d APPDOM %d EXTEXT \"%s\" EVTHDL %d"
+        "DbgJITDebugLaunchSetting"=dword:00000010
+        
+        [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\AeDebug]
+        "Debugger"="\"C:\\Windows\\system32\\vsjitdebugger.exe\" -p %ld -e %ld"
+
+
 ### NoDrives
 
 
@@ -257,13 +386,27 @@ If you are using Windows 7 or newer, open the folder containing the new DLL file
 Type regsvr32 dllname.dll and press Enter. This will add the DLL file to Windows Registry.
 Type regsvr32 -u dllname.dll to remove the DLL file from the Windows Registry.
 
+### Current Path
+There is another current path, maintained by Windows, that applies to all .NET methods. It may be different than PowerShell’s current path:
 
+ 
+PS> [Environment]::CurrentDirectory
+C:\test
+
+PS> [System.IO.Path]::GetFullPath('.')
+C:\test
+
+PS>  
+ 
 
 ## Protocol Host
 
-Nirsoft URLProtocolView
+### URLProtocol VIew
 
-Running `ms-taskswitcher:/` brings up task viewThe protocol host seems useful!
+!!!tip Nirsoft URLProtocolView
+
+Running `ms-taskswitcher:/` brings up task view
+The protocol host seems useful!
 .
 
 #### Getting a programs Path
@@ -291,7 +434,7 @@ When you write a query with optional criteria, you use the following syntax:
         file kind:value
         property:value
 
-Content = Led Zeppelin + file kind = music + length = short (1 – 5 minutes)
+Content = Led Zeppelin + file kind = music + length = short (1 - 5 minutes)
 
 
 
@@ -326,194 +469,636 @@ Left Windows + ...
 [Alt] + [Esc] = Cycle Between Apps
 [Alt] + [Left] = Go Back
 [Alt] + [Right] = Go Forward
+[Src](https://ss64.com/nt/run.html)
+
+[[Alt]]+[[Ctrl]]+[[Delete]] - Task Manager/Halt
+[[Alt]]+[[Ctrl]]+[[F11]]
+[[Alt]]+[[Ctrl]]+[[F12]]
+[[Alt]]+[[Ctrl]]+[[F6]]
+[[Alt]]+[[Ctrl]]+[[F8]]
+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Q]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[D]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[L]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[N]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[O]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[P]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Space]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[T]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[W]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[X]]
+[[Win]]+[[Alt]]+[[Ctrl]]+[[Shift]]+[[Y]]
+[[Alt]]+[[[[F4]]]]
+[[Alt]]+[[R]] NVIDIA Monitor
+[[Win]]+[[Alt]]+[[Shift]]+[[F21]]
+
+[[Win]]+[[Alt]]+[[B]] Turn HDR on or off.
+[[Win]]+[[Alt]]+[[D]]
+[[Win]]+[[Alt]]+[[Down]] Snap window in focus to bottom half of screen. New with Windows 11.
+[[Win]]+[[Alt]]+[[F]]
+[[Win]]+[[Alt]]+[[F23]]
+[[Win]]+[[Alt]]+[[G]]
+[[Win]]+[[Alt]]+[[M]]
+[[Win]]+[[Alt]]+[[Print Screen]]  Save screenshot of game window in focus to file (using Xbox Game Bar).
+[[Win]]+[[Alt]]+[[R]] Record video of game window in focus (using Xbox Game Bar).
+[[Win]]+[[Alt]]+[[T]]
+[[Win]]+[[Alt]]+[[W]]
+[[Win]]+[[Alt]]+[[Y]]
+[[Win]]+[[Alt]]+[[Up]] Snap window in focus to top half of screen. New with Windows 11.
+
+[[Win]]+[[Ctrl]]+[[Shift]]+[[B]]  Wake PC from blank or black screen.
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Down]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F21]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F22]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F24]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[L]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Left]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Right]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Space]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[Up]]
+
+[[Win]]+[[Ctrl]]+[[Backspace]]
+[[Win]]+[[Ctrl]]+[[C]] Turn on color filters (enable this shortcut first in Color Filter settings).
+[[Win]]+[[Ctrl]]+[[D]] Add a virtual desktop.
+[[Win]]+[[Ctrl]]+[[Down]]
+[[Win]]+[[Ctrl]]+[[E]]
+[[Win]]+[[Ctrl]]+[[Enter]] Turn on Narrator.
+[[Win]]+[[Ctrl]]+[[F]] Search for PCs (if you're on a network).
+[[Win]]+[[Ctrl]]+[[F14]]
+[[Win]]+[[Ctrl]]+[[F21]]
+[[Win]]+[[Ctrl]]+[[F22]]
+[[Win]]+[[Ctrl]]+[[F23]]
+[[Win]]+[[Ctrl]]+[[F24]]
+[[Win]]+[[Ctrl]]+[[F4]]  Close the virtual desktop you're using.
+[[Win]]+[[Ctrl]]+[[Left]] Move To Prev Virtual Desktop
+[[Win]]+[[Ctrl]]+[[M]]
+[[Win]]+[[Ctrl]]+[[N]]
+[[Win]]+[[Ctrl]]+[[O]]
+[[Win]]+[[Ctrl]]+[[P]]
+[[Win]]+[[Ctrl]]+[[Q]] Open Quick Assist.
+[[Win]]+[[Ctrl]]+[[Right]] Move to Next Desktop
+[[Win]]+[[Ctrl]]+[[S]]
+[[Win]]+[[Ctrl]]+[[Space]] Change to a previously selected input.
+[[Win]]+[[Ctrl]]+[[T]]
+[[Win]]+[[Ctrl]]+[[Up]]
+[[Win]]+[[Ctrl]]+[[V]]
+
+[[Win]]+[[Shift]]+[[C]] Open the charms menu.
+[[Win]]+[[Shift]]+[[Down]] Restore/minimize active desktop windows vertically, maintaining width.
+[[Win]]+[[Shift]]+[[Enter]]
+[[Win]]+[[Shift]]+[[F21]]
+[[Win]]+[[Shift]]+[[F22]]
+[[Win]]+[[Shift]]+[[Left]] Move an app or window in the desktop from one monitor to another.
+[[Win]]+[[Shift]]+[[M]] Restore minimized windows on the desktop.
+[[Win]]+[[Shift]]+[[P]]
+[[Win]]+[[Shift]]+[[Right]] Move an app or window in the desktop from one monitor to another.
+[[Win]]+[[Shift]]+[[S]] Snipping Tool
+[[Win]]+[[Shift]]+[[Space]] Cycle backwards through language and keyboard layout.
+[[Win]]+[[Shift]]+[[T]]
+[[Win]]+[[Shift]]+[[Up]] Stretch the desktop window to the top and bottom of the screen.
+[[Win]]+[[Shift]]+[[V]] 	
+Set focus to a notification.
+[[Win]]+[[Shift]]+[[W]]
+[[Win]]+[[Shift]]+[[Z]]
+[[Win]]+[[+]] Open Magnifier and zoom in.
+[[Win]]+[[-]] Zoom out in Magnifier.
+[[Win]]+[[,]]Temporarily peek at the desktop.
+[[Win]]+[[.]] Open emoji panel.
+ 
+[[Win]]+[[;]] Open emoji panel.
+[[Win]]+[[=]]
+[[Win]]+[[`]]
+[[Win]]+[[/]] Begin IME reconversion.
+[[Win]]+[[A]] Quick Settings
+[[Win]]+[[B]] Focus on First Icon in Taskbar Corner
+[[Win]]+[[Backspace]]
+[[Win]]+[[C]] Open Chat from Microsoft Teams.
+[[Win]]+[[D]] Display and hide the desktop.
+[[Win]]+[[Down]] Remove current app from screen or minimize the desktop window.
+[[Win]]+[[E]] Open File Explorer.
+[[Win]]+[[Enter]]
+[[Win]]+[[Esc]] Close Magnifier.
+[[Win]]+[[F]] Open Feedback Hub and take a screenshot.
+[[Win]]+[[F1]]
+[[Win]]+[[F14]]
+[[Win]]+[[F15]]
+[[Win]]+[[F16]]
+[[Win]]+[[F21]]
+[[Win]]+[[F22]]
+[[Win]]+[[F24]]
+[[Win]]+[[G]] Open Xbox Game Bar when a game is open.
+[[Win]]+[[H]] Launch voice typing.
+[[Win]]+[[Home]] Minimize all except the active desktop window (restores all windows on second stroke).
+[[Win]]+[[I]] Open Settings.
+[[Win]]+[[J]] Set focus to a Windows tip when one is available.
+[[Win]]+[[K]] Open Cast from Quick Settings.(Bluetooth))
+[[Win]]+[[L]] Lock your PC or switch accounts.
+[[Win]]+[[Left]] Move Virt Desktop Left One
+[[Win]]+[[M]] Minimize all windows.
+[[Win]]+[[N]] Open notification center and calendar. (Win11)
+[[Win]]+[[O]] Lock device orientation.
+[[Win]]+[[P]] Choose a presentation display mode.
+[[Win]]+[[Page Down]]
+[[Win]]+[[Pause]] Opens Settings  > System   > About.
+[[Win]]+[[Page Up]]
+[[Win]]+[[Print Screen]] Save full screen screenshot to file.
+[[Win]]+[[Q]]
+[[Win]]+[[R]]Open the Run dialog box.
+[[Win]]+[[Right]] Snap Window to Right, or next Pan
+[[Win]]+[[S]] Open search.
+[[Win]]+[[Space]]   Switch input language and keyboard layout.
+[[Win]]+[[T]] 	
+[[Win]]+[[Tab]] Open Task view.	
+Cycle through apps on the taskbar.
+[[Win]]+[[U]] 	
+Open Accessibility Settings.
+[[Win]]+[[Up]] Window Snap or Maximize
+[[Win]]+[[V]] 	
+Open the clipboard history. 
+[[Win]]+[[W]] 	
+Open Widgets. Updated in Windows 11.
+[[Win]]+[[X]] Open the Quick Link menu.
+[[Win]]+[[Y]] Switch input between Windows Mixed Reality and your desktop.
+[[Win]]+[[Z]] Open the snap layouts. Updated in Windows 11.
+
+#### File Explorer keyboard shortcuts
+
+[[Alt]]+[[D]] = Select the address bar.
+[[Ctrl]]+[[E]] = Select the search box.
+[[Ctrl]]+[[F]] = Select the search box.
+[[Ctrl]]+[[N]] = Open a new window.
+[[Ctrl]]+[[W]] = Close the active window.
+[[Ctrl]] + `mouse scroll wheel` Change the size and appearance of file and folder icons.
+[[Ctrl]]+[[Shift]]+[[E]] = Display all folders above the selected folder.
+[[Ctrl]]+[[Shift]]+[[N]] = Create a new folder.
+[[NumLock]] + asterisk ([[*]]) Display all subfolders under the selected folder.
+[[NumLock]] + plus ([[+]]) Display the contents of the selected folder.
+[[NumLock]] + minus ([[-]]) Collapse the selected folder.
+[[Alt]]+[[P]] = Display the preview panel.
+[[Alt]]+[[Enter]] = Open the Properties dialog box for the selected item.
+[[Alt]] + [[Right]] arrow  View the next folder.
+[[Alt]] + [[Up]] arrow View the folder that the folder was in.
+[[Alt]] + [[Left]] arrow View the previous folder.
+[[Backspace]] View the previous folder.
+[[Right]] arrow  Display the current selection (if it's collapsed), or select the first subfolder.
+[[Left]] arrow   Collapse the current selection (if it's expanded), or select the folder that the folder was in.
+[[End]] Display the bottom of the active window.
+[[Home]] Display the top of the active window.
+[[F11]]  Maximize or minimize the active window.
+[[F2]] Rename the selected item.
+[[F3]] Search for a file or folder in File Explorer.
+[[F4]] Display the address bar list in File Explorer.
+[[F5]] ~~Refresh~~ the active window.
+#### The number keys
+
+Correspond to positions on the task bar.
+
+[[Win]]+[[1]]->[[0]] Open or start the app in this position
+[[Win]]+[[Shift]]+[[1]]->[[0]] Open the desktop and start a **new instance** of the app 
+[[Win]]+[[Ctrl]]+[[1]]->[[0]]  Open the desktop and switch to the **last active window /instance**
+[[Win]]+[[Alt]]+[[1]]->[[0]]  Open the desktop and open the Jump List for the app
+[[Win]]+[[Ctrl]]+[[Shift]]+[[1]]->[[0]] Open the desktop and open a new instance of the app located at the given position on the taskbar **as an administrator.**
+
+[Source](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec)
+Also Source Nirsoft HotKeyList
 
 ### Start + Run Shortcuts
 
-[Src](https://ss64.com/nt/run.html)
-
-
-
-ccessibility Options 	utilman
-or
-control access.cpl
-Add Hardware Wizard 	hdwwiz
+Accessibility Options  - `utilman` & `control access.cpl`
+Add Hardware Wizard  - `hdwwiz`
 Programs and Features
 (Add New Programs)
 (Add Remove Windows Components)
-(Set Program Access & Defaults ) 	appwiz.cpl
+(Set Program Access & Defaults )  - `appwiz.cpl`
 control appwiz.cpl,,1
 control appwiz.cpl,,2
 control appwiz.cpl,,3
-Administrative Tools 	control admintools
-Advanced User Accounts Control Panel 	netplwiz
-Authorization Manager 	azman.msc
-Automatic Update 	control wuaucpl.cpl
-Backup and Restore Utility 	sdclt
-Bluetooth Transfer Wizard 	fsquirt
-Calculator 	calc
-Certificate Manager 	certmgr.msc
-Character Map 	charmap
-Check Disk Utility 	chkdsk
-Clear Type (tune or turn off) 	cttune
-Color Management 	colorcpl.exe
-Command Prompt 	cmd
-Component Services 	dcomcnfg
-or
+Administrative Tools  - `control admintools`
+Advanced User Accounts Control Panel  - `netplwiz`
+Authorization Manager  - `azman.msc`
+Automatic Update  - `control wuaucpl.cpl`
+Backup and Restore Utility  - `sdclt`
+Bluetooth Transfer Wizard  - `fsquirt`
+Calculator  - `calc`
+Certificate Manager  - `certmgr.msc`
+Character Map  - `charmap`
+Check Disk Utility  - `chkdsk`
+Clear Type (tune or turn off)  - `cttune`
+Color Management  - `colorcpl.exe`
+Command Prompt  - `cmd`
+Component Services  - `dcomcnfg` or
 comexp.msc
-Computer Management 	CompMgmtLauncher.exe
-or
-compmgmt.msc
-Control Panel 	control
-Credential (passwords) Backup and Restore Wizard 	credwiz
-Data Execution Prevention 	SystemPropertiesDataExecutionPrevention
-Date and Time Properties 	timedate.cpl
-Device Manager 	hdwwiz
-or
-devmgmt.msc
-Device Pairing Wizard 	DevicePairingWizard
-Digitizer Calibration Tool (Tablets/Touch screens) 	tabcal
-Direct X Control Panel (if installed) 	directx.cpl
-Direct X Troubleshooter 	dxdiag
-Disk Cleanup Utility 	cleanmgr
-Disk Defragmenter 	dfrgui
+Computer Management  - `CompMgmtLauncher.exe` & `compmgmt.msc`
+Control Panel  - `control`
+Credential (passwords) Backup and Restore Wizard  - `credwiz`
+Data Execution Prevention  - `SystemPropertiesDataExecutionPrevention`
+Date and Time Properties  - `timedate.cpl`
+Device Manager  - `hdwwiz` & `devmgmt.msc`
+Device Pairing Wizard  - `DevicePairingWizard`
+Digitizer Calibration Tool (Tablets/Touch screens)  - `tabcal`
+Direct X Control Panel (if installed)  - `directx.cpl`
+Direct X Troubleshooter  - `dxdiag`
+Disk Cleanup Utility  - `cleanmgr`
+Disk Defragmenter  - `dfrgui`
 defrag
-Disk Management 	diskmgmt.msc
-Disk Partition Manager 	diskpart
-Display Color Calibration 	dccw
-Display DPI / Text size 	dpiscaling
-Display Properties (Themes, Desktop, Screensaver) 	control desktop
-Display Properties (Resolution, Orientation) 	desk.cpl
-Display Properties (Color & Appearance) 	control color
-Documents (open 'My Documents' folder) 	documents
-Downloads (open 'Downloads' folder) 	downloads
-Driver Verifier Utility 	verifier
-DVD Player 	dvdplay
-Edit Environment Variables 	rundll32.exe sysdm.cpl,EditEnvironmentVariables
-Encrypting File System Wizard (EFS) 	rekeywiz
-Event Viewer 	eventvwr.msc
-File Signature Verification Tool (Device drivers) 	sigverif
-Files and Settings Transfer Tool 	%systemroot%\system32\migwiz\migwiz.exe
-Firewall Control Panel 	firewall.cpl
-Folders Properties 	control folders
+Disk Management  - `diskmgmt.msc`
+Disk Partition Manager  - `diskpart`
+Display Color Calibration  - `dccw`
+Display DPI / Text size  - `dpiscaling`
+Display Properties (Themes, Desktop, Screensaver)  - `control desktop`
+Display Properties (Resolution, Orientation)  - `desk.cpl`
+Display Properties (Color & Appearance)  - `control color`
+Documents (open 'My Documents' folder)  - `documents`
+Downloads (open 'Downloads' folder)  - `downloads`
+Driver Verifier Utility  - `verifier`
+DVD Player  - `dvdplay`
+Edit Environment Variables  - `rundll32.exe sysdm.cpl,EditEnvironmentVariables`
+Encrypting File System Wizard (EFS)  - `rekeywiz`
+Event Viewer  - `eventvwr.msc`
+File Signature Verification Tool (Device drivers)  - `sigverif`
+Files and Settings Transfer Tool  - `%systemroot%\system32\migwiz\migwiz.exe`
+Firewall Control Panel  - `firewall.cpl`
+Folders Properties  - `control folders`
 Fonts list
-	control fonts
-Font preview 	fontview arial.ttf
-Game Controllers 	joy.cpl
-Local Group Policy Editor 	gpedit.msc
-Internet Properties 	inetcpl.cpl
-IP Configuration 	ipconfig
-iSCSI Initiator configuration 	iscsicpl
-Keyboard Properties 	control keyboard
-Language Pack Installer 	lpksetup
-Local Security Policy 	secpol.msc
-Local Users and Groups 	lusrmgr.msc
-Log out 	logoff
-Microsoft Malicious Software Removal Tool 	mrt
-Microsoft Management Console 	mmc
-Access (Microsoft Office) 	msaccess
-Excel (Microsoft Office) 	Excel
-Powerpoint (Microsoft Office) 	powerpnt
-Word (Microsoft Office) 	winword
-Microsoft Paint 	mspaint
-Microsoft Support Diagnostic Tool 	msdt
-Mouse Properties 	control mouse
-or
-main.cpl
-Network Connections 	control netconnections
-or
-ncpa.cpl
+ - `control fonts`
+Font preview  - `fontview arial.ttf`
+Game Controllers  - `joy.cpl`
+Local Group Policy Editor  - `gpedit.msc`
+Internet Properties  - `inetcpl.cpl`
+IP Configuration  - `ipconfig`
+iSCSI Initiator configuration  - `iscsicpl`
+Keyboard Properties  - `control keyboard`
+Language Pack Installer  - `lpksetup`
+Local Security Policy  - `secpol.msc`
+Local Users and Groups  - `lusrmgr.msc`
+Log out  - `logoff`
+Microsoft Malicious Software Removal Tool  - `mrt`
+Microsoft Management Console  - `mmc`
+Access (Microsoft Office)  - `msaccess`
+Excel (Microsoft Office)  - `Excel`
+Powerpoint (Microsoft Office)  - `powerpnt`
+Word (Microsoft Office)  - `winword`
+Microsoft Paint  - `mspaint`
+Microsoft Support Diagnostic Tool  - `msdt`
+Mouse Properties  - `control mouse` & `main.cpl`
+Network Connections  - `control netconnections` & `ncpa.cpl`
 Projector:
 Connect to Network Projector
-Switch projector display 	netproj
-
-displayswitch
-Notepad 	notepad
+Switch projector display  - `netproj &  displayswitch`
+Notepad  - `notepad`
 ODBC Data Source Admin
 Default ODBC driver:
 32-bit ODBC driver under 64-bit platform:
-	
-C:\windows\system32\odbcad32.exe
-C:\windows\sysWOW64\odbcad32.exe
-ODBC configuration - Install/configure MDAC drivers 	odbcconf
-On Screen Keyboard 	osk
-OOB Getting Started 	gettingstarted
-Password - Create a Windows Password Reset Disk (USB) 	"C:\Windows\system32\rundll32.exe" keymgr.dll,PRShowSaveWizardExW
-Pen and Touch (Tablet/Pen input configuration) 	tabletpc.cpl
-Performance Monitor 	perfmon.msc
-Phone and Modem Options 	telephon.cpl
-Phone Dialer 	dialer
-Power Configuration 	powercfg.cpl and powercfg.exe
-Presentation Settings 	PresentationSettings
-Problem Steps Recorder 	psr
-Program Access and Computer Defaults - browser / email / media 	computerdefaults
-Printers and Faxes 	control printers
-Print Management (.msc) 	PrintManagement
-Printer Migration (backup/restore) 	printbrmui and printbrm.exe
-Printer user interface (List all printui.dll options) 	printui
-Private Character Editor 	eudcedit
-Regional Settings - Language, Date/Time format, keyboard locale. 	intl.cpl
-Registry Editor 	regedit
-Remote Assistance 	msra
-Remote Desktop 	mstsc
-Resource Monitor 	resmon
-Resultant Set of Policy 	rsop.msc
-Settings (Windows 10) 	ms-settings:
-Scheduled Tasks 	control schedtasks
-Screenshot Snipping Tool 	snippingtool
-Security Center 	wscui.cpl
-Services 	services.msc
-Shared Folder Wizard 	shrpubw
-Shared Folders 	fsmgmt.msc
-Shut Down Windows 	shutdown
-Software Licensing/Activation 	slui
-Sounds and Audio 	mmsys.cpl
-Sound Recorder 	soundrecorder
-Sound Volume 	sndvol
-Syncronization Tool (Offline files) 	mobsync
-System Configuration Utility 	msconfig
-System File Checker Utility (Scan/Purge) 	sfc
-System Information 	msinfo32
-System Properties
-	
+    C:\windows\system32\odbcad32.exe
+    C:\windows\sysWOW64\odbcad32.exe
+ODBC configuration - Install/configure MDAC drivers  - `odbcconf`
+On Screen Keyboard  - `osk`
+OOB Getting Started  - `gettingstarted`
+Password - Create a Windows Password Reset Disk (USB)  - `"C:\Windows\system32\rundll32.exe" keymgr.dll,PRShowSaveWizardExW`
+Pen and Touch (Tablet/Pen input configuration)  - `tabletpc.cpl`
+Performance Monitor  - `perfmon.msc`
+Phone and Modem Options  - `telephon.cpl`
+Phone Dialer  - `dialer`
+Power Configuration  - `powercfg.cpl and powercfg.exe`
+Presentation Settings  - `PresentationSettings``powercfg.cpl
+Problem Steps Recorder  - `psr`
+Program Access and Computer Defaults - browser / email / media  - `computerdefaults`
+Printers and Faxes  - `control printers`
+Print Management (.msc)  - `PrintManagement`
+Printer Migration (backup/restore)  - `printbrmui and printbrm.exe`
+Printer user interface (List all printui.dll options)  - `printui`
+Private Character Editor  - `eudcedit`
+Regional Settings - Language, Date/Time format, keyboard locale.  - `intl.cpl`
+Registry Editor  - `regedit`
+Remote Assistance  - `msra`
+Remote Desktop  - `mstsc`
+Resource Monitor  - `resmon`
+Resultant Set of Policy  - `rsop.msc`
+Settings (Windows 10)  - `ms-settings:`
+Scheduled Tasks  - `control schedtasks`
+Screenshot Snipping Tool  - `snippingtool`
+Security Center  - `wscui.cpl`
+Services  - `services.msc`
+Shared Folder Wizard  - `shrpubw`
+Shared Folders  - `fsmgmt.msc`
+Shut Down Windows  - `shutdown`
+Software Licensing/Activation  - `slui`
+Sounds and Audio  - `mmsys.cpl`
+Sound Recorder  - `soundrecorder`
+Sound Volume  - `sndvol`
+Syncronization Tool (Offline files)  - `mobsync`
+System Configuration Utility  - `msconfig`
+System File Checker Utility (Scan/Purge)  - `sfc`
+System Information  - `msinfo32`
+System Properties `sysdm.cpl SystemProperties`  & `sysdm.cpl DisplaySYSDMCPL`
+System Properties - Performance  - `SystemPropertiesPerformance`
+System Properties - Hardware  - `SystemPropertiesHardware`
+System Properties - Advanced  - `SystemPropertiesAdvanced`
+System Repair - Create a System Repair Disc  - `recdisc`
+System Restore  - `rstrui`
+Task Manager  - `taskmgr`
+Task Scheduler  - `taskschd.msc`
+Telnet Client  - `telnet`
+Trusted Platform Module Initialization Wizard  - `tpmInit`
 
-sysdm.cpl SystemProperties
-or
-sysdm.cpl DisplaySYSDMCPL
-System Properties - Performance 	SystemPropertiesPerformance
-System Properties - Hardware 	SystemPropertiesHardware
-System Properties - Advanced 	SystemPropertiesAdvanced
-System Repair - Create a System Repair Disc 	recdisc
-System Restore 	rstrui
-Task Manager 	taskmgr
-Task Scheduler 	taskschd.msc
-Telnet Client 	telnet
-Trusted Platform Module Initialization Wizard 	tpmInit
-
-User Accounts (Autologon) 	control userpasswords2
-User Account Control (UAC) Settings 	UserAccountControlSettings
-User Profiles - Edit/Change type 	C:\Windows\System32\rundll32.exe sysdm.cpl,EditUserProfiles
-Windows Disc Image Burning Tool 	isoburn C:\movies\madmax.iso
-Windows Explorer 	explorer.exe
+User Accounts (Autologon)  - `control userpasswords2`
+User Account Control (UAC) Settings  - `UserAccountControlSettings`
+User Profiles - Edit/Change type  - `C:\Windows\System32\rundll32.exe sysdm.cpl,EditUserProfiles`
+Windows Disc Image Burning Tool  - `isoburn C:\movies\madmax.iso`
+Windows Explorer  - `explorer.exe`
 explorer.exe .  Will open at the current directory
-Windows Features 	optionalfeatures
-Windows Firewall
-Windows Firewall with Advanced Security 	firewall.cpl
-wf.msc
-Windows Image Acquisition (scanner) 	wiaacmgr
-Windows Magnifier 	magnify
-Windows Management Infrastructure 	wmimgmt.msc
-Windows Memory Diagnostic Scheduler 	mdsched
-Windows Mobility Center (Mobile PCs only) 	mblctr
-Windows PowerShell 	powershell
-Windows PowerShell ISE 	powershell_ise
-Windows Security Action Center 	wscui.cpl
-Windows Script Host(VBScript) 	wscript NAME_OF_SCRIPT.VBS
+Windows Features  - `optionalfeatures`
+Windows Firewall `wf.msc`
+Windows Firewall with Advanced Security  - `firewall.cpl`
+
+Windows Image Acquisition (scanner)  - `wiaacmgr`
+Windows Magnifier  - `magnify`
+Windows Management Infrastructure  - `wmimgmt.msc`
+Windows Memory Diagnostic Scheduler  - `mdsched`
+Windows Mobility Center (Mobile PCs only)  - `mblctr`
+Windows PowerShell  - `powershell`
+Windows PowerShell ISE  - `powershell_ise`
+Windows Security Action Center  - `wscui.cpl`
+Windows Script Host(VBScript)  - `wscript NAME_OF_SCRIPT.VBS`
 Windows System Security Tool. Encrypt the SAM database.
-(boot password.) 	syskey
-Windows Update 	wuapp
-Windows Update Standalone Installer 	wusa
-Windows Version (About Windows) 	winver
-WordPad 	write
+(boot password.)  - `syskey`
+Windows Update  - `wuapp`
+Windows Update Standalone Installer  - `wusa`
+Windows Version (About Windows)  - `winver`
+WordPad  - `write`
+
+
+## Browsers 
+
+### Chrome and Firefox internal Links
+
+
+Google Chrome
+
+In Google Chrome, it's either of these:
+
+    `about:about`
+    `chrome://chrome-urls`
+
+The page will list all possible pages. In Chrome, all `about:` pages are internally treated as Chrome URLs, with the   - `chrome://` protocol handler. Therefore, these are equivalent.
+
+ >- chrome://`accessibility`
+  - chrome://`appcache-internals`
+  - chrome://`apps`
+  - chrome://`blob-internals`
+  - chrome://`bookmarks`
+  - chrome://`cache`
+  - chrome://`chrome`
+  - chrome://`chrome-urls`
+  - chrome://`components`
+  - chrome://`copresence`
+  - chrome://`crashes`
+  - chrome://`credits`
+  - chrome://`device-log`
+  - chrome://`devices`
+  - chrome://`dns`
+  - chrome://`downloads`
+  - chrome://`extensions`
+  - chrome://`flags`
+  - chrome://`flash`
+  - chrome://`gcm-internals`
+  - chrome://`gpu`
+  - chrome://`help`
+  - chrome://`histograms`
+  - chrome://`history`
+  - chrome://`indexeddb-internals`
+  - chrome://`inspect`
+  - chrome://`invalidations`
+  - chrome://`linux-proxy-config`
+  - chrome://`local-state`
+  - chrome://`media-internals`
+  - chrome://`memory`
+  - chrome://`memory-internals`
+  - chrome://`nacl`
+  - chrome://`net-internals`
+  - chrome://`newtab`
+  - chrome://`omnibox`
+  - chrome://`password-manager-internals`
+  - chrome://`plugins`
+  - chrome://`policy`
+  - chrome://`predictors`
+  - chrome://`print`
+  - chrome://`profiler`
+  - chrome://`quota-internals`
+  - chrome://`sandbox`
+  - chrome://`serviceworker-internals`
+  - chrome://`settings`
+  - chrome://`signin-internals`
+  - chrome://`suggestions`
+  - chrome://`sync-internals`
+  - chrome://`system`
+  - chrome://`terms`
+  - chrome://`thumbnails`
+  - chrome://`tracing`
+  - chrome://`translate-internals`
+  - chrome://`user-actions`
+  - chrome://`version`
+  - chrome://`view-http-cache`
+  - chrome://`voicesearch`
+  - chrome://`webrtc-internals`
+  - chrome://`webrtc-logs`
+
+The following URLs are sectioned off because they cause something "bad" to happen:
+
+>  - chrome://`badcastcrash`
+  - chrome://`crash`
+  - chrome://`crashdump`
+  - chrome://`kill`
+  - chrome://`hang`
+  - chrome://`shorthang`
+  - chrome://`gpuclean`
+  - chrome://`gpucrash`
+  - chrome://`gpuhang`
+  - chrome://`ppapiflashcrash`
+  - chrome://`ppapiflashhang`
+  - chrome://`quit`/
+  - chrome://`restart`/
+
+Last Updated: Chrome 46
+Mozilla Firefox
+
+
+!!!summary  Mozilla Firefox has the same meta-page:   - about:`about`, but here's a list as well:
+    - about:`about`
+    - about:`accounts`
+    - about:`addons`
+    - about:`app-manager`
+    - about:`buildconfig`
+    - about:`cache`
+    - about:`config`
+    - about:`crashes`
+    - about:`credits`
+    - about:`customizing`
+    - about:`downloads`
+    - about:`healthreport`
+    - about:`home`
+    - about:`license`
+    - about:`logo`
+    - about:`memory`
+    - about:`mozilla`
+    - about:`networking`
+    - about:`newtab`
+    - about:`performance`
+    - about:`permissions`
+    - about:`plugins`
+    - about:`preferences`
+    - about:`privatebrowsing`
+    - about:`rights`
+    - about:`robots`
+    - about:`serviceworkers`
+    - about:`sessionrestore`
+    - about:`startpage`
+    - about:`support`
+    - about:`sync-log`
+    - about:`sync-progress`
+    - about:`sync-tabs`
+    - about:`telemetry`
+    - about:`webrtc`
+    - about:`welcomeback`
+
+!!!summary Firefox Methods
+    |                        |                         |
+    | ---------------------- | ----------------------- |
+    | about:`about`          | about:`accounts`        |
+    | about:`addons`         | about:`app-manager`     |
+    | about:`buildconfig`    | about:`cache`           |
+    | about:`config`         | about:`crashes`         |
+    | about:`credits`        | about:`customizing`     |
+    | about:`downloads`      | about:`healthreport`    |
+    | about:`home`           | about:`license`         |
+    | about:`logo`           | about:`memory`          |
+    | about:`mozilla`        | about:`networking`      |
+    | about:`newtab`         | about:`performance`     |
+    | about:`permissions`    | about:`plugins`         |
+    | about:`preferences`    | about:`privatebrowsing` |
+    | about:`rights`         | about:`robots`          |
+    | about:`serviceworkers` | about:`sessionrestore`  |
+    | about:`startpage`      | about:`support`         |
+    | about:`sync-log`       | about:`sync-progress`   |
+    | about:`sync-tabs`      | about:`telemetry`       |
+    | about:`webrtc`         | about:`welcomeback`     |
+
+(^[^\s]+$)\n(^[^\s]*$)\n(^[^\s]*$)
+| $1 | $2 | $3 |
+
+!!!summary Firefox Methods
+    |                        |                       |                         |
+    | ---------------------- | --------------------- | ----------------------- |
+    | about:`about`          | about:`accounts`      | about:`addons`          |
+    | about:`app-manager`    | about:`buildconfig`   | about:`cache`           |
+    | about:`config`         | about:`crashes`       | about:`credits`         |
+    | about:`customizing`    | about:`downloads`     | about:`healthreport`    |
+    | about:`home`           | about:`license`       | about:`logo`            |
+    | about:`memory`         | about:`mozilla`       | about:`networking`      |
+    | about:`newtab`         | about:`performance`   | about:`permissions`     |
+    | about:`plugins`        | about:`preferences`   | about:`privatebrowsing` |
+    | about:`rights`         | about:`robots`        | about:`serviceworkers`  |
+    | about:`sessionrestore` | about:`startpage`     | about:`support`         |
+    | about:`sync-log`       | about:`sync-progress` | about:`sync-tabs`       |
+    | about:`telemetry`      | about:`webrtc`        | about:`welcomeback`     |
+
+(^[^\s]+$)\n(^[^\s]*$)\n(^[^\s]*$)\n(^[^\s]*$)
+| $1 | $2 | $3 | $4 |
+
+
+!!!summary Firefox Methods
+    |                     |                     |                        |                         |
+    | ------------------- | ------------------- | ---------------------- | ----------------------- |
+    | about:`about`       | about:`accounts`    | about:`addons`         | about:`app-manager`     |
+    | about:`buildconfig` | about:`cache`       | about:`config`         | about:`crashes`         |
+    | about:`credits`     | about:`customizing` | about:`downloads`      | about:`healthreport`    |
+    | about:`home`        | about:`license`     | about:`logo`           | about:`memory`          |
+    | about:`mozilla`     | about:`networking`  | about:`newtab`         | about:`performance`     |
+    | about:`permissions` | about:`plugins`     | about:`preferences`    | about:`privatebrowsing` |
+    | about:`rights`      | about:`robots`      | about:`serviceworkers` | about:`sessionrestore`  |
+    | about:`startpage`   | about:`support`     | about:`sync-log`       | about:`sync-progress`   |
+    | about:`sync-tabs`   | about:`telemetry`   | about:`webrtc`         | about:`welcomeback`     |
+
+
+This seems to apply to chrome
+
+  - about:`blank` - the empty page
+  - about:`cache` - disk and memory cache information
+  - about:`net-internals` - network information including Proxy, HostResolver, URLRequest, HTTPCache and SocketStream
+  - about:`crash` - the page shown when a tab process crashes
+  - about:`credits` - list of libraries and other code used in Chrome, with links
+  - about:`hang` - this seems to kill a tab for me (I haven’t linked for that reason - use at your own risk)
+  - about:`memory` - memory usage of the various processes
+  - about:`shorthang` - see   - about:`hang` above
+  - about:`terms` - Google Chrome Terms of Service
+  - about:`inducebrowsercrashforrealz` - not many lolz here
+
+
+  - chrome://`extensions`/ - installed extensions
+  - chrome://`history`/ - your browsing history
+  - chrome://`newtab` - the new tab page
+  - chrome://`thumb`/http://www.google.com/ - thumbnail for a page you’ve visited
+  - chrome://`favicon`/http://www.google.com/ - favicon for a page you’ve visited
+view-source:http://www.santiagolizardo.com - view the source of a web page
+
+See https://code.google.com/p/chromium/codesearch#chromium/src/chrome/common/url_constants.cc 
+or http://src.chromium.org/svn/trunk/src/chrome/common/url_constants.cc 
+
+for the complete listing of Chromium chrome://... URLs.
+
+
+Now defunct source but found on internet archive (http://web.archive.org/web/20130318184424/http://www.chromeplugins.org/google/chrome-tips-tricks/about-chrome-more-internal-urls-7793.html)
+
+  The first section of definitions (kAboutScheme through kViewSourceScheme) are what go before the : in the URI.
+  We should all know what ftp, http, https, javascript, view-source, and mailto do (and probably file). But just for reference:
+  file:///Drive:/path/to/file.ext Example: file:///C:/myfile.txt
+  javascript:js code Example: javascript:alert("Hi");
+  mailto:email@domain.tld Example: mailto:myfirend@gmail.com
+  For information on the data URI scheme see here.
+  For information on the feed URI scheme see here.
+  I'm not sure how to use the gears URI scheme, it won't let me enter such a URL.
+  print:webpageurl I assume, but I don't have a printer to try it with.
+
+  As for the rest of them, I can't be too sure what they all do, but I'll tell you what I've figured out.
+
+  chrome-internal: These URLs cannot be entered into the omnibox.
+  view-cache: shows you all the files in your cache with links to view the HTTP headers received when you got the file, as well as a hex/ASCII view of the data.
+  chrome-user-script:*.user.js where *.user.js is the filename of the installed User Script. Shows you the source of that User Script.
+  - `about:` -  Shows you your version information of Chrome and WebKit and stuff.
+  - `about:version` -  Same as above.
+  about:blank Blank page.
+  about:cache Same as view-cache:
+  about:memory "Stats for nerds" as linked to by the Task Manager
+  about:memory-redirect Redirects to "about:memory"
+  about:terms Google Chrome Terms of Service.
+  about:dns View DNS request history.
+  about:histograms "Histograms"..not sure what that means :P looks like benchmarks to me.
+  about:objects Listed, but it doesn't seem to display anything..
+  about:stats Displays stats about V8 and stuff. Only able to render if you use the command line switch --enable-stats-table
+  about:plugins Shows all your plugins, if they're enabled, etc etc.
+  about:credits Shows all third-party libraries used in Chrome's creation with links to their homepages and licenses.
+  about:linux-splash Listed, but it doesn't seem to display anything.. Might be linux only.
+  chrome://about/* Where * is what normally goes to the right of a colon in and "about:" URI. It's the same thing as about:*, just more typing. lol This is what all "about:*" urls are routed to.
+  chrome://theme/* Where * is the name of the piece of the current theme. For example: theme_frame, theme_frame_incognito, theme_toolbar, css/newtab.css At least that's all I can find in the source that work.
+  chrome://thumb/URL Where URL is a URL you've visited, such as http://www.google.com
+  chrome://favicon/URL See above.
+  view-net-internal:* View network internals, currently only your proxy configuration. You can also use any of the URL listed on that page to view only a specific one. * can be one of the strings listed after the slash in the URLs listed on that page, for example: proxyservice
+  about:net-internal/* Mapped to ]view-net-internal:*
+  about:crash Show the crash page.
+  about:hang Constantly loading.. ie. hangs the page.
+  about:shorthang Constantly loading.. ie. hangs the page.
+  about:inducebrowsercrashforrealz Crashes the browser. lol Seems to only be here temporarily.
+
+  Self-explanatory/already known:
+  chrome://extensions/
+  chrome://history/
+  chrome://downloads/
+  chrome://newtab/
+
+    So yeah just basically hunting through the source and stuff for technical information cause the wiki sucks so hard. :S Figured I'd post these results. I'll edit as I find more info. 
+
+    Last edited by Waha; 09-09-2009 at 11:19 PM. 
+
+
 ## Basic Commands
 
 
@@ -645,7 +1230,6 @@ WordPad 	write
 
 
 
-
 ### List COM interfaces
 
 Where can I find all of the COM objects that can be created in Powershell?
@@ -656,35 +1240,85 @@ gci HKLM:\Software\Classes -ea 0| ? {$_.PSChildName -match '^\w+\.\w+$' -and
 From <https://stackoverflow.com/questions/660319/where-can-i-find-all-of-the-com-objects-that-can-be-created-in-powershell>
 
 How to get a list of COM objects via WMI & PowerShell
-Posted: October 26th, 2013 | Tags: COM, wmi | Category: PowerShell | § 
-Let’s see what WMI can tell us about COM objects on the system.
-Get a list of all WMI classes with the word “COM” in them (doing a case sensitive match to avoid entries like “computer”).
+Posted: October 26th, 2013 | Tags: COM, wmi | Category: PowerShell | § 
+Let's see what WMI can tell us about COM objects on the system.
+Get a list of all WMI classes with the word "COM" in them (doing a case sensitive match to avoid entries like “computer”).
 
 ```ps1
 1   PS> gwmi -list | ?{ $_.Name -cmatch "COM" }
-2    
-3      NameSpace: ROOT\cimv2
-4    
-5   Name                                Methods              Properties
-6   ----                                -------              ----------
-7   MSFT_WMI_GenericNonCOMEvent         {}                   {ProcessId, PropertyNames, PropertyValues, ProviderName...}
-8   Win32_COMApplication                {}                   {Caption, Description, InstallDate, Name...}
-9   Win32_DCOMApplication               {}                   {AppID, Caption, Description, InstallDate...}
-10  Win32_COMClass                      {}                   {Caption, Description, InstallDate, Name...}
-11  Win32_ClassicCOMClass               {}                   {Caption, ComponentId, Description, InstallDate...}
-12  Win32_COMSetting                    {}                   {Caption, Description, SettingID}
-13  Win32_ClassicCOMClassSetting        {}                   {AppID, AutoConvertToClsid, AutoTreatAsClsid, Caption...}
-14  Win32_DCOMApplicationSetting        {GetLaunchSecurit... {AppID, AuthenticationLevel, Caption, CustomSurrogate...}
-15  Win32_ClassicCOMClassSettings       {}                   {Element, Setting}
-16  Win32_COMApplicationSettings        {}                   {Element, Setting}
-17  Win32_DCOMApplicationAccessAllow... {}                   {Element, Setting}
-18  Win32_COMApplicationClasses         {}                   {GroupComponent, PartComponent}
-19  Win32_ClassicCOMApplicationClasses  {}                   {GroupComponent, PartComponent}
-20  Win32_DCOMApplicationLaunchAllow... {}                   {Element, Setting}
+2    
+3      NameSpace: ROOT\cimv2
+4    
+5   Name                                Methods              Properties
+6   ----                                -------              ----------
+7   MSFT_WMI_GenericNonCOMEvent         {}                   {ProcessId, PropertyNames, PropertyValues, ProviderName...}
+8   Win32_COMApplication                {}                   {Caption, Description, InstallDate, Name...}
+9   Win32_DCOMApplication               {}                   {AppID, Caption, Description, InstallDate...}
+10  Win32_COMClass                      {}                   {Caption, Description, InstallDate, Name...}
+11  Win32_ClassicCOMClass               {}                   {Caption, ComponentId, Description, InstallDate...}
+12  Win32_COMSetting                    {}                   {Caption, Description, SettingID}
+13  Win32_ClassicCOMClassSetting        {}                   {AppID, AutoConvertToClsid, AutoTreatAsClsid, Caption...}
+14  Win32_DCOMApplicationSetting        {GetLaunchSecurit... {AppID, AuthenticationLevel, Caption, CustomSurrogate...}
+15  Win32_ClassicCOMClassSettings       {}                   {Element, Setting}
+16  Win32_COMApplicationSettings        {}                   {Element, Setting}
+17  Win32_DCOMApplicationAccessAllow... {}                   {Element, Setting}
+18  Win32_COMApplicationClasses         {}                   {GroupComponent, PartComponent}
+19  Win32_ClassicCOMApplicationClasses  {}                   {GroupComponent, PartComponent}
+20  Win32_DCOMApplicationLaunchAllow... {}                   {Element, Setting}
 ```
 
 ## Command Line
 
+
+[Critical Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
+
+
+
+### General Tips
+
+#### Shortcuts 
+
+Command prompt also supports drag and drop: If you want to copy the exact path to a folder or file to run the file or change the present working directory, you can simply drag and drop the file or the folder on the command prompt.
+And there are more command history features available via function keys:
+[[F1]]: Pastes per character last used command
+[[F2]] -  Pastes last used command only to a specified command character
+[[F3]] -  Pastes Last used command
+[[F4]] -  Delete command only to a specified command character
+[[F5]] -  Pastes last used command without cycling
+[[F6]] -  Pastes ^Z
+[[F7]] -  Provides a list of already used commands (selectable)
+[[F8]] -  Pastes cycleable used commands
+[[F9]] -  Will let you paste command from the list of recently used commands
+
+
+#### Spaces
+
+Paths with spaces need to be quoted.  Single quotes dont seem to work.
+
+In powershell, single quote means literal, e.g. dont replace references.  '$var'
+
+Double quotes mean, evaluate expressions then return string.  
+
+Or maybe its the other way around.  
+
+For command, from stackoverflow
+
+    CMD doesn't treat single quotes as anything but a regular character. It's not a pair/group like double quotes.
+
+    The only place where the single quote has any special meaning is in a FOR /F loop, where you are specifying a command to run and iterate over the output.
+
+        FOR /F %%d IN ('DIR /S /B C:\Windows') DO @ECHO File: %%d
+
+
+#### Command List
+
+[Complete List](https://opdhsblobprod04.blob.core.windows.net/contents/bcfb35dcab554ac89342fa948a4ebed7/b4c89455c9846c8e2fa82cea40554530?sv=2018-03-28&sr=b&si=ReadPolicy&sig=Utcqb0wBOj8RVFG5OEb6U7xsMm47uNc7kDD6FpM8xdo%3D&st=2020-12-16T15%3A27%3A44Z&se=2020-12-17T15%3A37%3A44Z)
+
+Also locally O:\OneDrive\Programming\Windows
+
+try:
+    
+    %onedrive%\Programming\Windows\'Windows Command Reference.pdf'
 
 When you are using a Microsoft MS-DOS command prompt shell window, you can type the following commands into the window. Click a command shown below for a description of how to use that command.
 
@@ -780,6 +1414,8 @@ See also: Command-line reference A-Z
 
   `commandA && commandB || commandC`
                               If commandA succeeds run commandB, if it fails commandC
+
+### Exit Codes
 
 Success and failure are based on the **Exit Code** of the command.
 In most cases the Exit Code is the same as the ErrorLevel
@@ -910,8 +1546,8 @@ Examples:
 
    (TYPE logfile.txt >> newfile.txt) 2>nul
 
-“Stupidity, outrage, vanity, cruelty, iniquity, bad faith, falsehood,
-we fail to see the whole array when it is facing in the same direction as we” ~ Jean Rostand (French Historian)
+"Stupidity, outrage, vanity, cruelty, iniquity, bad faith, falsehood,
+we fail to see the whole array when it is facing in the same direction as we" ~ Jean Rostand (French Historian)
 
 Related:
 
@@ -998,21 +1634,13 @@ The following table describes the notation used to indicate [command-line syntax
 | Ellipsis (…)                    | Items that can be repeated                         |
 
 
-### More
+### Other Tips
 
 [SS64 Batch Help](https://ss64.com/nt/for.html)
 
 [Microsoft (Server) Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
 
-remote desktop command line (use /console if all slots full)
-c:\> mstsc /v:SERVERNAME [/console]
-list other RDP sessions on the server
-c:\> query session
-kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
-c:\> logoff SESSIONID
-
-use mstsc /admin instead. Use mstsc /? for a list of commands.
 
 Never knew aboput clip, and while investigating a problem yesterday I found another command I knew nothing about, the "where" command, it displays the location of a file.
 
@@ -1028,18 +1656,6 @@ cd \win*
 type *.log[tab][tab][tab][tab]
 cd syste[tab][tab]
 
-Command prompt also supports drag and drop: If you want to copy the exact path to a folder or file to run the file or change the present working directory, you can simply drag and drop the file or the folder on the command prompt.
-And there are more command history features available via function keys:
-F1: Pastes per character last used command
-F2: Pastes last used command only to a specified command character
-F3: Pastes Last used command
-F4: Delete command only to a specified command character
-F5: Pastes last used command without cycling
-F6: Pastes ^Z
-F7: Provides a list of already used commands (selectable)
-F8: Pastes cycleable used commands
-F9: Will let you paste command from the list of recently used commands
-
 I didn't know about clip, but then I've been using the UnxUtils collection for years and that has gclip, which does the same thing. I would probably have discovered clip by now if it wasn't for that.
 Someone mentioned pushd and popd; there's a good use case for these that people may not be aware of. While you can navigate to a UNC path in File Explorer you can't cd to one on the command line, but you can use pushd to achieve the same thing. It will actually map a drive to the share with the next available drive letter, before changing to the directory. When the previous directory is popped off the stack with popd, the mapped drive is released.
 I find Rob van der Woude's Scripting Pages to be a great resource for researching command line and batch language stuff. Look under Scripting Languages | Batch Files in the sidebar. There is info on a number of other scripting languages there too.
@@ -1050,7 +1666,8 @@ prompt $p$g
 win
 ^Z
 
-Redirecting output to txtfile always handy
+#### Redirecting output to txtfile always handy
+
 Like:
 dir /b | find ".exe" > findlist.txt | notepad findlist.txt
 https://technet.microsoft.com/en-us/library/bb490982.aspx
@@ -1074,7 +1691,8 @@ check if the env-var echo contains something. by doing "set echo=on" before call
 Set the current directory to the scripts directory. this is optional, but most of my scripts assume relative path (My old saying: The absolute path is the singleton of config management)
 
 
-Catching errors:
+#### Catching errors:
+
 dir I-do-not-exist || goto :error
 goto :eof
 :error
@@ -1122,10 +1740,54 @@ for pausing output per page
 dir /a,
 Hidden dir parameter - shows all files (hidden, system, etc) without have to specify the full list of things to unhide. (note that is a comma after the "/a")
 
+#### Mklink
 
 "mklink" is a good use of "cmd". I prefer symbolic links to shortcuts. I haven't seen a way to make symbolic links in the file manager.
 
+`MKLINK [[/D] | [/H] | [/J]] Link Target`
 
+    /D - Creates a directory symbolic link. Default is a file symbolic link.
+    /H - Creates a hard link instead of a symbolic link.
+    /J - Creates a Directory Junction.
+    Link - Specifies the new symbolic link name.
+    Target - Specifies the path (relative or absolute) that the new link refers to.
+
+```bat
+mklink /d "c:\users\winaero\desktop\directory symbolic link" "c:\users\winaero\desktop\winaero"
+
+mklink /j "c:\users\winaero\desktop\directory junction" "c:\users\winaero\desktop\winaero"
+```
+### action type
+
+A **Directory Junction** is an older type of symbolic link, which does not support UNC paths (network paths that begin with \\) and relative paths. Directory junctions are supported in Windows 2000 and later NT-based Windows systems. A **directory symbolic** link on the other hand also supports UNC and relative paths. However, they require at least Windows Vista. So, in most cases today, __the directory symbolic link is the preferred option.__
+
+
+A **hard link** can be created only for files, not folders. You cannot create a hard link for directories. So, it has more limitations than a Directory Junction and also does not support UNC paths.
+
+
+#### Create a symbolic link in PowerShell
+
+
+```ps1
+ New-Item -ItemType SymbolicLink -Path "./Javascrpt.md" -Target "O:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\javascript.md"
+
+ New-Item -ItemType SymbolicLink -Path "Link" -Target "Target"
+```
+
+Where LINK is the new symbolic link, and TARGET is the file it refers to.
+
+`-ItemType` can be: **Directory**, **File**, **SymbolicLink**, **Junction**, **HardLink**
+
+###  Create a Directory Junction, Hardlnk, etc.
+
+
+
+```ps1
+
+New-Item -ItemType HardLink -Path "Link" -Target "Target"
+
+```
+#### Hidden Data
 
 Try this on command line on NTFS drive:
 echo hidden > test.txt:hidden
@@ -1140,19 +1802,22 @@ hostname
 whoami
 
 
-Don't forget pushd and popd.
+#### Don't forget pushd and popd.
 'Pushd' changes directory to the parameter and remembers the current directory on a stack. It's a little better than 'cd' because you can also change folders and drive letters in one command.
 'Popd' pops the directory off the stack and changes to it -- including changing drive letters.
 So with pushd and popd you can really drill in and then pop back. I use a DOSKEY macrofile that makes 'cd' a macro for pushd and '.' a macro for popd. This turns the '.' key into a back button.
 
 
 
-'Call' for subroutines
+#### 'Call' for subroutines
+
 To execute a set of custom commands based on command line arguments
 1. Parse/validate command line arguments
 2. Use ECHO to write .bat file to execute the sequence of commands
 3. Call that batch file
 This provides equivalent function call functionality to bash.
+
+
 Current command set:
 - The built in dos batch commands
 - gnuwin32 - most of the basic unix commands
@@ -1173,7 +1838,52 @@ That's let me watch/convert from most video and audio formats, convert/extract/b
 If VS would only add one thing.....tell the actual DLL that was not found when it reports a DLL or one of its dependencies could not be loaded........................
 The OS has the information since it could not find/load the DLL and should have a way to report it back to VS in debug mode.....
 
+### IEXPRESS
+
+[IEXpress](https://ss64.com/nt/iexpress.html)
+
+
+
+Create a selfextracting archive-
+
+Apparently still a thing in windows.
+
+        IEXPRESS.exe
+
+        Create a self extracting ZIP file archive. iexpress 2.0 must be run with elevated permissions.
+
+        Syntax
+            IEXPRESS [ /N [/Q] [/M] ] SED_filename
+                [/O:Override_SED_filename, OverrideSectionName] [/D:directory]
+
+        Key:
+
+        /N   Build package now (SED filename must be specified)
+        /Q   Quiet mode when using /N
+        /M   Use minimised windows when using /N
+        /O   Specify overrideSED file and section
+        /D   Override directory for exe stub
+
+        When running the created self extracting archive, the following options can be used:
+
+        /Q            Quiet mode, No prompts and no errors.
+        /QA           Quiet + Assume the person running the app is admin/SMS so do not check for admin rights or disk space.[Build 306]
+        /QU           Quiet + Assume the person running the app is an non-admin user. [Build 306]
+                        No extract UI, but still get warnings on admin checks or disk space issues.
+                        Used when IExpress packages are shipped on CDs or installed through ActiveSetup.
+
+        /T:Full_path  A Temporary working folder
+        /C            Extract files only, when used with /T
+        /C:cmd        Override the install command defined by the author.
+
+        /R:N    Never restart the computer after installation.
+        /R:A    Ask to restart the computer after installation.
+        /R:S    Restart the computer after installation without prompting the user.
+
 ### FOR Command
+
+[For Files](https://ss64.com/nt/for_cmd.html)
+[For /f - Loop through text - Windows CMD - SS64.com](https://ss64.com/nt/for_f.html)
 
 Runs a specified command for each file in a set of files.
 
@@ -1311,7 +2021,17 @@ avoids confusion with the modifiers, which are not case sensitive.
 
 
 
-### Command Line Commands
+## Command Line Commands
+
+
+[All commands here](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
+
+[PDF version](https://opdhsblobprod04.blob.core.windows.net/contents/bcfb35dcab554ac89342fa948a4ebed7/b4c89455c9846c8e2fa82cea40554530?sv=2018-03-28&sr=b&si=ReadPolicy&sig=Utcqb0wBOj8RVFG5OEb6U7xsMm47uNc7kDD6FpM8xdo%3D&st=2020-12-16T15%3A27%3A44Z&se=2020-12-17T15%3A37%3A44Z)
+
+[Local version](file:///%onedrive%\Programming\Windows\Windows%20Command%20Reference.pdf)
+[Local version](file:///O:/Onedrive/Programming/Windows/Windows%20Command%20Reference.pdf)
+
+
 
 
    ADDUSERS Add or list users to/from a CSV file
@@ -1579,6 +2299,138 @@ ARP
 AT *deprecated*
 A
 
+
+### Assoc 
+
+
+Displays or modifies file name extension associations. If used without parameters, assoc displays a list of all the current file name extension associations.
+
+Syntax `assoc [<.ext>[=[<filetype>]]]`
+
+- `Parameter ` - Description
+- `<.ext>` - Specifies the file name extension.
+- `<filetype>` Specifies the file type to associate with the specified file name extension.
+- `/?` - Displays help at the command prompt.
+Remarks
+
+    To remove the file type association for a file name extension, add a white space after the equal sign by pressing the SPACEBAR.
+
+    To view current file types that have open command strings defined, use the ftype command.
+
+    To redirect the output of assoc to a text file, use the > redirection operator.
+
+Examples
+
+To view the current file type association for the file name extension .txt, type:
+
+`assoc .txt`
+
+To remove the file type association for the file name extension .bak, type:
+
+`assoc .bak=`
+
+!!! Note Note: Make sure you add a space after the equal sign.
+
+To view the output of assoc one screen at a time, type:
+
+`assoc | more`
+
+To send the output of assoc to the file assoc.txt, type:
+
+`assoc>assoc.txt`
+
+
+### Attrib
+
+Sets and changes file attributes.
+
+
+`attrib -a example.doc`
+
+The above command will unset archive attribute for the file example.doc
+
+[Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
+
+- R - **ReadOnly**
+- A - **Archive file attribute.**
+- S - System file attribute.
+- H - Hidden file attribute.
+- O - *Offline attribute.*
+- I - **Not content indexed file attribute.**
+- X - *No scrub file attribute.*
+- V - *Integrity attribute.*
+- P - *Pinned attribute.*
+- U - *Unpinned attribute.*
+- B - *SMR Blob attribute.*
+
+Parameter  Description
+- `{+|-}r ` - Sets (+) or clears (-) the Read-only file attribute.
+- `{+\|-}a ` - Sets (+) or clears (-) the Archive file attribute. This attribute set marks files that have changed since the last time they were backed up. Note that the xcopy command uses archive attributes.
+- `{+\|-}s ` - Sets (+) or clears (-) the System file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}h ` - Sets (+) or clears (-) the Hidden file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
+- `{+\|-}i ` - Sets (+) or clears (-) the Not Content Indexed file attribute.
+- `[<drive>:][<path>][<filename>] ` - Specifies the location and name of the directory, file, or group of files for which you want to display or change attributes.
+
+You can use the ? and * wildcard characters in the filename parameter to display or change the attributes for a group of files.
+- `/s ` - Applies attrib and any command-line options to matching files in the current directory and all of its subdirectories.
+- `/d ` - Applies attrib and any command-line options to directories.
+- `/l ` - Applies attrib and any command-line options to the Symbolic Link, rather than the target of the Symbolic Link.
+- `/? ` - Displays help at the command prompt.
+
+A few useful aspects:
+
+Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive attribute.  Any file that changes from that point on will have it set.  Then you can run backup only files with `+A` attribute.
+
+I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
+
+Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
+
+#### Groups of files
+
+[Source](https://www.windows-commandline.com/clear-archive-attribute-from-command/)
+There is no direct command for setting/unsetting attributes for a group of files. Attrib command works on one file at a time. You can use the following batch file command though.
+
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+
+```batch
+for /F %i in (‘dir /s /b ‘) do attrib -A %i
+REM This command will unset archive attributes for all the files in the current directory and in the subdirectories.
+
+REM To do this for a directory the command would be:
+for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
+```
+
+On the other hand,  `attrib` command accepts wild characters and can process files in bulk. The syntax for bulk processing is given below [Source](https://www.windows-commandline.com/attrib-command/)
+
+
+
+```batch
+
+attrib +[R/H/S/A]  *
+
+
+REM To set attribute for files of certain type/extension
+
+attrib +[R/H/S/A] *.ext
+
+
+REM To set attribute for all files in current directory
+
+attrib +[R/H/S/A]
+
+
+REM Example: Set hidden attribute on all PDF files in the current directory
+
+attrib +H *.pdf
+```
+
+note- unsure if in the above example `+[R/H/S/A]` is valid syntax.  I think they mean one of those.
+
+
 ### MKLINK
 
         Creates a symbolic link.
@@ -1805,6 +2657,57 @@ C:\temp$ fsutil
   - removeWim           Remove a WIM from backing files
   - queryFile           Query the origin of a specific file
 
+fsutil hardlink list 'DIR' - lists any symbolic links etc.
+### findstr
+
+Searches for strings in files.
+
+    FINDSTR [/B] [/E] [/L] [/R] [/S] [/I] [/X] [/V] [/N] [/M] [/O] [/P] [/F:file]
+            [/C:string] [/G:file] [/D:dir list] [/A:color attributes] [/OFF[LINE]]
+            strings [[drive:][path]filename[ ...]]
+
+      /B         Matches pattern if at the beginning of a line.
+      /E         Matches pattern if at the end of a line.
+      /L         Uses search strings literally.
+      /R         Uses search strings as regular expressions.
+      /S         Searches for matching files in the current directory and all
+                subdirectories.
+      /I         Specifies that the search is not to be case-sensitive.
+      /X         Prints lines that match exactly.
+      /V         Prints only lines that do not contain a match.
+      /N         Prints the line number before each line that matches.
+      /M         Prints only the filename if a file contains a match.
+      /O         Prints character offset before each matching line.
+      /P         Skip files with non-printable characters.
+      /OFF[LINE] Do not skip files with offline attribute set.
+      /A:attr    Specifies color attribute with two hex digits. See "color /?"
+      /F:file    Reads file list from the specified file(/ stands for console).
+      /C:string  Uses specified string as a literal search string.
+      /G:file    Gets search strings from the specified file(/ stands for console).
+      /D:dir     Search a semicolon delimited list of directories
+      strings    Text to be searched for.
+      [drive:][path]filename
+                Specifies a file or files to search.
+
+    Use spaces to separate multiple search strings unless the argument is prefixed
+    with /C.  For example, 'FINDSTR "hello there" x.y' searches for "hello" or
+    "there" in file x.y.  'FINDSTR /C:"hello there" x.y' searches for
+    "hello there" in file x.y.
+
+    Regular expression quick reference:
+      .        Wildcard: any character
+      *        Repeat: zero or more occurrences of previous character or class
+      ^        Line position: beginning of line
+      $        Line position: end of line
+      [class]  Character class: any one character in set
+      [^class] Inverse class: any one character not in set
+      [x-y]    Range: any characters within the specified range
+      \x       Escape: literal use of metacharacter x
+      \<xyz    Word position: beginning of word
+      xyz\>    Word position: end of word
+
+    For full information on FINDSTR regular expressions refer to the online Command
+    Reference.
 
 ### clip
 
@@ -2063,6 +2966,15 @@ Examples:
     TASKLIST /S system /U username /P password /FO TABLE /NH
     TASKLIST /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
 ```
+
+
+#### SHOW SVCHOST Fikes using TASKLIST
+
+Running this:
+
+ `tasklist /svc /fi "imagename eq svchost.exe"`
+
+
 ### CHM Files and HTML HELP
 
 Can be decompiled Using Powershell
@@ -2133,7 +3045,7 @@ Special CLSID folders may be opened via Run. For example:
         Run ::{645ff040-5081-101b-9f08-00aa002f954e}  ; Opens the Recycle Bin.
 
 
-### RunDll Commands
+## RunDll Commands
 
 List  of Rundll32 Commands in Windows 10
 
@@ -2238,7 +3150,17 @@ List  of Rundll32 Commands in Windows 10
 |                                         | (...)ShowPortableWorkspaceLauncherConfigurationUX                     |
 
 
-### Shell:: Commands
+## `Shell:` Commands
+
+!!! attention Shortcut
+  This command can be typed in many places- e.g [[Win] + [[E]] to get an explorer then [[Alt]] + [[D]] to get to the address bar, then type `shell:appdata` or in the run dialog box
+
+  !!!tldr Most relevant ones:
+        shell:AppData
+        shell:ProgramFiles
+        shell:ProgramFilesX86
+        shell:Common AppData 
+
 
 | Shell Command                     | Opens                                                                  |
 | --------------------------------- | ---------------------------------------------------------------------- |
@@ -2314,10 +3236,10 @@ List  of Rundll32 Commands in Windows 10
 | shell:Profile                     | `%UserProfile%`                                                        |
 | shell:ProgramFiles                | `%ProgramFiles%`                                                       |
 | shell:ProgramFilesCommon          | `%ProgramFiles%\Common Files`                                          |
-| shell:ProgramFilesCommonX64       | `%ProgramFiles%\Common Files (64-bit Windows only)`                    |
-| shell:ProgramFilesCommonX86       | `%ProgramFiles(x86)%\Common Files (64-bit Windows only)`               |
-| shell:ProgramFilesX64             | `%ProgramFiles% (64-bit Windows only)`                                 |
-| shell:ProgramFilesX86             | `%ProgramFiles(x86)% (64-bit Windows only)`                            |
+| shell:ProgramFilesCommonX64       | `%ProgramFiles%\Common Files (64-bit Windows only)`                    |
+| shell:ProgramFilesCommonX86       | `%ProgramFiles(x86)%\Common Files (64-bit Windows only)`               |
+| shell:ProgramFilesX64             | `%ProgramFiles% (64-bit Windows only)`                                 |
+| shell:ProgramFilesX86             | `%ProgramFiles(x86)% (64-bit Windows only)`                            |
 | shell:Programs                    | `%AppData%\Microsoft\Windows\Start Menu\Programs`                      |
 | shell:Public                      | `%Public%`                                                             |
 | shell:PublicAccountPictures       | `%Public%\AccountPictures`                                             |
@@ -2358,6 +3280,435 @@ List  of Rundll32 Commands in Windows 10
 | shell:VideosLibrary               | `Libraries\Videos`                                                     |
 | shell:Windows                     | `%WinDir%`                                                             |
 
+## CLSID  Folders (Class ID)
+
+| ------------------------ | ---------------------------------------- | --- |
+| CLSID                    | Location                                 | Run |
+| ------------------------ | ---------------------------------------- | --- |
+| Administrative Tools     | ::{d20ea4e1-3957-11d2-a40b-0c5020524153} |     |
+| Briefcase                | ::{85bbd920-42a0-1069-a2e4-08002b30309d} |     |
+| Control Panel            | ::{21ec2020-3aea-1069-a2dd-08002b30309d} |     |
+| Fonts                    | ::{d20ea4e1-3957-11d2-a40b-0c5020524152} |     |
+| History                  | ::{ff393560-c2a7-11cf-bff4-444553540000} |     |
+| Inbox                    | ::{00020d75-0000-0000-c000-000000000046} |     |
+| Microsoft Network        | ::{00028b00-0000-0000-c000-000000000046} |     |
+| My Com`1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
+| My Documents             | ::{450d8fba-ad25-11d0-98a8-0800361b1103} | Yes |
+| My Network Places        | ::{208d2c60-3aea-1069-a2d7-08002b30309d} | Yes |
+| Network Computers        | ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} | Yes |
+| Network Connections      | ::{7007acc7-3202-11d1-aad2-00805fc1270e} | Yes |
+| Printers and Faxes       | ::{2227a280-3aea-1069-a2de-08002b30309d} | Yes |
+| Programs Folder          | ::{7be9d83c-a729-4d97-b5a7-1b7313c39e0a} |     |
+| Recycle Bin              | ::{645ff040-5081-101b-9f08-00aa002f954e} | Yes |
+| Scanners and Cameras     | ::{e211b736-43fd-11d1-9efb-0000f8757fcd} |     |
+| Scheduled Tasks          | ::{d6277990-4c6a-11cf-8d87-00aa0060f5bf} | Yes |
+| Start Menu Folder        | ::{48e7caab-b918-4e58-a94d-505519c795dc} |     |
+| Temporary Internet Files | ::{7bd29e00-76c1-11cf-9dd0-00a0c9034933} |     |
+| Web Folders              | ::{bdeadf00-c265-11d0-bced-00a0c90ab50f} |     |
+| ------------------------ | ---------------------------------------- | --- |
+
+## CLSID Additional
+
+run with shell::{CLSID}
+0r explorer shell 
+
+| ---------------------------------------- | --------------------------------------------------------------------- |
+| Opens                                    | CLSID key (GUID) shortcut                                             |
+| ---------------------------------------- | --------------------------------------------------------------------- |
+| 3D Objects (folder)                      | {0DB7E03F-FC29-4DC6-9020-FF41B59E513A}                                |
+| Add Network Location                     | {D4480A50-BA28-11d1-8E75-00C04FA31A86}                                |
+| Administrative Tools                     | {D20EA4E1-3957-11d2-A40B-0C5020524153}                                |
+| Applications                             | {4234d49b-0245-4df3-b780-3893943456e1}                                |
+| AutoPlay                                 | {9C60DE1E-E5FC-40f4-A487-460851A8D915}                                |
+| Backup and Restore (Windows 7)           | {B98A2BEA-7D42-4558-8BD1-832F41BAC6FD}                                |
+| BitLocker Drive Encryption               | {D9EF8727-CAC2-4e60-809E-86F80A666C91}                                |
+| Bluetooth Devices                        | {28803F59-3A75-4058-995F-4EE5503B023C}                                |
+| Color Management                         | {B2C761C6-29BC-4f19-9251-E6195265BAF1}                                |
+| Command Folder                           | {437ff9c0-a07f-4fa0-af80-84b6c6440a16}                                |
+| Common Places FS Folder                  | {d34a6ca6-62c2-4c34-8a7c-14709c1ad938}                                |
+| Control Panel                            | {5399E694-6CE5-4D6C-8FCE-1D8870FDCBA0}                                |
+| Control Panel (All Tasks)                | {ED7BA470-8E54-465E-825C-99712043E01C}                                |
+| Control Panel (always Category view)     | {26EE0668-A00A-44D7-9371-BEB064C98683}                                |
+| - Appearance and Personalization         | {26EE0668-A00A-44D7-9371-BEB064C98683}\1                              |
+| - Clock and Region                       | {26EE0668-A00A-44D7-9371-BEB064C98683}\6                              |
+| - Ease of Access                         | {26EE0668-A00A-44D7-9371-BEB064C98683}\7                              |
+| - Hardware and Sound                     | {26EE0668-A00A-44D7-9371-BEB064C98683}\2                              |
+| - Network and Internet                   | {26EE0668-A00A-44D7-9371-BEB064C98683}\3                              |
+| - Programs                               | {26EE0668-A00A-44D7-9371-BEB064C98683}\8                              |
+| - System and Security                    | {26EE0668-A00A-44D7-9371-BEB064C98683}\5                              |
+| - OR System and Security                 | {26EE0668-A00A-44D7-9371-BEB064C98683}\10                             |
+| - User Accounts                          | {26EE0668-A00A-44D7-9371-BEB064C98683}\9                              |
+| Control Panel (always Icons view         | {21EC2020-3AEA-1069-A2DD-08002B30309D}                                |
+| Credential Manager                       | {1206F5F1-0569-412C-8FEC-3204630DFB70}                                |
+| Date and Time                            | {E2E7934B-DCE5-43C4-9576-7FE4F75E7480}                                |
+| Default Programs                         | {17cd9488-1228-4b2f-88ce-4298e93e0966}                                |
+| - Default Apps page in Settings          | {17cd9488-1228-4b2f-88ce-4298e93e0966}\pageDefaultProgram             |
+| - Default Apps page in Settings          | {17cd9488-1228-4b2f-88ce-4298e93e0966}\pageFileAssoc                  |
+| delegate folder that appears in Computer | {b155bdf8-02f0-451e-9a26-ae317cfd7779}                                |
+| Desktop (folder)                         | {B4BFCC3A-DB2C-424C-B029-7FE99A87C641}                                |
+| Device Manager                           | {74246bfc-4c96-11d0-abef-0020af6b0b7a}                                |
+| Devices and Printers                     | {A8A91A66-3A7D-4424-8D24-04E180695C7A}                                |
+| Documents (folder)                       | {A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}                                |
+| OR Documents (folder)                    | {d3162b92-9365-467a-956b-92703aca08af}                                |
+| Downloads (folder)                       | {088e3905-0323-4b02-9826-5d99428e115f}                                |
+| OR System and Security                   | {374DE290-123F-4565-9164-39C4925E467B}                                |
+| Ease of Access Center                    | {D555645E-D4F8-4c29-A827-D93C859C4F2A}                                |
+| - Use the computer without a display     | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageNoVisual                   |
+| - Make the computer easier to see        | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageEasierToSee                |
+| - Use computer w/o a mouse or keyboard   | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageNoMouseOrKeyboard          |
+| - Make the mouse easier to use           | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageEasierToClick              |
+| - Set up Mouse Keys                      | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageMouseKeysSettings          |
+| - Make the keyboard easier to use        | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageKeyboardEasierToUse        |
+| - text or visual alternatives for sounds | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageEasierWithSounds           |
+| - Make it easier to focus on tasks       | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageEasierToReadAndWrite       |
+| - Set up Filter Keys                     | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageFilterKeysSettings         |
+| - Set up Sticky Keys                     | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageStickyKeysSettings         |
+| - Recomendatons to help  (cognitive)     | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageQuestionsCognitive         |
+| - Recommendations to help with (eyesight | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageQuestionsEyesight          |
+| - Set up Repeat and Slow Keys            | {D555645E-D4F8-4c29-A827-D93C859C4F2A}\pageRepeatRateSlowKeysSettings |
+| E-mail (default e-mail program)          | {2559a1f5-21d7-11d4-bdaf-00c04f60b9f0}                                |
+| Favorites                                | {323CA680-C24D-4099-B94D-446DD2D7249E}                                |
+| File Explorer Options                    | {6DFD7C5C-2451-11d3-A299-00C04F8EF6AF}                                |
+| File History                             | {F6B6E965-E9B2-444B-9286-10C9152EDBC5}                                |
+| Folder Options                           | {6DFD7C5C-2451-11d3-A299-00C04F8EF6AF}                                |
+| Font Settings                            | {93412589-74D4-4E4E-AD0E-E0CB621440FD}                                |
+| Fonts (folder)                           | {BD84B380-8CA2-1069-AB1D-08000948F534}                                |
+| Frequent folders                         | {3936E9E4-D92C-4EEE-A85A-BC16D5EA0819}                                |
+| Games Explorer                           | {ED228FDF-9EA8-4870-83b1-96b02CFE0D52}                                |
+| Get Programs                             | {15eae92e-f17a-4431-9f28-805e482dafd4}                                |
+| Help and Support                         | {2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}                                |
+| Hyper-V Remote File Browsing             | {0907616E-F5E6-48D8-9D61-A91C3D28106D}                                |
+| Indexing Options                         | {87D66A43-7B11-4A28-9811-C86EE395ACF7}                                |
+| Infared (if installed)                   | {A0275511-0E86-4ECA-97C2-ECD8F1221D08}                                |
+| Installed Updates                        | {d450a8a1-9568-45c7-9c0e-b4f9fb4537bd}                                |
+| Intel Rapid Storage Technology           | {E342F0FE-FF1C-4c41-BE37-A0271FC90396}                                |
+| Internet Options (Internet Explorer)     | {A3DD4F92-658A-410F-84FD-6FBBBEF2FFFE}                                |
+| Keyboard Properties                      | {725BE8F7-668E-4C7B-8F90-46BDB0936430}                                |
+| Libraries                                | {031E4825-7B94-4dc3-B131-E946B44C8DD5}                                |
+| Location Info (Phone and Modem)          | {40419485-C444-4567-851A-2DD7BFA1684D}                                |
+| Location Settings                        | {E9950154-C418-419e-A90A-20C5287AE24B}                                |
+| Media Servers                            | {289AF617-1CC3-42A6-926C-E6A863F0E3BA}                                |
+| Mouse Properties                         | {6C8EEC18-8D75-41B2-A177-8831D59D2D50}                                |
+| Music (folder)                           | {1CF1260C-4DD0-4ebb-811F-33C572699FDE}                                |
+| OR Music (folder)                        | {3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}                                |
+| My Documents                             | {450D8FBA-AD25-11D0-98A8-0800361B1103}                                |
+| netplwiz                                 | {7A9D77BD-5403-11d2-8785-2E0420524153}                                |
+| Network                                  | {F02C1A0D-BE21-4350-88B0-7367FC96EF3C}                                |
+| Network and Sharing Center               | {8E908FC9-BECC-40f6-915B-F4CA0E70D03D}                                |
+| - Advanced sharing settings              | {8E908FC9-BECC-40f6-915B-F4CA0E70D03D}\Advanced                       |
+| - Media streaming options                | {8E908FC9-BECC-40f6-915B-F4CA0E70D03D}\ShareMedia                     |
+| Network Connections                      | {7007ACC7-3202-11D1-AAD2-00805FC1270E}                                |
+| OR Network Connections                   | {992CFFA0-F557-101A-88EC-00DD010CCC48}                                |
+| Network (WorkGroup)                      | {208D2C60-3AEA-1069-A2D7-08002B30309D}                                |
+| Notification Area Icons                  | {05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}                                |
+| NVIDIA Control Panel (if installed)      | {0bbca823-e77d-419e-9a44-5adec2c8eeb0}                                |
+| Offline Files Folder                     | {AFDB1F70-2A4C-11d2-9039-00C04F8EEB3E}                                |
+| OneDrive                                 | {018D5C66-4533-4307-9B53-224DE2ED1FE6}                                |
+| Pen and Touch                            | {F82DF8F7-8B9F-442E-A48C-818EA735FF9B}                                |
+| Personalization                          | {ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}                                |
+| - Color and Appearance                   | {ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}\pageColorization               |
+| - Desktop Background                     | {ED834ED6-4B5A-4bfe-8F11-A626DCB6A921}\pageWallpaper                  |
+| Pictures (folder)                        | {24ad3ad4-a569-4530-98e1-ab02f9417aa8}                                |
+| OR Pictures (folder)                     | {3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}                                |
+| Portable Devices                         | {35786D3C-B075-49b9-88DD-029876E11C01}                                |
+| Power Options                            | {025A5937-A6BE-4686-A844-36FE4BEC8B6D}                                |
+| - Create a power plan                    | {025A5937-A6BE-4686-A844-36FE4BEC8B6D}\pageCreateNewPlan              |
+| - Edit Plan Settings                     | {025A5937-A6BE-4686-A844-36FE4BEC8B6D}\pagePlanSettings               |
+| - System Settings                        | {025A5937-A6BE-4686-A844-36FE4BEC8B6D}\pageGlobalSettings             |
+| Previous Versions Results Folder         | {f8c2ab3b-17bc-41da-9758-339d7dbf2d88}                                |
+| printhood delegate folder                | {ed50fc29-b964-48a9-afb3-15ebb9b97f36}                                |
+| Printers                                 | {2227A280-3AEA-1069-A2DE-08002B30309D}                                |
+| OR Printers                              | {863aa9fd-42df-457b-8e4d-0de1b8015c60}                                |
+| Problem Reporting Settings               | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageSettings                   |
+| Programs and Features                    | {7b81be6a-ce2b-4676-a29e-eb907a5126c5}                                |
+| Public (folder)                          | {4336a54d-038b-4685-ab02-99bb52d3fb8b}                                |
+| Quick access                             | {679f85cb-0220-4080-b29b-5540cc05aab6}                                |
+| Recent folders                           | {22877a6d-37a1-461a-91b0-dbda5aaebc99}                                |
+| Recent Items Instance Folder             | {4564b25e-30cd-4787-82ba-39e73a750b14}                                |
+| Recovery                                 | {9FE63AFD-59CF-4419-9775-ABCC3849F861}                                |
+| Recycle Bin                              | {645FF040-5081-101B-9F08-00AA002F954E}                                |
+| Region                                   | {62D8ED13-C9D0-4CE8-A914-47DD628FB1B0}                                |
+| Reliability Monitor                      | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageReliabilityView            |
+| Remote Assistance                        | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\raPage                         |
+| RemoteApp and Desktop Connections        | {241D7C96-F8BF-4F85-B01F-E2B043341A4B}                                |
+| - Connection Properties                  | {241D7C96-F8BF-4F85-B01F-E2B043341A4B}\PropertiesPage                 |
+| Remote Printers                          | {863aa9fd-42df-457b-8e4d-0de1b8015c60}                                |
+| Removable Drives                         | {F5FB2C77-0E2F-4A16-A381-3E560C68BC83}                                |
+| Removable Storage Devices                | {a6482830-08eb-41e2-84c1-73920c2badb9}                                |
+| Results Folder                           | {2965e715-eb66-4719-b53f-1672673bbefa}                                |
+| Run                                      | {2559a1f3-21d7-11d4-bdaf-00c04f60b9f0}                                |
+| Search (File Explorer)                   | {9343812e-1c37-4a49-a12e-4b2d810d956b}                                |
+| Search (Windows)                         | {2559a1f8-21d7-11d4-bdaf-00c04f60b9f0}                                |
+| Security and Maintenance                 | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}                                |
+| - Advanced Problem Reporting Settings    | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageAdvSettings                |
+| - Change Security and Maintenance settin | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\Settings                       |
+| - Problem Details                        | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageReportDetails              |
+| - Problem Reporting Settings             | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageSettings                   |
+| - Problem Reports                        | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageProblems                   |
+| - Reliability Monitor                    | {BB64F8A7-BEE7-4E1A-AB8D-7D8273F7FDB6}\pageReliabilityView            |
+| Set Program Access and Computer Defaults | {2559a1f7-21d7-11d4-bdaf-00c04f60b9f0}                                |
+| Show Desktop                             | {3080F90D-D7AD-11D9-BD98-0000947B0257}                                |
+| Sound                                    | {F2DDFC82-8F12-4CDD-B7DC-D4FE1425AA4D}                                |
+| Speech Recognition                       | {58E3C745-D971-4081-9034-86E34B30836A}                                |
+| Storage Spaces                           | {F942C606-0914-47AB-BE56-1321B8035096}                                |
+| Sync Center                              | {9C73F5E5-7AE7-4E32-A8E8-8D23B85255BF}                                |
+| Sync Setup                               | {9C73F5E5-7AE7-4E32-A8E8-8D23B85255BF}\::                             |
+| --- Continued                            | ::{F1390A9A-A3F4-4E5D-9C5F-98F3BD8D935C                               |
+| Sync Setup Folder                        | {2E9E59C0-B437-4981-A647-9C34B9B90891}                                |
+| System                                   | {BB06C0E4-D293-4f75-8A90-CB05B6477EEE}                                |
+| System Icons                             | {05d7b0f4-2121-4eff-bf6b-ed3f69b894d9}\SystemIcons                    |
+| System Restore                           | {3f6bc534-dfa1-4ab4-ae54-ef25a74e0107}                                |
+| Tablet PC Settings                       | {80F3F1D5-FECA-45F3-BC32-752C152E456E}                                |
+| Task View                                | {3080F90E-D7AD-11D9-BD98-0000947B0257}                                |
+| Taskbar and Navigation properties        | {0DF44EAA-FF21-4412-828E-260A8728E7F1}                                |
+| Taskbar page in Settings                 | {0DF44EAA-FF21-4412-828E-260A8728E7F1}                                |
+| Text to Speech                           | {D17D1D6D-CC3F-4815-8FE3-607E7D5D10B3}                                |
+| This Device                              | {5b934b42-522b-4c34-bbfe-37a3ef7b9c90}                                |
+| This PC                                  | {20D04FE0-3AEA-1069-A2D8-08002B30309D}                                |
+| - Troubleshooting                        | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}                                |
+| - Additional Information                 | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\resultPage                     |
+| - All Categories                         | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\listAllPage                    |
+| - Change Settings                        | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\settingPage                    |
+| - History                                | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\historyPage                    |
+| - Search Troubleshooting                 | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\searchPage                     |
+| - Troubleshoot  - Hardware and Sound     | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\devices                        |
+| - Troubleshoot  - Network and Internet   | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\network                        |
+| - Troubleshoot  - Programs               | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\applications                   |
+| - Troubleshoot  - System and Security    | {C58C4893-3BE0-4B45-ABB5-A63E4B8C8651}\system                         |
+| User Accounts                            | {60632754-c523-4b62-b45c-4172da012619}                                |
+| - Change Your Name                       | {60632754-c523-4b62-b45c-4172da012619}\pageRenameMyAccount            |
+| - Manage Accounts                        | {60632754-c523-4b62-b45c-4172da012619}\pageAdminTasks                 |
+| User Accounts (netplwiz)                 | {7A9D77BD-5403-11d2-8785-2E0420524153}                                |
+| User Pinned                              | {1f3427c8-5c10-4210-aa03-2ee45287d668}                                |
+| %UserProfile%                            | {59031a47-3f72-44a7-89c5-5595fe6b30ee}                                |
+| Videos (folder)                          | {A0953C92-50DC-43bf-BE83-3742FED03C9C}                                |
+| OR Videos (folder)                       | {f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}                                |
+| Web browser (default)                    | {871C5380-42A0-1069-A2EA-08002B30309D}                                |
+| Windows Defender Firewall                | {4026492F-2F69-46B8-B9BF-5654FC07E423}                                |
+| - Allowed apps                           | {4026492F-2F69-46B8-B9BF-5654FC07E423}\pageConfigureApps              |
+| - Customize Settings                     | {4026492F-2F69-46B8-B9BF-5654FC07E423}\PageConfigureSettings          |
+| - Restore defaults                       | {4026492F-2F69-46B8-B9BF-5654FC07E423}\PageRestoreDefaults            |
+| Windows Mobility Center                  | {5ea4f148-308c-46d7-98a9-49041b1dd468}                                |
+| Windows Features                         | {67718415-c450-4f3c-bf8a-b487642dc39b}                                |
+| Windows To Go                            | {8E0C279D-0BD1-43C3-9EBD-31C3DC5B8A77}                                |
+| Work Folders                             | {ECDB0924-4208-451E-8EE0-373C0956DE16}                                |
+| ---------------------------------------- | --------------------------------------------------------------------- |
+
+## MSSettings shortcuts
+
+[Source](https://www.tenforums.com/tutorials/78214-settings-pages-list-uri-shortcuts-windows-10-a.html)
+
+
+
+^(.*?)(\t|\n)(ms-settings.*?)$  | | $1 | $3 |
+
+The Settings app is where you can change most settings at in Windows 10. Settings will eventually replace the Control Panel.
+
+Almost every Settings page has its own URI (Uniform Resource Identifier) that allows you to open any Setting page directly from a command via the command prompt, Run (Win+R) dialog, address bar of File Explorer, address bar of web browser, and in scripts (ex: .bat). You can also use these commands to create shortcuts.
+
+To use the URI commands to open Settings pages from a command prompt or script (ex: .bat), you would need to add the Start command with a space after it in front of the URI command in the table below.
+
+For example, command below to open the About Settings page (System category) in command prompt:
+
+`Start ms-settings:about`
+
+| Category          | Settings page                            | URI Command (shortcut)                                |
+| ----------------- | ---------------------------------------- | ----------------------------------------------------- |
+|                   | Settings home page                       | ms-settings:                                          |
+| System            |                                          |                                                       |
+|                   | Display                                  | ms-settings:display                                   |
+|                   | Night light settings                     | ms-settings:nightlight                                |
+|                   | Advanced scaling settings                | ms-settings:display-advanced                          |
+|                   | Connect to a wireless display            | ms-settings-connectabledevices:devicediscovery        |
+|                   | Graphics settings                        | ms-settings:display-advancedgraphics                  |
+|                   | Sound (build 17063)                      | ms-settings:sound                                     |
+|                   | Manage sound devices                     | ms-settings:sound-devices                             |
+|                   | App volume and device preferences        | ms-settings:apps-volume                               |
+|                   | Notifications & actions                  | ms-settings:notifications                             |
+|                   | Focus assist (build 17074)               | ms-settings:quiethours                                |
+|                   | or                                       | ms-settings:quietmomentshome                          |
+|                   | During these hours                       | ms-settings:quietmomentsscheduled                     |
+|                   | Duplicating my display                   | ms-settings:quietmomentspresentation                  |
+|                   | Playing a game full screen               | ms-settings:quietmomentsgame                          |
+|                   | Power & sleep                            | ms-settings:powersleep                                |
+|                   | Battery                                  | ms-settings:batterysaver                              |
+|                   | apps  affecting battery life             | ms-settings:batterysaver-usagedetails                 |
+|                   | Battery Saver settings                   | ms-settings:batterysaver-settings                     |
+|                   | Storage                                  | ms-settings:storagesense                              |
+|                   | Configure Storage Sense                  | ms-settings:storagepolicies                           |
+|                   | Change where new content is saved        | ms-settings:savelocations                             |
+|                   | Tablet                                   | ms-settings:tabletmode                                |
+|                   | Multitasking                             | ms-settings:multitasking                              |
+|                   | Projecting to this PC                    | ms-settings:project                                   |
+|                   | Shared experiences                       | ms-settings:crossdevice                               |
+|                   | Clipboard (build 17666)                  | ms-settings:clipboard                                 |
+|                   | Remote Desktop                           | ms-settings:remotedesktop                             |
+|                   | Device Encryption (if available)         | ms-settings:deviceencryption                          |
+|                   | About                                    | ms-settings:about                                     |
+| Devices           |                                          |                                                       |
+|                   | Bluetooth & other devices                | ms-settings:bluetooth                                 |
+|                   | or                                       | ms-settings:connecteddevices                          |
+|                   | Printers & scanners                      | ms-settings:printers                                  |
+|                   | Mouse                                    | ms-settings:mousetouchpad                             |
+|                   | Touchpad                                 | ms-settings:devices-touchpad                          |
+|                   | Typing                                   | ms-settings:typing                                    |
+|                   | Hardware keyboard - Text suggestions     | ms-settings:devicestyping-hwkbtextsuggestions         |
+|                   | Wheel (Only available if Dial is paired) | ms-settings:wheel                                     |
+|                   | Pen & Windows Ink                        | ms-settings:pen                                       |
+|                   | AutoPlay                                 | ms-settings:autoplay                                  |
+|                   | USB                                      | ms-settings:usb                                       |
+| Phone             |                                          |                                                       |
+|                   | Phone                                    | ms-settings:mobile-devices                            |
+|                   | Add a phone                              | ms-settings:mobile-devices-addphone                   |
+|                   | Your Phone (opens app)                   | ms-settings:mobile-devices-addphone-direct            |
+|                   | Network & Internet                       | ms-settings:network                                   |
+|                   | Status                                   | ms-settings:network-status                            |
+|                   | Data usage                               | ms-settings:datausage                                 |
+|                   | Show available networks                  | ms-availablenetworks:                                 |
+|                   | Cellular & SIM                           | ms-settings:network-cellular                          |
+|                   | Wi-Fi                                    | ms-settings:network-wifi                              |
+|                   | Show available networks                  | ms-availablenetworks:                                 |
+|                   | Manage known networks                    | ms-settings:network-wifisettings                      |
+|                   | Wi-Fi Calling                            | ms-settings:network-wificalling                       |
+|                   | Ethernet                                 | ms-settings:network-ethernet                          |
+|                   | Dial-up                                  | ms-settings:network-dialup                            |
+|                   | DirectAccess (if enabled)                | ms-settings:network-directaccess                      |
+|                   | VPN                                      | ms-settings:network-vpn                               |
+|                   | Airplane mode                            | ms-settings:network-airplanemode                      |
+|                   | or                                       | ms-settings:proximity                                 |
+|                   | Mobile hotspot                           | ms-settings:network-mobilehotspot                     |
+|                   | NFC                                      | ms-settings:nfctransactions                           |
+|                   | Proxy                                    | ms-settings:network-proxy                             |
+|                   | Personalization                          | ms-settings:personalization                           |
+|                   | Background                               | ms-settings:personalization-background                |
+|                   | Colors                                   | ms-settings:personalization-colors                    |
+|                   | or                                       | ms-settings:colors                                    |
+|                   | Lock screen                              | ms-settings:lockscreen                                |
+|                   | Themes                                   | ms-settings:themes                                    |
+|                   | Fonts (build 17083)                      | ms-settings:fonts                                     |
+|                   | Start                                    | ms-settings:personalization-start                     |
+|                   | Choose which folders appear on Start     | ms-settings:personalization-start-places              |
+|                   | Taskbar                                  | ms-settings:taskbar                                   |
+| Apps              |                                          |                                                       |
+|                   | Apps & features                          | ms-settings:appsfeatures                              |
+|                   | Manage optional features                 | ms-settings:optionalfeatures                          |
+|                   | Default apps                             | ms-settings:defaultapps                               |
+|                   | Offline maps                             | ms-settings:maps                                      |
+|                   | Download maps                            | ms-settings:maps-downloadmaps                         |
+|                   | Apps for websites                        | ms-settings:appsforwebsites                           |
+|                   | Video playback (build 16215)             | ms-settings:videoplayback                             |
+|                   | Startup (build 17017)                    | ms-settings:startupapps                               |
+| Accounts          |                                          |                                                       |
+|                   | Your info                                | ms-settings:yourinfo                                  |
+|                   | Email & accounts                         | ms-settings:emailandaccounts                          |
+|                   | Sign-in options                          | ms-settings:signinoptions                             |
+|                   | Windows Hello face setup                 | ms-settings:signinoptions-launchfaceenrollment        |
+|                   | Windows Hello fingerprint setup          | ms-settings:signinoptions-launchfingerprintenrollment |
+|                   | Security Key setup                       | ms-settings:signinoptions-launchsecuritykeyenrollment |
+|                   | Dynamic Lock                             | ms-settings:signinoptions-dynamiclock                 |
+|                   | Access work or school                    | ms-settings:workplace                                 |
+|                   | Family & other users                     | ms-settings:otherusers                                |
+|                   | Set up a kiosk                           | ms-settings:assignedaccess                            |
+|                   | Sync your settings                       | ms-settings:sync                                      |
+| Time & Language   |                                          |                                                       |
+|                   | Date & time                              | ms-settings:dateandtime                               |
+| Region            |                                          |                                                       |
+|                   | Japan IME settings (Japan)               | ms-settings:regionlanguage-jpnime                     |
+|                   | Pinyin IME settings (Pinyin)             | ms-settings:regionlanguage-chsime-pinyin              |
+|                   | Wubi IME settings (Wubi )                | ms-settings:regionlanguage-chsime-wubi                |
+|                   | Language                                 | ms-settings:regionlanguage                            |
+|                   | Windows display language                 | ms-settings:regionlanguage-setdisplaylanguage         |
+|                   | Add Display language                     | ms-settings:regionlanguage-adddisplaylanguage         |
+|                   | Speech                                   | ms-settings:speech                                    |
+| Gaming            |                                          |                                                       |
+|                   | Xbox Game bar                            | ms-settings:gaming-gamebar                            |
+|                   | Captures                                 | ms-settings:gaming-gamedvr                            |
+|                   | Game Mode                                | ms-settings:gaming-gamemode                           |
+|                   | Xbox Networking (build 16226)            | ms-settings:gaming-xboxnetworking                     |
+| Extras            |                                          |                                                       |
+|                   | Extras                                   | ms-settings:extras                                    |
+| Ease of Access    |                                          |                                                       |
+|                   | Display (build 17025)                    | ms-settings:easeofaccess-display                      |
+|                   | Mouse pointer (build 17040)              | ms-settings:easeofaccess-cursorandpointersize         |
+|                   | OR                                       | ms-settings:easeofaccess-MousePointer                 |
+|                   | Text cursor                              | ms-settings:easeofaccess-cursor                       |
+|                   | Magnifier                                | ms-settings:easeofaccess-magnifier                    |
+|                   | Color Filters (build 17025)              | ms-settings:easeofaccess-colorfilter                  |
+|                   | High Contrast                            | ms-settings:easeofaccess-highcontrast                 |
+|                   | Narrator                                 | ms-settings:easeofaccess-narrator                     |
+|                   | Start Narrator after sign-in for me      | ms-settings:easeofaccess-narrator-isautostartenabled  |
+|                   | Audio (build 17035)                      | ms-settings:easeofaccess-audio                        |
+|                   | Closed captions                          | ms-settings:easeofaccess-closedcaptioning             |
+|                   | Speech (build 17035)                     | ms-settings:easeofaccess-speechrecognition            |
+|                   | Keyboard                                 | ms-settings:easeofaccess-keyboard                     |
+|                   | Mouse                                    | ms-settings:easeofaccess-mouse                        |
+|                   | Eye Control (build 17035)                | ms-settings:easeofaccess-eyecontrol                   |
+| Search            |                                          |                                                       |
+|                   | Permissions & history                    | ms-settings:search-permissions                        |
+|                   | Searching Windows                        | ms-settings:cortana-windowssearch                     |
+|                   | Privacy                                  | ms-settings:privacy                                   |
+|                   | General                                  | ms-settings:privacy                                   |
+|                   | Speech                                   | ms-settings:privacy-speech                            |
+|                   | Inking & typing personalization          | ms-settings:privacy-speechtyping                      |
+|                   | Diagnostics & feedback                   | ms-settings:privacy-feedback                          |
+|                   | View diagnostic data                     | ms-settings:privacy-feedback-telemetryviewergroup     |
+|                   | Activity history (build 17040)           | ms-settings:privacy-activityhistory                   |
+|                   | Location                                 | ms-settings:privacy-location                          |
+|                   | Camera                                   | ms-settings:privacy-webcam                            |
+|                   | Microphone                               | ms-settings:privacy-microphone                        |
+|                   | Voice activation                         | ms-settings:privacy-voiceactivation                   |
+|                   | Notifications                            | ms-settings:privacy-notifications                     |
+|                   | Account info                             | ms-settings:privacy-accountinfo                       |
+|                   | Contacts                                 | ms-settings:privacy-contacts                          |
+|                   | Calendar                                 | ms-settings:privacy-calendar                          |
+|                   | Phone calls                              | ms-settings:privacy-phonecalls                        |
+|                   | Call history                             | ms-settings:privacy-callhistory                       |
+|                   | Email                                    | ms-settings:privacy-email                             |
+|                   | Eye tracker (if eyetracker hardware)     | ms-settings:privacy-eyetracker                        |
+|                   | Tasks                                    | ms-settings:privacy-tasks                             |
+|                   | Messaging                                | ms-settings:privacy-messaging                         |
+|                   | Radios                                   | ms-settings:privacy-radios                            |
+|                   | Other devices                            | ms-settings:privacy-customdevices                     |
+|                   | Background apps                          | ms-settings:privacy-backgroundapps                    |
+|                   | App diagnostics                          | ms-settings:privacy-appdiagnostics                    |
+|                   | Automatic file downloads                 | ms-settings:privacy-automaticfiledownloads            |
+|                   | Documents                                | ms-settings:privacy-documents                         |
+|                   | Downloads folder (build 19536)           | ms-settings:privacy-downloadsfolder                   |
+|                   | Pictures                                 | ms-settings:privacy-pictures                          |
+|                   | Videos                                   | ms-settings:privacy-documents                         |
+|                   | File system                              | ms-settings:privacy-broadfilesystemaccess             |
+| Screen cap border |                                          |                                                       |
+| prog screen cap   |                                          |                                                       |
+|                   | Update & Security                        | ms-settings:windowsupdate                             |
+|                   | Windows Update                           | ms-settings:windowsupdate                             |
+|                   | Check for updates                        | ms-settings:windowsupdate-action                      |
+|                   | View optional updates                    | ms-settings:windowsupdate-optionalupdates             |
+|                   | Change active hours                      | ms-settings:windowsupdate-activehours                 |
+|                   | View update history                      | ms-settings:windowsupdate-history                     |
+|                   | Restart options                          | ms-settings:windowsupdate-restartoptions              |
+|                   | Advanced options                         | ms-settings:windowsupdate-options                     |
+|                   | Delivery Optimization                    | ms-settings:delivery-optimization                     |
+|                   | Windows Security                         | ms-settings:windowsdefender                           |
+|                   | Open Windows Security                    | windowsdefender:                                      |
+|                   | Backup                                   | ms-settings:backup                                    |
+|                   | Troubleshoot                             | ms-settings:troubleshoot                              |
+|                   | Recovery                                 | ms-settings:recovery                                  |
+|                   | Activation                               | ms-settings:activation                                |
+|                   | Find My Device                           | ms-settings:findmydevice                              |
+|                   | For developers                           | ms-settings:developers                                |
+|                   | Windows Insider Program                  | ms-settings:windowsinsider                            |
+|                   | or                                       | ms-settings:windowsinsider-optin                      |
+|                   | Mixed reality                            | ms-settings:holographic                               |
+|                   | Audio and speech                         | ms-settings:holographic-audio                         |
+|                   | Environment                              | ms-settings:privacy-holographic-environment           |
+|                   | Headset display                          | ms-settings:holographic-headset                       |
+|                   | Uninstall                                | ms-settings:holographic-management                    |
+| Surface Hub       |                                          |                                                       |
+|                   | Accounts                                 | ms-settings:surfacehub-accounts                       |
+|                   | Team Conferencing                        | ms-settings:surfacehub-calling                        |
+|                   | Team device management                   | ms-settings:surfacehub-devicemanagenent               |
+|                   | Session cleanup                          | ms-settings:surfacehub-sessioncleanup                 |
+|                   | Welcome screen                           | ms-settings:surfacehub-welcome                        |
 
 ### MMC Syntax
 
@@ -2383,7 +3734,7 @@ List  of Rundll32 Commands in Windows 10
 | Failover cluster Manager                  | Cluadmin.exe                   |
 | Storage Mgmt                              | StorageMgmt.msc                |
 | Win Server Backup (Local+Rem)             | WBadmin.msc                    |
-| Disk Defragmenter                         | Defrag.exe (formerly Dfrg.msc) |
+| Disk Defragmenter                         | Defrag.exe (formerly Dfrg.msc) |
 | Distributed File Service Mgmt             | DFSmgmt.msc                    |
 | Shared Folders open files                 | FSmgmt.msc                     |
 | File Server Resource manager              | FSRM.msc                       |
@@ -2419,6 +3770,61 @@ List  of Rundll32 Commands in Windows 10
 | Certification Authority Management        | Certsrv.msc                    |
 |                                           |                                |
 | From <https://ss64.com/nt/syntax-mmc.html |                                |
+
+
+## Default Envronment Varables
+
+| Environment Variables         | Values (may vary)                                                                                  |
+| ----------------------------- | -------------------------------------------------------------------------------------------------- |
+| `%ALLUSERSPROFILE%`           | C:\ProgramData                                                                                     |
+| `%APPDATA%`                   | C:\Users\(user-name)\AppData\Roaming                                                               |
+| `%CD%`                        | (command prompt only) Current directory full path                                                  |
+| `%CMDCMDLINE%`                | (command prompt only) Returns exact command line used to start current cmd.exe session.            |
+| `%CMDEXTVERSION%`             | (command prompt only) Number of current command processor extensions.                              |
+| `%CommonProgramFiles%`        | C:\Program Files\Common Files                                                                      |
+| `%CommonProgramFiles(x86)%`   | C:\Program Files (x86)\Common Files                                                                |
+| `%CommonProgramW6432%`        | C:\Program Files\Common Files                                                                      |
+| `%COMPUTERNAME%`              | The computer name of the current local system.                                                     |
+| `%COMSPEC%`                   | C:\Windows\System32\cmd.exe                                                                        |
+| `%DATE%`                      | (command prompt only) Current date in format determined by Date command                            |
+| `%DriverData%`                | C:\Windows\System32\Drivers\DriverData                                                             |
+| `%ERRORLEVEL%`                | (command prompt only) Number defining exit status of previous command or program                   |
+| `%HOMEDRIVE%`                 | C:                                                                                                 |
+| `%HOMEPATH%`                  | \Users\(user-name)                                                                                 |
+| `%LOCALAPPDATA%`              | C:\Users\(user-name)\AppData\Local                                                                 |
+| `%LOGONSERVER%`               | \\MicrosoftAccount                                                                                 |
+| `%NUMBER_OF_PROCESSORS%`      | 8                                                                                                  |
+| `%OneDrive%`                  | Current OneDrive folder location                                                                   |
+| `%OS%`                        | Windows_NT                                                                                         |
+| `%PATH%`                      | C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0 |
+| `%PATHEXT%`                   | COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC                                               |
+| `%PROCESSOR_ARCHITECTURE%`    | AMD64                                                                                              |
+| `%PROCESSOR_IDENTIFIER%`      | Intel64 Family 6 Model 60 Stepping 3, GenuineIntel                                                 |
+| `%PROCESSOR_LEVEL%`           | 6                                                                                                  |
+| `%PROCESSOR_REVISION%`        | 3c03                                                                                               |
+| `%ProgramData%`               | C:\ProgramData                                                                                     |
+| `%ProgramFiles%`              | C:\Program Files                                                                                   |
+| `%ProgramFiles(x86)%`         | C:\Program Files (x86)                                                                             |
+| `%ProgramW6432%`              | C:\Program Files                                                                                   |
+| `%PROMPT%`                    | (command prompt only) Code for current command prompt format. Code is usually $P$G                 |
+| `%PSModulePath%`              | C:\Windows\system32\WindowsPowerShell\v1.0\Modules\                                                |
+| `%PUBLIC%`                    | C:\Users\Public                                                                                    |
+| `%RANDOM%`                    | (command prompt only) To get random number between 0 and 32767                                     |
+| `%SessionName%`               | *When logging on directly to machine, returns "Console".                                           |
+| `%SystemDrive%`               | C:                                                                                                 |
+| `%SystemRoot%`                | C:\Windows                                                                                         |
+| `%TEMP%`                      | C:\Users\(user-name)\AppData\Local\Temp                                                            |
+| `%TIME%`                      | (command prompt only) Current time in format determined by Time command                            |
+| `%TMP%`                       | C:\Users\(user-name)\AppData\Local\Temp                                                            |
+| `%USERDOMAIN%`                | The network domain name associated with the current user.                                          |
+| `%USERDOMAIN_ROAMINGPROFILE%` | The network domain name associated with the current roaming profile.                               |
+| `%USERNAME%`                  | (user-name)                                                                                        |
+| `%USERPROFILE%`               | C:\Users\(user-name)                                                                               |
+| `%WINDIR%`                    | C:\Windows                                                                                         |
+
+
+* When client connects via terminal server session, is combination of connection name, followed by pound symbol {#} and session number.
+
 
 ### Control Panel
 
@@ -2933,6 +4339,62 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
+
+### WSL Mount USB
+
+Create a mount location in WSL:
+
+    mkdir /mnt/f
+
+Mount the drive in WSL:
+
+    mount -t drvfs f: /mnt/f
+
+
+After this one-time setup, one can create and manipulate files from both Windows and WSL on the same drive.
+
+
+#### network storage
+
+
+Here we assume:
+	• networked storage is already showing in Windows under \\server\share
+	• we want to access this network storage from WSL as /mnt/share
+Create a mount location in WSL:
+    
+    mkdir /mnt/share
+
+Mount the network share in WSL:
+
+    mount -t drvfs '\\server\share' /mnt/share
+
+### getmac
+
+`getmac /fo table /nh /v`
+
+Ethernet 2      TAP-Windows Ada 00-FF-AB-F3-3B-EE   Media disconnected
+Ethernet 6      Private Interne 00-FF-62-69-C3-CD   Media disconnected
+Ethernet 5      Private Interne 00-FF-41-DA-4C-5B   Media disconnected
+Bluetooth Netwo Bluetooth Devic F8-63-3F-17-87-F6   Media disconnected
+Wi-Fi           Intel(R) Dual B F8-63-3F-17-87-F2   \Device\Tcpip_{8044ACC3-05B5-46EF-B097-5FEF9C60B178}
+
+### logman
+
+
+The logman commands are used in windows server Command Prompt Windows 10. The logman command builds and maintains Performance logs and Event Trace Session. This command also backs many roles of Performance Monitor from the command line.
+
+Syntax
+
+`logman query "perf_log"`
+
+### CERTREQ
+The CERTREQ command can be utilized to get certificates from a certification authority (CA), to regain a reply to a prior request from a CA, to build a new request. The .cer file users get from the Certificate Authority can simply be fixed by keeping the file on the server they created the CSR on, for example as cert.cer, and by performing the subsequent command at the prompt:
+
+Syntax
+`certreq -submit certrequest.req certnew.cer certnew.pfx C:\>certreq -accept cert.cer`
+
+This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the -submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
+
 ### reg
 
 reg is a command line function to edit the registry.  An example from elsewhere in the document.
@@ -2988,6 +4450,255 @@ Examples:
 - `REG ADD HKLM\Software\MyCo /v MRU /t REG_MULTI_SZ /d fax\0mail` - Adds a value (name: MRU, type: REG_MULTI_SZ, data: fax\0mail\0\0)
 - `REG ADD HKLM\Software\MyCo /v Path /t REG_EXPAND_SZ /d ^%systemroot^%` - Adds a value (name: Path, type: REG_EXPAND_SZ, data: %systemroot%)   Notice:  Use the caret symbol ( ^ ) inside the expand string
 
+>        REG QUERY /?
+>    **==REG QUERY==** *KeyName* [/v `[ValueName]` | /ve] `[/s]`
+>            [/f Data `[/k]` `[/d]` `[/c]` `[/e]`] _[/t Type]_ `[/z]` _[/se Separator]_
+>            [/reg:32 | /reg:64]
+>
+>    KeyName  [\\Machine\]FullKey
+>           
+>    **Machine** - Name of remote machine, omitting defaults to the
+>                        current machine. Only HKLM and HKU are available on
+>                        remote machines
+>     **FullKey** - in the form of `ROOTKEY\SubKey` name
+>>   -   _ROOTKEY_ - `[ HKLM | HKCU | HKCR | HKU | HKCC ]`
+> >  -    SubKey  - The full name of a registry key under the
+>                            selected ROOTKEY
+>
+>    `/v`       Queries for a specific registry key values.
+>            If omitted, all values for the key are queried.
+>
+>      !!!Note Argument to this switch can be optional only when specified along with /f switch. This specifies to search in valuenames only.
+>
+>   ` /ve`      Queries for the default value or empty value name (Default).
+>
+>    `/s`       Queries all subkeys and values recursively (like dir /s).
+>
+>   `/se`      Specifies the separator (length of 1 character only) in
+>            data string for REG_MULTI_SZ. Defaults to "\0" as the separator.
+>
+>    `/f`       Specifies the data or pattern to search for.
+>            Use double quotes if a string contains spaces. Default is "*".
+>
+>    `/k`       Specifies to search in key names only.
+>
+>    `/d`       Specifies the search in data only.
+>
+>    `/c`       Specifies that the search is case sensitive.
+>            The default search is case insensitive.
+>
+>    `/e`       Specifies to return only exact matches.
+>            By default all the matches are returned.
+>
+>    `/t`       Specifies registry value data type.
+>            Valid types are:
+>                REG_SZ, REG_MULTI_SZ, REG_EXPAND_SZ,
+>                REG_DWORD, REG_QWORD, REG_BINARY, REG_NONE
+>            Defaults to all types.
+>
+>    `/z`       Verbose: Shows the numeric equivalent for the type of the valuename.
+>
+>    `/reg:32`  Specifies the key should be accessed using the 32-bit registry view.
+>
+>    `/reg:64`  Specifies the key should be accessed using the 64-bit registry view.
+>
+>-----
+>         Examples:
+>
+>>    `REG QUERY HKLM\Software\Microsoft\ResKit /v Version`
+>>>   Displays the value of the registry value Version
+>>
+>>    `REG QUERY \\ABC\HKLM\Software\Microsoft\ResKit\Nt\Setup /s`
+>>>    Displays all subkeys and values under the registry key Setup on remote machine ABC
+>>
+>>    `REG QUERY HKLM\Software\Microsoft\ResKit\Nt\Setup /se #`
+>>>    Displays all the subkeys and values with "#" as the seperator for all valuenames whose type is REG_MULTI_SZ.
+>>
+>>    `REG QUERY HKLM /f SYSTEM /t REG_SZ /c /e`
+>>>  Displays Key, Value and Data with case sensitive and exact occurrences of "SYSTEM" under HKLM root for the data type REG_SZ
+>>
+>>    `REG QUERY HKCU /f 0F /d /t REG_BINARY`
+>>>  Displays Key, Value and Data for the occurrences of "0F" in data under HKCU root for the data type REG_BINARY
+>>
+>>    `REG QUERY HKLM\SOFTWARE /ve`
+>>>  Displays Value and Data for the empty value (Default) under HKLM\SOFTWARE
+
+`REG QUERY HKLM\SYSTEM\CurrentControlSet\Services /s /v ServiceDll`   Lists all the DLLs in svc host that are run as services
+`REG QUERY HKLM\SYSTEM\CurrentControlSet\Enum\USB /s`  Get all the USB Devices/
+#### PKTMON
+
+[Doc from ss64](https://ss64.com/nt/pktmon.html)
+
+[MSFT DOc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon)
+
+
+[How To](https://www.bleepingcomputer.com/news/microsoft/windows-10-quietly-got-a-built-in-network-sniffer-how-to-use/)
+
+
+pktmon <command> [OPTIONS | help]
+    Advanced packet capture and event collection.
+
+Commands
+    filter     Manage packet filters.
+    list       List packet processing components.
+
+    start      Start packet capture and event collection.
+    stop       Stop data collection.
+    status     Query current status.
+    unload     Unload PktMon driver.
+
+    counters   Display current packet counters.
+    reset      Reset packet counters to zero.
+
+    etl2txt    Convert log file to text format.
+    etl2pcap   Convert log file to pcapng format.
+    hex2pkt    Decode packet in hexadecimal format.
+
+    help       Show help text for specific command.
+               Example: pktmon start help
+
+[pktmon | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon)
+
+> **Command** **Description** 
+- [pktmon filter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-filter) Manage packet filters.
+- [pktmon comp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-comp) Manage registered components.
+- [pktmon reset](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-reset) Reset counters to zero.
+- [pktmon counters](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-counters) Query packet counters.
+- [pktmon format](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-format) Convert log file to text.
+- [pktmon list](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-list) List all active components.
+- [pktmon start](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-start) Start packet monitoring. pktmon stop Stop packet monitoring.
+- [pktmon pcapng](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-pcapng) Convert log file to pcapng format.
+- [pktmon unload](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-unload) Unload pktmon driver. pktmon help Displays a short summary of subcomma
+
+
+Monitor internal packet propagation and packet drop reports. Run all PktMon commands from an **Elevated** command prompt.
+
+Syntax **- List all active components:**
+
+`PKTMON comp list` ==options==
+
+   Options:
+   `-i`, `--show-hidden`
+   Show components that are hidden by default.
+
+   --json  Output the list in Json format
+
+Syntax **- Display current per-component counters:**
+
+`PKTMON comp counters` ==options==
+
+   Options:
+   `-i`, `--show-hidden`
+   Show components that are hidden by default.
+
+   `--json`  Output the list in Json format
+
+   `-t`,`--counter-type`
+   Select which types of counters to show
+   Supported values are all counters (default), drops only, or flows only.
+
+   `-z`, `--show-zeros`
+   Show counters that are zero in both directions.
+
+Syntax - Manage packet filters:
+
+`PKTMON filter` { **list** | **add** | **remove** } *[options* | *help]*
+
+   Key:
+    - `list`    Display active packet filters.
+    - `add`     Add a filter to control which packets are reported.
+    - `remove` Removes all filters.
+    - `help`    Show help text and sub-options for a command.
+
+Syntax - Reset all component counters to zero:
+      `PKTMON reset` [ **-counters** ]
+
+Syntax - Stop packet monitoring and show results:
+      `PKTMON stop`
+
+Syntax - Convert log file to text format:
+      `PKTMON format log.etl [-o log.txt]`
+   Key:
+
+   `-o`, `--out`     Name of the formatted text file.
+
+Syntax - Stop the PktMon driver service and unload PktMon.sys:
+      `PKTMON unload`
+      Effectively equivalent to 'SC.exe stop PktMon'.
+      Measurement (if active) will immediately stop, and any state will be
+      deleted (counters, filters, etc.).
+
+Syntax - Start packet monitoring:
+      `PKTMON start` [-c { **all** | **nics** | ==[ids...]== }] `[-d]`
+         [`--etw` [`-p ==`size]== [`-k` ==keywords]]==  `[-f] [-s] [-r] [-m]`
+
+   Key:
+   `-c`, `--components`
+      Select components to monitor. Can be all components, NICs only, or a
+      list of component ids. Defaults to all.
+
+  `-d`, `--drop-only`
+      Only report dropped packets. By default, successful packet propagation
+      is reported as well.
+
+##### ETW Logging
+
+`--etw`
+    Start a logging session for packet capture.
+`-p`, `--packet-size`
+    Number of bytes to log from each packet. To always log the entire
+    packet, set this to 0. Default is 128 bytes.
+
+`-k`, `--keywords`
+    Hexadecimal bitmask (i.e. sum of the below flags) that controls
+    which events are logged. By default all events are logged.
+
+    Flags:
+    `0x001` - General configuration events.
+    `0x002` - Component related information, including counters.
+    `0x004` - Pre-parsed packets.
+    `0x008` - Packet metadata (NBL OOB).
+    `0x010` - Raw packet payload.
+
+   `-f`, `--file-name`
+      .etl log file. Default is PktMon.etl.
+
+   `-s`, `--file-size`
+      Maximum log file size in megabytes. Default is 512 MB.
+
+   Logging mode
+    `-r`, `--circular`
+        New events overwrite the oldest ones when 
+        when the maximum file size is reached.
+    `-m`, `--multi-file`
+        A new log file is created when the maximum file size is reached.
+        Log files are sequentially numbered. PktMon1.etl, PktMon2.etl, etc.
+
+##### Examples
+
+**Create a packet filter for the traffic on TCP port 20:**
+
+`pktmon filter add -p 20`
+
+**List the current packet filters:**
+
+`pktmon filter list`
+
+**Start monitoring to a file** called _PktMon.etl_
+
+ (n.b. without the `-p` option this will default to capturing only the first 128 bytes of each packet.):
+
+pktmon start --etw
+
+Stop monitoring:
+
+pktmon stop
+
+Convert the PktMon.etl file to a human-readable text format:
+
+pktmon format PktMon.etl -o converted.txt
+
+“Sooner or later we all discover that the important moments in life are not the advertised ones, not the birthdays, the graduations, the weddings, not the great goals achieved. The real milestones are less prepossessing. They come to the door of memory unannounced, stray dogs that amble in, sniff around a bit and simply never leave. Our lives are measured by these” ~ Susan B. Anthony
 
 #### Query
 
@@ -3099,8 +4810,31 @@ passing this will output an HTML file into the file you are in.
 
 `logman` looks at the currently running loggers from performance manager.
 
+### mstsc
+
+`mstsc` - Opens a remote desktop connection.  e.g. the Remote Desktop connection window.
+
+Can also use it to open just a console.
+
+    remote desktop command line (use /console if all slots full)
+    c:\> mstsc /v:SERVERNAME [/console]
+    list other RDP sessions on the server
+    c:\> query session
+    kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
+    c:\> logoff SESSIONID
+
+use mstsc /admin instead. Use mstsc /? for a list of commands.
+
 
 ### netsh
+
+
+[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
+[more](### Network Trace)
 
 View the Windows Network Config Script:
 
@@ -3110,6 +4844,139 @@ This shows all the settings
 netsh
 >dump
 ```
+
+
+    Commands in this context:
+    ..             - Goes up one context level.
+    ?              - Displays a list of commands.
+    abort          - Discards changes made while in offline mode.
+    add            - Adds a configuration entry to a list of entries.
+    advfirewall    - Changes to the `netsh advfirewall' context.
+    alias          - Adds an alias.
+    branchcache    - Changes to the `netsh branchcache' context.
+    bridge         - Changes to the `netsh bridge' context.
+    bye            - Exits the program.
+    commit         - Commits changes made while in offline mode.
+    delete         - Deletes a configuration entry from a list of entries.
+    dhcpclient     - Changes to the `netsh dhcpclient' context.
+    dnsclient      - Changes to the `netsh dnsclient' context.
+    dump           - Displays a configuration script.
+    exec           - Runs a script file.
+    exit           - Exits the program.
+    firewall       - Changes to the `netsh firewall' context.
+    help           - Displays a list of commands.
+    http           - Changes to the `netsh http' context.
+    interface      - Changes to the `netsh interface' context.
+    ipsec          - Changes to the `netsh ipsec' context.
+    lan            - Changes to the `netsh lan' context.
+    mbn            - Changes to the `netsh mbn' context.
+    namespace      - Changes to the `netsh namespace' context.
+    netio          - Changes to the `netsh netio' context.
+    offline        - Sets the current mode to offline.
+    online         - Sets the current mode to online.
+    p2p            - Changes to the `netsh p2p' context.
+    popd           - Pops a context from the stack.
+    pushd          - Pushes current context on stack.
+    quit           - Exits the program.
+    ras            - Changes to the `netsh ras' context.
+    rpc            - Changes to the `netsh rpc' context.
+    set            - Updates configuration settings.
+    show           - Displays information.
+    trace          - Changes to the `netsh trace' context.
+    unalias        - Deletes an alias.
+    wcn            - Changes to the `netsh wcn' context.
+    wfp            - Changes to the `netsh wfp' context.
+    winhttp        - Changes to the `netsh winhttp' context.
+    winsock        - Changes to the `netsh winsock' context.
+    wlan           - Changes to the `netsh wlan' context.
+
+      #The following sub-contexts are available:
+      advfirewall
+      branchcache 
+      bridge 
+      dhcpclient 
+      dnsclient 
+      firewall 
+      http 
+      interface 
+      ipsec 
+      lan 
+      mbn 
+      namespace 
+      netio 
+      p2p 
+      ras 
+      rpc 
+      trace 
+      wcn 
+      wfp 
+      winhttp 
+      winsock 
+      wlan
+
+
+
+#### Network Trace using netsh
+ 
+Capture a Network Trace without installing anything (& capture a network trace of a reboot)
+
+If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
+
+The short version:
+
+1. Open an elevated command prompt and run: "
+
+       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
+      
+(make sure you have a \temp directory or choose another location).
+
+2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
+
+ 
+
+3. Open an elevated command prompt and run: 
+
+        netsh trace stop
+
+ 
+
+Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
+
+ 
+
+The longer version:
+
+I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
+
+ 
+
+1. Open an elevated command prompt and run: 
+      
+        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
+      
+      
+(make sure you have a \temp directory or choose another location).
+
+
+#### Using Netsh trace commands
+
+      Commands in the Netsh trace context
+
+          convert
+          correlate
+          diagnose
+          show CaptureFilterHelp
+          show globalKeywordsAndLevels
+          show helperclass
+          show interfaces
+          show provider
+          show providers
+          show scenario
+          show scenarios
+          show status
+          start
+          stop
+
 ### net
 
 NET
@@ -3381,6 +5248,70 @@ net session \\samba.server.ip.address /delete
         more must be enclosed in quotation marks. For example,
         NET START "COMPUTER BROWSER" starts the computer browser service.
 
+### netstat
+
+Displays protocol statistics and current TCP/IP network connections.
+
+    NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]
+
+      -a            Displays all connections and listening ports.
+      -b            Displays the executable involved in creating each connection or
+                    listening port. In some cases well-known executables host
+                    multiple independent components, and in these cases the
+                    sequence of components involved in creating the connection
+                    or listening port is displayed. In this case the executable
+                    name is in [] at the bottom, on top is the component it called,
+                    and so forth until TCP/IP was reached. Note that this option
+                    can be time-consuming and will fail unless you have sufficient
+                    permissions.
+      -e            Displays Ethernet statistics. This may be combined with the -s
+                    option.
+      -f            Displays Fully Qualified Domain Names (FQDN) for foreign
+                    addresses.
+      -n            Displays addresses and port numbers in numerical form.
+      -o            Displays the owning process ID associated with each connection.
+      -p proto      Shows connections for the protocol specified by proto; proto
+                    may be any of: TCP, UDP, TCPv6, or UDPv6.  If used with the -s
+                    option to display per-protocol statistics, proto may be any of:
+                    IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, or UDPv6.
+      -q            Displays all connections, listening ports, and bound
+                    nonlistening TCP ports. Bound nonlistening ports may or may not
+                    be associated with an active connection.
+      -r            Displays the routing table.
+      -s            Displays per-protocol statistics.  By default, statistics are
+                    shown for IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, and UDPv6;
+                    the -p option may be used to specify a subset of the default.
+      -t            Displays the current connection offload state.
+      -x            Displays NetworkDirect connections, listeners, and shared
+                    endpoints.
+      -y            Displays the TCP connection template for all connections.
+                    Cannot be combined with the other options.
+      interval      Redisplays selected statistics, pausing interval seconds
+                    between each display.  Press CTRL+C to stop redisplaying
+                    statistics.  If omitted, netstat will print the current
+                    configuration information once.
+
+
+#### Useful Commands
+
+- `n` - Display the IP numbers [Number]
+- `a` - Display all connections [All]
+- `q` display all conn. including bound non-listening ports
+- `b` - Displays the application involved.
+- `o` - Display the owning process
+- `r` - routing table
+- `s` - organize by protocol
+- `p` <Protocol> - like s but filters by protocol
+
+`interval` display a live connection updating it. 
+
+    netstat -nao 
+
+    netstat -na | findstr <port>
+
+findstr is like grep.
+
+
 
 ### Where 
 
@@ -3395,7 +5326,7 @@ Displays the location of files that match the given search pattern.
       where [/r <Dir>] [/q] [/f] [/t] [$<ENV>:|<Path>:]<Pattern>[ ...]
 
 Parameters
-Parameter 	Description
+Parameter   Description
 - `/r <Dir> ` - Indicates a recursive search, starting with the specified directory.
 - `/q ` - Returns an exit code (0 for success, 1 for failure) without displaying the list of matched files.
 - `/f ` - Displays the results of the where command in quotation marks.
@@ -3497,135 +5428,6 @@ To eliminate the need to type the .pl file name extension when invoking a Perl s
         set PATHEXT=.pl;%PATHEXT%
 
 
-### Assoc 
-
-
-Displays or modifies file name extension associations. If used without parameters, assoc displays a list of all the current file name extension associations.
-
-Syntax `assoc [<.ext>[=[<filetype>]]]`
-
-- `Parameter ` - Description
-- `<.ext>` - Specifies the file name extension.
-- `<filetype>` Specifies the file type to associate with the specified file name extension.
-- `/?` - Displays help at the command prompt.
-Remarks
-
-    To remove the file type association for a file name extension, add a white space after the equal sign by pressing the SPACEBAR.
-
-    To view current file types that have open command strings defined, use the ftype command.
-
-    To redirect the output of assoc to a text file, use the > redirection operator.
-
-Examples
-
-To view the current file type association for the file name extension .txt, type:
-
-`assoc .txt`
-
-To remove the file type association for the file name extension .bak, type:
-
-`assoc .bak=`
-
-!!! Note Note: Make sure you add a space after the equal sign.
-
-To view the output of assoc one screen at a time, type:
-
-`assoc | more`
-
-To send the output of assoc to the file assoc.txt, type:
-
-`assoc>assoc.txt`
-
-
-### Attrib
-
-Sets and changes file attributes.
-
-
-`attrib -a example.doc`
-
-The above command will unset archive attribute for the file example.doc
-
-[Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
-
-- R - **ReadOnly**
-- A - **Archive file attribute.**
-- S - System file attribute.
-- H - Hidden file attribute.
-- O - *Offline attribute.*
-- I - **Not content indexed file attribute.**
-- X - *No scrub file attribute.*
-- V - *Integrity attribute.*
-- P - *Pinned attribute.*
-- U - *Unpinned attribute.*
-- B - *SMR Blob attribute.*
-
-Parameter	Description
-- `{+|-}r ` - Sets (+) or clears (-) the Read-only file attribute.
-- `{+\|-}a ` - Sets (+) or clears (-) the Archive file attribute. This attribute set marks files that have changed since the last time they were backed up. Note that the xcopy command uses archive attributes.
-- `{+\|-}s ` - Sets (+) or clears (-) the System file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
-- `{+\|-}h ` - Sets (+) or clears (-) the Hidden file attribute. If a file uses this attribute set, you must clear the attribute before you can change any other attributes for the file.
-- `{+\|-}i ` - Sets (+) or clears (-) the Not Content Indexed file attribute.
-- `[<drive>:][<path>][<filename>] ` - Specifies the location and name of the directory, file, or group of files for which you want to display or change attributes.
-
-You can use the ? and * wildcard characters in the filename parameter to display or change the attributes for a group of files.
-- `/s ` - Applies attrib and any command-line options to matching files in the current directory and all of its subdirectories.
-- `/d ` - Applies attrib and any command-line options to directories.
-- `/l ` - Applies attrib and any command-line options to the Symbolic Link, rather than the target of the Symbolic Link.
-- `/? ` - Displays help at the command prompt.
-
-A few useful aspects:
-
-Navigate to a root dir, and run `ATTRIB /S /D -A` -  this clears the archive attribute.  Any file that changes from that point on will have it set.  Then you can run backup only files with `+A` attribute.
-
-I am interesting in checking out if the `-I` flag might help my computer or laptop from wasting time.
-
-Read Only and Hidden are visible in Properties.  Archive and Index are under advanced.  I am not sure what the remaining attributes do or where to find them.  Interestingly, the italicized items dont even appear in documentation.
-
-#### Groups of files
-
-[Source](https://www.windows-commandline.com/clear-archive-attribute-from-command/)
-There is no direct command for setting/unsetting attributes for a group of files. Attrib command works on one file at a time. You can use the following batch file command though.
-
-for /F %i in (‘dir /s /b ‘) do attrib -A %i
-This command will unset archive attributes for all the files in the current directory and in the subdirectories.
-
-To do this for a directory the command would be:
-for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
-
-```batch
-for /F %i in (‘dir /s /b ‘) do attrib -A %i
-REM This command will unset archive attributes for all the files in the current directory and in the subdirectories.
-
-REM To do this for a directory the command would be:
-for /F %i in (‘dir /s /b directory_path ‘) do attrib -A %i
-```
-
-On the other hand,  `attrib` command accepts wild characters and can process files in bulk. The syntax for bulk processing is given below [Source](https://www.windows-commandline.com/attrib-command/)
-
-
-
-```batch
-
-attrib +[R/H/S/A]  *
-
-
-REM To set attribute for files of certain type/extension
-
-attrib +[R/H/S/A] *.ext
-
-
-REM To set attribute for all files in current directory
-
-attrib +[R/H/S/A]
-
-
-REM Example: Set hidden attribute on all PDF files in the current directory
-
-attrib +H *.pdf
-```
-
-note- unsure if in the above example `+[R/H/S/A]` is valid syntax.  I think they mean one of those.
 
 
 ### Typeperf
@@ -3683,7 +5485,42 @@ Microsoft r TypePerf.exe (10.0.18362.1)
         typeperf -qx PhysicalDisk -o counters.txt
 
 
+### PowerCfg
+
+You **must** disable fast boot in windows.
+Google how to do that, but here is the fastest way- in a Admin terminal (Win + R, type cmd, then hit [Ctrl]+[Shift]+[Enter] which means run command as admin.)
+
+[Doc for Powercfg](https://docs.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options)
+
+```
+powercfg /L
+```
+
+You need the long number with the * at the end. Your current one.
+
+then run the following:
+
+```
+powercfg /Q c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP
+
+```
+
+#Where the string of numbers is yours.  The commands are shorthand for other long GUID numbers, see powercfg /ALIASES
+
+```
+powercfg /SETACVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP 0
+powercfg /SETDCVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 SUB_SLEEP HYBRIDSLEEP 0
+```
+
+This is actually the wonderfully simple:
+`powercfg /SETACVALUEINDEX c9595e0a-3307-424c-837a-07b70f3f6922 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 0x00000000`
+
+
 ### BCDEdit
+
+[Referencce](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcdboot-command-line-options-techref-di)
+
+
 
 #### Safemode
 
@@ -3768,6 +5605,36 @@ diskpart
     exit
 ```
 
+### BootCFG
+
+Configures, queries, or changes Boot.ini file settings.
+
+[Windows Server Doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg)
+
+
+
+Much of this is similar to the boot control in the System info box.
+
+Parameter Description
+- `bootcfg addsw` - Adds operating system load options for a specified operating system entry.
+- `bootcfg copy` - Makes a copy of an existing boot entry, to which you can add command-line options.
+- `bootcfg dbg1394` - Configures 1394 port debugging for a specified operating system entry.
+- `bootcfg debug` - Adds or changes the debug settings for a specified operating system entry.
+- `bootcfg default` - Specifies the operating system entry to designate as the default.
+- `bootcfg delete` - Deletes an operating system entry in the [operating systems] section of the Boot.ini file.
+- `bootcfg ems` - Enables the user to add or change the settings for redirection of the Emergency Management Services console to a remote computer.
+- `bootcfg query` - Queries and displays the [boot loader] and [operating systems] section entries from Boot.ini.
+- `bootcfg raw` - Adds operating system load options specified as a string to an operating system entry in the [operating systems] section of the Boot.ini file.
+- `bootcfg rmsw` - Removes operating system load options for a specified operating system entry.
+- `bootcfg timeout` - Changes the operating system time-out value.
+
+Most interesting probably is `bootcfg debug` [Basic doc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-debug)
+
+
+    bootcfg /debug on /port com1 /id 2
+    bootcfg /debug edit /port com2 /baud 19200 /id 2
+    bootcfg /s srvmain /u maindom\hiropln /p p@ssW23 /debug off /id 2
+
 ###  wmic
 
 [wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
@@ -3812,6 +5679,11 @@ To change the language ID used by the command line to English (locale ID 409), t
 
 wmic /locale:ms_409
 
+### Pathping 
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
 
 ### prompt 
 
@@ -3867,6 +5739,19 @@ prompt --$g
 To manually change the command prompt to the default setting (the current drive and path followed by the greater than sign), type:
 
 prompt $p$g
+
+### rd
+
+Removes a directory
+
+`/s` recursive delete incl. files.
+
+`/q` No confirmation
+
+see also [deltree](#del)
+
+`deltree` seems to be no more
+
 ### rem
 
 
@@ -3994,7 +5879,7 @@ You can also use the shutdown.exe tool with its logoff option:
 
 A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32Shutdown method**. Invoking the method with the **0** flag initiates logoff:
 
-		(Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
+    (Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
@@ -4055,39 +5940,39 @@ Shutting down and restarting computers are generally the same types of task. Too
 
         Reasons on this computer:
         (E = Expected U = Unexpected P = planned, C = customer defined)
-        Type	Major	Minor	Title
+        Type  Major  Minor  Title
 
-        U  	    0	0	Other (Unplanned)
-        E   	0	0	Other (Unplanned)
-        E P 	0	0	Other (Planned)
-        U  	    0	5	Other Failure: System Unresponsive
-        E   	1	1	Hardware: Maintenance (Unplanned)
-        E P 	1	1	Hardware: Maintenance (Planned)
-        E   	1	2	Hardware: Installation (Unplanned)
-        E P 	1	2	Hardware: Installation (Planned)
-        E   	2	2	Operating System: Recovery (Unplanned)
-        E P 	2	2	Operating System: Recovery (Planned)
-        P 	    2	3	Operating System: Upgrade (Planned)
-        E   	2	4	Operating System: Reconfiguration (Unplanned)
-        E P 	2	4	Operating System: Reconfiguration (Planned)
-          P	    2	16	Operating System: Service pack (Planned)
-                2	17	Operating System: Hot fix (Unplanned)
-          P     2	17	Operating System: Hot fix (Planned)
-                2	18	Operating System: Security fix (Unplanned)
-          P     2	18	Operating System: Security fix (Planned)
-        E   	4	1	Application: Maintenance (Unplanned)
-        E P 	4	1	Application: Maintenance (Planned)
-        E P 	4	2	Application: Installation (Planned)
-        E   	4	5	Application: Unresponsive
-        E   	4	6	Application: Unstable
-        U  	    5	15	System Failure: Stop error
-        U  	    5	19	Security issue (Unplanned)
-        E   	5	19	Security issue (Unplanned)
-        E P 	5	19	Security issue (Planned)
-        E   	5	20	Loss of network connectivity (Unplanned)
-        U  	    6	11	Power Failure: Cord Unplugged
-        U  	    6	12	Power Failure: Environment
-          P	    7	0	Legacy API shutdown
+        U     0  0  Other (Unplanned)
+        E     0  0  Other (Unplanned)
+        E P   0  0  Other (Planned)
+        U     0  5  Other Failure: System Unresponsive
+        E     1  1  Hardware: Maintenance (Unplanned)
+        E P   1  1  Hardware: Maintenance (Planned)
+        E     1  2  Hardware: Installation (Unplanned)
+        E P   1  2  Hardware: Installation (Planned)
+        E     2  2  Operating System: Recovery (Unplanned)
+        E P   2  2  Operating System: Recovery (Planned)
+        P     2  3  Operating System: Upgrade (Planned)
+        E     2  4  Operating System: Reconfiguration (Unplanned)
+        E P   2  4  Operating System: Reconfiguration (Planned)
+          P   2  16  Operating System: Service pack (Planned)
+              2  17  Operating System: Hot fix (Unplanned)
+          P   2  17  Operating System: Hot fix (Planned)
+              2  18  Operating System: Security fix (Unplanned)
+          P   2  18  Operating System: Security fix (Planned)
+        E     4  1  Application: Maintenance (Unplanned)
+        E P   4  1  Application: Maintenance (Planned)
+        E P   4  2  Application: Installation (Planned)
+        E     4  5  Application: Unresponsive
+        E     4  6  Application: Unstable
+        U     5  15  System Failure: Stop error
+        U     5  19  Security issue (Unplanned)
+        E     5  19  Security issue (Unplanned)
+        E P   5  19  Security issue (Planned)
+        E     5  20  Loss of network connectivity (Unplanned)
+        U     6  11  Power Failure: Cord Unplugged
+        U     6  12  Power Failure: Environment
+          P   7  0  Legacy API shutdown
 
 !!!warning `tsshutdn.exe` is not found on W10 pro.
 
@@ -4182,6 +6067,51 @@ See the [Streamline Windows Batch File](#Batch-File) for more examples?
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
+
+### Set
+
+to set variablsand have things expand.  Ess. like temp env vars.
+
+Set /A VarName = Expression, where expression is a string, number or math
+Set /P VarName = The Prompt to ask user.
+
+### Prompt
+
+Changes the prompt.  Lots of fun
+
+Default is `$P$G>`.
+
+Uses this table:
+
+- $A  `&`           (Ampersand)
+- $B  `|`           (pipe)
+- $C `(`           (Left parenthesis)
+- $D Current date
+- $E Escape code  (ASCII code 27)
+- $F  `)`           (Right parenthesis)
+- $G ` >`           (greater-than sign)
+- $H  Backspace   (erases previous character)
+- $L  `<`           (less-than sign)
+- $M  Display the remote name for Network drives
+- $N  Current drive
+- $P  Current drive and path
+- $Q  `=`           (equal sign)
+- $S              (space)
+- $T  Current time
+- $V  Windows version number
+- $_  Carriage return and linefeed
+- `$$  $`           (dollar sign)
+- $+  Will display plus signs (`+`) one for each level of the PUSHD directory stack
+
+
+## 3rd party CLI
+
+### Nirsoft
+
+[Nirsoft Tools](www.nirsoft.net/utils/index.html)
+
+
+
 ### Winrar
 
 Program is contained in "C:\Program Files\WinRar\WinRAR.exe" usually
@@ -4199,7 +6129,6 @@ mkdir d:\asussync\backups\
 #Using a file list and using version numbers and month string
 "C:\Program Files\WinRar\WinRAR.exe" a -ag+YYMMM{v}nn-- -@+ "D:\ASUSsync\Backups\vsCodeBackUp.rar" @"D:\Asussync\backups\backups.txt"
 ```
-
 #### Backup
 
 !!!Warning Warning: This is a pop-up mess...Diasble Javascript before you go [Source](http://rareelement.tripod.com/winrar_sk.htm)
@@ -4645,7 +6574,22 @@ Use Double Quotes to bundle things
 
 magick montage -label %t -tile 10x20 *.png -resize 128x128  .\%d-index.html
 
-`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-1
+
+Title is wrong
+
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList0.txt ./Pycharm-INDEX_pg0of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList1.txt ./Pycharm-INDEX_pg2of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList2.txt ./Pycharm-INDEX_pg4of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList3.txt ./Pycharm-INDEX_pg6of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList4.txt ./Pycharm-INDEX_pg8of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList5.txt ./Pycharm-INDEX_pg10of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList6.txt ./Pycharm-INDEX_pg12of8.png"
+magick montage -label %t -tile 15x40 -geometry 64x64x5x5 -monitor  @TempFileList7.txt ./Pycharm-INDEX_pg14of8.png"
+
+[Montage](https://legacy.imagemagick.org/Usage/montage/)
+
+
 
 !!!code Convert an icon
 
@@ -4683,6 +6627,20 @@ using `magick mogrify archway.svg -background #00000000` destroyed the image.
     magick convert  -density 384 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name].ico
 
 magick convert  -density 256x256 -background transparent -fill "#607D8B" -colorize 100 arrow.svg  -define icon:auto-resize -colors 256 -set filename:name %t   %[filename:name]2.ico
+
+```
+magick montage  -tile 20x100  -density 288 -geometry 72x72+24+6 -label %t -pointsize 2.5 @TempFileList1.txt ./Trial45.html
+```
+
+This works.  Density affects scaling of SVG AND the font, so they have to be adjusted./
+
+Order of ops seems to have an effect
+
+```
+magick montage  -tile 20x  -density 288 -geometry 100x100+12+4 -label %t -pointsize 2.6 @TempFileList1.txt ./Trial45.html
+
+magick montage  -tile 20x  -density 288 -geometry 100x100+12+4 -label %t -pointsize 2.6 ./ ./Trial45.html
+```
 
 ### Graphics Magic
 
@@ -4742,40 +6700,7 @@ output file: ECHOICU.knit.md
 
 `verifier` - Opens windows driver verifier.  Make sure to make a back up and be able to roll things back.
 
-### Set
 
-to set variablsand have things expand.  Ess. like temp env vars.
-
-Set /A VarName = Expression, where expression is a string, number or math
-Set /P VarName = The Prompt to ask user.
-
-### Prompt
-
-Changes the prompt.  Lots of fun
-
-Default is `$P$G>`.
-
-Uses this table:
-
-- $A  `&`           (Ampersand)
-- $B  `|`           (pipe)
-- $C `(`           (Left parenthesis)
-- $D Current date
-- $E Escape code  (ASCII code 27)
-- $F  `)`           (Right parenthesis)
-- $G ` >`           (greater-than sign)
-- $H  Backspace   (erases previous character)
-- $L  `<`           (less-than sign)
-- $M  Display the remote name for Network drives
-- $N  Current drive
-- $P  Current drive and path
-- $Q  `=`           (equal sign)
-- $S              (space)
-- $T  Current time
-- $V  Windows version number
-- $_  Carriage return and linefeed
-- `$$  $`           (dollar sign)
-- $+  Will display plus signs (`+`) one for each level of the PUSHD directory stack
 -
 ### Fix DICOM Errors
 
@@ -4839,6 +6764,156 @@ In Windows
 
 When you are moving things you should right click in the destination or right click driag.
 
+
+### Generate UUID
+
+
+Open PowerShell. Tip: You can add "Open PowerShell As Administrator" context menu.
+Type or copy-paste the following command: [guid]::NewGuid().This will produce a new GUID in the output.
+Alternatively, you can run the command '{'+[guid]::NewGuid().ToString()+'}' to get a new GUID in the traditional Registry format.
+
+
+[Windows Terminal Advanced Profile Settings | Microsoft Docs](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-advanced)
+
+> Tip
+> 
+> You can run `[guid]::NewGuid()` in PowerShell to generate a GUID for your custom profile.
+
+There is also an application included with one of the Windows kits.
+
+For example `C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64`
+
+Unknown where it comes from.  A copy has been added to C:\Tools which should  add it to path
+
+
+## Windows Toolkits
+
+Several kits
+
+List of Several more obscure "kits" [here](https://developer.microsoft.com/en-us/windows/downloads/)
+
+
+
+HLK- Hardware Lab Kit
+WDK - Windows Driver Kit
+[ADK Installer](https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install)-Assesment and Deployment Kit
+
+
+[WDK Tools](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/index-of-windows-driver-kit-tools)
+
+[WCT Windows Community Toolkit Documentation](https://docs.microsoft.com/en-us/windows/communitytoolkit/)
+
+!!!Tip WCT Toolkit Packages
+     - **Microsoft.Toolkit** - .NET Standard NuGet package containing common code
+     - **Microsoft.Toolkit.HighPerformance** - .NET Standard and .NET Core NuGet package with performance oriented helpers, extensions, etc.
+     - **Microsoft.Toolkit.Parsers** - .NET Standard NuGet package containing cross-platform parsers, such as Markdown and RSS
+     - **Microsoft.Toolkit.Services** - .NET Standard NuGet package containing cross-platform services
+     - **Microsoft.Toolkit.Uwp** - Main NuGet package includes code only helpers such as Colors conversion tool, Storage file handling, a Stream helper class, etc.
+     - **Microsoft.Toolkit.Uwp.Notifications** - Notifications Package - Generate tile, toast, and badge notifications for Windows 10 via code. Includes intellisense support to avoid having to use the XML syntax
+     - **Microsoft.Toolkit.Uwp.Notifications.Javascript** - Notification Packages for JavaScript
+     - **Microsoft.Toolkit.Uwp.Services** - Services Package - This NuGet package includes the service helpers for Facebook, LinkedIn, Microsoft Graph, Twitter and more
+     - **Microsoft.Toolkit.Uwp.UI** - UI Packages - XAML converters, Visual tree extensions, and other extensions and helpers for your XAML UI
+     - **Microsoft.Toolkit.Uwp.UI.Animations** - Animations and Composition behaviors such as Blur, Fade, Rotate, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls** - XAML Controls such as RadialGauge, RangeSelector, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls.DataGrid** - XAML DataGrid control
+     - **Microsoft.Toolkit.Uwp.UI.Controls.Layout** - XAML layout controls such as WrapLayout, StaggeredLayout, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Lottie** - Library for rendering Adobe AfterEffects animations natively in Windows apps
+     - **Microsoft.Toolkit.Uwp.UI.Media** - Brushes, Win2D/Composition effects, and helpers to create visual effects
+     - **Microsoft.Toolkit.Uwp.Connectivity** - API helpers such as BluetoothLEHelper and Networking
+     - **Microsoft.Toolkit.Uwp.DeveloperTools** - XAML user controls and services to help developer building their app
+
+[HLK Tools List](https://docs.microsoft.com/en-us/windows-hardware/test/hlk/user/hlk-tools-technical-reference)
+
+
+[ADK Tools list](https://docs.microsoft.com/en-us/windows-hardware/get-started/kits-and-tools-overview)
+
+[SDK](https://developer.microsoft.com/windows/downloads/sdk-archive)
+
+!!!Tip New Windows App SDK
+    [Windows App SDK](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/)
+    [Downloads](https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)
+    [Build desktop apps for Windows | Microsoft Docs](https://docs.microsoft.com/en-us/windows/apps/desktop/)
+
+    
+[Community Toolkit (UWP)](https://docs.microsoft.com/windows/communitytoolkit/)
+
+!!!Tip UWP Packages
+     - **Microsoft.Toolkit** - .NET Standard NuGet package containing common code
+     - **Microsoft.Toolkit.HighPerformance** - .NET Standard and .NET Core NuGet package with performance oriented helpers, extensions, etc.
+     - **Microsoft.Toolkit.Parsers** - .NET Standard NuGet package containing cross-platform parsers, such as Markdown and RSS
+     - **Microsoft.Toolkit.Services** - .NET Standard NuGet package containing cross-platform services
+     - **Microsoft.Toolkit.Uwp** - Main NuGet package includes code only helpers such as Colors conversion tool, Storage file handling, a Stream helper class, etc.
+     - **Microsoft.Toolkit.Uwp.Notifications** - Notifications Package - Generate tile, toast, and badge notifications for Windows 10 via code. Includes intellisense support to avoid having to use the XML syntax
+     - **Microsoft.Toolkit.Uwp.Notifications.Javascript** - Notification Packages for JavaScript
+     - **Microsoft.Toolkit.Uwp.Services** - Services Package - This NuGet package includes the service helpers for Facebook, LinkedIn, Microsoft Graph, Twitter and more
+     - **Microsoft.Toolkit.Uwp.UI** - UI Packages - XAML converters, Visual tree extensions, and other extensions and helpers for your XAML UI
+     - **Microsoft.Toolkit.Uwp.UI.Animations** - Animations and Composition behaviors such as Blur, Fade, Rotate, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls** - XAML Controls such as RadialGauge, RangeSelector, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Controls.DataGrid** - XAML DataGrid control
+     - **Microsoft.Toolkit.Uwp.UI.Controls.Layout** - XAML layout controls such as WrapLayout, StaggeredLayout, etc.
+     - **Microsoft.Toolkit.Uwp.UI.Lottie** - Library for rendering Adobe AfterEffects animations natively in Windows apps
+     - **Microsoft.Toolkit.Uwp.UI.Media** - Brushes, Win2D/Composition effects, and helpers to create visual effects
+     - **Microsoft.Toolkit.Uwp.Connectivity** - API helpers such as BluetoothLEHelper and Networking
+     - **Microsoft.Toolkit.Uwp.DeveloperTools** - XAML user controls and services to help developer building their app
+
+[Design Toolkit](https://docs.microsoft.com/windows/uwp/design/downloads/)
+
+[More Design](https://docs.microsoft.com/en-us/windows/uwp/design/downloads/)
+
+[Get SAtarted UWP](https://docs.microsoft.com/en-us/windows/uwp/get-started/)
+
+
+
+
+
+
+Interesting ones
+
+Sensor Diagnostic Tool (sensordiagnostictool.exe)
+WDK tool: Yes 	%WindowsSdkDir%\tools\x64
+%WindowsSdkDir%\tools\x86 	Tests the driver, firmware, and hardware for sensor and location functionality. The tool invokes the sensor and location API to test data retrieval, event handling, report intervals, change sensitivity, property retrieval.
+WDK Documentation:
+Testing sensor functionality with the Sensor Diagnostic Tool
+
+Per The website: The Sensor Diagnostic Tool was used with previous versions of Windows. Microsoft recommends using the SensorExplorer to verify the installation of supported sensors. SensorExplorere is on Windows store
+
+
+Derives the computer hardware IDs from SMBIOS information.
+
+
+[tracefmt](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/tracefmt)
+
+
+
+ inspect.exe - window inspecter
+
+ oleview
+
+ wmivied
+
+ usbview
+
+##  Interesting DOC LInkts
+
+
+[Windows Shell](https://docs.microsoft.com/en-us/windows/win32/shell/shell-entry)
+
+
+[Windows Shell Samples](https://docs.microsoft.com/en-us/windows/win32/shell/samples-entry)
+
+[Windows Shell - Win32 apps | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/shell/shell-entry)
+
+[Web Services on Devices - Win32 apps | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/wsdapi/wsd-portal)
+[Index of Windows Driver Kit Tools - Windows drivers | Microsoft Docs](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/index-of-windows-driver-kit-tools#sensors)
+
+[Get started with the Universal Windows Platform (UWP) - UWP applications | Microsoft Docs](https://docs.microsoft.com/en-us/windows/uwp/get-started/)
+[Windows Terminal Settings](https://docs.microsoft.com/en-us/windows/terminal/customize-settings/global-settings)
+
+
+[Interesting Tips](https://bytescout.com/blog/windows-command-prompt-commands.html)
+
+
+
 ## Registry
 
 ### Important Locations
@@ -4853,9 +6928,106 @@ Computer\HKEY_CURRENT_USER\Control Panel\Mouse
 Computer\HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys
 Computer\HKEY_CURRENT_USER\Control Panel\Personalization\Desktop Slideshow
 Computer\HKEY_CURRENT_USER\Control Panel\Quick Actions\Pinned
+
+
 ### Registry Changes
 
-Syntax of .Reg Files
+!!!cite Cited: https://www.computerhope.com/issues/ch000848.htm 
+
+#### Regedit in the console or terminal.
+
+    Note: Does not work wih powershell
+
+!!!info Regedit command syntax
+    `REGEDIT \[/L:system\] \[/R:user\] \[/C\] \[/R\] \[/E\] \[/S\] [/C\] FILE \[registry\_key\]`
+
+    Most the switches are deprecated
+    Powershell can do a bit more.
+
+  ` /S /s -s` = Auto Approve
+
+        The /s or -s Regedit commands can be added to the command to suppress the confirmation box "Are you sure want to add the information in hope.reg to the registry?" when running the command at the command line. For example, using the same command used earlier, you can type: **Regedit /s hope.reg** and have that registry file immediately imported into the registry.
+
+   ` /E (/e -e)` = Export Everything
+
+        Export the full registry to a file. For example, typing: **Regedit /e full.reg** would export the full registry to the full.reg file.  
+  
+        This switch can also be used to export individual registry keys. For example, typing:
+        **Regedit /e software.reg "HKEY\_LOCAL\_MACHINE\\Software* would export all the values in this folder to the software.reg file.
+        A  
+  `  /D`    ==Deprecated==
+        
+  ^[\2] users can delete registry keys using this switch. For example, typing: **Regedit /d "<registry\_key>"** where _registry\_key_ is replaced with the registry key you want to delete would delete that registry key.
+
+  `/L:System`=  
+  
+  ^[1]^ ==Deprecated== Specify System Unmounted hives (*.dat*)
+
+      Specify the location of the **system.dat** registry file. For example, 
+        
+   `Regedit /L:c:\\windows\\system.dat c:\\system.dat`
+
+   `/R:user` ==Deprecated==
+
+  ^1^ Specify the location of the **user.dat** registry file under Microsoft Windows 95, 98, and ME. For example, **Regedit /L:c:\\windows\\system.dat c:\\system.dat**
+
+   `/C` ^2^ ==Deprecated==
+        Compress registry file. 
+
+ ^[[1.]]^ under Microsoft Windows 95, 98, and ME
+ ^2^ Microsoft Windows 95, 98, and ME users can delete (use /d)
+ ^3^ This switch only works in Windows 98. Use /C  
+
+####  .reg files can be used to import or export
+
+
+##### Remove keys
+
+To delete a **registry *key*** with a .reg file, put a hyphen (-) in front of the RegistryPath in the .reg file. For example, to delete the Test subkey from the following registry **key:**
+
+`HKEY_LOCAL_MACHINE\Software`
+
+put a hyphen in front of the following registry **key** in the .reg file:
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+The following example has a .reg file that can perform this task.
+
+`[-HKEY_LOCAL_MACHINE\Software\Test]`
+
+##### Remove Values
+
+To delete a **registry value** with a .reg file, put a hyphen (-) after the equals sign following the DataItemName in the .reg file. For example, to delete the TestValue registry value from the following ==registry key==:
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+put a hyphen after the "TestValue"= in the .reg file. The following example has a .reg file that can perform this task.
+
+`HKEY_LOCAL_MACHINE\Software\Test`
+
+    "TestValue"=-`
+
+To **delete the folder and all its continents,** create a .reg file similar to the following example.  And edit into the front of the Location a hyphem/minus.
+         [-HKEY_LOCAL_MACHINE\SOFTWARE\ComputerHope]
+
+
+`"TestValue"=-`
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+!!!tip  
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+To export use the GUI-- via *.reg
+
+To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
+
+
+#### Syntax of .Reg Files
+
+**RegistryPathx** is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:        
+
+    [HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+
 A .reg file has the following syntax:
 
 ```txt
@@ -4871,18 +7043,19 @@ Blank line
 "DataItemName3"="DataType3:DataValue3"
 ```
 
-where:
+Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents
+Can also be used in the command prompt here:
 
-`RegistryEditorVersion` is either `"Windows Registry Editor Version 5.00"` for Windows 2000, Windows XP, and Windows Server 2003, or `"REGEDIT4"` for Windows 98 and Windows NT 4.0. The "REGEDIT4" header also works on Windows 2000-based, Windows XP-based, and Windows Server 2003-based computers.
+Examine and to troubleshoot the contents.
+**RegistryPathx** is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash.
 
-Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents.
-RegistryPathx is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:
-[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
-A .reg file can contain several registry paths. If the bottom of the hierarchy in the path statement does not exist in the registry, a new subkey is created. The contents of the registry files are sent to the registry in the order you enter them. Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
+If the bottom of the hierarchy in the path statement **does not exist** in the registry, **a new subkey** is created.
 
-DataItemNamex is the name of the data item that you want to import. If a data item in your file does not exist in the registry, the .reg file adds it (with the value of the data item). If a data item does exist, the value in your .reg file overwrites the existing value. Quotation marks enclose the name of the data item. An equal sign (=) immediately follows the name of the data item.
+ The contents of the registry files are **sent to the registry in the order you enter them.** Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
 
-DataTypex is the data type for the registry value and immediately follows the equal sign. For all the data types other than REG_SZ (a string value), a colon immediately follows the data type. If the data type is REG_SZ , do not include the data type value or colon. In this case, Regedit.exe assumes REG_SZ for the data type. The following table lists the typical registry data types:
+**DataItemNamex** is the name of the data item that you want to import. If a data item in your file does not exist in the registry, the .reg file adds it (with the value of the data item). If a data item does exist, the value in your .reg file overwrites the existing value. Quotation marks enclose the name of the data item. An equal sign (=) immediately follows the name of the data item.
+
+**DataTypex** is the data type for the registry value and immediately follows the equal sign. For all the data types other than REG_SZ (a string value), a colon immediately follows the data type. If the data type is REG_SZ , do not include the data type value or colon. In this case, Regedit.exe assumes REG_SZ for the data type. The following table lists the typical registry data types:
 
 - REG_BINARY - hexadecimal
 - REG_DWORD - dword
@@ -4904,25 +7077,6 @@ This step backs up the subkey before you make any changes. You can import this f
 In the right pane, add or modify the registry items you want.
 Repeat steps 3 and 4 to export the subkey again, but use a different file name for the .reg file. You can use this .reg file to make your registry changes on another computer.
 Test your changes on the local computer. If they cause a problem, double-click the file that holds the backup of the original registry data to return the registry to its original state. If the changes work as expected, you can distribute the .reg you created in step 6 to other computers by using the methods in the "Distributing Registry Changes" section of this article.
-
-### Deleting Registry Keys and Values
-
-To delete a registry key with a .reg file, put a hyphen (-) in front of the RegistryPath in the .reg file. For example, to delete the Test subkey from the following registry key:
-`HKEY_LOCAL_MACHINE\Software`
-put a hyphen in front of the following registry key in the .reg file:
-`HKEY_LOCAL_MACHINE\Software\Test`
-The following example has a .reg file that can perform this task.
-`[-HKEY_LOCAL_MACHINE\Software\Test]`
-To delete a registry value with a .reg file, put a hyphen (-) after the equals sign following the DataItemName in the .reg file. For example, to delete the TestValue registry value from the following registry key:
-`HKEY_LOCAL_MACHINE\Software\Test`
-put a hyphen after the "TestValue"= in the .reg file. The following example has a .reg file that can perform this task.
-`HKEY_LOCAL_MACHINE\Software\Test`
-
-`"TestValue"=-`
-To create the .reg file, use Regedit.exe to export the registry key that you want to delete, and then use Notepad to edit the .reg file and insert the hyphen.
-
-Renaming Registry Keys and Values
-To rename a key or value, delete the key or value, and then create a new key or value with the new name.
 
 ### Setting Explorer to My PC not Quick Access
 
@@ -4985,7 +7139,22 @@ you can say program /? for more info
 
 ## Network
 
-## Cloudflare DNS
+[Windows Network](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc753940(v=ws.10))
+
+[DHCP](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc896553(v=ws.10))
+
+[DNS](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732997(v=ws.10))
+
+
+[Windows 2012 Link](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831357(v=ws.11))
+
+[Current Version Networking](https://docs.microsoft.com/en-us/windows-server/networking/)
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
+
+### Cloudflare DNS
 
 ipv4
 - 1.1.1.1
@@ -5010,21 +7179,21 @@ Enable Remote desktop related rules.  Unclear which these are.
 
 | Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
 | ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 0.0.0.0/8          | 0.0.0.0–0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
-| 10.0.0.0/8         | 10.0.0.0–10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
-| 100.64.0.0/10      | 100.64.0.0–100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
-| 127.0.0.0/8        | 127.0.0.0–127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
-| 169.254.0.0/16     | 169.254.0.0–169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
-| 172.16.0.0/12      | 172.16.0.0–172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
-| 192.0.0.0/24       | 192.0.0.0–192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
-| 192.0.2.0/24       | 192.0.2.0–192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
-| 192.88.99.0/24     | 192.88.99.0–192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
-| 192.168.0.0/16     | 192.168.0.0–192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
-| 198.18.0.0/15      | 198.18.0.0–198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
-| 198.51.100.0/24    | 198.51.100.0–198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
-| 203.0.113.0/24     | 203.0.113.0–203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
-| 224.0.0.0/4        | 224.0.0.0–239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
-| 240.0.0.0/4        | 240.0.0.0–255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
+| 0.0.0.0/8          | 0.0.0.0-0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
+| 10.0.0.0/8         | 10.0.0.0-10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
+| 100.64.0.0/10      | 100.64.0.0-100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
+| 127.0.0.0/8        | 127.0.0.0-127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
+| 169.254.0.0/16     | 169.254.0.0-169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
+| 172.16.0.0/12      | 172.16.0.0-172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
+| 192.0.0.0/24       | 192.0.0.0-192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
+| 192.0.2.0/24       | 192.0.2.0-192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
+| 192.88.99.0/24     | 192.88.99.0-192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
+| 192.168.0.0/16     | 192.168.0.0-192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
+| 198.18.0.0/15      | 198.18.0.0-198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
+| 198.51.100.0/24    | 198.51.100.0-198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
+| 203.0.113.0/24     | 203.0.113.0-203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
+| 224.0.0.0/4        | 224.0.0.0-239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
+| 240.0.0.0/4        | 240.0.0.0-255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
 | 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
 
 such as would have normally been retrieved from a DHCP server.
@@ -5035,15 +7204,15 @@ such as would have normally been retrieved from a DHCP server.
 | -------------------- | --------------- | ---------------- | --------------------------------------- | ------------- | --------------- | -------------------------------------------------------- |
 |                      | ::/0            | ::               | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2128          | Routing         | Default route.                                           |
 |                      | ::/128          | ::               |                                         | 1             | Software        | Unspecified address.                                     |
-|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
-|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
+|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
+|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
 |                      | ::ffff:0:0:0/96 | ::ffff:0:0.0.0.0 | ::ffff:0:255.255.255.255                | 232           | Software        | IPv4 translated addresses.                               |
 |                      | 64:ff9b::/96    | 64:ff9b::0.0.0.0 | 64:ff9b::255.255.255.255                | 232           | Global Internet | IPv4/IPv6 translation.                                   |
 |                      | 100::/64        | 100::            | 100::ffff:ffff:ffff:ffff                | 264           | Routing         | Discard prefix.                                          |
 |                      | 2001::/32       | 2001::           | 2001::ffff:ffff:ffff:ffff:ffff:ffff     | 296           | Global Internet | Teredo tunneling.                                        |
 |                      | 2001:20::/28    | 2001:20::        | 2001:2f:ffff:ffff:ffff:ffff:ffff:ffff   | 2100          | Software        | ORCHIDv2.                                                |
 |                      | 2001:db8::/32   | 2001:db8::       | 2001:db8:ffff:ffff:ffff:ffff:ffff:ffff  | 296           | Documentation   | Addresses used in documentation and example source code. |
-|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
+|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
 |                      | fc00::/7        | fc00::           | fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2121          | Private network | Unique local address.                                    |
 |                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
 |                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |
@@ -5055,26 +7224,223 @@ The Internet Engineering Task Force (IETF) has directed the Internet Assigned Nu
 
 | RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
 | ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
-| 24-bit block | 10.0.0.0 – 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
-| 20-bit block | 172.16.0.0 – 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
-| 16-bit block | 192.168.0.0 – 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
+| 24-bit block | 10.0.0.0 - 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
+| 20-bit block | 172.16.0.0 - 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
+| 16-bit block | 192.168.0.0 - 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
 
 
 Also note the 169.254 address
 
+### NFS - Network File Service
+
+[Services for Network File System (NFS) command-line tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
+
+Services for Network File System (NFS) provides a file sharing solution that lets you transfer files between computers running Windows Server and UNIX operating systems using the NFS protocol.
+
+Information and links to each of the associated NFS command-line tools:
+
+| Command   | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| mapadmin  | Manage User Name Mapping for Microsoft Services for Network File System. |
+| mount     | Mount Network File System (NFS) network shares.                          |
+| nfsadmin  | Manage Server for NFS and Client for NFS.                                |
+| nfsshare  | Control Network File System (NFS) shares.                                |
+| nfsstat   | Display or reset counts of calls made to Server for NFS.                 |
+| rpcinfo   | List programs on remote computers.                                       |
+| showmount | Display mounted directories.                                             |
+
+
+### Remote Desktop Connection
+
+
+See also [mstsc](#mstsc)
+
+- `change` - Changes the Remote Desktop Session Host server settings for sign in, COM port mappings, and install mode.
+- `change logon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `change port` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `change user` - Changes the install mode for the Remote Desktop Session Host server.
+- `chglogon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `chgport` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `chgusr` - Changes the install mode for the Remote Desktop Session Host server.
+- `flattemp` - Enables or disables flat temporary folders.
+- `logoff` - Signs out a user from a session on an Remote Desktop Session Host server and deletes the session from the server.
+- `msg` - Sends a message to a user on an Remote Desktop Session Host server.
+- `mstsc` - Creates connections to Remote Desktop Session Host servers or other remote computers.
+- `qappsrv` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `qprocess` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query` - Displays information about processes, sessions, and Remote Desktop Session Host servers.
+- `query process` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query session` - Displays information about sessions on an Remote Desktop Session Host server.
+- `query termserver` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `query user` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `quser` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `qwinsta` - Displays information about sessions on an Remote Desktop Session Host server.
+- `rdpsign` - Enables you to digitally sign a Remote Desktop Protocol (.rdp) file.
+- `reset session` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `rwinsta` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `shadow` - Enables you to remotely control an active session of another user on an Remote Desktop Session Host server.
+- `tscon` - Connects to another session on an Remote Desktop Session Host server.
+- `tsdiscon` - Disconnects a session from an Remote Desktop Session Host server.
+- `tskill` - Ends a process running in a session on an Remote Desktop Session Host server.
+- `tsprof` - Copies the Remote Desktop Services user configuration information from one user to another.
+
+
+### Nirsoft Net Tools
+
+
+
+
+Network Monitoring Tools
+
+- **_SmartSniff_** [v2.29]:
+
+    SmartSniff allows you to capture TCP/IP packets that pass through your network adapter, and view the captured data as sequence of conversations between clients and servers. You can view the TCP/IP conversations in Ascii mode (for text-based protocols, like HTTP, SMTP, POP3 and FTP.) or as hex dump. (for non-text base protocols, like DNS)
+
+- **_WifiChannelMonitor_** [v1.65]:
+
+    WifiChannelMonitor captures wifi traffic on the channel you choose, using Microsoft Network Monitor capture driver in monitor mode, and displays extensive information about access points and the wifi clients connected to them. WifiChannelMonitor also allows you to view the information about wifi clients that are not connected to any access points, including the list of SSIDs (network names) that they are trying to connect. For every access point, the following information is displayed: SSID, MAC Address, Device Manufacturer , PHY Type, Channel, RSSI, Security, Beacons Count, Probe Responses Count, Data Bytes, Retransmitted Data Bytes, and more... For every client, the following information is displayed: MAC Address, Device Manufacturer, SSID list that the client tries to connect, Sent Data Bytes, Received Data Bytes, Probe Requests Count, and more...
+
+- **_NetworkTrafficView_** [v2.30]:
+
+    NetworkTrafficView is a network monitoring tool that captures the packets pass through your network adapter, and displays general statistics about your network traffic. The packets statistics is grouped by the Ethernet Type, IP Protocol, Source/Destination Addresses, and Source/Destination ports. For every statistics line, the following information is displayed: Ethernet Type (IPv4, IPv6, ARP), IP Protocol (TCP, UDP, ICMP), Source Address, Destination Address, Source Port, Destination Port, Service Name (http, ftp, and so on), Packets Count, Total Packets Size, Total Data Size, Data Speed, Maximum Data Speed, Average Packet Size, First/Last Packet Time, Duration, and process ID/Name (For TCP connections).
+
+- **_HTTPNetworkSniffer_** [v1.63]:
+
+    HTTPNetworkSniffer is a packet sniffer tool that captures all HTTP requests/responses sent between the Web browser and the Web server and displays them in a simple table. For every HTTP request, the following information is displayed: Host Name, HTTP method (GET, POST, HEAD), URL Path, User Agent, Response Code, Response String, Content Type, Referer, Content Encoding, Transfer Encoding, Server Name, Content Length, Cookie String, and more... You can easily select one or more HTTP information lines, and then export them to text/html/xml/csv file or copy them to the clipboard and then paste them into Excel.
+
+- **_AppNetworkCounter_** [v1.41]:
+
+    AppNetworkCounter is a simple tool for Windows that counts and displays the number of TCP/UDP bytes and packets sent and received by every application on your system. For every application, the following information is displayed: the number of sent and received bytes, number of sent and received packets, number of sent/received IPv4 bytes, and number of sent/received IPv6 bytes. It also displays the version information of the application - Product Name, Product Version, File Description, and Company Name.
+
+- **_LiveTcpUdpWatch_** [v1.33]:
+
+    LiveTcpUdpWatch is a tool for Windows that displays live information about all TCP and UDP activity on your system. Every line in the main table of LiveTcpUdpWatch displays the protocol (TCP/UDP/IPv4/IPv6), local/remote IP address, local/remote port, number of sent/received bytes, number of sent/received packets, connect/disconnect time (For TCP only), and the process (ID and path) responsible for this activity.
+
+- **_PingInfoView_** [v2.10]:
+
+    PingInfoView is a small utility that allows you to easily ping multiple host names and IP addresses, and watch the result in one table. It automatically ping to all hosts every number of seconds that you specify, and displays the number of succeed and failed pings, as well as the average ping time. You can also save the ping result into text/html/xml file, or copy it to the clipboard.
+
+- **_WifiInfoView_** [v2.65]:
+    WifiInfoView scans the wireless networks in your area and displays extensive information about them, including: Network Name (SSID), MAC Address, PHY Type (802.11g or 802.11n), RSSI, Signal Quality, Frequency, Channel Number, Maximum Speed, Company Name, Router Model and Router Name (Only for routers that provides this information), and more... When you select a wireless network in the upper pane of this tool, the lower pane displays the Wi-Fi information elements received from this device, in hexadecimal format. WifiInfoView also has a summary mode, which displays a summary of all detected wireless networks, grouped by channel number, company that manufactured the router, PHY type, or the maximum speed.
+
+- **_SocketSniff_** [v1.11]:
+
+    SocketSniff allows you to watch the Windows Sockets (WinSock) activity of the selected process.
+
+
+    For each created socket, the following information is displayed: socket handle, socket type, local and remote addresses, local and remote ports, total number of send/receive bytes, and more. You can also watch the content of each send or receive call, in Ascii mode or as Hex Dump.
+
+- **_CurrPorts_** [v2.63]:
+
+    CurrPorts is a network monitoring software that displays the list of all currently opened TCP/IP and UDP ports on your local computer. For each port in the list, information about the process that opened the port is also displayed, including the process name, full path of the process, version information of the process (product name, file description, and so on), the time that the process was created, and the user that created it.
+
+
+    In addition, CurrPorts allows you to close unwanted TCP connections, kill the process that opened the ports, and save the TCP/UDP ports information to HTML file , XML file, or to tab-delimited text file.
+
+    CurrPorts also automatically mark with pink color suspicious TCP/UDP ports owned by unidentified applications (Applications without version information and icons)
+      
+- **_TcpLogView_** [v1.32]:
+
+    TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)
+
+- **_ProcessTCPSummary_** [v1.11]:
+
+    ProcessTCPSummary is a simple tool for Windows that displays a summary of all process that have TCP connections or listening UDP ports. For every process, this tool displays the total number of TCP connections, number of TCP connections for each status (Established, Listening, Syn-Sent, Syn-Received...), number of IPv4 TCP connections, number of IPv6 TCP connections, common port numbers, and more... If you run ProcessTCPSummary as Administrator, you can also watch the number of TCP/UDP bytes sent and received by every process as well as the current send/receive speed.
+
+- **_NetworkConnectLog_** [v1.13]:
+
+    NetworkConnectLog is a simple utility that repeatedly scans your local area network (Using ARP and Netbios protocols) and add a new log line every time that a new computer or device connects to your network, and when a computer or device disconnects from your network. After the connect/disconnect log lines are accumulated, you can easily export the log lines to comma-delimited/tab-delimited/html/xml file.
+
+- **_NetworkLatencyView_** [v1.65]:
+
+    NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.
+
+- **_DNSQuerySniffer_** [v1.81]:
+
+    DNSQuerySniffer is a network sniffer utility that shows the DNS queries sent on your system. For every DNS query, the following information is displayed: Host Name, Port Number, Query ID, Request Type (A, AAAA, NS, MX, and so on), Request Time, Response Time, Duration, Response Code, Number of records, and the content of the returned DNS records. You can easily export the DNS queries information to csv/tab-delimited/xml/html file, or copy the DNS queries to the clipboard, and then paste them into Excel or other spreadsheet application.
+
+- **_WhoIsConnectedSniffer_** [v1.25]:
+
+    WhoIsConnectedSniffer is a network discovery tool that listens to network packets on your network adapter using a capture driver (WinpCap or MS network monitor) and accumulates a list of computer and devices currently connected to your network. WhoIsConnectedSniffer uses various protocols to detect the computers connected to your network, including ARP, UDP, DHCP, mDNS, and BROWSER. For every detected computer or device, the following information is displayed: (Some of the fields might be empty if the information cannot be found inside the packets) IP Address, MAC Address, name of the device/computer, description, Operating System, Network Adapter Company, IPv6 Address.
+
+
+
+    After collecting the connected computers/devices information, you can easily export the list to tab-delimited/comma-delimited/xml/html file.
+
+- **_Wireless Network Watcher_** [v2.22]:
+
+    Wireless Network Watcher is a small utility that scans your wireless network and displays the list of all computers and devices that are currently connected to your network. For every computer or device that is connected to your network, the following information is displayed: IP address, MAC address, the company that manufactured the network card, and optionally the computer name. You can also export the connected devices list into html/xml/csv/text file, or copy the list to the clipboard and then paste into Excel or other spreadsheet application.
+
+- **_NetworkUsageView_** [v1.21]:
+
+    NetworkUsageView extracts and displays the network usage information stored in the SRUDB.dat database of Windows 8 and Windows 10. The network usage data is collected every hour by Windows operating systems and includes the following information: The name and description of the service or application, the name and SID of the user, the network adapter, and the total number of bytes sent and received by the specified service/application.
+
+- **_WakeMeOnLan_** [v1.86]:
+
+    This utility allows you to easily turn on one or more computers remotely by sending Wake-on-LAN (WOL) packet to the remote computers. When your computers are turned on, WakeMeOnLan allows you to scan your network, and collect the MAC addresses of all your computers, and save the computers list info a file. Later, when your computers are turned off or in standby mode, you can use the stored computers list to easily choose the computer you want to turn on, and then turn on all these computers with a single click.
+
+
+    WakeMeOnLan also allows you to turn on a computer from command-line, by specifying the computer name, IP address, or the MAC address of the remote network card.
+
+- **_NetworkCountersWatch_** [v1.02]:
+
+    NetworkCountersWatch is a tool for Windows that displays system counters for every network interface on your system. The system counters include the number of incoming/outgoing bytes, number of incoming/outgoing packets, number of broadcast packets, and more. You can also initialize all counters to zero at any time in order to watch the network counters for specific event. NetworkCountersWatch also calculates and displays the current download speed and upload speed on your network interface.
+
+- **_WifiHistoryView_** [v1.56]:
+
+    WifiHistoryView is a simple tool for Windows 10/8/7/Vista that displays the history of connections to wireless networks on your computer. For every event that the computer connected to a wireless network or disconnected from it, the following information is displayed: The date/time that the event occurred, network name (SSID), profile name, network adapter name, BSSID of the router/Access Point, and more... WifiHistoryView can read the wifi history information from a running system or from external event log file of another computer.
+
+- **_NetworkOpenedFiles_** [v1.36]:
+
+    NetworkOpenedFiles is a simple tool for Windows that displays the list of all files that are currently opened by other computers on your network. For every opened filename, the following information is displayed: Filename, user name, computer name (On Windows 7/2008 or later), Permissions information (Read/Write/Create), locks count, file owner, file size, file attributes, and more...
+
+- **_NetBScanner_** [v1.11]:
+
+    NetBScanner is a network scanner tool that scans all computers in the IP addresses range you choose, using NetBIOS protocol. For every computer located by this NetBIOS scanner, the following information is displayed: IP Address, Computer Name, Workgroup or Domain, MAC Address, and the company that manufactured the network adapter (determined according to the MAC address). NetBScanner also shows whether a computer is a Master Browser. You can easily select one or more computers found by NetBScanner, and then export the list into csv/tab-delimited/xml/html file.
+
+- **_WirelessNetView_** [v1.75]:
+
+    WirelessNetView is a small utility that runs in the background, and monitor the activity of wireless networks around you. For each detected network, it displays the following information: SSID, Last Signal Quality, Average Signal Quality, Detection Counter, Authentication Algorithm, Cipher Algorithm, and more.
+
+- **_WirelessConnectionInfo_** [v1.15]:
+
+    WirelessConnectionInfo is a simple tool for Windows Vista/7/8/2008/10 that displays general information and statistics about the active wifi connection, including the SSID, BSSID, PHY Type, Signal Quality, Receiving rate, Transmission Rate, Authentication Algorithm, Channel Number, Total number of transmitted/received frames, and more...
+
+- **_AdapterWatch_** [v1.05]:
+
+    AdapterWatch displays useful information about your network adapters: IP addresses, Hardware address, WINS servers, DNS servers, MTU value, Number of bytes received or sent, The current transfer speed, and more. In addition, it displays general TCP/IP/UDP/ICMP statistics for your local computer.
+
+- **_NetResView_** [v1.27]:
+
+    NetResView is a small utility that displays the list of all network resources (computers, disk shares, and printer shares) on your LAN. As opposed to "My Network Places" module of Windows, NetResView display all network resources from all domains/workgroups in one screen, and including admin/hidden shares.
+
+- **_NetRouteView_** [v1.35]:
+
+    NetRouteView is a GUI alternative to the standard route utility (Route.exe) of Windows operating system. It displays the list of all routes on your current network, including the destination, mask, gateway, interface IP address, metric value, type, protocol, age (in seconds), interface name, and the MAC address. NetRouteView also allows you to easily add new routes, as well as to remove or modify existing static routes.
+
+- **_CountryTraceRoute_** [v1.31]:
+
+    CountryTraceRoute is a Traceroute utility, similar to the tracert tool of Windows, but with graphical user interface, and it's also much faster than tracert of Windows. CountryTraceRoute also displays the country of the owner of every IP address found in the Traceroute. After the Traceroute is completed, you can select all items (Ctrl+A) and then save them into csv/tab-delimited/html/xml file with 'Save Selected Items' option (Ctrl+S) or copy them to the clipboard (Ctrl+C) and then paste the result into Excel or other spreadsheet application.
+
+- **_SniffPass_** [v1.13] - {Password Sniffer}
+
+    SniffPass is small utility that listens to your network, capture the passwords that pass through your network adapter, and display them on the screen instantly. SniffPass can capture the passwords of the following Protocols: POP3, IMAP4, SMTP, FTP, and HTTP (basic authentication passwords).
+ 
 ## Setup Git
+
+
 
 First setup basics
 
 ```bash
 git config --global user.name "altimmons"
-git config --global user.email "A.L.Timmons@gmail.com"
+git config --global user.email "@gmail.com"
 ```
 
 Then generate an SSH key to upload to github
 
 ```
-ssh-keygen -t rsa -C "A.L.Timmons@gmail.com"
+ssh-keygen -t rsa -C "my email@gmail"
 ```
 
 This is best done with wsl
@@ -5095,7 +7461,15 @@ This is the source of two separate packages:
 - [Remove-Windows10-Bloat.bat](https://gist.githubusercontent.com/matthewjberger/2f4295887d6cb5738fa34e597f457b7f/raw/b23fa065febed8a2d7c2f030fba6da381f640997/Remove-Windows10-Bloat.bat)
 
 
-## VS Code RegExp
+## VS Code Regular Expressions
+
+
+[Balancing Exp](https://www.regular-expressions.info/balancing.html)
+
+
+[Tutorials](https://www.regular-expressions.info/tutorialcnt.html)
+
+
 
 [Reference 1](https://stackoverflow.com/questions/42179046/what-flavor-of-regex-does-visual-studio-code-use/42184299#42184299)
 
@@ -5129,6 +7503,7 @@ exe64=x64\\(.*?)(
 - Anchors
   - `^` - anchor to front
   - `\r?$` -anchor to rear.  Old character was just `$`
+    - this just says match a carriage return or not if it exists.  This has gotten me on linux once.
 - Parens and brackets
   - [...] - give characters to match.
     - [\], [c] - match a single char
@@ -5243,6 +7618,7 @@ Group Referencing (Reusing a previously used group)
 - `(?<=exp)` - Zero-width positive lookbehind
 - `(?<!exp)` - Zero-width negative lookbehind
 - `(?>exp)` - Non-backtracking (greedy)
+-  `?!` = NOT , `real(?!ity)` matched real and really but not reality.
 
 Use To substitute
 - `$n` - Substring matched by group number n
@@ -5363,6 +7739,21 @@ Defines a balancing group definition. For more information, see the "Balancing G
 #### My Examples
 
 
+    ([{]+)(?<in>.*?)([}]+)(\k<in>)
+
+This code had tis weird duplication inside braces.  But not all, some were just in braces.
+
+So I final all the things bracketed by a brack that immedietly match the same thing after.   Like `{ABC}ABC`  It is written such that everything must match,
+
+    {A\cup B=B\cup A}
+    {A\cap B=B\cap A}
+    Associative property:
+    {(A\cup B)\cup C=A\cup (B\cup C)}
+    {(A\cap B)\cap C=A\cap (B\cap C)}
+    Distributive property:
+    {A\cup (B\cap C)=(A\cup B)\cap (A\cup C)}A\cup (B\cap C)=(A\cup B)\cap (A\cup C)
+    {A\cap (B\cup C)=(A\cap B)\cup (A\cap C)}
+
 (^[a-zA-Z]*?) Standard
 
 Finding a table
@@ -5382,6 +7773,9 @@ Finding a table
 !!!note Bold betweem the parentheses (xxx) -> **(xxx)**
             ([(])(.*?)([)])
             **$1$2$3**
+
+
+
 
 
 !!!note   A series of entries like this:
@@ -5460,7 +7854,9 @@ Finding a table
 
 ``(`)([ ]{3,})(\S)`` -> `$1 | $3`
 
+
 !!!attention To match... TEMPLATE
+
     !!!quote Input from
         example
 
@@ -5602,6 +7998,37 @@ Finding a table
 
 
 
+### Another killer example
+
+
+(^• .*[\t`,]\s*)(\w+)(\s.*?$)
+
+    • Output of entire files	  	`cat` tac nl od base32 base64 basenc
+    • Formatting file contents	  	fmt pr fold
+    • Output of parts of files	  	head tail split csplit
+    • Summarizing files	  	wc sum cksum b2sum md5sum sha1sum sha2
+    • Operating on sorted files	  	sort shuf uniq comm ptx tsort
+    • Operating on fields	  	cut paste join
+    • Operating on characters	  	tr expand unexpand
+    • Directory listing	  	ls dir vdir dircolors
+    • Basic operations	  	cp dd install mv rm shred
+    • Special file types	  	mkdir rmdir unlink mkfifo mknod ln link readlink
+    • Changing file attributes	  	chgrp chmod chown touch
+    • Disk usage	  	df du stat sync truncate
+    • Printing text	  	echo printf yes
+    • Conditions	  	false true test expr
+    • Redirection	  	
+    • File name manipulation	  	dirname basename pathchk mktemp realpath
+    • Working context	  	pwd stty printenv tty
+    • User information	  	id logname whoami groups users who
+    • System context	  	date arch nproc uname hostname hostid uptime
+    • SELinux context	  	chcon runcon
+    • Modified command invocation	  	chroot env nice nohup stdbuf timeout
+    • Process control	  	kill
+    • Delaying	  	sleep
+    • Numeric operations	  	factor numfmt seq
+
+
 ## Other Tips, Tricks and Hacks
 
 
@@ -5616,6 +8043,43 @@ Finding a table
     [[Shift]] + [[Del]] - Deletes selection directly i.e. without moving it to Recycle Bin
 
 ### Get any programs location using the registry.
+
+Reforat lists.
+
+- `$1` [ **$2** ] - $5 $4  #
+^([\w,]+) : (.*$)\n    ((.*$)\n    )*(.*)*$
+
+node_color : color or array of colors (default='#1f78b4')
+    Node color. Can be a single color or a sequence of colors with the same
+    length as nodelist. Color can be string, or rgb (or rgba) tuple of
+    floats from 0-1. If numeric values are specified they will be
+    mapped to colors using the cmap and vmin,vmax parameters. See
+    matplotlib.scatter for more details.
+
+node_shape :  string
+    The shape of the node.  Specification is as matplotlib.scatter
+    marker, one of 'so^>v<dph8' (default='o').
+
+alpha : float or array of floats
+    The node transparency.  This can be a single alpha value (default=None),
+    in which case it will be applied to all the nodes of color. Otherwise,
+    if it is an array, the elements of alpha will be applied to the colors
+    in order (cycling through alpha multiple times if necessary).
+
+cmap : Matplotlib colormap
+    Colormap for mapping intensities of nodes (default=None)
+
+vmin,vmax : floats
+    Minimum and maximum for node colormap scaling (default=None)
+
+linewidths : [None | scalar | sequence]
+    Line width of symbol border (default =1.0)
+
+edgecolors : [None | scalar | sequence]
+    Colors of node borders (default = node_color)
+
+label : [None| string]
+    Label for legend
 
 This is in powershell
 ```ps1
@@ -5880,6 +8344,7 @@ function Takeown-Folder($path) {
     }
 }
 
+
 function Elevate-Privileges {
     param($Privilege)
     $Definition = @"
@@ -5967,3 +8432,1308 @@ On Windows, modifying the registry may also be beneficial in order to maintain s
 
 Uncheck the write permission on these keys so that the changes persist on next auto-update of Chrome. Thanks to @tophf for providing information about the flag and registry settings.
 
+## WSL version 2 
+
+Windows Subsystem for Linux v 2
+
+[Source](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+
+[Package](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+
+
+
+
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+    ver
+
+    ## Must be > 10.0.18362.xxx
+
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+    ## download https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+    ## run
+
+    ps #open powershell
+    wsl --set-default-version 2
+
+    wsl --set-default-version 2
+      NAME      STATE           VERSION
+    * Ubuntu    Stopped         1
+      Debian    Stopped         1
+    ⚡ andyt@DESKTOP  O:\OneDrive\Backups\KEYS\Keys\PuttyGenHassIO                                                                      [13:39]
+    ❯ wsl --set-version Ubuntu 2
+
+
+## Windows Debugging
+
+Windows Kits:
+
+[Windows Debugging Kits](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools)
+
+[WDK -Win. Driver Kit](https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
+
+
+[ADK- Assesment and Deployment Kit](https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+
+[HLK Windows Hardware Lab Kit](https://docs.microsoft.com/en-us/windows-hardware/test/hlk/)
+
+
+[WCF -Windows Communication Framework](https://docs.microsoft.com/en-us/dotnet/framework/wcf/tools)
+
+[Windows 10 Software Development](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/)
+
+
+
+
+
+[Technical Doc](https://docs.microsoft.com/en-us/windows/)
+
+[Great Resource on BSOD- Bug Checks](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-checks--blue-screens-)
+
+
+
+[Crash dump analysis using the Windows debuggers (WinDbg)](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/crash-dump-files)
+
+[Analyzing a Kernel-Mode Dump File with WinDbg](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/analyzing-a-kernel-mode-dump-file-with-windbg)
+
+Using the [!analyze](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-the--analyze-extension)
+
+ Extension and [!analyze](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/-analyze)
+ 
+
+!!!info Clarification
+
+[Comment Below is from here:](https://stackoverflow.com/questions/12629514/perfmon-perfmonitor-and-perfview/12634333)
+
+
+
+ Windows Performance Monitor(ing) (PerfMon) and ETW (PerfMonitor, PerfView work with ETW) are different. ETW works at kernel-level and has audit trail, whereas PerfMon works with counter objects at a higher level. For instance using ETW, it is possible to analyze service/application behavior even during system bootup and shutdown. ETW actually takes off from where PerfMon stops.
+
+Tool wise,
+
+**PerfMonitor** provides a mechanism for users to conrol the collection of ETW data by acting as an ETW Controller. It basically helps in collecting traces for Managed code, whereas other tools such as **XPerf** does it for unmanaged code
+
+**PerfView** works on the other side, used to analyze the ETW trace logs, on various aspects.
+
+**PerfMon** is designed as a horizontal screening tool that shows a broad view of the Memory/Disk/CPU/Network performance of the System/ Service or Application. It basically lets us do the following:
+
+View data from multiple computers simultaneously.
+
+See how changes you make affect the computer.
+
+Change charts of current activity while viewing them.
+
+Export Performance Monitor data to spreadsheets or database programs, or use it as raw input for C programs.
+
+Trigger a program or procedure, or send notices when a threshold is
+exceeded.
+
+Log data about various objects from different computers over time.
+You can use these log files to record typical resource use, monitor a problem, or help in capacity planning.
+
+Combine selected sections of several log files into a long-term
+archive.
+
+Report on current activity or trends over time.
+
+Save different combinations of counter and option settings for quick starts and changes
+
+Look at [this (Now Below-AT)](https://stackoverflow.com/questions/4112272/are-perfmon-performance-counters-based-on-the-same-thing-under-the-hood-as-the) for more info
+
+Perf counters and ETW are two different things, they share no underlying infrastructure.
+
+Counters are used to provide information as to how well the operating system or an application, service, or driver is performing. The counter data can help determine system bottlenecks and fine-tune system and application performance. The operating system, network, and devices provide counter data that an application can consume to provide users with a graphical view of how well the system is performing.
+
+Event Tracing for Windows (ETW) is an efficient kernel-level tracing facility that lets you log kernel or application-defined events to a log file.
+
+They can both be used for performance analysis, but ETW provides an audit trail of behaviour inside the app over time (like a traditional user-mode logfile), whereas PerfMon provides a view of either current statistics in the application ('current queue length'), or aggregated data over its lifetime (such as 'average throughput', 'total number of bytes sent').
+
+[https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/etw-tracing](https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/etw-tracing)
+
+
+ ### Network Trace
+
+[Source](https://techcommunity.microsoft.com/t5/iis-support-blog/capture-a-network-trace-without-installing-anything-amp-capture/ba-p/376503)
+
+[Commands](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11))
+
+
+
+[Windows Comm. Framework](https://docs.microsoft.com/en-us/dotnet/framework/wcf/samples/set-up-instructions)
+
+[More](https://docs.microsoft.com/en-us/dotnet/framework/wcf/)
+
+
+## Generate a UUID
+
+
+
+## Windows Container
+
+[Important Links Here](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/containerd)
+
+
+
+The Windows container platform is expanding! Docker was the first piece of the container journey, now we are building other container platform tools.
+
+    containerd/cri - new in Windows Server 2019/Windows 10 1809.
+    runhcs - a Windows container host counterpart to runc.
+    hcs - the Host Compute Service + handy shims to make it easier to use.
+        hcsshim
+        dotnet-computevirtualization
+
+But we have
+
+### hcsdiag
+
+    ❯ hcsdiag
+    Copyright (c) Microsoft Corporation. All rights reserved.
+
+      hcsdiag <command> [options...]
+
+      list
+        Lists running containers and VMs.
+
+      exec [-uvm] <id> <command line>
+        Executes a process inside the container.
+
+      console [-uvm] <id> [command line]
+        Launches an interactive console inside the container.
+
+      read [-uvm] <id> <container file> [host file]
+        Reads a file from the container and outputs it to standard output or a file.
+
+      write [-uvm] <id> [host file] <container file>
+        Writes from standard input or a host file to a file in the container.
+
+      kill <id>
+        Terminates a running container.
+
+      share [-uvm] [-readonly] [-asuser] [-port <portnumber>] <id> <host folder> <container folder>
+        Shares a host folder into the container.
+
+      vhd [-uvm] <id> <host vhdx file> <container folder>
+        Shares a virtual hard disk file into the container.
+
+      crash <id>
+        Forces a crash of the virtual machine hosting the container (only works
+    for containers hosted in a virtual machine).
+
+
+
+## Unknown Additional Programs
+
+
+### winrs.exe Windows Remote Shell
+
+      USAGE
+      =====
+      (ALL UPPER-CASE = value that must be supplied by user.)
+
+      winrs [-/SWITCH[:VALUE]] COMMAND
+
+      COMMAND - Any string that can be executed as a command in the cmd.exe shell.
+
+      SWITCHES
+      ========
+      (All switches accept both short form or long form. For example both -r and
+      -remote are valid.)
+
+      -r[emote]:ENDPOINT      - The target endpoint using a NetBIOS name or the standard connection URL: [TRANSPORT://]TARGET[:PORT]. If not specified
+      -r:localhost is used.
+
+      -un[encrypted]          - Specify that the messages to the remote shell will not be encrypted. This is useful for troubleshooting, or when the network traffic is already encrypted using ipsec, or when physical security is enforced. By default the messages are encrypted using Kerberos or NTLM keys. This switch is ignored when HTTPS transport is selected.
+
+      -u[sername]:USERNAME    - Specify username on command line. If not specified the tool will use Negotiate authentication or prompt for the name.
+      If -username is specified, -password must be as well.
+
+      -p[assword]:PASSWORD    - Specify password on command line. If -password is not specified but -username is the tool will prompt for the password. If -password is specified, -user must be specified as well.
+
+      -t[imeout]:SECONDS      - This option is deprecated.
+
+      -d[irectory]:PATH       - Specifies starting directory for remote shell. If not specified the remote shell will start in the user's home directory defined by the environment variable %USERPROFILE%.
+
+      -env[ironment]:STRING=VALUE   - Specifies a single environment variable to be set when shell starts, which allows changing default environment for shell. Multiple occurrences of this switch must be used to specify multiple environment variables.
+
+      -noe[cho]               - Specifies that echo should be disabled. This may be necessary to ensure that user's answers to remote prompts are not displayed locally. By default echo is "on".
+
+      -nop[rofile]            - Specifies that the user's profile should not be loaded. By default the server will attempt to load the user profile. If the remote user is not a local administrator on the target system then this option will be required (the default will result in error).
+
+      -a[llow]d[elegate]      - Specifies that the user's credentials can be used to access a remote share, for example, found on a different machine than the target endpoint.
+
+      -comp[ression]          - Turn on compression.  Older installations on remote machines may not support compression so it is off by default.
+
+      -[use]ssl               - Use an SSL connection when using a remote endpoint.  Specifying this instead of the transport "https:" will use the default WinRM default port.
+
+      -?                      - Help
+
+      To terminate the remote command the user can type Ctrl-C or Ctrl-Break, which will be sent to the remote shell. The second Ctrl-C will force termination of winrs.exe.
+
+      To manage active remote shells or WinRS configuration, use the WinRM tool.  The URI alias to manage active shells is shell/cmd.  The URI alias for WinRS configuration is winrm/config/winrs.  Example usage can be found in the WinRM tool by typing "WinRM -?".
+
+      Examples:
+      winrs -r:https://myserver.com command
+      winrs -r:myserver.com -usessl command
+      winrs -r:myserver command
+      winrs -r:http://127.0.0.1 command
+      winrs -r:http://169.51.2.101:80 -unencrypted command
+      winrs -r:https://[::FFFF:129.144.52.38] command
+      winrs -r:http://[1080:0:0:0:8:800:200C:417A]:80 command
+      winrs -r:https://myserver.com -t:600 -u:administrator -p:$%fgh7 ipconfig
+      winrs -r:myserver -env:PATH=^%PATH^%;c:\tools -env:TEMP=d:\temp config.cmd
+      winrs -r:myserver netdom join myserver /domain:testdomain /userd:johns /passwordd:$%fgh789
+      winrs -r:myserver -ad -u:administrator -p:$%fgh7 dir \\anotherserver\sha
+
+
+### Fondue.exe
+
+Features oin Demand User Experience Tool
+
+Produces a GUI Help Menu
+
+
+### DPIScaling.exe
+
+Pops up Settings menu immmedietly
+
+### nvspinfo 
+
+This turns out to be exactly what I need
+
+
+    usage: nvspinfo
+            -c    display nvsp related control services
+            -a    display network adapters
+            -i    display network interfaces
+            -S    display stack table
+            -h    include hidden adapters (implies -a)
+            -b    include network bindings (implies -a)
+            -o    include offloads (implies -a)
+            -n    display all network information (same as -a -i -b)
+            -v    display virtual NICs
+            -D    includes drops in virtual NIC status (implies -v)
+            -s    display switch information
+            -p    include port details (implies -s)
+            -d    include disconnected ports (implies -s -d)
+            -m    include mac details (implies -s and -p)
+            -q    include 801.1q (vlan) details (implies -s and -p)
+            -t    display statistics (implies -s and -p)
+            -l    display statistics in a one second loop (implies -t)
+            -e    display everything
+            -g    display setup DI
+            -z    analyze (implies -e)
+            -Z    analyze mac and ip
+            -V    display vmq details (implies -v)
+            -u    display unicast addresses
+            -Q    display VMQ groups
+            -F:I  display stats in CSV format in a loop for the NIC at the specified index I. I = -1 lists available indexes.
+            -P    display host processor stats for all host processors
+
+###  Driverquery
+This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
+
+The command is:
+
+`driverquery`
+
+If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
+
+`driverquery -v`
+
+driverquery -si
+
+### Pathping CMD command
+
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+### MakeCab
+
+
+    Cabinet Maker - Lossless Data Compression Tool
+
+    MAKECAB [/V[n]] [/D var=value ...] [/L dir] source [destination]
+    MAKECAB [/V[n]] [/D var=value ...] /F directive_file [...]
+
+    source         File to compress.
+    destination    File name to give compressed file.  If omitted, the
+                    last character of the source file name is replaced
+                    with an underscore (_) and used as the destination.
+    /F directives  A file with MakeCAB directives (may be repeated). Refer to
+                    Microsoft Cabinet SDK for information on directive_file.
+    /D var=value   Defines variable with specified value.
+    /L dir         Location to place destination (default is current directory).
+    /V[n]          Verbosity level (1..3).
+
+
+
+
+
+2. Driverquery
+This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
+
+The command is:
+
+driverquery
+
+If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
+
+driverquery -v
+
+driverquery -si
+
+
+4. Pathping CMD command
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+pathping 192.168.1.1
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+tasklist -m
+
+tasklist -svc
+
+
+taskkill -pid 3125
+
+taskkill -im chrome.exe
+
+
+7. System File Checker
+One can say that this command comes under the most important Windows commands. Wicked apps will regularly strive to substitute kernel system files with altered variants in an attempt to gain control of the system. The System File Checker can be utilized to check the probity of the Windows system registers. If any of the folders are discovered to be lost or nefarious, they will be repaired. Users can execute the System File Checker by utilizing this command:
+
+sfc /scannow
+
+The sfc /scannow command examines all secured system files, and substitute damaged files with a cached model that is placed in a compressed enclosure at %WinDir%\System32\dllcache.
+
+
+8. Repair-bde Windows command
+This is one of the most amazing Windows command line commands. If a drive that is secured is facing some problems then users can seldom retrieve the data utilizing a service named repair-bde. To apply this command, users require a target drive to which the retrieved data can be recorded, as well as the BitLocker retrieval key or restoration password. The primary syntax for this command is:
+
+repair-bde <root> <target> -rk | rp <root>
+
+Users should define the root drive, the target drive, and both the rk (recovery key) or the rp (recovery password) switch, along with the route to the restoration key or the restoration password. Following is the example:
+
+repair-bde c: d: -rk e:\restore.bek
+
+
+
+tracert  abc.com
+
+The above command is one of the most crucial Command Prompt Windows 10 commands.
+
+11. CIPHER
+The cipher comes under the encryption Windows Command Prompt Commands. This reveals or changes the encryption of records and files on NTFS volumes. If employed without parameters, cipher reveals the encryption status of the prevailing directory and any records it holds. For example, the following command enables the encryption of the Private directory.
+
+cipher /e private
+
+12. Finger
+The Command Prompt Windows 10 also has one important command known as finger. It displays information about a user or users on a particular remote computer. For example,
+
+finger user1@users.abc.com
+
+13. Comp
+This Windows Command Line command is used to compare the contents of two files byte-by-byte. If applied without parameters, it allows users to enter the files to compare. For example,
+
+comp c:\annualreports \\sales\myfile\march
+
+14. Clip
+The clip comes under the redirecting Windows Commands. It redirects command output from the command line. Users can also paste the output into other programs and files. For example,
+
+clip < myfile.txt
+
+15. Color
+The color is one of the featuring CMD Prompt Commands. It develops the font and background colors in the Command Prompt pane for the running session. If applied without parameters, color alters the default view and setting colors. For example,
+
+color 84
+
+16. Append
+Important: This command is not supported on Windows 10 Home and Pro.
+
+The append comes under the directories Command Prompt Commands Windows 10. This allows programs to open files in particular folders or directories. If applied without parameters, the append command reveals the appended directory index. For example,
+
+append /e
+
+The above command will store a copy of the appended directory list.
+
+17. Getmac
+The getmac command comes under the most important Windows CMD Commands. This command gives the media access control (MAC) address. It also gives the record of network rules connected with each address for all network cards locally or over a network. getmac can be beneficial if you want to use the MAC address into a network analyzer or when you want to understand what rules are running on a specific network adapter. For example,
+
+getmac /fo table /nh /v
+
+18. Label
+The label commands are basic CMD Line Commands. It forms, switches, or removes the name of a disk. If applied without parameters, the label command modifies the prevailing volume label or eliminates the current label. An NTFS volume label is 32 characters in length. It can retain and disclose the fact that was applied when the label was formed. For example,
+
+label a:reports-december
+
+19. Logman
+The logman commands are used in windows server Command Prompt Windows 10. The logman command builds and maintains Performance logs and Event Trace Session. This command also backs many roles of Performance Monitor from the command line. For example,
+
+logman query "perf_log"
+
+20. Ftype
+The ftype commands are Windows System Commands. It represents or changes filetypes that are applied in file name extension assistance. If applied without an operator(=), ftype shows the prevailing open command string for the designated filetype. If applied without parameters, ftype shows the filetypes that have open strings specified. For example,
+
+ftype txtfile
+
+
+21. BCDBOOT
+BCDBOOT is a command-line utility. It is applied to install the bootmgr bootloader and to set and configure its boot configuration data (BCD). BCD is a binary file that represents all installed Windows applications. bcdboot images the primary boot files from a separated Windows on the disk to the custom boot distribution, and combines that with a proper admission to the boot configuration data. In other words, bcdboot is used to build and repair a system partition. For example, the following command is displaying the use of bcdboot command.
+
+bcdboot C:\Windows
+
+22. CERTREQ
+The CERTREQ command can be utilized to get certificates from a certification authority (CA), to regain a reply to a prior request from a CA, to build a new request. The .cer file users get from the Certificate Authority can simply be fixed by keeping the file on the server they created the CSR on, for example as cert.cer, and by performing the subsequent command at the prompt:
+
+For example,
+
+certreq -submit certrequest.req certnew.cer certnew.pfx
+
+C:\>certreq -accept cert.cer
+
+This is the default certreq.exe option. If no alternative is defined at the CMD, certreq.exe tries to give a certificate call to a certificate authority. Users must define a certificate request when utilizing the -submit method. If this parameter is discarded, a standard File Open window surfaces, allowing users to pick the suitable certificate call file.
+
+
+26. Fsutil
+The fsutil is one of the administrative commands. It is used to accomplish jobs that are linked to the file allocation table (FAT) and NTFS file systems. For example, this command is used for handling reparsepoints, sparse files, or decreasing a volume. It can also be used with various parameters and if it is used without parameters then it displays a list of supported sub-commands. To use this command, one must be an administrator. For example,
+
+fsutil file findbysid myfile d:\hello
+
+The above command will find ‘myfile’ from the hello folder.
+
+
+28. klist
+This command is used to display a list of cached Kerberos tickets. This notice refers to Windows Server 2012. In Kerberos, the client sends a request for a ticket to the key distribution centre. It is the process of authentication. The klist command is used to list cached tickets. This command is also used with various parameters and if parameters are not provided then the klist command will give all the tickets with currently logged in user. For example,
+
+klist sessions
+
+The above command is used when you want to diagnose a logon session for a user or a service. This command is used to find the LogonID from the klist.
+
+30. mstsc
+This command is used to create a remote desktop connection to Remote Desktop Session Host (rd Session Host) servers or other remote machines. This command is also used to edit the current remote Desktop Connection (.rdp) configuration file. It is also used to transfer old connection files that were designed with the Client Connection Manager to new .rdp connection files. This windows command is used on a Windows Server and many other versions
+
+ 
+
+of the Windows operating system. It can be used with different parameters and it can also be used to start a remote desktop connection in a full-screen mode. In other words, this command is mainly used for remote desktop connections. For example,
+
+mstsc/f
+
+The above command is used to connect to a screen in a full-screen mode.
+
+
+
+
+ 
+ RunDumpWcnCache
+'c:\Windows\System32>grep "\s*cmd = \"cmd /c " ./gatherNetworkInfo.vbs | clip
+'Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurityVerbose
+"& commandname &" "& filename &" , RunDumpWcnCache
+arp -a 
+certutil -v -enterprise -store -silent NTAuth
+certutil -v -store -silent -user My
+certutil -v -store -silent My
+certutil -v -store -silent root
+certutil -v -user -store -silent root
+dispdiag -out dispdiag_stop.dat
+dxdiag /t 
+dxdiag /t dxdiag.txt
+gpresult /scope:computer /v 
+ipconfig /all
+ipconfig /displaydns 
+nbtstat -c 
+nbtstat -n 
+net config rdr 
+net config srv 
+net share 
+netcfg -m
+netsh advfirewall consec show rule name=all verbose
+netsh advfirewall firewall show rule name=all verbose
+netsh advfirewall monitor show consec
+netsh advfirewall monitor show consec rule name=all
+netsh advfirewall monitor show currentprofile
+netsh advfirewall monitor show firewall
+netsh advfirewall monitor show firewall rule name=all
+netsh advfirewall show currentprofile
+netsh int ipv6 show neigh 
+netsh interface httpstunnel show interface
+netsh interface httpstunnel show statistics
+netsh interface teredo show state
+netsh lan show interfaces
+netsh lan show profiles
+netsh lan show settings
+netsh mbn show capability interface=*
+netsh mbn show interfaces
+netsh mbn show profile name=* interface=*
+netsh mbn show readyinfo interface=*
+netsh namespace show effective 
+netsh namespace show policy 
+netsh wfp show filters file=
+netsh wfp show netevents file=
+netsh wfp show state file=
+netsh wfp show sysports file=
+netsh winsock show catalog 
+netsh wl show d 
+netsh wl show i 
+netsh wlan sho net m=b 
+netsh wlan show all 
+netsh wlan show device
+netsh wlan show interfaces 
+netsh wlan show wlanreport
+netsh.exe winsock show catalog
+objShell.Run cmd, 0, True
+powercfg.exe /batteryreport /output
+reg export 
+reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc\Parameters
+Reg.exe Export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\EnterpriseDataProtection\Policies
+Reg.exe Export HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PolicyManager\Providers 
+Reg.exe Export HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HomeGroupListener
+Reg.exe Export HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HomeGroupProvider
+reg.exe query ""hklm\system\CurrentControlSet\Services\Winsock\Setup Migration"" /v ""Provider List""
+reg.exe query hklm\system\CurrentControlSet\Services\Winsock\Parameters /v Transports
+route print
+sc query eaphost 
+sc query fdrespub 
+sc query upnphost  
+sc query wcncsvc 
+sc query wlansvc 
+sc.exe qc dhcp
+sc.exe qc nativewifip
+sc.exe qc wlansvc
+sc.exe queryex dhcp
+sc.exe queryex nativewifip
+sc.exe queryex wlansvc
+set processor
+set u
+systeminfo
+tasklist /svc 
+time /t 
+wevtutil al
+wevtutil epl
+wevtutil epl ""Microsoft-Windows-Hyper-V-VMMS-Networking""
+wevtutil epl ""Microsoft-Windows-Wcmsvc/Operational""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurity
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/ConnectionSecurityVerbose""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/Firewall""
+wevtutil epl ""Microsoft-Windows-Windows Firewall With Advanced Security/FirewallVerbose"" 
+wevtutil epl ""Microsoft-Windows-WLAN-AutoConfig/Operational""
+wevtutil epl ""Microsoft-Windows-WWAN-SVC-EVENTS/Operational""
+wevtutil epl Application
+wevtutil epl Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
+wevtutil epl System 
+wevtutil epl System /q:""*[System[Provider[@Name='Microsoft-Windows-Hyper-V-VmSwitch']]]"" 
+wmic qfe
+
+
+
+## Windows Server CLI Commands
+
+
+-   [active](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/active)
+-   [add](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/add)
+-   [add alias](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/add-alias)
+-   [add volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/add-volume)
+-   [append](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/append)
+-   [arp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/arp)
+-   [assign](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/assign)
+-   [assoc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/assoc)
+-   [at](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/at)
+-   [atmadm](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/atmadm)
+-   [attach-vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attach-vdisk)
+-   [attrib](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attrib)
+-   attributes
+    -   [attributes](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attributes)
+    -   [attributes disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attributes-disk)
+    -   [attributes volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/attributes-volume)
+-   auditpol
+    -   [auditpol](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol)
+    -   [auditpol backup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-backup)
+    -   [auditpol clear](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-clear)
+    -   [auditpol get](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-get)
+    -   [auditpol list](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-list)
+    -   [auditpol remove](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-remove)
+    -   [auditpol resourcesacl](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-resourcesacl)
+    -   [auditpol restore](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-restore)
+    -   [auditpol set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/auditpol-set)
+-   [autochk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/autochk)
+-   [autoconv](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/autoconv)
+-   [autofmt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/autofmt)
+-   [automount](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/automount)
+-   [bcdboot](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bcdboot)
+-   [bcdedit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bcdedit)
+-   bdehdcfg
+    -   [bdehdcfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg)
+    -   [bdehdcfg driveinfo](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-driveinfo)
+    -   [bdehdcfg newdriveletter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-newdriveletter)
+    -   [bdehdcfg quiet](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-quiet)
+    -   [bdehdcfg restart](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-restart)
+    -   [bdehdcfg size](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-size)
+    -   [bdehdcfg target](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bdehdcfg-target)
+-   [begin backup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/begin-backup)
+-   [begin restore](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/begin-restore)
+-   bitsadmin
+-   bootcfg
+    -   [bootcfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg)
+    -   [bootcfg addsw](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-addsw)
+    -   [bootcfg copy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-copy)
+    -   [bootcfg dbg1394](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-dbg1394)
+    -   [bootcfg debug](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-debug)
+    -   [bootcfg default](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-default)
+    -   [bootcfg delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-delete)
+    -   [bootcfg ems](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-ems)
+    -   [bootcfg query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-query)
+    -   [bootcfg raw](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-raw)
+    -   [bootcfg rmsw](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-rmsw)
+    -   [bootcfg timeout](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bootcfg-timeout)
+-   [break](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/break)
+-   [cacls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cacls)
+-   [call](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/call)
+-   [cd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd)
+-   [certreq](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certreq_1)
+-   [certutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil)
+-   change
+    -   [change](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/change)
+    -   [change logon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/change-logon)
+    -   [change port](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/change-port)
+    -   [change user](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/change-user)
+-   [chcp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chcp)
+-   [chdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chdir)
+-   [chglogon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chglogon)
+-   [chgport](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chgport)
+-   [chgusr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chgusr)
+-   [chkdsk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chkdsk)
+-   [chkntfs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/chkntfs)
+-   [choice](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/choice)
+-   [cipher](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cipher)
+-   [clean](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/clean)
+-   [cleanmgr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cleanmgr)
+-   [clip](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/clip)
+-   [cls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cls)
+-   [cmd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd)
+-   [cmdkey](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmdkey)
+-   [cmstp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmstp)
+-   [color](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/color)
+-   [comp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/comp)
+-   [compact](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/compact)
+-   [compact vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/compact-vdisk)
+-   convert
+    -   [convert](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/convert)
+    -   [convert basic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/convert-basic)
+    -   [convert dynamic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/convert-dynamic)
+    -   [convert gpt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/convert-gpt)
+    -   [convert mbr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/convert-mbr)
+-   [copy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/copy)
+-   [cprofile](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cprofile)
+-   create
+    -   [create](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create)
+    -   [create partition efi](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-partition-efi)
+    -   [[create partition extended](https://docs.microsoft.com/en-us/)
+    -   [create partition logical](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-partition-logical)
+    -   [create partition msr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-partition-msr)
+    -   [create partition primary](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-partition-primary)
+    -   [create volume mirror](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-volume-mirror)
+    -   [create volume raid](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-volume-raid)
+    -   [create volume simple](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-volume-simple)
+    -   [create volume stripe](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/create-volume-stripe)
+-   [cscript](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cscript)
+-   [date](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/date)
+-   [dcgpofix](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dcgpofix)
+-   [defrag](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/defrag)
+-   [del](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del)
+-   delete
+    -   [delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/delete)
+    -   [delete disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/delete-disk)
+    -   [delete partition](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/delete-partition)
+    -   [delete shadows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/delete-shadows)
+    -   [delete volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/delete-volume)
+-   [detach vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detach-vdisk)
+-   detail
+    -   [detail](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detail)
+    -   [detail disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detail-disk)
+    -   [detail partition](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detail-partition)
+    -   [detail vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detail-vdisk)
+    -   [detail volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/detail-volume)
+-   dfsdiag
+    -   [dfsdiag](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag)
+    -   [dfsdiag testdcs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag-testdcs)
+    -   [dfsdiag testdfsconfig](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag-testdfsconfig)
+    -   [dfsdiag testdfsintegrity](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag-testdfsintegrity)
+    -   [dfsdiag testreferral](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag-testreferral)
+    -   [dfsdiag testsites](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsdiag-testsites)
+-   [dfsrmig](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dfsrmig)
+-   [diantz](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diantz)
+-   [dir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dir)
+-   [diskcomp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskcomp)
+-   [diskcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskcopy)
+-   [diskpart](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskpart)
+-   [diskperf](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskperf)
+-   [diskraid](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskraid)
+-   [diskshadow](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/diskshadow)
+-   [dispdiag](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dispdiag)
+-   [dnscmd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/dnscmd)
+-   [doskey](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/doskey)
+-   [driverquery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/driverquery)
+-   [echo](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/echo)
+-   [edit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/edit)
+-   [endlocal](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/endlocal)
+-   [end restore](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/end-restore)
+-   [erase](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/erase)
+-   [eventcreate](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/eventcreate)
+-   [eventquery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/eventquery)
+-   [eventtriggers](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/eventtriggers)
+-   [Evntcmd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/evntcmd)
+-   [exec](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/exec)
+-   [exit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/exit)
+-   [expand](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/expand)
+-   [expand vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/expand-vdisk)
+-   [expose](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/expose)
+-   [extend](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/extend)
+-   [extract](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/extract)
+-   [fc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fc)
+-   [filesystems](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/filesystems)
+-   [find](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/find)
+-   [findstr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/findstr)
+-   [finger](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/finger)
+-   [flattemp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/flattemp)
+-   [fondue](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fondue)
+-   [for](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/for)
+-   [forfiles](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/forfiles)
+-   [format](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/format)
+-   [freedisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/freedisk)
+-   fsutil
+    -   [fsutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil)
+    -   [fsutil 8dot3name](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-8dot3name)
+    -   [fsutil behavior](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior)
+    -   [fsutil dirty](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-dirty)
+    -   [fsutil file](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-file)
+    -   [fsutil fsinfo](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-fsinfo)
+    -   [fsutil hardlink](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-hardlink)
+    -   [fsutil objectid](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-objectid)
+    -   [fsutil quota](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-quota)
+    -   [fsutil repair](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-repair)
+    -   [fsutil reparsepoint](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-reparsepoint)
+    -   [fsutil resource](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-resource)
+    -   [fsutil sparse](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-sparse)
+    -   [fsutil tiering](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-tiering)
+    -   [fsutil transaction](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-transaction)
+    -   [fsutil usn](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-usn)
+    -   [fsutil volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-volume)
+    -   [fsutil wim](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-wim)
+-   ftp
+    -   [ftp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp)
+    -   [ftp append](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-append)
+    -   [ftp ascii](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-ascii)
+    -   [ftp bell](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-bell_1)
+    -   [ftp binary](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-binary)
+    -   [ftp bye](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-bye)
+    -   [ftp cd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-cd)
+    -   [ftp close](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-close_1)
+    -   [ftp debug](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-debug)
+    -   [ftp delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-delete)
+    -   [ftp dir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-dir)
+    -   [ftp disconnect](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-disconnect_1)
+    -   [ftp get](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-get)
+    -   [ftp glob](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-glob_1)
+    -   [ftp hash](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-hash_1)
+    -   [ftp lcd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-lcd)
+    -   [ftp literal](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-literal_1)
+    -   [ftp ls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-ls_1)
+    -   [ftp mget](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-mget)
+    -   [ftp mkdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-mkdir)
+    -   [ftp mls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-mls_1)
+    -   [ftp mput](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-mput_1)
+    -   [ftp open](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-open_1)
+    -   [ftp prompt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-prompt_1)
+    -   [ftp put](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-put)
+    -   [ftp pwd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-pwd_1)
+    -   [ftp quit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-quit)
+    -   [ftp quote](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-quote)
+    -   [ftp recv](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-recv)
+    -   [ftp remotehelp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-remotehelp_1)
+    -   [ftp rename](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-rename)
+    -   [ftp rmdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-rmdir)
+    -   [ftp send](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-send_1)
+    -   [ftp status](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-status)
+    -   [ftp trace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-trace_1)
+    -   [ftp type](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-type)
+    -   [ftp user](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-user)
+    -   [ftp verbose](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp-verbose_1)
+    -   [ftp mdelete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp.mdelete_1)
+    -   [ftp mdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftp.mdir)
+-   [ftype](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ftype)
+-   [fveupdate](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fveupdate)
+-   [getmac](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/getmac)
+-   [gettype](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/gettype)
+-   [goto](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/goto)
+-   [gpfixup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/gpfixup)
+-   [gpresult](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/gpresult)
+-   [gpt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/gpt)
+-   [gpupdate](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/gpupdate)
+-   [graftabl](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/graftabl)
+-   [help](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/help)
+-   [helpctr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/helpctr)
+-   [hostname](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/hostname)
+-   [icacls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/icacls)
+-   [if](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/if)
+-   [import (shadowdisk)](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/import)
+-   [import (diskpart)](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/import_1)
+-   [inactive](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/inactive)
+-   [inuse](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/inuse)
+-   [ipconfig](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipconfig)
+-   [ipxroute](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ipxroute)
+-   [irftp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/irftp)
+-   [jetpack](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/jetpack)
+-   [klist](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/klist)
+-   ksetup
+-   [ktmutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ktmutil)
+-   [ktpass](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ktpass)
+-   [label](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/label)
+-   list
+    -   [list](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/list)
+    -   [list providers](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/list-providers)
+    -   [list shadows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/list-shadows)
+    -   [list writers](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/list-writers)
+-   [load metadata](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/load-metadata)
+-   [lodctr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/lodctr)
+-   logman
+    -   [logman](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman)
+    -   [logman create](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create)
+    -   [logman create alert](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create-alert)
+    -   [logman create api](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create-api)
+    -   [logman create cfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create-cfg)
+    -   [logman create counter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create-counter)
+    -   [logman create trace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-create-trace)
+    -   [logman delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-delete)
+    -   [logman import and logman export](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-import-export)
+    -   [logman query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-query)
+    -   [logman start and logman stop](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-start-stop)
+    -   [logman update](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update)
+    -   [logman update alert](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update-alert)
+    -   [logman update api](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update-api)
+    -   [logman update cfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update-cfg)
+    -   [logman update counter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update-counter)
+    -   [logman update trace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logman-update-trace)
+-   [logoff](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/logoff)
+-   [lpq](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/lpq)
+-   [lpr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/lpr)
+-   [macfile](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/macfile)
+-   [makecab](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/makecab)
+-   manage bde
+    -   [manage bde](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde)
+    -   [manage bde status](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-status)
+    -   [manage bde on](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-on)
+    -   [manage bde off](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-off)
+    -   [manage bde pause](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-pause)
+    -   [manage bde resume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-resume)
+    -   [manage bde lock](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-lock)
+    -   [manage bde unlock](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-unlock)
+    -   [manage bde autounlock](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-autounlock)
+    -   [manage bde protectors](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-protectors)
+    -   [manage bde tpm](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-tpm)
+    -   [manage bde setidentifier](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-setidentifier)
+    -   [manage bde forcerecovery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-forcerecovery)
+    -   [manage bde changepassword](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-changepassword)
+    -   [manage bde changepin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-changepin)
+    -   [manage bde changekey](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-changekey)
+    -   [manage bde keypackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-keypackage)
+    -   [manage bde upgrade](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-upgrade)
+    -   [manage bde wipefreespace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-wipefreespace)
+-   [mapadmin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mapadmin)
+-   [md](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/md)
+-   [merge vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/merge-vdisk)
+-   [mkdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mkdir)
+-   [mklink](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+-   [mmc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mmc)
+-   [mode](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mode)
+-   [more](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/more)
+-   [mount](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mount)
+-   [mountvol](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mountvol)
+-   [move](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move)
+-   [mqbkup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mqbkup)
+-   [mqsvc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mqsvc)
+-   [mqtgsvc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mqtgsvc)
+-   [msdt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msdt)
+-   [msg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msg)
+-   [msiexec](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msiexec)
+-   [msinfo32](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/msinfo32)
+-   [mstsc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mstsc)
+-   [nbtstat](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nbtstat)
+-   [netcfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netcfg)
+-   [net print](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/net-print)
+-   [netsh](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netsh)
+-   [netstat](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/netstat)
+-   [nfsadmin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nfsadmin)
+-   [nfsshare](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nfsshare)
+-   [nfsstat](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nfsstat)
+-   [nlbmgr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nlbmgr)
+-   nslookup
+    -   [nslookup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup)
+    -   [nslookup exit Command](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-exit-command)
+    -   [nslookup finger Command](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-finger-command)
+    -   [nslookup help](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-help)
+    -   [nslookup ls](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-ls)
+    -   [nslookup lserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-lserver)
+    -   [nslookup root](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-root)
+    -   [nslookup server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-server)
+    -   [nslookup set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set)
+    -   [nslookup set all](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-all)
+    -   [nslookup set class](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-class)
+    -   [nslookup set d2](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-d2)
+    -   [nslookup set debug](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-debug)
+    -   [nslookup set domain](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-domain)
+    -   [nslookup set port](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-port)
+    -   [nslookup set querytype](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-querytype)
+    -   [nslookup set recurse](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-recurse)
+    -   [nslookup set retry](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-retry)
+    -   [nslookup set root](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-root)
+    -   [nslookup set search](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-search)
+    -   [nslookup set srchlist](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-srchlist)
+    -   [nslookup set timeout](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-timeout)
+    -   [nslookup set type](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-type)
+    -   [nslookup set vc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-set-vc)
+    -   [nslookup view](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/nslookup-view)
+-   [ntbackup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ntbackup)
+-   [ntcmdprompt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ntcmdprompt)
+-   [ntfrsutl](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ntfrsutl)
+-   offline
+    -   [offline](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/offline)
+    -   [offline disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/offline-disk)
+    -   [offline volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/offline-volume)
+-   online
+    -   [online](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/online)
+    -   [online disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/online-disk)
+    -   [online volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/online-volume)
+-   [openfiles](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/openfiles)
+-   [pagefileconfig](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pagefileconfig)
+-   [path](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/path)
+-   [pathping](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pathping)
+-   [pause](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pause)
+-   [pbadmin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pbadmin)
+-   [pentnt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pentnt)
+-   [perfmon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/perfmon)
+-   [ping](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ping)
+-   pktmon
+    -   [pktmon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon)
+    -   [pktmon counters](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-counters)
+    -   [pktmon etl2pcap](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-etl2pcap)
+    -   [pktmon etl2txt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-etl2txt)
+    -   [pktmon filter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-filter)
+    -   [pktmon filter add](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-filter-add)
+    -   [pktmon hex2pkt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-hex2pkt)
+    -   [pktmon list](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-list)
+    -   [pktmon reset](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-reset)
+    -   [pktmon start](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-start)
+    -   [pktmon status](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-status)
+    -   [pktmon unload](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pktmon-unload)
+-   [pnpunattend](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pnpunattend)
+-   [pnputil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pnputil)
+-   [popd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/popd)
+-   [powershell](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell)
+-   [powershell ise](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/powershell_ise)
+-   [print](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/print)
+-   [prncnfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prncnfg)
+-   [prndrvr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prndrvr)
+-   [prnjobs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prnjobs)
+-   [prnmngr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prnmngr)
+-   [prnport](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prnport)
+-   [prnqctl](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prnqctl)
+-   [prompt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/prompt)
+-   [pubprn](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pubprn)
+-   [pushd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pushd)
+-   [pushprinterconnections](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pushprinterconnections)
+-   [pwlauncher](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/pwlauncher)
+-   [qappsrv](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/qappsrv)
+-   [qprocess](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/qprocess)
+-   query
+    -   [query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/query)
+    -   [query process](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/query-process)
+    -   [query session](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/query-session)
+    -   [query termserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/query-termserver)
+    -   [query user](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/query-user)
+-   [quser](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/quser)
+-   [qwinsta](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/qwinsta)
+-   [rcp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rcp)
+-   [rd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rd)
+-   [rdpsign](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rdpsign)
+-   [recover](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/recover)
+-   [recover disk group](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/recover_1)
+-   [refsutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/refsutil)
+-   reg
+    -   [reg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg)
+    -   [reg add](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-add)
+    -   [reg compare](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-compare)
+    -   [reg copy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-copy)
+    -   [reg delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-delete)
+    -   [reg export](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-export)
+    -   [reg import](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-import)
+    -   [reg load](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-load)
+    -   [reg query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-query)
+    -   [reg restore](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-restore)
+    -   [reg save](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-save)
+    -   [reg unload](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reg-unload)
+-   [regini](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/regini)
+-   [regsvr32](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/regsvr32)
+-   [relog](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/relog)
+-   [rem](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rem)
+-   [remove](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/remove)
+-   [ren](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ren)
+-   [rename](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rename)
+-   repair
+    -   [repair](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/repair)
+    -   [repair bde](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/repair-bde)
+-   [replace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/replace)
+-   [rescan](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rescan)
+-   reset
+    -   [reset](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reset)
+    -   [reset session](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/reset-session)
+-   [retain](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/retain)
+-   [revert](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/revert)
+-   [rexec](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rexec)
+-   [risetup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/risetup)
+-   [rmdir](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rmdir)
+-   [robocopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/robocopy)
+-   [route ws2008](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008)
+-   [rpcinfo](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rpcinfo)
+-   [rpcping](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rpcping)
+-   [rsh](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rsh)
+-   [rundll32](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rundll32)
+-   [rundll32 printui](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rundll32-printui)
+-   [rwinsta](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/rwinsta)
+-   [san](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/san)
+-   [sc config](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config)
+-   [sc create](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create)
+-   [sc delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sc-delete)
+-   [sc query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sc-query)
+-   schtasks
+    -   [schtasks](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks)
+    -   [schtasks-change](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-change)
+    -   [schtasks-create](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-create)
+    -   [schtasks-delete](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-delete)
+    -   [schtasks-end](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-end)
+    -   [schtasks-query](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-query)
+    -   [schtasks-run](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-run)
+-   scwcmd
+    -   [scwcmd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd)
+    -   [scwcmd analyze](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-analyze)
+    -   [scwcmd configure](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-configure)
+    -   [scwcmd register](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-register)
+    -   [scwcmd rollback](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-rollback)
+    -   [scwcmd transform](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-transform)
+    -   [scwcmd view](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/scwcmd-view)
+-   secedit
+    -   [secedit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit)
+    -   [secedit analyze](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-analyze)
+    -   [secedit configure](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-configure)
+    -   [secedit export](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-export)
+    -   [secedit generaterollback](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-generaterollback)
+    -   [secedit import](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-import)
+    -   [secedit validate](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/secedit-validate)
+-   select
+    -   [select](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/select)
+    -   [select disk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/select-disk)
+    -   [select partition](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/select-partition)
+    -   [select vdisk](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/select-vdisk)
+    -   [select volume](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/select-volume)
+-   [serverceipoptin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/serverceipoptin)
+-   [servermanagercmd](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/servermanagercmd)
+-   [serverweroptin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/serverweroptin)
+-   [Services for Network File System (NFS) command reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
+-   [set environmental variables](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set_1)
+-   set shadow copy
+    -   [set shadow copy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set)
+    -   [set context](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set-context)
+    -   [set id](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set-id)
+    -   [set metadata](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set-metadata)
+    -   [set option](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set-option)
+    -   [set verbose](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/set-verbose)
+-   [setx](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/setx)
+-   [sfc](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sfc)
+-   [shadow](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/shadow)
+-   [shift](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/shift)
+-   [showmount](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/showmount)
+-   [shrink](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/shrink)
+-   [shutdown](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown)
+-   [simulate restore](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/simulate-restore)
+-   [sort](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sort)
+-   [start](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/start)
+-   [subst](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/subst)
+-   [sxstrace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sxstrace)
+-   [sysocmgr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/sysocmgr)
+-   [systeminfo](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo)
+-   [takeown](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/takeown)
+-   tapicfg
+    -   [tapicfg](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg)
+    -   [tapicfg install](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-install)
+    -   [tapicfg remove](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-remove)
+    -   [tapicfg publishscp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-publishscp)
+    -   [tapicfg removescp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-removescp)
+    -   [tapicfg show](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-show)
+    -   [tapicfg makedefault](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tapicfg-makedefault)
+-   [taskkill](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/taskkill)
+-   [tasklist](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tasklist)
+-   [tcmsetup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tcmsetup)
+-   telnet
+    -   [telnet](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet)
+    -   [telnet close](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-close)
+    -   [telnet display](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-display)
+    -   [telnet open](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-open)
+    -   [telnet quit](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-quit)
+    -   [telnet send](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-send)
+    -   [telnet set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-set)
+    -   [telnet status](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-status)
+    -   [telnet unset](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/telnet-unset)
+-   [tftp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tftp)
+-   [time](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/time)
+-   [timeout](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/timeout)
+-   [title](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/title)
+-   [tlntadmn](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tlntadmn)
+-   [tpmtool](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tpmtool)
+-   [tpmvscmgr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tpmvscmgr)
+-   [tracerpt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tracerpt)
+-   [tracert](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tracert)
+-   [tree](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tree)
+-   [tscon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tscon)
+-   [tsdiscon](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tsdiscon)
+-   [tsecimp](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tsecimp)
+-   [tskill](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tskill)
+-   [tsprof](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tsprof)
+-   [type](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/type)
+-   [typeperf](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/typeperf)
+-   [tzutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/tzutil)
+-   [unexpose](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/unexpose)
+-   [uniqueid](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/uniqueid)
+-   [unlodctr](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/unlodctr)
+-   [ver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ver)
+-   [verifier](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/verifier)
+-   [verify](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/verify)
+-   [vol](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vol)
+-   vssadmin
+    -   [vssadmin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin)
+    -   [vssadmin delete shadows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin-delete-shadows)
+    -   [vssadmin list shadows](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin-list-shadows)
+    -   [vssadmin list writers](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin-list-writers)
+    -   [vssadmin resize shadowstorage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/vssadmin-resize-shadowstorage)
+-   [waitfor](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/waitfor)
+-   wbadmin
+    -   [wbadmin](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin)
+    -   [wbadmin delete catalog](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-delete-catalog)
+    -   [wbadmin delete systemstatebackup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-delete-systemstatebackup)
+    -   [wbadmin disable backup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-disable-backup)
+    -   [wbadmin enable backup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-enable-backup)
+    -   [wbadmin get disks](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-get-disks)
+    -   [wbadmin get items](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-get-items)
+    -   [wbadmin get status](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-get-status)
+    -   [wbadmin get versions](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-get-versions)
+    -   [wbadmin restore catalog](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-restore-catalog)
+    -   [wbadmin start backup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-backup)
+    -   [wbadmin start recovery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-recovery)
+    -   [wbadmin start sysrecovery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-sysrecovery)
+    -   [wbadmin start systemstatebackup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-systemstatebackup)
+    -   [wbadmin start systemstaterecovery](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-systemstaterecovery)
+    -   [wbadmin stop job](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-stop-job)
+-   wdsutil
+    -   [wdsutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil)
+    -   [wdsutil add](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add)
+    -   [wdsutil add alldriverpackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-alldriverpackages)
+    -   [wdsutil add device](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-device)
+    -   [wdsutil add drivergroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-drivergroup)
+    -   [wdsutil add drivergroupfilter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-drivergroupfilter)
+    -   [wdsutil add drivergrouppackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-drivergrouppackage)
+    -   [wdsutil add drivergrouppackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-drivergrouppackages)
+    -   [wdsutil add driverpackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-driverpackage)
+    -   [wdsutil add image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-image)
+    -   [wdsutil add imagedriverpackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-imagedriverpackage)
+    -   [wdsutil add imagedriverpackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-imagedriverpackages)
+    -   [wdsutil add imagegroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-add-imagegroup)
+    -   [wdsutil approve autoadddevices](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-approve-autoadddevices)
+    -   [wdsutil convert riprepimage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-convert-riprepimage)
+    -   [wdsutil copy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-copy)
+    -   [wdsutil copy drivergroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-copy-drivergroup)
+    -   [wdsutil copy image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-copy-image)
+    -   [wdsutil delete autoadddevices](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-delete-autoadddevices)
+    -   [wdsutil disable](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-disable)
+    -   [wdsutil disable server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-disable-server)
+    -   [wdsutil disable transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-disable-transportserver)
+    -   [wdsutil disconnect client](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-disconnect-client)
+    -   [wdsutil enable](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-enable)
+    -   [wdsutil enable server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-enable-server)
+    -   [wdsutil enable transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-enable-transportserver)
+    -   [wdsutil export image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-export-image)
+    -   [wdsutil get](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get)
+    -   [wdsutil get alldevices](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-alldevices)
+    -   [wdsutil get alldrivergroups](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-alldrivergroups)
+    -   [wdsutil get alldriverpackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-alldriverpackages)
+    -   [wdsutil get allimagegroups](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-allimagegroups)
+    -   [wdsutil get allimages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-allimages)
+    -   [wdsutil get allmulticasttransmissions](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-allmulticasttransmissions)
+    -   [wdsutil get allnamespaces](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-allnamespaces)
+    -   [wdsutil get allservers](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-allservers)
+    -   [wdsutil get autoadddevices](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-autoadddevices)
+    -   [wdsutil get device](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-device)
+    -   [wdsutil get drivergroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-drivergroup)
+    -   [wdsutil get driverpackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-driverpackage)
+    -   [wdsutil get image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-image)
+    -   [wdsutil get imagefile](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-imagefile)
+    -   [wdsutil get imagegroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-imagegroup)
+    -   [wdsutil get multicasttransmission](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-multicasttransmission)
+    -   [wdsutil get namespace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-namespace)
+    -   [wdsutil get server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-server)
+    -   [wdsutil get transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-get-transportserver)
+    -   [wdsutil initialize server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-initialize-server)
+    -   [wdsutil new](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-new)
+    -   [wdsutil new captureimage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-new-captureimage)
+    -   [wdsutil new discoverimage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-new-discoverimage)
+    -   [wdsutil new multicasttransmission](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-new-multicasttransmission)
+    -   [wdsutil new namespace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-new-namespace)
+    -   [wdsutil progress](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-progress)
+    -   [wdsutil reject autoadddevices](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-reject-autoadddevices)
+    -   [wdsutil remove](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove)
+    -   [wdsutil remove drivergroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-drivergroup)
+    -   [wdsutil remove drivergroupfilter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-drivergroupfilter)
+    -   [wdsutil remove drivergrouppackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-drivergrouppackage)
+    -   [wdsutil remove drivergrouppackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-drivergrouppackages)
+    -   [wdsutil remove driverpackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-driverpackage)
+    -   [wdsutil remove driverpackages](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-driverpackages)
+    -   [wdsutil remove image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-image)
+    -   [wdsutil remove imagegroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-imagegroup)
+    -   [wdsutil remove multicasttransmission](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-multicasttransmission)
+    -   [wdsutil remove namespace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-remove-namespace)
+    -   [wdsutil replace image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-replace-image)
+    -   [wdsutil set](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set)
+    -   [wdsutil set device](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-device)
+    -   [wdsutil set drivergroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-drivergroup)
+    -   [wdsutil set drivergroupfilter](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-drivergroupfilter)
+    -   [wdsutil set driverpackage](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-driverpackage)
+    -   [wdsutil set image](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-image)
+    -   [wdsutil set imagegroup](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-imagegroup)
+    -   [wdsutil set server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-server)
+    -   [wdsutil set transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-set-transportserver)
+    -   [wdsutil start multicasttransmission](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-start-multicasttransmission)
+    -   [wdsutil start namespace](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-start-namespace)
+    -   [wdsutil start server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-start-server)
+    -   [wdsutil start transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-start-transportserver)
+    -   [wdsutil stop server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-stop-server)
+    -   [wdsutil stop transportserver](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-stop-transportserver)
+    -   [wdsutil uninitialize server](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-uninitialize-server)
+    -   [wdsutil update serverfiles](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-update-serverfiles)
+    -   [wdsutil verbose](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wdsutil-verbose)
+-   [wecutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wecutil)
+-   [wevtutil](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil)
+-   [where](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/where)
+-   [whoami](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/whoami)
+-   [winnt](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winnt)
+-   [winnt32](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winnt32)
+-   [winpop](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winpop)
+-   [winrs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winrs)
+-   [winsat mem](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winsat-mem)
+-   [winsat mfmedia](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/winsat-mfmedia)
+-   [wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
+-   [writer](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/writer)
+-   [wscript](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wscript)
+-   [xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy)

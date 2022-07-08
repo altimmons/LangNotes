@@ -1,0 +1,135 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+m ctrl+`",
+        "command": "markdownExtended.toggleBlockQuote",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    // {
+    //     "key": "ctrl+shift+q",
+    //     "command": "-markdownExtended.toggleBlockQuote",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+    {
+        "key": "ctrl+m m",
+        "command": "markdownExtended.toggleMark",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "-markdownExtended.toggleMark",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m o",
+        "command": "markdownExtended.toggleOList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+l ctrl+o",
+        "command": "-markdownExtended.toggleOList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m s",
+        "command": "markdownExtended.toggleStrikethrough",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+s",
+        "command": "-markdownExtended.toggleStrikethrough",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m i",
+        "command": "markdownExtended.toggleItalics",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    // {
+    //     "key": "ctrl+i",
+    //     "command": "-markdownExtended.toggleItalics",
+    //     "when": "editorTextFocus && editorLangId == 'markdown'"
+    // },
+    {
+        "key": "ctrl+m h",
+        "command": "markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+`",
+        "command": "-markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m c",
+        "command": "markdownExtended.toggleCodeBlock",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "shift+alt+`",
+        "command": "-markdownExtended.toggleCodeBlock",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m b",
+        "command": "markdownExtended.toggleBold",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-markdownExtended.toggleBold",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m -",
+        "command": "markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "-markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m u",
+        "command": "markdownExtended.toggleUList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+l ctrl+u",
+        "command": "-markdownExtended.toggleUList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m =",
+        "command": "markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m shift+=",
+        "command": "markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m =",
+        "command": "markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "-markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+c",
+        "command": "markdownExtended.copy"
+    },
+    {
+        "key": "ctrl+m ctrl+shift+c",
+        "command": "markdownExtended.copyWithStyle"
+    },
+    {
+        "key": "ctrl+m x",
+        "command": "markdownExtended.export"
+    }
+]

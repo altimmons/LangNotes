@@ -2,14 +2,341 @@
 
 [[TOC]]
 
+
+
+
+#### _Example {style="font-style:bold; font-size:1.2em";color:orangered}_
+----
+
+
+(^#{4} )(.*?$)
+improved so it doesnt double
+(^#{4} )([^_].*?$)
+\n$1$2 {style="font-style:bold; font-size:1.2em";color:orangered}\n----
 ## Settings
 
 Brings up the command browser in command line
 `SHOW-COMMAND`
 `SHOW-COMMAND`
+~~`SHOW-COMMAND`~~
 `SHOW-COMMAND`
 `SHOW-COMMAND`
-`SHOW-COMMAND`
+
+
+Non-blocking version:
+
+`Get-Command | Out-GridView`
+
+
+## Tutorial Links
+
+Version - PowerShell 7.2 (LTS)
+-   [How to use this documentation](https://docs.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.2)
+-   Overview
+    -   [What is PowerShell?](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.2)
+    -   [What is a PowerShell command?](https://docs.microsoft.com/en-us/powershell/scripting/powershell-commands?view=powershell-7.2)
+-   Install
+-   Learning PowerShell
+    -   PowerShell 101
+        -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction?view=powershell-7.2)
+        -   [Getting Started with PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.2)
+        -   [The Help System](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/02-help-system?view=powershell-7.2)
+        -   [ ==Discovering objects, properties, and methods == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/03-discovering-objects?view=powershell-7.2)
+        -   [One-liners and the pipeline](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/04-pipelines?view=powershell-7.2)
+        -   [Formatting, aliases, providers, comparison](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/05-formatting-aliases-providers-comparison?view=powershell-7.2)
+        -   [Flow control](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/06-flow-control?view=powershell-7.2)
+        -   [Working with WMI](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/07-working-with-wmi?view=powershell-7.2)
+        -   [PowerShell remoting](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/08-powershell-remoting?view=powershell-7.2)
+        -   [ ==Functions == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2)
+        -   [ ==Script modules == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/10-script-modules?view=powershell-7.2)
+        -   [Appendix A - Help Syntax](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/appendix-a?view=powershell-7.2)
+    -   Tutorials
+        -   [Introduction](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/00-introduction?view=powershell-7.2)
+        -   [Discover PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/01-discover-powershell?view=powershell-7.2)
+    -   Deep dives
+        -   [Overview](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/overview?view=powershell-7.2)
+        -   Everything you want to know about ...
+            -  [ ==Everything you want to know about arrays == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-arrays?view=powershell-7.2)
+            -   [ ==Everything you want to know about hashtables == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable?view=powershell-7.2)
+            -   [ ==Everything you want to know about PSCustomObject == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-pscustomobject?view=powershell-7.2)
+            -   [ ==Everything you want to know about string substitution == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-string-substitutions?view=powershell-7.2)
+            -   [ ==Everything you want to know about if/then/else == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-if?view=powershell-7.2)
+            -   [ ==Everything you want to know about switch == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-switch?view=powershell-7.2)
+            -   [ ==Everything you want to know about exceptions == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-exceptions?view=powershell-7.2)
+            -   [ ==Everything you want to know about $null == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-null?view=powershell-7.2)
+            -   [ ==Everything you want to know about ShouldProcess == ](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-shouldprocess?view=powershell-7.2)
+        -   [Write-Progress while multithreading](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/write-progress-across-multiple-threads?view=powershell-7.2)
+        -   [Add Credential support to PowerShell functions](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/add-credentials-to-powershell-functions?view=powershell-7.2)
+    -   Sample scripts
+        -   [Sample scripts for administration](https://docs.microsoft.com/en-us/powershell/scripting/samples/sample-scripts-for-administration?view=powershell-7.2)
+        -   Working with objects
+            -   [ ==Viewing object structure - Get-Member == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/viewing-object-structure--get-member-?view=powershell-7.2)
+            -   [ ==Selecting parts of object - Select-Object == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-parts-of-objects--select-object-?view=powershell-7.2)
+            -   [Removing objects from the pipeline - Where-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/removing-objects-from-the-pipeline--where-object-?view=powershell-7.2)
+            -   [ ==Sorting objects == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/sorting-objects?view=powershell-7.2)
+            -   [Creating .NET and COM objects - New-Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-7.2)
+            -   [Using static classes and methods](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-static-classes-and-methods?view=powershell-7.2)
+            -   [Getting WMI objects - Get-CimInstance](https://docs.microsoft.com/en-us/powershell/scripting/samples/getting-wmi-objects--get-ciminstance-?view=powershell-7.2)
+            -   [Manipulating items directly](https://docs.microsoft.com/en-us/powershell/scripting/samples/manipulating-items-directly?view=powershell-7.2)
+        -   Managing computers
+            -   [Changing computer state](https://docs.microsoft.com/en-us/powershell/scripting/samples/changing-computer-state?view=powershell-7.2)
+            -   [Collecting information about computers](https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-7.2)
+            -   [Creating Get-WinEvent queries with FilterHashtable](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-get-winevent-queries-with-filterhashtable?view=powershell-7.2)
+        -   Managing processes & services
+            -   [ ==Managing processes with process cmdlets == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-processes-with-process-cmdlets?view=powershell-7.2)
+            -   [Managing services](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-services?view=powershell-7.2)
+            -   [Managing PowerShell drives](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-windows-powershell-drives?view=powershell-7.2)
+            -   [Working with printers](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-printers?view=powershell-7.2)
+            -   [ ==Performing networking tasks == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/performing-networking-tasks?view=powershell-7.2)
+            -   [Working with software installations](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-software-installations?view=powershell-7.2)
+            -   [Decode a PowerShell command from a running process](https://docs.microsoft.com/en-us/powershell/scripting/samples/decode-powershell-command-from-a-running-process?view=powershell-7.2)
+        -   Working with output
+            -   [ ==Redirecting data with Out-* cmdlets == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/redirecting-data-with-out---cmdlets?view=powershell-7.2)
+            -   [ ==Using format commands to change output view == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view?view=powershell-7.2)
+        -   Manage drives & files
+            -   [Managing current location](https://docs.microsoft.com/en-us/powershell/scripting/samples/managing-current-location?view=powershell-7.2)
+            -   [ ==Working with files and folders == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-and-folders?view=powershell-7.2)
+            -   [ ==Working with files folders and registry keys == ](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-files-folders-and-registry-keys?view=powershell-7.2)
+            -   [Working with registry entries](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-entries?view=powershell-7.2)
+            -   [Working with registry keys](https://docs.microsoft.com/en-us/powershell/scripting/samples/working-with-registry-keys?view=powershell-7.2)
+        -   Creating UI elements
+            -   [Creating a custom input box](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-a-custom-input-box?view=powershell-7.2)
+            -   [Creating a graphical date picker](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-a-graphical-date-picker?view=powershell-7.2)
+            -   [Multiple selection list boxes](https://docs.microsoft.com/en-us/powershell/scripting/samples/multiple-selection-list-boxes?view=powershell-7.2)
+            -   [Selecting items from a list box](https://docs.microsoft.com/en-us/powershell/scripting/samples/selecting-items-from-a-list-box?view=powershell-7.2)
+    -   PowerShell remoting
+    -   [PowerShell security features](https://docs.microsoft.com/en-us/powershell/scripting/learn/security-features?view=powershell-7.2)
+    -   [Using Experimental Features](https://docs.microsoft.com/en-us/powershell/scripting/learn/experimental-features?view=powershell-7.2)
+    -   [Compatibility aliases](https://docs.microsoft.com/en-us/powershell/scripting/learn/compatibility-aliases?view=powershell-7.2)
+    -   [Additional resources](https://docs.microsoft.com/en-us/powershell/scripting/learn/more-powershell-learning?view=powershell-7.2)
+    -   [Glossary](https://docs.microsoft.com/en-us/powershell/scripting/learn/glossary?view=powershell-7.2)
+
+-   What's New
+-   Windows PowerShell
+-   Desired State Configuration (DSC)
+-   Community
+-   PowerShell Gallery
+-   Scripting and development
+    -   Visual Studio Code
+    -Version
+## Links on Basics
+
+-   [Microsoft.PowerShell.Core](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/?view=powershell-7.2)
+-   About
+    -   [About](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.2)
+    -   [about_Aliases](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases?view=powershell-7.2)
+    -   [about_Alias_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_alias_provider?view=powershell-7.2)
+    -   [about_ANSI_Terminals](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_ansi_terminals?view=powershell-7.2)
+    -   [about_Arithmetic_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators?view=powershell-7.2)
+    -   [about_Arrays](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arrays?view=powershell-7.2)
+    -   [about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-7.2)
+    -   [about_Automatic_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.2)
+    -   [about_Booleans](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_booleans?view=powershell-7.2)
+    -   [about_Break](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_break?view=powershell-7.2)
+    -   [about_Calculated_Properties](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_calculated_properties?view=powershell-7.2)
+    -   [about_Character_Encoding](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding?view=powershell-7.2)
+    -   [about_CimSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_cimsession?view=powershell-7.2)
+    -   [about_Classes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_classes?view=powershell-7.2)
+    -   [about_Command_Precedence](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_precedence?view=powershell-7.2)
+    -   [about_Command_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_command_syntax?view=powershell-7.2)
+    -   [about_Comment_Based_Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-7.2)
+    -   [about_CommonParameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-7.2)
+    -   [about_Comparison_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comparison_operators?view=powershell-7.2)
+    -   [about_Continue](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_continue?view=powershell-7.2)
+    -   [about_Core_Commands](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_core_commands?view=powershell-7.2)
+    -   [about_Data_Sections](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_data_sections?view=powershell-7.2)
+    -   [about_Debuggers](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_debuggers?view=powershell-7.2)
+    -   [about_Do](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_do?view=powershell-7.2)
+    -   [about_Enum](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_enum?view=powershell-7.2)
+    -   [about_Environment_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_provider?view=powershell-7.2)
+    -   [about_Environment_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables?view=powershell-7.2)
+    -   [about_Execution_Policies](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.2)
+    -   [about_Experimental_Features](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_experimental_features?view=powershell-7.2)
+    -   [about_FileSystem_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_filesystem_provider?view=powershell-7.2)
+    -   [about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-7.2)
+    -   [about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-7.2)
+    -   [about_Format.ps1xml](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_format.ps1xml?view=powershell-7.2)
+    -   [about_Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+    -   [about_Functions_Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+    -   [about_Functions_Advanced_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_methods?view=powershell-7.2)
+    -   [about_Functions_Advanced_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+    -   [about_Functions_Argument_Completion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2)
+    -   [about_Functions_CmdletBindingAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+    -   [about_Functions_OutputTypeAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute?view=powershell-7.2)
+    -   [about_Function_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_function_provider?view=powershell-7.2)
+    -   [about_Group_Policy_Settings](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_group_policy_settings?view=powershell-7.2)
+    -   [about_Hash_Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-7.2)
+    -   [about_Hidden](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hidden?view=powershell-7.2)
+    -   [about_History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_history?view=powershell-7.2)
+    -   [about_If](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_if?view=powershell-7.2)
+    -   [about_Intrinsic_Members](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_intrinsic_members?view=powershell-7.2)
+    -   [about_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_jobs?view=powershell-7.2)
+    -   [about_Job_Details](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_job_details?view=powershell-7.2)
+    -   [about_Join](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_join?view=powershell-7.2)
+    -   [about_Language_Keywords](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_keywords?view=powershell-7.2)
+    -   [about_Language_Modes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_language_modes?view=powershell-7.2)
+    -   [about_Line_Editing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_line_editing?view=powershell-7.2)
+    -   [about_Locations](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_locations?view=powershell-7.2)
+    -   [about_Logging_Non-Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_non-windows?view=powershell-7.2)
+    -   [about_Logging_Windows](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logging_windows?view=powershell-7.2)
+    -   [about_Logical_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_logical_operators?view=powershell-7.2)
+    -   [about_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_methods?view=powershell-7.2)
+    -   [about_Modules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.2)
+    -   [about_Numeric_Literals](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_numeric_literals?view=powershell-7.2)
+    -   [about_Objects](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_objects?view=powershell-7.2)
+    -   [about_Object_Creation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_object_creation?view=powershell-7.2)
+    -   [about_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operators?view=powershell-7.2)
+    -   [about_Operator_Precedence](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_operator_precedence?view=powershell-7.2)
+    -   [about_Output_Streams](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_output_streams?view=powershell-7.2)
+    -   [about_PackageManagement](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_packagemanagement?view=powershell-7.2)
+    -   [about_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+    -   [about_Parameters_Default_Values](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters_default_values?view=powershell-7.2)
+    -   [about_Parameter_Sets](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.2)
+    -   [about_Parsing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parsing?view=powershell-7.2)
+    -   [about_Path_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_path_syntax?view=powershell-7.2)
+    -   [about_Pipelines](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines?view=powershell-7.2)
+    -   [about_Pipeline_Chain_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipeline_chain_operators?view=powershell-7.2)
+    -   [about_PowerShell_Config](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_config?view=powershell-7.2)
+    -   [about_PowerShell_Editions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_powershell_editions?view=powershell-7.2)
+    -   [about_Preference_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-7.2)
+    -   [about_Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.2)
+    -   [about_Prompts](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts?view=powershell-7.2)
+    -   [about_Properties](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_properties?view=powershell-7.2)
+    -   [about_Providers](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_providers?view=powershell-7.2)
+    -   [about_PSConsoleHostReadLine](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psconsolehostreadline?view=powershell-7.2)
+    -   [about_PSCustomObject](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pscustomobject?view=powershell-7.2)
+    -   [about_PSModulePath](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath?view=powershell-7.2)
+    -   [about_PSSessions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssessions?view=powershell-7.2)
+    -   [about_PSSession_Details](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pssession_details?view=powershell-7.2)
+    -   [about_Pwsh](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh?view=powershell-7.2)
+    -   [about_Quoting_Rules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_quoting_rules?view=powershell-7.2)
+    -   [about_Redirection](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection?view=powershell-7.2)
+    -   [about_Ref](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_ref?view=powershell-7.2)
+    -   [about_Registry_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_registry_provider?view=powershell-7.2)
+    -   [about_Regular_Expressions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions?view=powershell-7.2)
+    -   [about_Remote](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote?view=powershell-7.2)
+    -   [about_Remote_Disconnected_Sessions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_disconnected_sessions?view=powershell-7.2)
+    -   [about_Remote_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_jobs?view=powershell-7.2)
+    -   [about_Remote_Output](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_output?view=powershell-7.2)
+    -   [about_Remote_Requirements](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_requirements?view=powershell-7.2)
+    -   [about_Remote_Troubleshooting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_troubleshooting?view=powershell-7.2)
+    -   [about_Remote_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_remote_variables?view=powershell-7.2)
+    -   [about_Requires](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires?view=powershell-7.2)
+    -   [about_Reserved_Words](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_reserved_words?view=powershell-7.2)
+    -   [about_Return](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_return?view=powershell-7.2)
+    -   [about_Run_With_PowerShell](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_run_with_powershell?view=powershell-7.2)
+    -   [about_Scopes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scopes?view=powershell-7.2)
+    -   [about_Scripts](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scripts?view=powershell-7.2)
+    -   [about_Script_Blocks](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_blocks?view=powershell-7.2)
+    -   [about_Script_Internationalization](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_script_internationalization?view=powershell-7.2)
+    -   [about_Session_Configurations](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_session_configurations?view=powershell-7.2)
+    -   [about_Session_Configuration_Files](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_session_configuration_files?view=powershell-7.2)
+    -   [about_Signing](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing?view=powershell-7.2)
+    -   [about_Simplified_Syntax](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_simplified_syntax?view=powershell-7.2)
+    -   [about_Special_Characters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_special_characters?view=powershell-7.2)
+    -   [about_Splatting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.2)
+    -   [about_Split](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_split?view=powershell-7.2)
+    -   [about_Switch](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_switch?view=powershell-7.2)
+    -   [about_Tab_Expansion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_tab_expansion?view=powershell-7.2)
+    -   [about_Telemetry](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_telemetry?view=powershell-7.2)
+    -   [about_Thread_Jobs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_thread_jobs?view=powershell-7.2)
+    -   [about_Throw](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_throw?view=powershell-7.2)
+    -   [about_Trap](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_trap?view=powershell-7.2)
+    -   [about_Try_Catch_Finally](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_try_catch_finally?view=powershell-7.2)
+    -   [about_Types.ps1xml](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_types.ps1xml?view=powershell-7.2)
+    -   [about_Type_Accelerators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_accelerators?view=powershell-7.2)
+    -   [about_Type_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_operators?view=powershell-7.2)
+    -   [about_Updatable_Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_updatable_help?view=powershell-7.2)
+    -   [about_Update_Notifications](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_update_notifications?view=powershell-7.2)
+    -   [about_Using](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_using?view=powershell-7.2)
+    -   [about_Variables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variables?view=powershell-7.2)
+    -   [about_Variable_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_variable_provider?view=powershell-7.2)
+    -   [about_While](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_while?view=powershell-7.2)
+    -   [about_Wildcards](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wildcards?view=powershell-7.2)
+    -   [about_Windows_PowerShell_Compatibility](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_windows_powershell_compatibility?view=powershell-7.2)
+-   [Add-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/add-history?view=powershell-7.2)
+-   [Clear-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-history?view=powershell-7.2)
+-   [Clear-Host](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/clear-host?view=powershell-7.2)
+-   [Connect-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/connect-pssession?view=powershell-7.2)
+-   [Debug-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/debug-job?view=powershell-7.2)
+-   [Disable-PSRemoting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disable-psremoting?view=powershell-7.2)
+-   [Disable-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disable-pssessionconfiguration?view=powershell-7.2)
+-   [Disconnect-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/disconnect-pssession?view=powershell-7.2)
+-   [Enable-PSRemoting](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enable-psremoting?view=powershell-7.2)
+-   [Enable-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enable-pssessionconfiguration?view=powershell-7.2)
+-   [Enter-PSHostProcess](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enter-pshostprocess?view=powershell-7.2)
+-   [Enter-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/enter-pssession?view=powershell-7.2)
+-   [Exit-PSHostProcess](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/exit-pshostprocess?view=powershell-7.2)
+-   [Exit-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/exit-pssession?view=powershell-7.2)
+-   [ForEach-Object](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-7.2)
+-   [Get-Command](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-command?view=powershell-7.2)
+-   [Get-ExperimentalFeature](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-experimentalfeature?view=powershell-7.2)
+-   [Get-Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-help?view=powershell-7.2)
+-   [Get-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-history?view=powershell-7.2)
+-   [Get-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-job?view=powershell-7.2)
+-   [Get-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-module?view=powershell-7.2)
+-   [Get-PSHostProcessInfo](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pshostprocessinfo?view=powershell-7.2)
+-   [Get-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssession?view=powershell-7.2)
+-   [Get-PSSessionCapability](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssessioncapability?view=powershell-7.2)
+-   [Get-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssessionconfiguration?view=powershell-7.2)
+-   [Get-PSSubsystem](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-pssubsystem?view=powershell-7.2)
+-   [Import-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/import-module?view=powershell-7.2)
+-   [Invoke-Command](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-command?view=powershell-7.2)
+-   [Invoke-History](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/invoke-history?view=powershell-7.2)
+-   [New-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-module?view=powershell-7.2)
+-   [New-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssession?view=powershell-7.2)
+-   [New-PSSessionConfigurationFile](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssessionconfigurationfile?view=powershell-7.2)
+-   [New-PSSessionOption](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssessionoption?view=powershell-7.2)
+-   [Out-Default](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-default?view=powershell-7.2)
+-   [Out-Host](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-host?view=powershell-7.2)
+-   [Out-Null](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/out-null?view=powershell-7.2)
+-   [Receive-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/receive-job?view=powershell-7.2)
+-   [Receive-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/receive-pssession?view=powershell-7.2)
+-   [Register-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/register-pssessionconfiguration?view=powershell-7.2)
+-   [Remove-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-job?view=powershell-7.2)
+-   [Remove-Module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-module?view=powershell-7.2)
+-   [Remove-PSSession](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/remove-pssession?view=powershell-7.2)
+-   [Set-PSDebug](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-psdebug?view=powershell-7.2)
+-   [Set-PSSessionConfiguration](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-pssessionconfiguration?view=powershell-7.2)
+-   [Set-StrictMode](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode?view=powershell-7.2)
+-   [Start-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.2)
+-   [Stop-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/stop-job?view=powershell-7.2)
+-   [Update-Help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/update-help?view=powershell-7.2)
+-   [Wait-Job](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/wait-job?view=powershell-7.2)
+-   [Where-Object](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-7.2)
+
+
+I removed some oddballs
+
+## Powershell Get and new modules
+
+-   [Find-Command](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-command?view=powershell-7.2)
+-   [Find-DscResource](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-dscresource?view=powershell-7.2)
+-   [Find-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-module?view=powershell-7.2)
+-   [Find-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/find-script?view=powershell-7.2)
+-   [Get-InstalledModule](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedmodule?view=powershell-7.2)
+-   [Get-InstalledScript](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-installedscript?view=powershell-7.2)
+-   [Get-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/get-psrepository?view=powershell-7.2)
+-   [Install-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module?view=powershell-7.2)
+-   [Install-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-script?view=powershell-7.2)
+-   [PowerShellGet](https://docs.microsoft.com/en-us/powershell/module/powershellget/?view=powershell-7.2)
+-   [Register-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/register-psrepository?view=powershell-7.2)
+-   [Save-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-module?view=powershell-7.2)
+-   [Save-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/save-script?view=powershell-7.2)
+-   [Set-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/set-psrepository?view=powershell-7.2)
+-   [Test-ScriptFileInfo](https://docs.microsoft.com/en-us/powershell/module/powershellget/test-scriptfileinfo?view=powershell-7.2)
+-   [Uninstall-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-module?view=powershell-7.2)
+-   [Uninstall-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/uninstall-script?view=powershell-7.2)
+-   [Unregister-PSRepository](https://docs.microsoft.com/en-us/powershell/module/powershellget/unregister-psrepository?view=powershell-7.2)
+-   [Update-Module](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-module?view=powershell-7.2)
+-   [Update-ModuleManifest](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-modulemanifest?view=powershell-7.2)
+-   [Update-Script](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-script?view=powershell-7.2)
+-   [Update-ScriptFileInfo](https://docs.microsoft.com/en-us/powershell/module/powershellget/update-scriptfileinfo?view=powershell-7.2)
+
+## VS Code instead of ISE
+
+[Using Visual Studio Code for PowerShell Development
+](https://docs.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/using-vscode?view=powershell-7.2)
 
 
 ## Common Examples:
@@ -18,6 +345,7 @@ Brings up the command browser in command line
 Get-ChildItem . -File | select -First 1 | foreach -Process { $_.Extension}
 Get-ChildItem . -File | where -Property Extension -EQ -Value ".zip"
 Get-ChildItem . -File | select -First 1 | select -Property Extension
+Get-ChildItem . -File | select -Index 5 | select -Property Extension
 #take out select -first for the whole set
 #this does not work, though examples suggest it should
  Get-ChildItem .  -Include '*.zip' -File
@@ -34,6 +362,10 @@ Write-Warning -Message "Folder ``$(gl).Path`' is not empty as expected."
 [Powershell Basics](https://www.comparitech.com/net-admin/powershell-cheat-sheet/)
 [Powershell Docs](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-powershell-1.0/ee176842(v=technet.10))
 [MoreRecentDocs](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-6)
+
+[Powershell Objects to Manage Windows](https://docs.microsoft.com/en-us/powershell/windows/get-started?view=win10-ps)
+
+
 
 Modules
 
@@ -61,7 +393,9 @@ Microsoft.Powershell.
 [Microsoft Modules](https://docs.microsoft.com/en-us/powershell/module/?view=win10-ps)
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)
 
-### Basic Commands
+
+### **_Basic Commands_**
+----
 
 `Get-Command | Format-List *`
 
@@ -70,17 +404,29 @@ Microsoft.Powershell.
 
 `Show-Command`
 
+Use the Get-Command item to search, can get pretty detailed.
 
-Module Browser
+```
+# PowerShell script to research parameters
+Get-Command | Where { $_.parameters.keys -Contains "Filter" -And $_.Verb -Match "Get"}
+
+# Research PowerShell Get-Childitem Parameters
+Get-Help Get-Childitem -Full
+
+#Module Browser
 Import-Module PowerShellGet
 
-Install-Module ISEModuleBrowserAddon
+#Install-Module ISEModuleBrowserAddon
 Import-Module ISEModuleBrowserAddon
+```
 
 
-### Profile
+### **_Profile_**
+----
 
-### Common Parameters (Global)
+
+### **_Common Parameters (Global)_**
+----
 
 SHORT DESCRIPTION
     Describes the parameters that Windows PowerShell Workflow adds to activities.
@@ -114,7 +460,186 @@ LONG DESCRIPTION
 
 See more with : `Get-Help about_WorkflowCommonParameters -online`
 
-### Settings
+
+
+
+### **_My Profiles_**
+----
+
+
+
+```
+#$Profile.CurrentUserAllHosts
+Write-Host -ForegroundColor Black 'Loading $Profile.CurrentUserAllHosts  [Location] C:\Users\andyt\Documents\WindowsPowerShell\profile.ps1'
+
+# Store previous command's output in $__ (Double Underscore)
+$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'
+
+
+Write-Host -ForegroundColor Black 'Setting $WarningPreference = "Inquire"'
+$WarningPreference = "Inquire"
+
+Write-Host -ForegroundColor Black 'Setting $InformationPreference = 'Continue' Default = "SilentlyContinue'
+$InformationPreference = 'Continue'
+
+Write-Host -ForegroundColor Black 'Setting $VerbosePreference = 'Continue' Default = "SilentlyContinue'
+$VerbosePreference = 'Continue'
+
+Write-Host -ForegroundColor Black 'Setting $DebugPreference = 'Continue' Default = "SilentlyContinue'
+$DebugPreference = 'Continue'
+
+#add an alias
+New-Alias -Name WO -Value "Where-Object" -Scope Global
+
+#open other profiles with ISE $profile.CurrentUserAllHosts
+
+#Record all powershell sessions.
+Start-Transcript -OutputDirectory $($env:OneDrive | join-path -ChildPath \Programming\Powershell\Transcipts)
+```
+
+
+#### _Setting the directories to look for modules_
+----
+
+
+```ps1
+cat $Profile
+$scripts = "$(split-path $profile)\Scripts"
+$modules = "$(split-path $profile)\Modules"
+$docs    =  $(resolve-path "$Env:userprofile\documents")
+$desktop =  $(resolve-path "$Env:userprofile\desktop")
+
+PS> cat variable:\scripts
+C:\Users\andy.schneider\Documents\WindowsPowerShell\Scripts
+
+PS>  cat variable:\modules
+C:\Users\andy.schneider\Documents\WindowsPowerShell\Modules
+```
+
+
+```
+# Store previous command's output in $__
+Write-Host -ForegroundColor Black 'Loading $Profile.CurrentUserCurrentHost (Powershell Console) [Location] C:\Users\andyt\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+
+
+Write-Host -ForegroundColor GREEN 'Store previous command''s output in $__'
+$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'
+Import-Module posh-git
+Import-Module oh-my-posh
+set-Theme paradox
+```
+
+```
+#AllUsersCurrentHost
+Write-Host -ForegroundColor Black 'Loading $PROFILE.AllUsersCurrentHost  [Location] C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+
+```
+
+```
+# All Users All Hosts File
+
+Write-Host -ForegroundColor Black 'Loading $Profile.AllUsersAllHosts [Location] C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1'
+```
+
+
+## Automatic Variables 
+
+- `$$` - Contains the last token in the last line received by the session.
+
+- `$?` - Contains the execution status of the last operation. Equivalent to %errorlevel% in the CMD shell. See also `$LastExitCode` below.
+
+    - It contains TRUE if the last operation succeeded and FALSE if it failed. ReadOnly, AllScope
+    
+- `$^` - Contains the first token in the last line received by the session.
+
+- `$_` - Contains the current object in the pipeline object. You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
+
+- `$Allnodes` - This variable is available inside of a DSC configuration document when configuration data has been passed into it by using the -ConfigurationData parameter.
+    - For more information, see "Separating Configuration and Environment Data"
+- `$Args` - Contains an array of the undeclared parameters and/or parameter values that are passed to a function, script, or script block. When you create a function, you can declare the parameters by using the param keyword or by adding a comma-separated list of parameters in parentheses after the function name.
+- `$ConsoleFileName` - Contains the path of the console file (.psc1) that was most recently used in the session. This variable is populated when you start PowerShell with the PSConsoleFile parameter or when you use the `Export-Console` cmdlet to export snap-in names to a console file.
+
+When you use the `Export-Console` cmdlet without parameters, it automatically updates the console file that was most recently used in the session. You can use this automatic variable to determine which file will be updated.
+ReadOnly, AllScope
+
+- `$Error` - Contains an array of error objects that represent the most recent errors. Constant
+The most recent error is the first error object in the array ($Error[0]). Function to unwrap the error array via Idera.
+- `$Event` - Contains a PSEventArgs object that represents the event that is being processed. This variable is populated only within the Action block of an event registration command, such as Register-ObjectEvent. The value of this variable is the same object that the Get-Event cmdlet returns. Therefore, you can use the properties of the $Event variable, such as $Event.TimeGenerated , in an Action script block.
+- `$EventArgs` - Contains an object that represents the first event argument that derives from EventArgs of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceEventArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+- `$EventSubscriber` - Contains a PSEventSubscriber object that represents the event subscriber of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable is the same object that the Get-EventSubscriber cmdlet returns.
+- `$ExecutionContext` - Contains an EngineIntrinsics object that represents the execution context of the Windows PowerShell host. You can use this variable to find the execution objects that are available to cmdlets. Constant, AllScope
+- `$False` - Contains FALSE. You can use this variable to represent FALSE in commands and scripts instead of using the string "false". The string can be interpreted as TRUE if it is converted to a non-empty string or to a non-zero integer. Constant, AllScope
+- `$ForEach` - Contains the enumerator of a ForEach-Object loop. You can use the properties and methods of enumerators on the value of the $ForEach variable. This variable exists only while the For loop is running. It is deleted when the loop is completed.
+- `$Home` - Contains the full path of the user's home directory. ReadOnly, AllScope This variable is the equivalent of the %HomeDrive%%HomePath% environment variables, typically C:\Users\<user>
+- `$Host` - Contains an object that represents the current host application for Windows PowerShell. You can use this variable to represent the current host in commands or to display or change the properties of the host, such as $Host.version or $Host.CurrentCulture, or $host.ui.rawui.setbackgroundcolor("Red"). Constant, AllScope
+- `$Input` - An enumerator that contains the input that is passed to a function. The $Input variable is case-sensitive and is available only in functions and in script blocks. (Script blocks are essentially unnamed functions.) In the Process block of a function, the $Input variable contains the object that is currently in the pipeline. When the Process block is completed, the value of $Input is NULL. If the function does not have a Process block, the value of $Input is available to the End block, and it contains all the input to the function.
+- `$LastExitCode` - Contains the exit code of the last Windows-based program that was run.
+- `$Matches` - The $Matches variable works with the -match and -not match operators. When you submit scalar input to the -match or -notmatch operator, and either one detects a match, they return a Boolean value and populate the $Matches automatic variable with a hash table of any string values that were matched. For more information about the -match operator, see about_comparison_operators.
+- `$MyInvocation` - Contains an object with information about the current command, such as a script, function, or script block. You can use the information in the object, such as the path and file name of the script ($myinvocation.mycommand.path) or the name of a function ($myinvocation.mycommand.name) to identify the current command. See also $PSScriptRoot
+- `$NestedPromptLevel` - Contains the current prompt level. A value of 0 indicates the original prompt level. The value is incremented when you enter a nested level and decremented when you exit it. For example, Windows PowerShell presents a nested command prompt when you use the $Host.EnterNestedPrompt method. Windows PowerShell also presents a nested command prompt when you reach a breakpoint in the Windows PowerShell debugger. When you enter a nested prompt, Windows PowerShell pauses the current command, saves the execution context, and increments the value of the $NestedPromptLevel variable. To create additional nested command prompts (up to 128 levels) or to return to the original command prompt, complete the command, or type "exit". The $NestedPromptLevel variable helps you track the prompt level. You can create an alternative Windows PowerShell command prompt that includes this value so that it is always visible.
+- `$NULL` - Contains a NULL or empty value. A scalar value that contains nothing.
+- `$OFS` - $OFS is a special variable that stores a string that you want to use as an output field separator. Use this variable when you are converting an array to a string. By default, the value of $OFS is " ", but you can change the value of $OFS in your session, by typing $OFS="value". If you are expecting the default value of " " in your script, module, or configuration output, be careful that the $OFS default value has not been changed elsewhere in your code.
+- `$PID` - Contains the process identifier (PID) of the process that is hosting the current Windows PowerShell session. Constant, AllScope
+If you stop this process, you will brute force kill the PowerShell host that is executing the script.
+- `$Profile` - Contains the full path of the Windows PowerShell profile for the current user and the current host application. You can use this variable to represent the profile in commands. For example, you can use it in a command to determine whether a profile has been created: test-path $profile Or, you can use it in a command to create a profile: new-item -type file -path $pshome -force You can also use it in a command to open the profile in Notepad: notepad $profile
+- `$PSBoundParameters` - Contains a dictionary of the active parameters and their current values. This variable has a value only in a scope where parameters are declared, such as a script or function. You can use it to display or change the current values of parameters or to pass parameter values to another script or function. For example: function test { param($a, $b) # Display the parameters in dictionary format. $psboundparameters # Call the Test1 function with $a and $b. test1 @psboundparameters }
+- `$PsCmdlet` - Contains an object that represents the cmdlet or advanced function that is being run. You can use the properties and methods of the object in your cmdlet or function code to respond to the conditions of use. For example, the ParameterSetName property contains the name of the parameter set that is being used, and the ShouldProcess method adds the WhatIf and Confirm parameters to the cmdlet dynamically. For more information about the $PSCmdlet automatic variable, see about_Functions_Advanced.
+- `$PSCommandPath` - Contains the full path and file name of the script that is being run. This variable is valid in all scripts.
+- `$PsCulture` - Contains the name of the culture currently in use in the operating system. The culture determines the display format of items such as numbers, currrency, and dates. This is the value of the System.Globalization.CultureInfo.CurrentCulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-Culture. ReadOnly, AllScope
+- `$PSDebugContext` - While debugging, this variable contains information about the debugging environment. Otherwise, it contains a NULL value. As a result, you can use it to indicate whether the debugger has control. When populated, it contains a PsDebugContext object that has Breakpoints and InvocationInfo properties. The InvocationInfo property has several useful properties, including the Location property. The Location property indicates the path of the script that is being debugged.
+- `$PsHome` - Contains the full path of the installation directory for Windows PowerShell, Constant, AllScope
+Typically, %windir%\System32\WindowsPowerShell\v1.0
+You can use this variable in the paths of Windows PowerShell files. For example, the following command searches the conceptual Help topics for the word "variable": select-string -pattern variable -path $pshome\*.txt
+- `$PSitem` - Represents the current input object, this is exactly the same as $_ it just provides an alternative name to make your pipeline code easier to read. Available in PowerShell 3.0 and greater.
+- `$PSScriptRoot` - Contains the directory from which the script module is being executed. This variable allows scripts to use the module path to access other resources. In PowerShell 3.0+ this is available everywhere, not just in modules.
+- `$PSSenderInfo` - Contains information about the user who started the PSSession, including the user identity and the time zone of the originating computer. This variable is available only in PSSessions.
+The $PSSenderInfo variable includes a user-configurable property, ApplicationArguments, which, by default, contains only the $PSVersionTable from the originating session. To add data to the ApplicationArguments property, use the ApplicationArguments parameter of the New-PSSessionOption cmdlet.
+- `$PsUICulture` - Contains the name of the user interface (UI) culture that is currently in use in the operating system. The UI culture determines which text strings are used for user interface elements, such as menus and messages. This is the value of the System.Globalization.CultureInfo.CurrentUICulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-UICulture. ReadOnly, AllScope
+- `$PsVersionTable` - Contains a read-only hash table (Constant, AllScope) that displays details about the version of PowerShell that is running in the current session. The table includes the following items:
+  CLRVersion          The version of the common language runtime (CLR)
+  BuildVersion        The build number of the current version
+  PSVersion           The Windows PowerShell version number
+  WSManStackVersion      The version number of the WS-Management stack
+  PSCompatibleVersions   Versions of PowerShell that are compatible with the current version.
+  SerializationVersion   The version of the serialization method
+  PSRemotingProtocolVersion  The version of the PowerShell remote management protocol
+- `$Pwd` - Contains a path object that represents the full path of the current directory.
+- `$Sender` - Contains the object that generated this event. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the Sender property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+- `$ShellID` - Contains the identifier of the current shell. Constant, AllScope
+- `$SourceArgs` - Contains objects that represent the event arguments of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+- `$SourceEventArgs` - Contains an object that represents the first event argument that derives from EventArgs of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
+- `$StackTrace` - Contains a stack trace for the most recent error.
+- `$This` - In a script block that defines a script property or script method, the $This variable refers to the object that is being extended.
+- `$True` - Contains TRUE. You can use this variable to represent TRUE in commands and scripts. Constant, AllScope
+
+
+Others:  Found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.1#short-description)
+
+
+- `$args`
+
+- `$ConsoleFileName`
+
+- `$false`
+
+- `$foreach`
+
+- `$IsCoreCLR`
+
+- `$IsLinux`
+
+- `$IsMacOS`
+
+- `$IsWindows`
+
+- `$PSItem`
+
+- `$switch`
+
+
+
+### **_Settings_**
+----
 
 These are the built in variables for powershell.  There uses are unknown in many cases, but esp. those at the end seem like they could be powerful.
 These are worth further investigation
@@ -324,7 +849,9 @@ PowerShell includes a set of built-in providers that you can use to access the d
 | WSMan       | WSMan:       | WS-Management configuration information    |
 
 
-### Syntax
+
+### **_Syntax_**
+----
 
 Things take the general format `verb-noun`.
 
@@ -338,12 +865,16 @@ $A = 6
 $a
 > 6
 ```
-#### Hash Tables
+
+#### _Hash Tables_
+----
 
 [Hash Tables](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-6)
 
 
-### Data Types
+
+### **_Data Types_**
+----
 
 Encountered so far
 
@@ -374,7 +905,9 @@ Encountered so far
         ([int32]::minvalue + [uint32]::maxvalue).gettype().fullname
              System.Int64
 
-#### Casting Types
+
+#### _Casting Types_
+----
 
 Cast with [Type] or as (obj).method()
 
@@ -408,7 +941,9 @@ Check they type with obj.GetType()
 
 Plus there are Objects
 
-#### Boolean
+
+#### _Boolean_
+----
 
 !!!note -confirm looks like this `-Confirm:$false`
 
@@ -417,9 +952,9 @@ In Powershell True must be given as `$True` and False as `$False`
 ```ps1
 PS>  function test ($VALUE) {
 >> if ($VALUE) {
->>     Write-Host -ForegroundColor GREEN “TRUE”
+>>     Write-Host -ForegroundColor GREEN "TRUE"
 >> } else {
->>     Write-Host -ForegroundColor RED   “FALSE”
+>>     Write-Host -ForegroundColor RED   "FALSE"
 >> }
 >> }
 >>
@@ -433,14 +968,15 @@ PS> test FALSE
 TRUE
 ```
 
-The question a lot of PowerShell newbies ask is:  ‘Why is “FALSE” TRUE?”   In PowerShell, Strings can be evaluated as Booleans.  If a string is ZERO length – it is false, otherwise it is TRUE.  “FALSE” has 5 characters so it is TRUE.
+The question a lot of PowerShell newbies ask is:  'Why is "FALSE" TRUE?"   In PowerShell, Strings can be evaluated as Booleans.  If a string is ZERO length
+- it is false, otherwise it is TRUE.  "FALSE" has 5 characters so it is TRUE.
 
 So any value string (non-NULL) evaluates true.
 
 Also, `"0"` evaluates to $True, since its a string, but only exactly numerical 0 is $false
 
 ```ps1
-PS> test “0”
+PS> test "0"
 TRUE
 PS> test 0
 FALSE
@@ -461,14 +997,18 @@ TRUE
 PS>
 ```
 
-“0” is TRUE because it is a STRING and it has a length of 1.  0 is FALSE because it is a number and that number is 0.  In PowerShell, any number which evaluates to 0 is FALSE and every non-zero number is TRUE.  The example shows you a floating point zero, a hexadecimal zero, 0 megs, 0 kilos, 0 decimal, there are all sorts of zeros but to PowerShell, they all evaluate to FALSE.
+"0" is TRUE because it is a STRING and it has a length of 1.  0 is FALSE because it is a number and that number is 0.  In PowerShell, any number which evaluates to 0 is FALSE and every non-zero number is TRUE.  The example shows you a floating point zero, a hexadecimal zero, 0 megs, 0 kilos, 0 decimal, there are all sorts of zeros but to PowerShell, they all evaluate to FALSE.
 
 
-#### Math
+
+#### _Math_
+----
 
 [Math Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_arithmetic_operators?view=powershell-6)
 
-#### Strings
+
+#### _Strings_
+----
 
 Backtick is the escape character:
 
@@ -571,7 +1111,6 @@ Separate a number with dashes (# digit place holder):
 
         PS C:\> "{0:###-##-##}" -f 1234567
         123-45-67
-
 Create a list of 100 names with a padded suffix no. (Name001 → Name100):
 
         1..100 | % { 'Name{0:d3}' -f $_ }
@@ -654,6 +1193,8 @@ PS> 'don''t'
 ##### String Actions
 
 `get-member -InputObject String`
+
+`[String] | gm` also works.
 
 Methods:
 
@@ -991,7 +1532,9 @@ Message                        Look in c:\Windows\System32
 ```
 
 
-### Operators
+
+### **_Operators_**
+----
 
 [about_Assignment_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_assignment_operators?view=powershell-6)
 
@@ -1037,6 +1580,16 @@ Rounding is like this: (note parentheses)
         PS A:\icons\scraping\166> [Int] ((2001) `/` (1000))
         2
 
+You can use the [Math] class to get different rounding behavior.
+
+TABLE 5
+
+```ps1
+[int][Math]::Round(5 / 2,[MidpointRounding]::AwayFromZero)	#3
+[int][Math]::Ceiling(5 / 2)	#3
+[int][Math]::Floor(5 / 2)	#2
+```
+For more information, see the Math.Round method.
 
 Overloaded __add__
 
@@ -1058,7 +1611,9 @@ The following examples demonstrate this principle:
         At line:1 char:1
         + 16 + "file"`
 
-### Comparison Operators and Comparing Objects
+
+### **_Comparison Operators and Comparing Objects_**
+----
 
 !!!Note -  (merged Sections) Same topic **Comparison Operators** and **Comparing Objects**
 
@@ -1095,7 +1650,9 @@ Containment comparison operators determine whether a test value appears in a ref
 
 Bitwise comparison operators (`-bAND`, `-bOR`, `-bXOR`, `-bNOT`) manipulate the bit patterns in values.
 
-#### Examples of Comparisons
+
+#### _Examples of Comparisons_
+----
 
 ```powershell
 [PS]> $property.Name
@@ -1122,7 +1679,9 @@ An object has implicit methods as well.
         $pmsg = $msg[$i]|  ConvertFrom-String -PropertyNames $propertynames | Select-Object -Property $propertySelect
 ```
 
-### Other Operators
+
+### **_Other Operators_**
+----
 
 - `( )` - Grouping Expression operator
 - `$( )` - SubExpression operator
@@ -1146,7 +1705,15 @@ An object has implicit methods as well.
     - `?` The Where-Object Alias
     - `'` Literal String Marker 
     - ``( ` )``The Escape Character
-#### Grouping Expression operator `( )`
+
+
+[Ref](https://ss64.com/ps/syntax-operators.html)
+
+
+
+
+#### _Grouping Expression operator `( )`_
+----
 
 `( )`
 
@@ -1168,7 +1735,9 @@ for example:
         ($msg = "Hello World")
 
 
-#### SubExpression operator `$( )` 
+
+#### _SubExpression operator `$( )` _
+----
 
 `$( )` 
 
@@ -1186,7 +1755,9 @@ Subexpressions allow you to evaluate and act on the results of an expression in 
         PS C:\> "The result of 2 + 3 = $(2+3)"
         PS C:\> $(Get-WMIObject win32_Directory)
 
-#### `@( )` - Array SubExpression operator.
+
+#### _`@( )` - Array SubExpression operator._
+----
 
 `@( )`
 
@@ -1211,14 +1782,18 @@ To find the static properties and methods of an object, use the -Static paramete
         [datetime]::now
         [datetime]::Utcnow
 
-#### `,` - Comma operator
+
+#### _`,` - Comma operator_
+----
 
 - As a _binary_ operator, the comma creates an array.
 - As a _unary_ operator, the comma creates an array with one member. Place the comma before the member.
 
 [See Arrays](#arrays)
 
-#### `&` - Call operator
+
+#### _**_`&` - Call operator_**_
+----
 
 Run a command, script, or script block. The call operator, also known as the "invocation operator," lets you run commands that are stored in variables and represented by strings. **Because the call operator does not parse the command, it cannot interpret command parameters.**
 
@@ -1228,7 +1803,9 @@ Run a command, script, or script block. The call operator, also known as the "in
         C:\PS> & $c
         AllSigned
 
-#### `.` Dot sourcing operator
+
+#### _`.` Dot sourcing operator_
+----
 
 Run a script in the current scope so that any functions, aliases, and variables that the script creates are added to the current scope. (**without dot sourcing, the variables created within a script will all disappear when the script finishes.**)
 
@@ -1237,7 +1814,9 @@ Run a script in the current scope so that any functions, aliases, and variables 
 
 !!!Note: The dot sourcing operator is followed by a space. Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.
 
-#### `-f` Format operator
+
+#### _The `-f` Format operator_
+----
 
 [Format a string expression](#String-Formatting).
 
@@ -1253,13 +1832,18 @@ Optional format string(s) can be included to add padding/alignment and display d
         10..20
         5..25
 
-#### `..` Range Operator
+
+#### _`..` _Range Operator__
+----
 
 `$B = 5..8` - $B contains: 5, 6, 7, and 8.   [See Arrays](#arrays)
 
 
-#### Others
 
+#### _Others_
+----
+
+nothing here
 ##### `$` Variable Indicator or Symbol Indicator
 
 ##### `$_` placeHolder Symbol 
@@ -1301,7 +1885,9 @@ This list includes external commands in your search path so it can contain thous
 
     See [Casting Types](#Casting-Types)
 
-#### `%` The ForEach Alias
+
+#### _`%` The ForEach Alias_
+----
 
 see `Get-Alias`
 
@@ -1341,6 +1927,115 @@ Need the real name for this, but double quote vars are accessable.
 
 Double Quotes - Evaluated, Single Quotes - Literal
 
+
+## Basic commands
+
+`Get-Member` eliminates duplicates, so if the objects are all of the same type, it only displays one object type.
+
+`Measure-Object`
+
+
+### **_Break, Exit and Return_**
+----
+
+[Source](https://jorgecandeias.github.io/2014/11/27/the-difference-between-break-return-and-exit-in-powershell/)
+
+`Break` terminates execution of a loop or switch statement and hands over control to next statement after it.
+
+`Return` terminates execution of the current function and passes control to the statement immediately after the function call.
+
+`Exit` terminates the current execution session altogether. It also closes the console window and may or may not close ISE depending on what direction the wind is facing.
+
+#### _Break _
+----
+
+Example 
+
+```ps1
+$i = 1;
+
+Write-Host "Starting the loop...";
+while ($true)
+{
+    Write-Host "Loop iteration $i";
+    if (($i += 1) -ge 3)
+    {
+        break; # exit the loop
+    }
+}
+Write-Host "Finished the loop!";
+```
+
+
+#### _Return_
+----
+
+Example 
+
+```ps1
+
+# declare the function
+Function Make-Pumpkins
+{
+    $i = 1;
+
+    Write-Host "Making pumpkins...";
+    while ($true)
+    {
+        Write-Host "Pumpkin $i";
+        if (($i += 1) -ge 3)
+        {
+            return; # exit the function
+        }
+    }
+    Write-Host "Finished making pumpkins!";
+}
+
+# call the function
+Write-Host "Calling the function...";
+Make-Pumpkins;
+Write-Host "Finished running the function!";
+
+```
+
+
+#### _Exit _
+----
+
+The `Exit` statement is an internal command of PowerShell that instructs it to terminate the session altogether. Interestingly, this has slightly different effects, depending on what context and tool it is executed on.
+
+**Console:** If we run this command straight on the PowerShell Console window, the window itself will close outright, no questions asked. It works just like the exit command in the Command Prompt.
+
+**Script:** If we run this command from a save script file, while on the console, it's another matter.
+
+It usually exits the script, though there appear to be bugs regarding it in ISE (see Source)
+
+Use the command `Exit $LASTEXITCODE` at the **end** of the powershell script to return the error codes from the powershell script.
+
+`$LASTEXITCODE` holds the last error code in the powershell script. It is in form of boolean values, with 0 for success and 1 for failure.
+
+Example :
+
+```ps1
+$dest ="C: est"
+New-Item $dest -type directory -force
+$source ="c:samplefile.txt"
+Copy-Item $source $dest
+exit $LASTEXITCODE
+```
+
+The env value `%errorlevel%` holds the result
+
+```ps1
+C:\>powershell -command "& { if($(Invoke-Expression hostname) -eq 'wrongname'){ exit 0 } else { exit 1 }  } "
+C:\>echo %errorlevel%
+1
+
+C:\>powershell -command "& { if($(Invoke-Expression hostname) -eq 'rightname'){ exit 0 } else { exit 1 }  } "
+C:\>echo %errorlevel%
+0
+```
+
 ## Arrays
 
 To create an array named $A that contains the seven numeric (int) values of 22, 5, 10, 8, 12, 9, and 80, type:
@@ -1360,6 +2055,10 @@ To create a strongly typed array, that is, an array that can contain only values
         [int32[]]$intArray = 1500,2230,3350,4000
         [Diagnostics.Process[]]$zz = Get-Process
 
+My own example... should have checked here first.
+
+        [int32[]]$colors = @(0x000000, 0x111111, 0x222222, 0x333333, 0x444444, 0x555555, 0x666666, 0x777777, 0x888888, 0x99999, 0xAAAAAA, 0xBBBBBB, 0xCCCCCC, 0xDDDDDD, 0xEEEEEE, 0xFFFFFF)
+
 You can use the _array operator_ to create an array of zero or one object.
 
         PS> $a = @("Hello World")
@@ -1369,7 +2068,9 @@ You can use the _array operator_ to create an array of zero or one object.
         PS> $b.Count
     0
 
-#### Arrays of zero or one
+
+#### _Arrays of zero or one_
+----
 
 Beginning in Windows PowerShell 3.0, a collection of zero or one object has the Count and Length property. Also, you can index into an array of one object. This feature helps you to avoid scripting errors that occur when a command that expects a collection gets fewer than two items.
 
@@ -1396,7 +2097,9 @@ Beginning in Windows PowerShell 3.0, a collection of zero or one object has the 
 
         $p = @(Get-Process Notepad)
 
-#### Properties of arrays
+
+#### _Properties of arrays_
+----
 
 
 `Count` - which is really an alias of `Length` or `LongLength` if the array contains more than **2,147,483,647** elements.
@@ -1450,7 +2153,9 @@ True
 0
 
 ```
-#### Reading an Array
+
+#### _Reading an Array_
+----
 
 0 indexed
 
@@ -1507,7 +2212,9 @@ You can use the plus operator (+) to combine a ranges with a list of elements in
     0, 1, 2, 4, 5, 6, 8
 ```
 
-#### Iterations over array elements
+
+#### _Iterations over array elements_
+----
 
 (and) [For Each](#ForEach-Object)
 
@@ -1523,7 +2230,9 @@ You can use the plus operator (+) to combine a ranges with a list of elements in
 
 
 
-### For Loop
+
+### **_For Loop_**
+----
 
 [Source](https://www.business.com/articles/powershell-for-loop/)
 
@@ -1569,7 +2278,9 @@ for ($i = 0; $i -le ($a.length - 1); $i += 2) {
 }
 ```
 
-### While, Do-While, Do-Until
+
+### **_While, Do-While, Do-Until, Break_**
+----
 
  `While` and `Do-While` loops are both used to perform an action while the condition evaluates to `$true`, and differ only in their syntax. `Do-Until` loops have similar syntax to `Do-While`, but stop processing once the condition statement is met.
 
@@ -1617,7 +2328,11 @@ While ($true) #infinate loop
     }
 ```
 
-### ForEach-Object
+See also [Break](#Break)
+
+
+### **_ForEach-Object_**
+----
 
 This example shows Get-ChildItem, A For-EachObject loop, and an if statement example.
 
@@ -1680,7 +2395,9 @@ foreach ($file in $files)
 
 
 
-#### ForEach
+
+#### _ForEach_
+----
 
 [about_Foreach](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_foreach?view=powershell-6)
 
@@ -1826,7 +2543,7 @@ $i = 0} {
 
 ###### A Complex Example
 
-The following example, a function which returns the functions that are used in scripts and script modules, demonstrates how to use the MoveNext method (which works similarly to "skip X" on a For loop) and the Current property of the $foreach variable inside of a foreach script block, even if there are unusually- or inconsistently-spaced function definitions that span multiple lines to declare the function name. The example also works if there are comments in the functions used in a script or script module.
+The following example, a function which returns the functions that are used in scripts and script modules, demonstrates how to use the MoveNext method (which works similarly to "skip X" on a For loop) and the Current property of the `$foreach` variable inside of a foreach script block, even if there are unusually- or inconsistently-spaced function definitions that span multiple lines to declare the function name. The example also works if there are comments in the functions used in a script or script module.
 
 ```ps1
 function Get-FunctionPosition {
@@ -1905,7 +2622,9 @@ function Get-FunctionPosition {
 }
 ```
 
-#### For Loops
+
+#### _For Loops_
+----
 
 [about_For](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_for?view=powershell-6)
 
@@ -1915,7 +2634,9 @@ function Get-FunctionPosition {
         $a[$i]
     }
 ```
-#### Other Methods
+
+#### _Other Methods_
+----
 
 ##### Where
 
@@ -2032,7 +2753,9 @@ Stopped  AppIDSvc           Application Identity
 ...
 ```
 
-#### Get the members of an array
+
+#### _Get the members of an array_
+----
 
 To get the properties and methods of an array, such as the `Length` property and the `SetValue` method, use the `InputObject` parameter of the `Get-Member` cmdlet.
 
@@ -2053,7 +2776,9 @@ For example, the following command gets the members of the $a array variable.
 
 You can also get the members of an array by typing a comma (,) before the value that is piped to the Get-Member cmdlet. The comma makes the array the second item in an array of arrays. Windows PowerShell pipes the arrays one at a time and Get-Member returns the members of the array. Like the next two examples.
 
-#### Manipulating an array
+
+#### _Manipulating an array_
+----
 
 You can change the elements in an array, add an element to an array, and combine the values from two arrays into a third array.
 
@@ -2099,7 +2824,9 @@ You can also use the `Remove-Item` cmdlet, but assigning a value of $null is fas
 
 
 
-### Comments
+
+### **_Comments_**
+----
 
 Comments are marked with `#`.
 
@@ -2108,7 +2835,9 @@ Block comments start with `<#` and end with `#>`.
 
 ## Commands
 
-### Get-Help
+
+### **_Get-Help_**
+----
 
 `Get-Help [ModuleName] -examples -online`
 
@@ -2117,7 +2846,9 @@ Find the available commands with `Get-Command`
 !!! Note Note - Something that works well is `Get-Help about_` and then just hit [[Tab]] until you get to the one you want.  Has lots of basic info.
 
 
-#### Get-Command
+
+#### _Get-Command_
+----
 
 ```ps1
 Get-Command -CommandType Alias
@@ -2139,7 +2870,9 @@ Install-Module -Name ISEScriptingGeek -Force -Verbose
 
 ```
 
-### Set-Alias
+
+### **_Set-Alias_**
+----
 
 Create a bit of shorthand for yourself
 
@@ -2148,7 +2881,9 @@ Set-Alias immo import-module
 >immo ISESteroids
 ```
 
-### Get-Member
+
+### **_Get-Member_**
+----
 
 Investigate whats in an object
 
@@ -2157,7 +2892,9 @@ Investigate whats in an object
 (gl | gci | member).Name - lists the available sub routines
 ((gl | gci | measure)|member) -gets all the things available from measure
 
-### Output (Print)
+
+### **_Output (Print)_**
+----
 
 `Write-Host`
 
@@ -2186,7 +2923,9 @@ the relationship between scopes.
 
 - _Numbered Scopes:_ - You can refer to scopes by name or by a number that describes the relative position of one scope to another. Scope 0 represents the current, or local, scope. Scope 1 indicates the immediate parent scope. Scope 2 indicates the parent of the parent scope, and so on. Numbered scopes are useful if you have created many recursive scopes.
 
-### Parent and Child Scopes
+
+### **_Parent and Child Scopes_**
+----
 
 You can create a new scope by running a script or function, by creating a session, or by starting a new instance of Windows PowerShell. When you create a new scope, the result is a parent scope (the original scope) and a child scope (the scope that you created).
 
@@ -2197,13 +2936,17 @@ In Windows PowerShell, all scopes are child scopes of the global scope, but you 
 Unless you explicitly make the items private, the items in the parent scope are available to the child scope. However, items that you create and change in the child scope do not affect the parent scope, unless you explicitly specify the scope when you create the items.
 
 
-### Inheritance
+
+### **_Inheritance_**
+----
 
 A child scope does not inherit the variables, aliases, and functions from the parent scope. Unless an item is private, the child scope can view the items in the parent scope. And, it can change the items by explicitly specifying the parent scope, but the items are not part of the child scope.
 
 However, a child scope is created with a set of items. Typically, it includes all the aliases that have the AllScope option. This option is discussed later in this topic. It includes all the variables that have the AllScope option, plus some variables that can be used to customize the scope, such as `MaximumFunctionCount`.
 
-### Checking Scope
+
+### **_Checking Scope_**
+----
 
 To find the items in a particular scope, use the `Scope` parameter of  `Get-Variable` or `Get-Alias`.
 
@@ -2222,7 +2965,9 @@ To get all the variables in the global scope, type:
 
 
 
-### Scope Modifiers
+
+### **_Scope Modifiers_**
+----
 
 To specify the scope of a new variable, alias, or function, use a scope modifier. The valid values of a modifier are Global, Local, Private, and Script.
 
@@ -2238,7 +2983,9 @@ The syntax for a scope modifier in a function is:
 The default scope for scripts is the script scope. The default scope for functions and aliases is the local scope, even if they are defined in a
 script.
 
-#### The Standard Case (local / unspecified)
+
+#### _The Standard Case (local / unspecified)_
+----
 The following command, which does not use a scope modifier, creates a variable in the current or local scope:
 
     $a = "one"
@@ -2288,6 +3035,83 @@ For more information, see about_Remote_Variables.
 A block of code may be contained within a function for easy re-use.
 To create a function, call the function keyword followed by a name for the function, then include your code inside a pair of curly braces.
 
+Generally :
+
+[Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+[Advanced Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+
+[CmdletBinding](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+
+
+
+[Doc on Basic Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+
+[Documentation on Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+[ByRef](https://ss64.com/ps/syntax-ref.html)
+
+-   [about_Functions](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions?view=powershell-7.2)
+-   [about_Functions_Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced?view=powershell-7.2)
+-   [about_Functions_Advanced_Methods](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_methods?view=powershell-7.2)
+-   [about_Functions_Advanced_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+-   [about_Functions_Argument_Completion](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2)
+-   [about_Functions_CmdletBindingAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+-   [about_Functions_OutputTypeAttribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_outputtypeattribute?view=powershell-7.2)
+-   [about_Function_Provider](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_function_provider?view=powershell-7.2)
+-   [about_Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+-   [about_Parameters_Default_Values](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters_default_values?view=powershell-7.2)
+-   [about_Parameter_Sets](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.2)
+-   [about_Pipelines](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines?view=powershell-7.2)
+-   [about_Pipeline_Chain_Operators](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipeline_chain_operators?view=powershell-7.2)
+-   [about_Scopes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_scopes?view=powershell-7.2)
+```ps1
+Function Verb-Noun {
+      [OutputType([<Type>])]
+      params(
+          [Parameter(attributes=1,attribute=2)][Validation][Type]$name=default
+      )
+}
+```
+
+or:
+
+```ps1
+function [<scope:>]<name> [([type]$parameter1[,[type]$parameter2])]
+{
+  begin {<statement list>}
+  process {<statement list>}
+  end {<statement list>}
+}
+
+or
+
+```ps1
+function [<scope:>]<name>
+{
+  param([type]$parameter1 [,[type]$parameter2])
+  dynamicparam {<statement list>}
+  begin {<statement list>}
+  process {<statement list>}
+  end {<statement list>}
+}
+```
+
+and with Cmdlet Binding:
+```ps
+function name{
+    [CmdletBinding(ConfirmImpact=<String>,
+    DefaultParameterSetName=<String>,
+    HelpURI=<URI>,
+    SupportsPaging=<Boolean>,
+    SupportsShouldProcess=<Boolean>,
+    PositionalBinding=<Boolean>)]
+
+    Param ($Parameter1)
+    Begin{}
+    Process{}
+    End{}
+}
+```
+
 ```powershell
 function Add-Numbers {
  $args[0] + $args[1]
@@ -2301,7 +3125,7 @@ A similar function with named parameters:
 
 ```powershell
 function Output-SalesTax {
- param( [int]$Price, [int]$Tax )
+ param( [int]$Price, [int]$Tax )|
  $Price + $Tax
 }
 
@@ -2323,14 +3147,369 @@ To list all functions in the current session: `get-command -CommandType function
 
 N.B in a block of code you need to define the function before you call it.
 
-Don't add brackets around the function parameters:
+!!!Attention Attention: Don't add brackets around the function parameters:
 
 ```powershell
 $result = Add-Numbers (5, 10) --Wrong!
 $result = Add-Numbers 5 10    --Right
 ```
 
-### Splatting
+```ps1
+
+### **_Output Type_**
+----
+
+ [OutputType([System.Void])]
+
+
+function Get-Time
+{
+  [OutputType([DateTime])]
+  Param (
+    [parameter(Mandatory=$true)]
+    [Datetime]$DateTime
+  )
+
+  $DateTime.ToShortTimeString()
+}
+```
+
+
+### **_Pass by Reference_**
+----
+
+Using the `[ref]` flag
+
+[ByRef](https://ss64.com/ps/syntax-ref.html)
+
+
+
+```ps1
+PS C:\> function add5([ref]$num)
+>> {
+>> $num.value = $num.value + 5
+>> }
+
+PS C:> $testing = 2
+PS C:> $testing
+2
+PS C> add5 ([ref]$testing)
+PS C> $testing
+7
+
+# Extending this to modify two variables:
+PS> function add5minus5([ref]$add,[ref]$minus)
+>> {
+>> $add.value = $add.value + 5
+>> $minus.value = $minus.value - 5
+>> }
+```
+
+
+### **_Parameters_**
+----
+
+
+[Doc on Basic Parameters](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameters?view=powershell-7.2)
+
+[Documentation on Advanced](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2)
+
+Much of this example comes from my Make-Montage Script which was laboriously worked on
+
+You can explore parameters with `Get-Help`
+
+
+```ps1
+Get-Help Get-Member -Parameter *
+
+-Path <string[]>
+    Specifies a path of one or more locations. Wildcard characters are
+    permitted. The default location is the current directory (.).
+
+Required?                    false
+Position?                    0
+Default value                Current directory
+Accept pipeline input?       true (ByValue, ByPropertyName)
+Accept wildcard characters?  true
+```
+Note this only works for offical or very well documented things.
+
+
+
+```ps1
+Function Make-Montage{
+    [CmdletBinding()]
+    param (
+
+
+    
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [String][AllowNull()]$path = $null,
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [ValidateRange(0,5000)][Int]$MAX_SIZE=1000,
+        [Parameter(Position=2, Mandatory=$false)] [Switch]$SVG,
+        [Parameter(Position=3, Mandatory=$false)] [Switch]$PNG,
+        [Parameter(Position=4, Mandatory=$false)] [Switch]$NoRecursion,
+        [Parameter(Position=5, Mandatory=$false)] [Switch]$ChooseBG,
+        [Parameter(Position=6, Mandatory=$false)] [Switch]$SelectPath,
+        [Parameter(Position=7, Mandatory=$false)] [Switch]$SelectSavePath,
+        [Parameter(Position=8, Mandatory=$false, ValueFromPipelineByPropertyName=$false)]
+        [String][AllowNull()]$savepath = $null
+               # [Parameter(Position=9, Mandatory=$false)] [Switch]$Debug,
+       # [Parameter(Position=10, Mandatory=$false)] [Switch]$Verbse
+        #,[Parameter(Position=11, Mandatory=$false)] [Switch]$UniqueNames 
+
+#        [Parameter(Position=4, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+#    ,
+#        #make Svg and png a flag. Not sure if I got this to work
+#        [Parameter(Mandatory=$false)][ValidateSet("SVG", "PNG", "Both" )] [String]$type,
+    )
+```
+
+Another example:
+
+```ps1
+    Param(
+        [Parameter()]
+        [IO.FileInfo]$File,
+        [int]$SleepInterval=500
+    )
+```
+
+
+
+ basically in a param block, each param has flags that can be used.
+
+
+#### _The `[Parameter]` flag_
+----
+
+[Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-attribute)
+
+
+has the following syntax 
+
+        Param(
+            [Parameter(Argument1=value1,
+            Argument2=value2)]
+        )
+
+Even blank, still requires the parentheses
+
+    [Parameter()]
+
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=5, Mandatory=$false)]
+
+this contains the position if flags arent used and values are just passed.
+
+The [Parameter](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-attribute) attribute can contain the following
+- [Mandatory](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#mandatory-argument)
+- [Position=](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#position-argument)
+- [SetName=""](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parametersetname-argument)
+- [ValueFromPipeline](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefrompipeline-argument)
+- [ValueFromPipelineByPropertyName argument](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefrompipelinebypropertyname-argument)
+- [ValueFromRemainingArguments](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#valuefromremainingarguments-argument)
+- [HelpMessage](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#helpmessage-argument)
+- [Alias](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#alias-attribute)
+    - The Alias attribute establishes an alternate name for the parameter. There's no limit to the number of aliases that you can assign to a parameter.
+- [SupportsWildcards](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#supportswildcards-attribute)
+
+
+#### _The Argument Completion Attribute_
+----
+
+[Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#argumentcompletions-attribute)
+
+
+
+```ps1
+function Test-ArgumentCompletions {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory=$true)]
+        [ArgumentCompletions('Fruits', 'Vegetables')]
+        $Type,
+
+        [Parameter()]
+        [ArgumentCompletions('Apple', 'Banana', 'Orange')]
+        $Fruit,
+
+        [Parameter()]
+        [ArgumentCompletions('Tomato', 'Corn', 'Squash')]
+        $Vegetable
+    )
+}
+```
+
+There is also the Argument Completer which is a dynamic process, a function runs that suggests values
+
+See the [Documentation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#argumentcompleter-attribute ) as its rather complicated
+There are some interesting examples, [such as ClassBasedCompleters,](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_argument_completion?view=powershell-7.2#class-based-argument-completers) but this requires code.
+
+
+```ps1
+function MyArgumentCompleter {
+    Param(
+        [Parameter(Mandatory)]
+        [ArgumentCompleter( {
+            param ( $commandName,
+                    $parameterName,
+                    $wordToComplete,
+                    $commandAst,
+                    $fakeBoundParameters )
+            # Perform calculation of tab completed values here.
+        } )]
+        $ParamName
+    )
+}
+```
+
+
+
+
+#### _The `[type]` flag_
+----
+    
+    [String]
+    [Switch]
+    [Int]
+
+etc. any type.  The [Switch] one is special because it returns a boolean $true if it is added, and $false if not, but doesnt take input.
+
+
+```ps1
+$f = gci -Recurse -Include "*$studio*" -File -Exclude "$destpath"
+```
+
+where above, `-File` is a switch.
+
+
+#### _Modifier tags_
+----
+
+[Validation attributes](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#parameter-and-variable-validation-attributes)
+
+
+
+        [AllowNull()]
+        [ValidateNotNull()]
+         [ValidateNotNullOrEmpty()]
+        [ValidateRange(0,5000)` 
+        [ValidateCount(1,5)]
+        [AllowEmptyString()]
+        [ValidateLength(1,10)]
+        [ValidatePattern("[0-9][0-9][0-9][0-9]")]
+        [AllowEmptyCollection()]
+        [ValidateSet('Fruits', 'Vegetables')]
+        [ValidateSet("Low", "Average", "High")]
+        [ValidateScript({$_ -ge (Get-Date)})]
+        [ValidateDrive("C", "D", "Variable", "Function")]
+[Dynamic Validation](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters?view=powershell-7.2#dynamic-validateset-values-using-classes)
+
+
+other attributes Ive come across but havent used - 
+*Accepts Multiple Values*
+*ValidateSet* attribute and the *ValidatePattern* a
+
+
+#### _CmdletBinding_
+----
+
+>Advanced functions use the CmdletBinding attribute to identify them as functions that act like cmdlets. The CmdletBinding attribute is similar to the Cmdlet attribute that is used in compiled cmdlet classes to identify the class as a cmdlet. For more information about this attribute, see about_Functions_CmdletBindingAttribute.
+
+
+[CmdLet Binding Attribute](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-7.2)
+    
+    
+```ps1
+{
+    [CmdletBinding(ConfirmImpact=<String>,
+    DefaultParameterSetName=<String>,
+    HelpURI=<URI>,
+    SupportsPaging=<Boolean>,
+    SupportsShouldProcess=<Boolean>,
+    PositionalBinding=<Boolean>)]
+
+    Param ($Parameter1)
+    Begin{}
+    Process{}
+    End{}
+}
+```
+
+
+
+### **_Filter Functions_**
+----
+
+e.g. stream functions, defined with the word `filter` rather than function.
+
+```ps
+function [scope_type:]name
+ { 
+  [ param(param_list) ]
+   script_block
+ }
+filter [scope_type:]name
+ {
+  [ param(param_list) ]
+  script_block 
+ }
+
+```
+
+Filter can also be implemented with `Where-Object` to create quick un-named filters.  The should return true or false.
+
+The difference between a filter function and a regular function is the way they handle items passed through the pipeline:
+
+With a regular function, pipeline objects are bound to the `$input` automatic variable, and execution is blocked until all input is received. The function then begins processing the data.
+
+With a filter function, data is processes while it is being received, without waiting for all input. A filter receives each object from the pipeline through the `$_` automatic variable, and the script block is processed for each object.
+
+The `param_list` is an optional list of comma separated parameter names, these may also be preceded by their data types in brackets. This makes the function more readable than using `$args` and also gives you the option to supply default values.
+
+
+
+### **_Advanced function_**
+----
+
+An Advanced PowerShell function contains the `[cmdletbinding()]` attribute (or the `Parameter` attribute). This adds several capabilities such as additional parameter checking, and the ability to easily use `Write-Verbose.`
+
+A function with cmdletbinding will throw an error if unhandled parameter values appear on the command line.
+
+Advanced PowerShell functions typically include `Begin..Process..End` blocks for processing the input data, documentation and auto-help, including the parameters.
+
+```
+
+ function Get-ByOwner
+ {
+   Get-ChildItem -recurse C:\ | get-acl | where {$_.Owner -match $args[0]} 
+ }
+
+PS C:\> Get-ByOwner JackFrost
+
+
+ function Get-Help2
+ {
+   param([string]$command)
+   Start-process -filepath "https://ss64.com/ps/$command.html"
+ }
+ ```
+
+
+### **_Variable Scope_**
+----
+
+By default, all variables created in functions are local, they only exist within the function, though they are still visible if you call a second function from within the first one.
+
+To persist a variable, so the function can be called repeatedly and the variable will retain it's last value, prepend `$script:` to the variable name, e.g. `$script:myvar`
+
+To make a variable global prepend `$global:` to the variable name, e.g. `$global:myvar`
+
+
+### **_Splatting_**
+----
 
 [Splatting Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-5.1)
 
@@ -2405,7 +3584,9 @@ Output
 
 ## Profiles
 
-### Userfiles
+
+### **_Userfiles_**
+----
 
 ```powershell
 notepad.exe $Profile.currentusercurrenthost
@@ -2443,7 +3624,9 @@ C:\Users\s163837\Documents\WindowsPowerShell\profile.ps1
 PS C:\Windows\system32> $profile.CurrentUserCurrentHost
 C:\Users\s163837\Documents\WindowsPowerShell\Microsoft.PowerShellISE_profile.ps1
 
-#### CurrentUserAllHosts:
+
+#### _CurrentUserAllHosts:_
+----
 
 ```ps
 #General?
@@ -2518,7 +3701,9 @@ function cddash {
 Set-Alias -Name cd -value cddash -Option AllScope`
 ```
 
-#### AllUsersCurrentHost
+
+#### _AllUsersCurrentHost_
+----
 
 C:\Users\Andy> more $profile.AllUsersCurrentHost
 #$profile.AllUsersCurrentHost
@@ -2532,7 +3717,9 @@ function prompt {
     & $GitPromptScriptBlock
 }
 
-#### CurrentUserCurrentHost
+
+#### _CurrentUserCurrentHost_
+----
 
 ```ps
 Import-Module getChildItemColor
@@ -2547,7 +3734,9 @@ function prompt {
 ```
 
 
-### Desktop CurrentUserCurrentHost
+
+### **_Desktop CurrentUserCurrentHost_**
+----
 
 ```powershell
 #Microsoft.PowerShellISE_profile.ps1
@@ -2575,14 +3764,79 @@ if(![System.IO.File]::Exists($path)){
     # file with path $path doesn't exist
 }
 ```
-## Other tricks
 
-### Get ENvironment Vars
+
+### **_Play Sound_**
+----
+
+
+ `[Console]::Beep(20000, 2)`
+
+this is short for `[System.Console]::` 
+
+You can do tab completion through the other options
+
+[Documentation](https://docs.microsoft.com/en-us/dotnet/api/system.console?view=net-5.0)
+
+The available methods are [Here](https://docs.microsoft.com/en-us/dotnet/api/system.console?view=net-5.0#properties)
+
+Other console class things are [Here](https://docs.microsoft.com/en-us/dotnet/api/system?view=netcore-3.1)
+
+Get more with 
+` [system.console] | Get-Member -Static -MemberType property | Format-Table name, definition -AutoSize`
+
+or minimally:
+
+`[console] | gm -Static`
+
+[Source](https://devblogs.microsoft.com/scripting/use-net-classes-to-configure-the-windows-powershell-console/)
+
+
+
+- ## Other  TRICKS and ACTIONS
+
+
+### **_Get ENvironment Vars_**
+----
 
 `Get-childitem $env:`
 
 
-### Debug
+### **_Create a symbolic link_**
+----
+
+
+```ps1
+ New-Item -ItemType SymbolicLink -Path "./Javascrpt.md" -Target "O:\\OneDrive\\Programming\\.Sync\\VS Code\\md\\javascript.md"
+
+ New-Item -ItemType SymbolicLink -Path "Link" -Target "Target"
+```
+
+Where LINK is the new symbolic link, and TARGET is the file it refers to.
+
+`-ItemType` can be: **Directory**, **File**, **SymbolicLink**, **Junction**, **HardLink**
+
+
+### **_ Create a Directory Junction_**
+----
+
+```ps1
+
+New-Item -ItemType HardLink -Path "Link" -Target "Target"
+
+```
+
+What is the difference between a directory symbolic link and a directory junction
+A **Directory Junction** is an older type of symbolic link, which does not support UNC paths (network paths that begin with \\) and relative paths. Directory junctions are supported in Windows 2000 and later NT-based Windows systems. A **directory symbolic** link on the other hand also supports UNC and relative paths. However, they require at least Windows Vista. So, in most cases today, __the directory symbolic link is the preferred option.__
+
+
+A **hard link** can be created only for files, not folders. You cannot create a hard link for directories. So, it has more limitations than a Directory Junction and also does not support UNC paths.
+
+>In Windows Vista and later, directory junctions are used to link older file folder paths like C:\Documents and Settings to newer paths like C:\Users. Symbolic links are also used to redirect C:\Users\All Users to C:\ProgramData.
+
+
+### **_Debug_**
+----
 
 ```powershell
 Set-PSDebug -Trace 1 #| 2
@@ -2590,7 +3844,9 @@ Set-PSDebug -Trace 1 #| 2
 Get-PSDepth  #Just a sample function?
 Set-PSDebug -Off
 ```
-### -OutVariable | -PipelineVariable
+
+### **_-OutVariable | -PipelineVariable_**
+----
 
 Takes a string and loads the result into a variable
 
@@ -2600,7 +3856,9 @@ Get-PackageSource -OutVariable Name
 
 Produces the result.  But also loads result into `$Name`.  Variables have to be prefixed with `$` when getting value.
 
-### Get-Item, Get-ItemProperty, Get-ItemPropertyValue, Get-ChildItem
+
+### **_Get-Item, Get-ItemProperty, Get-ItemPropertyValue, Get-ChildItem_**
+----
 
 `Get-ChildItem -Path C:\`
 Gets the subfolders for C:\
@@ -2631,7 +3889,9 @@ PS C:\Windows\system32> Get-ItemPropertyValue -Path C:\ -Name CreationTime
 
         Wednesday, April 11, 2018 4:04:33 PM
 ```
-### Measure a value
+
+### **_Measure a value_**
+----
 
 You should use `Measure-Object` to count things. In this case it would look like:
 
@@ -2650,7 +3910,9 @@ even: but the problem is, that if I have 1 or 0 items, the command does not work
 
 (Get-Location | gci | measure).Count
 
-### Get a Property
+
+### **_Get a Property_**
+----
 
 Get-ItemProperty
 
@@ -2674,7 +3936,23 @@ You can access an item by forcing PS to re-eval an item with `$` as in `$(<expr>
         PS A:\icons\scraping> $(GCI .\100.zip).FullName
         A:\icons\scraping\100.zip
 
-### Test a path
+
+### **_Get services format as table_**
+----
+
+ get-service | group-object -property status | format-table -wrap
+
+
+
+### **_Formatting methods_**
+----
+
+Out-GridView
+format-table -wrap
+
+
+### **_Test a path_**
+----
 
 if (Test-Path $path) { ... }
 
@@ -2723,7 +4001,9 @@ As you've already shown yourself, the opposite is quite easy, just alias exists 
     PS C:\> exists -Path "C:\Windows"
     True
 ```
-### Get a particular value
+
+### **_Get a particular value_**
+----
 
 ```powershell
 $someVar = Get-PackageSouce
@@ -2754,7 +4034,9 @@ Running `$property.GetType()`  would probably return different things- objects f
 
 
 
-### Setup
+
+### **_Setup_**
+----
 
  PSRepository -> PackageSource -> PackageProviders-> Package -> Modules
 
@@ -2802,18 +4084,24 @@ Install-Package ISEScriptAnalyzerAddOn -Source PSGallery
 Install-Package ISESteroids -Source PSGallery
 ```
 
-### Security
+
+### **_Security_**
+----
 
 `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
 
 
-### Install Windows Feature (WSL)
+
+### **_Install Windows Feature (WSL)_**
+----
 
 ```ps
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 ```
 
-### Get a web file (like curl)
+
+### **_Get a web file (like curl)_**
+----
 
 Invoke-WebRequest
 
@@ -2869,7 +4157,20 @@ param([Int32]$MajorStart, [Int32]$MajorStop, [Int32]$MinorStart0, [Int32]$MinorS
 
 ```
 
-### Find a command
+
+#### _Example_
+----
+
+Some Random [Source](https://gist.github.com/guitarrapc/79d31b8cd02649075642b77c4ae796ab)
+
+ that might be inspiration Later
+
+
+        [system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('http://[YourProxyDNS]:[yourProxyPort]') [system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials [system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
+
+
+### **_Find a command_**
+----
 
 ```powershell
 Get-Command -Noun PackageProvider
@@ -2887,7 +4188,9 @@ function Add-Function
 }
 ```
 
-### Get Help
+
+### **_Get Help_**
+----
 
 ```powershell
 Get-Help Find-Command -examples
@@ -2907,7 +4210,9 @@ PS C:\> Get-Help2 -command set-acl
 
 The built-in PowerShell alias names will take precedence over a function (or script) with the same name. To avoid conflicts always check if the name is already in use with help name. Choosing a good descriptive name for your function will help with this
 
-### Show a file open dialogue
+
+### **_Show a file open dialogue_**
+----
 
 [Source](https://blogs.technet.microsoft.com/heyscriptingguy/2009/09/01/hey-scripting-guy-can-i-open-a-file-dialog-box-with-windows-powershell/)
 
@@ -2933,7 +4238,9 @@ Get-FileName -initialDirectory "c:fso"
 
 ```
 
-### Open Folder Dialog
+
+### **_Open Folder Dialog_**
+----
 
 [Sources](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.folderbrowserdialog?view=netframework-4.8)
 
@@ -2947,7 +4254,7 @@ Also same as above.
 This mostly works.
 Function Get-Directory($InitialDir){
 
-[System.Reflection.Assembly]::LoadWithPartialName(“System.windows.forms”) | Out-Null
+[System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 #OutNull to hide the success dialogue
 $OpenDirDialogue = New-Object System.Windows.Forms.FolderBrowserDialog
 $OpenDirDialogue.ShowNewFolderButton = $true
@@ -2971,7 +4278,9 @@ $InitialDir doesnt do anything.
 
 
 
-### Prompt for input
+
+### **_Prompt for input_**
+----
 
 ```ps1
 $Server = Read-Host -Prompt 'Input your server  name'
@@ -2980,7 +4289,9 @@ $Date = Get-Date
 Write-Host "You input server '$Servers' and '$User' on '$Date'"
 ```
 
-### Get Windows Events
+
+### **_Get Windows Events_**
+----
 
 
 ```ps1
@@ -3017,7 +4328,9 @@ $msg[4] | ConvertFrom-String | Get-Member
 
 
 ```
-### File Methods Available
+
+### **_File Methods Available_**
+----
 
         PS A:\icons\scraping\166\1> Get-ChildItem .\scrape166.svg | Get-Member
 
@@ -3076,6 +4389,26 @@ $msg[4] | ConvertFrom-String | Get-Member
         Name                      Property       string Name {get;}
         BaseName                  ScriptProperty System.Object BaseName {get=if ($this.Extension.Length -gt 0){$this.Name.Remove($this.Name.Length - $this.Extension.Length)}else{$this.Name};}
         VersionInfo               ScriptProperty System.Object VersionInfo {get=[System.Diagnostics.FileVersionInfo]::GetVersionInfo($this.FullName);}
+
+
+
+### **_Run Script as Admin_**
+----
+
+[windows 10 - Launch powershell as admin when double click on ps1 file - Super User](https://superuser.com/questions/1293170/launch-powershell-as-admin-when-double-click-on-ps1-file)
+
+This will not execute the script when you double-click on it, but this will execute itself as elevated when you run it. You can try this:
+
+```ps1
+$principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+if($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # code here...
+}
+else {
+    Start-Process -FilePath "powershell" -ArgumentList "$('-File ""')$(Get-Location)$('\')$($MyInvocation.MyCommand.Name)$('""')" -Verb runAs
+}
+
+```
 
 ## Aliases
 Alias           % -> ForEach-Object
@@ -3319,7 +4652,9 @@ These commands are in common with Unix or cmd
 
 [Modules](https://docs.microsoft.com/en-us/powershell/scripting/learn/writing-portable-modules?view=powershell-6)
 
-### Scripts
+
+### **_Scripts_**
+----
 
 Scripts have a Data Section:
 
@@ -3342,9 +4677,13 @@ The $MyNotebook variable contains the name of the user's private notebook.
 Variables are not allowed here.
 
 
-### Writing Scripts
 
-#### Passing Values into scripts
+### **_Writing Scripts_**
+----
+
+
+#### _Passing Values into scripts_
+----
 
 The first command in a .PS1 file must be Param()
 
@@ -3422,6 +4761,51 @@ Class SoundNames : System.Management.Automation.IValidateSetValuesGenerator {
     }
 }
 ```
+
+
+### **_Modules (Writing)_**
+----
+
+
+#### _Storing and Installing a Module_
+----
+
+Once you have created a **script,** **binary,** or **manifest** module, you can save your work in a location that others may access it. For example, your module can be stored in the system folder where Windows PowerShell is installed, or it can be stored in a user folder.
+
+Generally speaking, you can determine where you should install your module by using one of the paths stored in the **$ENV:PSModulePath** variable. Using one of these paths means that PowerShell can automatically find and load your module when a user makes a call to it in their code. If you store your module somewhere else, you can explicitly let PowerShell know by passing in the location of your module as a parameter when you call Install-Module.
+
+Regardless, the path of the folder is referred to as the base of the module (ModuleBase), and the name of the script, binary, or manifest module file should be the same as the module folder name, with the following exceptions:
+
+[Defining Modules](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.1)
+
+
+[How to write](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/writing-a-windows-powershell-module?view=powershell-7.1)
+
+[Understanding Modules](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/understanding-a-windows-powershell-module?view=powershell-7.1)
+
+[Write A Script Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module?view=powershell-7.1)
+
+[Write a Binary Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-binary-module?view=powershell-7.1)
+
+[Write a Manifest Module](https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest?view=powershell-7.1)
+
+
+#### _Module Manifests_
+----
+
+A module manifest is a .psd1 file that contains a hash table. The keys and values in the hash table do the following things:
+
+- Describe the contents and attributes of the module.
+- Define the prerequisites.
+- Determine how the components are processed.
+
+Manifests are **not required** for a module. Modules can reference script files (.ps1), script module files (.psm1), manifest files (.psd1), formatting and type files (.ps1xml), cmdlet and provider assemblies (.dll), resource files, Help files, localization files, or any other type of file or resource that is bundled as part of the module. For an internationalized script, the module folder also contains a set of message catalog files. If you add a manifest file to the module folder, you can reference the multiple files as a single unit by referencing the manifest.
+
+- The manifest itself describes the following categories of information:
+- Metadata about the module, such as the module version number, the author, and the description.
+- Prerequisites needed to import the module, such as the Windows PowerShell version, the common language runtime (CLR) version, and the required modules.
+- Processing directives, such as the scripts, formats, and types to process.
+- Restrictions on the members of the module to export, such as the aliases, functions, variables, and cmdlets to export.
 
 
 ## COM Objects
@@ -3503,7 +4887,9 @@ New-Object provides the most commonly-used functionality of the VBScript CreateO
 
 New-Object expands upon the functionality available in the Windows Script Host environment by making it easy to work with .NET Framework objects from the command line and within scripts.
 
-### Creating Objects
+
+### **_Creating Objects_**
+----
 
 The .NET Framework Class Library includes a class named `System.Diagnostics.EventLog` that can be used to manage event logs. You can create a new instance of a .NET Framework class by using the `New-Object` cmdlet with the `TypeName` parameter.
 
@@ -3524,7 +4910,9 @@ Max(K) Retain OverflowAction        Entries Name
 16,384      7 OverwriteOlder          2,160 Application
 ```
 
-### Known Objects
+
+### **_Known Objects_**
+----
 
 Since most of the .NET Framework core classes are contained in the System namespace, Windows PowerShell will automatically attempt to find classes you specify in the System namespace if it cannot find a match for the typename you specify. This means that you can specify Diagnostics.EventLog instead of System.Diagnostics.EventLog.
 
@@ -3534,6 +4922,8 @@ Since most of the .NET Framework core classes are contained in the System namesp
 
 
 ## WMI Objects
+
+
 
 Cmdlets from `CimCmdlets` module are the most important cmdlets for general system management tasks. _**All critical subsystem settings are exposed through WMI. (Source)[https://docs.microsoft.com/en-us/powershell/scripting/samples/collecting-information-about-computers?view=powershell-6]**_
 
@@ -3603,8 +4993,84 @@ Get-CimInstance -ClassName Win32_Desktop -ComputerName .
 It seems that specifying Computer Name triggers it as a remote operation.
 
 
+### **_WMI Objects within Win32_OperatingSystem_**
+----
 
-### Listing All WMI-Objects
+`PS R:\Icons> Get-CimInstance -Class Win32_OperatingSystem | Get-Member -MemberType Property | Select -Property "Name"`
+
+VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_OperatingSystem'.
+
+VERBOSE: Operation 'Enumerate CimInstances' complete.
+Name                                     
+----                                     
+BootDevice                               
+BuildNumber                              
+BuildType                                
+Caption                                  
+CodeSet                                  
+CountryCode                              
+CreationClassName                        
+CSCreationClassName                      
+CSDVersion                               
+CSName                                   
+CurrentTimeZone                          
+DataExecutionPrevention_32BitApplications
+DataExecutionPrevention_Available        
+DataExecutionPrevention_Drivers          
+DataExecutionPrevention_SupportPolicy    
+Debug                                    
+Description                              
+Distributed                              
+EncryptionLevel                          
+ForegroundApplicationBoost               
+FreePhysicalMemory                       
+FreeSpaceInPagingFiles                   
+FreeVirtualMemory                        
+InstallDate                              
+LargeSystemCache                         
+LastBootUpTime                           
+LocalDateTime                            
+Locale                                   
+Manufacturer                             
+MaxNumberOfProcesses                     
+MaxProcessMemorySize                     
+MUILanguages                             
+Name                                     
+NumberOfLicensedUsers                    
+NumberOfProcesses                        
+NumberOfUsers                            
+OperatingSystemSKU                       
+Organization                             
+OSArchitecture                           
+OSLanguage                               
+OSProductSuite                           
+OSType                                   
+OtherTypeDescription                     
+PAEEnabled                               
+PlusProductID                            
+PlusVersionNumber                        
+PortableOperatingSystem                  
+Primary                                  
+ProductType                              
+PSComputerName                           
+RegisteredUser                           
+SerialNumber                             
+ServicePackMajorVersion                  
+ServicePackMinorVersion                  
+SizeStoredInPagingFiles                  
+Status                                   
+SuiteMask                                
+SystemDevice                             
+SystemDirectory                          
+SystemDrive                              
+TotalSwapSpaceSize                       
+TotalVirtualMemorySize                   
+TotalVisibleMemorySize                   
+Version             
+
+
+### **_Listing All WMI-Objects_**
+----
 
 ```ps1
 PS> Get-WmiObject -List
@@ -3629,7 +5095,9 @@ Get-WmiObject -List -ComputerName localhost
 
 Get-WmiObject uses the root/cimv2 namespace by default. If you want to specify another WMI namespace, use the Namespace parameter and specify the corresponding namespace path:
 
-### Get ComObject
+
+### **_Get ComObject_**
+----
 
 [Source](https://www.powershellmagazine.com/2013/06/27/pstip-get-a-list-of-all-com-objects-available/)
 
@@ -3670,9 +5138,13 @@ function Get-ComObject {
 
 
 
-### Set Network Properties
 
-#### Get-NetConnectionProfile
+### **_Set Network Properties_**
+----
+
+
+#### _Get-NetConnectionProfile_
+----
 
 returns the following info:
 
@@ -3695,9 +5167,13 @@ Can set Networks to Domain, Private and Public.  Esp. Useful when there is more 
 
 `Get-WmiObject` addresses this problem by making WMI discoverable. You can get a list of the WMI classes available on the local computer by typing:
 
-### Get Computer Properties
 
-#### Listing BIOS Information
+### **_Get Computer Properties_**
+----
+
+
+#### _Listing BIOS Information_
+----
 
 The WMI Win32_BIOS class returns fairly compact and complete information about the system BIOS on the local computer:
 
@@ -3710,7 +5186,9 @@ The WMI Win32_BIOS class returns fairly compact and complete information about t
             Version           : ALASKA - 1072009
             PSComputerName    : .
 
-#### Listing Processor Information
+
+#### _Listing Processor Information_
+----
 
         Get-CimInstance -ClassName Win32_Processor -ComputerName . | Select-Object -ExcludeProperty "CIM*"
         Get-CimInstance -ClassName Win32_Processor
@@ -3718,14 +5196,18 @@ The WMI Win32_BIOS class returns fairly compact and complete information about t
         #For a generic string of the processor family -  this works:
         Get-CimInstance -ClassName Win32_ComputerSystem -ComputerName . | Select-Object -Property SystemType
 
-#### Listing Computer Manufacturer and Model
+
+#### _Listing Computer Manufacturer and Model_
+----
 
 Computer model information is also available from Win32_ComputerSystem. The standard displayed output will not need any filtering to provide OEM data:
 
 
 `Get-CimInstance -ClassName Win32_ComputerSystem`
 
-#### Listing Installed Hotfixes
+
+#### _Listing Installed Hotfixes_
+----
 You can list all installed hotfixes by using Win32_QuickFixEngineering:
 
 `Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName`
@@ -3734,7 +5216,9 @@ Although you can use the Get-CimInstance's Property parameter to choose only the
 
 `Get-CimInstance -ClassName Win32_QuickFixEngineering -ComputerName . -Property HotFixID`
 
-#### Listing Operating System Version Information
+
+#### _Listing Operating System Version Information_
+----
 
 `Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property BuildNumber,BuildType,OSType,ServicePackMajorVersion,ServicePackMinorVersion`
 
@@ -3742,7 +5226,9 @@ You can also use wildcards with the Select-Object's Property parameter. Because 
 
         `Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property Build*,OSType,ServicePack*`
 
-#### Listing Local Users and Owner
+
+#### _Listing Local Users and Owner_
+----
 Local general user information — number of licensed users, current number of users, and owner name — can be found with a selection of Win32_OperatingSystem class' properties. You can explicitly select the properties to display like this:
 
 		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property NumberOfLicensedUsers,NumberOfUsers,RegisteredUser`
@@ -3750,7 +5236,9 @@ A more succinct version using wildcards is:
 
 		`Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName . | Select-Object -Property *user*`
 
-#### Getting Available Disk Space
+
+#### _Getting Available Disk Space_
+----
 
 To see the disk space and free space for local drives, you can use the Win32_LogicalDisk WMI class. You need to see only instances with a DriveType of 3 — the value WMI uses for fixed hard disks.
 
@@ -3770,19 +5258,25 @@ FreeSpace 109839607808
 Size      326846914560
 ```
 
-#### Getting Logon Session Information
+
+#### _Getting Logon Session Information_
+----
 
 You can get general information about logon sessions associated with users through the `Win32_LogonSession` WMI class:
 
 		Get-CimInstance -ClassName Win32_LogonSession -ComputerName .
 
-#### Getting the User Logged on to a Computer
+
+#### _Getting the User Logged on to a Computer_
+----
 
 You can display the user logged on to a particular computer system using Win32_ComputerSystem. This command returns only the user logged on to the system desktop:
 
 		Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName -ComputerName .
 
-#### Getting Local Time from a Computer
+
+#### _Getting Local Time from a Computer_
+----
 
 You can retrieve the current local time on a specific computer by using the Win32_LocalTime WMI class.
 
@@ -3802,7 +5296,9 @@ Year         : 2017
 PSComputerName : .
 ```
 
-#### Displaying Service Status
+
+#### _Displaying Service Status_
+----
 
 To view the status of all services on a specific computer, you can locally use the `Get-Service` cmdlet. For remote systems, you can use the `Win32_Service` WMI class. If you also use Select-Object to filter the results to Status, Name, and DisplayName, the output format will be almost identical to that from Get-Service:
 
@@ -3813,14 +5309,20 @@ To allow the complete display of names for the occasional services with extremel
 		Get-CimInstance -ClassName Win32_Service -ComputerName . | Format-Table -Property Status,Name,DisplayName -AutoSize -Wrap
 
 
-### Actions
+
+### **_Actions_**
+----
 
 
-#### Locking a Computer
+
+#### _Locking a Computer_
+----
 
 [Was there supposed to be something here?]
 
-#### Calling User32.dll functions
+
+#### _Calling User32.dll functions_
+----
 
 !!!Note This should (at least in the old windows I grew up with)- expose lots of useful methods.
 
@@ -3835,7 +5337,9 @@ When you lock a workstation while Fast User Switching is enabled, such as on Win
 
 To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` command-line tool.
 
-#### Logging Off the Current Session
+
+#### _Logging Off the Current Session_
+----
 
 You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
 
@@ -3850,7 +5354,9 @@ A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32S
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
-#### Shutting Down or Restarting a Computer
+
+#### _Shutting Down or Restarting a Computer_
+----
 
 Shutting down and restarting computers are generally the same types of task. Tools that shut down a computer will generally restart it as well—and vice versa. There are two straightforward options for restarting a computer from Windows PowerShell. Use either `Tsshutdn.exe` or `Shutdown.exe` with appropriate arguments. You can get detailed usage information from `tsshutdn.exe /?` or `shutdown.exe /?`.
 
@@ -3864,11 +5370,15 @@ To force an immediate restart, use the -Force parameter. `Restart-Computer -Forc
 
 
 
-### Performing Networking Tasks
+
+### **_Performing Networking Tasks_**
+----
 
 Because TCP/IP is the most commonly used network protocol, most low-level network protocol administration tasks involve TCP/IP. In this section, we use Windows PowerShell and WMI to do these tasks.
 
-#### Listing IP Addresses for a Computer
+
+#### _Listing IP Addresses for a Computer_
+----
 To get all IP addresses in use on the local computer, use the following command:
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=$true -ComputerName . | Format-Table -Property IPAddress
@@ -3895,7 +5405,9 @@ To understand why the braces appear, use the `Get-Member` cmdlet to examine the 
 
 The IPAddress property for each network adapter is actually an array. The braces in the definition indicate that IPAddress is not a *System.String* value, but an *array of System.String* values.
 
-#### Listing IP Configuration Data
+
+#### _Listing IP Configuration Data_
+----
 
 To display detailed IP configuration data for each network adapter, use the following command:
 
@@ -3909,7 +5421,9 @@ If you are not interested in **IPX** or **WINS** properties—probably the case 
 
 This command returns detailed information about *DHCP, DNS, routing*, and other minor IP configuration properties.
 
-#### Pinging Computers
+
+#### _Pinging Computers_
+----
 
 You can perform a simple ping against a computer using by `Win32_PingStatus`. The following command performs the ping, but returns lengthy output:
 
@@ -3939,7 +5453,9 @@ Note that this technique for generating a range of addresses can be used elsewhe
 
 		$ips = 1..254 | ForEach-Object -Process {'192.168.1.' + $_}
 
-#### Retrieving Network Adapter Properties
+
+#### _Retrieving Network Adapter Properties_
+----
 
 Earlier in this user's guide, we mentioned that you could retrieve general configuration properties by using `Win32_NetworkAdapterConfiguration`. Although not strictly TCP/IP information, network adapter information such as MAC addresses and adapter types can be useful for understanding what is going on with a computer. To get a summary of this information, use the following command:
 
@@ -3948,7 +5464,9 @@ Earlier in this user's guide, we mentioned that you could retrieve general confi
         Get-NetAdapter
 
 
-#### Assigning the DNS Domain for a Network Adapter
+
+#### _Assigning the DNS Domain for a Network Adapter_
+----
 
 To assign the DNS domain for automatic name resolution, use the Win32_NetworkAdapterConfiguration SetDNSDomain method. Because you assign the DNS domain for each network adapter configuration independently, you need to use a ForEach-Object statement to assign the domain to each adapter:
 
@@ -3961,11 +5479,15 @@ You can filter the command by using the `Where-Object` cmdlet, instead of using 
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -ComputerName . | Where-Object -FilterScript {$_.IPEnabled} | ForEach-Object -Process {$_.SetDNSDomain('fabrikam.com')}
 
-#### Performing DHCP Configuration Tasks
+
+#### _Performing DHCP Configuration Tasks_
+----
 
 Modifying DHCP details involves working with a set of network adapters, just as the DNS configuration does. There are several distinct actions you can perform by using WMI, and we will step through a few of the common ones.
 
-#### Determining DHCP-Enabled Adapters
+
+#### _Determining DHCP-Enabled Adapters_
+----
 
 To find the DHCP-enabled adapters on a computer, use the following command:
 
@@ -3975,13 +5497,17 @@ To exclude adapters with IP configuration problems, you can retrieve only IP-ena
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter "IPEnabled=$true and DHCPEnabled=$true" -ComputerName .
 
-#### Retrieving DHCP Properties
+
+#### _Retrieving DHCP Properties_
+----
 
 Because DHCP-related properties for an adapter generally begin with "DHCP," you can use the Property parameter of Format-Table to display only those properties:
 
 		Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter "DHCPEnabled=$true" -ComputerName . | Format-Table -Property DHCP*
 
-#### Enabling DHCP on Each Adapter
+
+#### _Enabling DHCP on Each Adapter_
+----
 
 To enable DHCP on all adapters, use the following command:
 
@@ -3989,7 +5515,9 @@ To enable DHCP on all adapters, use the following command:
 
 You can use the Filter statement `"IPEnabled=$true and DHCPEnabled=$false"` to avoid enabling DHCP where it is already enabled, but omitting this step will not cause errors.
 
-#### Releasing and Renewing DHCP Leases on Specific Adapters
+
+#### _Releasing and Renewing DHCP Leases on Specific Adapters_
+----
 
 The `Win32_NetworkAdapterConfiguration` class has `ReleaseDHCPLease` and `RenewDHCPLease` methods. Both are used in the same way. The easiest way to filter adapters on a subnet is to choose only the adapter configurations that use the gateway for that subnet. For example, the following command releases all DHCP leases on adapters on the local computer that are obtaining DHCP leases from `192.168.1.254`:
 
@@ -4001,7 +5529,9 @@ The only change for renewing a DHCP lease is to use the `RenewDHCPLease` method 
 
 !!!Warning  When using these methods on a remote computer, be aware that you can lose access to the remote system if you are connected to it through the adapter with the released or renewed lease.
 
-#### Releasing and Renewing DHCP Leases on All Adapters
+
+#### _Releasing and Renewing DHCP Leases on All Adapters_
+----
 
 You can perform global DHCP address releases or renewals on all adapters by using the `Win32_NetworkAdapterConfiguration` methods, `ReleaseDHCPLeaseAll` and `RenewDHCPLeaseAll`. However, the command must apply to the WMI class, rather than a particular adapter, because releasing and renewing leases globally is performed on the class, not on a specific adapter.
 
@@ -4017,7 +5547,9 @@ You can use the same command format to invoke the `RenewDHCPLeaseAll` method:
 
 		( Get-WmiObject -List | Where-Object -FilterScript {$_.Name -eq 'Win32_NetworkAdapterConfiguration'} ).RenewDHCPLeaseAll()
 
-### Creating a Network Share
+
+### **_Creating a Network Share_**
+----
 
 To create a network share, use the Win32_Share Create method:
 
@@ -4027,7 +5559,9 @@ You can also create the share by using net share in Windows PowerShell:
 
 		net share tempshare=c:\temp /users:25 /remark:"test share of the temp folder"
 
-#### Removing a Network Share
+
+#### _Removing a Network Share_
+----
 
 You can remove a network share with Win32_Share, but the process is slightly different from creating a share, because you need to retrieve the specific share to be removed, rather than the Win32_Share class. The following statement deletes the share "TempShare":
 
@@ -4037,7 +5571,9 @@ You can remove a network share with Win32_Share, but the process is slightly dif
 
         tempshare was deleted successfully.
 
-### Connecting a Windows Accessible Network Drive
+
+### **_Connecting a Windows Accessible Network Drive_**
+----
 
 The `New-PSDrive` cmdlets creates a Windows PowerShell drive, but drives created this way are available only to Windows PowerShell. To create a new networked drive, you can use the `WScript.Network` COM object. The following command maps the share `\\FPS01\users` to local drive B:
 
@@ -4053,7 +5589,9 @@ Drives mapped with either WScript.Network or net use are immediately available t
 
 ## Useful things to do
 
-### Get Environment Vars
+
+### **_Get Environment Vars_**
+----
 
 You can navigate to the environment like a directory.
 
@@ -4069,7 +5607,9 @@ Get-Item -path Env:* | Get-Member
 `$` is required when you get to directly referencing it `$Env:windir`
 
 
-#### Append values to path (in Powershell)
+
+#### _Append values to path (in Powershell)_
+----
 
 To append ";c:\temp" to the value of the Path environment variable, use the following syntax:
 
@@ -4100,7 +5640,9 @@ On Linux or MacOS, to add the "/usr/local/Fabrikam/Modules" directory to the val
 
         $Env:PSModulePath += ":/usr/local/Fabrikam/Modules"
 
-### Search for files
+
+### **_Search for files_**
+----
 
 Better than Windows Search
 
@@ -4116,7 +5658,9 @@ The comparison operators also include operators that find or replace patterns in
 
 Containment comparison operators determine whether a test value appears in a reference set (`-in`,` -notin`, `-contains`, `-notcontains`).
 
-### Loading Modules
+
+### **_Loading Modules_**
+----
 
 [Online Module Browser](https://docs.microsoft.com/en-us/powershell/module/)
 [Special Modules?](https://docs.microsoft.com/en-us/powershell/module/dataprotectionmanager/?view=systemcenter-ps-2016)
@@ -4167,7 +5711,9 @@ New-ModuleManifest
 Test-ModuleManifest
 Update-ModuleManifest
 
-### Get Commands
+
+### **_Get Commands_**
+----
 
 
 
@@ -4180,7 +5726,9 @@ Get-Command -Module ISEScriptingGeek | Select-Object -Property Name | Format-Wid
 1
 Install-Module -Name ISEScriptingGeek -Force -Verbose
 
-### Write Lines
+
+### **_Write Lines_**
+----
 
 Add-Content c:\scripts\test.txt "The End"
 By default, data is appended after the last character. If you want to append the data on a new line in the text document, use 'n. are some other special characters that can be used with add-content cmdlet.
@@ -4197,7 +5745,9 @@ Here are some other special characters that can be used with the add-content cmd
 `" -- Double quote
 
 
-### Turn off the screen
+
+### **_Turn off the screen_**
+----
 
 `(Add-Type '[DllImport("user32.dll")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
 
@@ -4205,7 +5755,9 @@ or in Command prompt:
 
 `powershell (Add-Type '[DllImport(\"user32.dll\")]^public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::SendMessage(-1,0x0112,0xF170,2)`
 
-### Get Module Properties
+
+### **_Get Module Properties_**
+----
 
 ```powershell
 #Example
@@ -4221,7 +5773,9 @@ Get-Module -Name ISESteroids | Format-Table -Property Name, Moduletype, Path -Gr
 
 ```
 
-### Get The Commands in a Module
+
+### **_Get The Commands in a Module_**
+----
 
 - **Example 1: Get cmdlets, functions, and aliases** `PS C:\>Get-Command` This command gets the Windows PowerShell cmdlets, functions, and aliases that are installed on
 the computer.
@@ -4259,7 +5813,9 @@ Application     notepad.exe    C:\WINDOWS\system32\notepad.exe
 Application     NOTEPAD.EXE    C:\WINDOWS\NOTEPAD.EXE
 ```
 
-### Set the default output as verbose
+
+### **_Set the default output as verbose_**
+----
 
 By default Powershell doesn't show Verbose output.  This is in a preference variable.  It can be changed by changing the value of the variable `$VerbosePreference`.  Simply calling `$VerbosePreference` will get the current setting.  Must be one of: `[SilentlyContinue], Stop, Continue, Inquire, Ignore, Suspend`.
 
@@ -4271,7 +5827,9 @@ It is not recommended to set this in your profile simply.
 $VerbosePreference = "Continue"  # "Silently Continue" [Default],
 ```
 
-### Fix DICOM Errors
+
+### **_Fix DICOM Errors_**
+----
 
 Need [Grant, Revoke, Get DCOM permissions using PowerShell](https://gallery.technet.microsoft.com/Grant-Revoke-Get-DCOM-22da5b96)
 It can be installed via ScriptBrowser
@@ -4282,14 +5840,18 @@ Import-Module .\DCOMPermissions.psm1
 Grant-DComPermission -ApplicationID "{4839DDB7-58C2-48F5-8283-E1D1807D0D7D}" -Account "SYSTEM" -Type Launch -Permissions LocalLaunch,LocalActivation -OverrideConfigurationPermissions
 ```
 
-### Check if a directory exists and create it if not
+
+### **_Check if a directory exists and create it if not_**
+----
 
 THis was designed to work with VS-Code, it might not be universal
 
 
 try{ Test-Path  -EA Stop ~\md; cd md\} catch {mkdir ~\md\; cd md\}
 
-### Check if a file exists
+
+### **_Check if a file exists_**
+----
 
 PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $DCOMFile
 True
@@ -4298,16 +5860,20 @@ PS O:\OneDrive\Programming\Powershell\DCOMPermissions> Test-Path -LiteralPath $D
 False
 
 
-### Check if a process exists
+
+### **_Check if a process exists_**
+----
 
 ```ps1
-PS> test (get-Process |where {$_.name -eq “PowerShell”})
+PS> test (get-Process |where {$_.name -eq "PowerShell"})
 TRUE
-PS> test (get-Process |where {$_.name -eq “NoSuchProcess”})
+PS> test (get-Process |where {$_.name -eq "NoSuchProcess"})
 FALSE
 ```
 
-### Customize the Windows PowerShell prompt
+
+### **_Customize the Windows PowerShell prompt_**
+----
 
 ```powershell
 PS C:\>
@@ -4328,7 +5894,9 @@ The command begins with the function keyword followed by the function name, prom
 This command defines a new prompt that begins with the string PowerShell: . To append the current location, it uses a Get-Location command, which runs when the prompt function is
 called. The prompt ends with the string "> ".
 
-### Get Files
+
+### **_Get Files_**
+----
 
 Get the files in a directory
 
@@ -4342,7 +5910,9 @@ the first.
 
 `get-childitem -name`   This command retrieves only the names of items in the current directory
 
-### VHDs
+
+### **_VHDs_**
+----
 
 ```ps1
 Set-Location -Path 'O:\Portable'
@@ -4367,17 +5937,23 @@ Get-Command -Noun *VHD*
 
 
 
-### Count Folder Items
+
+### **_Count Folder Items_**
+----
 
 (gl|gci|measure).Count  count folder items
 
 
-### Copy all of a type somewhere else
+
+### **_Copy all of a type somewhere else_**
+----
 
 gci -Recurse -File -Include "*.ttf" -Name | copy-item -Destination .\^
 
 
-### Install Fonts
+
+### **_Install Fonts_**
+----
 
 ```ps1
 param(
@@ -4430,6 +6006,30 @@ else
 ```
 
 
+### **_Registry Export and Import_**
+----
+
+
+
+
+```ps1
+reg export HKCU\\Software\\SimonTatham\\PuTTY\\Sessions (\[Environment\]::GetFolderPath("Desktop") + "\\putty-sessions.reg")
+
+reg export HKCU\Software\SimonTatham ([Environment]::GetFolderPath("Desktop") + "\putty.reg")
+
+reg import putty-sessions.reg
+reg import putty.reg
+```
+
+
+### **_Reference Folders_**
+----
+
+```
+([Environment]::GetFolderPath("Desktop") 
+```
+
+
 ## Displaying Markdown
 
 [More Here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/show-markdown?view=powershell-7)
@@ -4459,7 +6059,9 @@ Show-Markdown
 ```
 
 
-### Description
+
+### **_Description_**
+----
 The Show-Markdown cmdlet is used to render Markdown in a human readable format either in a terminal or in a browser.
 
 `Show-Markdown` can return a string that includes the VT100 escape sequences which the terminal renders (if it supports VT100 escape sequences). This is primarily used for viewing Markdown files in a terminal. You can also get this string via the ConvertFrom-Markdown by specifying the AsVT100EncodedString parameter.
@@ -4494,7 +6096,9 @@ __underlines__
 Show-Markdown -Path ./README.md -UseBrowser
 ```
 
-### Parameters
+
+### **_Parameters_**
+----
 - `-InputObject`
  - A Markdown string that will be shown in the terminal. If you do not pass in a supported format, Show-Markdown will emit an error.
     - Type: - [[*PSObject*]]
@@ -4523,7 +6127,9 @@ Show-Markdown -Path ./README.md -UseBrowser
     - Accept wildcard characters: - **False**
 
 
-###   Set-MarkdownOption
+
+### **_  Set-MarkdownOption_**
+----
 
 [Doc](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/set-markdownoption?view=powershell-7)
 
@@ -4532,7 +6138,9 @@ Module: Microsoft.PowerShell.Utility
 
 Sets the colors and styles used for rendering Markdown content in the console.
 
-#### Syntax
+
+#### _Syntax_
+----
 
 ```ps1
 Set-MarkdownOption
@@ -4561,18 +6169,24 @@ Set-MarkdownOption
    [<CommonParameters>]
 ```
 
-#### Description
+
+#### _Description_
+----
 
 Sets the colors and styles used for rendering Markdown content in the console. These styles are defined using ANSI escape codes that change the color and style of the Markdown text being rendered.
 
 
 For more information about Markdown, see the CommonMark website.
 
-#### Note
+
+#### _Note_
+----
 
 The string values used in the settings are the characters that follow the Escape character ([char]0x1B) for the ANSI escape sequence. Do not include the Escape character in the string. For more information about ANSI escape codes work, see ANSI_escape_code.
 
-#### Examples
+
+#### _Examples_
+----
 
 ```ps1
 # Example 1 - Switch to the Light Theme
@@ -4617,3 +6231,109 @@ EmphasisItalics : [36m
 ```
 
 Parameters see link 
+
+
+### 
+
+Corporate Proxy
+I'm Behind a corporate proxy with windows authentication
+I had to run the following lines for Register-PSRepository -Default to work
+
+
+Powershell Profile
+You can add these lignes in your powershell profile
+
+Create the profile file if you don't have one
+New-Item -path $PROFILE -type file –force
+
+Edit the profile file
+notepad $PROFILE
+
+
+## Install Docker 
+
+[Prep Windows operating system containers | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server)
+
+> Open an elevated PowerShell session and install the Docker-Microsoft PackageManagement Provider from the [PowerShell Gallery](https://www.powershellgallery.com/packages/DockerMsftProvider).
+> 
+> -       Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+>         
+>     If you're prompted to install the NuGet provider, type `Y` to install it as well.
+>     
+> -   Use the PackageManagement PowerShell module to install the latest version of Docker.
+>     
+> -       Install-Package -Name docker -ProviderName DockerMsftProvider
+>     
+>     When PowerShell asks you whether to trust the package source 'DockerDefault', type `A` to continue the installation.
+>     
+> -   After the installation completes, restart the computer.
+>     
+> 
+> 1.      Restart-Computer -Force
+>         
+> 
+> If you want to update Docker later:
+> 
+> -   Check the installed version using:
+> 
+>     Get-Package -Name Docker -ProviderName DockerMsftProvider
+> 
+> -   Find the current version using:
+> 
+>     Find-Package -Name Docker -ProviderName DockerMsftProvider
+>     
+> -   When you're ready, upgrade using:
+> 
+> 
+>     Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+>     
+> -   Then, followed with:
+> 
+>       `Start-Service Docker`
+
+
+### **_For Windows 10 they offer:_**
+----
+
+[Prep Windows operating system containers | Microsoft Docs](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10)
+
+> You can install Docker on Windows 10 Professional and Enterprise editions by using the following steps.
+> 
+> 1.  Download and install [Docker Desktop](https://store.docker.com/editions/community/docker-ce-desktop-windows), creating a free Docker account if you don't have one already. For more details, see the [Docker documentation](https://docs.docker.com/docker-for-windows/install).
+>     
+> 2.  During installation, set the default container type to Windows containers. To switch after installation completes, you can use either the Docker item in the Windows system tray (as shown below), or the following command in a PowerShell prompt:
+>     
+>     Console
+>     
+> 
+> `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
+
+https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
+
+## Advanced Stuff
+
+[Blog](https://devblogs.microsoft.com/scripting/use-a-powershell-cmdlet-to-work-with-file-attributes/)
+[2](https://devblogs.microsoft.com/scripting/use-powershell-to-toggle-the-archive-bit-on-files/)
+
+
+
+
+[enum]::GetValues([io.fileattributes])
+
+or [enum]::GetValues([system.io.fileattributes])
+
+To get a certain one:
+
+[enum]::GetValues([system.io.fileattributes])::Archive
+
+
+Get the file attribute bits
+
+(Get-ItemProperty -Path C:\fso\a.txt).attributes.Value__
+
+in bits
+
+[convert]::ToString(33,2)
+1000001
+
+$arch =  [io.fileattributes]::archive.Value__

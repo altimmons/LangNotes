@@ -1,0 +1,248 @@
+[
+    {
+        "key": "ctrl+shift+t ctrl+shift+p",
+        "command": "-markdownExtended.pasteAsTable",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "-markdownExtended.toggleBlockQuote",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+`",
+        "command": "-markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "shift+enter",
+        "command": "-markdown-preview-enhanced.runCodeChunk",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "-markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "-editor.action.toggleTabFocusMode"
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "-markdown-preview-enhanced.openPreview",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "-markdown-preview-enhanced.runAllCodeChunks",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+a",
+        "command": "editor.action.selectHighlights",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+m down",
+        "command": "markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m up",
+        "command": "markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "-markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+S",
+        "command": "insertSnippet",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+M ctrl+D",
+        "command": "-insertSnippet",
+        "when": "editorTextFocus  && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m c",
+        "command": "markdownExtended.toggleCodeBlock",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+v",
+        "command": "telesoho.MarkdownPaste",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+a",
+        "command": "editor.action.selectHighlights",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+m u",
+        "command": "markdownExtended.toggleUList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m o",
+        "command": "markdownExtended.toggleOList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+s",
+        "command": "insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+M ctrl+D",
+        "command": "-insertSnippet",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "-editor.action.toggleTabFocusMode"
+    },
+    {
+        "key": "ctrl+m i",
+        "command": "markdown-preview-enhanced.openImageHelper",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+shift+c",
+        "command": "markdown-preview-enhanced.customizeCss",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m p",
+        "command": "markdown.preview.toggleLock",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+-",
+        "command": "markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "-markdownExtended.toggleSubscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+=",
+        "command": "markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "-markdownExtended.toggleSuperscript",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m `",
+        "command": "markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m alt+t",
+        "command": "markdownExtended.pasteAsTable",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+t ctrl+shift+p",
+        "command": "-markdownExtended.pasteAsTable",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m q",
+        "command": "markdownExtended.toggleBlockQuote",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "-markdownExtended.toggleBlockQuote",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+`",
+        "command": "-markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "markdownExtended.toggleItalics",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "markdownExtended.toggleCodeInline",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m m",
+        "command": "markdownExtended.toggleMark",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+\"",
+        "command": "-markdownExtended.toggleBlockQuote",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+r",
+        "command": "markdown-preview-enhanced.runAllCodeChunks",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "-markdown-preview-enhanced.runAllCodeChunks",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m ctrl+p",
+        "command": "markdown-preview-enhanced.openPreview",
+        "when": "editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+m shift+p",
+        "command": "markdown-preview-enhanced.openPreviewToTheSide",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    // special add a block section
+    {
+        "key": "ctrl+b",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "**$1** $0"
+        }
+    },
+    {
+        "key": "ctrl+`",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "`$1` $0"
+        }
+    },
+    {
+        "key": "ctrl+i",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "*$1* $0"
+        }
+    },
+    {
+        "key": "ctrl+u",
+        "when": "!editorHasSelection && editorTextFocus && editorLangId == 'markdown' ",
+        "command": "editor.action.insertSnippet",
+        "args": {
+            "snippet": "_$1_ $0"
+        }
+    }
+]

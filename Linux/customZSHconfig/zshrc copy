@@ -1,0 +1,137 @@
+#! /bin/zsh
+# Andy's Custom ZSH Install
+# Enable Powerlevel10k instant prompt. Sho50.2
+2...........................................................................89+*uld stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+DEBUG=true
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+debian_chroot=$(cat /etc/debian_chroot)
+fi
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+alias ls='ls --color=auto'
+#alias dir='dir --color=auto'
+#alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+fi
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+#todo check if everything is setup ? exprted var?
+#this does eomething similar.  downloads if not existent.
+#[[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+#source "$HOME/.antigen/antigen.zsh"
+
+#add these extra paths.
+export PATH=usr/local/bin:$HOME/.local/bin:$HOME/bin:$PATH
+
+#todo make sure this works if parent changes.
+
+
+export LANG=en_US.UTF-8
+
+
+#ZSH_CUSTOM = $ZSH_CONFIG
+
+## Use the local copy rather than downloading it.
+
+ANTIGEN_BUNDLES=$ZSH_CUSTOM/config/antigen
+ZSH_CONFIG_OHMYZSH=$ZSH_CUSTOM/ohmyzsh
+#'assumes that the ANTIGEN_DEFAULT_REPO_URL is set to the oh-my-zsh repo or a fork of that repo.'
+ANTIGEN_DEFAULT_REPO_URL=$ZSH_CONFIG_OHMYZSH/oh-my-zsh.git
+ZSH_CONFIG_OHMYZSH_PLUGINS=$ZSH_CONFIG_OHMYZSH/plugins
+ZSH_CUSTOM=$HOME/.zshconfig
+ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/.plugins/
+ZSH_CUS_ZSH_USERS=$ZSH_CUSTOM_PLUGINS/zsh-users
+ZSH_CUST_CONFIG=$ZSH_CUSTOM/config
+#ZSH may need to point to ohmyzsh dir
+ZSH=$ZSH_CUSTOM
+
+export BAT_CONFIG_PATH=$ZSH_CUST_CONFIG/bat_config
+export XDG_CONFIG_HOME=$ZSH_CUST_CONFIG
+
+source /home/andy/.zshconfig/p10k/powerlevel10k.zsh-theme
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$ZSH_CUSTOM/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+# source "${XDG_CACHE_HOME:-$ZSH_CUSTOM/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+source ~/.zshconfig/antigen/antigen.zsh
+# 3 steps:
+# Using Antigen in your .zshrc consists of three major parts.
+
+# source the previously downloaded antigen.zsh file
+# use the antigen functions to load desired stuff into your ZSH
+# Commit your configuration by invoking antigen apply
+# source $ZSH_CUSTOM/p10k/powerline10k.zsh-theme
+#source ~/.zshconfig/p10k/powerline10k.zsh-theme
+
+
+# 1 -source antigen
+# source $ZSH_CUSTOM/antigen/antigen.sh
+
+if $DEBUG; then
+cat<<-EXPORT_LIST
+ANTIGEN_BUNDLES=$ZSH_CUSTOM/config/antigen
+ZSH_CONFIG_OHMYZSH=$ZSH_CUSTOM/ohmyzsh
+ANTIGEN_DEFAULT_REPO_URL=$ZSH_CONFIG_OHMYZSH/oh-my-zsh.git
+ZSH_CONFIG_OHMYZSH_PLUGINS=$ZSH_CONFIG_OHMYZSH/plugins
+ZSH_CUSTOM=$HOME/.zshconfig
+ZSH_CUSTOM_PLUGINS=$ZSH_CUSTOM/.plugins/
+ZSH_CUS_ZSH_USERS=$ZSH_CUSTOM_PLUGINS/zsh-users
+#ZSH may need to point to ohmyzsh dir
+ZSH=$ZSH_CUSTOM
+EXPORT_LIST
+fi
+
+
+
+if $DEBUG; then cat <<< "1"; fi;
+antigen bundle $ZSH_CONFIG_OHMYZSH/plugins/<<-BUNDLES
+git
+editor
+history
+prompt
+utility
+completions
+thefuck
+BUNDLES
+
+if $DEBUG; then cat <<< "2" ; fi;
+for d in $ZSH_CUS_ZSH_USERS/*; do
+antigen bundle  ${d} --no-local-clone
+if $DEBUG; then echo load...$d; fi;
+# if [[$debug]]
+done
+
+antigen bundle $ZSH_CUSTOM/.plugins/zsh-users/zsh-users/zsh-completions
+antigen bundle $ZSH_CUSTOM/.plugins/zsh-users/zsh-users/zsh-syntax-highlighting
+antigen bundle $ZSH_CUSTOM/.plugins/zsh-users/zsh-users/zsh-history-substring-search
+antigen bundle $ZSH_CUSTOM/.plugins/zsh-users/zs
+antigen apply
+
+
+
+# $ZSH_CUSTOM/.assets/now
+~/.zshconfig/.assets/now

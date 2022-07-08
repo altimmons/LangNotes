@@ -1,0 +1,67 @@
+#! /bin/zsh
+
+# Andy's Custom ZSH Install
+
+#todo check if everything is setup ? exprted var?
+#this does eomething similar.  downloads if not existent.
+#[[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+#source "$HOME/.antigen/antigen.zsh"
+
+#add these extra paths.
+export PATH=usr/local/bin:$HOME/.local/bin:$HOME/bin:$PATH
+
+#todo make sure this works if parent changes.
+ZSH_CUSTOM=$HOME/.zshconfig
+# ZSH_CUSTOM
+
+# 3 steps:
+# Using Antigen in your .zshrc consists of three major parts.
+# 
+    # source the previously downloaded antigen.zsh file
+        # use the antigen functions to load desired stuff into your ZSH
+            # Commit your configuration by invoking antigen apply
+            # 
+source $ZSH_CUSTOM/p10k/powerline10k.zsh-theme
+
+# 1 -source antigen
+source $ZSH_CUSTOM/antigen/antigen.sh
+
+export LANG=en_US.UTF-8
+export XDG_CONFIG_HOME=$ZSH_CUSTOM/config 
+
+#ZSH_CUSTOM = $ZSH_CONFIG
+
+
+# Specify completions we want before the completion module
+antigen bundle zsh-users/zsh-completions
+
+#2 - Load functions.
+
+antigen bundle git
+antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle zsh-users/zsh-history-substring-search
+# Specify plugins we want
+antigen bundle editor
+antigen bundle history
+antigen bundle prompt
+antigen bundle utility
+antigen bundle completion
+
+
+### NNN CUSTOMIZASTION  https://github.com/jarun/nnn/wiki/Usage#installation
+# 
+# NNN_OPTS="cEnrx"	binary options to nnn
+# NNN_OPENER="/path/to/custom/opener"	custom opener (see plugin nuke)
+# NNN_BMS='d:~/Documents;D:~/Docs archive/' 1	key-bookmark pairs
+# NNN_PLUG='o:fzopen;m:nmount;x:_chmod +x $nnn' 1	key-plugin (or cmd) pairs
+# NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$" 2	archives [default: bzip2, (g)zip, tar]
+# NNN_COLORS='1234' (/'#0a1b2c3d'/'#0a1b2c3d;1234') 3 5	context colors [default: '4444' (blue)]
+# NNN_FCOLORS='c1e2272e006033f7c6d6abc4' 4444file-specific colors
+# NNN_SSHFS='sshfs -o reconnect,idmap=user' 5	custom SSHFS cmd
+# NNN_RCLONE='rclone mount --read-only' 5	custom rclone cmd
+# NNN_TRASH=n (n=1: trash-cli, n=2: gio trash)	use desktop Trash [default: delete]
+# NNN_SEL='/tmp/.sel'	custom selection file
+# NNN_FIFO='/tmp/nnn.fifo' 6	FIFO to write hovered file path to
+# NNN_LOCKER='saidar -c'	terminal locker
+# NNN_MCLICK='^R' 7zkey emulated by middle mouse click
+# NO_COLOR=1 8	disable ANSI color output
