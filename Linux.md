@@ -158,6 +158,53 @@ alt 2639
 
 ## File permissions
 
+Get user and group information:
+
+cat /etc/passwd
+
+      root:x:0:0:Console and webGui login account:/root:/bin/bash
+      bin:x:1:1:bin:/bin:/bin/false
+      daemon:x:2:2:daemon:/sbin:/bin/false
+      adm:x:3:4:adm:/var/log:/bin/false
+      lp:x:4:7:lp:/var/spool/lpd:/bin/false
+      ...
+
+Gives the 
+    [User]:[?]:[UID]:[GUID]:Description:Home:[Default Shell]
+
+Can use /bin/false as a null value.
+
+
+[More](https://linuxize.com/post/umask-command-in-linux/)
+
+      ls -l dirname
+      drwxr-xr-x 12 linuxize users 4.0K Apr  8 20:51 dirname
+      |[-][-][-]    [------] [---]
+      | |  |  |        |       |       
+      | |  |  |        |       +-----------> Group
+      | |  |  |        +-------------------> Owner
+      | |  |  +----------------------------> Others Permissions
+      | |  +-------------------------------> Group Permissions
+      | +----------------------------------> Owner Permissions
+      +------------------------------------> File Type
+
+By default, on Linux systems, the default creation permissions are **666 for files,** which gives read and write permission to user, group, and others, and to **777 for directories,** which means read, write and execute permission to user, group, and others. Linux does not allow a file to be created with execute permissions.
+
+The default creation permissions can be modified using the `umask` utility.
+
+`umask` affects **only the current shell environment.** On most Linux distributions the default system-wide umask value is set in the *pam_umask.so* or */etc/profile file.*
+
+If you want to specify a different value on per-user basis edit the user’s shell configuration files such as *~/.bashrc* or *~/.zshrc.* You can also change the current session umask value by running umask followed by the desired value.
+
+To view the current mask value, simply type umask without any arguments:
+
+        root@Unraid:~# umask
+      0000
+
+    
+The umask value contains the permission bits that will **NOT** be set on the newly created files and directories.  (777 = 000) Logical NOT each octal
+
+
 Basically its {`d`/`-`}(`u`ser)`rwx`(`g`roup)`rwx`( `o`thers)`rwx` w/ `-` turning it off.
 Access Levels
 - None (-)
@@ -165,7 +212,9 @@ Access Levels
 - write (w)
 - execute (x)
 
-You can see these by using the ls -l Unix command.
+
+
+You can see these by using the `ls -l` Unix command.
 
 0123456789
 
@@ -192,6 +241,8 @@ chmod o-rw /home/yourusername
 to give the world permission to read and write to your home directory, then you would use the command below:
 
 chmod o+rw /home/youruserna
+
+
 
 
 ## Path
@@ -236,6 +287,17 @@ chmod o+rw /home/youruserna
 
     ip link
     
+
+ls symbols
+
+* - executable
+Also, for regular files that are executable, append ‘*’.  
+- ‘/’ for directories, 
+- ‘@’ for symbolic links,
+- ‘|’ for FIFOs, 
+- ‘=’ for sockets,
+
+
 `cat /proc/block` - lets you look at the devices in proc.  
 
 
@@ -1808,34 +1870,20 @@ static domain_name_servers=127.0.0.1
 99.99.99.153
 
 FILES
-/etc/dhcpcd.conf
-Configuration file for dhcpcd. If you always use the same options, put them here.
-/usr/lib/dhcpcd/dhcpcd-run-hooks
-Bourne shell script that is run to configure or de-configure an interface.
-/usr/lib/dhcpcd/dev
-/dev management modules.
-/usr/lib/dhcpcd/dhcpcd-hooks
-A directory containing bourne shell scripts that are run by the above script. Each script can be disabled by using the -C, - -nohook option described above.
-/var/lib/dhcpcd/duid
-Text file that holds the DUID used to identify the host.
-/var/lib/dhcpcd/secret
-Text file that holds a secret key known only to the host.
-/var/lib/dhcpcd/interface-ssid.lease
-The actual DHCP message sent by the server. We use this when reading the last lease and use the files mtime as when it was issued.
-/var/lib/dhcpcd/interface-ssid.lease6
-The actual DHCPv6 message sent by the server. We use this when reading the last lease and use the files mtime as when it was issued.
-/var/lib/dhcpcd/rdm_monotonic
-Stores the monotonic counter used in the replay field in Authentication Options.
-/run/dhcpcd.pid
-Stores the PID of dhcpcd running on all interfaces.
-/run/dhcpcd-interface.pid
-Stores the PID of dhcpcd running on the interface.
-/run/dhcpcd.sock
-Control socket to the master daemon.
-/run/dhcpcd.unpriv.sock
-Unprivileged socket to the master daemon, only allows state retrieval.
-/run/dhcpcd-interface.sock
-Control socket to per interface daemon.
+- `/etc/dhcpcd.conf` - Configuration file for dhcpcd. If you always use the same options, put them here.
+- `/usr/lib/dhcpcd/dhcpcd-run-hooks` - Bourne shell script that is run to configure or de-configure an interface.
+- `/usr/lib/dhcpcd/dev` - /dev management modules.
+- `/usr/lib/dhcpcd/dhcpcd-hooks` - A directory containing bourne shell scripts that are run by the above script. Each script can be disabled by using the -C, - -nohook option described above.
+- `/var/lib/dhcpcd/duid` - Text file that holds the DUID used to identify the host.
+- `/var/lib/dhcpcd/secret` - Text file that holds a secret key known only to the host.
+- `/var/lib/dhcpcd/interface-ssid.lease` - The actual DHCP message sent by the server. We use this when reading the last lease and use the files mtime as when it was issued.
+- `/var/lib/dhcpcd/interface-ssid.lease6` - The actual DHCPv6 message sent by the server. We use this when reading the last lease and use the files mtime as when it was issued.
+- `/var/lib/dhcpcd/rdm_monotonic` - Stores the monotonic counter used in the replay field in Authentication Options.
+- `/run/dhcpcd.pid` - Stores the PID of dhcpcd running on all interfaces.
+- `/run/dhcpcd-interface.pid` - Stores the PID of dhcpcd running on the interface.
+- `/run/dhcpcd.sock` - Control socket to the master daemon.
+- `/run/dhcpcd.unpriv.sock` - Unprivileged socket to the master daemon, only allows state retrieval.
+- `/run/dhcpcd-interface.sock` - Control socket to per interface daemon.
 
 
 #### sudo (Superuser DO)
@@ -1885,10 +1933,23 @@ echo "hello again" | sudo tee -a /home/test.txt
 
 `cat /etc/passwd`
 
-c
 
 https://www.lifewire.com/create-users-useradd-command-3572157
 
+
+## Find a user's UID or GID in Unix
+
+- To find a user's UID or GID in Unix, use the id command. To find a specific user's UID, at the Unix prompt, enter:
+  - `id -u username`
+- Replace username with the appropriate user's username. To find a user's GID, at the Unix prompt, enter:
+  - `id -g username`
+- If you wish to find out all the groups a user belongs to, instead enter:
+  - `id -G username`
+- If you wish to see the UID and all groups associated with a user, enter id without any options, as follows:
+  - `id username`
+
+nobody =  99
+root = 0
 
 
 ### Adding Windows Network Share--

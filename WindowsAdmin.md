@@ -4622,12 +4622,30 @@ image type as the filename suffix (i.e. image.ps).  Specify 'file' as
 `magick montage -label %t -tile 10x20 *.png -resize 128x128  ..\FlatIcons(png)-index.html` does  work - out puts out1.png, out2.png
 out.gif also works, about half the size. out.html produces html and a mapped png.
 
+This wrs 
+    magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -frame 2 -title PNGPicsheet##  .\index.mpc
+
+magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title PNGPicsheet##  .\index.gif
+
+warning - outputting as a gif takes a **really** long time. Like 1000x longer.  Outputting as an mpc is much faster, but not transferrable
+Output as *.png is MUCH faster.
+
+Also putting `-tile 15x` is much better as it leaves the length variable.
+
+
+`magick montage -label %t -tile 15x30 .\*.png  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title PNGPicsheet##  .\index.gif`
+
+Use Double Quotes to bundle things
+
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
 
 !!!code Top Example
 
         montage -label '%t'  -size 256x256 ./*.* -scale 256x256 -auto-orient -geometry +5+5 -tile 10x  -frame 5  -shadow -monitor ./_index-%d.html 
 
 magick montage -label %t -tile 10x20 *.png -resize 128x128  .\%d-index.html
+
+`magick montage -label %t -tile 15x .\*.svg  -resize 96x96 -geometry 96x96x2x5 -auto-orient -mattecolor #888888  -monitor -frame 5  -title  "PNG Picsheet for 100 - %d"  .\index-100-%d.png`
 
 !!!code Convert an icon
 
@@ -5586,6 +5604,17 @@ Finding a table
 
 ## Other Tips, Tricks and Hacks
 
+
+### Explorer Tips
+
+
+    [[Win]] + [[E]] - Opens Windows Explorer
+    [[Alt]] + [[Up]] - Switches to the parent folder in the hierarchy
+    [[Alt]] [[P]] - Toggles the Preview pane
+    [[Alt]]+[[Enter]] - Opens Properties for the selected object
+    [[F2]] - Allows you to rename selection
+    [[Shift]] + [[Del]] - Deletes selection directly i.e. without moving it to Recycle Bin
+
 ### Get any programs location using the registry.
 
 This is in powershell
@@ -5605,7 +5634,7 @@ HKEY_LOCAL_MACHINE\Software\7-Zip
 
 Not sure how youd parse the output
 
-### Norives
+### No Drives
 
 
 Hide drive mappings in 'My Computer', Windows Explorer and the standard Open dialog box.
