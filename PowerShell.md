@@ -30,8 +30,10 @@ Non-blocking version:
 
 ## Tutorial Links
 
+
+
 Version - PowerShell 7.2 (LTS)
--   [How to use this documentation](https://docs.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.2)
+- (good)   [How to use this documentation](https://docs.microsoft.com/en-us/powershell/scripting/how-to-use-docs?view=powershell-7.2)
 -   Overview
     -   [What is PowerShell?](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.2)
     -   [What is a PowerShell command?](https://docs.microsoft.com/en-us/powershell/scripting/powershell-commands?view=powershell-7.2)
@@ -6244,7 +6246,7 @@ Powershell Profile
 You can add these lignes in your powershell profile
 
 Create the profile file if you don't have one
-New-Item -path $PROFILE -type file –force
+New-Item -path $PROFILE -type file -force
 
 Edit the profile file
 notepad $PROFILE
@@ -6309,6 +6311,615 @@ notepad $PROFILE
 > `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
 
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/run-your-first-container
+
+
+## GUI
+
+
+[Weekend Scripter: Fixing PowerShell GUI Examples](https://devblogs.microsoft.com/scripting/weekend-scripter-fixing-powershell-gui-examples/)
+
+[Github of the below](https://github.com/dlwyatt/WinFormsExampleUpdates)
+
+
+
+### Create a custom, graphical input box
+
+Copy and then paste the following into Windows PowerShell ISE, and then save it as a Windows PowerShell script (.ps1).
+
+
+
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$form = New-Object System.Windows.Forms.Form
+$form.Text = 'Data Entry Form'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+
+$okButton = New-Object System.Windows.Forms.Button
+$okButton.Location = New-Object System.Drawing.Point(75,120)
+$okButton.Size = New-Object System.Drawing.Size(75,23)
+$okButton.Text = 'OK'
+$okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $okButton
+$form.Controls.Add($okButton)
+
+$cancelButton = New-Object System.Windows.Forms.Button
+$cancelButton.Location = New-Object System.Drawing.Point(150,120)
+$cancelButton.Size = New-Object System.Drawing.Size(75,23)
+$cancelButton.Text = 'Cancel'
+$cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please enter the information in the space below:'
+$form.Controls.Add($label)
+
+$textBox = New-Object System.Windows.Forms.TextBox
+$textBox.Location = New-Object System.Drawing.Point(10,40)
+$textBox.Size = New-Object System.Drawing.Size(260,20)
+$form.Controls.Add($textBox)
+
+$form.Topmost = $true
+
+$form.Add_Shown({$textBox.Select()})
+$result = $form.ShowDialog()
+
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $textBox.Text
+    $x
+}
+```
+
+The script begins by loading two .NET Framework classes: **System.Drawing** and **System.Windows.Forms**. You then start a new instance of the .NET Framework class **System.Windows.Forms.Form**; that provides a blank form or window to which you can start adding controls.
+
+```Powershell
+$form = New-Object System.Windows.Forms.Form
+```
+
+After you create an instance of the Form class, assign values to three properties of this class.
+
+- **Text.** This becomes the title of the window.
+    
+- **Size.** This is the size of the form, in pixels. The preceding script creates a form that's 300 pixels wide by 200 pixels tall.
+    
+- **StartingPosition.** This optional property is set to **CenterScreen** in the preceding script. If you don't add this property, Windows selects a location when the form is opened. By setting the **StartingPosition** to **CenterScreen**, you're automatically displaying the form in the middle of the screen each time it loads.
+    
+
+```Powershell
+$form.Text = 'Data Entry Form'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+```
+
+Next, create an **OK** button for your form. Specify the size and behavior of the **OK** button. In this example, the button position is 120 pixels from the form's top edge, and 75 pixels from the left edge. The button height is 23 pixels, while the button length is 75 pixels. The script uses predefined Windows Forms types to determine the button behaviors.
+
+```Powershell
+$okButton = New-Object System.Windows.Forms.Button
+$okButton.Location = New-Object System.Drawing.Point(75,120)
+$okButton.Size = New-Object System.Drawing.Size(75,23)
+$okButton.Text = 'OK'
+$okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $OKButton
+$form.Controls.Add($OKButton)
+```
+
+Similarly, you create a **Cancel** button. The **Cancel** button is 120 pixels from the top, but 150 pixels from the left edge of the window.
+
+```Powershell
+$cancelButton = New-Object System.Windows.Forms.Button
+$cancelButton.Location = New-Object System.Drawing.Point(150,120)
+$cancelButton.Size = New-Object System.Drawing.Size(75,23)
+$cancelButton.Text = 'Cancel'
+$cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+```
+
+Next, provide label text on your window that describes the information you want users to provide.
+
+```Powershell
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please enter the information in the space below:'
+$form.Controls.Add($label)
+```
+
+Add the control (in this case, a text box) that lets users provide the information you've described in your label text. There are many other controls you can apply besides text boxes; for more controls, see [System.Windows.Forms Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms).
+
+```Powershell
+$textBox = New-Object System.Windows.Forms.TextBox
+$textBox.Location = New-Object System.Drawing.Point(10,40)
+$textBox.Size = New-Object System.Drawing.Size(260,20)
+$form.Controls.Add($textBox)
+```
+
+Set the **Topmost** property to **$true** to force the window to open atop other open windows and dialog boxes.
+
+```Powershell
+$form.Topmost = $true
+```
+
+Next, add this line of code to activate the form, and set the focus to the text box that you created.
+
+```Powershell
+$form.Add_Shown({$textBox.Select()})
+```
+
+Add the following line of code to display the form in Windows.
+
+```Powershell
+$result = $form.ShowDialog()
+```
+
+Finally, the code inside the **If** block instructs Windows what to do with the form after users provide text in the text box, and then click the **OK** button or press the **Enter** key.
+
+```Powershell
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $textBox.Text
+    $x
+}
+```
+
+### Create a graphical date-picker control
+
+Copy and then paste the following into Windows PowerShell ISE, and then save it as a Windows PowerShell script (.ps1).
+
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$form = New-Object Windows.Forms.Form -Property @{
+    StartPosition = [Windows.Forms.FormStartPosition]::CenterScreen
+    Size          = New-Object Drawing.Size 243, 230
+    Text          = 'Select a Date'
+    Topmost       = $true
+}
+
+$calendar = New-Object Windows.Forms.MonthCalendar -Property @{
+    ShowTodayCircle   = $false
+    MaxSelectionCount = 1
+}
+$form.Controls.Add($calendar)
+
+$okButton = New-Object Windows.Forms.Button -Property @{
+    Location     = New-Object Drawing.Point 38, 165
+    Size         = New-Object Drawing.Size 75, 23
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+}
+$form.AcceptButton = $okButton
+$form.Controls.Add($okButton)
+
+$cancelButton = New-Object Windows.Forms.Button -Property @{
+    Location     = New-Object Drawing.Point 113, 165
+    Size         = New-Object Drawing.Size 75, 23
+    Text         = 'Cancel'
+    DialogResult = [Windows.Forms.DialogResult]::Cancel
+}
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+
+$result = $form.ShowDialog()
+
+if ($result -eq [Windows.Forms.DialogResult]::OK) {
+    $date = $calendar.SelectionStart
+    Write-Host "Date selected: $($date.ToShortDateString())"
+}
+```
+
+The script begins by loading two .NET Framework classes: **System.Drawing** and **System.Windows.Forms**. You then start a new instance of the .NET Framework class **Windows.Forms.Form**; that provides a blank form or window to which you can start adding controls.
+
+```Powershell
+$form = New-Object Windows.Forms.Form -Property @{
+    StartPosition = [Windows.Forms.FormStartPosition]::CenterScreen
+    Size          = New-Object Drawing.Size 243, 230
+    Text          = 'Select a Date'
+    Topmost       = $true
+}
+```
+
+This example assigns values to four properties of this class by using the **Property** property and hashtable.
+
+1. **StartPosition**: If you don't add this property, Windows selects a location when the form is opened. By setting this property to **CenterScreen**, you're automatically displaying the form in the middle of the screen each time it loads.
+    
+2. **Size**: This is the size of the form, in pixels. The preceding script creates a form that's 243 pixels wide by 230 pixels tall.
+    
+3. **Text**: This becomes the title of the window.
+    
+4. **Topmost**: By setting this property to `$true`, you can force the window to open atop other open windows and dialog boxes.
+    
+
+Next, create and then add a calendar control in your form. In this example, the current day is not highlighted or circled. Users can select only one day on the calendar at one time.
+
+```Powershell
+$calendar = New-Object Windows.Forms.MonthCalendar -Property @{
+    ShowTodayCircle   = $false
+    MaxSelectionCount = 1
+}
+$form.Controls.Add($calendar)
+```
+
+Next, create an **OK** button for your form. Specify the size and behavior of the **OK** button. In this example, the button position is 165 pixels from the form's top edge, and 38 pixels from the left edge. The button height is 23 pixels, while the button length is 75 pixels. The script uses predefined Windows Forms types to determine the button behaviors.
+
+```Powershell
+$okButton = New-Object Windows.Forms.Button -Property @{
+    Location     = New-Object Drawing.Point 38, 165
+    Size         = New-Object Drawing.Size 75, 23
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+}
+$form.AcceptButton = $okButton
+$form.Controls.Add($okButton)
+```
+
+Similarly, you create a **Cancel** button. The **Cancel** button is 165 pixels from the top, but 113 pixels from the left edge of the window.
+
+```Powershell
+$cancelButton = New-Object Windows.Forms.Button -Property @{
+    Location     = New-Object Drawing.Point 113, 165
+    Size         = New-Object Drawing.Size 75, 23
+    Text         = 'Cancel'
+    DialogResult = [Windows.Forms.DialogResult]::Cancel
+}
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+```
+
+Add the following line of code to display the form in Windows.
+
+```Powershell
+$result = $form.ShowDialog()
+```
+
+Finally, the code inside the `if` block instructs Windows what to do with the form after users select a day on the calendar, and then click the **OK** button or press the **Enter** key. Windows PowerShell displays the selected date to users.
+
+```Powershell
+if ($result -eq [Windows.Forms.DialogResult]::OK) {
+    $date = $calendar.SelectionStart
+    Write-Host "Date selected: $($date.ToShortDateString())"
+}
+```
+
+### Create a list box control, and select items from it
+
+Copy and then paste the following into Windows PowerShell ISE, and then save it as a Windows PowerShell script (.ps1).
+
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$form = New-Object System.Windows.Forms.Form
+$form.Text = 'Select a Computer'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+
+$okButton = New-Object System.Windows.Forms.Button
+$okButton.Location = New-Object System.Drawing.Point(75,120)
+$okButton.Size = New-Object System.Drawing.Size(75,23)
+$okButton.Text = 'OK'
+$okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $okButton
+$form.Controls.Add($okButton)
+
+$cancelButton = New-Object System.Windows.Forms.Button
+$cancelButton.Location = New-Object System.Drawing.Point(150,120)
+$cancelButton.Size = New-Object System.Drawing.Size(75,23)
+$cancelButton.Text = 'Cancel'
+$cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please select a computer:'
+$form.Controls.Add($label)
+
+$listBox = New-Object System.Windows.Forms.ListBox
+$listBox.Location = New-Object System.Drawing.Point(10,40)
+$listBox.Size = New-Object System.Drawing.Size(260,20)
+$listBox.Height = 80
+
+[void] $listBox.Items.Add('atl-dc-001')
+[void] $listBox.Items.Add('atl-dc-002')
+[void] $listBox.Items.Add('atl-dc-003')
+[void] $listBox.Items.Add('atl-dc-004')
+[void] $listBox.Items.Add('atl-dc-005')
+[void] $listBox.Items.Add('atl-dc-006')
+[void] $listBox.Items.Add('atl-dc-007')
+
+$form.Controls.Add($listBox)
+
+$form.Topmost = $true
+
+$result = $form.ShowDialog()
+
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $listBox.SelectedItem
+    $x
+}
+```
+
+The script begins by loading two .NET Framework classes: **System.Drawing** and **System.Windows.Forms**. You then start a new instance of the .NET Framework class **System.Windows.Forms.Form**; that provides a blank form or window to which you can start adding controls.
+
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+```
+
+After you create an instance of the Form class, assign values to three properties of this class.
+
+- **Text.** This becomes the title of the window.
+    
+- **Size.** This is the size of the form, in pixels. The preceding script creates a form that's 300 pixels wide by 200 pixels tall.
+    
+- **StartingPosition.** This optional property is set to **CenterScreen** in the preceding script. If you don't add this property, Windows selects a location when the form is opened. By setting the **StartingPosition** to **CenterScreen**, you're automatically displaying the form in the middle of the screen each time it loads.
+    
+
+```Powershell
+$form.Text = 'Select a Computer'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+```
+
+Next, create an **OK** button for your form. Specify the size and behavior of the **OK** button. In this example, the button position is 120 pixels from the form's top edge, and 75 pixels from the left edge. The button height is 23 pixels, while the button length is 75 pixels. The script uses predefined Windows Forms types to determine the button behaviors.
+
+```Powershell
+$okButton = New-Object System.Windows.Forms.Button
+$okButton.Location = New-Object System.Drawing.Point(75,120)
+$okButton.Size = New-Object System.Drawing.Size(75,23)
+$okButton.Text = 'OK'
+$okButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $okButton
+$form.Controls.Add($okButton)
+```
+
+Similarly, you create a **Cancel** button. The **Cancel** button is 120 pixels from the top, but 150 pixels from the left edge of the window.
+
+```Powershell
+$cancelButton = New-Object System.Windows.Forms.Button
+$cancelButton.Location = New-Object System.Drawing.Point(150,120)
+$cancelButton.Size = New-Object System.Drawing.Size(75,23)
+$cancelButton.Text = 'Cancel'
+$cancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $cancelButton
+$form.Controls.Add($cancelButton)
+```
+
+Next, provide label text on your window that describes the information you want users to provide. In this case, you want users to select a computer.
+
+```Powershell
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please select a computer:'
+$form.Controls.Add($label)
+```
+
+Add the control (in this case, a list box) that lets users provide the information you've described in your label text. There are many other controls you can apply besides list boxes; for more controls, see [System.Windows.Forms Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms).
+
+```Powershell
+$listBox = New-Object System.Windows.Forms.ListBox
+$listBox.Location = New-Object System.Drawing.Point(10,40)
+$listBox.Size = New-Object System.Drawing.Size(260,20)
+$listBox.Height = 80
+```
+
+In the next section, you specify the values you want the list box to display to users.
+
+Note
+
+The list box created by this script allows only one selection. To create a list box control that allows multiple selections, specify a value for the **SelectionMode** property, similarly to the following: `$listBox.SelectionMode = 'MultiExtended'`. For more information, see [Multiple-selection List Boxes](https://docs.microsoft.com/en-us/powershell/scripting/samples/multiple-selection-list-boxes?view=powershell-7.2).
+
+```Powershell
+[void] $listBox.Items.Add('atl-dc-001')
+[void] $listBox.Items.Add('atl-dc-002')
+[void] $listBox.Items.Add('atl-dc-003')
+[void] $listBox.Items.Add('atl-dc-004')
+[void] $listBox.Items.Add('atl-dc-005')
+[void] $listBox.Items.Add('atl-dc-006')
+[void] $listBox.Items.Add('atl-dc-007')
+```
+
+Add the list box control to your form, and instruct Windows to open the form atop other windows and dialog boxes when it's opened.
+
+```Powershell
+$form.Controls.Add($listBox)
+$form.Topmost = $true
+```
+
+Add the following line of code to display the form in Windows.
+
+```Powershell
+$result = $form.ShowDialog()
+```
+
+Finally, the code inside the **If** block instructs Windows what to do with the form after users select an option from the list box, and then click the **OK** button or press the **Enter** key.
+
+```Powershell
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $listBox.SelectedItem
+    $x
+}
+```
+
+### Create list box controls that allow multiple selections
+
+Copy and then paste the following into Windows PowerShell ISE, and then save it as a Windows PowerShell script (.ps1).
+
+```Powershell
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$form = New-Object System.Windows.Forms.Form
+$form.Text = 'Data Entry Form'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+
+$OKButton = New-Object System.Windows.Forms.Button
+$OKButton.Location = New-Object System.Drawing.Point(75,120)
+$OKButton.Size = New-Object System.Drawing.Size(75,23)
+$OKButton.Text = 'OK'
+$OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $OKButton
+$form.Controls.Add($OKButton)
+
+$CancelButton = New-Object System.Windows.Forms.Button
+$CancelButton.Location = New-Object System.Drawing.Point(150,120)
+$CancelButton.Size = New-Object System.Drawing.Size(75,23)
+$CancelButton.Text = 'Cancel'
+$CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $CancelButton
+$form.Controls.Add($CancelButton)
+
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please make a selection from the list below:'
+$form.Controls.Add($label)
+
+$listBox = New-Object System.Windows.Forms.Listbox
+$listBox.Location = New-Object System.Drawing.Point(10,40)
+$listBox.Size = New-Object System.Drawing.Size(260,20)
+
+$listBox.SelectionMode = 'MultiExtended'
+
+[void] $listBox.Items.Add('Item 1')
+[void] $listBox.Items.Add('Item 2')
+[void] $listBox.Items.Add('Item 3')
+[void] $listBox.Items.Add('Item 4')
+[void] $listBox.Items.Add('Item 5')
+
+$listBox.Height = 70
+$form.Controls.Add($listBox)
+$form.Topmost = $true
+
+$result = $form.ShowDialog()
+
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $listBox.SelectedItems
+    $x
+}
+```
+
+The script begins by loading two .NET Framework classes: **System.Drawing** and **System.Windows.Forms**. You then start a new instance of the .NET Framework class **System.Windows.Forms.Form**; that provides a blank form or window to which you can start adding controls.
+
+```Powershell
+$form = New-Object System.Windows.Forms.Form
+```
+
+After you create an instance of the Form class, assign values to three properties of this class.
+
+- **Text.** This becomes the title of the window.
+    
+- **Size.** This is the size of the form, in pixels. The preceding script creates a form that's 300 pixels wide by 200 pixels tall.
+    
+- **StartingPosition.** This optional property is set to **CenterScreen** in the preceding script. If you don't add this property, Windows selects a location when the form is opened. By setting the **StartingPosition** to **CenterScreen**, you're automatically displaying the form in the middle of the screen each time it loads.
+    
+
+```Powershell
+$form.Text = 'Data Entry Form'
+$form.Size = New-Object System.Drawing.Size(300,200)
+$form.StartPosition = 'CenterScreen'
+```
+
+Next, create an **OK** button for your form. Specify the size and behavior of the **OK** button. In this example, the button position is 120 pixels from the form's top edge, and 75 pixels from the left edge. The button height is 23 pixels, while the button length is 75 pixels. The script uses predefined Windows Forms types to determine the button behaviors.
+
+```Powershell
+$OKButton = New-Object System.Windows.Forms.Button
+$OKButton.Location = New-Object System.Drawing.Size(75,120)
+$OKButton.Size = New-Object System.Drawing.Size(75,23)
+$OKButton.Text = 'OK'
+$OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$form.AcceptButton = $OKButton
+$form.Controls.Add($OKButton)
+```
+
+Similarly, you create a **Cancel** button. The **Cancel** button is 120 pixels from the top, but 150 pixels from the left edge of the window.
+
+```Powershell
+$CancelButton = New-Object System.Windows.Forms.Button
+$CancelButton.Location = New-Object System.Drawing.Point(150,120)
+$CancelButton.Size = New-Object System.Drawing.Size(75,23)
+$CancelButton.Text = 'Cancel'
+$CancelButton.DialogResult = [System.Windows.Forms.DialogResult]::Cancel
+$form.CancelButton = $CancelButton
+$form.Controls.Add($CancelButton)
+```
+
+Next, provide label text on your window that describes the information you want users to provide.
+
+```Powershell
+$label = New-Object System.Windows.Forms.Label
+$label.Location = New-Object System.Drawing.Point(10,20)
+$label.Size = New-Object System.Drawing.Size(280,20)
+$label.Text = 'Please make a selection from the list below:'
+$form.Controls.Add($label)
+```
+
+Add the control (in this case, a list box) that lets users provide the information you've described in your label text. There are many other controls you can apply besides text boxes; for more controls, see [System.Windows.Forms Namespace](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms).
+
+```Powershell
+$listBox = New-Object System.Windows.Forms.Listbox
+$listBox.Location = New-Object System.Drawing.Point(10,40)
+$listBox.Size = New-Object System.Drawing.Size(260,20)
+```
+
+Here's how you specify that you want to allow users to select multiple values from the list.
+
+```Powershell
+$listBox.SelectionMode = 'MultiExtended'
+```
+
+In the next section, you specify the values you want the list box to display to users.
+
+```Powershell
+[void] $listBox.Items.Add('Item 1')
+[void] $listBox.Items.Add('Item 2')
+[void] $listBox.Items.Add('Item 3')
+[void] $listBox.Items.Add('Item 4')
+[void] $listBox.Items.Add('Item 5')
+```
+
+Specify the maximum height of the list box control.
+
+```Powershell
+$listBox.Height = 70
+```
+
+Add the list box control to your form, and instruct Windows to open the form atop other windows and dialog boxes when it's opened.
+
+```Powershell
+$form.Controls.Add($listBox)
+$form.Topmost = $true
+```
+
+Add the following line of code to display the form in Windows.
+
+```Powershell
+$result = $form.ShowDialog()
+```
+
+Finally, the code inside the **If** block instructs Windows what to do with the form after users select one or more options from the list box, and then click the **OK** button or press the **Enter** key.
+
+```Powershell
+if ($result -eq [System.Windows.Forms.DialogResult]::OK)
+{
+    $x = $listBox.SelectedItems
+    $x
+}
+```
 
 ## Advanced Stuff
 
