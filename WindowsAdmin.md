@@ -4306,7 +4306,7 @@ List  of Rundll32 Commands in Windows 10
 | History                  | ::{ff393560-c2a7-11cf-bff4-444553540000} |     |
 | Inbox                    | ::{00020d75-0000-0000-c000-000000000046} |     |
 | Microsoft Network        | ::{00028b00-0000-0000-c000-000000000046} |     |
-| My Com`1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
+| My Com`1  a `1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
 | My Documents             | ::{450d8fba-ad25-11d0-98a8-0800361b1103} | Yes |
 | My Network Places        | ::{208d2c60-3aea-1069-a2d7-08002b30309d} | Yes |
 | Network Computers        | ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} | Yes |
@@ -6336,14 +6336,13 @@ To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` co
 
 You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
 
+<<<<<<< Updated upstream
 You can also use the shutdown.exe tool with its logoff option:
-
-        shutdown.exe -l
-        shutdown /t=0
-
-A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32Shutdown method**. Invoking the method with the **0** flag initiates logoff:
-
-    (Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
+=======
+~~- Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents.~~
+RegistryPathx is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:
+[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+ the bottom of the hierarchy in the path statement does not exist in the registry, a new subkey is created. The contents of the registry files are sent to the registry in the order you enter them. Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
@@ -6406,6 +6405,7 @@ Shutting down and restarting computers are generally the same types of task. Too
         (E = Expected U = Unexpected P = planned, C = customer defined)
         Type  Major  Minor  Title
 
+<<<<<<< Updated upstream
         U     0  0  Other (Unplanned)
         E     0  0  Other (Unplanned)
         E P   0  0  Other (Planned)
@@ -6437,6 +6437,12 @@ Shutting down and restarting computers are generally the same types of task. Too
         U     6  11  Power Failure: Cord Unplugged
         U     6  12  Power Failure: Environment
           P   7  0  Legacy API shutdown
+=======
+
+
+
+### Setting Explorer to My PC not Quick Access
+>>>>>>> Stashed changes
 
 !!!warning `tsshutdn.exe` is not found on W10 pro.
 
