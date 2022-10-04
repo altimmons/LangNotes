@@ -65,7 +65,6 @@ NICE FTP
 ## Quick Look
 
 !!!attention Overview
-
     - `/` - root
     - `~` - home
     - `..` - one step up in tree
@@ -73,7 +72,6 @@ NICE FTP
     - `<`, `>` - pipe stream
     - `2>` redirects StdErr (instead of StdOut)
             make someFile 2> /dev/null
-
     squelches error output
     - `&>` - Redirects both stderr and stdout to another destination.
             make &> /dev/null
@@ -157,7 +155,7 @@ ade ace abe
 
 !!!tip A sequence expression takes the form `{x..y[..incr]}`, where x and y are either integers or single characters, and `incr`, an optional increment, is an integer. 
     - When integers are supplied, the expression expands to each number between x and y, inclusive.
-    - Supplied integers may be prefixed with ‘0’ to force each term to have the same width
+    - Supplied integers may be prefixed with `0` to force each term to have the same width
     - When either x or y begins with a zero, the shell attempts to force all generated terms to contain the same number of digits, zero-padding where necessary.
     - When characters are supplied, the expression expands to each character lexicographically between x and y, **inclusive,** using the default C locale.
     - x and y must be of the same type.
@@ -166,7 +164,7 @@ ade ace abe
     - Any incorrectly formed brace expansion is left unchanged.
 
 !!!faq Similarity with `Parameter Expansion`:
-    -   A `{` or ‘`,`’ may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string ‘[[${]]’ is not considered eligible for brace expansion, and inhibits brace expansion until the closing ‘[[}]]’. 
+    -   A `{` or ``,`` may be quoted with a backslash [[\]] to prevent its being considered part of a brace expression. To avoid conflicts with parameter expansion, the string `[[${]]` is not considered eligible for brace expansion, and inhibits brace expansion until the closing `[[}]]`. 
 ____
 ### `~` Tilde Expavnsion
 
@@ -175,14 +173,14 @@ Accesses the **directory stack**
 !!!example `~` Tilde Expavnsion
     If the characters following the tilde in the tilde-prefix consist of **a number N,** optionally prefixed by a `+` or a `-`, the tilde-prefix is replaced with the corresponding element from the directory stack, as it would be displayed by the dirs builtin invoked with the characters following tilde in the tilde-prefix as an argument (see The Directory Stack). If the tilde-prefix, sans the tilde, consists of a number without a leading `+` or `-`, `+` is assumed. 
 
-    >- [[`~`]] - The value of `$HOME`
-    >- [[`~/foo`]] - `$HOME/foo`
-    >- [[`~fred/foo`]] - The subdirectory *foo* of the home directory of the user **fred**
-    >- [[`~+/foo`]] - `$PWD/foo`
-    >- [[`~-/foo`]] - `${OLDPWD-'~-'}/foo`
-    >- [[`~N`]] -  The string that would be displayed by `‘dirs +N’`
-    >- [[`~+N`]] - The string that would be displayed by `‘dirs +N’`
-    >- [[`~-N`]] - The string that would be displayed by `‘dirs -N’` 
+>- [[`~`]] - The value of `$HOME`
+>- [[`~/foo`]] - `$HOME/foo`
+>- [[`~fred/foo`]] - The subdirectory *foo* of the home directory of the user **fred**
+>- [[`~+/foo`]] - `$PWD/foo`
+>- [[`~-/foo`]] - `${OLDPWD-'~-'}/foo`
+>- [[`~N`]] -  The string that would be displayed by `dirs +N`
+>- [[`~+N`]] - The string that would be displayed by `dirs +N`
+>- [[`~-N`]] - The string that would be displayed by `dirs -N`
 
 
 
@@ -850,7 +848,7 @@ Syntax  (sudo) systemctl `<action>` **service**...
     - unmask
 
 - `systemctl status httpd` - Show information about httpd, including process ID, child processes, time since startup, what man pages are available, the most recent log messages, and more
-- `systemctl start httpd mariadb` Start the httpd and mariadb services. Instead of ‘start’, you can also use **stop** or **restart,** for obvious use cases
+- `systemctl start httpd mariadb` Start the httpd and mariadb services. Instead of `start`, you can also use **stop** or **restart,** for obvious use cases
 - `systemctl enable httpd mariadb` Enable the **httpd** and **mariadb** services to start at next boot. You can also use `disable`, `mask` or `unmask`.
 
 ## Journalctl
@@ -866,7 +864,7 @@ Syntax  (sudo) systemctl `<action>` **service**...
 `nmcli d show eth0` Show details of network interface eth0;
 alternatively you can use `ip a s eth0`
 `nmcli d connect eth0` Bring up the network interface eth0. You
-can use ‘disconnect’ to bring the interface
+can use `disconnect` to bring the interface
 
 
 - `curl http://www.someapp.org/test.php` or `curl http://10.0.0.10/test.php` download target
@@ -877,9 +875,9 @@ can use ‘disconnect’ to bring the interface
 Fetch sent and received HTTPS POST
 status, API response payload from the local
 host
-host www.someapp.org Use the ‘host’ command to test DNS name
-resolution; you might need to run ‘yum -y
-install bind-utils’ for this command to work.
+host www.someapp.org Use the `host` command to test DNS name
+resolution; you might need to run `yum -y
+install bind-utils` for this command to work.
 
 
 ## VIM
