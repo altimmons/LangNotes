@@ -1,3 +1,15 @@
-Arduino.md
-javascript_20*
+.history/**
+.out/temp/**
+.out/**
+old/**
+temp/**
+node_modules/**
+npm/**
+c++temp/Card.cpp
 c++temp/CPPProj/Card.cpp
+c++temp/CPPProj/Suit.cpp
+c++temp/CPPProj/CMakeLists.txt
+c++temp/CPPProj/Value.h
+c++temp/MiniProj2/.clang-format
+c++temp/MiniProj2/Card.cpp
+Linux/7b9a7281db0ac4ba683f

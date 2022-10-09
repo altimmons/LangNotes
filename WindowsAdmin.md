@@ -3774,7 +3774,7 @@ For example, command below to open the About Settings page (System category) in 
 
 ## Default Envronment Varables
 
-| Environment Variables         | Values (may vary)                                                                                  |
+|   Variables         | Values (may vary)                                                                                  |
 | ----------------------------- | -------------------------------------------------------------------------------------------------- |
 | `%ALLUSERSPROFILE%`           | C:\ProgramData                                                                                     |
 | `%APPDATA%`                   | C:\Users\(user-name)\AppData\Roaming                                                               |
@@ -3820,10 +3820,126 @@ For example, command below to open the About Settings page (System category) in 
 | `%USERDOMAIN_ROAMINGPROFILE%` | The network domain name associated with the current roaming profile.                               |
 | `%USERNAME%`                  | (user-name)                                                                                        |
 | `%USERPROFILE%`               | C:\Users\(user-name)                                                                               |
-| `%WINDIR%`                    | C:\Windows                                                                                         |
+| `%WINDIR%`                    | C:\Windows                                              
 
+### By Version
 
-* When client connects via terminal server session, is combination of connection name, followed by pound symbol {#} and session number.
+Outdated                                                                                                          |
+- _`AppData`_ = Base location of where applications should store their data by default. It is up to the author as to what the application should store here, or if they choose to use this folder at all. This is a subdirectory of the user's profile folder.	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`CD`_ = This hidden variable returns a string that represents the current directory.	 	 	 	 
+		 - , , , , 2000, XP,  2003, ?
+
+- _`ClientName`_ = Reports "Console" when logging on directly to the machine.	 	 	 	 	 
+		 - , , , , , XP,  2003, 
+
+- _`CmdCmdLine`_ = This hidden variable returns the exact command line used to start the current cmd.exe session.	 	 	 
+		 - , , , NT, 2000, XP,  2003, ?
+
+- _`CmdExtVersion`_ = This hidden variable returns the version number of the current Command Processor Extensions. Windows NT returns a value of "1". In Windows 2000 and XP return a "2". This version number will be incremented by one when significant enhancements are addedd to the Command Extensions.	 	 	 
+		 - , , , NT, 2000, XP,  2003, PE
+
+- _`CommonProgramFiles`_ = Path to the common program files folder. Vendors use this folder to store components they may wish to share between their own applications. As such, files are stored in a subdirectory that identifies the vendor. For example, “%CommonProgramFiles%\Symantec Shared” translates to “C:\Program Files\Common Files\Symantec Shared”. This path is localized.	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`ComputerName`_ = The NetBOIS name of the computer.	 	 	 	 
+		 - , , , , 2000, XP,  2003, PE
+
+- _`ComSpec`_ = The full filespec of the command shell executable. Examples: c:\windows\command.exe, c:\winnt\cmd.exe.
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`Date`_ = This hidden variable returns the current system date using the day of the week followed by the numeric date (MM/DD/YYYY). Example: "Thu 06/23/2005"
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`ErrorLevel`_ = This hidden variable is populated with the Win32 error code of the most recently executed command. A value other than zero usually indicates an error.
+		 - , 98, ME, NT, 2000, XP,  2003, PE
+
+- _`HomeDrive`_ = Drive letter on the local computer that is connected to the user's home directory. The drive letter to use is defined in the user's account properties within the domain. This variable is based on the value of the home directory. If the home directory is UNC, this variable will be populated with the drive letter that should be mapped to the UNC. If the home directory is a local path, this variable wil lbe populated with the drive letter of the local path.	 	 	 
+		 - , , , NT, 2000, XP,  2003, \
+- _`HomePath`_ = The complete path of the user's home directory, as defined in the user's account properties within the domain. This variable is based on the value of the home directory. If the home directory is a UNC, this variable will will return the path (example: "\<path>") to the user's home directory using the mapped drives as a root. IF the home directory uses a local path, it will return the drive letter of that local path.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`HomeShare`_ = The network path to the user's home directory. This variable is based on the value of the home directory. If the home directory is UNC, it will be populated with the server and share name of the home directory (for example "\\server\share"). If the home directory is a local path, it will return a null value.	 	 	 	 	 
+		 - , , , , , XP,  , 
+
+- _`LogonServer`_ = Indicates which domain controller authenticated the client's logon request.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`Number_of_Processors`_ = Quantity of CPUs installed in the system.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`OS`_ = Returns "Windows_NT" for Windows NT 'family' systems.	 	 	 
+		 - , , , NT, 2000, XP,  2003, PE
+
+- _`Os2LibPath`_ = Represents the path to its OS2 library files. IF you install Windows NT on a computer that was previously running OS2 1.x, NT picks up the OS2 settings that it finds in the config.sys files and migrates them into the NT registry. IN the process, it appends appropriate paths to point to the NT installation tree where key OS2 subsystem files are stored.	 	 	 
+		 - , , , NT, 2000, ,  , 
+
+- _`Path`_ = An ordered list of folders that will be searched when the OS is requested to execute an application that includes no specific path in the filespec. Several folders may be specified in the path, separated by semicolons (;).
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`PathExt`_ = Returns a list of the file extensions that the operating system considers to be executable. When executing a command line that does not contain an extension, the command interpreter (cmd.exe) uses the value of this environment variable to determine which extensions to look for and in what order. The default value is ".com; .exe; .bat; .cmd"	 	 	 
+		 - , , , NT, 2000, XP,  2003, PE
+
+- _`Processor_Architecture`_ = Indicates the chip architecture of the CPU.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`Processor_Identifier`_ = Returns a description of the CPU (for example: "x86 Family 6 Model 8 Stepping 10, GEnuineINtel").	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`Processor_Level`_ = Indicates the model number if the CPU installed in the computer, including x86 = 3,4,5 or 6; Alpha = 21064; and MIPS = 3000 or 4000.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`Processor_Revision`_ = The revision number of the CPU.	 	 	 
+		 - , , , NT, 2000, XP,  2003, 
+
+- _`ProgramFiles`_ = Location of the base folder for installed applications. On the US-English version this would typically be "C:\Program Files"	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`Prompt`_ = The command prompt settings for the current interpreter. This value may be changed using the DOS Prompt command. Example: $P$G.
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`Random`_ = A hidden variable that uses cmd.exe to generate a decimal number between 0 and 32767. Available on Windows 2000 and later systems.	 	 	 	 
+		 - , , , , 2000, XP,  2003, ?
+
+- _`SessionName`_ = The SessionName variable is only defined if the Terminal Services system component is installed to the Server Edition of Windows 2000, and Windows XP clients (or newer). When a client connects via a terminal server session, this variable is a combination of the connection name, followed by a pound symbol {#} and then the session number. When logging on directly to the machine, this variable returns "Console".	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`SystemDrive`_ = Drive that contains the Windows root directory, for example "C:"	 	 	 
+		 - , , , NT, 2000, XP,  2003, PE
+
+- _`SystemRoot`_ = The folder that the operating system has been installed to.	 	 	 
+		 - , , , NT, 2000, XP,  2003, PE
+
+- _`Temp`_ = Points to the default temporary folder that is used by the applications availabe to the currently logged on user. Some applications require %temp% and otehrs require %tmp% -- the values should be identical.
+		 - 95, 98, ME, NT, 2000, XP,  2003, 
+
+- _`Time`_ = A hidden variable that returns the current system time, to the tenth of a second (for example: "23:59:59:59"
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`Tmp`_ = Points to the default temporary folder that is used by the applications availabe to the currently logged on user. Some applications require %temp% and otehrs require %tmp% -- the values should be identical.
+		 - 95, 98, ME, NT, 2000, XP,  2003, 
+
+- _`UserDnsDomain`_ = The fully qualified DNS domain that the currently logged on user's account belongs to. For example: "mydomain.local"	 	 	 	 	 
+		 - , , , , , XP,  2003, 
+
+- _`UserDomain`_ = Name of the domain that contains the user's account.	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`UserName`_ = Name (logon ID) of the user the is currently logged on.	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`UserProfile`_ = Represents the path to the user's profile folder. The default for the US-English version of the OS is "%systemroot%\Documents and Settings\<username>".	 	 	 	 
+		 - , , , , 2000, XP,  2003, 
+
+- _`WinBootDir`_ = Points to the location where Windows 9X has been installed, usually "C:\Windows".	95	98	ME	 	2000	 
+		 - , , , , , ,  2003, 
+
+- _`WinDir`_ = The folder that the users' environment believes the operating system is installed to. Usually the same as SystemRoot, but may not be when a user logs on from a Terminal Server session.
+		 - 95, 98, ME, NT, 2000, XP,  2003, PE
+
+- _`WinStationName`_ = The SessionName variable is only defined on the Terminal Services Edition of Windows NT 4.0. When a client connects via a terminal server session, this variable is a combination of the connection name, followed by a pound symbol {#} and then the session number. When logging on directly to the machine, this variable returns "Console". This variable was replaced by the SessionName variable on Windows 2000 and newer.	 	 	 
+		 - , , , NT, , ,  ,                                |
 
 
 ### Control Panel
