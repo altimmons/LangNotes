@@ -1,3 +1,20 @@
+---
+puppeteer:
+    pdf:
+        format: A4
+        displayHeaderFooter: true
+        margin:
+            top: 1cm
+            right: 1cm
+            bottom: 1cm
+            left: 1cm
+    image:
+        quality: 90
+        fullPage: true
+---
+
+The above is an example of setting parameters..
+
 # Windows Admin
 
 /TODO Copy in OneNote notes
@@ -7,13 +24,14 @@
 
 ## Critical CMD Line Programs I always forget about
 
-sc 
-sc query  SC is a command line program used for communicating with the
+[](#'Net Command Other Commands)
+
+`sc`  - `sc query`  SC is a command line program used for communicating with the
         Service Control Manager and services.
 
-pktmon comp list -i -- observe internet and packet data flow *internally*
+`pktmon comp list -i` -- observe internet and packet data flow *internally*
 
-nvspinfo - related internal network stuff.
+`nvspinfo` - related internal network stuff.
 
 `net stop winnat`
 `net start winnat`
@@ -919,7 +937,133 @@ The following URLs are sectioned off because they cause something "bad" to happe
   - chrome://`restart`/
 
 Last Updated: Chrome 46
-Mozilla Firefox
+
+### Shortcuts
+
+Compose & chat
+- Previous message in an open conversation - [[p]]
+- Next message in an open conversation - [[n]]
+- Focus main window - [[Shift]] + [[Esc]]
+- Focus latest chat or compose - [[Esc]]
+- Advance to the next chat or compose - [[Ctrl]] + [[.]]
+- Advance to previous chat or compose - [[Ctrl]] + [[,]]
+- Send - [[⌘/Ctrl]] + [[Enter]]
+- Add cc recipients - [[⌘/Ctrl]] + [[Shift]] + [[c]]
+- Add bcc recipients - [[⌘/Ctrl]] + [[Shift]] + [[b]]
+- Access custom from - [[⌘/Ctrl]] + [[Shift]] + [[f]]
+- Insert a link - [[⌘/Ctrl]] + [[k]]
+- Go to next misspelled word (Mac only) - [[⌘]] + [[;]]
+- Open spelling suggestions - [[⌘/Ctrl]] + [[m]]
+Formatting text
+- Action - [[Shortcut]]
+- Previous font - [[⌘/Ctrl]] + [[Shift]] + [[5]]
+- Next font - [[⌘/Ctrl]] + [[Shift]] + [[6]]
+- Decrease text size - [[⌘/Ctrl]] + [[Shift]] + [[-]]
+- Increase text size - [[⌘/Ctrl]] + [[Shift and +]]
+- Bold - [[⌘/Ctrl]] + [[b]]
+- Italics - [[⌘/Ctrl]] + [[i]]
+- Underline - [[⌘/Ctrl]] + [[u]]
+- Numbered list - [[⌘/Ctrl]] + [[Shift]] + [[7]]
+- Bulleted list - [[⌘/Ctrl]] + [[Shift]] + [[8]]
+- Quote - [[⌘/Ctrl]] + [[Shift]] + [[9]]
+- Indent less - [[⌘/Ctrl]] + [[[]]
+- Indent more - [[⌘/Ctrl]] + [[]]]
+- Align left - [[⌘/Ctrl]] + [[Shift]] + [[l]]
+- Align center - [[⌘/Ctrl]] + [[Shift]] + [[e]]
+- Align right - [[⌘/Ctrl]] + [[Shift]] + [[r]]
+- Remove formatting - [[⌘/Ctrl]] + [[\]]
+
+#### Actions
+Note: These shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Move focus to toolbar - [[,]]
+- Select conversation - [[x]]
+- Toggle star/rotate among superstars - [[s]]
+- Archive - [[e]]
+- Mute conversation - [[m]]
+- Report as spam - [[!]]
+- Delete - [[#]]
+- Reply - [[r]]
+- Reply in a new window - [[Shift]] + [[r]]
+- Reply all - [[a]]
+- Reply all in a new window - [[Shift]] + [[a]]
+- Forward - [[f]]
+- Forward in a new window - [[Shift]] + [[f]]
+- Update conversation - [[Shift]] + [[n]]
+- Archive conversation and go previous/next - [[] or []]
+- Undo last action - [[z]]
+- Mark as read - [[Shift]] + [[i]]
+- Mark as unread - [[Shift]] + [[u]]
+- Mark unread from the selected message - [[_]]
+- Mark as important - [[+ or =]]
+- Mark as not important - [[-]]
+- Snooze - [[]]
+Note: This shortcut isn't available in classic Gmail.
+
+- Expand entire conversation - [[;]]
+- Collapse entire conversation - [[:]]
+- Add conversation to Tasks - [[Shift]] + [[t]]
+
+#### Hangouts
+You may have been moved to Google Chat and may no longer be able to use classic Hangouts on some platforms.
+Note: These keyboard shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Show menu - [[h]] + [[m]]
+- Show archived hangouts - [[h]] + [[a]]
+- Show Hangout requests - [[h]] + [[i]]
+- Focus on the conversation list - [[h]] + [[c]]
+
+#### Jumping
+Note: These keyboard shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Go to Inbox - [[g]] + [[i]]
+- Go to Starred conversations - [[g]] + [[s]]
+- Go to Snoozed conversations - [[g]] + [[b]]
+- Go to Sent messages - [[g]] + [[t]]
+- Go to Drafts - [[g]] + [[d]]
+- Go to All mail - [[g]] + [[a]]
+- Switch between the Calendar/Keep/Tasks sidebar and your inbox.
+    - [[⌘/Ctrl]] + [[Alt]] + [[,]] 
+    - [[⌘/Ctrl]] + [[Alt]] + [[.]]
+
+- Go to Tasks - [[g]] + [[k]]
+- Go to label - [[g]] + [[l]]
+
+#### Threadlist selection
+Note: These keyboard shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Select all conversations - [[*]] + [[a]]
+- Deselect all conversations - [[*]] + [[n]]
+- Select read conversations - [[*]] + [[r]]
+- Select unread conversations - [[*]] + [[u]]
+- Select starred conversations - [[*]] + [[s]]
+- Select unstarred conversations - [[*]] + [[t]]
+
+#### Navigation
+Note: These keyboard shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Go to next page - [[g]] + [[n]]
+- Go to previous page - [[g]] + [[p]]
+- Back to threadlist - [[u]]
+- Newer conversation - [[k]]
+- Older conversation - [[j]]
+- Open conversation - [[o or Enter]]
+- Go to next Inbox section - [[`]]
+- Go to previous Inbox section - [[~]]
+
+#### Application
+Note: These keyboard shortcuts won't work unless keyboard shortcuts are turned on.
+
+- Compose - [[c]]
+- Compose in a new tab - [[d]]
+- Search mail - [[/]]
+- Search chat contacts - [[g]]
+- Open "more actions" menu - [[.]]
+- Open "move to" menu - [[v]]
+- Open "label as" menu - [[l]]
+- Open keyboard shortcut help - [[?]]
+
+### Mozilla Firefox
 
 
 !!!summary  Mozilla Firefox has the same meta-page:   - about:`about`, but here's a list as well:
@@ -1364,6 +1508,8 @@ Some other useful commands are:
 - `xcopy` - Copies files and directory trees. See also: copy
 
 The following internet related commands are not part of MS-DOS but can be typed at the MS-DOS command prompt:
+
+##### Net_Command Other Commands
 
 - `arp` - Displays ARP (address resolution protocol) translation tables.
 - `ftp` - FTP (file transfer program) to transfer files to/from server.c
@@ -1867,7 +2013,7 @@ Apparently still a thing in windows.
         When running the created self extracting archive, the following options can be used:
 
         /Q            Quiet mode, No prompts and no errors.
-        /QA           Quiet + Assume the person running the app is admin/SMS so do not check for admin rights or disk space.[Build 306]
+        /QA           Quiet]] + [[Assume the person running the app is admin/SMS so do not check for admin rights or disk space.[Build 306]
         /QU           Quiet + Assume the person running the app is an non-admin user. [Build 306]
                         No extract UI, but still get warnings on admin checks or disk space issues.
                         Used when IExpress packages are shipped on CDs or installed through ActiveSetup.
@@ -8685,6 +8831,126 @@ They can both be used for performance analysis, but ETW provides an audit trail 
 
 
 
+## Winget
+
+
+[Winget Docs](https://learn.microsoft.com/en-us/windows/package-manager/)
+ -[export command](https://learn.microsoft.com/en-us/windows/package-manager/winget/export)
+- [features command](https://learn.microsoft.com/en-us/windows/package-manager/winget/features)
+- [hash command](https://learn.microsoft.com/en-us/windows/package-manager/winget/hash)
+- [help command](https://learn.microsoft.com/en-us/windows/package-manager/winget/help)
+- [import command](https://learn.microsoft.com/en-us/windows/package-manager/winget/import)
+- [info command](https://learn.microsoft.com/en-us/windows/package-manager/winget/info)
+- [install command](https://learn.microsoft.com/en-us/windows/package-manager/winget/install)
+
+
+  - **-q,--query**The query used to search for an app.
+
+  - **-?, --help** Get additional help on this command.
+
+!!!Note
+The query argument is positional. Wild-card style syntax is not supported. This is most often the string of characters you expect to uniquely identify the package you wish to install.
+
+## [Options](https://learn.microsoft.com/en-us/windows/package-manager/winget/install#options)
+
+The options allow you to customize the install experience to meet your needs.
+
+Option
+
+Description
+
+  - **-m, --manifest** Must be followed by the path to the manifest (YAML) file. You can use the manifest to run the install experience from a [local YAML file](https://learn.microsoft.com/en-us/windows/package-manager/winget/install#local-install).
+
+  - **--id** Limits the install to the ID of the application.
+
+  - **--name** Limits the search to the name of the application.
+
+  - **--moniker** Limits the search to the moniker listed for the application.
+
+  - **-v, --version** Enables you to specify an exact version to install. If not specified, latest will install the highest versioned application.
+
+  - **-s, --source** Restricts the search to the source name provided. Must be followed by the source name.
+
+  - **--scope**Allows you to specify if the installer should target user or machine scope.
+
+  - **-a, --architecture** Select the architecture to install.
+
+  - **-e, --exact** Uses the exact string in the query, including checking for case-sensitivity. It will not use the default behavior of a substring.
+
+  - **-i, --interactive** Runs the installer in interactive mode. The default experience shows installer progress.
+
+  - **-h, --silent** Runs the installer in silent mode. This suppresses all UI. The default experience shows installer progress.
+
+  - **--locale** Specifies which locale to use (BCP47 format).
+
+  - **-o, --log** Directs the logging to a log file. You must provide a path to a file that you have the write rights to.
+
+  - **--override**A string that will be passed directly to the installer.
+
+  - **-l, --location** Location to install to (if supported).
+
+  - **--force**  Overrides the installer hash check. Not recommended.
+
+  - **--accept-package-agreements** Used to accept the license agreement, and avoid the prompt.
+
+  - **--accept-source-agreements** Used to accept the source license agreement, and avoid the prompt.
+
+  - **--header** Optional Windows-Package-Manager REST source HTTP header.
+
+  - **-r, --rename**The value to rename the executable file (portable)
+
+  - **--verbose-logs**  Used to override the logging setting and create a verbose log.
+- [list command](https://learn.microsoft.com/en-us/windows/package-manager/winget/list)
+- [search command](https://learn.microsoft.com/en-us/windows/package-manager/winget/search)
+- [settings command](https://learn.microsoft.com/en-us/windows/package-manager/winget/settings)
+- [show command](https://learn.microsoft.com/en-us/windows/package-manager/winget/show)
+- [source command](https://learn.microsoft.com/en-us/windows/package-manager/winget/source)
+- [tab completion](https://learn.microsoft.com/en-us/windows/package-manager/winget/tab-completion)
+- [uninstall command](https://learn.microsoft.com/en-us/windows/package-manager/winget/uninstall)
+- [upgrade command](https://learn.microsoft.com/en-us/windows/package-manager/winget/upgrade)
+- [validate command](https://learn.microsoft.com/en-us/windows/package-manager/winget/validate)
+    - Submit packages
+- PowerToys
+
+
+Commands
+The current preview of the winget tool supports the following commands.
+
+Command	Description
+- `info` - Displays metadata about the system (version numbers, architecture, log location, etc). Helpful for troubleshooting.
+- `install` - Installs the specified application.
+- `show` - Displays details for the specified application.
+- `source` - Adds, removes, and updates the Windows Package Manager repositories accessed by the winget tool.
+- `search` - Searches for an application.
+- `list` - Display installed packages.
+- `upgrade` - Upgrades the given package.
+- `uninstall` - Uninstalls the given package.
+- `hash` - Generates the SHA256 hash for the installer.
+- `validate` - Validates a manifest file for submission to the Windows Package Manager repository.
+- `settings` - Open settings.
+- `features` - Shows the status of experimental features.
+- `export` - Exports a list of the installed packages.
+- `import` - Installs all the packages in a file.
+
+Options
+The winget tool supports the following options.
+
+Option	Description
+`-v`, `--version` Returns the current version of winget.
+`--info`Provides you with all detailed information on winget, including the links to the license, privacy statement, and configured group policies.
+`-?`, `--help` Shows additional help for winget.
+Supported installer formats
+    The winget tool supports the following types of installers:
+
+- EXE (with Silent and SilentWithProgress flags)
+- INNO
+- NULLSOFT
+- MSI
+- APPX
+- MSIX
+- BURN
+- PORTABLE
+
 ## Windows Container
 
 [Important Links Here](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/containerd)
@@ -9853,3 +10119,593 @@ wmic qfe
 -   [writer](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/writer)
 -   [wscript](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wscript)
 -   [xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy)
+
+## Windows Scripting
+
+
+[Command Shell Overview](chrome-extension://pcmpcfapbekmbjjkdalcgopdkipoggdi/_generated_background_page.html)
+
+`&` [...]
+
+Command1 &Command2
+
+Use to separate multiple commands on one command line. Cmd.exe runs the first command, and then the second command.
+
+&& [...]
+
+Command1 &&Command2
+
+Use to run the command following && only if the command preceding the symbol is successful. Cmd.exe runs the first command, and then runs the second command only if the first command completed successfully.
+
+|| [...]
+
+Command1 || Command2
+
+Use to run the command following || only if the command preceding || fails. Cmd.exe runs the first command, and then runs the second command only if the first command did not complete successfully (receives an error code greater than zero).
+
+( ) [...]
+
+(Command1 & Command2)
+
+Use to group or nest multiple commands.
+
+; or ,
+
+Command1 Parameter1;Parameter2
+
+Use to separate command parameters.
+
+!!!Note **Notes**
+
+- The ampersand (&), pipe (|), and parentheses ( ) are special characters that must be preceded by the escape character (^) or quotation marks when you pass them as arguments.
+    
+- If a command completes an operation successfully, it returns an exit code of zero (0) or no exit code. For more information about exit codes, see [Using the Windows Deployment and Resource Kits](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc779317(v=ws.10)).
+
+[Windows Script Host overview](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc738350(v=ws.10))
+
+You can use Windows Script Host to run scripts by clicking a script file on the Windows desktop or by typing the name of a script file at the command prompt. Similar to Microsoft Internet Explorer, Windows Script Host serves as a controller of ActiveX scripting engines. Unlike Internet Explorer, Windows Script Host has very low memory requirements and is ideal for both interactive and non-interactive scripting, such as logon scripting and administrative scripting.
+
+There are two versions of the Windows Script Host: a Windows-based version (Wscript.exe), which provides a property sheet for setting script properties, and a command-prompt-based version (Cscript.exe), which provides command-line switches for setting script properties. You can run either of these by typing Wscript.exe or Cscript.exe at the command prompt.
+
+Previously, the only native scripting language supported by the Windows operating system was that of batch files. Although batch language is fast and small, its features are limited compared to VBScript and JScript. For example, the ability to control program flow was not built into the batch language. Today, the Windows Script Host architecture allows you to take advantage of these powerful scripting languages, although support is still provided for batch files.
+
+
+## [Using batch files](chrome-extension://pcmpcfapbekmbjjkdalcgopdkipoggdi/_generated_background_page.html)
+
+With batch files, which are also called batch programs or scripts, you can simplify routine or repetitive tasks. A batch file is an unformatted text file that contains one or more commands and has a .bat or .cmd file name extension. When you type the file name at the command prompt, Cmd.exe runs the commands sequentially as they appear in the file.
+
+You can include any command in a batch file. Certain commands, such as **for**, **goto**, and **if**, enable you to do conditional processing of the commands in the batch file. For example, the **if** command carries out a command based on the results of a condition. Other commands allow you to control input and output and call other batch files.
+
+The standard error codes that most applications return are 0 if no error occurred and 1 (or higher value) if an error occurred. To determine the meaning of specific error codes, refer to your application help documentation.
+
+For more information about batch file operations, see the following topics:
+
+- [Using batch parameters](https://technet.microsoft.com/Cc755880)
+    
+- [Using filters](https://technet.microsoft.com/Cc773120)
+    
+- [Using command redirection operators](https://technet.microsoft.com/Cc772622)
+    
+
+For more information about commands that you can use in batch files, click a command:
+
+- [Call](https://technet.microsoft.com/Cc772743)
+    
+- [Choice](https://technet.microsoft.com/b27f9a43-de23-4e6c-91cd-f62476c0e159)
+    
+- [Echo](https://technet.microsoft.com/Cc756140)
+    
+- [Endlocal](https://technet.microsoft.com/Dd996695)
+    
+- [For](https://technet.microsoft.com/Cc755694)
+    
+- [Goto](https://technet.microsoft.com/Cc756166)
+    
+- [If](https://technet.microsoft.com/Cc772933)
+    
+- [Pause](https://technet.microsoft.com/Cc773189)
+    
+- [Rem](https://technet.microsoft.com/ac68ae38-25ac-4611-bad5-4927ba21a392)
+    
+- [Setlocal](https://technet.microsoft.com/d226cd43-42c1-46ae-87f1-b3e78400b437)
+    
+- [Shift](https://technet.microsoft.com/Cc773298) 
+
+## Windows Dictation 
+
+[[Win]] + [[H]] to start
+
+[Windows Speech Recognition commands](https://support.microsoft.com/en-us/windows/windows-speech-recognition-commands-9d25ef36-994d-f367-a81a-a326160128c7)
+
+### Commands for punctuation marks and special characters
+
+- [ `,` ] - Say  *"Comma"*
+- [ `;` ] - Say  *"Semicolon"*
+- [ `.` ] - Say  *"Period; Dot; Decimal point"*
+- [ `:` ] - Say  *"Colon"*
+- [ `"` ] - Say  *"Open double quote; Open quote"*
+- [ `"` ] - Say  *"Close double quote; Close quote; Close inverted commas"*
+- [ `'` ] - Say  *"Apostrophe"*
+- [ `'` ] - Say  *"Open single quote"*
+- [ `'` ] - Say  *"Close single quote"*
+- [ `>` ] - Say  *"Greater than sign"*
+- [ `<` ] - Say  *"Less than sign"*
+- [ `/` ] - Say  *"Forward slash"*
+- [ `\` ] - Say  *"Backslash"*
+- [ `~` ] - Say  *"Tilde"*
+- [ `@` ] - Say  *"At sign"*
+- [ `!` ] - Say  *"Exclamation mark; Exclamation point"*
+- [ `?` ] - Say  *"Question mark"*
+- [ `#` ] - Say  *"Number sign; Pound sign"*
+- [ `$` ] - Say  *"Dollar sign"*
+- [ `%` ] - Say  *"Percent sign"*
+- [ `^` ] - Say  *"Caret"*
+- [ `(` ] - Say  *"Open parenthesis; Open paren"*
+- [ `)` ] - Say  *"Close parenthesis; Close paren"*
+- [ `_` ] - Say  *"Underscore"*
+- [ `-` ] - Say  *"Hyphen; Minus sign; Dash"*
+- [ `-` ] - Say  *"En dash"*
+- [ `-` ] - Say  *"Em dash"*
+- [ `=` ] - Say  *"Equal sign"*
+- [ `+` ] - Say  *"Plus sign"*
+- [ `{` ] - Say  *"Open brace; Open curly bracket"*
+- [ `}` ] - Say  *"Close brace; Close curly bracket"*
+- [ `[` ] - Say  *"Open bracket; Open square bracket"*
+- [ `]` ] - Say  *"Close bracket; Close square bracket"*
+- [ `|` ] - Say  *"Vertical bar"*
+- [ `:-)` ] - Say  *"Smiley face"*
+- [ `:-(` ] - Say  *"Frowny face"*
+- [ `;-)` ] - Say  *"Winky face"*
+- [ `™` ] - Say  *"Trademark sign"*
+- [ `¾` ] - Say  *"Three-quarter sign"*
+- [ `¼` ] - Say  *"One-quarter sign"*
+- [ `½` ] - Say  *"One-half sign"*
+- [ `£` ] - Say  *"Pound sterling sign"*
+- [ `&` ] - Say  *"Ampersand; And sign"*
+- [ `*` ] - Say  *"Asterisk"*
+- [ `//` ] - Say  *"Double slash"*
+- [ ``` ] - Say  *"Back quote"*
+- [ `<` ] - Say  *"Open angle bracket"*
+- [ `>` ] - Say  *"Close angle bracket"*
+- [ `±` ] - Say  *"Plus or minus sign"*
+- [ `«` ] - Say  *"Open angle quote"*
+- [ `»` ] - Say  *"Close angle quote"*
+- [ `×` ] - Say  *"Multiplication sign"*
+- [ `÷` ] - Say  *"Division sign"*
+- [ `¢` ] - Say  *"Cent sign"*
+- [ `¥` ] - Say  *"Yen sign"*
+- [ `§` ] - Say  *"Section sign"*
+- [ `©` ] - Say  *"Copyright sign"*
+- [ `®` ] - Say  *"Registered sign; Registered trademark sign"*
+- [ `°` ] - Say  *"Degree sign"*
+- [ `¶` ] - Say  *"Paragraph sign"*
+- [ `...` ] - Say  *"Ellipsis; Dot dot dot"*
+- [ `ƒ` ] - Say  *"Function sign"*
+
+### Common Speech Recognition commands
+
+- [ **Open Start** ] - Say  *"Start"*
+- [ **Open Cortana** ] - Say  *"Press Windows C"*
+- [ **Open Search** ] - Say  *"Press Windows S"*
+- [ **Perform an action in an app** ] - Say  *"Right-click; Press Windows Z; press ctrl B"*
+- [ **Select an item by its name** ] - Say  *"File; Start; View"*
+- [ **Select an item or icon** ] - Say  *"Click Recycle Bin; Click Computer; Click file name"*
+- [ **Double-click an item** ] - Say  *"Double-click Recycle Bin; Double-click Computer; Double-click file name"*
+- [ **Switch to an open app** ] - Say  *"Switch to Paint; Switch to WordPad; Switch to program name; Switch application"*
+- [ **Scroll in one direction** ] - Say  *"Scroll up; Scroll down; Scroll left; Scroll right"*
+- [ **Insert a new paragraph or new line in a document** ] - Say  *"New paragraph; New line"*
+- [ **Select a word in a document** ] - Say  *"Select word"*
+- [ **Select a word and start to correct it** ] - Say  *"Correct word"*
+- [ **Select and delete specific words** ] - Say  *"Delete word"*
+- [ **Show a list of applicable commands** ] - Say  *"What can I say?"*
+- [ **Update the list of speech commands that are currently available** ] - Say  *"Refresh speech commands"*
+- [ **Turn on listening mode** ] - Say  *"Start listening"*
+- [ **Turn off listening mode** ] - Say  *"Stop listening"*
+- [ **Move the Speech Recognition microphone bar** ] - Say  *"Move speech recognition"*
+- [ **Minimize the microphone bar** ] - Say  *"Minimize speech recognition"*
+
+### Commands for dictation
+
+- [ **Insert a new line in the document** ] - Say  *"New line"*
+- [ **Insert a new paragraph in the document** ] - Say  *"New paragraph"*
+- [ **Insert a tab** ] - Say  *"Tab"*
+- [ **Insert the literal word (for example, insert the word "comma" instead of the punctuation mark)** ] - Say  *"Literal word"*
+- [ **Insert the numeral form of a number (for examples, insert 3 instead of the word three)** ] - Say  *"Numeral number"*
+- [ **Put the cursor before a specific word** ] - Say  *"Go to word"*
+- [ **Put the cursor after a specific word** ] - Say  *"Go after word"*
+- [ **Don't insert a space before the next word** ] - Say  *"No space"*
+- [ **Go to the start of the current sentence** ] - Say  *"Go to start of sentence"*
+- [ **Go to the start of the current paragraph** ] - Say  *"Go to start of paragraph"*
+- [ **Go to the start of the current document** ] - Say  *"Go to start of document"*
+- [ **Go to the end of the current sentence** ] - Say  *"Go to end of sentence"*
+- [ **Go to the end of the current paragraph** ] - Say  *"Go to end of paragraph"*
+- [ **Go to the end of the current document** ] - Say  *"Go to end of document"*
+- [ **Select a word in the current document** ] - Say  *"Select word"*
+- [ **Select a word range in the current document** ] - Say  *"Select word range; Select word through word"*
+- [ **Select all text in the current document** ] - Say  *"Select all"*
+- [ **Select a number of words before the location of the cursor** ] - Say  *"Select previous 20 words; Select previous 10 words"*
+- [ **Select a number of words after the location of the cursor** ] - Say  *"Select next 20 words; Select next 10 words"*
+- [ **Select the last text you dictated** ] - Say  *"Select that"*
+- [ **Clear the selection on the screen** ] - Say  *"Clear selection"*
+- [ **Capitalize the first letter of a word** ] - Say  *"Caps word"*
+- [ **Capitalize all the letters of a word** ] - Say  *"All caps word"*
+- [ **Make all the letters in a word lowercase** ] - Say  *"No caps word"*
+- [ **Change the next number of words to uppercase** ] - Say  *"Change next 10 words to uppercase"*
+- [ **Change the next number of words to lowercase** ] - Say  *"Change next 10 words to lowercase"*
+- [ **Delete the previous sentence** ] - Say  *"Delete previous sentence"*
+- [ **Delete the next sentence** ] - Say  *"Delete next sentence"*
+- [ **Delete the previous paragraph** ] - Say  *"Delete previous paragraph"*
+- [ **Delete the next paragraph** ] - Say  *"Delete next paragraph"*
+- [ **Delete the selected or last dictated text** ] - Say  *"Delete that"*
+
+
+### Commands for the keyboard
+
+- [ **Press a key or key combination** ] - Say  *"Press keyboard key; press A; press capital B; press Shift plus A; press Ctrl plus A"*
+- [ **Press certain keyboard keys without saying "press" first** ] - Say  *"Delete; Backspace; Enter; Page Up; Page Down; Home; End; Tab"*### Commands for Windows and apps
+
+!!!Note Notes:      
+  -  You can also use the ICAONATO phonetic alphabet. For example, say "press alpha" to press A or "press bravo" to press B.
+  -  Speech Recognition commands for the keyboard works only with languages that use Latin alphabets.
+
+### Commands for Windows and apps
+
+- [ **Select an item by its name** ] - Say  *"File; Start; View"*
+- [ **Select an item or icon** ] - Say  *"Click Recycle Bin; click Computer; click file name"*
+- [ **Double-click an item** ] - Say  *"Double-click Computer; double-click Recycle Bin; double-click folder name"*
+- [ **Right-click an item** ] - Say  *"Right-click Computer; right-click Recycle Bin; right-click folder name"*
+- [ **Minimize all windows to show your desktop** ] - Say  *"Show desktop"*
+- [ **Select something if you don't know what it's called** ] - Say  *"Show numbers (Numbers will appear on the screen for every item in the active window. Say an item's corresponding number to select it.)"*
+- [ **Select a numbered item** ] - Say  *"19 OK; 5 OK"*
+- [ **Double-click a numbered item** ] - Say  *"Double-click 19; Double-click 5"*
+- [ **Right-click a numbered item** ] - Say  *"Right-click 19; Right-click 5"*
+- [ **Open an app** ] - Say  *"Open Paint; Open WordPad; Open app name"*
+- [ **Switch to an open app** ] - Say  *"Switch to Paint; Switch to WordPad; Switch to app name; Switch application"*
+- [ **Close an app** ] - Say  *"Close that; Close Paint; Close Documents"*
+- [ **Minimize** ] - Say  *"Minimize that; Minimize Paint; Minimize Documents"*
+- [ **Maximize** ] - Say  *"Maximize that; Maximize Paint; Maximize Documents"*
+- [ **Restore** ] - Say  *"Restore that; Restore Paint; Restore Documents"*
+- [ **Cut** ] - Say  *"Cut that; Cut"*
+- [ **Copy** ] - Say  *"Copy that; Copy"*
+- [ **Paste** ] - Say  *"Paste"*
+- [ **Delete** ] - Say  *"Delete that; Delete"*
+- [ **Undo** ] - Say  *"Undo that; Scratch that; Undo"*
+- [ **Scroll in one direction** ] - Say  *"Scroll up; Scroll down; Scroll right; Scroll left"*
+- [ **Scroll an exact distance in pages** ] - Say  *"Scroll down 2 pages; Scroll up 10 pages"*
+- [ **Scroll an exact distance in other units** ] - Say  *"Scroll up 5; Scroll down 7"*
+- [ **Go to a field in a form or app** ] - Say  *"Go to field name; Go to Subject; Go to Address; Go to cc"*
+
+### Commands for using the mouse
+
+- [ **Show the mousegrid** ] - Say  *"Mousegrid"*
+- [ **Move the pointer to the center of a mousegrid square** ] - Say  *"Number of the square; 1; 7; 9"*
+- [ **Select a mousegrid square** ] - Say  *"Click number of the square"*
+- [ **Select an item to drag with the mouse** ] - Say  *"Number of the square where the item appears (followed by) mark; 3 mark; 7 mark; 9 mark"*
+- [ **Select an area in the mousegrid where you want to drag the item** ] - Say  *"Number of the square where you want to drag the item (followed by) click; 4 click; 5 click; 6 click"*
+
+----
+
+
+
+## OLEs, ActiveX, COM, COM+, WMI, CIM, MI
+
+
+- *WMI* - Windows Management Instrumentation (WMI) is the infrastructure for management data and operations on Windows-based operating systems. You can write WMI scripts or applications to automate administrative tasks on remote computers, 
+
+    -[Windows Management Instrumentation - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page) 
+
+    !!!Important `wmic` deprecation
+         The WMI command-line (WMIC) utility is deprecated as of Windows 10, version 21H1, and as of the 21H1 semi-annual channel release of Windows Server. This utility is superseded by Windows PowerShell for WMI (see Chapter 7—Working with WMI). This deprecation applies only to the WMI command-line (WMIC) utility; Windows Management Instrumentation (WMI) itself is not affected.
+
+- *CIM* - WMI uses the Common Information Model (CIM) industry standard to represent systems, applications, networks, devices, and other managed components. CIM is developed and maintained by the Distributed Management Task Force ([DMTF](https://www.dmtf.org/standards/wsman)).
+
+- `MI` - The next-generation of WMI, known as the Windows Management Infrastructure (MI), is currently available.  
+
+     The Windows Management Infrastructure (MI) features represent the latest version of the Windows Management Instrumentation (WMI) technologies, which are based on the CIM standard from DMTF (Distributed Management Task Force). MI is fully compatible with previous versions of WMI and provides a host of features and benefits that make designing and developing providers and clients easier than ever.
+
+
+
+
+Purpose
+COM is a platform-independent, distributed, object-oriented system for creating binary software components that can interact. COM is the foundation technology for Microsoft's OLE (compound documents) and ActiveX (Internet-enabled components) technologies.
+
+[OLEs]](https://learn.mi)crosoft.com/en-us/windows/win32/com/ole-and-data-transfer)
+OLE and Data Transfer
+
+The following sections describe compound documents, the mechanism provided by the Component Object Model (COM) to transfer data between applications, and the APIs that are used to create compound documents and perform data transfer.
+https://learn.microsoft.com/en-us/windows/win32/com/component-object-model--com--portal
+
+
+
+[Windows API](https://learn.microsoft.com/en-us/windows/win32/api/_com/)
+
+
+## APIs and Programming Interfaces
+
+[Get Started Developing UI for Windows Apps - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/appuistart/getting-started-developing-user-interfaces-portal)
+
+[HTTP Server API - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/http/http-api-start-page)
+
+
+[Scripting API for WMI - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/scripting-api-for-wmi)
+
+### COM API for WMI
+
+
+1. [Related topics](https://learn.microsoft.com/en-us/windows/win32/wmisdk/com-api-for-wmi#related-topics)
+
+You can use the WMI Component Object Model (COM) API to write management client applications or create a new WMI [_provider_](https://learn.microsoft.com/en-us/windows/win32/wmisdk/gloss-p). The COM API reference provides information for advanced system administrators, as well as developers who are writing client and provider applications.
+
+For more information about writing WMI enterprise management applications, see [Creating a WMI Application Using C++](https://learn.microsoft.com/en-us/windows/win32/wmisdk/creating-a-wmi-application-using-c-). For more information about how to write a WMI provider, see [Providing Data to WMI](https://learn.microsoft.com/en-us/windows/win32/wmisdk/providing-data-to-wmi).
+
+
+### COM
+
+- [
+    
+    ### COM Fundamentals - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/com-fundamentals?source=recommendations)
+    
+    Learn more about: COM Fundamentals
+    
+- [
+    
+    ### Guide (COM) - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/guide?source=recommendations)
+    
+    This guide introduces the Microsoft Component Object Model (COM).
+    
+- [
+    
+    ### What's New in COM - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/what-s-new-in-com?source=recommendations)
+    
+    The following topics describe recent changes to COM.
+    
+- [
+    
+    ### Interfaces and Interface Implementations - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/interfaces-and-interface-implementations?source=recommendations)
+    
+    COM makes a fundamental distinction between interface definitions and their implementations.
+    
+- [
+    
+    ### COM Objects and Interfaces - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/com-objects-and-interfaces?source=recommendations)
+    
+    COM Objects and Interfaces
+    
+- [
+    
+    ### COM Technical Overview - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/com-technical-overview?source=recommendations)
+    
+    Learn more about: COM Technical Overview
+    
+- [
+    
+    ### Getting a Pointer to an Object - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/getting-a-pointer-to-an-object?source=recommendations)
+    
+    Getting a Pointer to an Object
+    
+- [
+    
+    ### The Component Object Model - Win32 apps
+    
+    ](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model?source=recommendations)
+    
+    The Component Object Model
+    
+[Component Object Model (COM)](https://learn.microsoft.com/en-us/windows/desktop/com/component-object-model--com--portal)  
+COM is a platform-independent, distributed, object-oriented system for creating binary software components that can interact. COM is the foundation technology for Microsoft's OLE (compound documents) and ActiveX (Internet-enabled components) technologies.  
+
+[Automation](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/automat/automation-programming-reference)  
+Automation enables software packages to expose their unique features to scripting tools and other applications. Automation uses the Component Object Model (COM), but may be implemented independently from other OLE features, such as in-place activation.  
+
+[Microsoft Interface Definition Language (MIDL)](https://learn.microsoft.com/en-us/windows/desktop/Midl/midl-start-page)  
+The Microsoft Interface Definition Language (MIDL) defines interfaces between client and server programs. Microsoft includes the MIDL compiler with the Platform Software Development Kit (SDK) to enable developers to create the interface definition language (IDL) files and application configuration files (ACF) required for remote procedure call (RPC) interfaces and COM/DCOM interfaces. MIDL also supports the generation of type libraries for OLE Automation.  
+
+[Structured Storage](https://learn.microsoft.com/en-us/windows/desktop/Stg/structured-storage-start-page)  
+Structured Storage provides file and data persistence in COM by handling a single file as a structured collection of objects known as storages and streams.  
+
+[COM+](https://learn.microsoft.com/en-us/windows/win32/cossdk/component-services-portal)  
+COM+ is an evolution of Microsoft Component Object Model (COM) and Microsoft Transaction Server (MTS). COM+ builds on and extends applications written using COM, MTS, and other COM-based technologies.
+
+
+[COM Objects](chrome-extension://pcmpcfapbekmbjjkdalcgopdkipoggdi/_generated_background_page.html)
+
+ Windows  Apps  Win32  Desktop Technologies  System Services 
+
+### CIM
+
+WMI uses the Common Information Model (CIM) industry standard to represent systems, applications, networks, devices, and other managed components. CIM is developed and maintained by the Distributed Management Task Force ([DMTF](https://www.dmtf.org/standards/wsman)).
+
+
+
+#### COM API for WMI
+
+
+ [Related topics](https://learn.microsoft.com/en-us/windows/win32/wmisdk/com-api-for-wmi#related-topics)
+
+You can use the WMI Component Object Model (COM) API to write management client applications or create a new WMI [_provider_](https://learn.microsoft.com/en-us/windows/win32/wmisdk/gloss-p). The COM API reference provides information for advanced system administrators, as well as developers who are writing client and provider applications.
+
+For more information about writing WMI enterprise management applications, see [Creating a WMI Application Using C++](https://learn.microsoft.com/en-us/windows/win32/wmisdk/creating-a-wmi-application-using-c-). For more information about how to write a WMI provider, see [Providing Data to WMI](https://learn.microsoft.com/en-us/windows/win32/wmisdk/providing-data-to-wmi).
+
+
+
+## Windows Scripting Host
+
+`wscript` and `cscript`
+
+[What Is WSH? | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//shzd7dy4(v=vs.85))
+
+[Windows Script Host Object Model | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//a74hyyw0(v=vs.85))
+
+[Reference (Windows Script Host) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//98591fh7(v=vs.85))
+
+Essentials
+
+- [**Script Center**](https://www.microsoft.com/technet/scriptcenter/default.mspx)
+- [**Windows Scripting Guide**](https://www.microsoft.com/technet/scriptcenter/guide/default.mspx)
+
+[Using Windows Management Instrumentation Command-line: Windows Management Instrumentation (WMI) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc779482(v=ws.10))
+
+[WMIC Concepts: Windows Management Instrumentation (WMI); Scripting | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc757615(v=ws.10))
+
+[Running Windows Management Instrumentation Command-line: Windows Management Instrumentation (WMI) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc782919(v=ws.10))
+
+
+[MI Providers and Clients | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/wmi_v2/mi-providers-and-clients-node-page)
+
+References
+
+#### VB Script
+
+- [**VBScript**](https://msdn.microsoft.com/en-us/library/t0aew7h6(v=msdn.10))
+
+[VBScript Language Reference | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//d1wf56tt(v=vs.85))
+
+[Using VBScript - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/lwef/using-vbscript)
+
+
+[VBScript Fundamentals | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//0ad0dkea(v=vs.85))
+
+#### JScript
+
+
+[JScript (ECMAScript3) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//hbxc2t98(v=vs.85)?redirectedfrom=MSDN)
+
+[JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+[JScript (ECMAScript3) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//hbxc2t98(v=vs.85))
+
+[JavaScript reference - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+
+
+- [**Script Runtime**](https://msdn.microsoft.com/en-us/library/bstcxhf7(v=msdn.10))
+[Script Runtime | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//bstcxhf7(v=vs.85)?redirectedfrom=MSDN)
+- [**Windows Script Host**](https://msdn.microsoft.com/en-us/library/9bbdkx3k(v=msdn.10))
+- [**WMI**](https://msdn.microsoft.com/library/en-us/dnanchor/html/anch_wmi.asp)
+- [**ADSI**](https://msdn.microsoft.com/library/en-us/adsi/adsi/active_directory_service_interfaces_adsi.asp)
+
+[WMIC Best practices: Windows Management Instrumentation (WMI); Scripting | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc758713(v=ws.10))
+
+[Windows Script Host | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//9bbdkx3k(v=vs.85)?redirectedfrom=MSDN)
+
+[Reference (Windows Script Host) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions//98591fh7(v=vs.85))
+
+#### WMI Command-line Tools
+[WMI Architecture - Windows drivers | Microsoft Learn](https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/wmi-architecture)
+
+
+
+1. [Related topics](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-command-line-tools#related-topics)
+
+
+### WMI
+
+[Windows Management Instrumentation Command-line: Windows Management Instrumentation (WMI) | Microsoft Learn](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc784189(v=ws.10))
+
+[About WMI - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/about-wmi)
+
+[Windows Management Instrumentation - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page)
+
+> Windows Management Instrumentation (WMI) is the Microsoft implementation of Web-Based Enterprise Management (WBEM), which is an industry initiative to develop a standard technology for accessing management information in an enterprise environment. WMI uses the Common Information Model (CIM) industry standard to represent systems, applications, networks, devices, and other managed components. CIM is developed and maintained by the Distributed Management Task Force ([DMTF](https://www.dmtf.org/standards/wsman)).
+
+>!!!Note Note
+>  The next-generation of WMI, known as the Windows Management Infrastructure (MI), is currently available. MI is fully compatible with previous versions of WMI, and provides a host of features and benefits that make designing and developing providers and clients easier than ever. For example, many newer providers are written using the MI framework, but can be accessed using WMI scripts and applications. For more information about the differences between the two technologies, see [Why Use MI?](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/wmi_v2/why-use-mi-)
+
+[Windows Management Instrumentation - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page)
+
+WMI has several command line tools used by administrators and WMI provider writers.
+
+[**mofcomp**](https://learn.microsoft.com/en-us/windows/win32/wmisdk/mofcomp)
+
+Compiles Managed Object Format (MOF) code into binary form stored in the WMI repository. Use when creating or modifying the MOF file for a WMI provider.  
+
+[**smi2smir**](https://learn.microsoft.com/en-us/windows/win32/wmisdk/smi2smir)
+
+Accepts one SNMP information module as input, and accepts any additional modules necessary to resolve external references.  
+
+[**winmgmt**](https://learn.microsoft.com/en-us/windows/win32/wmisdk/winmgmt)
+
+Runs the WMI service. Beginning with Windows Vista, several new switches have been added.  
+
+[**wmiadap**](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmiadap)
+
+Runs the ADAP command-line tool to parse and transfer performance libraries to the WMI repository.  
+
+[**wmic**](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmic)
+
+Performs WMI operations at command prompt.
+
+## To run WMIC in interactive mode
+
+1. Click **Start**, **Run**.
+    
+2. Type:
+    
+    **WMIC**, and then press ENTER.
+    
+3. Type the alias, command, or global switch you want WMIC to perform.
+
+
+- `ASSOC` ex, (`OS ASSOC`) - *"Optionally, an output file format, such as LIST, MOF, or other."*
+    > Returns the result of the query: Associators of {<wmi object>} Where <wmi object> is the path of objects returned by the PATH or CLASS commands. The results are instances associated with the object. When ASSOC is used with an alias, the classes associated with the class underlying the alias are returned. By default, the output for class is in TABLE format. See the following table of switches for /ASSOC.
+- `CALL` ex, (`SERVICE WHERE CAPTION='TELNET' CALL STARTSERVICE`) - *"Method and parameter list if appropriate. Parameter lists are comma delimited. Use SERVICE CALL /? to get a list of available methods and their parameters for the current alias."*
+    > Executes methods.
+- `CREATE` ex, (`ENVIRONMENT CREATE Name="WMIC_test",VariableValue="WMIC_test_value",UserName="SYSTEM"`) - *"Properties equated to values, delimited with commas. Use CREATE /? for a list of property names for the alias."*
+    > Creates a new instance and sets the property values for the new instance. This cannot be used to create a new class.
+- `DELETE` ex, (`PROCESS WHERE NAME="CALC.EXE" DELETE`) - *"/INTERACTIVE (prompt to confirm) or /NOINTERACTIVE (do not prompt to confirm)."*
+    > Deletes the current instance or set of instances. This can be used to delete a class.
+- `GET` ex, (`PROCESS GET NAME`) - *"Property name or switch. See the table of switches for /GET below. Also use GET /? for a list of property names and switches for the alias."*
+    > Get specific properties.
+- `LIST` ex, (`PROCESS LIST BRIEF`) - *"See the following tables of adverbs and switches for LIST."*
+    > Show data. LIST is the default verb.
+- `SET` ex, (`ENVIRONMENT WHERE Name="WMIC_test" SET VariableValue="WMIC_test_value1"`) - *"Properties equated to values, delimited with commas. Use SET /? for a list of property names for the alias."*
+    > Property set operations.
+
+
+ The List verb has the following adverbs. To use adverbs in WMIC, enter the alias name followed by a verb and adverb. For more information about <alias> /?, see "Aliases" in Help.
+
+Adverb	Results
+- `BRIEF` -> A core set of the properties.
+- `FULL` -> The full set of properties. This is the default set of LIST properties.
+- `INSTANCE` -> The instance paths only.
+- `STATUS` -> The status and related properties of the object.
+- `SYSTEM` -> System properties.
+- ==Alias-specific or user format== -> Alias-specific or user defined formats might be defined by providing distinct lists of properties and a format to be used in displaying them.
+
+- `WRITEABLE` -> The writeable properties of the objects.#### Other Links
+
+
+The List verb has the following switches. To use verb-specific switches in WMIC, enter the alias name followed by a switch (verbs and adverbs might also be used). For more information about <alias> /?, see "Aliases" in Help.
+
+- `/TRANSLATE:<translation table>` -> Translate the output using the translation table named by the command. BasicXml and NoComma are translation tables included with WMIC.
+- `/EVERY:<interval>` -> Repeat the command every X seconds; X is determined by the interval.
+- `/FORMAT:<format specifier>` -> Specify a keyword or XSL file name to format the data, as explained in the following note.
+
+#### The Get verb has the following switches.
+
+- `/VALUE` -> The output is formatted with each value listed on a separate line and with the name of the property.
+- `/ALL` -> The output is formatted as a table. The default output format is /ALL.
+- `/TRANSLATE:<translation table>` -> Translate the output using the translation table named by the command. BasicXml and NoComma are translation tables included with WMIC.
+- `/EVERY:<interval>` -> Return values every X seconds, X is the interval.
+- `/FORMAT:<format specifier>` -> Specify a keyword or an XSL file name to format the data, as explained in the following note.
+
+#### The Assoc verb has the following switches.
+
+- `/RESULTCLASS:<classname>` -> The returned endpoints associated with the source object must belong to or be derived from the specified class.
+- `/RESULTROLE:<rolename>` -> The returned endpoints must play a particular role in their association with the source object.
+- `/ASSOCCLASS:<assocclass>` -> The returned endpoints must be associated with the source through the specified class or one of its derived classes.
+
+[Windows Management Instrumentation - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page?source=recommendations)

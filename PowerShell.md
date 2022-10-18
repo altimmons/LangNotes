@@ -495,6 +495,32 @@ New-Alias -Name WO -Value "Where-Object" -Scope Global
 
 #Record all powershell sessions.
 Start-Transcript -OutputDirectory $($env:OneDrive | join-path -ChildPath \Programming\Powershell\Transcipts)
+
+Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
+    param($wordToComplete, $commandAst, $cursorPosition)
+        [Console]::InputEncoding = [Console]::OutputEncoding = $OutputEncoding = [System.Text.Utf8Encoding]::new()
+        $Local:word = $wordToComplete.Replace('"', '""')
+        $Local:ast = $commandAst.ToString().Replace('"', '""')
+        winget complete --word="$Local:word" --commandline "$Local:ast" --position $cursorPosition | ForEach-Object {
+            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+        }
+}
+
+Write-Host -ForegroundColor Black 'Loading $Profile.CurrentUserCurrentHost (Powershell Console) [Location] C:\Users\andyt\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+
+
+Write-Host -ForegroundColor GREEN 'Store previous command''s output in $__'
+$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'
+Import-Module posh-git
+Import-Module oh-my-posh
+set-Theme paradox
+
+cat $Profile
+$scripts = "$(split-path $profile)\Scripts"
+$modules = "$(split-path $profile)\Modules"
+$docs    =  $(resolve-path "$Env:userprofile\documents")
+$desktop =  $(resolve-path "$Env:userprofile\desktop")
+
 ```
 
 
@@ -6337,3 +6363,6 @@ in bits
 1000001
 
 $arch =  [io.fileattributes]::archive.Value__
+
+
+
