@@ -62,7 +62,10 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.fontWeightBold": "800",
   "terminal.integrated.automationShell.windows": "C:/WINDOWS/system32/cmd.exe",
-  "terminal.integrated.shellArgs.windows": ["/K", "runvs.bat"],
+  "terminal.integrated.shellArgs.windows": [
+    "/K",
+    "runvs.bat"
+  ],
   // terminal.inte
   "editor.colorDecorators": true,
   "material-icon-theme.files.associations": {
@@ -71,7 +74,11 @@
   },
   //---Color-hightlight
   "color-highlight.enable": true,
-  "color-highlight.languages": ["*", "*.json", "*.code-workspace"],
+  "color-highlight.languages": [
+    "*",
+    "*.json",
+    "*.code-workspace"
+  ],
   "color-highlight.matchWords": true,
   "color-highlight.markerType": "background",
   "color-highlight.markRuler": true,
@@ -239,12 +246,16 @@
     },
     {
       "shell": "/usr/bin/zsh",
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "label": "zsh login shell"
     },
     {
       "shell": "bash",
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "label": "bash login shell"
     }
   ],
@@ -517,19 +528,16 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
     "editor.suggest.showIcons": false,
     "editor.suggest.showFolders": false,
     "editor.suggest.showTypeParameters": true,
-
     "editor.suggest.showValues": true,
     "editor.suggest.filterGraceful": true,
     "editor.suggest.insertMode": "replace",
     "editor.suggest.showSnippets": true,
     "editor.suggest.maxVisibleSuggestions": 12,
-
     "editor.suggest.showWords": false,
     "editor.suggest.localityBonus": true,
     "editor.suggest.shareSuggestSelections": true,
     "editor.suggest.snippetsPreventQuickSuggestions": true,
     "editor.suggest.statusBar.visible": true,
-
     "editor.quickSuggestions": {
       "other": true,
       "comments": false,
@@ -541,7 +549,6 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
     "editor.wordBasedSuggestions": false,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-
   "files.autoSave": "afterDelay",
   //@          |       .'.       `.           .'       .'.
   //@          |     .''```.       `.       .'       .''```.
@@ -552,9 +559,14 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
     "editor.colorDecorators": true,
     "editor.cursorBlinking": "phase",
     // "editor.lineHeight": 18,
-    "editor.renderIndentGuides": true,
+    // "editor.renderIndentGuides": true,
     "editor.smoothScrolling": true,
-    "editor.rulers": [70, 80, 81, 90],
+    "editor.rulers": [
+      70,
+      80,
+      81,
+      90
+    ],
     "editor.showFoldingControls": "always",
     "editor.letterSpacing": 0
     // "editor.defaultFormatter": "remimarsal.prettier-now",
@@ -629,7 +641,12 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
     // "org.mockito.Answers.*"
   ],
   "java.completion.guessMethodArguments": true,
-  "java.completion.importOrder": ["java", "javax", "com", "org"],
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "com",
+    "org"
+  ],
   "java.selectionRange.enabled": true,
   "java.signatureHelp.enabled": true,
   "java.foldingRange.enabled": true,
@@ -715,7 +732,6 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
   },
   // "workbench.iconTheme": "material-icon-theme",
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
-
   "markdown-preview-enhanced.enableExtendedTableSyntax": true,
   "markdown-preview-enhanced.enableHTML5Embed": true,
   "markdown-preview-enhanced.enableScriptExecution": true,
@@ -725,7 +741,6 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
   "markdown-preview-enhanced.imageUploader": "sm.ms",
   "markdown-preview-enhanced.mathRenderingOnlineService": "https://latex.codecogs.com/svg.latex",
   "markdown-preview-enhanced.mathRenderingOption": "MathJax",
-
   "markdown-preview-enhanced.printBackground": true,
   "markdown-preview-enhanced.puppeteerWaitForTimeout": 10000,
   // "markdownShiki.theme": "dark_plus",
@@ -1039,7 +1054,6 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
   "[javascript]": {
     // "editor.defaultFormatter":
   },
-
   "workbench.iconTheme": "eq-material-theme-icons",
   "latex.server.autoDownload": true,
   "python.languageServer": "Microsoft",
@@ -1051,7 +1065,6 @@ SSSSS:' SSSSsS:'     SSS        SSS     SSSS SSSS    SSS SSSSsS;:' SSSSs;:'
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "vsicons.dontShowNewVersionMessage": true
-
   // "materialTheme.accent": "Blue"
   // "javascript.suggest.completeFunctionCalls": true
   // "editor.suggestSelection": "first",

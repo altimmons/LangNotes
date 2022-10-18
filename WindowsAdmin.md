@@ -22,6 +22,28 @@ The above is an example of setting parameters..
 ["D:\ASUSsync\VS Code\md\res"](D:\ASUSsync\VS Code\md\res)
 
 
+## Latest Windows Updates
+
+[Deprecated as of the end of windows 10](https://docs.microsoft.com/en-us/windows/deployment/planning/windows-10-deprecated-features)
+
+[Windows 10 removed features.](https://docs.microsoft.com/en-us/windows/deployment/planning/windows-10-removed-features)
+
+## Windows 11 features
+
+For information about features that are impacted when you upgrade from Windows 10 to Windows 11, see [Feature deprecations and removals](https://www.microsoft.com/windows/windows-11-specifications#table3).
+
+[Features no longer being developed](https://docs.microsoft.com/en-us/windows/deployment/planning/features-lifecycle#features-no-longer-being-developed)
+
+The following topic lists features that are no longer being developed. These features might be removed in a future release.
+
+[Windows 10 features we're no longer developing](https://docs.microsoft.com/en-us/windows/deployment/planning/windows-10-deprecated-features)
+
+[Features removed](https://docs.microsoft.com/en-us/windows/deployment/planning/features-lifecycle#features-removed)
+
+The following topics have details about features that have been removed from Windows 10 or Windows 11. This includes features that are present in Windows 10, but are removed in Windows 11.
+
+[Windows 10 features we removed](https://docs.microsoft.com/en-us/windows/deployment/planning/windows-10-removed-features)
+
 ## Critical CMD Line Programs I always forget about
 
 [](#'Net Command Other Commands)
@@ -196,6 +218,847 @@ Passwords in some versions of Internet Explorer, stored in the following Registr
 Passwords stored in the passwords file of Chrome Web browser ('Login Data' file in the profile of Chrome).
 Encrypted cookies in Chrome Web browser ('Cookies' file in the profile of Chrome)
 
+
+
+## Network and Related 
+
+[Windows Network](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc753940(v=ws.10))
+
+[DHCP](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc896553(v=ws.10))
+
+[DNS](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732997(v=ws.10))
+
+
+[Windows 2012 Link](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831357(v=ws.11))
+
+[Current Version Networking](https://docs.microsoft.com/en-us/windows-server/networking/)
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+[Name Resolution Protocol](https://docs.microsoft.com/en-us/windows/win32/winsock/name-resolution-model-2)
+
+[Winsock](https://docs.microsoft.com/en-us/windows/win32/winsock/listening-on-a-socket)
+
+
+
+### Cloudflare DNS
+
+ipv4
+- 1.1.1.1
+- 1.0.0.1
+ipv6
+- 2606:4700:4700::1111
+- 2606:4700:4700::1001
+
+### Proxy Management
+
+? Cntlm: Fast NTLM Authentication Proxy in C - not sure if this is part of the work computer or if I installed this...
+
+### FireWall
+
+Enable Remote desktop related rules.  Unclear which these are.
+
+### Reserved IPs
+
+###
+
+### nvspinfo 
+
+This turns out to be exactly what I need
+
+
+    usage: nvspinfo
+            -c    display nvsp related control services
+            -a    display network adapters
+            -i    display network interfaces
+            -S    display stack table
+            -h    include hidden adapters (implies -a)
+            -b    include network bindings (implies -a)
+            -o    include offloads (implies -a)
+            -n    display all network information (same as -a -i -b)
+            -v    display virtual NICs
+            -D    includes drops in virtual NIC status (implies -v)
+            -s    display switch information
+            -p    include port details (implies -s)
+            -d    include disconnected ports (implies -s -d)
+            -m    include mac details (implies -s and -p)
+            -q    include 801.1q (vlan) details (implies -s and -p)
+            -t    display statistics (implies -s and -p)
+            -l    display statistics in a one second loop (implies -t)
+            -e    display everything
+            -g    display setup DI
+            -z    analyze (implies -e)
+            -Z    analyze mac and ip
+            -V    display vmq details (implies -v)
+            -u    display unicast addresses
+            -Q    display VMQ groups
+            -F:I  display stats in CSV format in a loop for the NIC at the specified index I. I = -1 lists available indexes.
+            -P    display host processor stats for all host processors
+
+### Pathping CMD command
+
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+### mstsc
+
+`mstsc` - Opens a remote desktop connection.  e.g. the Remote Desktop connection window.
+
+Can also use it to open just a console.
+
+    remote desktop command line (use /console if all slots full)
+    c:\> mstsc /v:SERVERNAME [/console]
+    list other RDP sessions on the server
+    c:\> query session
+    kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
+    c:\> logoff SESSIONID
+
+use mstsc /admin instead. Use mstsc /? for a list of commands.
+
+
+### netsh
+
+
+[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
+[more](### Network Trace)
+
+View the Windows Network Config Script:
+
+This shows all the settings
+
+```batch
+netsh
+>dump
+```
+
+
+    Commands in this context:
+    ..             - Goes up one context level.
+    ?              - Displays a list of commands.
+    abort          - Discards changes made while in offline mode.
+    add            - Adds a configuration entry to a list of entries.
+    advfirewall    - Changes to the `netsh advfirewall' context.
+    alias          - Adds an alias.
+    branchcache    - Changes to the `netsh branchcache' context.
+    bridge         - Changes to the `netsh bridge' context.
+    bye            - Exits the program.
+    commit         - Commits changes made while in offline mode.
+    delete         - Deletes a configuration entry from a list of entries.
+    dhcpclient     - Changes to the `netsh dhcpclient' context.
+    dnsclient      - Changes to the `netsh dnsclient' context.
+    dump           - Displays a configuration script.
+    exec           - Runs a script file.
+    exit           - Exits the program.
+    firewall       - Changes to the `netsh firewall' context.
+    help           - Displays a list of commands.
+    http           - Changes to the `netsh http' context.
+    interface      - Changes to the `netsh interface' context.
+    ipsec          - Changes to the `netsh ipsec' context.
+    lan            - Changes to the `netsh lan' context.
+    mbn            - Changes to the `netsh mbn' context.
+    namespace      - Changes to the `netsh namespace' context.
+    netio          - Changes to the `netsh netio' context.
+    offline        - Sets the current mode to offline.
+    online         - Sets the current mode to online.
+    p2p            - Changes to the `netsh p2p' context.
+    popd           - Pops a context from the stack.
+    pushd          - Pushes current context on stack.
+    quit           - Exits the program.
+    ras            - Changes to the `netsh ras' context.
+    rpc            - Changes to the `netsh rpc' context.
+    set            - Updates configuration settings.
+    show           - Displays information.
+    trace          - Changes to the `netsh trace' context.
+    unalias        - Deletes an alias.
+    wcn            - Changes to the `netsh wcn' context.
+    wfp            - Changes to the `netsh wfp' context.
+    winhttp        - Changes to the `netsh winhttp' context.
+    winsock        - Changes to the `netsh winsock' context.
+    wlan           - Changes to the `netsh wlan' context.
+
+      #The following sub-contexts are available:
+      advfirewall
+      branchcache 
+      bridge 
+      dhcpclient 
+      dnsclient 
+      firewall 
+      http 
+      interface 
+      ipsec 
+      lan 
+      mbn 
+      namespace 
+      netio 
+      p2p 
+      ras 
+      rpc 
+      trace 
+      wcn 
+      wfp 
+      winhttp 
+      winsock 
+      wlan
+
+
+
+#### Network Trace using netsh
+ 
+Capture a Network Trace without installing anything (& capture a network trace of a reboot)
+
+If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
+
+The short version:
+
+1. Open an elevated command prompt and run: "
+
+       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
+      
+(make sure you have a \temp directory or choose another location).
+
+2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
+
+ 
+
+3. Open an elevated command prompt and run: 
+
+        netsh trace stop
+
+ 
+
+Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
+
+ 
+
+The longer version:
+
+I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
+
+ 
+
+1. Open an elevated command prompt and run: 
+      
+        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
+      
+      
+(make sure you have a \temp directory or choose another location).
+
+
+#### Using Netsh trace commands
+
+      Commands in the Netsh trace context
+
+          convert
+          correlate
+          diagnose
+          show CaptureFilterHelp
+          show globalKeywordsAndLevels
+          show helperclass
+          show interfaces
+          show provider
+          show providers
+          show scenario
+          show scenarios
+          show status
+          start
+          stop
+
+### net
+
+NET
+    [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+      HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+      STATISTICS | STOP | TIME | USE | USER | VIEW ]
+
+        NET
+            [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+            HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+            STATISTICS | STOP | TIME | USE | USER | VIEW ]
+
+            NET ACCOUNTS
+            [/FORCELOGOFF:{minutes | NO}] [/MINPWLEN:length]
+                    [/MAXPWAGE:{days | UNLIMITED}] [/MINPWAGE:days]
+                    [/UNIQUEPW:number] [/DOMAIN]
+
+            Force user logoff how long after time expires?:       Never
+        Minimum password age (days):                          0
+        Maximum password age (days):                          42
+        Minimum password length:                              0
+        Length of password history maintained:                None
+        Lockout threshold:                                    Never
+        Lockout duration (minutes):                           30
+        Lockout observation window (minutes):                 30
+        Computer role:                                        WORKSTATION
+        The command completed successfully.
+
+
+
+        NET COMPUTER
+        \\computername {/ADD | /DEL}
+
+        >net computer \\192.168.1.200 /ADD
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+        NET CONFIG
+
+        The following running services can be controlled:
+
+        Server
+        Workstation
+
+        [SERVER | WORKSTATION]
+
+        NET CONFIG SERVER
+        [/AUTODISCONNECT:time]
+                        [/SRVCOMMENT:"text"]
+                        [/HIDDEN:{YES | NO}]
+
+
+        Computer name                        \\DESKTOP
+        Full Computer name                   DESKTOP
+        User name                            andy.timmons@live.com
+
+        Workstation active on
+                NetBT_Tcpip_{B60B77BB-75C5-491E-AB09-BACC27B5D760} (2CFDA1B95FA1)
+                NetBT_Tcpip_{59A52F56-D600-48B3-A1C6-7392EE3612CE} (00155D0A3465)
+
+        Software version                     Windows 10 Pro
+
+        Workstation domain                   WORKGROUP
+        Logon domain                         MicrosoftAccount
+
+        COM Open Timeout (sec)               0
+        COM Send Count (byte)                16
+        COM Send Timeout (msec)              250
+        The command completed successfully.      
+
+
+        net continue
+        The syntax of this command is:
+
+        NET CONTINUE
+        service
+
+        net file (Open Network Files?)
+        There are no entries in the list.
+
+
+        net file /?
+        The syntax of this command is:
+
+        NET FILE
+        [id [/CLOSE]]
+
+
+        net group /?
+        The syntax of this command is:
+
+        NET GROUP
+        [groupname [/COMMENT:"text"]] [/DOMAIN]
+                    groupname {/ADD [/COMMENT:"text"] | /DELETE}  [/DOMAIN]
+                    groupname username [...] {/ADD | /DELETE} [/DOMAIN]
+
+        net group
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NET HELP
+        command
+            -or-
+        NET command /HELP
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NAMES
+        The following types of names are used with Windows:
+
+        Computername      A unique name that identifies a computer on
+                        the local-area network.
+
+        Devicename        The name by which Windows identifies a disk resource
+                        or printer. A disk resource is identified by a drive
+                        letter followed by a colon (for example, D:). A
+                        printer is identified by a port name followed by a colon
+                        (for example, LPT1:).
+
+        Workgroup         A group of computers on the network. Each workgroup
+                        has a unique name.
+
+        Localgroup        A group of names in a Workgroup that are granted the
+                        same rights.
+
+        Domain            A group of Windows Servers, Windows Workstations
+                        and other computers on the network. A
+                        domain has a unique name. Usually, you must log on in
+                        a domain to gain access to the network. Domains are
+                        created and managed with Windows Server.
+
+        Global group      A group of names in a domain that are granted the
+                        same rights.
+
+        Filename          The name of a file. Under the file allocation table
+                        (FAT) file system, a filename can have as many as eight
+                        characters, followed by a period (.) and an extension of
+                        as many as three characters. Under NTFS and HPFS, a
+                        filename can have as many as 254 characters.
+
+        Network path      A description of the location of a shared resource,
+                        consisting of a computer's computername followed by
+                        the sharename of the resource. The computername
+                        is preceded by two backslashes, and the sharename is
+                        preceded by one backslash (for example,
+                        \\SERVER1\RESOURCE).
+
+        Path              The location of a directory. A path can consist of a
+                        devicename and one or more directory names. A
+                        backslash (\) precedes each directory name (for example,
+                        C:\CUSTOMER\CORP\ACCT).
+
+        Pathname          A path and a filename. The filename is preceded by a
+                        backslash (\) (for example, C:\CUSTOMER\CORP\REPORT.DOC).
+
+        Sharename         A name that identifies a shared resource on a computer. A
+                        sharename is used with the computer's computername to form
+                        a network path (as in \\SERVER\RESOURCE).
+
+        Username          The name a person supplies when logging on at
+                        a computer.
+
+        To view these definitions one screen at a time, type NET HELP NAMES | MORE.
+
+
+
+        The syntax of this command is:
+
+        SERVICES
+        NET START can be used to start services, including:
+
+        NET START BROWSER
+        NET START DHCP CLIENT
+        NET START EVENTLOG
+        NET START FILE REPLICATION
+        NET START NETLOGON
+        NET START PLUG AND PLAY
+        NET START REMOTE ACCESS CONNECTION MANAGER
+        NET START ROUTING AND REMOTE ACCESS
+        NET START RPCSS
+        NET START SCHEDULE
+        NET START SERVER
+        NET START SPOOLER
+        NET START TCP/IP NETBIOS HELPER
+        NET START UPS
+        NET START WORKSTATION
+
+        When typed at the command prompt, service names of two words or more must
+        be enclosed in quotation marks. For example, NET START "DHCP Client"
+        starts the DHCP Client service.
+
+
+        The syntax of this command is:
+
+        SYNTAX
+        The following conventions are used to indicate command syntax:
+
+        -  Capital letters represent words that must be typed as shown. Lower-
+        case letters represent names of items that may vary, such as filenames.
+
+        -  The [ and ] characters surround optional items that can be supplied
+        with the command.
+
+        -  The { and } characters surround lists of items. You must supply one
+        of the items with the command.
+
+        -  The | character separates items in a list. Only one of the items can
+        be supplied with the command.
+
+        For example, in the following syntax, you must type NET COMMAND and
+        either SWITCH1 or SWITCH2. Supplying a name is optional.
+            NET COMMAND [name] {SWITCH1 | SWITCH2}
+
+        -  The [...] characters mean you can repeat the previous item.
+        Separate items with spaces.
+
+        -  The [,...] characters mean you can repeat the previous item, but
+        you must separate items with commas or semicolons, not spaces.
+
+        -  When typed at the command prompt, service names of two words or
+        more must be enclosed in quotation marks. For example,
+        NET START "COMPUTER BROWSER" starts the computer browser service.
+
+#### Samba Shares- if cached credentials are preventing connecting
+
+There are two solutions-
+
+1. Go to control Panel, then Credentials, then Windows Credentials, and delete the related passwords
+
+2. `net use` to list recent connections
+
+`net use \\192.168.1.200\IPC$ /DELETE` to delete the connection
+`net use \\192.168.107.41\share /delete` 
+
+net session \\samba.server.ip.address /delete
+
+### netstat
+
+Displays protocol statistics and current TCP/IP network connections.
+
+    NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]
+
+      -a            Displays all connections and listening ports.
+      -b            Displays the executable involved in creating each connection or
+                    listening port. In some cases well-known executables host
+                    multiple independent components, and in these cases the
+                    sequence of components involved in creating the connection
+                    or listening port is displayed. In this case the executable
+                    name is in [] at the bottom, on top is the component it called,
+                    and so forth until TCP/IP was reached. Note that this option
+                    can be time-consuming and will fail unless you have sufficient
+                    permissions.
+      -e            Displays Ethernet statistics. This may be combined with the -s
+                    option.
+      -f            Displays Fully Qualified Domain Names (FQDN) for foreign
+                    addresses.
+      -n            Displays addresses and port numbers in numerical form.
+      -o            Displays the owning process ID associated with each connection.
+      -p proto      Shows connections for the protocol specified by proto; proto
+                    may be any of: TCP, UDP, TCPv6, or UDPv6.  If used with the -s
+                    option to display per-protocol statistics, proto may be any of:
+                    IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, or UDPv6.
+      -q            Displays all connections, listening ports, and bound
+                    nonlistening TCP ports. Bound nonlistening ports may or may not
+                    be associated with an active connection.
+      -r            Displays the routing table.
+      -s            Displays per-protocol statistics.  By default, statistics are
+                    shown for IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, and UDPv6;
+                    the -p option may be used to specify a subset of the default.
+      -t            Displays the current connection offload state.
+      -x            Displays NetworkDirect connections, listeners, and shared
+                    endpoints.
+      -y            Displays the TCP connection template for all connections.
+                    Cannot be combined with the other options.
+      interval      Redisplays selected statistics, pausing interval seconds
+                    between each display.  Press CTRL+C to stop redisplaying
+                    statistics.  If omitted, netstat will print the current
+                    configuration information once.
+
+
+#### Useful Commands
+
+- `n` - Display the IP numbers [Number]
+- `a` - Display all connections [All]
+- `q` display all conn. including bound non-listening ports
+- `b` - Displays the application involved.
+- `o` - Display the owning process
+- `r` - routing table
+- `s` - organize by protocol
+- `p` <Protocol> - like s but filters by protocol
+
+`interval` display a live connection updating it. 
+
+    netstat -nao 
+
+    netstat -na | findstr <port>
+
+findstr is like grep.
+
+
+
+#### IPv4
+
+[Source](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
+
+| Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
+| ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 0.0.0.0/8          | 0.0.0.0-0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
+| 10.0.0.0/8         | 10.0.0.0-10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
+| 100.64.0.0/10      | 100.64.0.0-100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
+| 127.0.0.0/8        | 127.0.0.0-127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
+| 169.254.0.0/16     | 169.254.0.0-169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
+| 172.16.0.0/12      | 172.16.0.0-172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
+| 192.0.0.0/24       | 192.0.0.0-192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
+| 192.0.2.0/24       | 192.0.2.0-192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
+| 192.88.99.0/24     | 192.88.99.0-192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
+| 192.168.0.0/16     | 192.168.0.0-192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
+| 198.18.0.0/15      | 198.18.0.0-198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
+| 198.51.100.0/24    | 198.51.100.0-198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
+| 203.0.113.0/24     | 203.0.113.0-203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
+| 224.0.0.0/4        | 224.0.0.0-239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
+| 240.0.0.0/4        | 240.0.0.0-255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
+| 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
+
+such as would have normally been retrieved from a DHCP server.
+
+#### IPV6
+
+| Address block (CIDR) | First address   | Last address     | Number of addresses                     | Usage         | Purpose         |                                                          |
+| -------------------- | --------------- | ---------------- | --------------------------------------- | ------------- | --------------- | -------------------------------------------------------- |
+|                      | ::/0            | ::               | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2128          | Routing         | Default route.                                           |
+|                      | ::/128          | ::               |                                         | 1             | Software        | Unspecified address.                                     |
+|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
+|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
+|                      | ::ffff:0:0:0/96 | ::ffff:0:0.0.0.0 | ::ffff:0:255.255.255.255                | 232           | Software        | IPv4 translated addresses.                               |
+|                      | 64:ff9b::/96    | 64:ff9b::0.0.0.0 | 64:ff9b::255.255.255.255                | 232           | Global Internet | IPv4/IPv6 translation.                                   |
+|                      | 100::/64        | 100::            | 100::ffff:ffff:ffff:ffff                | 264           | Routing         | Discard prefix.                                          |
+|                      | 2001::/32       | 2001::           | 2001::ffff:ffff:ffff:ffff:ffff:ffff     | 296           | Global Internet | Teredo tunneling.                                        |
+|                      | 2001:20::/28    | 2001:20::        | 2001:2f:ffff:ffff:ffff:ffff:ffff:ffff   | 2100          | Software        | ORCHIDv2.                                                |
+|                      | 2001:db8::/32   | 2001:db8::       | 2001:db8:ffff:ffff:ffff:ffff:ffff:ffff  | 296           | Documentation   | Addresses used in documentation and example source code. |
+|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
+|                      | fc00::/7        | fc00::           | fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2121          | Private network | Unique local address.                                    |
+|                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
+|                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |
+
+
+
+The Internet Engineering Task Force (IETF) has directed the Internet Assigned Numbers Authority (IANA) to reserve the following IPv4 address ranges for private networks:[1](p4)
+
+
+| RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
+| ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
+| 24-bit block | 10.0.0.0 - 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
+| 20-bit block | 172.16.0.0 - 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
+| 16-bit block | 192.168.0.0 - 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
+
+
+Also note the 169.254 address
+
+### NFS - Network File Service
+
+[Services for Network File System (NFS) command-line tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
+
+Services for Network File System (NFS) provides a file sharing solution that lets you transfer files between computers running Windows Server and UNIX operating systems using the NFS protocol.
+
+Information and links to each of the associated NFS command-line tools:
+
+| Command   | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| mapadmin  | Manage User Name Mapping for Microsoft Services for Network File System. |
+| mount     | Mount Network File System (NFS) network shares.                          |
+| nfsadmin  | Manage Server for NFS and Client for NFS.                                |
+| nfsshare  | Control Network File System (NFS) shares.                                |
+| nfsstat   | Display or reset counts of calls made to Server for NFS.                 |
+| rpcinfo   | List programs on remote computers.                                       |
+| showmount | Display mounted directories.                                             |
+
+
+### Remote Desktop Connection
+
+
+See also [mstsc](#mstsc)
+
+- `change` - Changes the Remote Desktop Session Host server settings for sign in, COM port mappings, and install mode.
+- `change logon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `change port` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `change user` - Changes the install mode for the Remote Desktop Session Host server.
+- `chglogon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `chgport` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `chgusr` - Changes the install mode for the Remote Desktop Session Host server.
+- `flattemp` - Enables or disables flat temporary folders.
+- `logoff` - Signs out a user from a session on an Remote Desktop Session Host server and deletes the session from the server.
+- `msg` - Sends a message to a user on an Remote Desktop Session Host server.
+- `mstsc` - Creates connections to Remote Desktop Session Host servers or other remote computers.
+- `qappsrv` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `qprocess` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query` - Displays information about processes, sessions, and Remote Desktop Session Host servers.
+- `query process` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query session` - Displays information about sessions on an Remote Desktop Session Host server.
+- `query termserver` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `query user` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `quser` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `qwinsta` - Displays information about sessions on an Remote Desktop Session Host server.
+- `rdpsign` - Enables you to digitally sign a Remote Desktop Protocol (.rdp) file.
+- `reset session` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `rwinsta` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `shadow` - Enables you to remotely control an active session of another user on an Remote Desktop Session Host server.
+- `tscon` - Connects to another session on an Remote Desktop Session Host server.
+- `tsdiscon` - Disconnects a session from an Remote Desktop Session Host server.
+- `tskill` - Ends a process running in a session on an Remote Desktop Session Host server.
+- `tsprof` - Copies the Remote Desktop Services user configuration information from one user to another.
+
+
+### Nirsoft Net Tools
+
+
+
+
+Network Monitoring Tools
+
+- **_SmartSniff_** [v2.29]:
+
+    SmartSniff allows you to capture TCP/IP packets that pass through your network adapter, and view the captured data as sequence of conversations between clients and servers. You can view the TCP/IP conversations in Ascii mode (for text-based protocols, like HTTP, SMTP, POP3 and FTP.) or as hex dump. (for non-text base protocols, like DNS)
+
+- **_WifiChannelMonitor_** [v1.65]:
+
+    WifiChannelMonitor captures wifi traffic on the channel you choose, using Microsoft Network Monitor capture driver in monitor mode, and displays extensive information about access points and the wifi clients connected to them. WifiChannelMonitor also allows you to view the information about wifi clients that are not connected to any access points, including the list of SSIDs (network names) that they are trying to connect. For every access point, the following information is displayed: SSID, MAC Address, Device Manufacturer , PHY Type, Channel, RSSI, Security, Beacons Count, Probe Responses Count, Data Bytes, Retransmitted Data Bytes, and more... For every client, the following information is displayed: MAC Address, Device Manufacturer, SSID list that the client tries to connect, Sent Data Bytes, Received Data Bytes, Probe Requests Count, and more...
+
+- **_NetworkTrafficView_** [v2.30]:
+
+    NetworkTrafficView is a network monitoring tool that captures the packets pass through your network adapter, and displays general statistics about your network traffic. The packets statistics is grouped by the Ethernet Type, IP Protocol, Source/Destination Addresses, and Source/Destination ports. For every statistics line, the following information is displayed: Ethernet Type (IPv4, IPv6, ARP), IP Protocol (TCP, UDP, ICMP), Source Address, Destination Address, Source Port, Destination Port, Service Name (http, ftp, and so on), Packets Count, Total Packets Size, Total Data Size, Data Speed, Maximum Data Speed, Average Packet Size, First/Last Packet Time, Duration, and process ID/Name (For TCP connections).
+
+- **_HTTPNetworkSniffer_** [v1.63]:
+
+    HTTPNetworkSniffer is a packet sniffer tool that captures all HTTP requests/responses sent between the Web browser and the Web server and displays them in a simple table. For every HTTP request, the following information is displayed: Host Name, HTTP method (GET, POST, HEAD), URL Path, User Agent, Response Code, Response String, Content Type, Referer, Content Encoding, Transfer Encoding, Server Name, Content Length, Cookie String, and more... You can easily select one or more HTTP information lines, and then export them to text/html/xml/csv file or copy them to the clipboard and then paste them into Excel.
+
+- **_AppNetworkCounter_** [v1.41]:
+
+    AppNetworkCounter is a simple tool for Windows that counts and displays the number of TCP/UDP bytes and packets sent and received by every application on your system. For every application, the following information is displayed: the number of sent and received bytes, number of sent and received packets, number of sent/received IPv4 bytes, and number of sent/received IPv6 bytes. It also displays the version information of the application - Product Name, Product Version, File Description, and Company Name.
+
+- **_LiveTcpUdpWatch_** [v1.33]:
+
+    LiveTcpUdpWatch is a tool for Windows that displays live information about all TCP and UDP activity on your system. Every line in the main table of LiveTcpUdpWatch displays the protocol (TCP/UDP/IPv4/IPv6), local/remote IP address, local/remote port, number of sent/received bytes, number of sent/received packets, connect/disconnect time (For TCP only), and the process (ID and path) responsible for this activity.
+
+- **_PingInfoView_** [v2.10]:
+
+    PingInfoView is a small utility that allows you to easily ping multiple host names and IP addresses, and watch the result in one table. It automatically ping to all hosts every number of seconds that you specify, and displays the number of succeed and failed pings, as well as the average ping time. You can also save the ping result into text/html/xml file, or copy it to the clipboard.
+
+- **_WifiInfoView_** [v2.65]:
+    WifiInfoView scans the wireless networks in your area and displays extensive information about them, including: Network Name (SSID), MAC Address, PHY Type (802.11g or 802.11n), RSSI, Signal Quality, Frequency, Channel Number, Maximum Speed, Company Name, Router Model and Router Name (Only for routers that provides this information), and more... When you select a wireless network in the upper pane of this tool, the lower pane displays the Wi-Fi information elements received from this device, in hexadecimal format. WifiInfoView also has a summary mode, which displays a summary of all detected wireless networks, grouped by channel number, company that manufactured the router, PHY type, or the maximum speed.
+
+- **_SocketSniff_** [v1.11]:
+
+    SocketSniff allows you to watch the Windows Sockets (WinSock) activity of the selected process.
+
+
+    For each created socket, the following information is displayed: socket handle, socket type, local and remote addresses, local and remote ports, total number of send/receive bytes, and more. You can also watch the content of each send or receive call, in Ascii mode or as Hex Dump.
+
+- **_CurrPorts_** [v2.63]:
+
+    CurrPorts is a network monitoring software that displays the list of all currently opened TCP/IP and UDP ports on your local computer. For each port in the list, information about the process that opened the port is also displayed, including the process name, full path of the process, version information of the process (product name, file description, and so on), the time that the process was created, and the user that created it.
+
+
+    In addition, CurrPorts allows you to close unwanted TCP connections, kill the process that opened the ports, and save the TCP/UDP ports information to HTML file , XML file, or to tab-delimited text file.
+
+    CurrPorts also automatically mark with pink color suspicious TCP/UDP ports owned by unidentified applications (Applications without version information and icons)
+      
+- **_TcpLogView_** [v1.32]:
+
+    TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)
+
+- **_ProcessTCPSummary_** [v1.11]:
+
+    ProcessTCPSummary is a simple tool for Windows that displays a summary of all process that have TCP connections or listening UDP ports. For every process, this tool displays the total number of TCP connections, number of TCP connections for each status (Established, Listening, Syn-Sent, Syn-Received...), number of IPv4 TCP connections, number of IPv6 TCP connections, common port numbers, and more... If you run ProcessTCPSummary as Administrator, you can also watch the number of TCP/UDP bytes sent and received by every process as well as the current send/receive speed.
+
+- **_NetworkConnectLog_** [v1.13]:
+
+    NetworkConnectLog is a simple utility that repeatedly scans your local area network (Using ARP and Netbios protocols) and add a new log line every time that a new computer or device connects to your network, and when a computer or device disconnects from your network. After the connect/disconnect log lines are accumulated, you can easily export the log lines to comma-delimited/tab-delimited/html/xml file.
+
+- **_NetworkLatencyView_** [v1.65]:
+
+    NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.
+
+- **_DNSQuerySniffer_** [v1.81]:
+
+    DNSQuerySniffer is a network sniffer utility that shows the DNS queries sent on your system. For every DNS query, the following information is displayed: Host Name, Port Number, Query ID, Request Type (A, AAAA, NS, MX, and so on), Request Time, Response Time, Duration, Response Code, Number of records, and the content of the returned DNS records. You can easily export the DNS queries information to csv/tab-delimited/xml/html file, or copy the DNS queries to the clipboard, and then paste them into Excel or other spreadsheet application.
+
+- **_WhoIsConnectedSniffer_** [v1.25]:
+
+    WhoIsConnectedSniffer is a network discovery tool that listens to network packets on your network adapter using a capture driver (WinpCap or MS network monitor) and accumulates a list of computer and devices currently connected to your network. WhoIsConnectedSniffer uses various protocols to detect the computers connected to your network, including ARP, UDP, DHCP, mDNS, and BROWSER. For every detected computer or device, the following information is displayed: (Some of the fields might be empty if the information cannot be found inside the packets) IP Address, MAC Address, name of the device/computer, description, Operating System, Network Adapter Company, IPv6 Address.
+
+
+
+    After collecting the connected computers/devices information, you can easily export the list to tab-delimited/comma-delimited/xml/html file.
+
+- **_Wireless Network Watcher_** [v2.22]:
+
+    Wireless Network Watcher is a small utility that scans your wireless network and displays the list of all computers and devices that are currently connected to your network. For every computer or device that is connected to your network, the following information is displayed: IP address, MAC address, the company that manufactured the network card, and optionally the computer name. You can also export the connected devices list into html/xml/csv/text file, or copy the list to the clipboard and then paste into Excel or other spreadsheet application.
+
+- **_NetworkUsageView_** [v1.21]:
+
+    NetworkUsageView extracts and displays the network usage information stored in the SRUDB.dat database of Windows 8 and Windows 10. The network usage data is collected every hour by Windows operating systems and includes the following information: The name and description of the service or application, the name and SID of the user, the network adapter, and the total number of bytes sent and received by the specified service/application.
+
+- **_WakeMeOnLan_** [v1.86]:
+
+    This utility allows you to easily turn on one or more computers remotely by sending Wake-on-LAN (WOL) packet to the remote computers. When your computers are turned on, WakeMeOnLan allows you to scan your network, and collect the MAC addresses of all your computers, and save the computers list info a file. Later, when your computers are turned off or in standby mode, you can use the stored computers list to easily choose the computer you want to turn on, and then turn on all these computers with a single click.
+
+
+    WakeMeOnLan also allows you to turn on a computer from command-line, by specifying the computer name, IP address, or the MAC address of the remote network card.
+
+- **_NetworkCountersWatch_** [v1.02]:
+
+    NetworkCountersWatch is a tool for Windows that displays system counters for every network interface on your system. The system counters include the number of incoming/outgoing bytes, number of incoming/outgoing packets, number of broadcast packets, and more. You can also initialize all counters to zero at any time in order to watch the network counters for specific event. NetworkCountersWatch also calculates and displays the current download speed and upload speed on your network interface.
+
+- **_WifiHistoryView_** [v1.56]:
+
+    WifiHistoryView is a simple tool for Windows 10/8/7/Vista that displays the history of connections to wireless networks on your computer. For every event that the computer connected to a wireless network or disconnected from it, the following information is displayed: The date/time that the event occurred, network name (SSID), profile name, network adapter name, BSSID of the router/Access Point, and more... WifiHistoryView can read the wifi history information from a running system or from external event log file of another computer.
+
+- **_NetworkOpenedFiles_** [v1.36]:
+
+    NetworkOpenedFiles is a simple tool for Windows that displays the list of all files that are currently opened by other computers on your network. For every opened filename, the following information is displayed: Filename, user name, computer name (On Windows 7/2008 or later), Permissions information (Read/Write/Create), locks count, file owner, file size, file attributes, and more...
+
+- **_NetBScanner_** [v1.11]:
+
+    NetBScanner is a network scanner tool that scans all computers in the IP addresses range you choose, using NetBIOS protocol. For every computer located by this NetBIOS scanner, the following information is displayed: IP Address, Computer Name, Workgroup or Domain, MAC Address, and the company that manufactured the network adapter (determined according to the MAC address). NetBScanner also shows whether a computer is a Master Browser. You can easily select one or more computers found by NetBScanner, and then export the list into csv/tab-delimited/xml/html file.
+
+- **_WirelessNetView_** [v1.75]:
+
+    WirelessNetView is a small utility that runs in the background, and monitor the activity of wireless networks around you. For each detected network, it displays the following information: SSID, Last Signal Quality, Average Signal Quality, Detection Counter, Authentication Algorithm, Cipher Algorithm, and more.
+
+- **_WirelessConnectionInfo_** [v1.15]:
+
+    WirelessConnectionInfo is a simple tool for Windows Vista/7/8/2008/10 that displays general information and statistics about the active wifi connection, including the SSID, BSSID, PHY Type, Signal Quality, Receiving rate, Transmission Rate, Authentication Algorithm, Channel Number, Total number of transmitted/received frames, and more...
+
+- **_AdapterWatch_** [v1.05]:
+
+    AdapterWatch displays useful information about your network adapters: IP addresses, Hardware address, WINS servers, DNS servers, MTU value, Number of bytes received or sent, The current transfer speed, and more. In addition, it displays general TCP/IP/UDP/ICMP statistics for your local computer.
+
+- **_NetResView_** [v1.27]:
+
+    NetResView is a small utility that displays the list of all network resources (computers, disk shares, and printer shares) on your LAN. As opposed to "My Network Places" module of Windows, NetResView display all network resources from all domains/workgroups in one screen, and including admin/hidden shares.
+
+- **_NetRouteView_** [v1.35]:
+
+    NetRouteView is a GUI alternative to the standard route utility (Route.exe) of Windows operating system. It displays the list of all routes on your current network, including the destination, mask, gateway, interface IP address, metric value, type, protocol, age (in seconds), interface name, and the MAC address. NetRouteView also allows you to easily add new routes, as well as to remove or modify existing static routes.
+
+- **_CountryTraceRoute_** [v1.31]:
+
+    CountryTraceRoute is a Traceroute utility, similar to the tracert tool of Windows, but with graphical user interface, and it's also much faster than tracert of Windows. CountryTraceRoute also displays the country of the owner of every IP address found in the Traceroute. After the Traceroute is completed, you can select all items (Ctrl+A) and then save them into csv/tab-delimited/html/xml file with 'Save Selected Items' option (Ctrl+S) or copy them to the clipboard (Ctrl+C) and then paste the result into Excel or other spreadsheet application.
+
+- **_SniffPass_** [v1.13] - {Password Sniffer}
+
+    SniffPass is small utility that listens to your network, capture the passwords that pass through your network adapter, and display them on the screen instantly. SniffPass can capture the passwords of the following Protocols: POP3, IMAP4, SMTP, FTP, and HTTP (basic authentication passwords).
+ 
 ## Notes to Be Placed
 
 https://bytescout.com/blog/windows-command-prompt-commands.html
@@ -527,12 +1390,27 @@ Left Windows + ...
 [[Win]]+[[Ctrl]]+[[Shift]]+[[Down]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[F21]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[F22]]
-[[Win]]+[[Ctrl]]+[[Shift]]+[[F24]]
+[[Win]]+[[Ctrl]]+[[Shift]]+[[F24]]2
 [[Win]]+[[Ctrl]]+[[Shift]]+[[L]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[Left]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[Right]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[Space]]
 [[Win]]+[[Ctrl]]+[[Shift]]+[[Up]]
+
+#### The number keys
+
+
+
+!!!tldr Numer Keys Correspond to positions on the task bar.
+    [[Win]]+[[1]]->[[0]] Open or start the app in this position
+    [[Win]]+[[Shift]]+[[1]]->[[0]] Open the desktop and start a **new instance** of the app 
+    [[Win]]+[[Ctrl]]+[[1]]->[[0]]  Open the desktop and switch to the **last active window /instance**
+    [[Win]]+[[Alt]]+[[1]]->[[0]]  Open the desktop and open the Jump List for the app
+    ==[[Win]]+[[Ctrl]]+[[Shift]]+[[1]]->[[0]]== Open the desktop and open a new instance of the app located at the given position on the taskbar **as an administrator.**
+
+[Source](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec)
+Also Source Nirsoft HotKeyList
+
 
 [[Win]]+[[Ctrl]]+[[Backspace]]
 [[Win]]+[[Ctrl]]+[[C]] Turn on color filters (enable this shortcut first in Color Filter settings).
@@ -666,6 +1544,7 @@ Open Widgets. Updated in Windows 11.
 [[F3]] Search for a file or folder in File Explorer.
 [[F4]] Display the address bar list in File Explorer.
 [[F5]] ~~Refresh~~ the active window.
+
 #### The number keys
 
 Correspond to positions on the task bar.
@@ -1411,7 +2290,7 @@ Get a list of all WMI classes with the word "COM" in them (doing a case sensitiv
 20  Win32_DCOMApplicationLaunchAllow... {}                   {Element, Setting}
 ```
 
-## Command Line
+## Command Line CMD.exe batch .bat
 
 
 [Critical Reference](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
@@ -2165,10 +3044,158 @@ values.  The %~ syntax is terminated by a valid FOR variable name.
 Picking upper case variable names like %I makes it more readable and
 avoids confusion with the modifiers, which are not case sensitive.
 
+### Continuing Lines
+
+        Short answer `^`
+
+[Source](https://stackoverflow.com/questions/69068/split-long-commands-in-multiple-lines-through-windows-batch-file)
+
+
+
+You can break up long lines with the caret (^), just remember that the caret and the newline that follows it are removed entirely from the command, so if you put it where a space would be required (such as between parameters), be sure to include the space as well (either before the ^, or at the beginning of the next line — that latter choice may help make it clearer it's a continuation).
+
+Examples: (all tested on Windows XP and Windows 7)
+
+    xcopy file1.txt file2.txt
+    can be written as:
+
+    xcopy^
+    file1.txt^
+    file2.txt
+or
+
+    xcopy ^
+    file1.txt ^
+    file2.txt
+or even
+
+    xc^
+    opy ^
+    file1.txt ^
+    file2.txt
+
+Also using parentheses
+
+`echo hi && echo hello` can be put like this:
+
+    ( echo hi
+    echo hello )
+
+
+!!!Note && vs ()
+    The line `cmd1.bat && cmd2.bat` is different from the parens form: 
+    
+        (cmd1.bat
+        cmd.bat)
+
+    :execute `cmd2.bat` **iff** `cmd1.bat` executed successfully (-without setting %errorcode%). The latter form executes unconditionally. Somewhat unexpected (at least for me) is that, obviously, you can't use the combination of both + i.e. add && before the line break. 
+
+The rule for the caret is:
+
+A caret at the line end, appends the next line, the first character of the appended line will be escaped.
+
+You can use the caret multiple times, but the complete line must not exceed the maximum line length of ~8192 characters (Windows XP, Windows Vista, and Windows 7).
+
+        echo Test1
+        echo one ^
+        two ^
+        three ^
+        four^
+        *
+        --- Output ---
+        Test1
+        one two three four*
+
+---
+
+        echo Test2
+        echo one & echo two
+        --- Output ---
+        Test2
+        one
+        two
+
+---
+
+        echo Test3
+        echo one & ^
+        echo two
+        --- Output ---
+        Test3
+        one
+        two
+
+----
+
+        echo Test4
+        echo one ^
+        & echo two
+        --- Output ---
+        Test4
+        one & echo two
+
+----
+
+
+To suppress the escaping of the next character you can use a redirection.
+
+The redirection has to be just before the caret. But there exist one curiosity with redirection before the caret.
+
+If you place a token at the caret the token is removed.
+
+        echo Test5
+        echo one <nul ^
+        & echo two
+        --- Output ---
+        Test5
+        one
+        two
+
+---
+
+        echo Test6
+        echo one <nul ThisTokenIsLost^
+        & echo two
+        --- Output ---
+        Test6
+        one
+        two
+
+
+And it is also possible to embed line feeds into the string:
+
+    setlocal EnableDelayedExpansion
+    set text=This creates ^
+
+    a line feed
+    echo Test7: %text%
+    echo Test8: !text!
+    --- Output ---
+    Test7: This creates
+    Test8: This creates
+    a line feed
+The empty line is important for the success. This works only with delayed expansion, else the rest of the line is ignored after the line feed.
+
+It works, because the caret at the line end ignores the next line feed and escapes the next character, even if the next character is also a line feed (carriage returns are always ignored in this phase).
+
 
 
 ## Command Line Commands
 
+### Syntax CLI
+
+The following table describes the notation used to indicate command-line syntax.
+
+Description
+
+- Text without brackets or braces => **Items you must type as shown.**
+- `<Text inside angle brackets>`=> Placeholder for which you must supply a value.
+- `[Text inside square brackets]` => **Optional** items.
+- `{Text inside braces}` => Set of **required** items. You must choose one.
+- **Vertical bar** `(|)`=> Separator for mutually exclusive items. You must choose one.
+- **Ellipsis** `(…)`=> Items that can be repeated and used multiple times.
+
+### All Commands List
 
 [All commands here](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands)
 
@@ -3438,7 +4465,7 @@ List  of Rundll32 Commands in Windows 10
 | History                  | ::{ff393560-c2a7-11cf-bff4-444553540000} |     |
 | Inbox                    | ::{00020d75-0000-0000-c000-000000000046} |     |
 | Microsoft Network        | ::{00028b00-0000-0000-c000-000000000046} |     |
-| My Com`1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
+| My Com`1  a `1  a puter              | ::{20d04fe0-3aea-1069-a2d8-08002b30309d} | Yes |
 | My Documents             | ::{450d8fba-ad25-11d0-98a8-0800361b1103} | Yes |
 | My Network Places        | ::{208d2c60-3aea-1069-a2d7-08002b30309d} | Yes |
 | Network Computers        | ::{1f4de370-d627-11d1-ba4f-00a0c91eedba} | Yes |
@@ -5072,507 +6099,6 @@ passing this will output an HTML file into the file you are in.
 
 `logman` looks at the currently running loggers from performance manager.
 
-### mstsc
-
-`mstsc` - Opens a remote desktop connection.  e.g. the Remote Desktop connection window.
-
-Can also use it to open just a console.
-
-    remote desktop command line (use /console if all slots full)
-    c:\> mstsc /v:SERVERNAME [/console]
-    list other RDP sessions on the server
-    c:\> query session
-    kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
-    c:\> logoff SESSIONID
-
-use mstsc /admin instead. Use mstsc /? for a list of commands.
-
-
-### netsh
-
-
-[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
-
-[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
-
-
-[more](### Network Trace)
-
-View the Windows Network Config Script:
-
-This shows all the settings
-
-```batch
-netsh
->dump
-```
-
-
-    Commands in this context:
-    ..             - Goes up one context level.
-    ?              - Displays a list of commands.
-    abort          - Discards changes made while in offline mode.
-    add            - Adds a configuration entry to a list of entries.
-    advfirewall    - Changes to the `netsh advfirewall' context.
-    alias          - Adds an alias.
-    branchcache    - Changes to the `netsh branchcache' context.
-    bridge         - Changes to the `netsh bridge' context.
-    bye            - Exits the program.
-    commit         - Commits changes made while in offline mode.
-    delete         - Deletes a configuration entry from a list of entries.
-    dhcpclient     - Changes to the `netsh dhcpclient' context.
-    dnsclient      - Changes to the `netsh dnsclient' context.
-    dump           - Displays a configuration script.
-    exec           - Runs a script file.
-    exit           - Exits the program.
-    firewall       - Changes to the `netsh firewall' context.
-    help           - Displays a list of commands.
-    http           - Changes to the `netsh http' context.
-    interface      - Changes to the `netsh interface' context.
-    ipsec          - Changes to the `netsh ipsec' context.
-    lan            - Changes to the `netsh lan' context.
-    mbn            - Changes to the `netsh mbn' context.
-    namespace      - Changes to the `netsh namespace' context.
-    netio          - Changes to the `netsh netio' context.
-    offline        - Sets the current mode to offline.
-    online         - Sets the current mode to online.
-    p2p            - Changes to the `netsh p2p' context.
-    popd           - Pops a context from the stack.
-    pushd          - Pushes current context on stack.
-    quit           - Exits the program.
-    ras            - Changes to the `netsh ras' context.
-    rpc            - Changes to the `netsh rpc' context.
-    set            - Updates configuration settings.
-    show           - Displays information.
-    trace          - Changes to the `netsh trace' context.
-    unalias        - Deletes an alias.
-    wcn            - Changes to the `netsh wcn' context.
-    wfp            - Changes to the `netsh wfp' context.
-    winhttp        - Changes to the `netsh winhttp' context.
-    winsock        - Changes to the `netsh winsock' context.
-    wlan           - Changes to the `netsh wlan' context.
-
-      #The following sub-contexts are available:
-      advfirewall
-      branchcache 
-      bridge 
-      dhcpclient 
-      dnsclient 
-      firewall 
-      http 
-      interface 
-      ipsec 
-      lan 
-      mbn 
-      namespace 
-      netio 
-      p2p 
-      ras 
-      rpc 
-      trace 
-      wcn 
-      wfp 
-      winhttp 
-      winsock 
-      wlan
-
-
-
-#### Network Trace using netsh
- 
-Capture a Network Trace without installing anything (& capture a network trace of a reboot)
-
-If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
-
-The short version:
-
-1. Open an elevated command prompt and run: "
-
-       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
-      
-(make sure you have a \temp directory or choose another location).
-
-2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
-
- 
-
-3. Open an elevated command prompt and run: 
-
-        netsh trace stop
-
- 
-
-Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
-
- 
-
-The longer version:
-
-I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
-
- 
-
-1. Open an elevated command prompt and run: 
-      
-        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
-      
-      
-(make sure you have a \temp directory or choose another location).
-
-
-#### Using Netsh trace commands
-
-      Commands in the Netsh trace context
-
-          convert
-          correlate
-          diagnose
-          show CaptureFilterHelp
-          show globalKeywordsAndLevels
-          show helperclass
-          show interfaces
-          show provider
-          show providers
-          show scenario
-          show scenarios
-          show status
-          start
-          stop
-
-### net
-
-NET
-    [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
-      HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
-      STATISTICS | STOP | TIME | USE | USER | VIEW ]
-
-Samba Shares- if cached credentials are preventing connecting
-
-There are two solutions-
-
-1. Go to control Panel, then Credentials, then Windows Credentials, and delete the related passwords
-
-2. `net use` to list recent connections
-
-`net use \\192.168.1.200\IPC$ /DELETE` to delete the connection
-`net use \\192.168.107.41\share /delete` 
-
-net session \\samba.server.ip.address /delete
-
-        NET
-            [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
-            HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
-            STATISTICS | STOP | TIME | USE | USER | VIEW ]
-
-            NET ACCOUNTS
-            [/FORCELOGOFF:{minutes | NO}] [/MINPWLEN:length]
-                    [/MAXPWAGE:{days | UNLIMITED}] [/MINPWAGE:days]
-                    [/UNIQUEPW:number] [/DOMAIN]
-
-            Force user logoff how long after time expires?:       Never
-        Minimum password age (days):                          0
-        Maximum password age (days):                          42
-        Minimum password length:                              0
-        Length of password history maintained:                None
-        Lockout threshold:                                    Never
-        Lockout duration (minutes):                           30
-        Lockout observation window (minutes):                 30
-        Computer role:                                        WORKSTATION
-        The command completed successfully.
-
-
-
-        NET COMPUTER
-        \\computername {/ADD | /DEL}
-
-        >net computer \\192.168.1.200 /ADD
-        This command can be used only on a Windows Domain Controller.
-
-        More help is available by typing NET HELPMSG 3515.
-
-        NET CONFIG
-
-        The following running services can be controlled:
-
-        Server
-        Workstation
-
-        [SERVER | WORKSTATION]
-
-        NET CONFIG SERVER
-        [/AUTODISCONNECT:time]
-                        [/SRVCOMMENT:"text"]
-                        [/HIDDEN:{YES | NO}]
-
-
-        Computer name                        \\DESKTOP
-        Full Computer name                   DESKTOP
-        User name                            andy.timmons@live.com
-
-        Workstation active on
-                NetBT_Tcpip_{B60B77BB-75C5-491E-AB09-BACC27B5D760} (2CFDA1B95FA1)
-                NetBT_Tcpip_{59A52F56-D600-48B3-A1C6-7392EE3612CE} (00155D0A3465)
-
-        Software version                     Windows 10 Pro
-
-        Workstation domain                   WORKGROUP
-        Logon domain                         MicrosoftAccount
-
-        COM Open Timeout (sec)               0
-        COM Send Count (byte)                16
-        COM Send Timeout (msec)              250
-        The command completed successfully.      
-
-
-        net continue
-        The syntax of this command is:
-
-        NET CONTINUE
-        service
-
-        net file (Open Network Files?)
-        There are no entries in the list.
-
-
-        net file /?
-        The syntax of this command is:
-
-        NET FILE
-        [id [/CLOSE]]
-
-
-        net group /?
-        The syntax of this command is:
-
-        NET GROUP
-        [groupname [/COMMENT:"text"]] [/DOMAIN]
-                    groupname {/ADD [/COMMENT:"text"] | /DELETE}  [/DOMAIN]
-                    groupname username [...] {/ADD | /DELETE} [/DOMAIN]
-
-        net group
-        This command can be used only on a Windows Domain Controller.
-
-        More help is available by typing NET HELPMSG 3515.
-
-
-        Commands available are:
-
-        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
-        NET COMPUTER             NET LOCALGROUP           NET STOP
-        NET CONFIG               NET PAUSE                NET TIME
-        NET CONTINUE             NET SESSION              NET USE
-        NET FILE                 NET SHARE                NET USER
-        NET GROUP                NET START                NET VIEW
-        NET HELP
-
-        NET HELP NAMES explains different types of names in NET HELP syntax lines.
-        NET HELP SERVICES lists some of the services you can start.
-        NET HELP SYNTAX explains how to read NET HELP syntax lines.
-        NET HELP command | MORE displays Help one screen at a time.
-
-        The syntax of this command is:
-
-        NET HELP
-        command
-            -or-
-        NET command /HELP
-
-        Commands available are:
-
-        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
-        NET COMPUTER             NET LOCALGROUP           NET STOP
-        NET CONFIG               NET PAUSE                NET TIME
-        NET CONTINUE             NET SESSION              NET USE
-        NET FILE                 NET SHARE                NET USER
-        NET GROUP                NET START                NET VIEW
-        NET HELP
-
-        NET HELP NAMES explains different types of names in NET HELP syntax lines.
-        NET HELP SERVICES lists some of the services you can start.
-        NET HELP SYNTAX explains how to read NET HELP syntax lines.
-        NET HELP command | MORE displays Help one screen at a time.
-
-        The syntax of this command is:
-
-        NAMES
-        The following types of names are used with Windows:
-
-        Computername      A unique name that identifies a computer on
-                        the local-area network.
-
-        Devicename        The name by which Windows identifies a disk resource
-                        or printer. A disk resource is identified by a drive
-                        letter followed by a colon (for example, D:). A
-                        printer is identified by a port name followed by a colon
-                        (for example, LPT1:).
-
-        Workgroup         A group of computers on the network. Each workgroup
-                        has a unique name.
-
-        Localgroup        A group of names in a Workgroup that are granted the
-                        same rights.
-
-        Domain            A group of Windows Servers, Windows Workstations
-                        and other computers on the network. A
-                        domain has a unique name. Usually, you must log on in
-                        a domain to gain access to the network. Domains are
-                        created and managed with Windows Server.
-
-        Global group      A group of names in a domain that are granted the
-                        same rights.
-
-        Filename          The name of a file. Under the file allocation table
-                        (FAT) file system, a filename can have as many as eight
-                        characters, followed by a period (.) and an extension of
-                        as many as three characters. Under NTFS and HPFS, a
-                        filename can have as many as 254 characters.
-
-        Network path      A description of the location of a shared resource,
-                        consisting of a computer's computername followed by
-                        the sharename of the resource. The computername
-                        is preceded by two backslashes, and the sharename is
-                        preceded by one backslash (for example,
-                        \\SERVER1\RESOURCE).
-
-        Path              The location of a directory. A path can consist of a
-                        devicename and one or more directory names. A
-                        backslash (\) precedes each directory name (for example,
-                        C:\CUSTOMER\CORP\ACCT).
-
-        Pathname          A path and a filename. The filename is preceded by a
-                        backslash (\) (for example, C:\CUSTOMER\CORP\REPORT.DOC).
-
-        Sharename         A name that identifies a shared resource on a computer. A
-                        sharename is used with the computer's computername to form
-                        a network path (as in \\SERVER\RESOURCE).
-
-        Username          The name a person supplies when logging on at
-                        a computer.
-
-        To view these definitions one screen at a time, type NET HELP NAMES | MORE.
-
-
-
-        The syntax of this command is:
-
-        SERVICES
-        NET START can be used to start services, including:
-
-        NET START BROWSER
-        NET START DHCP CLIENT
-        NET START EVENTLOG
-        NET START FILE REPLICATION
-        NET START NETLOGON
-        NET START PLUG AND PLAY
-        NET START REMOTE ACCESS CONNECTION MANAGER
-        NET START ROUTING AND REMOTE ACCESS
-        NET START RPCSS
-        NET START SCHEDULE
-        NET START SERVER
-        NET START SPOOLER
-        NET START TCP/IP NETBIOS HELPER
-        NET START UPS
-        NET START WORKSTATION
-
-        When typed at the command prompt, service names of two words or more must
-        be enclosed in quotation marks. For example, NET START "DHCP Client"
-        starts the DHCP Client service.
-
-
-        The syntax of this command is:
-
-        SYNTAX
-        The following conventions are used to indicate command syntax:
-
-        -  Capital letters represent words that must be typed as shown. Lower-
-        case letters represent names of items that may vary, such as filenames.
-
-        -  The [ and ] characters surround optional items that can be supplied
-        with the command.
-
-        -  The { and } characters surround lists of items. You must supply one
-        of the items with the command.
-
-        -  The | character separates items in a list. Only one of the items can
-        be supplied with the command.
-
-        For example, in the following syntax, you must type NET COMMAND and
-        either SWITCH1 or SWITCH2. Supplying a name is optional.
-            NET COMMAND [name] {SWITCH1 | SWITCH2}
-
-        -  The [...] characters mean you can repeat the previous item.
-        Separate items with spaces.
-
-        -  The [,...] characters mean you can repeat the previous item, but
-        you must separate items with commas or semicolons, not spaces.
-
-        -  When typed at the command prompt, service names of two words or
-        more must be enclosed in quotation marks. For example,
-        NET START "COMPUTER BROWSER" starts the computer browser service.
-
-### netstat
-
-Displays protocol statistics and current TCP/IP network connections.
-
-    NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]
-
-      -a            Displays all connections and listening ports.
-      -b            Displays the executable involved in creating each connection or
-                    listening port. In some cases well-known executables host
-                    multiple independent components, and in these cases the
-                    sequence of components involved in creating the connection
-                    or listening port is displayed. In this case the executable
-                    name is in [] at the bottom, on top is the component it called,
-                    and so forth until TCP/IP was reached. Note that this option
-                    can be time-consuming and will fail unless you have sufficient
-                    permissions.
-      -e            Displays Ethernet statistics. This may be combined with the -s
-                    option.
-      -f            Displays Fully Qualified Domain Names (FQDN) for foreign
-                    addresses.
-      -n            Displays addresses and port numbers in numerical form.
-      -o            Displays the owning process ID associated with each connection.
-      -p proto      Shows connections for the protocol specified by proto; proto
-                    may be any of: TCP, UDP, TCPv6, or UDPv6.  If used with the -s
-                    option to display per-protocol statistics, proto may be any of:
-                    IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, or UDPv6.
-      -q            Displays all connections, listening ports, and bound
-                    nonlistening TCP ports. Bound nonlistening ports may or may not
-                    be associated with an active connection.
-      -r            Displays the routing table.
-      -s            Displays per-protocol statistics.  By default, statistics are
-                    shown for IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, and UDPv6;
-                    the -p option may be used to specify a subset of the default.
-      -t            Displays the current connection offload state.
-      -x            Displays NetworkDirect connections, listeners, and shared
-                    endpoints.
-      -y            Displays the TCP connection template for all connections.
-                    Cannot be combined with the other options.
-      interval      Redisplays selected statistics, pausing interval seconds
-                    between each display.  Press CTRL+C to stop redisplaying
-                    statistics.  If omitted, netstat will print the current
-                    configuration information once.
-
-
-#### Useful Commands
-
-- `n` - Display the IP numbers [Number]
-- `a` - Display all connections [All]
-- `q` display all conn. including bound non-listening ports
-- `b` - Displays the application involved.
-- `o` - Display the owning process
-- `r` - routing table
-- `s` - organize by protocol
-- `p` <Protocol> - like s but filters by protocol
-
-`interval` display a live connection updating it. 
-
-    netstat -nao 
-
-    netstat -na | findstr <port>
-
-findstr is like grep.
-
 
 
 ### Where 
@@ -5814,9 +6340,7 @@ mv EFI EFIOLD
 bcdboot C:\windows /s V: /f UEFI
 
 
-### WMIC Windows Management Instrumentation Console
 
-`wmic diskdrive list brief`
 
 ### Takeown
 
@@ -5897,55 +6421,8 @@ Most interesting probably is `bootcfg debug` [Basic doc](https://docs.microsoft.
     bootcfg /debug edit /port com2 /baud 19200 /id 2
     bootcfg /s srvmain /u maindom\hiropln /p p@ssW23 /debug off /id 2
 
-###  wmic
-
-[wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
 
 
-
-Displays WMI information inside an interactive command shell.
-
-`wmic </parameter>`
-
-- Sub-commands The following sub-commands are available at all times:
-- `class ` - Escapes from the default alias mode of WMIC to access classes in the WMI schema directly.
-- `path ` - Escapes from the default alias mode of WMIC to access instances in the WMI schema directly.
-- `context ` - Displays the current values of all global switches.
-- `[quit | exit] ` - Exits the WMIC command shell.
-Examples
-
-To display the current values of all global switches, type:
-
-wmic context
-
-Output similar to the following displays:
-
-NAMESPACE    : root\cimv2
-ROLE         : root\cli
-NODE(S)      : BOBENTERPRISE
-IMPLEVEL     : IMPERSONATE
-[AUTHORITY   : N/A]
-AUTHLEVEL    : PKTPRIVACY
-LOCALE       : ms_409
-PRIVILEGES   : ENABLE
-TRACE        : OFF
-RECORD       : N/A
-INTERACTIVE  : OFF
-FAILFAST     : OFF
-OUTPUT       : STDOUT
-APPEND       : STDOUT
-USER         : N/A
-AGGREGATE    : ON
-
-To change the language ID used by the command line to English (locale ID 409), type:
-
-wmic /locale:ms_409
-
-### Pathping 
-
-`pathping 192.168.1.1`
-
-Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
 
 ### prompt 
 
@@ -6134,14 +6611,13 @@ To shut down particular sessions on a Terminal Server, use the `tsshutdn.exe` co
 
 You can use several different techniques to log off of a session on the local system. The simplest way is to use the **Remote Desktop/Terminal Services** command-line tool, `logoff.exe` (For details, at the Windows PowerShell prompt, type logoff /?). To log off the current active session, type logoff with no arguments.
 
+<<<<<<< Updated upstream
 You can also use the shutdown.exe tool with its logoff option:
-
-        shutdown.exe -l
-        shutdown /t=0
-
-A third option is to use WMI. The **Win32_OperatingSystem** class has a **Win32Shutdown method**. Invoking the method with the **0** flag initiates logoff:
-
-    (Get-WmiObject -Class Win32_OperatingSystem -ComputerName .).Win32Shutdown(0)
+=======
+~~- Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents.~~
+RegistryPathx is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:
+[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+ the bottom of the hierarchy in the path statement does not exist in the registry, a new subkey is created. The contents of the registry files are sent to the registry in the order you enter them. Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.
 
@@ -6204,6 +6680,7 @@ Shutting down and restarting computers are generally the same types of task. Too
         (E = Expected U = Unexpected P = planned, C = customer defined)
         Type  Major  Minor  Title
 
+<<<<<<< Updated upstream
         U     0  0  Other (Unplanned)
         E     0  0  Other (Unplanned)
         E P   0  0  Other (Planned)
@@ -6235,6 +6712,12 @@ Shutting down and restarting computers are generally the same types of task. Too
         U     6  11  Power Failure: Cord Unplugged
         U     6  12  Power Failure: Environment
           P   7  0  Legacy API shutdown
+=======
+
+
+
+### Setting Explorer to My PC not Quick Access
+>>>>>>> Stashed changes
 
 !!!warning `tsshutdn.exe` is not found on W10 pro.
 
@@ -7399,295 +7882,7 @@ The above command says using msiexec (windows installer), run as an admin `/a` t
 
 you can say program /? for more info
 
-## Network
 
-[Windows Network](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc753940(v=ws.10))
-
-[DHCP](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc896553(v=ws.10))
-
-[DNS](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732997(v=ws.10))
-
-
-[Windows 2012 Link](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831357(v=ws.11))
-
-[Current Version Networking](https://docs.microsoft.com/en-us/windows-server/networking/)
-
-[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
-
-
-
-### Cloudflare DNS
-
-ipv4
-- 1.1.1.1
-- 1.0.0.1
-ipv6
-- 2606:4700:4700::1111
-- 2606:4700:4700::1001
-
-### Proxy Management
-
-? Cntlm: Fast NTLM Authentication Proxy in C - not sure if this is part of the work computer or if I installed this...
-
-### FireWall
-
-Enable Remote desktop related rules.  Unclear which these are.
-
-### Reserved IPs
-
-#### IPv4
-
-[Source](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
-
-| Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
-| ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 0.0.0.0/8          | 0.0.0.0-0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
-| 10.0.0.0/8         | 10.0.0.0-10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
-| 100.64.0.0/10      | 100.64.0.0-100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
-| 127.0.0.0/8        | 127.0.0.0-127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
-| 169.254.0.0/16     | 169.254.0.0-169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
-| 172.16.0.0/12      | 172.16.0.0-172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
-| 192.0.0.0/24       | 192.0.0.0-192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
-| 192.0.2.0/24       | 192.0.2.0-192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
-| 192.88.99.0/24     | 192.88.99.0-192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
-| 192.168.0.0/16     | 192.168.0.0-192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
-| 198.18.0.0/15      | 198.18.0.0-198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
-| 198.51.100.0/24    | 198.51.100.0-198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
-| 203.0.113.0/24     | 203.0.113.0-203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
-| 224.0.0.0/4        | 224.0.0.0-239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
-| 240.0.0.0/4        | 240.0.0.0-255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
-| 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
-
-such as would have normally been retrieved from a DHCP server.
-
-#### IPV6
-
-| Address block (CIDR) | First address   | Last address     | Number of addresses                     | Usage         | Purpose         |                                                          |
-| -------------------- | --------------- | ---------------- | --------------------------------------- | ------------- | --------------- | -------------------------------------------------------- |
-|                      | ::/0            | ::               | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2128          | Routing         | Default route.                                           |
-|                      | ::/128          | ::               |                                         | 1             | Software        | Unspecified address.                                     |
-|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
-|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
-|                      | ::ffff:0:0:0/96 | ::ffff:0:0.0.0.0 | ::ffff:0:255.255.255.255                | 232           | Software        | IPv4 translated addresses.                               |
-|                      | 64:ff9b::/96    | 64:ff9b::0.0.0.0 | 64:ff9b::255.255.255.255                | 232           | Global Internet | IPv4/IPv6 translation.                                   |
-|                      | 100::/64        | 100::            | 100::ffff:ffff:ffff:ffff                | 264           | Routing         | Discard prefix.                                          |
-|                      | 2001::/32       | 2001::           | 2001::ffff:ffff:ffff:ffff:ffff:ffff     | 296           | Global Internet | Teredo tunneling.                                        |
-|                      | 2001:20::/28    | 2001:20::        | 2001:2f:ffff:ffff:ffff:ffff:ffff:ffff   | 2100          | Software        | ORCHIDv2.                                                |
-|                      | 2001:db8::/32   | 2001:db8::       | 2001:db8:ffff:ffff:ffff:ffff:ffff:ffff  | 296           | Documentation   | Addresses used in documentation and example source code. |
-|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
-|                      | fc00::/7        | fc00::           | fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2121          | Private network | Unique local address.                                    |
-|                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
-|                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |
-
-
-
-The Internet Engineering Task Force (IETF) has directed the Internet Assigned Numbers Authority (IANA) to reserve the following IPv4 address ranges for private networks:[1](p4)
-
-
-| RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
-| ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
-| 24-bit block | 10.0.0.0 - 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
-| 20-bit block | 172.16.0.0 - 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
-| 16-bit block | 192.168.0.0 - 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
-
-
-Also note the 169.254 address
-
-### NFS - Network File Service
-
-[Services for Network File System (NFS) command-line tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
-
-Services for Network File System (NFS) provides a file sharing solution that lets you transfer files between computers running Windows Server and UNIX operating systems using the NFS protocol.
-
-Information and links to each of the associated NFS command-line tools:
-
-| Command   | Description                                                              |
-| ---------- | ------------------------------------------------------------------------ |
-| mapadmin  | Manage User Name Mapping for Microsoft Services for Network File System. |
-| mount     | Mount Network File System (NFS) network shares.                          |
-| nfsadmin  | Manage Server for NFS and Client for NFS.                                |
-| nfsshare  | Control Network File System (NFS) shares.                                |
-| nfsstat   | Display or reset counts of calls made to Server for NFS.                 |
-| rpcinfo   | List programs on remote computers.                                       |
-| showmount | Display mounted directories.                                             |
-
-
-### Remote Desktop Connection
-
-
-See also [mstsc](#mstsc)
-
-- `change` - Changes the Remote Desktop Session Host server settings for sign in, COM port mappings, and install mode.
-- `change logon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
-- `change port` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
-- `change user` - Changes the install mode for the Remote Desktop Session Host server.
-- `chglogon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
-- `chgport` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
-- `chgusr` - Changes the install mode for the Remote Desktop Session Host server.
-- `flattemp` - Enables or disables flat temporary folders.
-- `logoff` - Signs out a user from a session on an Remote Desktop Session Host server and deletes the session from the server.
-- `msg` - Sends a message to a user on an Remote Desktop Session Host server.
-- `mstsc` - Creates connections to Remote Desktop Session Host servers or other remote computers.
-- `qappsrv` - Displays a list of all Remote Desktop Session Host servers on the network.
-- `qprocess` - Displays information about processes that are running on an Remote Desktop Session Host server.
-- `query` - Displays information about processes, sessions, and Remote Desktop Session Host servers.
-- `query process` - Displays information about processes that are running on an Remote Desktop Session Host server.
-- `query session` - Displays information about sessions on an Remote Desktop Session Host server.
-- `query termserver` - Displays a list of all Remote Desktop Session Host servers on the network.
-- `query user` - Displays information about user sessions on an Remote Desktop Session Host server.
-- `quser` - Displays information about user sessions on an Remote Desktop Session Host server.
-- `qwinsta` - Displays information about sessions on an Remote Desktop Session Host server.
-- `rdpsign` - Enables you to digitally sign a Remote Desktop Protocol (.rdp) file.
-- `reset session` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
-- `rwinsta` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
-- `shadow` - Enables you to remotely control an active session of another user on an Remote Desktop Session Host server.
-- `tscon` - Connects to another session on an Remote Desktop Session Host server.
-- `tsdiscon` - Disconnects a session from an Remote Desktop Session Host server.
-- `tskill` - Ends a process running in a session on an Remote Desktop Session Host server.
-- `tsprof` - Copies the Remote Desktop Services user configuration information from one user to another.
-
-
-### Nirsoft Net Tools
-
-
-
-
-Network Monitoring Tools
-
-- **_SmartSniff_** [v2.29]:
-
-    SmartSniff allows you to capture TCP/IP packets that pass through your network adapter, and view the captured data as sequence of conversations between clients and servers. You can view the TCP/IP conversations in Ascii mode (for text-based protocols, like HTTP, SMTP, POP3 and FTP.) or as hex dump. (for non-text base protocols, like DNS)
-
-- **_WifiChannelMonitor_** [v1.65]:
-
-    WifiChannelMonitor captures wifi traffic on the channel you choose, using Microsoft Network Monitor capture driver in monitor mode, and displays extensive information about access points and the wifi clients connected to them. WifiChannelMonitor also allows you to view the information about wifi clients that are not connected to any access points, including the list of SSIDs (network names) that they are trying to connect. For every access point, the following information is displayed: SSID, MAC Address, Device Manufacturer , PHY Type, Channel, RSSI, Security, Beacons Count, Probe Responses Count, Data Bytes, Retransmitted Data Bytes, and more... For every client, the following information is displayed: MAC Address, Device Manufacturer, SSID list that the client tries to connect, Sent Data Bytes, Received Data Bytes, Probe Requests Count, and more...
-
-- **_NetworkTrafficView_** [v2.30]:
-
-    NetworkTrafficView is a network monitoring tool that captures the packets pass through your network adapter, and displays general statistics about your network traffic. The packets statistics is grouped by the Ethernet Type, IP Protocol, Source/Destination Addresses, and Source/Destination ports. For every statistics line, the following information is displayed: Ethernet Type (IPv4, IPv6, ARP), IP Protocol (TCP, UDP, ICMP), Source Address, Destination Address, Source Port, Destination Port, Service Name (http, ftp, and so on), Packets Count, Total Packets Size, Total Data Size, Data Speed, Maximum Data Speed, Average Packet Size, First/Last Packet Time, Duration, and process ID/Name (For TCP connections).
-
-- **_HTTPNetworkSniffer_** [v1.63]:
-
-    HTTPNetworkSniffer is a packet sniffer tool that captures all HTTP requests/responses sent between the Web browser and the Web server and displays them in a simple table. For every HTTP request, the following information is displayed: Host Name, HTTP method (GET, POST, HEAD), URL Path, User Agent, Response Code, Response String, Content Type, Referer, Content Encoding, Transfer Encoding, Server Name, Content Length, Cookie String, and more... You can easily select one or more HTTP information lines, and then export them to text/html/xml/csv file or copy them to the clipboard and then paste them into Excel.
-
-- **_AppNetworkCounter_** [v1.41]:
-
-    AppNetworkCounter is a simple tool for Windows that counts and displays the number of TCP/UDP bytes and packets sent and received by every application on your system. For every application, the following information is displayed: the number of sent and received bytes, number of sent and received packets, number of sent/received IPv4 bytes, and number of sent/received IPv6 bytes. It also displays the version information of the application - Product Name, Product Version, File Description, and Company Name.
-
-- **_LiveTcpUdpWatch_** [v1.33]:
-
-    LiveTcpUdpWatch is a tool for Windows that displays live information about all TCP and UDP activity on your system. Every line in the main table of LiveTcpUdpWatch displays the protocol (TCP/UDP/IPv4/IPv6), local/remote IP address, local/remote port, number of sent/received bytes, number of sent/received packets, connect/disconnect time (For TCP only), and the process (ID and path) responsible for this activity.
-
-- **_PingInfoView_** [v2.10]:
-
-    PingInfoView is a small utility that allows you to easily ping multiple host names and IP addresses, and watch the result in one table. It automatically ping to all hosts every number of seconds that you specify, and displays the number of succeed and failed pings, as well as the average ping time. You can also save the ping result into text/html/xml file, or copy it to the clipboard.
-
-- **_WifiInfoView_** [v2.65]:
-    WifiInfoView scans the wireless networks in your area and displays extensive information about them, including: Network Name (SSID), MAC Address, PHY Type (802.11g or 802.11n), RSSI, Signal Quality, Frequency, Channel Number, Maximum Speed, Company Name, Router Model and Router Name (Only for routers that provides this information), and more... When you select a wireless network in the upper pane of this tool, the lower pane displays the Wi-Fi information elements received from this device, in hexadecimal format. WifiInfoView also has a summary mode, which displays a summary of all detected wireless networks, grouped by channel number, company that manufactured the router, PHY type, or the maximum speed.
-
-- **_SocketSniff_** [v1.11]:
-
-    SocketSniff allows you to watch the Windows Sockets (WinSock) activity of the selected process.
-
-
-    For each created socket, the following information is displayed: socket handle, socket type, local and remote addresses, local and remote ports, total number of send/receive bytes, and more. You can also watch the content of each send or receive call, in Ascii mode or as Hex Dump.
-
-- **_CurrPorts_** [v2.63]:
-
-    CurrPorts is a network monitoring software that displays the list of all currently opened TCP/IP and UDP ports on your local computer. For each port in the list, information about the process that opened the port is also displayed, including the process name, full path of the process, version information of the process (product name, file description, and so on), the time that the process was created, and the user that created it.
-
-
-    In addition, CurrPorts allows you to close unwanted TCP connections, kill the process that opened the ports, and save the TCP/UDP ports information to HTML file , XML file, or to tab-delimited text file.
-
-    CurrPorts also automatically mark with pink color suspicious TCP/UDP ports owned by unidentified applications (Applications without version information and icons)
-      
-- **_TcpLogView_** [v1.32]:
-
-    TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)
-
-- **_ProcessTCPSummary_** [v1.11]:
-
-    ProcessTCPSummary is a simple tool for Windows that displays a summary of all process that have TCP connections or listening UDP ports. For every process, this tool displays the total number of TCP connections, number of TCP connections for each status (Established, Listening, Syn-Sent, Syn-Received...), number of IPv4 TCP connections, number of IPv6 TCP connections, common port numbers, and more... If you run ProcessTCPSummary as Administrator, you can also watch the number of TCP/UDP bytes sent and received by every process as well as the current send/receive speed.
-
-- **_NetworkConnectLog_** [v1.13]:
-
-    NetworkConnectLog is a simple utility that repeatedly scans your local area network (Using ARP and Netbios protocols) and add a new log line every time that a new computer or device connects to your network, and when a computer or device disconnects from your network. After the connect/disconnect log lines are accumulated, you can easily export the log lines to comma-delimited/tab-delimited/html/xml file.
-
-- **_NetworkLatencyView_** [v1.65]:
-
-    NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.
-
-- **_DNSQuerySniffer_** [v1.81]:
-
-    DNSQuerySniffer is a network sniffer utility that shows the DNS queries sent on your system. For every DNS query, the following information is displayed: Host Name, Port Number, Query ID, Request Type (A, AAAA, NS, MX, and so on), Request Time, Response Time, Duration, Response Code, Number of records, and the content of the returned DNS records. You can easily export the DNS queries information to csv/tab-delimited/xml/html file, or copy the DNS queries to the clipboard, and then paste them into Excel or other spreadsheet application.
-
-- **_WhoIsConnectedSniffer_** [v1.25]:
-
-    WhoIsConnectedSniffer is a network discovery tool that listens to network packets on your network adapter using a capture driver (WinpCap or MS network monitor) and accumulates a list of computer and devices currently connected to your network. WhoIsConnectedSniffer uses various protocols to detect the computers connected to your network, including ARP, UDP, DHCP, mDNS, and BROWSER. For every detected computer or device, the following information is displayed: (Some of the fields might be empty if the information cannot be found inside the packets) IP Address, MAC Address, name of the device/computer, description, Operating System, Network Adapter Company, IPv6 Address.
-
-
-
-    After collecting the connected computers/devices information, you can easily export the list to tab-delimited/comma-delimited/xml/html file.
-
-- **_Wireless Network Watcher_** [v2.22]:
-
-    Wireless Network Watcher is a small utility that scans your wireless network and displays the list of all computers and devices that are currently connected to your network. For every computer or device that is connected to your network, the following information is displayed: IP address, MAC address, the company that manufactured the network card, and optionally the computer name. You can also export the connected devices list into html/xml/csv/text file, or copy the list to the clipboard and then paste into Excel or other spreadsheet application.
-
-- **_NetworkUsageView_** [v1.21]:
-
-    NetworkUsageView extracts and displays the network usage information stored in the SRUDB.dat database of Windows 8 and Windows 10. The network usage data is collected every hour by Windows operating systems and includes the following information: The name and description of the service or application, the name and SID of the user, the network adapter, and the total number of bytes sent and received by the specified service/application.
-
-- **_WakeMeOnLan_** [v1.86]:
-
-    This utility allows you to easily turn on one or more computers remotely by sending Wake-on-LAN (WOL) packet to the remote computers. When your computers are turned on, WakeMeOnLan allows you to scan your network, and collect the MAC addresses of all your computers, and save the computers list info a file. Later, when your computers are turned off or in standby mode, you can use the stored computers list to easily choose the computer you want to turn on, and then turn on all these computers with a single click.
-
-
-    WakeMeOnLan also allows you to turn on a computer from command-line, by specifying the computer name, IP address, or the MAC address of the remote network card.
-
-- **_NetworkCountersWatch_** [v1.02]:
-
-    NetworkCountersWatch is a tool for Windows that displays system counters for every network interface on your system. The system counters include the number of incoming/outgoing bytes, number of incoming/outgoing packets, number of broadcast packets, and more. You can also initialize all counters to zero at any time in order to watch the network counters for specific event. NetworkCountersWatch also calculates and displays the current download speed and upload speed on your network interface.
-
-- **_WifiHistoryView_** [v1.56]:
-
-    WifiHistoryView is a simple tool for Windows 10/8/7/Vista that displays the history of connections to wireless networks on your computer. For every event that the computer connected to a wireless network or disconnected from it, the following information is displayed: The date/time that the event occurred, network name (SSID), profile name, network adapter name, BSSID of the router/Access Point, and more... WifiHistoryView can read the wifi history information from a running system or from external event log file of another computer.
-
-- **_NetworkOpenedFiles_** [v1.36]:
-
-    NetworkOpenedFiles is a simple tool for Windows that displays the list of all files that are currently opened by other computers on your network. For every opened filename, the following information is displayed: Filename, user name, computer name (On Windows 7/2008 or later), Permissions information (Read/Write/Create), locks count, file owner, file size, file attributes, and more...
-
-- **_NetBScanner_** [v1.11]:
-
-    NetBScanner is a network scanner tool that scans all computers in the IP addresses range you choose, using NetBIOS protocol. For every computer located by this NetBIOS scanner, the following information is displayed: IP Address, Computer Name, Workgroup or Domain, MAC Address, and the company that manufactured the network adapter (determined according to the MAC address). NetBScanner also shows whether a computer is a Master Browser. You can easily select one or more computers found by NetBScanner, and then export the list into csv/tab-delimited/xml/html file.
-
-- **_WirelessNetView_** [v1.75]:
-
-    WirelessNetView is a small utility that runs in the background, and monitor the activity of wireless networks around you. For each detected network, it displays the following information: SSID, Last Signal Quality, Average Signal Quality, Detection Counter, Authentication Algorithm, Cipher Algorithm, and more.
-
-- **_WirelessConnectionInfo_** [v1.15]:
-
-    WirelessConnectionInfo is a simple tool for Windows Vista/7/8/2008/10 that displays general information and statistics about the active wifi connection, including the SSID, BSSID, PHY Type, Signal Quality, Receiving rate, Transmission Rate, Authentication Algorithm, Channel Number, Total number of transmitted/received frames, and more...
-
-- **_AdapterWatch_** [v1.05]:
-
-    AdapterWatch displays useful information about your network adapters: IP addresses, Hardware address, WINS servers, DNS servers, MTU value, Number of bytes received or sent, The current transfer speed, and more. In addition, it displays general TCP/IP/UDP/ICMP statistics for your local computer.
-
-- **_NetResView_** [v1.27]:
-
-    NetResView is a small utility that displays the list of all network resources (computers, disk shares, and printer shares) on your LAN. As opposed to "My Network Places" module of Windows, NetResView display all network resources from all domains/workgroups in one screen, and including admin/hidden shares.
-
-- **_NetRouteView_** [v1.35]:
-
-    NetRouteView is a GUI alternative to the standard route utility (Route.exe) of Windows operating system. It displays the list of all routes on your current network, including the destination, mask, gateway, interface IP address, metric value, type, protocol, age (in seconds), interface name, and the MAC address. NetRouteView also allows you to easily add new routes, as well as to remove or modify existing static routes.
-
-- **_CountryTraceRoute_** [v1.31]:
-
-    CountryTraceRoute is a Traceroute utility, similar to the tracert tool of Windows, but with graphical user interface, and it's also much faster than tracert of Windows. CountryTraceRoute also displays the country of the owner of every IP address found in the Traceroute. After the Traceroute is completed, you can select all items (Ctrl+A) and then save them into csv/tab-delimited/html/xml file with 'Save Selected Items' option (Ctrl+S) or copy them to the clipboard (Ctrl+C) and then paste the result into Excel or other spreadsheet application.
-
-- **_SniffPass_** [v1.13] - {Password Sniffer}
-
-    SniffPass is small utility that listens to your network, capture the passwords that pass through your network adapter, and display them on the screen instantly. SniffPass can capture the passwords of the following Protocols: POP3, IMAP4, SMTP, FTP, and HTTP (basic authentication passwords).
- 
 ## Setup Git
 
 
@@ -9079,59 +9274,6 @@ Produces a GUI Help Menu
 
 Pops up Settings menu immmedietly
 
-### nvspinfo 
-
-This turns out to be exactly what I need
-
-
-    usage: nvspinfo
-            -c    display nvsp related control services
-            -a    display network adapters
-            -i    display network interfaces
-            -S    display stack table
-            -h    include hidden adapters (implies -a)
-            -b    include network bindings (implies -a)
-            -o    include offloads (implies -a)
-            -n    display all network information (same as -a -i -b)
-            -v    display virtual NICs
-            -D    includes drops in virtual NIC status (implies -v)
-            -s    display switch information
-            -p    include port details (implies -s)
-            -d    include disconnected ports (implies -s -d)
-            -m    include mac details (implies -s and -p)
-            -q    include 801.1q (vlan) details (implies -s and -p)
-            -t    display statistics (implies -s and -p)
-            -l    display statistics in a one second loop (implies -t)
-            -e    display everything
-            -g    display setup DI
-            -z    analyze (implies -e)
-            -Z    analyze mac and ip
-            -V    display vmq details (implies -v)
-            -u    display unicast addresses
-            -Q    display VMQ groups
-            -F:I  display stats in CSV format in a loop for the NIC at the specified index I. I = -1 lists available indexes.
-            -P    display host processor stats for all host processors
-
-###  Driverquery
-This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
-
-The command is:
-
-`driverquery`
-
-If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
-
-`driverquery -v`
-
-driverquery -si
-
-### Pathping CMD command
-
-Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
-
-`pathping 192.168.1.1`
-
-Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
 
 
 ### MakeCab
@@ -9155,27 +9297,26 @@ Pathping is intended for circumstances in which one or more routers live between
 
 
 
-
-2. Driverquery
+### `Driverquery`
 This is one of the most important Windows commands. Wrong device drivers can point to any quantity of system dilemmas. If users want to view which drivers are placed on a Windows operating system, they can achieve this by executing the driver query Windows command-line tool. This command comes under basic CMD prompt commands which gives data about each driver that is being utilized.
 
 The command is:
 
-driverquery
+            driverquery
 
 If a user wants a bit extra report, you can affix the -v switch. Another alternative is to affix the -si switch, which makes the tool to demonstrate signature data for the drivers. Here’s how they seem:
 
-driverquery -v
+        driverquery -v
 
-driverquery -si
+        driverquery -si
 
 
-4. Pathping CMD command
+`Pathping` CMD command
 Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
 
 pathping 192.168.1.1
 
-Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that's on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
 
 
 tasklist -m
@@ -9298,16 +9439,299 @@ klist sessions
 
 The above command is used when you want to diagnose a logon session for a user or a service. This command is used to find the LogonID from the klist.
 
-30. mstsc
-This command is used to create a remote desktop connection to Remote Desktop Session Host (rd Session Host) servers or other remote machines. This command is also used to edit the current remote Desktop Connection (.rdp) configuration file. It is also used to transfer old connection files that were designed with the Client Connection Manager to new .rdp connection files. This windows command is used on a Windows Server and many other versions
 
- 
 
-of the Windows operating system. It can be used with different parameters and it can also be used to start a remote desktop connection in a full-screen mode. In other words, this command is mainly used for remote desktop connections. For example,
 
-mstsc/f
 
-The above command is used to connect to a screen in a full-screen mode.
+## Network
+
+[Windows Network](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc753940(v=ws.10))
+
+[DHCP](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc896553(v=ws.10))
+
+[DNS](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc732997(v=ws.10))
+
+
+[Windows 2012 Link](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/hh831357(v=ws.11))
+
+[Current Version Networking](https://docs.microsoft.com/en-us/windows-server/networking/)
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
+
+### Cloudflare DNS
+
+ipv4
+- 1.1.1.1
+- 1.0.0.1
+ipv6
+- 2606:4700:4700::1111
+- 2606:4700:4700::1001
+
+### Proxy Management
+
+? Cntlm: Fast NTLM Authentication Proxy in C - not sure if this is part of the work computer or if I installed this...
+
+### FireWall
+
+Enable Remote desktop related rules.  Unclear which these are.
+
+### Reserved IPs
+
+#### IPv4
+
+[Source](https://en.wikipedia.org/wiki/Reserved_IP_addresses)
+
+| Address block      | Address range               | Number of addresses | Scope           | Description                                                                                                            |
+| ------------------ | --------------------------- | ------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 0.0.0.0/8          | 0.0.0.0-0.255.255.255       | 16777216            | Software        | Current network (only valid as source address).                                                                        |
+| 10.0.0.0/8         | 10.0.0.0-10.255.255.255     | 16777216            | Private network | Used for local communications within a private network.                                                                |
+| 100.64.0.0/10      | 100.64.0.0-100.127.255.255  | 4194304             | Private network | Shared address space for communications between a service provider and its subscribers when using a carrier-grade NAT. |
+| 127.0.0.0/8        | 127.0.0.0-127.255.255.255   | 16777216            | Host            | Used for loopback addresses to the local host.                                                                         |
+| 169.254.0.0/16     | 169.254.0.0-169.254.255.255 | 65536               | Subnet          | Used for link-local addresses between two hosts on a single link when no IP address is otherwise specified,            |
+| 172.16.0.0/12      | 172.16.0.0-172.31.255.255   | 1048576             | Private network | Used for local communications within a private network.                                                                |
+| 192.0.0.0/24       | 192.0.0.0-192.0.0.255       | 256                 | Private network | IETF Protocol Assignments.                                                                                             |
+| 192.0.2.0/24       | 192.0.2.0-192.0.2.255       | 256                 | Documentation   | Assigned as TEST-NET-1, documentation and examples.                                                                    |
+| 192.88.99.0/24     | 192.88.99.0-192.88.99.255   | 256                 | Internet        | Reserved.[6] Formerly used for IPv6 to IPv4 relay (included IPv6 address block 2002::/16).                             |
+| 192.168.0.0/16     | 192.168.0.0-192.168.255.255 | 65536               | Private network | Used for local communications within a private network.                                                                |
+| 198.18.0.0/15      | 198.18.0.0-198.19.255.255   | 131072              | Private network | Used for benchmark testing of inter-network communications between two separate subnets.                               |
+| 198.51.100.0/24    | 198.51.100.0-198.51.100.255 | 256                 | Documentation   | Assigned as TEST-NET-2, documentation and examples.                                                                    |
+| 203.0.113.0/24     | 203.0.113.0-203.0.113.255   | 256                 | Documentation   | Assigned as TEST-NET-3, documentation and examples.                                                                    |
+| 224.0.0.0/4        | 224.0.0.0-239.255.255.255   | 268435456           | Internet        | In use for IP multicast. (Former Class D network).                                                                     |
+| 240.0.0.0/4        | 240.0.0.0-255.255.255.254   | 268435456           | Internet        | Reserved for future use. (Former Class E network).                                                                     |
+| 255.255.255.255/32 | 255.255.255.255             | 1                   | Subnet          | Reserved for the "limited broadcast" destination address.                                                              |
+
+such as would have normally been retrieved from a DHCP server.
+
+#### IPV6
+
+| Address block (CIDR) | First address   | Last address     | Number of addresses                     | Usage         | Purpose         |                                                          |
+| -------------------- | --------------- | ---------------- | --------------------------------------- | ------------- | --------------- | -------------------------------------------------------- |
+|                      | ::/0            | ::               | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2128          | Routing         | Default route.                                           |
+|                      | ::/128          | ::               |                                         | 1             | Software        | Unspecified address.                                     |
+|                      | ::1/128         | ::1              |                                         | 1             | Host            | Loopback address to the local host.                      |
+|                      | ::ffff:0:0/96   | ::ffff:0.0.0.0   | ::ffff:255.255.255.255                  | 2128−96 = 232 | Software        | IPv4 mapped addresses.                                   |
+|                      | ::ffff:0:0:0/96 | ::ffff:0:0.0.0.0 | ::ffff:0:255.255.255.255                | 232           | Software        | IPv4 translated addresses.                               |
+|                      | 64:ff9b::/96    | 64:ff9b::0.0.0.0 | 64:ff9b::255.255.255.255                | 232           | Global Internet | IPv4/IPv6 translation.                                   |
+|                      | 100::/64        | 100::            | 100::ffff:ffff:ffff:ffff                | 264           | Routing         | Discard prefix.                                          |
+|                      | 2001::/32       | 2001::           | 2001::ffff:ffff:ffff:ffff:ffff:ffff     | 296           | Global Internet | Teredo tunneling.                                        |
+|                      | 2001:20::/28    | 2001:20::        | 2001:2f:ffff:ffff:ffff:ffff:ffff:ffff   | 2100          | Software        | ORCHIDv2.                                                |
+|                      | 2001:db8::/32   | 2001:db8::       | 2001:db8:ffff:ffff:ffff:ffff:ffff:ffff  | 296           | Documentation   | Addresses used in documentation and example source code. |
+|                      | 2002::/16       | 2002::           | 2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2112          | Global Internet | The 6to4 addressing scheme (now deprecated).             |
+|                      | fc00::/7        | fc00::           | fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2121          | Private network | Unique local address.                                    |
+|                      | fe80::/10       | fe80::           | febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2118          | Link            | Link-local address.                                      |
+|                      | ff00::/8        | ff00::           | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff | 2120          | Global Internet | Multicast address.                                       |
+
+
+
+The Internet Engineering Task Force (IETF) has directed the Internet Assigned Numbers Authority (IANA) to reserve the following IPv4 address ranges for private networks:[1](p4)
+
+
+| RFC1918 name | IP address range              | Number of addresses | Largest CIDR block (subnet mask) | Host ID size | Mask bits | Classful description[Note 1]    |
+| ------------ | ----------------------------- | ------------------- | -------------------------------- | ------------ | --------- | ------------------------------- |
+| 24-bit block | 10.0.0.0 - 10.255.255.255     | 16777216            | 10.0.0.0/8 (255.0.0.0)           | 24 bits      | 8 bits    | single class A network          |
+| 20-bit block | 172.16.0.0 - 172.31.255.255   | 1048576             | 172.16.0.0/12 (255.240.0.0)      | 20 bits      | 12 bits   | 16 contiguous class B networks  |
+| 16-bit block | 192.168.0.0 - 192.168.255.255 | 65536               | 192.168.0.0/16 (255.255.0.0)     | 16 bits      | 16 bits   | 256 contiguous class C networks |
+
+
+Also note the 169.254 address
+
+### NFS - Network File Service
+
+[Services for Network File System (NFS) command-line tools | Microsoft Docs](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/services-for-network-file-system-command-reference)
+
+Services for Network File System (NFS) provides a file sharing solution that lets you transfer files between computers running Windows Server and UNIX operating systems using the NFS protocol.
+
+Information and links to each of the associated NFS command-line tools:
+
+| Command   | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| mapadmin  | Manage User Name Mapping for Microsoft Services for Network File System. |
+| mount     | Mount Network File System (NFS) network shares.                          |
+| nfsadmin  | Manage Server for NFS and Client for NFS.                                |
+| nfsshare  | Control Network File System (NFS) shares.                                |
+| nfsstat   | Display or reset counts of calls made to Server for NFS.                 |
+| rpcinfo   | List programs on remote computers.                                       |
+| showmount | Display mounted directories.                                             |
+
+
+### Remote Desktop Connection
+
+
+See also [mstsc](#mstsc)
+
+- `change` - Changes the Remote Desktop Session Host server settings for sign in, COM port mappings, and install mode.
+- `change logon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `change port` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `change user` - Changes the install mode for the Remote Desktop Session Host server.
+- `chglogon` - Enables or disables logons from client sessions on an Remote Desktop Session Host server, or displays current logon status.
+- `chgport` - Lists or changes the COM port mappings to be compatible with MS-DOS applications.
+- `chgusr` - Changes the install mode for the Remote Desktop Session Host server.
+- `flattemp` - Enables or disables flat temporary folders.
+- `logoff` - Signs out a user from a session on an Remote Desktop Session Host server and deletes the session from the server.
+- `msg` - Sends a message to a user on an Remote Desktop Session Host server.
+- `mstsc` - Creates connections to Remote Desktop Session Host servers or other remote computers.
+- `qappsrv` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `qprocess` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query` - Displays information about processes, sessions, and Remote Desktop Session Host servers.
+- `query process` - Displays information about processes that are running on an Remote Desktop Session Host server.
+- `query session` - Displays information about sessions on an Remote Desktop Session Host server.
+- `query termserver` - Displays a list of all Remote Desktop Session Host servers on the network.
+- `query user` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `quser` - Displays information about user sessions on an Remote Desktop Session Host server.
+- `qwinsta` - Displays information about sessions on an Remote Desktop Session Host server.
+- `rdpsign` - Enables you to digitally sign a Remote Desktop Protocol (.rdp) file.
+- `reset session` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `rwinsta` - Enables you to reset (delete) a session on an Remote Desktop Session Host server.
+- `shadow` - Enables you to remotely control an active session of another user on an Remote Desktop Session Host server.
+- `tscon` - Connects to another session on an Remote Desktop Session Host server.
+- `tsdiscon` - Disconnects a session from an Remote Desktop Session Host server.
+- `tskill` - Ends a process running in a session on an Remote Desktop Session Host server.
+- `tsprof` - Copies the Remote Desktop Services user configuration information from one user to another.
+
+
+### Nirsoft Net Tools
+
+
+
+
+Network Monitoring Tools
+
+- **_SmartSniff_** [v2.29]:
+
+    SmartSniff allows you to capture TCP/IP packets that pass through your network adapter, and view the captured data as sequence of conversations between clients and servers. You can view the TCP/IP conversations in Ascii mode (for text-based protocols, like HTTP, SMTP, POP3 and FTP.) or as hex dump. (for non-text base protocols, like DNS)
+
+- **_WifiChannelMonitor_** [v1.65]:
+
+    WifiChannelMonitor captures wifi traffic on the channel you choose, using Microsoft Network Monitor capture driver in monitor mode, and displays extensive information about access points and the wifi clients connected to them. WifiChannelMonitor also allows you to view the information about wifi clients that are not connected to any access points, including the list of SSIDs (network names) that they are trying to connect. For every access point, the following information is displayed: SSID, MAC Address, Device Manufacturer , PHY Type, Channel, RSSI, Security, Beacons Count, Probe Responses Count, Data Bytes, Retransmitted Data Bytes, and more... For every client, the following information is displayed: MAC Address, Device Manufacturer, SSID list that the client tries to connect, Sent Data Bytes, Received Data Bytes, Probe Requests Count, and more...
+
+- **_NetworkTrafficView_** [v2.30]:
+
+    NetworkTrafficView is a network monitoring tool that captures the packets pass through your network adapter, and displays general statistics about your network traffic. The packets statistics is grouped by the Ethernet Type, IP Protocol, Source/Destination Addresses, and Source/Destination ports. For every statistics line, the following information is displayed: Ethernet Type (IPv4, IPv6, ARP), IP Protocol (TCP, UDP, ICMP), Source Address, Destination Address, Source Port, Destination Port, Service Name (http, ftp, and so on), Packets Count, Total Packets Size, Total Data Size, Data Speed, Maximum Data Speed, Average Packet Size, First/Last Packet Time, Duration, and process ID/Name (For TCP connections).
+
+- **_HTTPNetworkSniffer_** [v1.63]:
+
+    HTTPNetworkSniffer is a packet sniffer tool that captures all HTTP requests/responses sent between the Web browser and the Web server and displays them in a simple table. For every HTTP request, the following information is displayed: Host Name, HTTP method (GET, POST, HEAD), URL Path, User Agent, Response Code, Response String, Content Type, Referer, Content Encoding, Transfer Encoding, Server Name, Content Length, Cookie String, and more... You can easily select one or more HTTP information lines, and then export them to text/html/xml/csv file or copy them to the clipboard and then paste them into Excel.
+
+- **_AppNetworkCounter_** [v1.41]:
+
+    AppNetworkCounter is a simple tool for Windows that counts and displays the number of TCP/UDP bytes and packets sent and received by every application on your system. For every application, the following information is displayed: the number of sent and received bytes, number of sent and received packets, number of sent/received IPv4 bytes, and number of sent/received IPv6 bytes. It also displays the version information of the application - Product Name, Product Version, File Description, and Company Name.
+
+- **_LiveTcpUdpWatch_** [v1.33]:
+
+    LiveTcpUdpWatch is a tool for Windows that displays live information about all TCP and UDP activity on your system. Every line in the main table of LiveTcpUdpWatch displays the protocol (TCP/UDP/IPv4/IPv6), local/remote IP address, local/remote port, number of sent/received bytes, number of sent/received packets, connect/disconnect time (For TCP only), and the process (ID and path) responsible for this activity.
+
+- **_PingInfoView_** [v2.10]:
+
+    PingInfoView is a small utility that allows you to easily ping multiple host names and IP addresses, and watch the result in one table. It automatically ping to all hosts every number of seconds that you specify, and displays the number of succeed and failed pings, as well as the average ping time. You can also save the ping result into text/html/xml file, or copy it to the clipboard.
+
+- **_WifiInfoView_** [v2.65]:
+    WifiInfoView scans the wireless networks in your area and displays extensive information about them, including: Network Name (SSID), MAC Address, PHY Type (802.11g or 802.11n), RSSI, Signal Quality, Frequency, Channel Number, Maximum Speed, Company Name, Router Model and Router Name (Only for routers that provides this information), and more... When you select a wireless network in the upper pane of this tool, the lower pane displays the Wi-Fi information elements received from this device, in hexadecimal format. WifiInfoView also has a summary mode, which displays a summary of all detected wireless networks, grouped by channel number, company that manufactured the router, PHY type, or the maximum speed.
+
+- **_SocketSniff_** [v1.11]:
+
+    SocketSniff allows you to watch the Windows Sockets (WinSock) activity of the selected process.
+
+
+    For each created socket, the following information is displayed: socket handle, socket type, local and remote addresses, local and remote ports, total number of send/receive bytes, and more. You can also watch the content of each send or receive call, in Ascii mode or as Hex Dump.
+
+- **_CurrPorts_** [v2.63]:
+
+    CurrPorts is a network monitoring software that displays the list of all currently opened TCP/IP and UDP ports on your local computer. For each port in the list, information about the process that opened the port is also displayed, including the process name, full path of the process, version information of the process (product name, file description, and so on), the time that the process was created, and the user that created it.
+
+
+    In addition, CurrPorts allows you to close unwanted TCP connections, kill the process that opened the ports, and save the TCP/UDP ports information to HTML file , XML file, or to tab-delimited text file.
+
+    CurrPorts also automatically mark with pink color suspicious TCP/UDP ports owned by unidentified applications (Applications without version information and icons)
+      
+- **_TcpLogView_** [v1.32]:
+
+    TcpLogView is a simple utility that monitors the opened TCP connections on your system, and adds a new log line every time that a TCP connection is opened or closed. For every log line, the following information is displayed: Even Time, Event Type (Open, Close, Listen), Local Address, Remote Address, Remote Host Name, Local Port, Remote Port, Process ID, Process Name, and the country information of the Remote IP (Requires to download IP to country file separately.)
+
+- **_ProcessTCPSummary_** [v1.11]:
+
+    ProcessTCPSummary is a simple tool for Windows that displays a summary of all process that have TCP connections or listening UDP ports. For every process, this tool displays the total number of TCP connections, number of TCP connections for each status (Established, Listening, Syn-Sent, Syn-Received...), number of IPv4 TCP connections, number of IPv6 TCP connections, common port numbers, and more... If you run ProcessTCPSummary as Administrator, you can also watch the number of TCP/UDP bytes sent and received by every process as well as the current send/receive speed.
+
+- **_NetworkConnectLog_** [v1.13]:
+
+    NetworkConnectLog is a simple utility that repeatedly scans your local area network (Using ARP and Netbios protocols) and add a new log line every time that a new computer or device connects to your network, and when a computer or device disconnects from your network. After the connect/disconnect log lines are accumulated, you can easily export the log lines to comma-delimited/tab-delimited/html/xml file.
+
+- **_NetworkLatencyView_** [v1.65]:
+
+    NetworkLatencyView is a simple tool for Windows that listens to the TCP connections on your system and calculates the network latency (in milliseconds) for every new TCP connection detected on your system. For every IP address, NetworkLatencyView displays up to 10 network latency values, and their average. The latency value calculated by NetworkLatencyView is very similar to the result you get from pinging to the same IP address. NetworkLatencyView also allows you to easily export the latency information to text/csv/tab-delimited/html/xml file, or copy the information to the clipboard and then paste it to Excel or other application.
+
+- **_DNSQuerySniffer_** [v1.81]:
+
+    DNSQuerySniffer is a network sniffer utility that shows the DNS queries sent on your system. For every DNS query, the following information is displayed: Host Name, Port Number, Query ID, Request Type (A, AAAA, NS, MX, and so on), Request Time, Response Time, Duration, Response Code, Number of records, and the content of the returned DNS records. You can easily export the DNS queries information to csv/tab-delimited/xml/html file, or copy the DNS queries to the clipboard, and then paste them into Excel or other spreadsheet application.
+
+- **_WhoIsConnectedSniffer_** [v1.25]:
+
+    WhoIsConnectedSniffer is a network discovery tool that listens to network packets on your network adapter using a capture driver (WinpCap or MS network monitor) and accumulates a list of computer and devices currently connected to your network. WhoIsConnectedSniffer uses various protocols to detect the computers connected to your network, including ARP, UDP, DHCP, mDNS, and BROWSER. For every detected computer or device, the following information is displayed: (Some of the fields might be empty if the information cannot be found inside the packets) IP Address, MAC Address, name of the device/computer, description, Operating System, Network Adapter Company, IPv6 Address.
+
+
+
+    After collecting the connected computers/devices information, you can easily export the list to tab-delimited/comma-delimited/xml/html file.
+
+- **_Wireless Network Watcher_** [v2.22]:
+
+    Wireless Network Watcher is a small utility that scans your wireless network and displays the list of all computers and devices that are currently connected to your network. For every computer or device that is connected to your network, the following information is displayed: IP address, MAC address, the company that manufactured the network card, and optionally the computer name. You can also export the connected devices list into html/xml/csv/text file, or copy the list to the clipboard and then paste into Excel or other spreadsheet application.
+
+- **_NetworkUsageView_** [v1.21]:
+
+    NetworkUsageView extracts and displays the network usage information stored in the SRUDB.dat database of Windows 8 and Windows 10. The network usage data is collected every hour by Windows operating systems and includes the following information: The name and description of the service or application, the name and SID of the user, the network adapter, and the total number of bytes sent and received by the specified service/application.
+
+- **_WakeMeOnLan_** [v1.86]:
+
+    This utility allows you to easily turn on one or more computers remotely by sending Wake-on-LAN (WOL) packet to the remote computers. When your computers are turned on, WakeMeOnLan allows you to scan your network, and collect the MAC addresses of all your computers, and save the computers list info a file. Later, when your computers are turned off or in standby mode, you can use the stored computers list to easily choose the computer you want to turn on, and then turn on all these computers with a single click.
+
+
+    WakeMeOnLan also allows you to turn on a computer from command-line, by specifying the computer name, IP address, or the MAC address of the remote network card.
+
+- **_NetworkCountersWatch_** [v1.02]:
+
+    NetworkCountersWatch is a tool for Windows that displays system counters for every network interface on your system. The system counters include the number of incoming/outgoing bytes, number of incoming/outgoing packets, number of broadcast packets, and more. You can also initialize all counters to zero at any time in order to watch the network counters for specific event. NetworkCountersWatch also calculates and displays the current download speed and upload speed on your network interface.
+
+- **_WifiHistoryView_** [v1.56]:
+
+    WifiHistoryView is a simple tool for Windows 10/8/7/Vista that displays the history of connections to wireless networks on your computer. For every event that the computer connected to a wireless network or disconnected from it, the following information is displayed: The date/time that the event occurred, network name (SSID), profile name, network adapter name, BSSID of the router/Access Point, and more... WifiHistoryView can read the wifi history information from a running system or from external event log file of another computer.
+
+- **_NetworkOpenedFiles_** [v1.36]:
+
+    NetworkOpenedFiles is a simple tool for Windows that displays the list of all files that are currently opened by other computers on your network. For every opened filename, the following information is displayed: Filename, user name, computer name (On Windows 7/2008 or later), Permissions information (Read/Write/Create), locks count, file owner, file size, file attributes, and more...
+
+- **_NetBScanner_** [v1.11]:
+
+    NetBScanner is a network scanner tool that scans all computers in the IP addresses range you choose, using NetBIOS protocol. For every computer located by this NetBIOS scanner, the following information is displayed: IP Address, Computer Name, Workgroup or Domain, MAC Address, and the company that manufactured the network adapter (determined according to the MAC address). NetBScanner also shows whether a computer is a Master Browser. You can easily select one or more computers found by NetBScanner, and then export the list into csv/tab-delimited/xml/html file.
+
+- **_WirelessNetView_** [v1.75]:
+
+    WirelessNetView is a small utility that runs in the background, and monitor the activity of wireless networks around you. For each detected network, it displays the following information: SSID, Last Signal Quality, Average Signal Quality, Detection Counter, Authentication Algorithm, Cipher Algorithm, and more.
+
+- **_WirelessConnectionInfo_** [v1.15]:
+
+    WirelessConnectionInfo is a simple tool for Windows Vista/7/8/2008/10 that displays general information and statistics about the active wifi connection, including the SSID, BSSID, PHY Type, Signal Quality, Receiving rate, Transmission Rate, Authentication Algorithm, Channel Number, Total number of transmitted/received frames, and more...
+
+- **_AdapterWatch_** [v1.05]:
+
+    AdapterWatch displays useful information about your network adapters: IP addresses, Hardware address, WINS servers, DNS servers, MTU value, Number of bytes received or sent, The current transfer speed, and more. In addition, it displays general TCP/IP/UDP/ICMP statistics for your local computer.
+
+- **_NetResView_** [v1.27]:
+
+    NetResView is a small utility that displays the list of all network resources (computers, disk shares, and printer shares) on your LAN. As opposed to "My Network Places" module of Windows, NetResView display all network resources from all domains/workgroups in one screen, and including admin/hidden shares.
+
+- **_NetRouteView_** [v1.35]:
+
+    NetRouteView is a GUI alternative to the standard route utility (Route.exe) of Windows operating system. It displays the list of all routes on your current network, including the destination, mask, gateway, interface IP address, metric value, type, protocol, age (in seconds), interface name, and the MAC address. NetRouteView also allows you to easily add new routes, as well as to remove or modify existing static routes.
+
+- **_CountryTraceRoute_** [v1.31]:
+
+    CountryTraceRoute is a Traceroute utility, similar to the tracert tool of Windows, but with graphical user interface, and it's also much faster than tracert of Windows. CountryTraceRoute also displays the country of the owner of every IP address found in the Traceroute. After the Traceroute is completed, you can select all items (Ctrl+A) and then save them into csv/tab-delimited/html/xml file with 'Save Selected Items' option (Ctrl+S) or copy them to the clipboard (Ctrl+C) and then paste the result into Excel or other spreadsheet application.
+
+- **_SniffPass_** [v1.13] - {Password Sniffer}
+
+    SniffPass is small utility that listens to your network, capture the passwords that pass through your network adapter, and display them on the screen instantly. SniffPass can capture the passwords of the following Protocols: POP3, IMAP4, SMTP, FTP, and HTTP (basic authentication passwords).
+
 
 
 
@@ -9411,6 +9835,612 @@ wevtutil epl Microsoft-Windows-Windows Firewall With Advanced Security/Firewall
 wevtutil epl System 
 wevtutil epl System /q:""*[System[Provider[@Name='Microsoft-Windows-Hyper-V-VmSwitch']]]"" 
 wmic qfe
+
+### mstsc
+
+`mstsc` - Opens a remote desktop connection.  e.g. the Remote Desktop connection window.
+
+Can also use it to open just a console.
+
+    remote desktop command line (use /console if all slots full)
+    c:\> mstsc /v:SERVERNAME [/console]
+    list other RDP sessions on the server
+    c:\> query session
+    kick someone off -- useful when paired with sysinternals psexec, or powershell remoting
+    c:\> logoff SESSIONID
+
+use mstsc /admin instead. Use mstsc /? for a list of commands.
+
+`mstsc`
+This command is used to create a remote desktop connection to Remote Desktop Session Host (rd Session Host) servers or other remote machines. This command is also used to edit the current remote Desktop Connection (.rdp) configuration file. It is also used to transfer old connection files that were designed with the Client Connection Manager to new .rdp connection files. This windows command is used on a Windows Server and many other versionsof the Windows operating system. It can be used with different parameters and it can also be used to start a remote desktop connection in a full-screen mode. In other words, this command is mainly used for remote desktop connections. For example,
+
+`mstsc/f`
+
+The above command is used to connect to a screen in a full-screen mode.
+
+### netsh
+
+
+[Netsh Info](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129394(v=ws.11))
+
+[NetSh Tech Ref](https://gallery.technet.microsoft.com/Netsh-Technical-Reference-c46523dc)
+
+
+[more](### Network Trace)
+
+View the Windows Network Config Script:
+
+This shows all the settings
+
+```batch
+netsh
+>dump
+```
+
+
+    Commands in this context:
+    ..             - Goes up one context level.
+    ?              - Displays a list of commands.
+    abort          - Discards changes made while in offline mode.
+    add            - Adds a configuration entry to a list of entries.
+    advfirewall    - Changes to the `netsh advfirewall' context.
+    alias          - Adds an alias.
+    branchcache    - Changes to the `netsh branchcache' context.
+    bridge         - Changes to the `netsh bridge' context.
+    bye            - Exits the program.
+    commit         - Commits changes made while in offline mode.
+    delete         - Deletes a configuration entry from a list of entries.
+    dhcpclient     - Changes to the `netsh dhcpclient' context.
+    dnsclient      - Changes to the `netsh dnsclient' context.
+    dump           - Displays a configuration script.
+    exec           - Runs a script file.
+    exit           - Exits the program.
+    firewall       - Changes to the `netsh firewall' context.
+    help           - Displays a list of commands.
+    http           - Changes to the `netsh http' context.
+    interface      - Changes to the `netsh interface' context.
+    ipsec          - Changes to the `netsh ipsec' context.
+    lan            - Changes to the `netsh lan' context.
+    mbn            - Changes to the `netsh mbn' context.
+    namespace      - Changes to the `netsh namespace' context.
+    netio          - Changes to the `netsh netio' context.
+    offline        - Sets the current mode to offline.
+    online         - Sets the current mode to online.
+    p2p            - Changes to the `netsh p2p' context.
+    popd           - Pops a context from the stack.
+    pushd          - Pushes current context on stack.
+    quit           - Exits the program.
+    ras            - Changes to the `netsh ras' context.
+    rpc            - Changes to the `netsh rpc' context.
+    set            - Updates configuration settings.
+    show           - Displays information.
+    trace          - Changes to the `netsh trace' context.
+    unalias        - Deletes an alias.
+    wcn            - Changes to the `netsh wcn' context.
+    wfp            - Changes to the `netsh wfp' context.
+    winhttp        - Changes to the `netsh winhttp' context.
+    winsock        - Changes to the `netsh winsock' context.
+    wlan           - Changes to the `netsh wlan' context.
+
+      #The following sub-contexts are available:
+      advfirewall
+      branchcache 
+      bridge 
+      dhcpclient 
+      dnsclient 
+      firewall 
+      http 
+      interface 
+      ipsec 
+      lan 
+      mbn 
+      namespace 
+      netio 
+      p2p 
+      ras 
+      rpc 
+      trace 
+      wcn 
+      wfp 
+      winhttp 
+      winsock 
+      wlan
+      
+### Pathping 
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+#### Network Trace using netsh
+ 
+Capture a Network Trace without installing anything (& capture a network trace of a reboot)
+
+If you need to capture a network trace of a client or server without installing Wireshark or Netmon this might be helpful for you. (This feature works on Windows 7/2008 R2 and above).
+
+The short version:
+
+1. Open an elevated command prompt and run: "
+
+       netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl
+      
+(make sure you have a \temp directory or choose another location).
+
+2. Reproduce the issue or do a reboot if you are tracing a slow boot scenario.
+
+ 
+
+3. Open an elevated command prompt and run: 
+
+        netsh trace stop
+
+ 
+
+Your trace will be stored in c:\temp\nettrace-boot.etl**or where ever you saved it. You can view the trace on another machine using netmon.
+
+ 
+
+The longer version:
+
+I will do this trace for a slow boot scenario - it works fine for non reboot scenarios too, just reproduce the issue and then stop the trace.
+
+ 
+
+1. Open an elevated command prompt and run: 
+      
+        netsh trace start persistent=yes capture=yes tracefile=c:\temp\nettrace-boot.etl 
+      
+      
+(make sure you have a \temp directory or choose another location).
+
+
+#### Using Netsh trace commands
+
+      Commands in the Netsh trace context
+
+          convert
+          correlate
+          diagnose
+          show CaptureFilterHelp
+          show globalKeywordsAndLevels
+          show helperclass
+          show interfaces
+          show provider
+          show providers
+          show scenario
+          show scenarios
+          show status
+          start
+          stop
+
+### net
+
+NET
+    [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+      HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+      STATISTICS | STOP | TIME | USE | USER | VIEW ]
+
+Samba Shares- if cached credentials are preventing connecting
+
+There are two solutions-
+
+1. Go to control Panel, then Credentials, then Windows Credentials, and delete the related passwords
+
+2. `net use` to list recent connections
+
+`net use \\192.168.1.200\IPC$ /DELETE` to delete the connection
+`net use \\192.168.107.41\share /delete` 
+
+net session \\samba.server.ip.address /delete
+
+        NET
+            [ ACCOUNTS | COMPUTER | CONFIG | CONTINUE | FILE | GROUP | HELP |
+            HELPMSG | LOCALGROUP | PAUSE | SESSION | SHARE | START |
+            STATISTICS | STOP | TIME | USE | USER | VIEW ]
+
+            NET ACCOUNTS
+            [/FORCELOGOFF:{minutes | NO}] [/MINPWLEN:length]
+                    [/MAXPWAGE:{days | UNLIMITED}] [/MINPWAGE:days]
+                    [/UNIQUEPW:number] [/DOMAIN]
+
+            Force user logoff how long after time expires?:       Never
+        Minimum password age (days):                          0
+        Maximum password age (days):                          42
+        Minimum password length:                              0
+        Length of password history maintained:                None
+        Lockout threshold:                                    Never
+        Lockout duration (minutes):                           30
+        Lockout observation window (minutes):                 30
+        Computer role:                                        WORKSTATION
+        The command completed successfully.
+
+
+
+        NET COMPUTER
+        \\computername {/ADD | /DEL}
+
+        >net computer \\192.168.1.200 /ADD
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+        NET CONFIG
+
+        The following running services can be controlled:
+
+        Server
+        Workstation
+
+        [SERVER | WORKSTATION]
+
+        NET CONFIG SERVER
+        [/AUTODISCONNECT:time]
+                        [/SRVCOMMENT:"text"]
+                        [/HIDDEN:{YES | NO}]
+
+
+        Computer name                        \\DESKTOP
+        Full Computer name                   DESKTOP
+        User name                            andy.timmons@live.com
+
+        Workstation active on
+                NetBT_Tcpip_{B60B77BB-75C5-491E-AB09-BACC27B5D760} (2CFDA1B95FA1)
+                NetBT_Tcpip_{59A52F56-D600-48B3-A1C6-7392EE3612CE} (00155D0A3465)
+
+        Software version                     Windows 10 Pro
+
+        Workstation domain                   WORKGROUP
+        Logon domain                         MicrosoftAccount
+
+        COM Open Timeout (sec)               0
+        COM Send Count (byte)                16
+        COM Send Timeout (msec)              250
+        The command completed successfully.      
+
+
+        net continue
+        The syntax of this command is:
+
+        NET CONTINUE
+        service
+
+        net file (Open Network Files?)
+        There are no entries in the list.
+
+
+        net file /?
+        The syntax of this command is:
+
+        NET FILE
+        [id [/CLOSE]]
+
+
+        net group /?
+        The syntax of this command is:
+
+        NET GROUP
+        [groupname [/COMMENT:"text"]] [/DOMAIN]
+                    groupname {/ADD [/COMMENT:"text"] | /DELETE}  [/DOMAIN]
+                    groupname username [...] {/ADD | /DELETE} [/DOMAIN]
+
+        net group
+        This command can be used only on a Windows Domain Controller.
+
+        More help is available by typing NET HELPMSG 3515.
+
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NET HELP
+        command
+            -or-
+        NET command /HELP
+
+        Commands available are:
+
+        NET ACCOUNTS             NET HELPMSG              NET STATISTICS
+        NET COMPUTER             NET LOCALGROUP           NET STOP
+        NET CONFIG               NET PAUSE                NET TIME
+        NET CONTINUE             NET SESSION              NET USE
+        NET FILE                 NET SHARE                NET USER
+        NET GROUP                NET START                NET VIEW
+        NET HELP
+
+        NET HELP NAMES explains different types of names in NET HELP syntax lines.
+        NET HELP SERVICES lists some of the services you can start.
+        NET HELP SYNTAX explains how to read NET HELP syntax lines.
+        NET HELP command | MORE displays Help one screen at a time.
+
+        The syntax of this command is:
+
+        NAMES
+        The following types of names are used with Windows:
+
+        Computername      A unique name that identifies a computer on
+                        the local-area network.
+
+        Devicename        The name by which Windows identifies a disk resource
+                        or printer. A disk resource is identified by a drive
+                        letter followed by a colon (for example, D:). A
+                        printer is identified by a port name followed by a colon
+                        (for example, LPT1:).
+
+        Workgroup         A group of computers on the network. Each workgroup
+                        has a unique name.
+
+        Localgroup        A group of names in a Workgroup that are granted the
+                        same rights.
+
+        Domain            A group of Windows Servers, Windows Workstations
+                        and other computers on the network. A
+                        domain has a unique name. Usually, you must log on in
+                        a domain to gain access to the network. Domains are
+                        created and managed with Windows Server.
+
+        Global group      A group of names in a domain that are granted the
+                        same rights.
+
+        Filename          The name of a file. Under the file allocation table
+                        (FAT) file system, a filename can have as many as eight
+                        characters, followed by a period (.) and an extension of
+                        as many as three characters. Under NTFS and HPFS, a
+                        filename can have as many as 254 characters.
+
+        Network path      A description of the location of a shared resource,
+                        consisting of a computer's computername followed by
+                        the sharename of the resource. The computername
+                        is preceded by two backslashes, and the sharename is
+                        preceded by one backslash (for example,
+                        \\SERVER1\RESOURCE).
+
+        Path              The location of a directory. A path can consist of a
+                        devicename and one or more directory names. A
+                        backslash (\) precedes each directory name (for example,
+                        C:\CUSTOMER\CORP\ACCT).
+
+        Pathname          A path and a filename. The filename is preceded by a
+                        backslash (\) (for example, C:\CUSTOMER\CORP\REPORT.DOC).
+
+        Sharename         A name that identifies a shared resource on a computer. A
+                        sharename is used with the computer's computername to form
+                        a network path (as in \\SERVER\RESOURCE).
+
+        Username          The name a person supplies when logging on at
+                        a computer.
+
+        To view these definitions one screen at a time, type NET HELP NAMES | MORE.
+
+
+
+        The syntax of this command is:
+
+        SERVICES
+        NET START can be used to start services, including:
+
+        NET START BROWSER
+        NET START DHCP CLIENT
+        NET START EVENTLOG
+        NET START FILE REPLICATION
+        NET START NETLOGON
+        NET START PLUG AND PLAY
+        NET START REMOTE ACCESS CONNECTION MANAGER
+        NET START ROUTING AND REMOTE ACCESS
+        NET START RPCSS
+        NET START SCHEDULE
+        NET START SERVER
+        NET START SPOOLER
+        NET START TCP/IP NETBIOS HELPER
+        NET START UPS
+        NET START WORKSTATION
+
+        When typed at the command prompt, service names of two words or more must
+        be enclosed in quotation marks. For example, NET START "DHCP Client"
+        starts the DHCP Client service.
+
+
+        The syntax of this command is:
+
+        SYNTAX
+        The following conventions are used to indicate command syntax:
+
+        -  Capital letters represent words that must be typed as shown. Lower-
+        case letters represent names of items that may vary, such as filenames.
+
+        -  The [ and ] characters surround optional items that can be supplied
+        with the command.
+
+        -  The { and } characters surround lists of items. You must supply one
+        of the items with the command.
+
+        -  The | character separates items in a list. Only one of the items can
+        be supplied with the command.
+
+        For example, in the following syntax, you must type NET COMMAND and
+        either SWITCH1 or SWITCH2. Supplying a name is optional.
+            NET COMMAND [name] {SWITCH1 | SWITCH2}
+
+        -  The [...] characters mean you can repeat the previous item.
+        Separate items with spaces.
+
+        -  The [,...] characters mean you can repeat the previous item, but
+        you must separate items with commas or semicolons, not spaces.
+
+        -  When typed at the command prompt, service names of two words or
+        more must be enclosed in quotation marks. For example,
+        NET START "COMPUTER BROWSER" starts the computer browser service.
+
+
+### nvspinfo 
+
+This turns out to be exactly what I need
+
+
+    usage: nvspinfo
+            -c    display nvsp related control services
+            -a    display network adapters
+            -i    display network interfaces
+            -S    display stack table
+            -h    include hidden adapters (implies -a)
+            -b    include network bindings (implies -a)
+            -o    include offloads (implies -a)
+            -n    display all network information (same as -a -i -b)
+            -v    display virtual NICs
+            -D    includes drops in virtual NIC status (implies -v)
+            -s    display switch information
+            -p    include port details (implies -s)
+            -d    include disconnected ports (implies -s -d)
+            -m    include mac details (implies -s and -p)
+            -q    include 801.1q (vlan) details (implies -s and -p)
+            -t    display statistics (implies -s and -p)
+            -l    display statistics in a one second loop (implies -t)
+            -e    display everything
+            -g    display setup DI
+            -z    analyze (implies -e)
+            -Z    analyze mac and ip
+            -V    display vmq details (implies -v)
+            -u    display unicast addresses
+            -Q    display VMQ groups
+            -F:I  display stats in CSV format in a loop for the NIC at the specified index I. I = -1 lists available indexes.
+            -P    display host processor stats for all host processors
+
+
+### Pathping CMD command
+
+Ping does an excellent duty of informing users whether two computers can interact with each other over TCP/IP, but if ping does break then users will not give any data regarding the characteristics of the collapse. This is where the Windows Command Prompt commands like pathping are handy. The command is given below:
+
+`pathping 192.168.1.1`
+
+Pathping is intended for circumstances in which one or more routers live between hosts. It conveys a sequence of packets to each router that’s on the route to the target host in an attempt to discover whether the router is operating moderately or filtering packets. At its purest, the syntax for pathping is the same as that of the ping command.
+
+
+### netstat
+
+Displays protocol statistics and current TCP/IP network connections.
+
+    NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [-x] [-y] [interval]
+
+      -a            Displays all connections and listening ports.
+      -b            Displays the executable involved in creating each connection or
+                    listening port. In some cases well-known executables host
+                    multiple independent components, and in these cases the
+                    sequence of components involved in creating the connection
+                    or listening port is displayed. In this case the executable
+                    name is in [] at the bottom, on top is the component it called,
+                    and so forth until TCP/IP was reached. Note that this option
+                    can be time-consuming and will fail unless you have sufficient
+                    permissions.
+      -e            Displays Ethernet statistics. This may be combined with the -s
+                    option.
+      -f            Displays Fully Qualified Domain Names (FQDN) for foreign
+                    addresses.
+      -n            Displays addresses and port numbers in numerical form.
+      -o            Displays the owning process ID associated with each connection.
+      -p proto      Shows connections for the protocol specified by proto; proto
+                    may be any of: TCP, UDP, TCPv6, or UDPv6.  If used with the -s
+                    option to display per-protocol statistics, proto may be any of:
+                    IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, or UDPv6.
+      -q            Displays all connections, listening ports, and bound
+                    nonlistening TCP ports. Bound nonlistening ports may or may not
+                    be associated with an active connection.
+      -r            Displays the routing table.
+      -s            Displays per-protocol statistics.  By default, statistics are
+                    shown for IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP, and UDPv6;
+                    the -p option may be used to specify a subset of the default.
+      -t            Displays the current connection offload state.
+      -x            Displays NetworkDirect connections, listeners, and shared
+                    endpoints.
+      -y            Displays the TCP connection template for all connections.
+                    Cannot be combined with the other options.
+      interval      Redisplays selected statistics, pausing interval seconds
+                    between each display.  Press CTRL+C to stop redisplaying
+                    statistics.  If omitted, netstat will print the current
+                    configuration information once.
+
+
+#### Useful Commands
+ 
+- `n` - Display the IP numbers [Number]
+- `a` - Display all connections [All]
+- `q` display all conn. including bound non-listening ports
+- `b` - Displays the application involved.
+- `o` - Display the owning process
+- `r` - routing table
+- `s` - organize by protocol
+- `p` <Protocol> - like s but filters by protocol
+
+`interval` display a live connection updating it. 
+
+    netstat -nao 
+
+    netstat -na | findstr <port>
+
+findstr is like grep.
+
+
+### WMIC Windows Management Instrumentation Console
+
+`wmic diskdrive list brief`
+
+###  wmic
+
+[wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
+
+
+
+Displays WMI information inside an interactive command shell.
+
+`wmic </parameter>`
+
+- Sub-commands The following sub-commands are available at all times:
+- `class ` - Escapes from the default alias mode of WMIC to access classes in the WMI schema directly.
+- `path ` - Escapes from the default alias mode of WMIC to access instances in the WMI schema directly.
+- `context ` - Displays the current values of all global switches.
+- `[quit | exit] ` - Exits the WMIC command shell.
+Examples
+
+To display the current values of all global switches, type:
+
+wmic context
+
+Output similar to the following displays:
+
+NAMESPACE    : root\cimv2
+ROLE         : root\cli
+NODE(S)      : BOBENTERPRISE
+IMPLEVEL     : IMPERSONATE
+[AUTHORITY   : N/A]
+AUTHLEVEL    : PKTPRIVACY
+LOCALE       : ms_409
+PRIVILEGES   : ENABLE
+TRACE        : OFF
+RECORD       : N/A
+INTERACTIVE  : OFF
+FAILFAST     : OFF
+OUTPUT       : STDOUT
+APPEND       : STDOUT
+USER         : N/A
+AGGREGATE    : ON
+
+To change the language ID used by the command line to English (locale ID 409), type:
+
+wmic /locale:ms_409
+
 
 
 
@@ -10120,6 +11150,7 @@ wmic qfe
 -   [wscript](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wscript)
 -   [xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy)
 
+<<<<<<< HEAD
 ## Windows Scripting
 
 
@@ -10709,3 +11740,536 @@ The List verb has the following switches. To use verb-specific switches in WMIC,
 - `/ASSOCCLASS:<assocclass>` -> The returned endpoints must be associated with the source through the specified class or one of its derived classes.
 
 [Windows Management Instrumentation - Win32 apps | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page?source=recommendations)
+=======
+
+
+##  wmic
+
+- [about\_WMI](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wmi)
+- [about\_WMI\_Cmdlets](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wmi_cmdlets)
+- [about\_WQL](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_wql)
+- [CimCmdlets Module](https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/)
+- [Video: Using CIM Cmdlets and CIM Sessions](https://mikefrobbins.com/2013/09/12/phillyposh-user-group-meeting-presentation-follow-up-powershell-second-hop-problem-with-cimsessions/)
+
+
+
+
+This tool is superseded by [Windows PowerShell for WMI.](https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/07-working-with-wmi?view=powershell-7.2)
+
+`Get-Command -Noun WMI*`
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Get-WmiObject                                      3.1.0.0    Microsof...
+Cmdlet          Invoke-WmiMethod                                   3.1.0.0    Microsof...
+Cmdlet          Register-WmiEvent                                  3.1.0.0    Microsof...
+Cmdlet          Remove-WmiObject                                   3.1.0.0    Microsof...
+Cmdlet          Set-WmiInstance      
+
+
+**Common Information Model (CIM)** cmdlets were introduced in PowerShell version 3.0. 
+
+The CIM cmdlets are designed so they can be used on both Windows and non-Windows machines. 
+The WMI cmdlets are deprecated *so my recommendation is to use the CIM cmdlets instead of the older WMI ones.*
+
+The CIM cmdlets are all contained within a module. To obtain a list of the CIM cmdlets, use `Get-Command` with the **Module** parameter as shown in the following example.
+
+
+
+```PowerShell
+Get-Command -Module CimCmdlets
+```
+
+```Output
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Export-BinaryMiLog                                 1.0.0.0    CimCmdlets
+Cmdlet          Get-CimAssociatedInstance                          1.0.0.0    CimCmdlets
+Cmdlet          Get-CimClass                                       1.0.0.0    CimCmdlets
+Cmdlet          Get-CimInstance                                    1.0.0.0    CimCmdlets
+Cmdlet          Get-CimSession                                     1.0.0.0    CimCmdlets
+Cmdlet          Import-BinaryMiLog                                 1.0.0.0    CimCmdlets
+Cmdlet          Invoke-CimMethod                                   1.0.0.0    CimCmdlets
+Cmdlet          New-CimInstance                                    1.0.0.0    CimCmdlets
+Cmdlet          New-CimSession                                     1.0.0.0    CimCmdlets
+Cmdlet          New-CimSessionOption                               1.0.0.0    CimCmdlets
+Cmdlet          Register-CimIndicationEvent                        1.0.0.0    CimCmdlets
+Cmdlet          Remove-CimInstance                                 1.0.0.0    CimCmdlets
+Cmdlet          Remove-CimSession                                  1.0.0.0    CimCmdlets
+Cmdlet          Set-CimInstance                                    1.0.0.0    CimCmdlets
+```
+
+The CIM cmdlets still allow you to work with WMI so don't be confused when someone makes the statement "When I query WMI with the PowerShell CIM cmdlets..."
+
+As I previously mentioned, WMI is a separate technology from PowerShell and you're just using the CIM cmdlets for accessing WMI. You may find an old VBScript that uses WMI Query Language (WQL) to query WMI such as in the following example.
+
+You can take the WQL query from that VBScript and use it with the Get-CimInstance cmdlet without any modifications.
+
+PowerShell
+
+Copy
+
+```powershell
+Get-CimInstance -Query 'Select * from Win32_BIOS'
+Output
+
+Copy
+SMBIOSBIOSVersion : 090006
+Manufacturer      : American Megatrends Inc.
+Name              : Intel(R) Xeon(R) CPU E3-1505M v5 @ 2.80GHz
+SerialNumber      : 3810-1995-1654-4615-2295-2755-89
+Version           : VRTUAL - 4001628
+```
+
+
+
+### WMIC Windows Management Instrumentation Console
+
+`wmic diskdrive list brief`
+
+
+[wmic](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wmic)
+
+
+
+Displays WMI information inside an interactive command shell.
+
+`wmic </parameter>`
+
+- Sub-commands The following sub-commands are available at all times:
+- `class ` - Escapes from the default alias mode of WMIC to access classes in the WMI schema directly.
+- `path ` - Escapes from the default alias mode of WMIC to access instances in the WMI schema directly.
+- `context ` - Displays the current values of all global switches.
+- `[quit | exit] ` - Exits the WMIC command shell.
+Examples
+
+To display the current values of all global switches, type:
+
+wmic context
+
+Output similar to the following displays:
+
+NAMESPACE    : root\cimv2
+ROLE         : root\cli
+NODE(S)      : BOBENTERPRISE
+IMPLEVEL     : IMPERSONATE
+[AUTHORITY   : N/A]
+AUTHLEVEL    : PKTPRIVACY
+LOCALE       : ms_409
+PRIVILEGES   : ENABLE
+TRACE        : OFF
+RECORD       : N/A
+INTERACTIVE  : OFF
+FAILFAST     : OFF
+OUTPUT       : STDOUT
+APPEND       : STDOUT
+USER         : N/A
+AGGREGATE    : ON
+
+To change the language ID used by the command line to English (locale ID 409), type:
+
+wmic /locale:ms_409
+
+
+wmic qfe
+
+
+### Using WMIC
+
+The key is `/?`
+
+Pick from the classes and either run them or add what appear to be  the standard verbs : or similar
+
+    - CALL <method name> [<actual param list>]
+    - CREATE <assign list>
+    - DELETE
+    - GET [<property list>] [<get switches>]
+    - LIST [<list format>] [<list switches>]
+
+Use `/FORMAT:list` to make it easier to read.
+
+```cmd
+wmic
+> wmic:root\cli>
+>for help \?
+wmic:root\cli> \?
+>WMIC is deprecated.
+>
+``
+```cpp
+
+
+```
+
+
+[global switches] <command>
+
+The following global switches are available:
+/NAMESPACE           Path for the namespace the alias operate against.
+/ROLE                Path for the role containing the alias definitions.
+/NODE                Servers the alias will operate against.
+/IMPLEVEL            Client impersonation level.
+/AUTHLEVEL           Client authentication level.
+/LOCALE              Language id the client should use.
+/PRIVILEGES          Enable or disable all privileges.
+/TRACE               Outputs debugging information to stderr.
+/RECORD              Logs all input commands and output.
+/INTERACTIVE         Sets or resets the interactive mode.
+/FAILFAST            Sets or resets the FailFast mode.
+/USER                User to be used during the session.
+/PASSWORD            Password to be used for session login.
+/OUTPUT              Specifies the mode for output redirection.
+/APPEND              Specifies the mode for output redirection.
+/AGGREGATE           Sets or resets aggregate mode.
+/AUTHORITY           Specifies the <authority type> for the connection.
+/?[:<BRIEF|FULL>]    Usage information.
+
+For more information on a specific global switch, type: switch-name /?
+
+
+#### WMIC commands
+
+The following commands are available at all times:
+
+- `CLASS` -> Escape from the default alias mode of WMIC to access classes in the WMI schema directly.
+- `PATH` -> Escape from the default alias mode of WMIC to access instances in the WMI schema directly.
+- `CONTEXT` -> Display the current values of all global switches.
+- `QUIT` -> Exit from WMIC.
+- `EXIT` -> Exit from WMIC.The following alias/es are available in the current role:p
+
+### ALIAS                    - Access to the aliases available on the local system
+    HINT: BNF for Alias usage.
+    `(<alias> [WMIObject] | <alias> [<path where>] | [<alias>] <path where>) [<verb clause>].`
+        `ALIAS ASSOC [<format specifier>] `   
+            Returns the result of query: ASSOCIATORS OF `{<wmi object>}.`
+                `ASSOC[:<format specifier>] [<assoc switches>]`
+                `NOTE: <format specifier> ::= (<xsl file name> |  KEYWORD)`
+
+                The following ASSOC switches are available:
+
+                /RESULTCLASS:<classname>    - Indicates that the returned endpoints associated with the source object must belong to or
+                /RESULTROLE:<rolename>      - Indicates that the returned endpoints must play a particular role in their association wit
+                /ASSOCCLASS:<assocclass>    - Indicates that the returned endpoints must be associated with the source through the speci
+
+
+        ALIAS CALL <method name> [<actual param list>]
+        ALIAS CREATE <assign list>
+        ALIAS DELETE
+        ALIAS GET [<property list>] [<get switches>]
+        ALIAS LIST [<list format>] [<list switches>]
+
+### BASEBOARD                - Base board (also known as a motherboard or system board) management.
+    BASEBOARD - Base board (also known as a motherboard or system board) management.
+
+            HINT: BNF for Alias usage.
+            (<alias> [WMIObject] | <alias> [<path where>] | [<alias>] <path where>) [<verb clause>].
+
+            USAGE:
+
+            BASEBOARD ASSOC [<format specifier>]
+            BASEBOARD CREATE <assign list>
+            BASEBOARD DELETE
+            BASEBOARD GET [<property list>] [<get switches>]
+            BASEBOARD LIST [<list format>] [<list switches>]    Property list operations.
+                USAGE:
+
+                LIST [<list format>] [<list switches>]
+
+                The following LIST formats are available:
+
+                BRIEF                     - Manufacturer, Model, Name, SerialNumber, SKU, Product
+                FULL                      - ConfigOptions, Depth, Description, Height, HostingBoard, HotSwappable, InstallDate, Manufacturer, Model, Name, OtherIdentifyingInfo, PartNumber, PoweredOn, Product, Removable, Replaceable, RequirementsDescription, RequiresDaughterBoard, SerialNumber, SKU, SlotLayout, SpecialRequirements, Status, Tag, Version, Weight, Width
+                INSTANCE                  - __PATH
+                STATUS                    - Status, Name, PoweredOn
+                SYSTEM                    - __CLASS, __DERIVATION, __DYNASTY, __GENUS, __NAMESPACE, __PATH, __PROPERTY_COUNT, __RELPATH, __SERVER, __SUPERCLASS
+
+                The following LIST switches are available:
+
+                /TRANSLATE:<table name>      - Translate output via values from <table name>.
+                /EVERY:<interval> [/REPEAT:<repeat count>] - Returns value every (X interval) seconds, If /REPEAT specified the command is executed <repeat count> times.
+                /FORMAT:<format specifier>   - Keyword/XSL filename to process the XML results.
+
+                NOTE: Order of /TRANSLATE and /FORMAT switches influences the appearance of output.
+                Case1: If /TRANSLATE precedes /FORMAT, then translation of results will be followed by formatting.
+                Case2: If /TRANSLATE succeeds /FORMAT, then translation of the formatted results will be done.
+
+Runningf : `wmic:root\cli>baseboard list /FORMAT:list`
+
+
+                ConfigOptions={"SMI:00B29C05","DSN:                               .","DSN:                               .","DSN:                               ."}
+                Depth=
+                Description=Base Board
+                Height=
+                HostingBoard=TRUE
+                HotSwappable=FALSE
+                InstallDate=
+                Manufacturer=ASUSTeK COMPUTER INC.
+                Model=
+                Name=Base Board
+                OtherIdentifyingInfo=
+                PartNumber=
+                PoweredOn=TRUE
+                Product=ROG STRIX Z370-G GAMING (WI-FI AC)
+                Removable=FALSE
+                Replaceable=TRUE
+                RequirementsDescription=
+                RequiresDaughterBoard=FALSE
+                SerialNumber=180119266100182
+                SKU=
+                SlotLayout=
+                SpecialRequirements=
+                Status=OK
+                Tag=Base Board
+                Version=Rev X.0x
+                Weight=
+                Width=
+
+### BIOS                     - Basic input/output services (BIOS) management.
+
+
+### BOOTCONFIG               - Boot configuration management.
+
+
+### CDROM                    - CD-ROM management.
+
+
+### COMPUTERSYSTEM           - Computer system management.
+
+
+### CPU                      - CPU management.
+
+
+### CSPRODUCT                - Computer system product information from SMBIOS.
+
+
+### DATAFILE                 - DataFile Management.
+
+
+### DCOMAPP                  - DCOM Application management.
+
+
+### DESKTOP                  - User's Desktop management.
+
+
+### DESKTOPMONITOR           - Desktop Monitor management.
+
+
+### DEVICEMEMORYADDRESS      - Device memory addresses management.
+
+
+### DISKDRIVE                - Physical disk drive management.
+
+
+### DISKQUOTA                - Disk space usage for NTFS volumes.
+
+
+### DMACHANNEL               - Direct memory access (DMA) channel management.
+
+
+### ENVIRONMENT              - System environment settings management.
+
+
+### FSDIR                    - Filesystem directory entry management.
+
+
+### GROUP                    - Group account management.
+
+
+### IDECONTROLLER            - IDE Controller management.
+
+
+### IRQ                      - Interrupt request line (IRQ) management.
+
+
+### JOB                      - Provides  access to the jobs scheduled using the schedule service.
+
+
+### LOADORDER                - Management of system services that define execution dependencies.
+
+
+### LOGICALDISK              - Local storage device management.
+
+
+### LOGON                    - LOGON Sessions.
+
+
+### MEMCACHE                 - Cache memory management.
+
+
+### MEMORYCHIP               - Memory chip information.
+
+
+### MEMPHYSICAL              - Computer system's physical memory management.
+
+
+### NETCLIENT                - Network Client management.
+
+
+### NETLOGIN                 - Network login information (of a particular user) management.
+
+
+### NETPROTOCOL              - Protocols (and their network characteristics) management.
+
+
+### NETUSE                   - Active network connection management.
+
+
+### NIC                      - Network Interface Controller (NIC) management.
+
+
+### NICCONFIG                - Network adapter management.
+
+
+### NTDOMAIN                 - NT Domain management.
+
+
+### NTEVENT                  - Entries in the NT Event Log.
+
+
+### NTEVENTLOG               - NT eventlog file management.
+
+
+### ONBOARDDEVICE            - Management of common adapter devices built into the motherboard (system board).
+
+
+### OS                       - Installed Operating System/s management.
+
+
+### PAGEFILE                 - Virtual memory file swapping management.
+
+
+### PAGEFILESET              - Page file settings management.
+
+
+### PARTITION                - Management of partitioned areas of a physical disk.
+
+
+### PORT                     - I/O port management.
+
+
+### PORTCONNECTOR            - Physical connection ports management.
+
+
+### PRINTER                  - Printer device management.
+
+
+### PRINTERCONFIG            - Printer device configuration management.
+
+
+### PRINTJOB                 - Print job management.
+
+
+### PROCESS                  - Process management.
+
+
+### PRODUCT                  - Installation package task management.
+
+
+### QFE                      - Quick Fix Engineering.
+
+
+### QUOTASETTING             - Setting information for disk quotas on a volume.
+
+
+### RDACCOUNT                - Remote Desktop connection permission management.
+
+
+### RDNIC                    - Remote Desktop connection management on a specific network adapter.
+
+
+### RDPERMISSIONS            - Permissions to a specific Remote Desktop connection.
+
+
+### RDTOGGLE                 - Turning Remote Desktop listener on or off remotely.
+
+
+### RECOVEROS                - Information that will be gathered from memory when the operating system fails.
+
+
+### REGISTRY                 - Computer system registry management.
+
+
+### SCSICONTROLLER           - SCSI Controller management.
+
+
+### SERVER                   - Server information management.
+
+
+### SERVICE                  - Service application management.
+
+
+### SHADOWCOPY               - Shadow copy management.
+
+
+### SHADOWSTORAGE            - Shadow copy storage area management.
+
+
+### SHARE                    - Shared resource management.
+
+
+### SOFTWAREELEMENT          - Management of the  elements of a software product installed on a system.
+
+
+### SOFTWAREFEATURE          - Management of software product subsets of SoftwareElement.
+
+
+### SOUNDDEV                 - Sound Device management.
+
+
+### STARTUP                  - Management of commands that run automatically when users log onto the computer system.
+
+
+### SYSACCOUNT               - System account management.
+
+
+### SYSDRIVER                - Management of the system driver for a base service.
+
+
+### SYSTEMENCLOSURE          - Physical system enclosure management.
+
+
+### SYSTEMSLOT               - Management of physical connection points including ports,  slots and peripherals, and proprie
+
+
+### TAPEDRIVE                - Tape drive management.
+
+
+### TEMPERATURE              - Data management of a temperature sensor (electronic thermometer).
+
+
+### TIMEZONE                 - Time zone data management.
+
+
+### UPS                      - Uninterruptible power supply (UPS) management.
+
+
+### USERACCOUNT              - User account management.
+
+
+### VOLTAGE                  - Voltage sensor (electronic voltmeter) data management.
+
+
+### VOLUME                   - Local storage volume management.
+
+
+### VOLUMEQUOTASETTING       - Associates the disk quota setting with a specific disk volume.
+
+
+### VOLUMEUSERQUOTA          - Per user storage volume quota management.
+
+
+### WMISET                   - WMI service operational parameters management.
+
+
+
+For more information on a specific alias, type: alias /?
+Press any key to continue, or press the ESCAPE key to stop
+CLASS     - Escapes to full WMI schema.
+PATH      - Escapes to full WMI object paths.
+CONTEXT   - Displays the state of all the global switches.
+QUIT/EXIT - Exits the program.
+
+For more information on CLASS/PATH/CONTEXT, type: (CLASS | PATH | CONTEXT) /?
+
+```
+>>>>>>> f276a97d403ee92269b078856b1627c1c3a003ba
