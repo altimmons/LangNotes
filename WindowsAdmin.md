@@ -6613,10 +6613,14 @@ You can use several different techniques to log off of a session on the local sy
 
 <<<<<<< Updated upstream
 You can also use the shutdown.exe tool with its logoff option:
-=======
+ 
+ =======
+
 ~~- Blank line is a blank line. This identifies the start of a new registry path. Each key or subkey is a new registry path. If you have several keys in your .reg file, blank lines can help you to examine and to troubleshoot the contents.~~
+
 RegistryPathx is the path of the subkey that holds the first value you are importing. Enclose the path in square brackets, and separate each level of the hierarchy by a backslash. For example:
-[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+
+`[HKEY_LOCAL_ MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
  the bottom of the hierarchy in the path statement does not exist in the registry, a new subkey is created. The contents of the registry files are sent to the registry in the order you enter them. Therefore, if you want to create a new subkey with another subkey below it, you must enter the lines in the correct order.
 
 For more information, and to find other features of the Win32Shutdown method, see "Win32Shutdown Method of the Win32_OperatingSystem Class" in MSDN.

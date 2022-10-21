@@ -9165,7 +9165,7 @@ retcode = call(["/bin/mycmd", "myarg"])
 
 ____
 ____
-## Unit Testting
+### Unit Testting
 
  Checks that a function named `add_2` is a function `self.assert_(isinstance(add_2, types.FunctionType))`
         
@@ -9175,7 +9175,9 @@ ____
 
  ____
 ### Type safety
+ 
 
+[PEP 483 – The Theory of Type Hints | peps.python.org](https://peps.python.org/pep-0483/) See more here in the brief version, or the long version 
 
 ### Python Native Typing
 
@@ -9185,8 +9187,313 @@ ____
 
  [Important doc](https://www.python.org/dev/peps/pep-0484/#type-definition-syntax)
 
+#### Relevant PEPs[¶](https://docs.python.org/3/library/typing.html?highlight=decorators#relevant-peps)
+
+    There are many methods of type hints now in python.  These are the documents introducing them.
+
+Since the initial introduction of type hints in [**PEP 484**](https://www.python.org/dev/peps/pep-0484) and [**PEP 483**](https://www.python.org/dev/peps/pep-0483), a number of PEPs have modified and enhanced Python’s framework for type annotations. These include:
+
+#####  `ClassVar` [**PEP 526**](https://www.python.org/dev/peps/pep-0526): Syntax for Variable Annotations
+    
+    >_Introducing_ syntax for annotating variables outside of function definitions, and [`ClassVar`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.ClassVar "typing.ClassVar")
+
+            The old way
+
+        ```py
+        # 'primes' is a list of integers
+        primes = []  # type: List[int]
+
+        # 'captain' is a string (Note: initial value is a problem)
+        captain = ...  # type: str
+
+        class Starship:
+            # 'stats' is a class variable
+            stats = {}  # type: Dict[str, int]
+
+        ```
+
+    This PEP aims at adding syntax to Python for annotating the types of variables (including class variables and instance variables), instead of expressing them through comments:
+
+        ```py
+        primes: List[int] = []
+
+        captain: str  # Note: no initial value!
+
+        class Starship:
+            stats: ClassVar[Dict[str, int]] = {}
+
+        my_var: int
+        my_var = 5  # Passes type check.
+        other_var: int  = 'a'  # Flagged as error by type checker,
+                # but OK at runtime.
+        ```
+            
+    This syntax does not introduce any new semantics beyond PEP 484, so that the following three statements are equivalent:
 
 
+
+#####  `Protocol` [**PEP 544**](https://www.python.org/dev/peps/pep-0544): Protocols: Structural subtyping (static duck typing)
+    
+> _Introducing_ [`Protocol`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.Protocol "typing.Protocol") and the [`@runtime_checkable`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.runtime_checkable "typing.runtime_checkable") decorator
+
+   This syntax does not introduce any new semantics beyond [PEP 484](https://peps.python.org/pep-0484 "PEP 484 – Type Hints"), *so that the following three statements are equivalent:*
+
+
+    ```py
+    var = value # type: annotation
+    var: annotation; var = value
+    var: annotation = value
+    ```
+
+   For example, here is a simple function whose argument and return type are declared in the annotations:
+    
+    ```py
+    def greeting(name: str) -> str:
+    return 'Hello ' + name
+    ```
+
+-   [**PEP 585**](https://www.python.org/dev/peps/pep-0585): ]
+    
+    Type Hinting Generics In Standard Collections
+    
+    > _Introducing_ [`types.GenericAlias`](https://docs.python.org/3/library/typing.html?highlight=decoratorstypes.html#types.GenericAlias "types.GenericAlias") and the ability to use standard library classes as [generic types](https://docs.python.org/3/library/typing.html?highlight=decoratorsstdtypes.html#types-genericalias)
+    
+   - [Implementation](https://peps.python.org/pep-0585//#implementation)
+
+        Starting with Python 3.7, when `from __future__ import annotations` is used, function and variable annotations can parameterize standard collections directly. Example:
+
+        ```
+        from __future__ import annotations
+
+        def find(haystack: dict[str, list[int]]) -> int:
+            ...
+        ```
+
+
+#####  `Literal`  [**PEP 586**](https://www.python.org/dev/peps/pep-0586): Literal Types
+    > _Introducing_ [`Literal`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.Literal "typing.Literal")
+
+    This PEP proposes adding Literal types to the PEP 484 ecosystem. Literal types indicate that some expression has literally a specific value. For example, the following function will accept only expressions that have literally the value “4”:
+
+    ```py
+    from typing import Literal
+
+    def accepts_only_four(x: Literal[4]) -> None:
+        pass
+
+    accepts_only_four(4)   # OK
+    accepts_only_four(19)  # Rejected
+
+    # ex 2
+
+    MODES = ('started', 'paused', 'cancelled')
+    LEVELS = (
+    range(0, 5),
+    range(40, float('+inf')), 
+    )
+
+    def foo(mode: typing.Among(MODES), levels: typing.Among(LEVELS)):
+    pass
+
+    # ex3
+
+    from typing import Union, Literal
+
+    Mode = Union[Literal['strated'], Literal['paused'], Literal['cancelled']]
+
+    def foo(mode: Mode): ...
+
+    foo('started') # OK
+    foo('wrong') # Error!
+
+    x = 'started'
+    foo(x) # Also an error, we can't track a 'str' variable
+    ```
+#####  `TypedDict` [**PEP 589**](https://www.python.org/dev/peps/pep-0589): TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys
+    
+    >_Introducing_ [`TypedDict`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.TypedDict "typing.TypedDict")
+
+        ``` py   
+        movie = {'name': 'Blade Runner',
+                'year': 1982}
+        This PEP proposes the addition of a new type constructor, called TypedDict, to allow the type of movie to be represented precisely:
+
+        from typing import TypedDict
+
+        class Movie(TypedDict):
+            name: str
+            year: int
+        Now a type checker should accept this code:
+
+        movie: Movie = {'name': 'Blade Runner',
+                        'year': 1982}
+        ```
+
+#####  `@Final, @final`  [**PEP 591**](https://www.python.org/dev/peps/pep-0591): Adding a final qualifier to typing
+    
+    >_Introducing_ [`Final`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.Final "typing.Final") and the [`@final`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.final "typing.final") decorator
+
+!!!Warning: Warning I am unclear what the difference is btw final and Final
+    
+  works in Methods only
+    
+  Is a decorator `@final` and `@overload`
+
+  Can be `@Final`or `@final`
+    
+    ### [The `final` decorator](https://peps.python.org/pep-0591//#id1)
+
+The `typing.final` decorator is used to restrict the use of inheritance and overriding.
+
+A type checker should prohibit any class decorated with `@final` from being subclassed and any method decorated with `@final` from being overridden in a subclass. The method decorator version may be used with all of instance methods, class methods, static methods, and properties.
+
+For example:
+
+        ```
+        from typing import final
+
+        @final
+        class Base:
+            ...
+
+        class Derived(Base):  # Error: Cannot inherit from final class "Base"
+            ...
+        ```
+
+        or example:
+
+    ```py
+    from typing import final
+
+    @final
+    class Base:
+        ...
+
+    class Derived(Base):  # Error: Cannot inherit from final class "Base"
+        ...
+
+    ```
+
+and:
+
+    ```py
+    from typing import final
+
+    class Base:
+        @final
+        def foo(self) -> None:
+            ...
+
+    class Derived(Base):
+        def foo(self) -> None:  # Error: Cannot override final attribute "foo"
+                                # (previously declared in base class "Base")
+            ...
+
+    ```
+
+For overloaded methods, `@final` should be placed on the implementation (or on the first overload, for stubs):
+
+    ```py3
+    from typing import Any, overload
+
+    class Base:
+        @overload
+        def method(self) -> None: ...
+        @overload
+        def method(self, arg: int) -> int: ...
+        @final
+        def method(self, x=None):
+            ...
+    ```
+
+  It is an error to use `@final` on a non-method function.
+
+###### Fina [The `Final` annotation](https://peps.python.org/pep-0591//#id2)
+
+The `typing.Final` type qualifier is used to indicate that a variable or attribute should not be reassigned, redefined, or overridden.
+
+    #### [Syntax](https://peps.python.org/pep-0591//#syntax)
+
+    `Final` may be used in one of several forms:
+
+    -   With an explicit type, using the syntax `Final[<type>]`. Example:
+        
+        ```
+        ID: Final[float] = 1
+        
+        ```
+        
+    -   With no type annotation. Example:
+        
+        ```
+        ID: Final = 1
+        ```
+
+
+#####   `Annotated` [**PEP 593**](https://www.python.org/dev/peps/pep-0593): Flexible function and variable annotations
+    
+      >_Introducing_ [`Annotated`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.Annotated "typing.Annotated")
+
+      parameterized with a type and an arbitrary list of Python values that represent the annotations. Here are the specific details of the syntax:
+
+  The first argument to Annotated must be a valid type
+  Multiple type annotations are supported (Annotated supports variadic arguments):
+
+  `Annotated[int, ValueRange(3, 10), ctype("char")]
+  `
+  Annotated must be called with at least two arguments ( Annotated[int] is not valid)
+  The order of the annotations is preserved and matters for equality checks:
+
+  ```py
+  Annotated[int, ValueRange(3, 10), ctype("char")] != Annotated[
+      int, ctype("char"), ValueRange(3, 10)
+  ]
+  ```
+
+  Nested Annotated types are flattened, with metadata ordered starting with the innermost annotation:
+
+  ```py
+  Annotated[Annotated[int, ValueRange(3, 10)], ctype("char")] == Annotated[
+      int, ValueRange(3, 10), ctype("char")
+  ]
+  ```
+
+  Duplicated annotations are not removed:
+
+  ```py3
+  Annotated[int, ValueRange(3, 10)] != Annotated[
+      int, ValueRange(3, 10), ValueRange(3, 10)
+  ]
+  ```
+
+  Annotated can be used with nested and generic aliases:
+
+  ```py
+  Typevar T = ...
+  Vec = Annotated[List[Tuple[T, T]], MaxLen(10)]
+  V = Vec[int]
+
+  V == Annotated[List[Tuple[int, int]], MaxLen(10)]
+  ```
+
+#####   `types.UnionType` [**PEP 604**](https://www.python.org/dev/peps/pep-0604): Allow writing union types as `X | Y`
+    
+    >_Introducing_ [`types.UnionType`](https://docs.python.org/3/library/typing.html?highlight=decoratorstypes.html#types.UnionType "types.UnionType") and the ability to use the binary-or operator `|` to signify a [union of types](https://docs.python.org/3/library/typing.html?highlight=decoratorsstdtypes.html#types-union)
+    
+#####  `ParamSpec` [**PEP 612**](https://www.python.org/dev/peps/pep-0612): Parameter Specification Variables
+    
+    >_Introducing_ [`ParamSpec`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.ParamSpec "typing.ParamSpec") and [`Concatenate`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.Concatenate "typing.Concatenate")
+
+#####  `TypeAlias`  [**PEP 613**](https://www.python.org/dev/peps/pep-0613): Explicit Type Aliases
+    
+    >_Introducing_ [`TypeAlias`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.TypeAlias "typing.TypeAlias")
+    
+#####  `TypeGuard`  [**PEP 647**](https://www.python.org/dev/peps/pep-0647): User-Defined Type Guards
+    
+    >_Introducing_ [`TypeGuard`](https://docs.python.org/3/library/typing.html?highlight=decorators#typing.TypeGuard "typing.TypeGuard")
+
+
+#### Examples of others
 
  examples of typed lambdas:
 
@@ -9304,9 +9611,8 @@ ____
 
  [Doc](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
 
+[mypy](http://github.com/python/mypy/)
 
-
-____
 ____
 ## Other Development Libraries
 

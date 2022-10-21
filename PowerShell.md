@@ -570,7 +570,121 @@ Write-Host -ForegroundColor Black 'Loading $Profile.AllUsersAllHosts [Location] 
 ```
 
 
-## Automatic Variables 
+## Automatic or Builtin Variables 
+
+quick overview
+
+- `$?` - Contains the execution status of the last operation. Equivalent to %errorlevel% in the CMD shell. See also `$LastExitCode` below.
+
+    - It contains TRUE if the last operation succeeded and FALSE if it failed. ReadOnly, AllScope
+    
+- `$^` - Contains the first token in the last line received by the session.
+
+- `$_` - Contains the current object in the pipeline object. You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
+
+- `$__` is added manually but it the last result
+
+`GCI` or `Get-ChildItem` works on the domain automatic variables.
+
+- $env:
+- $HKCU:
+- $HKLM:
+- $Variable:
+- $Function:
+- $Alias
+- $WSMan:
+- $cert
+- $Global:
+- $Local:
+- $Private:
+- $Script:
+
+
+
+- Automatic Variables
+  - `$$`
+  - `$?`
+  - `$^`
+  - `$_`
+  - `$__`
+  - `$Allnodes`
+  - `$Args`
+  - `$ConsoleFileName`
+  - `$Error`
+  - `$Event`
+  - `$EventArgs`
+  - `$EventSubscriber`
+  - `$ExecutionContext`
+  - `$False`
+  - `$ForEach`
+  - `$Home`
+  - `$Host`
+  - `$Input`
+  - `$LastExitCode`
+  - `$Matches`
+  - `$MyInvocation`
+  - `$NestedPromptLevel`
+  - `$NULL`
+  - `$OFS`
+  - `$PID`
+  - `$Profile`
+  - `$PSBoundParameters`
+  - `$PsCmdlet`
+  - `$PSCommandPath`
+  - `$PsCulture`
+  - `$PSDebugContext`
+  - `$PsHome`
+  - `$PSitem`
+  - `$PSScriptRoot`
+  - `$PSSenderInfo`
+  - `$PsUICulture`
+  - `$PsVersionTable`
+  - `$Pwd`
+  - `$Sender`
+  - `$ShellID`
+  - `$SourceArgs`
+  - `$SourceEventArgs`
+  - `$StackTrace`
+  - `$This`
+  - `$True`
+`gci Variable:`
+  - Preferences
+  - $ConfirmPreference - High
+  - $DebugPreference - SilentlyContinue
+  - $ErrorActionPreference - Continue
+  - $ErrorView - ConciseView
+  - $FormatEnumerationLimit - 4
+  - $InformationPreference - SilentlyContinue
+  - $LogCommandHealthEvent - $False (not logged)
+  - $LogCommandLifecycleEvent - $False (not logged)
+  - $LogEngineHealthEvent - $True (logged)
+  - $LogEngineLifecycleEvent - $True (logged)
+  - $LogProviderLifecycleEvent - $True (logged)
+  - $LogProviderHealthEvent - $True (logged)
+  - $MaximumHistoryCount - 4096
+  - $OFS - Space character (" ")
+  - $OutputEncoding - UTF8Encoding object
+  - $ProgressPreference - Continue
+  - $PSDefaultParameterValues - @{} (empty hash table)
+  - $PSEmailServer - $Null (none)
+  - $PSModuleAutoLoadingPreference - All
+  - $PSSessionApplicationName - 'wsman'
+  - $PSSessionConfigurationName - 'http://schemas.microsoft.com/powershell/Microsoft.PowerShell'
+  - $PSSessionOption - PSSessionOption object
+  - $Transcript - $Null (none)
+  - $VerbosePreference - SilentlyContinue
+  - $WarningPreference - Continue
+  - $WhatIfPreference - $False
+- Others
+  - `$cursorColumn`
+  - `$psISE`
+  - `$PSSessionOption`
+  - `$psUnsupportedConsoleApplications`
+  - `$tokens`
+
+### Internal Variables
+
+[about Automatic Variables - PowerShell | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.2)
 
 - `$$` - Contains the last token in the last line received by the session.
 
@@ -582,16 +696,18 @@ Write-Host -ForegroundColor Black 'Loading $Profile.AllUsersAllHosts [Location] 
 
 - `$_` - Contains the current object in the pipeline object. You can use this variable in commands that perform an action on every object or on selected objects in a pipeline.
 
+- `$__` is added manually but it the last result
+
 - `$Allnodes` - This variable is available inside of a DSC configuration document when configuration data has been passed into it by using the -ConfigurationData parameter.
     - For more information, see "Separating Configuration and Environment Data"
 - `$Args` - Contains an array of the undeclared parameters and/or parameter values that are passed to a function, script, or script block. When you create a function, you can declare the parameters by using the param keyword or by adding a comma-separated list of parameters in parentheses after the function name.
 - `$ConsoleFileName` - Contains the path of the console file (.psc1) that was most recently used in the session. This variable is populated when you start PowerShell with the PSConsoleFile parameter or when you use the `Export-Console` cmdlet to export snap-in names to a console file.
 
-When you use the `Export-Console` cmdlet without parameters, it automatically updates the console file that was most recently used in the session. You can use this automatic variable to determine which file will be updated.
+    When you use the `Export-Console` cmdlet without parameters, it automatically updates the console file that was most recently used in the session. You can use this automatic variable to determine which file will be updated.
 ReadOnly, AllScope
 
 - `$Error` - Contains an array of error objects that represent the most recent errors. Constant
-The most recent error is the first error object in the array ($Error[0]). Function to unwrap the error array via Idera.
+    The most recent error is the first error object in the array ($Error[0]). Function to unwrap the error array via Idera.
 - `$Event` - Contains a PSEventArgs object that represents the event that is being processed. This variable is populated only within the Action block of an event registration command, such as Register-ObjectEvent. The value of this variable is the same object that the Get-Event cmdlet returns. Therefore, you can use the properties of the $Event variable, such as $Event.TimeGenerated , in an Action script block.
 - `$EventArgs` - Contains an object that represents the first event argument that derives from EventArgs of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable can also be found in the SourceEventArgs property of the PSEventArgs (System.Management.Automation.PSEventArgs) object that Get-Event returns.
 - `$EventSubscriber` - Contains a PSEventSubscriber object that represents the event subscriber of the event that is being processed. This variable is populated only within the Action block of an event registration command. The value of this variable is the same object that the Get-EventSubscriber cmdlet returns.
@@ -616,12 +732,13 @@ If you stop this process, you will brute force kill the PowerShell host that is 
 - `$PsCulture` - Contains the name of the culture currently in use in the operating system. The culture determines the display format of items such as numbers, currrency, and dates. This is the value of the System.Globalization.CultureInfo.CurrentCulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-Culture. ReadOnly, AllScope
 - `$PSDebugContext` - While debugging, this variable contains information about the debugging environment. Otherwise, it contains a NULL value. As a result, you can use it to indicate whether the debugger has control. When populated, it contains a PsDebugContext object that has Breakpoints and InvocationInfo properties. The InvocationInfo property has several useful properties, including the Location property. The Location property indicates the path of the script that is being debugged.
 - `$PsHome` - Contains the full path of the installation directory for Windows PowerShell, Constant, AllScope
-Typically, %windir%\System32\WindowsPowerShell\v1.0
-You can use this variable in the paths of Windows PowerShell files. For example, the following command searches the conceptual Help topics for the word "variable": select-string -pattern variable -path $pshome\*.txt
+
+    Typically, %windir%\System32\WindowsPowerShell\v1.0
+    You can use this variable in the paths of Windows PowerShell files. For example, the following command searches the conceptual Help topics for the word "variable": select-string -pattern variable -path $pshome\*.txt
 - `$PSitem` - Represents the current input object, this is exactly the same as $_ it just provides an alternative name to make your pipeline code easier to read. Available in PowerShell 3.0 and greater.
 - `$PSScriptRoot` - Contains the directory from which the script module is being executed. This variable allows scripts to use the module path to access other resources. In PowerShell 3.0+ this is available everywhere, not just in modules.
 - `$PSSenderInfo` - Contains information about the user who started the PSSession, including the user identity and the time zone of the originating computer. This variable is available only in PSSessions.
-The $PSSenderInfo variable includes a user-configurable property, ApplicationArguments, which, by default, contains only the $PSVersionTable from the originating session. To add data to the ApplicationArguments property, use the ApplicationArguments parameter of the New-PSSessionOption cmdlet.
+    The $PSSenderInfo variable includes a user-configurable property, ApplicationArguments, which, by default, contains only the $PSVersionTable from the originating session. To add data to the ApplicationArguments property, use the ApplicationArguments parameter of the New-PSSessionOption cmdlet.
 - `$PsUICulture` - Contains the name of the user interface (UI) culture that is currently in use in the operating system. The UI culture determines which text strings are used for user interface elements, such as menus and messages. This is the value of the System.Globalization.CultureInfo.CurrentUICulture.Name property of the system. To get the System.Globalization.CultureInfo object for the system, use Get-UICulture. ReadOnly, AllScope
 - `$PsVersionTable` - Contains a read-only hash table (Constant, AllScope) that displays details about the version of PowerShell that is running in the current session. The table includes the following items:
   CLRVersion          The version of the common language runtime (CLR)
@@ -640,8 +757,40 @@ The $PSSenderInfo variable includes a user-configurable property, ApplicationArg
 - `$This` - In a script block that defines a script property or script method, the $This variable refers to the object that is being extended.
 - `$True` - Contains TRUE. You can use this variable to represent TRUE in commands and scripts. Constant, AllScope
 
+### Preference Variables
 
-Others:  Found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.1#short-description)
+    ### Preference Variables 
+
+- $ConfirmPreference - High
+- $DebugPreference - SilentlyContinue
+- $ErrorActionPreference - Continue
+- $ErrorView - ConciseView
+- $FormatEnumerationLimit - 4
+- $InformationPreference - SilentlyContinue
+- $LogCommandHealthEvent - $False (not logged)
+- $LogCommandLifecycleEvent - $False (not logged)
+- $LogEngineHealthEvent - $True (logged)
+- $LogEngineLifecycleEvent - $True (logged)
+- $LogProviderLifecycleEvent - $True (logged)
+- $LogProviderHealthEvent - $True (logged)
+- $MaximumHistoryCount - 4096
+- $OFS - Space character (" ")
+- $OutputEncoding - UTF8Encoding object
+- $ProgressPreference - Continue
+- $PSDefaultParameterValues - @{} (empty hash table)
+- $PSEmailServer - $Null (none)
+- $PSModuleAutoLoadingPreference - All
+- $PSSessionApplicationName - 'wsman'
+- $PSSessionConfigurationName - 'http://schemas.microsoft.com/powershell/Microsoft.PowerShell'
+- $PSSessionOption - PSSessionOption object
+- $Transcript - $Null (none)
+- $VerbosePreference - SilentlyContinue
+- $WarningPreference - Continue
+- $WhatIfPreference - $False
+
+### Others:
+
+  Found [here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-7.1#short-description)
 
 
 - `$args`
@@ -666,33 +815,36 @@ Others:  Found [here](https://docs.microsoft.com/en-us/powershell/module/microso
 
 
 
-### **_Settings_**
+### **Built-In Variable Domains**
 ----
+
 
 These are the built in variables for powershell.  There uses are unknown in many cases, but esp. those at the end seem like they could be powerful.
 These are worth further investigation
 
-```ps1
-$env:
-$HKCU:
-$HKLM:
-$Variable:
-$Function:
-$Alias
-$WSMan:
-$cert
-$Global:
-$Local:
-$Private:
-$Script:
-```
+
+- $env:
+- $HKCU:
+- $HKLM:
+- $Variable:
+- $Function:
+- $Alias
+- $WSMan:
+- $cert
+- $Global:
+- $Local:
+- $Private:
+- $Script:
+
 
 `${Variable:$}` Not sure what this does but it popped up in ISE.
 
-`Get-ChildItem Env:` produces a list of all the variables.  Likewise, `gci Variable:` spits out a list of all the variables.  Note the lack of `$` and presence of `:`.
+!!!Tip: GCI categories of internal variables
+  `Get-ChildItem Env:` produces a list of all the variables.  Likewise, ``gci Variable:`` spits out a list of all the variables. **Note the lack of `$` and presence of `:`.**
 
+  PS >>>  `gci Variable:`
+  
 ```ps1
-PS >>> gci Variable:
         Name                           Value
         ----                           -----
         $                              Env: #this was Variable the next timew.  Maybe its the last object
@@ -749,99 +901,119 @@ PS >>> gci Variable:
         VHD                            Microsoft.Vhd.PowerShell.VirtualHardDisk
         WarningPreference              Stop
         WhatIfPreference               False
-$ast
-PS>>> $cursorColumn
-PS>>> $ExecutionContext
-    Host           : System.Management.Automation.Internal.Host.InternalHost
-    Events         : System.Management.Automation.PSLocalEventManager
-    InvokeProvider : System.Management.Automation.ProviderIntrinsics
-    SessionState   : System.Management.Automation.SessionState
-    InvokeCommand  : System.Management.Automation.CommandInvocationIntrinsics
-PS>>> $Host
-    Name             : Windows PowerShell ISE Host
-    Version          : 5.1.17763.134
-    InstanceId       : b66af481-400e-4007-8826-25bd10a6a7aa
-    UI               : System.Management.Automation.Internal.Host.InternalHostUserInterface
-    CurrentCulture   : en-US
-    CurrentUICulture : en-US
-    PrivateData      : Microsoft.PowerShell.Host.ISE.ISEOptions
-    DebuggerEnabled  : True
-    IsRunspacePushed : False
-    Runspace         : System.Management.Automation.Runspaces.LocalRunspace
-PS>>> $PSCommandPath
-PS>>> $psISE
-    CurrentPowerShellTab         : Microsoft.PowerShell.Host.ISE.PowerShellTab
-    CurrentFile                  : Microsoft.PowerShell.Host.ISE.ISEFile
-    CurrentVisibleHorizontalTool :
-    CurrentVisibleVerticalTool   : Microsoft.PowerShell.Host.ISE.ISEAddOnTool
-    Options                      : Microsoft.PowerShell.Host.ISE.ISEOptions
-    PowerShellTabs               : {PowerShell 1}
-PS>>> $PSSessionOption
-    MaximumConnectionRedirectionCount : 5
-    NoCompression                     : False
-    NoMachineProfile                  : False
-    ProxyAccessType                   : None
-    ProxyAuthentication               : Negotiate
-    ProxyCredential                   :
-    SkipCACheck                       : False
-    SkipCNCheck                       : False
-    SkipRevocationCheck               : False
-    OperationTimeout                  : 00:03:00
-    NoEncryption                      : False
-    UseUTF16                          : False
-    IncludePortInSPN                  : False
-    OutputBufferingMode               : None
-    MaxConnectionRetryCount           : 5
-    Culture                           :
-    UICulture                         :
-    MaximumReceivedDataSizePerCommand :
-    MaximumReceivedObjectSize         : 209715200
-    ApplicationArguments              :
-    OpenTimeout                       : 00:03:00
-    CancelTimeout                     : 00:01:00
-    IdleTimeout                       : -00:00:00.0010000
-PS>>> $psUnsupportedConsoleApplications
-    wmic
-    wmic.exe
-    cmd
-    cmd.exe
-    diskpart
-    diskpart.exe
-    edit.com
-    netsh
-    netsh.exe
-    nslookup
-    nslookup.exe
-    powershell
-    powershell.exe
-    ssh-keygen
-    ssh-keygen.exe
-PS>>> $PSVersionTable
-    Name                           Value
-    ----                           -----
-    PSVersion                      5.1.17763.134
-    PSEdition                      Desktop
-    PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
-    BuildVersion                   10.0.17763.134
-    CLRVersion                     4.0.30319.42000
-    WSManStackVersion              3.0
-    PSRemotingProtocolVersion      2.3
-    SerializationVersion           1.1.0.1
-PS>>> $StackTrace
-    at System.Management.Automation.CommandDiscovery.LookupCommandInfo(String commandName, CommandTypes commandTypes, SearchResolutionOptions searchResolutionOptions, CommandOrigin commandOrigi
-    n, ExecutionContext context)
-    at System.Management.Automation.CommandDiscovery.LookupCommandProcessor(String commandName, CommandOrigin commandOrigin, Nullable`1 useLocalScope)
-    at System.Management.Automation.ExecutionContext.CreateCommand(String command, Boolean dotSource)
-    at System.Management.Automation.PipelineOps.AddCommand(PipelineProcessor pipe, CommandParameterInternal[] commandElements, CommandBaseAst commandBaseAst, CommandRedirection[] redirections,
-    ExecutionContext context)
-    at System.Management.Automation.PipelineOps.InvokePipeline(Object input, Boolean ignoreInput, CommandParameterInternal[][] pipeElements, CommandBaseAst[] pipeElementAsts, CommandRedirection
-    [][] commandRedirections, FunctionContext funcContext)
-    at System.Management.Automation.Interpreter.ActionCallInstruction`6.Run(InterpretedFrame frame)
-    at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)
-PS>>> $tokens
-$VerboseHelpErrors
-```
-mimi	Main Effects and Interactions in Mixed and Incomplete Data
+  ```
+
+`$cursorColumn`
+
+`$ExecutionContext`
+
+      Host           : System.Management.Automation.Internal.Host.InternalHost
+      Events         : System.Management.Automation.PSLocalEventManager
+      InvokeProvider : System.Management.Automation.ProviderIntrinsics
+      SessionState   : System.Management.Automation.SessionState
+      InvokeCommand  : System.Management.Automation.CommandInvocationIntrinsics
+
+`$HOST`
+
+      Name             : Windows PowerShell ISE Host
+      Version          : 5.1.17763.134
+      InstanceId       : b66af481-400e-4007-8826-25bd10a6a7aa
+      UI               : System.Management.Automation.Internal.Host.InternalHostUserInterface
+      CurrentCulture   : en-US
+      CurrentUICulture : en-US
+      PrivateData      : Microsoft.PowerShell.Host.ISE.ISEOptions
+      DebuggerEnabled  : True
+      IsRunspacePushed : False
+      Runspace         : System.Management.Automation.Runspaces.LocalRunspace
+
+`$PSCommandPath`
+
+`$psISE`
+
+        CurrentPowerShellTab         : Microsoft.PowerShell.Host.ISE.PowerShellTab
+        CurrentFile                  : Microsoft.PowerShell.Host.ISE.ISEFile
+        CurrentVisibleHorizontalTool :
+        CurrentVisibleVerticalTool   : Microsoft.PowerShell.Host.ISE.ISEAddOnTool
+        Options                      : Microsoft.PowerShell.Host.ISE.ISEOptions
+        PowerShellTabs               : {PowerShell 1}
+
+`$PSSessionOption`
+
+      MaximumConnectionRedirectionCount : 5
+      NoCompression                     : False
+      NoMachineProfile                  : False
+      ProxyAccessType                   : None
+      ProxyAuthentication               : Negotiate
+      ProxyCredential                   :
+      SkipCACheck                       : False
+      SkipCNCheck                       : False
+      SkipRevocationCheck               : False
+      OperationTimeout                  : 00:03:00
+      NoEncryption                      : False
+      UseUTF16                          : False
+      IncludePortInSPN                  : False
+      OutputBufferingMode               : None
+      MaxConnectionRetryCount           : 5
+      Culture                           :
+      UICulture                         :
+      MaximumReceivedDataSizePerCommand :
+      MaximumReceivedObjectSize         : 209715200
+      ApplicationArguments              :
+      OpenTimeout                       : 00:03:00
+      CancelTimeout                     : 00:01:00
+      IdleTimeout                       : -00:00:00.0010000
+
+`$psUnsupportedConsoleApplications`
+
+      wmic
+      wmic.exe
+      cmd
+      cmd.exe
+      diskpart
+      diskpart.exe
+      edit.com
+      netsh
+      netsh.exe
+      nslookup
+      nslookup.exe
+      powershell
+      powershell.exe
+      ssh-keygen
+      ssh-keygen.exe
+      
+`$PSVersionTable`
+  
+      Name                           Value
+      ----                           -----
+      PSVersion                      5.1.17763.134
+      PSEdition                      Desktop
+      PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+      BuildVersion                   10.0.17763.134
+      CLRVersion                     4.0.30319.42000
+      WSManStackVersion              3.0
+      PSRemotingProtocolVersion      2.3
+      SerializationVersion           1.1.0.1
+    
+`$StackTrace`
+
+      at System.Management.Automation.CommandDiscovery.LookupCommandInfo(String commandName, CommandTypes commandTypes, SearchResolutionOptions searchResolutionOptions, CommandOrigin commandOrigi
+      n, ExecutionContext context)
+      at System.Management.Automation.CommandDiscovery.LookupCommandProcessor(String commandName, CommandOrigin commandOrigin, Nullable`1 useLocalScope)
+      at System.Management.Automation.ExecutionContext.CreateCommand(String command, Boolean dotSource)
+      at System.Management.Automation.PipelineOps.AddCommand(PipelineProcessor pipe, CommandParameterInternal[] commandElements, CommandBaseAst commandBaseAst, CommandRedirection[] redirections,
+      ExecutionContext context)
+      at System.Management.Automation.PipelineOps.InvokePipeline(Object input, Boolean ignoreInput, CommandParameterInternal[][] pipeElements, CommandBaseAst[] pipeElementAsts, CommandRedirection
+      [][] commandRedirections, FunctionContext funcContext)
+      at System.Management.Automation.Interpreter.ActionCallInstruction`6.Run(InterpretedFrame frame)
+      at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)
+
+` $tokens`
+
+ `$VerboseHelpErrors`
+
+
+
+
 
 ## Basics
 
@@ -1640,7 +1812,7 @@ The following examples demonstrate this principle:
         + 16 + "file"`
 
 
-### **_Comparison Operators and Comparing Objects_**
+#### **_Comparison Operators and Comparing Objects_**
 ----
 
 !!!Note -  (merged Sections) Same topic **Comparison Operators** and **Comparing Objects**
@@ -1679,7 +1851,7 @@ Containment comparison operators determine whether a test value appears in a ref
 Bitwise comparison operators (`-bAND`, `-bOR`, `-bXOR`, `-bNOT`) manipulate the bit patterns in values.
 
 
-#### _Examples of Comparisons_
+##### _Examples of Comparisons_
 ----
 
 ```powershell
@@ -1708,7 +1880,7 @@ An object has implicit methods as well.
 ```
 
 
-### **_Other Operators_**
+#### **_Other Operators_**
 ----
 
 - `( )` - Grouping Expression operator
@@ -1740,7 +1912,7 @@ An object has implicit methods as well.
 
 
 
-#### _Grouping Expression operator `( )`_
+##### _Grouping Expression operator `( )`_
 ----
 
 `( )`
@@ -1764,7 +1936,7 @@ for example:
 
 
 
-#### _SubExpression operator `$( )` _
+##### _SubExpression operator `$( )` _
 ----
 
 `$( )` 
@@ -1784,7 +1956,7 @@ Subexpressions allow you to evaluate and act on the results of an expression in 
         PS C:\> $(Get-WMIObject win32_Directory)
 
 
-#### _`@( )` - Array SubExpression operator._
+##### _`@( )` - Array SubExpression operator._
 ----
 
 `@( )`
@@ -1801,7 +1973,7 @@ Subexpressions allow you to evaluate and act on the results of an expression in 
         "$user.department" ==> JDOE.department
         "$($user.department)" ==> "Human Resources"
 
-##### `::` - Static member operator
+$1## `::` - Static member operator
 
 Call the static properties operator and methods of a .NET Framework class.
 To find the static properties and methods of an object, use the -Static parameter of Get-Member:
@@ -1811,7 +1983,7 @@ To find the static properties and methods of an object, use the -Static paramete
         [datetime]::Utcnow
 
 
-#### _`,` - Comma operator_
+##### _`,` - Comma operator_
 ----
 
 - As a _binary_ operator, the comma creates an array.
@@ -1820,7 +1992,7 @@ To find the static properties and methods of an object, use the -Static paramete
 [See Arrays](#arrays)
 
 
-#### _**_`&` - Call operator_**_
+##### _**_`&` - Call operator_**_
 ----
 
 Run a command, script, or script block. The call operator, also known as the "invocation operator," lets you run commands that are stored in variables and represented by strings. **Because the call operator does not parse the command, it cannot interpret command parameters.**
@@ -1832,7 +2004,7 @@ Run a command, script, or script block. The call operator, also known as the "in
         AllSigned
 
 
-#### _`.` Dot sourcing operator_
+##### _`.` Dot sourcing operator_
 ----
 
 Run a script in the current scope so that any functions, aliases, and variables that the script creates are added to the current scope. (**without dot sourcing, the variables created within a script will all disappear when the script finishes.**)
@@ -1840,10 +2012,11 @@ Run a script in the current scope so that any functions, aliases, and variables 
         . C:\sample1.ps1
         . .\sample2.ps1
 
-!!!Note: The dot sourcing operator is followed by a space. Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.
+!!!Note: The dot sourcing operator is followed by a space. 
+    **Use the space to distinguish the dot from the dot (.) symbol that represents the current directory.**
 
 
-#### _The `-f` Format operator_
+##### _The `-f` Format operator_
 ----
 
 [Format a string expression](#String-Formatting).
@@ -1861,7 +2034,7 @@ Optional format string(s) can be included to add padding/alignment and display d
         5..25
 
 
-#### _`..` _Range Operator__
+##### _`..` _Range Operator__
 ----
 
 `$B = 5..8` - $B contains: 5, 6, 7, and 8.   [See Arrays](#arrays)
@@ -1875,6 +2048,9 @@ nothing here
 ##### `$` Variable Indicator or Symbol Indicator
 
 ##### `$_` placeHolder Symbol 
+
+This needs to be added to `$PROFILE`
+`$PSDefaultParameterValues['Out-Default:OutVariable'] = '__'`
 
     Need a more correct description of this.
 
@@ -1893,6 +2069,27 @@ $a[-1]
 ##### `%` For Each, For, Where
 
 ##### `|` The Pipe Operator 
+
+  Chains commands such that the result of one is passed into a default variable for the next command
+
+##### `||` The Double pipe operator
+
+ Acts like a conditional logic operator, as in bash
+
+`||` Runs the next statement only if the  first one failed
+
+  `Write-Output 'First' || Write-Output 'Second'`
+    - First command succeeds, so the second command is not executed
+
+##### `&&` The AND Operator
+
+  The converse of the above is `&&`
+
+    Write-Error 'Run' && Write-Output ' Twice'
+     > Run
+
+  Second Operator never runs since the first one is successful 
+
 
 
 ##### `*` WildCard Operator
@@ -1914,7 +2111,7 @@ This list includes external commands in your search path so it can contain thous
     See [Casting Types](#Casting-Types)
 
 
-#### _`%` The ForEach Alias_
+##### _`%` The ForEach Alias_
 ----
 
 see `Get-Alias`
@@ -1955,6 +2152,10 @@ Need the real name for this, but double quote vars are accessable.
 
 Double Quotes - Evaluated, Single Quotes - Literal
 
+
+### `$` commands
+
+ 
 
 ## Basic commands
 
@@ -5026,75 +5227,75 @@ It seems that specifying Computer Name triggers it as a remote operation.
 
 `PS R:\Icons> Get-CimInstance -Class Win32_OperatingSystem | Get-Member -MemberType Property | Select -Property "Name"`
 
-VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_OperatingSystem'.
+    VERBOSE: Perform operation 'Enumerate CimInstances' with following parameters, ''namespaceName' = root\cimv2,'className' = Win32_OperatingSystem'.
 
-VERBOSE: Operation 'Enumerate CimInstances' complete.
-Name                                     
-----                                     
-BootDevice                               
-BuildNumber                              
-BuildType                                
-Caption                                  
-CodeSet                                  
-CountryCode                              
-CreationClassName                        
-CSCreationClassName                      
-CSDVersion                               
-CSName                                   
-CurrentTimeZone                          
-DataExecutionPrevention_32BitApplications
-DataExecutionPrevention_Available        
-DataExecutionPrevention_Drivers          
-DataExecutionPrevention_SupportPolicy    
-Debug                                    
-Description                              
-Distributed                              
-EncryptionLevel                          
-ForegroundApplicationBoost               
-FreePhysicalMemory                       
-FreeSpaceInPagingFiles                   
-FreeVirtualMemory                        
-InstallDate                              
-LargeSystemCache                         
-LastBootUpTime                           
-LocalDateTime                            
-Locale                                   
-Manufacturer                             
-MaxNumberOfProcesses                     
-MaxProcessMemorySize                     
-MUILanguages                             
-Name                                     
-NumberOfLicensedUsers                    
-NumberOfProcesses                        
-NumberOfUsers                            
-OperatingSystemSKU                       
-Organization                             
-OSArchitecture                           
-OSLanguage                               
-OSProductSuite                           
-OSType                                   
-OtherTypeDescription                     
-PAEEnabled                               
-PlusProductID                            
-PlusVersionNumber                        
-PortableOperatingSystem                  
-Primary                                  
-ProductType                              
-PSComputerName                           
-RegisteredUser                           
-SerialNumber                             
-ServicePackMajorVersion                  
-ServicePackMinorVersion                  
-SizeStoredInPagingFiles                  
-Status                                   
-SuiteMask                                
-SystemDevice                             
-SystemDirectory                          
-SystemDrive                              
-TotalSwapSpaceSize                       
-TotalVirtualMemorySize                   
-TotalVisibleMemorySize                   
-Version             
+    VERBOSE: Operation 'Enumerate CimInstances' complete.
+  Name                                     
+  \====                                      
+  BootDevice                               
+  BuildNumber                              
+  BuildType                                
+  Caption                                  
+  CodeSet                                  
+  CountryCode                              
+  CreationClassName                        
+  CSCreationClassName                      
+  CSDVersion                               
+  CSName                                   
+  CurrentTimeZone                          
+  DataExecutionPrevention_32BitApplications
+  DataExecutionPrevention_Available        
+  DataExecutionPrevention_Drivers          
+  DataExecutionPrevention_SupportPolicy    
+  Debug                                    
+  Description                              
+  Distributed                              
+  EncryptionLevel                          
+  ForegroundApplicationBoost               
+  FreePhysicalMemory                       
+  FreeSpaceInPagingFiles                   
+  FreeVirtualMemory                        
+  InstallDate                              
+  LargeSystemCache                         
+  LastBootUpTime                           
+  LocalDateTime                            
+  Locale                                   
+  Manufacturer                             
+  MaxNumberOfProcesses                     
+  MaxProcessMemorySize                     
+  MUILanguages                             
+  Name                                     
+  NumberOfLicensedUsers                    
+  NumberOfProcesses                        
+  NumberOfUsers                            
+  OperatingSystemSKU                       
+  Organization                             
+  OSArchitecture                           
+  OSLanguage                               
+  OSProductSuite                           
+  OSType                                   
+  OtherTypeDescription                     
+  PAEEnabled                               
+  PlusProductID                            
+  PlusVersionNumber                        
+  PortableOperatingSystem                  
+  Primary                                  
+  ProductType                              
+  PSComputerName                           
+  RegisteredUser                           
+  SerialNumber                             
+  ServicePackMajorVersion                  
+  ServicePackMinorVersion                  
+  SizeStoredInPagingFiles                  
+  Status                                   
+  SuiteMask                                
+  SystemDevice                             
+  SystemDirectory                          
+  SystemDrive                              
+  TotalSwapSpaceSize                       
+  TotalVirtualMemorySize                   
+  TotalVisibleMemorySize                   
+  Version             
 
 
 ### **_Listing All WMI-Objects_**
@@ -5617,6 +5818,15 @@ Drives mapped with either WScript.Network or net use are immediately available t
 
 ## Useful things to do
 
+
+## `nv` and `sv`
+
+`New-Variable -Name `
+`Set-Variable -Name`
+
+Can both be put at the end of a pipe chain.
+
+sl 
 
 ### **_Get Environment Vars_**
 ----
