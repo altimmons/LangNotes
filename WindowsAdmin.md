@@ -3273,7 +3273,7 @@ t
    TIME     Display or set the system time•
    TIMEOUT  Delay processing of a batch file/command
    TITLE    Set the window title for a CMD.EXE session•
-~~TLIST    Task list with full path~~
+~~ TLIST    Task list with full path~~
    TOUCH    Change file timestamps
    TRACERT  Trace route to a remote host
    TREE     Graphical display of folder structure
