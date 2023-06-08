@@ -94,7 +94,7 @@
 			"editor.foldingHighlight": true,
 			"editor.foldingStrategy": "auto",
 			"editor.showFoldingControls": "always",
-			"editor.cursorSmoothCaretAnimation": true,
+			"editor.cursorSmoothCaretAnimation": "on",
 			"editor.hover.delay": 50,
 			"editor.hover.enabled": true
 		},

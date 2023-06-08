@@ -1,0 +1,157 @@
+{
+  "main": {
+    "id": "d15869eb2ab1115e",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a0b00bdb46844d2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1a78d7a42679ec2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "c++/C++ Cheatsheet.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "61778a52e86b6222",
+    "type": "split",
+    "children": [
+      {
+        "id": "d6fe67be9a8fc235",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be24490513cfa50b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7cbe4d30e4e73bcf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b9dc31360234bf7d",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c48716844cb17b5d",
+    "type": "split",
+    "children": [
+      {
+        "id": "bfc3b28fdb100c10",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a9db78b9933273f9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "c++/C++ Cheatsheet.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "425f6635ad4c1c1d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "c++/C++ Cheatsheet.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1a833e446a5b64cd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4c044490cc31821d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "c++/C++ Cheatsheet.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "be24490513cfa50b",
+  "lastOpenFiles": [
+    "c++/C++.md",
+    "c++/C Standard Library - Quick Guide.md",
+    "Untitled.canvas",
+    "Java.md",
+    "Docker.md"
+  ]
+}

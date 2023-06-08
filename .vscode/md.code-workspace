@@ -445,7 +445,26 @@ Markdown Setting
 		"configurations": [],
 		"compounds": []
 	},
-	"extensions": {},
+	"extensions": {
+		"recommendations": [
+			"aaron-bond.better-comments",
+			"albert.TabOut",
+			"amoosbr.markdown-imsize",
+			"bierner.markdown-emoji",
+			"bierner.markdown-mermaid",
+			"bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+			"donjayamanne.githistory",
+			"geeklearningio.graphviz-markdown-preview",
+			"goessner.mdmath",
+			"jebbs.markdown-extended",
+			"jebbs.plantuml",
+			"mhutchie.git-graph",
+			"naumovs.color-highlight",
+			"tomoyukim.vscode-mermaid-editor",
+			"telesoho.vscode-markdown-paste-image",
+			"shd101wyy.markdown-preview-enhanced",
+		]
+	},
 }
 /* 
 

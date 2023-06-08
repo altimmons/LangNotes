@@ -3167,7 +3167,7 @@ if the class is static:  You cant use this.
 
 Then you need the class name
 
-<Class>.getSimpleName();
+`<Class>.getSimpleName();`
 
 This also gets the method name.
 

@@ -2653,7 +2653,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
             Tree specific options are: ascii, utf, vt100; compact, inverted, notrunc;
                                     blkdevname, [no]device, active, open, rw and uuid.
 
-            Mapped Device Name Fields
+      ###      Mapped Device Name Fields
       -------------------------
       name_all              - All fields in this section.
       name                  - Name of mapped device.
@@ -2664,7 +2664,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
       unmangled_uuid        - Unmangled unique (optional) identifier for mapped device.
       read_ahead            - Read ahead value.
 
-      Mapped Device Information Fields
+     ### Mapped Device Information Fields
       --------------------------------
       info_all              - All fields in this section.
       blkdevname            - Name of block device.
@@ -2679,7 +2679,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
       segments              - Number of segments in live table, if present.
       events                - Number of most recent event.
 
-      Mapped Device Relationship Information Fields
+      ### Mapped Device Relationship Information Fields
       ---------------------------------------------
       deps_all              - All fields in this section.
       device_count          - Number of devices used by this one.
@@ -2690,7 +2690,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
       names_using_dev       - List of names of mapped devices using this one.
       devnos_using_dev      - List of device numbers of mapped devices using this one.
 
-      Mapped Device Name Components Fields
+      ### Mapped Device Name Components Fields
       ------------------------------------
       splitname_all         - All fields in this section.
       subsystem             - Userspace subsystem responsible for this device.
@@ -2698,7 +2698,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
       lv_name               - LVM Logical Volume name.
       lv_layer              - LVM device layer.
 
-      Mapped Device Statistics Fields
+      ### Mapped Device Statistics Fields
       -------------------------------
       stats_all             - All fields in this section.
       read_count            - Count of reads completed.
@@ -2737,7 +2737,7 @@ lsblk --sort NAME -d -o NAME,VENDOR,MODEL,SERIAL,TRAN,MAJ:MIN,PTUUID,PTTYPE,SIZE
       interval_ns           - Sampling interval in nanoseconds.
       interval              - Sampling interval.
 
-      Mapped Device Statistics Region Information Fields
+      ### Mapped Device Statistics Region Information Fields
       --------------------------------------------------
       region_all            - All fields in this section.
       region_id             - Region ID.
